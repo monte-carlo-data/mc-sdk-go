@@ -59,6 +59,26 @@ api, err := auth.NewClient(ctx, auth.Options{
 
 Tokens are fetched and refreshed as needed, so a long-lived client does not go stale.
 
+### Using credentials you have already configured
+
+If you have configured the Monte Carlo CLI, the SDK reads the same credentials, so there is
+nothing else to set up:
+
+```go
+api, err := auth.NewClient(ctx, auth.Options{})
+```
+
+Anything you leave unset is filled in, in this order:
+
+1. What you pass in `Options`.
+2. `MCD_DEFAULT_API_ID` and `MCD_DEFAULT_API_TOKEN`, or `MCD_DEFAULT_OAUTH_CLIENT_ID` and
+   `MCD_DEFAULT_OAUTH_CLIENT_SECRET`, and `MCD_DEFAULT_INSTANCE_ID`.
+3. A profile from `~/.mcd/profiles.ini`, which the CLI writes.
+
+To pick a profile other than `default`, set `Profile`, or the `MCD_DEFAULT_PROFILE`
+environment variable. A profile you name explicitly has to exist — the SDK reports that
+rather than quietly falling back to different credentials.
+
 ## What is generated and what is not
 
 | Path | |

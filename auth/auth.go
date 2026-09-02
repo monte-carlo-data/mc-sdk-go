@@ -49,6 +49,14 @@ type Options struct {
 	// TokenURL overrides where client credentials are exchanged. Defaults to Endpoint with
 	// /oauth2/token appended.
 	TokenURL string
+
+	// Profile names a section of the credentials file the Monte Carlo CLI writes, so
+	// credentials configured once are shared across tools. Empty means MCD_DEFAULT_PROFILE,
+	// then "default". See Resolve for the full precedence.
+	Profile string
+
+	// ConfigPath overrides the directory holding that file. Empty means ~/.mcd.
+	ConfigPath string
 }
 
 // UsesOAuth reports whether client-credentials auth is configured.
@@ -118,21 +126,31 @@ func (o Options) TokenSource(ctx context.Context) (oauth2.TokenSource, error) {
 
 // NewClient builds a client that authenticates every request.
 //
+// Anything o leaves empty is filled in from the environment and the credentials file, so a
+// caller can pass nothing and get whatever the CLI configured. Resolve documents that order.
+//
 // OAuth credentials are wired through an http.Client that fetches and refreshes tokens as
 // needed, rather than reading one token into the configuration. A long-lived caller would
 // otherwise hold a credential that expires mid-run.
 func NewClient(ctx context.Context, o Options) (*montecarlo.APIClient, error) {
-	ts, err := o.TokenSource(ctx)
+	resolved, err := o.Resolve()
+	if err != nil {
+		return nil, err
+	}
+
+	ts, err := resolved.TokenSource(ctx)
 	if err != nil {
 		return nil, err
 	}
 
 	cfg := montecarlo.NewConfiguration()
-	cfg.Servers = montecarlo.ServerConfigurations{{URL: strings.TrimRight(o.Endpoint, "/")}}
+	cfg.Servers = montecarlo.ServerConfigurations{
+		{URL: strings.TrimRight(resolved.Endpoint, "/")},
+	}
 
 	if ts != nil {
 		cfg.HTTPClient = oauth2.NewClient(context.WithoutCancel(ctx), ts)
-	} else if b := o.bearer(); b != "" {
+	} else if b := resolved.bearer(); b != "" {
 		cfg.AddDefaultHeader("Authorization", "Bearer "+b)
 	}
 

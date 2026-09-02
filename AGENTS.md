@@ -50,9 +50,24 @@ OAuth credentials are wired through an `http.Client` that refreshes tokens as ne
 than reading one token into the configuration. A long-lived caller would otherwise hold a
 credential that expires mid-run.
 
-**`Endpoint` is always required.** The generated client has no default server URL, because
-the API is reached at a different host per deployment, so a client built without one sends
-every request nowhere.
+**`Endpoint` is always required**, though it can come from a profile rather than the caller.
+The generated client has no default server URL, because the API is reached at a different
+host per deployment, so a client built without one sends every request nowhere.
+
+## Credentials are shared with the other tools
+
+`~/.mcd/profiles.ini` is written by the CLI and read by the Python SDK, so this SDK reads the
+same file, the same section names and the same keys. A customer configures credentials once
+and every tool picks them up, which is the whole point — an SDK with its own credential store
+would strand anyone who had already run the CLI.
+
+Precedence mirrors the Python SDK exactly: values passed in, then environment variables, then
+the profile. Diverging would mean the same configuration behaving differently depending on
+which tool read it.
+
+Tests must not read the developer's real credentials. `isolate(t)` in the test package clears
+every environment variable resolution consults and points `ConfigPath` at a temporary
+directory; use it in any test that builds a client or resolves options.
 
 ## Branching
 

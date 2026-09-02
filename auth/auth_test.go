@@ -146,9 +146,13 @@ func TestScopesForInstance(t *testing.T) {
 // The generated client has no default server URL, so a client built without one would send
 // every request nowhere.
 func TestNewClientSetsTheEndpoint(t *testing.T) {
+	dir := isolate(t)
 	api, err := NewClient(
 		context.Background(),
-		Options{Endpoint: "https://api.example.com/", TokenID: "id", TokenSecret: "secret"},
+		Options{
+			Endpoint: "https://api.example.com/", TokenID: "id", TokenSecret: "secret",
+			ConfigPath: dir,
+		},
 	)
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
@@ -164,7 +168,9 @@ func TestNewClientSetsTheEndpoint(t *testing.T) {
 }
 
 func TestNewClientRejectsMissingCredentials(t *testing.T) {
-	if _, err := NewClient(context.Background(), Options{Endpoint: "https://api.example.com"}); err == nil {
+	dir := isolate(t)
+	o := Options{Endpoint: "https://api.example.com", ConfigPath: dir}
+	if _, err := NewClient(context.Background(), o); err == nil {
 		t.Fatal("expected an error when no credentials are set")
 	}
 }
