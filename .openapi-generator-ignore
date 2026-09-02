@@ -1,0 +1,25 @@
+# openapi-generator writes the whole tree on every run. Anything hand-written has to be
+# listed here or it is deleted, silently.
+
+# Authentication and client construction. The generated client has no notion of our auth
+# methods, and its default server URL is empty, so this package is what makes it usable.
+auth/
+
+# The module path and dependency set are ours, not the generator's guess.
+go.mod
+go.sum
+
+# Repository documentation, not generated API reference.
+README.md
+AGENTS.md
+CLAUDE.md
+CODEOWNERS
+.github/
+.claude/
+.work/
+.gitignore
+.mcp.json
+
+# The generator's own scaffolding, which we do not use.
+git_push.sh
+.travis.yml
