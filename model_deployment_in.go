@@ -23,7 +23,7 @@ var _ MappedNullable = &DeploymentIn{}
 type DeploymentIn struct {
 	// Display name for the deployment. Monte Carlo generates one if you leave it out.
 	Name NullableString `json:"name,omitempty"`
-	// Where the thing the deployment hosts will run. Only `AWS` can be provisioned today. Any other value is rejected.
+	// Where the deployment's collection agent or data store will run. Both can be provisioned on `AWS` or `AZURE`. Any other value is rejected.
 	RuntimePlatform RuntimePlatform `json:"runtime_platform"`
 	// What the deployment will host. Only `COLLECTION_AGENT` and `COLLECTION_DATA_STORE` can be provisioned today. Any other value is rejected.
 	Type DeploymentType `json:"type"`

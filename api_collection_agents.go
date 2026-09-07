@@ -160,6 +160,182 @@ func (a *CollectionAgentsAPIService) DeleteAwsCollectionAgentExecute(r ApiDelete
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiDeleteAzureCollectionAgentRequest struct {
+	ctx               context.Context
+	ApiService        *CollectionAgentsAPIService
+	collectionAgentId string
+}
+
+func (r ApiDeleteAzureCollectionAgentRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteAzureCollectionAgentExecute(r)
+}
+
+/*
+DeleteAzureCollectionAgent Delete an Azure collection agent
+
+Deregister an Azure collection agent.
+
+Its deployment is left without an agent. Reprovision that deployment before registering
+another agent on it.
+
+An agent cannot be deleted while its deployment still has a connection running through it.
+Delete or move those connections first.
+
+An id that names an agent on another platform, or no agent in your account, returns 404.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param collectionAgentId
+	@return ApiDeleteAzureCollectionAgentRequest
+*/
+func (a *CollectionAgentsAPIService) DeleteAzureCollectionAgent(ctx context.Context, collectionAgentId string) ApiDeleteAzureCollectionAgentRequest {
+	return ApiDeleteAzureCollectionAgentRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		collectionAgentId: collectionAgentId,
+	}
+}
+
+// Execute executes the request
+func (a *CollectionAgentsAPIService) DeleteAzureCollectionAgentExecute(r ApiDeleteAzureCollectionAgentRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CollectionAgentsAPIService.DeleteAzureCollectionAgent")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/collection-agents/azure/{collection_agent_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"collection_agent_id"+"}", url.PathEscape(parameterValueToString(r.collectionAgentId, "collectionAgentId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -222,6 +398,155 @@ func (a *CollectionAgentsAPIService) GetAwsCollectionAgentExecute(r ApiGetAwsCol
 	}
 
 	localVarPath := localBasePath + "/api/v2/collection-agents/aws/{collection_agent_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"collection_agent_id"+"}", url.PathEscape(parameterValueToString(r.collectionAgentId, "collectionAgentId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetAzureCollectionAgentRequest struct {
+	ctx               context.Context
+	ApiService        *CollectionAgentsAPIService
+	collectionAgentId string
+}
+
+func (r ApiGetAzureCollectionAgentRequest) Execute() (*AzureCollectionAgentOut, *http.Response, error) {
+	return r.ApiService.GetAzureCollectionAgentExecute(r)
+}
+
+/*
+GetAzureCollectionAgent Get an Azure collection agent
+
+Get one collection agent running on Azure.
+
+An id that names an agent on another platform, or no agent in your account, returns 404.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param collectionAgentId
+	@return ApiGetAzureCollectionAgentRequest
+*/
+func (a *CollectionAgentsAPIService) GetAzureCollectionAgent(ctx context.Context, collectionAgentId string) ApiGetAzureCollectionAgentRequest {
+	return ApiGetAzureCollectionAgentRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		collectionAgentId: collectionAgentId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AzureCollectionAgentOut
+func (a *CollectionAgentsAPIService) GetAzureCollectionAgentExecute(r ApiGetAzureCollectionAgentRequest) (*AzureCollectionAgentOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AzureCollectionAgentOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CollectionAgentsAPIService.GetAzureCollectionAgent")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/collection-agents/azure/{collection_agent_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"collection_agent_id"+"}", url.PathEscape(parameterValueToString(r.collectionAgentId, "collectionAgentId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -493,7 +818,7 @@ nothing is registered, and you can call this again once the cause is fixed.
 
 Calling this a second time with the same ARNs returns the agent that is already there, so
 a retry is safe. Registering different ARNs over an agent that is already registered is
-refused.
+refused. A new `name` is applied either way.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiRegisterAwsCollectionAgentRequest
@@ -673,6 +998,216 @@ func (a *CollectionAgentsAPIService) RegisterAwsCollectionAgentExecute(r ApiRegi
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiRegisterAzureCollectionAgentRequest struct {
+	ctx                    context.Context
+	ApiService             *CollectionAgentsAPIService
+	azureCollectionAgentIn *AzureCollectionAgentIn
+}
+
+func (r ApiRegisterAzureCollectionAgentRequest) AzureCollectionAgentIn(azureCollectionAgentIn AzureCollectionAgentIn) ApiRegisterAzureCollectionAgentRequest {
+	r.azureCollectionAgentIn = &azureCollectionAgentIn
+	return r
+}
+
+func (r ApiRegisterAzureCollectionAgentRequest) Execute() (*AzureCollectionAgentOut, *http.Response, error) {
+	return r.ApiService.RegisterAzureCollectionAgentExecute(r)
+}
+
+/*
+RegisterAzureCollectionAgent Register an Azure collection agent
+
+Register the collection agent a deployment was provisioned for, on Azure.
+
+This is the second of the two calls that connect an agent. Provision the deployment first,
+deploy the agent yourself, then call this with the deployment's id, the function app's URL,
+and the credentials for the way you want Monte Carlo to authenticate. The deployment must
+have been provisioned for an Azure collection agent.
+
+Monte Carlo reaches the agent and checks it before enabling it. If the check fails, nothing
+is registered, and you can call this again once the cause is fixed.
+
+Calling this a second time with the same details returns the agent that is already there,
+so a retry is safe. Registering a different function app or different credentials over an
+agent that is already registered is refused. A new `name` is applied either way.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiRegisterAzureCollectionAgentRequest
+*/
+func (a *CollectionAgentsAPIService) RegisterAzureCollectionAgent(ctx context.Context) ApiRegisterAzureCollectionAgentRequest {
+	return ApiRegisterAzureCollectionAgentRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AzureCollectionAgentOut
+func (a *CollectionAgentsAPIService) RegisterAzureCollectionAgentExecute(r ApiRegisterAzureCollectionAgentRequest) (*AzureCollectionAgentOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AzureCollectionAgentOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CollectionAgentsAPIService.RegisterAzureCollectionAgent")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/collection-agents/azure"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.azureCollectionAgentIn == nil {
+		return localVarReturnValue, nil, reportError("azureCollectionAgentIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.azureCollectionAgentIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiUpdateAwsCollectionAgentRequest struct {
 	ctx                     context.Context
 	ApiService              *CollectionAgentsAPIService
@@ -692,15 +1227,16 @@ func (r ApiUpdateAwsCollectionAgentRequest) Execute() (*AwsCollectionAgentOut, *
 /*
 UpdateAwsCollectionAgent Update an AWS collection agent
 
-Change the Lambda function or the role of an AWS collection agent.
+Change the Lambda function, the role or the name of an AWS collection agent.
 
-Send either field or both. Anything you leave out is kept as it is. An agent that has no
-Lambda function yet needs one supplied here, since there would otherwise be nothing for
-Monte Carlo to reach.
+Send any of the fields, in any combination. Anything you leave out is kept as it is. An
+agent that has no Lambda function yet needs one supplied here, since there would otherwise
+be nothing for Monte Carlo to reach.
 
 Monte Carlo reaches the agent and checks it again before saving the change, and re-enables
 the agent if it was disabled. A successful response therefore always describes a working
-agent. If the check fails, nothing about the agent changes.
+agent. If the check fails, nothing about the agent changes. Sending only `name` skips the
+check.
 
 An id that names an agent on another platform, or no agent in your account, returns 404.
 
@@ -761,6 +1297,223 @@ func (a *CollectionAgentsAPIService) UpdateAwsCollectionAgentExecute(r ApiUpdate
 	}
 	// body params
 	localVarPostBody = r.awsCollectionAgentPatch
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateAzureCollectionAgentRequest struct {
+	ctx                       context.Context
+	ApiService                *CollectionAgentsAPIService
+	collectionAgentId         string
+	azureCollectionAgentPatch *AzureCollectionAgentPatch
+}
+
+func (r ApiUpdateAzureCollectionAgentRequest) AzureCollectionAgentPatch(azureCollectionAgentPatch AzureCollectionAgentPatch) ApiUpdateAzureCollectionAgentRequest {
+	r.azureCollectionAgentPatch = &azureCollectionAgentPatch
+	return r
+}
+
+func (r ApiUpdateAzureCollectionAgentRequest) Execute() (*AzureCollectionAgentOut, *http.Response, error) {
+	return r.ApiService.UpdateAzureCollectionAgentExecute(r)
+}
+
+/*
+UpdateAzureCollectionAgent Update an Azure collection agent
+
+Change the function app, the credentials, the authentication type or the name.
+
+Send any of the fields, in any combination. An agent that has no function app URL yet needs
+one supplied here, since there would otherwise be nothing for Monte Carlo to reach. Sending
+credentials replaces the stored ones, so send every field of the object you send, along with
+the matching `authentication_type`. Sending both is also how you move an agent from one
+authentication type to the other. An agent that authenticates some other way refuses a
+credentials or authentication type change, since this endpoint only manages the two Azure
+function authentication types.
+
+Monte Carlo reaches the agent and checks it again before saving the change, and re-enables
+the agent if it was disabled. A successful response therefore always describes a working
+agent. If the check fails, nothing about the agent changes. Sending only `name` skips the
+check.
+
+An id that names an agent on another platform, or no agent in your account, returns 404.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param collectionAgentId
+	@return ApiUpdateAzureCollectionAgentRequest
+*/
+func (a *CollectionAgentsAPIService) UpdateAzureCollectionAgent(ctx context.Context, collectionAgentId string) ApiUpdateAzureCollectionAgentRequest {
+	return ApiUpdateAzureCollectionAgentRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		collectionAgentId: collectionAgentId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return AzureCollectionAgentOut
+func (a *CollectionAgentsAPIService) UpdateAzureCollectionAgentExecute(r ApiUpdateAzureCollectionAgentRequest) (*AzureCollectionAgentOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *AzureCollectionAgentOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CollectionAgentsAPIService.UpdateAzureCollectionAgent")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/collection-agents/azure/{collection_agent_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"collection_agent_id"+"}", url.PathEscape(parameterValueToString(r.collectionAgentId, "collectionAgentId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.azureCollectionAgentPatch == nil {
+		return localVarReturnValue, nil, reportError("azureCollectionAgentPatch is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.azureCollectionAgentPatch
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

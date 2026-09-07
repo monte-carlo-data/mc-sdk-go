@@ -20,11 +20,11 @@ type StorageType string
 
 // List of StorageType
 const (
-	AZURE_BLOB               StorageType = "AZURE_BLOB"
-	GCS                      StorageType = "GCS"
-	S3                       StorageType = "S3"
-	SNOWFLAKE_INTERNAL_STAGE StorageType = "SNOWFLAKE_INTERNAL_STAGE"
-	S3_COMPATIBLE            StorageType = "S3_COMPATIBLE"
+	STORAGETYPE_AZURE_BLOB               StorageType = "AZURE_BLOB"
+	STORAGETYPE_GCS                      StorageType = "GCS"
+	STORAGETYPE_S3                       StorageType = "S3"
+	STORAGETYPE_SNOWFLAKE_INTERNAL_STAGE StorageType = "SNOWFLAKE_INTERNAL_STAGE"
+	STORAGETYPE_S3_COMPATIBLE            StorageType = "S3_COMPATIBLE"
 )
 
 // All allowed values of StorageType enum

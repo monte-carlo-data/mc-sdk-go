@@ -20,9 +20,9 @@ type DeploymentType string
 
 // List of DeploymentType
 const (
-	COLLECTION_AGENT      DeploymentType = "COLLECTION_AGENT"
-	COLLECTION_DATA_STORE DeploymentType = "COLLECTION_DATA_STORE"
-	CLOUD                 DeploymentType = "CLOUD"
+	DEPLOYMENTTYPE_COLLECTION_AGENT      DeploymentType = "COLLECTION_AGENT"
+	DEPLOYMENTTYPE_COLLECTION_DATA_STORE DeploymentType = "COLLECTION_DATA_STORE"
+	DEPLOYMENTTYPE_CLOUD                 DeploymentType = "CLOUD"
 )
 
 // All allowed values of DeploymentType enum

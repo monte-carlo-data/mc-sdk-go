@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **ImageVersion** | Pointer to **NullableString** | Version of the image the collection agent is running. Null until Monte Carlo has contacted the agent. | [optional] 
 **IsRemoteUpgradeable** | **bool** | Whether Monte Carlo can update the collection agent&#39;s image for you. | 
 **LambdaFunctionArn** | **string** | ARN of the Lambda function Monte Carlo invokes. Empty until the agent has been registered. | 
-**LastUpdatedTime** | Pointer to **NullableTime** | When the collection agent was last changed. Registering it, changing its function or role, and Monte Carlo picking up a new image version all update this. Null until any of those has happened. | [optional] 
+**LastUpdatedTime** | Pointer to **NullableTime** | When the collection agent was last changed. Registering it, renaming it, changing how Monte Carlo reaches it, and Monte Carlo picking up a new image version all update this. Null until any of those has happened. | [optional] 
 **Name** | Pointer to **NullableString** | Display name of the collection agent. Null when it has no name. | [optional] 
 
 ## Methods

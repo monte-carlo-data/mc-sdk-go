@@ -20,13 +20,13 @@ type RuntimePlatform string
 
 // List of RuntimePlatform
 const (
-	AWS         RuntimePlatform = "AWS"
-	AWS_PROXIED RuntimePlatform = "AWS_PROXIED"
-	AZURE       RuntimePlatform = "AZURE"
-	GCP         RuntimePlatform = "GCP"
-	GCP_PROXIED RuntimePlatform = "GCP_PROXIED"
-	SNOWFLAKE   RuntimePlatform = "SNOWFLAKE"
-	GENERIC     RuntimePlatform = "GENERIC"
+	RUNTIMEPLATFORM_AWS         RuntimePlatform = "AWS"
+	RUNTIMEPLATFORM_AWS_PROXIED RuntimePlatform = "AWS_PROXIED"
+	RUNTIMEPLATFORM_AZURE       RuntimePlatform = "AZURE"
+	RUNTIMEPLATFORM_GCP         RuntimePlatform = "GCP"
+	RUNTIMEPLATFORM_GCP_PROXIED RuntimePlatform = "GCP_PROXIED"
+	RUNTIMEPLATFORM_SNOWFLAKE   RuntimePlatform = "SNOWFLAKE"
+	RUNTIMEPLATFORM_GENERIC     RuntimePlatform = "GENERIC"
 )
 
 // All allowed values of RuntimePlatform enum

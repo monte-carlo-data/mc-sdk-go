@@ -20,10 +20,10 @@ type IdentityType string
 
 // List of IdentityType
 const (
-	USER    IdentityType = "user"
-	SERVICE IdentityType = "service"
-	SYSTEM  IdentityType = "system"
-	AGENT   IdentityType = "agent"
+	IDENTITYTYPE_USER    IdentityType = "user"
+	IDENTITYTYPE_SERVICE IdentityType = "service"
+	IDENTITYTYPE_SYSTEM  IdentityType = "system"
+	IDENTITYTYPE_AGENT   IdentityType = "agent"
 )
 
 // All allowed values of IdentityType enum

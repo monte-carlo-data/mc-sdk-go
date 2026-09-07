@@ -5,10 +5,14 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteAwsCollectionDataStore**](CollectionDataStoresAPI.md#DeleteAwsCollectionDataStore) | **Delete** /api/v2/collection-data-stores/aws/{collection_data_store_id} | Delete an AWS collection data store
+[**DeleteAzureCollectionDataStore**](CollectionDataStoresAPI.md#DeleteAzureCollectionDataStore) | **Delete** /api/v2/collection-data-stores/azure/{collection_data_store_id} | Delete an Azure collection data store
 [**GetAwsCollectionDataStore**](CollectionDataStoresAPI.md#GetAwsCollectionDataStore) | **Get** /api/v2/collection-data-stores/aws/{collection_data_store_id} | Get an AWS collection data store
+[**GetAzureCollectionDataStore**](CollectionDataStoresAPI.md#GetAzureCollectionDataStore) | **Get** /api/v2/collection-data-stores/azure/{collection_data_store_id} | Get an Azure collection data store
 [**ListCollectionDataStores**](CollectionDataStoresAPI.md#ListCollectionDataStores) | **Get** /api/v2/collection-data-stores | List collection data stores
 [**RegisterAwsCollectionDataStore**](CollectionDataStoresAPI.md#RegisterAwsCollectionDataStore) | **Post** /api/v2/collection-data-stores/aws | Register an AWS collection data store
+[**RegisterAzureCollectionDataStore**](CollectionDataStoresAPI.md#RegisterAzureCollectionDataStore) | **Post** /api/v2/collection-data-stores/azure | Register an Azure collection data store
 [**UpdateAwsCollectionDataStore**](CollectionDataStoresAPI.md#UpdateAwsCollectionDataStore) | **Patch** /api/v2/collection-data-stores/aws/{collection_data_store_id} | Update an AWS collection data store
+[**UpdateAzureCollectionDataStore**](CollectionDataStoresAPI.md#UpdateAzureCollectionDataStore) | **Patch** /api/v2/collection-data-stores/azure/{collection_data_store_id} | Update an Azure collection data store
 
 
 
@@ -56,6 +60,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteAwsCollectionDataStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteAzureCollectionDataStore
+
+> DeleteAzureCollectionDataStore(ctx, collectionDataStoreId).Execute()
+
+Delete an Azure collection data store
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go"
+)
+
+func main() {
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CollectionDataStoresAPI.DeleteAzureCollectionDataStore(context.Background(), collectionDataStoreId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CollectionDataStoresAPI.DeleteAzureCollectionDataStore``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**collectionDataStoreId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAzureCollectionDataStoreRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -135,6 +207,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AwsCollectionDataStoreOut**](AwsCollectionDataStoreOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAzureCollectionDataStore
+
+> AzureCollectionDataStoreOut GetAzureCollectionDataStore(ctx, collectionDataStoreId).Execute()
+
+Get an Azure collection data store
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go"
+)
+
+func main() {
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CollectionDataStoresAPI.GetAzureCollectionDataStore(context.Background(), collectionDataStoreId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CollectionDataStoresAPI.GetAzureCollectionDataStore``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAzureCollectionDataStore`: AzureCollectionDataStoreOut
+	fmt.Fprintf(os.Stdout, "Response from `CollectionDataStoresAPI.GetAzureCollectionDataStore`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**collectionDataStoreId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAzureCollectionDataStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**AzureCollectionDataStoreOut**](AzureCollectionDataStoreOut.md)
 
 ### Authorization
 
@@ -277,6 +419,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RegisterAzureCollectionDataStore
+
+> AzureCollectionDataStoreOut RegisterAzureCollectionDataStore(ctx).AzureCollectionDataStoreIn(azureCollectionDataStoreIn).Execute()
+
+Register an Azure collection data store
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go"
+)
+
+func main() {
+	azureCollectionDataStoreIn := *openapiclient.NewAzureCollectionDataStoreIn(openapiclient.AzureDataStoreAuthenticationType("AZURE_STORAGE_ACCOUNT_KEYS"), "ContainerName_example", "DeploymentId_example") // AzureCollectionDataStoreIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CollectionDataStoresAPI.RegisterAzureCollectionDataStore(context.Background()).AzureCollectionDataStoreIn(azureCollectionDataStoreIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CollectionDataStoresAPI.RegisterAzureCollectionDataStore``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RegisterAzureCollectionDataStore`: AzureCollectionDataStoreOut
+	fmt.Fprintf(os.Stdout, "Response from `CollectionDataStoresAPI.RegisterAzureCollectionDataStore`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRegisterAzureCollectionDataStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **azureCollectionDataStoreIn** | [**AzureCollectionDataStoreIn**](AzureCollectionDataStoreIn.md) |  | 
+
+### Return type
+
+[**AzureCollectionDataStoreOut**](AzureCollectionDataStoreOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateAwsCollectionDataStore
 
 > AwsCollectionDataStoreOut UpdateAwsCollectionDataStore(ctx, collectionDataStoreId).AwsCollectionDataStorePatch(awsCollectionDataStorePatch).Execute()
@@ -334,6 +542,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AwsCollectionDataStoreOut**](AwsCollectionDataStoreOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateAzureCollectionDataStore
+
+> AzureCollectionDataStoreOut UpdateAzureCollectionDataStore(ctx, collectionDataStoreId).AzureCollectionDataStorePatch(azureCollectionDataStorePatch).Execute()
+
+Update an Azure collection data store
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go"
+)
+
+func main() {
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	azureCollectionDataStorePatch := *openapiclient.NewAzureCollectionDataStorePatch() // AzureCollectionDataStorePatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CollectionDataStoresAPI.UpdateAzureCollectionDataStore(context.Background(), collectionDataStoreId).AzureCollectionDataStorePatch(azureCollectionDataStorePatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CollectionDataStoresAPI.UpdateAzureCollectionDataStore``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateAzureCollectionDataStore`: AzureCollectionDataStoreOut
+	fmt.Fprintf(os.Stdout, "Response from `CollectionDataStoresAPI.UpdateAzureCollectionDataStore`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**collectionDataStoreId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateAzureCollectionDataStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **azureCollectionDataStorePatch** | [**AzureCollectionDataStorePatch**](AzureCollectionDataStorePatch.md) |  | 
+
+### Return type
+
+[**AzureCollectionDataStoreOut**](AzureCollectionDataStoreOut.md)
 
 ### Authorization
 

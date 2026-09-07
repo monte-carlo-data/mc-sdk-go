@@ -42,7 +42,7 @@ type AwsCollectionAgentOut struct {
 	IsRemoteUpgradeable bool `json:"is_remote_upgradeable"`
 	// ARN of the Lambda function Monte Carlo invokes. Empty until the agent has been registered.
 	LambdaFunctionArn string `json:"lambda_function_arn"`
-	// When the collection agent was last changed. Registering it, changing its function or role, and Monte Carlo picking up a new image version all update this. Null until any of those has happened.
+	// When the collection agent was last changed. Registering it, renaming it, changing how Monte Carlo reaches it, and Monte Carlo picking up a new image version all update this. Null until any of those has happened.
 	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
 	// Display name of the collection agent. Null when it has no name.
 	Name NullableString `json:"name,omitempty"`

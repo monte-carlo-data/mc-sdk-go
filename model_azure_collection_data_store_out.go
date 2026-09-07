@@ -17,60 +17,58 @@ import (
 	"time"
 )
 
-// checks if the CollectionDataStoreOut type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &CollectionDataStoreOut{}
+// checks if the AzureCollectionDataStoreOut type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &AzureCollectionDataStoreOut{}
 
-// CollectionDataStoreOut A data store: the storage where Monte Carlo keeps your account's query results, samples and temporary data.  The cross-platform list returns this shape. A platform-specific read names the address for that platform instead.
-type CollectionDataStoreOut struct {
+// AzureCollectionDataStoreOut A data store held in an Azure Blob Storage container.  There is no external id: Monte Carlo assumes no role to reach Azure storage.
+type AzureCollectionDataStoreOut struct {
 	// How Monte Carlo authenticates when it reaches the data store.
 	AuthenticationType AuthenticationType `json:"authentication_type"`
+	// Name of the blob container Monte Carlo uses. Empty until it has been registered. The storage account holding it is part of the credentials, so it is not returned.
+	ContainerName string `json:"container_name"`
 	// When the data store was created, which is when its deployment was provisioned.
 	CreatedTime NullableTime `json:"created_time,omitempty"`
 	// Identifier of the deployment this data store belongs to.
 	DeploymentId string `json:"deployment_id"`
 	// Whether Monte Carlo is using this data store. One that is unregistered, or whose validation failed, is not enabled.
 	Enabled bool `json:"enabled"`
-	// Address of the data store, in the form its platform uses. On AWS that is an S3 bucket name, and on Azure the name of a blob container. Empty until it has been registered.
-	Endpoint string `json:"endpoint"`
 	// Unique identifier of the data store.
 	Id string `json:"id"`
 	// When the data store was last registered, renamed, or given different storage or credentials. Null until one of those has happened.
 	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
 	// Display name of the data store. Null when it has no name.
 	Name NullableString `json:"name,omitempty"`
-	// Where the data store runs. Build the platform-specific path for any other operation on it from this. Null when Monte Carlo has not recorded a platform, and no platform-specific path addresses those.
-	Platform NullableRuntimePlatform `json:"platform,omitempty"`
 	// Which kind of storage the data store keeps its data in.
 	StorageType StorageType `json:"storage_type"`
 }
 
-type _CollectionDataStoreOut CollectionDataStoreOut
+type _AzureCollectionDataStoreOut AzureCollectionDataStoreOut
 
-// NewCollectionDataStoreOut instantiates a new CollectionDataStoreOut object
+// NewAzureCollectionDataStoreOut instantiates a new AzureCollectionDataStoreOut object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCollectionDataStoreOut(authenticationType AuthenticationType, deploymentId string, enabled bool, endpoint string, id string, storageType StorageType) *CollectionDataStoreOut {
-	this := CollectionDataStoreOut{}
+func NewAzureCollectionDataStoreOut(authenticationType AuthenticationType, containerName string, deploymentId string, enabled bool, id string, storageType StorageType) *AzureCollectionDataStoreOut {
+	this := AzureCollectionDataStoreOut{}
 	this.AuthenticationType = authenticationType
+	this.ContainerName = containerName
 	this.DeploymentId = deploymentId
 	this.Enabled = enabled
-	this.Endpoint = endpoint
 	this.Id = id
 	this.StorageType = storageType
 	return &this
 }
 
-// NewCollectionDataStoreOutWithDefaults instantiates a new CollectionDataStoreOut object
+// NewAzureCollectionDataStoreOutWithDefaults instantiates a new AzureCollectionDataStoreOut object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewCollectionDataStoreOutWithDefaults() *CollectionDataStoreOut {
-	this := CollectionDataStoreOut{}
+func NewAzureCollectionDataStoreOutWithDefaults() *AzureCollectionDataStoreOut {
+	this := AzureCollectionDataStoreOut{}
 	return &this
 }
 
 // GetAuthenticationType returns the AuthenticationType field value
-func (o *CollectionDataStoreOut) GetAuthenticationType() AuthenticationType {
+func (o *AzureCollectionDataStoreOut) GetAuthenticationType() AuthenticationType {
 	if o == nil {
 		var ret AuthenticationType
 		return ret
@@ -81,7 +79,7 @@ func (o *CollectionDataStoreOut) GetAuthenticationType() AuthenticationType {
 
 // GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value
 // and a boolean to check if the value has been set.
-func (o *CollectionDataStoreOut) GetAuthenticationTypeOk() (*AuthenticationType, bool) {
+func (o *AzureCollectionDataStoreOut) GetAuthenticationTypeOk() (*AuthenticationType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,12 +87,36 @@ func (o *CollectionDataStoreOut) GetAuthenticationTypeOk() (*AuthenticationType,
 }
 
 // SetAuthenticationType sets field value
-func (o *CollectionDataStoreOut) SetAuthenticationType(v AuthenticationType) {
+func (o *AzureCollectionDataStoreOut) SetAuthenticationType(v AuthenticationType) {
 	o.AuthenticationType = v
 }
 
+// GetContainerName returns the ContainerName field value
+func (o *AzureCollectionDataStoreOut) GetContainerName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ContainerName
+}
+
+// GetContainerNameOk returns a tuple with the ContainerName field value
+// and a boolean to check if the value has been set.
+func (o *AzureCollectionDataStoreOut) GetContainerNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ContainerName, true
+}
+
+// SetContainerName sets field value
+func (o *AzureCollectionDataStoreOut) SetContainerName(v string) {
+	o.ContainerName = v
+}
+
 // GetCreatedTime returns the CreatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CollectionDataStoreOut) GetCreatedTime() time.Time {
+func (o *AzureCollectionDataStoreOut) GetCreatedTime() time.Time {
 	if o == nil || IsNil(o.CreatedTime.Get()) {
 		var ret time.Time
 		return ret
@@ -105,7 +127,7 @@ func (o *CollectionDataStoreOut) GetCreatedTime() time.Time {
 // GetCreatedTimeOk returns a tuple with the CreatedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CollectionDataStoreOut) GetCreatedTimeOk() (*time.Time, bool) {
+func (o *AzureCollectionDataStoreOut) GetCreatedTimeOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -113,7 +135,7 @@ func (o *CollectionDataStoreOut) GetCreatedTimeOk() (*time.Time, bool) {
 }
 
 // HasCreatedTime returns a boolean if a field has been set.
-func (o *CollectionDataStoreOut) HasCreatedTime() bool {
+func (o *AzureCollectionDataStoreOut) HasCreatedTime() bool {
 	if o != nil && o.CreatedTime.IsSet() {
 		return true
 	}
@@ -122,22 +144,22 @@ func (o *CollectionDataStoreOut) HasCreatedTime() bool {
 }
 
 // SetCreatedTime gets a reference to the given NullableTime and assigns it to the CreatedTime field.
-func (o *CollectionDataStoreOut) SetCreatedTime(v time.Time) {
+func (o *AzureCollectionDataStoreOut) SetCreatedTime(v time.Time) {
 	o.CreatedTime.Set(&v)
 }
 
 // SetCreatedTimeNil sets the value for CreatedTime to be an explicit nil
-func (o *CollectionDataStoreOut) SetCreatedTimeNil() {
+func (o *AzureCollectionDataStoreOut) SetCreatedTimeNil() {
 	o.CreatedTime.Set(nil)
 }
 
 // UnsetCreatedTime ensures that no value is present for CreatedTime, not even an explicit nil
-func (o *CollectionDataStoreOut) UnsetCreatedTime() {
+func (o *AzureCollectionDataStoreOut) UnsetCreatedTime() {
 	o.CreatedTime.Unset()
 }
 
 // GetDeploymentId returns the DeploymentId field value
-func (o *CollectionDataStoreOut) GetDeploymentId() string {
+func (o *AzureCollectionDataStoreOut) GetDeploymentId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -148,7 +170,7 @@ func (o *CollectionDataStoreOut) GetDeploymentId() string {
 
 // GetDeploymentIdOk returns a tuple with the DeploymentId field value
 // and a boolean to check if the value has been set.
-func (o *CollectionDataStoreOut) GetDeploymentIdOk() (*string, bool) {
+func (o *AzureCollectionDataStoreOut) GetDeploymentIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -156,12 +178,12 @@ func (o *CollectionDataStoreOut) GetDeploymentIdOk() (*string, bool) {
 }
 
 // SetDeploymentId sets field value
-func (o *CollectionDataStoreOut) SetDeploymentId(v string) {
+func (o *AzureCollectionDataStoreOut) SetDeploymentId(v string) {
 	o.DeploymentId = v
 }
 
 // GetEnabled returns the Enabled field value
-func (o *CollectionDataStoreOut) GetEnabled() bool {
+func (o *AzureCollectionDataStoreOut) GetEnabled() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -172,7 +194,7 @@ func (o *CollectionDataStoreOut) GetEnabled() bool {
 
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
-func (o *CollectionDataStoreOut) GetEnabledOk() (*bool, bool) {
+func (o *AzureCollectionDataStoreOut) GetEnabledOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -180,36 +202,12 @@ func (o *CollectionDataStoreOut) GetEnabledOk() (*bool, bool) {
 }
 
 // SetEnabled sets field value
-func (o *CollectionDataStoreOut) SetEnabled(v bool) {
+func (o *AzureCollectionDataStoreOut) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
-// GetEndpoint returns the Endpoint field value
-func (o *CollectionDataStoreOut) GetEndpoint() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Endpoint
-}
-
-// GetEndpointOk returns a tuple with the Endpoint field value
-// and a boolean to check if the value has been set.
-func (o *CollectionDataStoreOut) GetEndpointOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Endpoint, true
-}
-
-// SetEndpoint sets field value
-func (o *CollectionDataStoreOut) SetEndpoint(v string) {
-	o.Endpoint = v
-}
-
 // GetId returns the Id field value
-func (o *CollectionDataStoreOut) GetId() string {
+func (o *AzureCollectionDataStoreOut) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -220,7 +218,7 @@ func (o *CollectionDataStoreOut) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *CollectionDataStoreOut) GetIdOk() (*string, bool) {
+func (o *AzureCollectionDataStoreOut) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -228,12 +226,12 @@ func (o *CollectionDataStoreOut) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *CollectionDataStoreOut) SetId(v string) {
+func (o *AzureCollectionDataStoreOut) SetId(v string) {
 	o.Id = v
 }
 
 // GetLastUpdatedTime returns the LastUpdatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CollectionDataStoreOut) GetLastUpdatedTime() time.Time {
+func (o *AzureCollectionDataStoreOut) GetLastUpdatedTime() time.Time {
 	if o == nil || IsNil(o.LastUpdatedTime.Get()) {
 		var ret time.Time
 		return ret
@@ -244,7 +242,7 @@ func (o *CollectionDataStoreOut) GetLastUpdatedTime() time.Time {
 // GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CollectionDataStoreOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
+func (o *AzureCollectionDataStoreOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -252,7 +250,7 @@ func (o *CollectionDataStoreOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
 }
 
 // HasLastUpdatedTime returns a boolean if a field has been set.
-func (o *CollectionDataStoreOut) HasLastUpdatedTime() bool {
+func (o *AzureCollectionDataStoreOut) HasLastUpdatedTime() bool {
 	if o != nil && o.LastUpdatedTime.IsSet() {
 		return true
 	}
@@ -261,22 +259,22 @@ func (o *CollectionDataStoreOut) HasLastUpdatedTime() bool {
 }
 
 // SetLastUpdatedTime gets a reference to the given NullableTime and assigns it to the LastUpdatedTime field.
-func (o *CollectionDataStoreOut) SetLastUpdatedTime(v time.Time) {
+func (o *AzureCollectionDataStoreOut) SetLastUpdatedTime(v time.Time) {
 	o.LastUpdatedTime.Set(&v)
 }
 
 // SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
-func (o *CollectionDataStoreOut) SetLastUpdatedTimeNil() {
+func (o *AzureCollectionDataStoreOut) SetLastUpdatedTimeNil() {
 	o.LastUpdatedTime.Set(nil)
 }
 
 // UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
-func (o *CollectionDataStoreOut) UnsetLastUpdatedTime() {
+func (o *AzureCollectionDataStoreOut) UnsetLastUpdatedTime() {
 	o.LastUpdatedTime.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CollectionDataStoreOut) GetName() string {
+func (o *AzureCollectionDataStoreOut) GetName() string {
 	if o == nil || IsNil(o.Name.Get()) {
 		var ret string
 		return ret
@@ -287,7 +285,7 @@ func (o *CollectionDataStoreOut) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CollectionDataStoreOut) GetNameOk() (*string, bool) {
+func (o *AzureCollectionDataStoreOut) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -295,7 +293,7 @@ func (o *CollectionDataStoreOut) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *CollectionDataStoreOut) HasName() bool {
+func (o *AzureCollectionDataStoreOut) HasName() bool {
 	if o != nil && o.Name.IsSet() {
 		return true
 	}
@@ -304,65 +302,22 @@ func (o *CollectionDataStoreOut) HasName() bool {
 }
 
 // SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *CollectionDataStoreOut) SetName(v string) {
+func (o *AzureCollectionDataStoreOut) SetName(v string) {
 	o.Name.Set(&v)
 }
 
 // SetNameNil sets the value for Name to be an explicit nil
-func (o *CollectionDataStoreOut) SetNameNil() {
+func (o *AzureCollectionDataStoreOut) SetNameNil() {
 	o.Name.Set(nil)
 }
 
 // UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *CollectionDataStoreOut) UnsetName() {
+func (o *AzureCollectionDataStoreOut) UnsetName() {
 	o.Name.Unset()
 }
 
-// GetPlatform returns the Platform field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CollectionDataStoreOut) GetPlatform() RuntimePlatform {
-	if o == nil || IsNil(o.Platform.Get()) {
-		var ret RuntimePlatform
-		return ret
-	}
-	return *o.Platform.Get()
-}
-
-// GetPlatformOk returns a tuple with the Platform field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CollectionDataStoreOut) GetPlatformOk() (*RuntimePlatform, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Platform.Get(), o.Platform.IsSet()
-}
-
-// HasPlatform returns a boolean if a field has been set.
-func (o *CollectionDataStoreOut) HasPlatform() bool {
-	if o != nil && o.Platform.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetPlatform gets a reference to the given NullableRuntimePlatform and assigns it to the Platform field.
-func (o *CollectionDataStoreOut) SetPlatform(v RuntimePlatform) {
-	o.Platform.Set(&v)
-}
-
-// SetPlatformNil sets the value for Platform to be an explicit nil
-func (o *CollectionDataStoreOut) SetPlatformNil() {
-	o.Platform.Set(nil)
-}
-
-// UnsetPlatform ensures that no value is present for Platform, not even an explicit nil
-func (o *CollectionDataStoreOut) UnsetPlatform() {
-	o.Platform.Unset()
-}
-
 // GetStorageType returns the StorageType field value
-func (o *CollectionDataStoreOut) GetStorageType() StorageType {
+func (o *AzureCollectionDataStoreOut) GetStorageType() StorageType {
 	if o == nil {
 		var ret StorageType
 		return ret
@@ -373,7 +328,7 @@ func (o *CollectionDataStoreOut) GetStorageType() StorageType {
 
 // GetStorageTypeOk returns a tuple with the StorageType field value
 // and a boolean to check if the value has been set.
-func (o *CollectionDataStoreOut) GetStorageTypeOk() (*StorageType, bool) {
+func (o *AzureCollectionDataStoreOut) GetStorageTypeOk() (*StorageType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -381,11 +336,11 @@ func (o *CollectionDataStoreOut) GetStorageTypeOk() (*StorageType, bool) {
 }
 
 // SetStorageType sets field value
-func (o *CollectionDataStoreOut) SetStorageType(v StorageType) {
+func (o *AzureCollectionDataStoreOut) SetStorageType(v StorageType) {
 	o.StorageType = v
 }
 
-func (o CollectionDataStoreOut) MarshalJSON() ([]byte, error) {
+func (o AzureCollectionDataStoreOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -393,15 +348,15 @@ func (o CollectionDataStoreOut) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o CollectionDataStoreOut) ToMap() (map[string]interface{}, error) {
+func (o AzureCollectionDataStoreOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["authentication_type"] = o.AuthenticationType
+	toSerialize["container_name"] = o.ContainerName
 	if o.CreatedTime.IsSet() {
 		toSerialize["created_time"] = o.CreatedTime.Get()
 	}
 	toSerialize["deployment_id"] = o.DeploymentId
 	toSerialize["enabled"] = o.Enabled
-	toSerialize["endpoint"] = o.Endpoint
 	toSerialize["id"] = o.Id
 	if o.LastUpdatedTime.IsSet() {
 		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
@@ -409,22 +364,19 @@ func (o CollectionDataStoreOut) ToMap() (map[string]interface{}, error) {
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
-	if o.Platform.IsSet() {
-		toSerialize["platform"] = o.Platform.Get()
-	}
 	toSerialize["storage_type"] = o.StorageType
 	return toSerialize, nil
 }
 
-func (o *CollectionDataStoreOut) UnmarshalJSON(data []byte) (err error) {
+func (o *AzureCollectionDataStoreOut) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"authentication_type",
+		"container_name",
 		"deployment_id",
 		"enabled",
-		"endpoint",
 		"id",
 		"storage_type",
 	}
@@ -443,53 +395,53 @@ func (o *CollectionDataStoreOut) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varCollectionDataStoreOut := _CollectionDataStoreOut{}
+	varAzureCollectionDataStoreOut := _AzureCollectionDataStoreOut{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCollectionDataStoreOut)
+	err = decoder.Decode(&varAzureCollectionDataStoreOut)
 
 	if err != nil {
 		return err
 	}
 
-	*o = CollectionDataStoreOut(varCollectionDataStoreOut)
+	*o = AzureCollectionDataStoreOut(varAzureCollectionDataStoreOut)
 
 	return err
 }
 
-type NullableCollectionDataStoreOut struct {
-	value *CollectionDataStoreOut
+type NullableAzureCollectionDataStoreOut struct {
+	value *AzureCollectionDataStoreOut
 	isSet bool
 }
 
-func (v NullableCollectionDataStoreOut) Get() *CollectionDataStoreOut {
+func (v NullableAzureCollectionDataStoreOut) Get() *AzureCollectionDataStoreOut {
 	return v.value
 }
 
-func (v *NullableCollectionDataStoreOut) Set(val *CollectionDataStoreOut) {
+func (v *NullableAzureCollectionDataStoreOut) Set(val *AzureCollectionDataStoreOut) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableCollectionDataStoreOut) IsSet() bool {
+func (v NullableAzureCollectionDataStoreOut) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableCollectionDataStoreOut) Unset() {
+func (v *NullableAzureCollectionDataStoreOut) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableCollectionDataStoreOut(val *CollectionDataStoreOut) *NullableCollectionDataStoreOut {
-	return &NullableCollectionDataStoreOut{value: val, isSet: true}
+func NewNullableAzureCollectionDataStoreOut(val *AzureCollectionDataStoreOut) *NullableAzureCollectionDataStoreOut {
+	return &NullableAzureCollectionDataStoreOut{value: val, isSet: true}
 }
 
-func (v NullableCollectionDataStoreOut) MarshalJSON() ([]byte, error) {
+func (v NullableAzureCollectionDataStoreOut) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableCollectionDataStoreOut) UnmarshalJSON(src []byte) error {
+func (v *NullableAzureCollectionDataStoreOut) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

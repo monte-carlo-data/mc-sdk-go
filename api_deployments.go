@@ -43,8 +43,8 @@ CreateDeployment Create a deployment
 Provision a deployment for a collection agent or a data store to be registered on.
 
 Connecting either one takes two calls, and this is the first. Monte Carlo allocates the
-deployment and returns the external id to put in the trust policy of the role it will
-assume. Registering on the deployment is the second call, and that is what enables it.
+deployment, and returns an external id for a deployment it will reach by assuming a role.
+Registering on the deployment is the second call, and that is what enables it.
 
 The new deployment is not enabled and serves no connections until something is registered
 on it. It counts against your account's deployment limit as soon as it is created, whether
@@ -395,7 +395,7 @@ func (r ApiGetDeploymentRequest) Execute() (*DeploymentOut, *http.Response, erro
 /*
 GetDeployment Get a deployment
 
-Get one deployment, including the external id needed to register on it.
+Get one deployment. An AWS deployment includes the external id needed to register on it.
 
 An id that does not exist, belongs to another account, or names a deployment on Monte
 Carlo's older collection platform all return 404.
@@ -693,11 +693,13 @@ func (r ApiReprovisionDeploymentRequest) Execute() (*DeploymentOut, *http.Respon
 /*
 ReprovisionDeployment Reprovision a deployment
 
-Give a deployment something fresh to register, and a new external id.
+Give a deployment something fresh to register.
 
 Use this to recover a deployment whose collection agent or data store was deleted, and to
 change what a deployment hosts. The deployment itself is kept, so it does not count
-against your account's limit a second time, and what it hosted is discarded.
+against your account's limit a second time, and what it hosted is discarded. An AWS
+deployment is given a new external id, so a role trust policy naming the old one has to be
+updated.
 
 A deployment whose collection agent or data store is enabled cannot be reprovisioned;
 delete that first. Neither can one hosted by Monte Carlo, which this API does not
@@ -816,6 +818,193 @@ func (a *DeploymentsAPIService) ReprovisionDeploymentExecute(r ApiReprovisionDep
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiUpdateDeploymentRequest struct {
+	ctx             context.Context
+	ApiService      *DeploymentsAPIService
+	deploymentId    string
+	deploymentPatch *DeploymentPatch
+}
+
+func (r ApiUpdateDeploymentRequest) DeploymentPatch(deploymentPatch DeploymentPatch) ApiUpdateDeploymentRequest {
+	r.deploymentPatch = &deploymentPatch
+	return r
+}
+
+func (r ApiUpdateDeploymentRequest) Execute() (*DeploymentOut, *http.Response, error) {
+	return r.ApiService.UpdateDeploymentExecute(r)
+}
+
+/*
+UpdateDeployment Update a deployment
+
+Rename a deployment.
+
+The name is the only thing you can change here. What a deployment hosts and where it runs
+are settled when it is provisioned, so use reprovision to change either.
+
+Renaming changes nothing about the infrastructure behind the deployment. Every deployment
+can be renamed, including one hosted by Monte Carlo. Sending an empty body leaves the
+deployment as it is and returns it.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param deploymentId
+	@return ApiUpdateDeploymentRequest
+*/
+func (a *DeploymentsAPIService) UpdateDeployment(ctx context.Context, deploymentId string) ApiUpdateDeploymentRequest {
+	return ApiUpdateDeploymentRequest{
+		ApiService:   a,
+		ctx:          ctx,
+		deploymentId: deploymentId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return DeploymentOut
+func (a *DeploymentsAPIService) UpdateDeploymentExecute(r ApiUpdateDeploymentRequest) (*DeploymentOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPatch
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DeploymentOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeploymentsAPIService.UpdateDeployment")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/deployments/{deployment_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"deployment_id"+"}", url.PathEscape(parameterValueToString(r.deploymentId, "deploymentId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.deploymentPatch == nil {
+		return localVarReturnValue, nil, reportError("deploymentPatch is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.deploymentPatch
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

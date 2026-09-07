@@ -17,7 +17,7 @@ import (
 // checks if the AwsCollectionDataStorePatch type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &AwsCollectionDataStorePatch{}
 
-// AwsCollectionDataStorePatch Details to change on an S3 data store. Fields you leave out are left alone.  Sending only `name` skips the bucket checks, since a name is not validated against your storage.
+// AwsCollectionDataStorePatch Details to change on an S3 data store. Only what you send is changed.  Sending only `name` skips the bucket checks, since a name is not validated against your storage.
 type AwsCollectionDataStorePatch struct {
 	// Name of the S3 bucket Monte Carlo should use.
 	BucketName NullableString `json:"bucket_name,omitempty" validate:"regexp=^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$"`

@@ -36,7 +36,7 @@ type AwsCollectionDataStoreOut struct {
 	ExternalId NullableString `json:"external_id,omitempty"`
 	// Unique identifier of the data store.
 	Id string `json:"id"`
-	// When the data store was last registered, renamed, or given a different bucket or role. Null until one of those has happened.
+	// When the data store was last registered, renamed, or given different storage or credentials. Null until one of those has happened.
 	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
 	// Display name of the data store. Null when it has no name.
 	Name NullableString `json:"name,omitempty"`

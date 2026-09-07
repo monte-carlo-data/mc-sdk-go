@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **CreatedTime** | Pointer to **NullableTime** | When the data store was created, which is when its deployment was provisioned. | [optional] 
 **DeploymentId** | **string** | Identifier of the deployment this data store belongs to. | 
 **Enabled** | **bool** | Whether Monte Carlo is using this data store. One that is unregistered, or whose validation failed, is not enabled. | 
-**Endpoint** | **string** | Address of the data store, in the form its platform uses. On AWS that is an S3 bucket name. Empty until it has been registered. | 
+**Endpoint** | **string** | Address of the data store, in the form its platform uses. On AWS that is an S3 bucket name, and on Azure the name of a blob container. Empty until it has been registered. | 
 **Id** | **string** | Unique identifier of the data store. | 
-**LastUpdatedTime** | Pointer to **NullableTime** | When the data store was last registered, renamed, or given a different bucket or role. Null until one of those has happened. | [optional] 
+**LastUpdatedTime** | Pointer to **NullableTime** | When the data store was last registered, renamed, or given different storage or credentials. Null until one of those has happened. | [optional] 
 **Name** | Pointer to **NullableString** | Display name of the data store. Null when it has no name. | [optional] 
 **Platform** | Pointer to [**NullableRuntimePlatform**](RuntimePlatform.md) | Where the data store runs. Build the platform-specific path for any other operation on it from this. Null when Monte Carlo has not recorded a platform, and no platform-specific path addresses those. | [optional] 
 **StorageType** | [**StorageType**](StorageType.md) | Which kind of storage the data store keeps its data in. | 

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DeploymentId** | **string** | Deployment to register the collection agent on. It must already hold an unregistered AWS collection agent. | 
 **LambdaFunctionArn** | **string** | ARN of the Lambda function Monte Carlo should invoke. | 
+**Name** | Pointer to **NullableString** | Display name for the collection agent. Replaces the name it currently has. | [optional] 
 **RoleArn** | **string** | ARN of the role Monte Carlo assumes to invoke the function. Its trust policy must already carry the deployment&#39;s external id. | 
 
 ## Methods
@@ -67,6 +68,41 @@ and a boolean to check if the value has been set.
 SetLambdaFunctionArn sets LambdaFunctionArn field to given value.
 
 
+### GetName
+
+`func (o *AwsCollectionAgentIn) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *AwsCollectionAgentIn) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *AwsCollectionAgentIn) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *AwsCollectionAgentIn) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetNameNil
+
+`func (o *AwsCollectionAgentIn) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *AwsCollectionAgentIn) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetRoleArn
 
 `func (o *AwsCollectionAgentIn) GetRoleArn() string`
