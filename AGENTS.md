@@ -40,16 +40,12 @@ script checks its own copy of this list against it:
 - `auth/` — hand-written authentication and client construction
 - `go.mod`, `go.sum` — our dependency set, not the generator's guess
 - `README.md`, `AGENTS.md`, `CLAUDE.md`, `CODEOWNERS` — repository documentation
+- `LICENSE`, `SECURITY.md` — Apache-2.0, matching the Python SDK and the CLI, and the shared vulnerability-reporting policy
 - `doc.go` — the root package doc comment, which is the pkg.go.dev landing page
 - `.github/`, `.claude/`, `.work/` — repository and tooling configuration
 - `.gitignore`, `git_push.sh`, `.travis.yml` — generator scaffolding we don't use
 
-Of these, only `go.mod`, `go.sum`, `README.md`, `.gitignore`, `git_push.sh` and `.travis.yml`
-are paths the generator actually emits — those six entries are load-bearing, confirmed by
-running the generator into an empty directory with no ignore file. The rest (`auth/`,
-`doc.go`, `AGENTS.md`, `CLAUDE.md`, `CODEOWNERS`, `.github/`, `.claude/`, `.work/`) sit at
-paths the generator never writes to, so listing them is defensive rather than required; keep
-them for clarity and in case that ever changes.
+Of these, only `go.mod`, `go.sum`, `README.md`, `.gitignore`, `git_push.sh` and `.travis.yml` are paths the generator actually emits — those six entries are load-bearing, confirmed by running the generator into an empty directory with no ignore file. The rest (`auth/`, `doc.go`, `AGENTS.md`, `CLAUDE.md`, `CODEOWNERS`, `LICENSE`, `SECURITY.md`, `.github/`, `.claude/`, `.work/`) sit at paths the generator never writes to, so listing them is defensive rather than required; keep them for clarity and in case that ever changes.
 
 The cross-repo guard that keeps this list in sync with `api-codegen`'s copy compares whole
 lines exactly, not semantics — an entry written as `auth/**` instead of `auth/` still
@@ -110,8 +106,7 @@ Branch from `main` as `<person>/<ticket-id>-<slug>`. Never commit directly to `m
 repository's name is not final. Fetching by commit sha resolves a pseudo-version and is
 enough to verify the module builds for a consumer.
 
-Before this repository goes public, add a `LICENSE` file — there is none today. Without one,
-an external consumer of a public Go module has no grant of rights, and pkg.go.dev renders the
-module as unlicensed. Add whichever license Monte Carlo uses for public SDKs, and add
-`LICENSE` to `.openapi-generator-ignore`'s protected list at the same time — defensive only,
-since the generator never emits a `LICENSE` file, but consistent with the rest of that list.
+The licence is Apache-2.0, matching the Python SDK and the CLI. That is the SDK precedent
+rather than the agents' one: the agents ship as deployed artifacts under a proprietary licence,
+while an SDK is distributed as source — `proxy.golang.org` mirrors every public module — and
+pkg.go.dev only renders documentation for a licence it recognises.

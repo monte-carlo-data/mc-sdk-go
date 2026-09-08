@@ -30,6 +30,8 @@ README.md
 AGENTS.md
 CLAUDE.md
 CODEOWNERS
+LICENSE
+SECURITY.md
 .github/
 .claude/
 .work/
