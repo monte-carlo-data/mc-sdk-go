@@ -1,9 +1,9 @@
 # openapi-generator overwrites every file it emits, and never deletes anything it does not.
 # So a hand-written file only needs listing here if the generator emits something at the same
-# path — otherwise it is left alone regardless. Six entries below are load-bearing for that
+# path — otherwise it is left alone regardless. Seven entries below are load-bearing for that
 # reason; the rest are defensive, and are kept so the protected set reads as one list.
 # Verified by running the generator into an empty directory with no ignore file: it writes
-# go.mod, go.sum, README.md, .gitignore, git_push.sh and .travis.yml, and nothing else here.
+# go.mod, go.sum, README.md, .gitignore, git_push.sh, .travis.yml and api/openapi.yaml.
 #
 # AGENTS.md holds the canonical enumeration, which api-codegen's generate-go-sdk.sh checks
 # against. That guard matches whole lines exactly, so a variant spelling like `auth/**` still
@@ -18,6 +18,14 @@ auth/
 # Both load-bearing — the generator emits go.mod and go.sum.
 go.mod
 go.sum
+
+# Suppressed rather than protected. openapi-generator vendors a YAML copy of its input spec
+# here by default; nothing in this repo or its consumers reads it, docs/ already documents
+# every operation and model, and info.version is the API's major version so the copy cannot
+# identify which export produced this SDK. Keeping it would publish the internal x-mc-*
+# codegen markers the input carries. Load-bearing: remove this line and the generator writes
+# the file again.
+api/openapi.yaml
 
 # The root package doc comment, which is the pkg.go.dev landing page. Points at
 # auth.NewClient, because NewAPIClient and NewConfiguration have no default server URL.

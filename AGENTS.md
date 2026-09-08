@@ -23,7 +23,6 @@ gofmt -l .        # must be empty; generated output is formatted when it is prod
 | `auth/` | **Hand-written.** Client construction, API-token and OAuth credentials |
 | `api_*.go`, `model_*.go` | Generated operations and models, one file per tag group and schema |
 | `client.go`, `configuration.go`, `response.go`, `utils.go` | Generated client plumbing |
-| `api/openapi.yaml` | Generated copy of the input spec — not the source of truth, overwritten every run |
 | `.openapi-generator/` | Generator bookkeeping |
 | `docs/` | Generated API reference |
 
@@ -44,8 +43,9 @@ script checks its own copy of this list against it:
 - `doc.go` — the root package doc comment, which is the pkg.go.dev landing page
 - `.github/`, `.claude/`, `.work/` — repository and tooling configuration
 - `.gitignore`, `git_push.sh`, `.travis.yml` — generator scaffolding we don't use
+- `api/openapi.yaml` — suppressed, not protected: the generator's vendored copy of the input spec, which nothing reads and which would publish the input's internal `x-mc-*` markers
 
-Of these, only `go.mod`, `go.sum`, `README.md`, `.gitignore`, `git_push.sh` and `.travis.yml` are paths the generator actually emits — those six entries are load-bearing, confirmed by running the generator into an empty directory with no ignore file. The rest (`auth/`, `doc.go`, `AGENTS.md`, `CLAUDE.md`, `CODEOWNERS`, `LICENSE`, `SECURITY.md`, `.github/`, `.claude/`, `.work/`) sit at paths the generator never writes to, so listing them is defensive rather than required; keep them for clarity and in case that ever changes.
+Of these, `go.mod`, `go.sum`, `README.md`, `.gitignore`, `git_push.sh`, `.travis.yml` and `api/openapi.yaml` are paths the generator actually emits — those seven entries are load-bearing, confirmed by running the generator into an empty directory with no ignore file. The rest (`auth/`, `doc.go`, `AGENTS.md`, `CLAUDE.md`, `CODEOWNERS`, `LICENSE`, `SECURITY.md`, `.github/`, `.claude/`, `.work/`) sit at paths the generator never writes to, so listing them is defensive rather than required; keep them for clarity and in case that ever changes.
 
 The cross-repo guard that keeps this list in sync with `api-codegen`'s copy compares whole
 lines exactly, not semantics — an entry written as `auth/**` instead of `auth/` still

@@ -114,7 +114,6 @@ rather than quietly falling back to different credentials.
 | Path | |
 |---|---|
 | `api_*.go`, `model_*.go`, `client.go`, `configuration.go`, `response.go`, `utils.go` | Generated. Do not edit. |
-| `api/openapi.yaml` | Generated copy of the input spec — not the source of truth, and overwritten on every run. Edit the source spec instead. |
 | `.openapi-generator/` | Generator bookkeeping. |
 | `auth/` | Hand-written. Authentication and client construction. |
 | `docs/` | Generated API reference — see [API reference](#api-reference) below. |

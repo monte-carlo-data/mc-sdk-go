@@ -32,10 +32,9 @@ jobs:
       - name: Test
         run: go test -race ./...
 
-      # This is expected to fail on the current tree: api/openapi.yaml still carries the
-      # internal x-mc-* codegen extensions (see review finding F9). The real fix is a
-      # strip_public_spec.py step in api-codegen that generates this repo from a public
-      # spec — that step does not exist yet. Do NOT delete this check to make it pass;
-      # its job is to fail loudly until the api-codegen side lands, not to pass quietly.
-      - name: Vendored spec must not carry internal x-mc-* extensions
-        run: '! grep -q "x-mc-" api/openapi.yaml'
+      # openapi-generator vendors a YAML copy of its input spec at api/openapi.yaml by
+      # default. It is suppressed via .openapi-generator-ignore: nothing reads it, and the
+      # input carries internal x-mc-* codegen markers this repo must not publish. Remove that
+      # ignore line and the generator writes the file again, so guard the absence.
+      - name: The generator's vendored spec copy stays suppressed
+        run: test ! -e api/openapi.yaml
