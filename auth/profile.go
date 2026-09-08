@@ -118,7 +118,9 @@ func stripGraphQLPath(endpoint string) string {
 // configparser, so a hand-edited file with different casing still resolves. A line that is
 // neither a section header, a comment, nor a delimited key/value pair is a parse error rather
 // than a silently dropped line: the file is machine-written, so an unparseable line means it is
-// not what this code thinks it is.
+// not what this code thinks it is. The error names the line's position and never its contents —
+// a caller renders these verbatim (the Terraform provider puts them in a diagnostic, which
+// Terraform does not redact), and the offending line is often the one holding the token.
 func parseINI(path string) (map[string]map[string]string, error) {
 	file, err := os.Open(path)
 	if err != nil {
@@ -146,10 +148,10 @@ func parseINI(path string) (map[string]map[string]string, error) {
 		}
 		idx := strings.IndexAny(line, "=:")
 		if idx < 0 {
-			return nil, fmt.Errorf("%s:%d: expected a section header or a key/value pair, got %q", path, lineNo, line)
+			return nil, fmt.Errorf("%s:%d: expected a section header or a key/value pair", path, lineNo)
 		}
 		if current == "" {
-			return nil, fmt.Errorf("%s:%d: key/value pair before any section header: %q", path, lineNo, line)
+			return nil, fmt.Errorf("%s:%d: key/value pair before any section header", path, lineNo)
 		}
 		key, value := line[:idx], line[idx+1:]
 		sections[current][strings.ToLower(strings.TrimSpace(key))] = strings.TrimSpace(value)

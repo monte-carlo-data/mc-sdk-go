@@ -341,3 +341,21 @@ func TestLoadProfileStripsTheGraphQLSuffixFromTheAPIEndpoint(t *testing.T) {
 		t.Fatalf("expected the token URL derived from the stripped endpoint, got %q", got)
 	}
 }
+
+// Regression proof: a malformed profiles.ini must not put the credential it holds into the
+// error, because callers render these verbatim into unredacted surfaces.
+func TestParseINIDoesNotEchoTheOffendingLine(t *testing.T) {
+	dir := t.TempDir()
+	secret := "not-a-real-token-only-a-fixture"
+	if err := os.WriteFile(filepath.Join(dir, profileFileName),
+		[]byte("mcd_token = "+secret+"\n"), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	_, err := parseINI(filepath.Join(dir, profileFileName))
+	if err == nil {
+		t.Fatal("expected a parse error")
+	}
+	if strings.Contains(err.Error(), secret) {
+		t.Fatalf("the error carries the credential: %v", err)
+	}
+}
