@@ -23,19 +23,43 @@ gofmt -l .        # must be empty; generated output is formatted when it is prod
 | `auth/` | **Hand-written.** Client construction, API-token and OAuth credentials |
 | `api_*.go`, `model_*.go` | Generated operations and models, one file per tag group and schema |
 | `client.go`, `configuration.go`, `response.go`, `utils.go` | Generated client plumbing |
+| `api/openapi.yaml` | Generated copy of the input spec — not the source of truth, overwritten every run |
+| `.openapi-generator/` | Generator bookkeeping |
 | `docs/` | Generated API reference |
 
 ## What is generated
 
-Everything except `auth/`, the module files, and this documentation. The generator replaces
-the whole tree on each run, so a fix to a generated file does not survive — it belongs in the
-API or in the generator that reads its spec.
+Everything except the paths listed below. The generator overwrites every path it emits on
+each run — it does not delete anything else — so a fix to a generated file does not survive;
+it belongs in the API or in the generator that reads its spec.
 
-**Anything hand-written must be listed in `.openapi-generator-ignore` first.** A file that is
-not listed is deleted on the next run, and nothing reports it.
+**Anything hand-written, or anything we don't want touched, must be listed in
+`.openapi-generator-ignore`.** This is the canonical enumeration — `api-codegen`'s generation
+script checks its own copy of this list against it:
 
-Regeneration is a maintainer task and lives outside this repository, with the tooling that
-owns generation for every artifact built from the spec.
+- `auth/` — hand-written authentication and client construction
+- `go.mod`, `go.sum` — our dependency set, not the generator's guess
+- `README.md`, `AGENTS.md`, `CLAUDE.md`, `CODEOWNERS` — repository documentation
+- `doc.go` — the root package doc comment, which is the pkg.go.dev landing page
+- `.github/`, `.claude/`, `.work/` — repository and tooling configuration
+- `.gitignore`, `git_push.sh`, `.travis.yml` — generator scaffolding we don't use
+
+Of these, only `go.mod`, `go.sum`, `README.md`, `.gitignore`, `git_push.sh` and `.travis.yml`
+are paths the generator actually emits — those six entries are load-bearing, confirmed by
+running the generator into an empty directory with no ignore file. The rest (`auth/`,
+`doc.go`, `AGENTS.md`, `CLAUDE.md`, `CODEOWNERS`, `.github/`, `.claude/`, `.work/`) sit at
+paths the generator never writes to, so listing them is defensive rather than required; keep
+them for clarity and in case that ever changes.
+
+The cross-repo guard that keeps this list in sync with `api-codegen`'s copy compares whole
+lines exactly, not semantics — an entry written as `auth/**` instead of `auth/` still
+protects the directory from the generator but fails that check, because the text doesn't
+match character-for-character.
+
+Regeneration is performed by Monte Carlo's internal API code-generation tooling, run by a
+maintainer from outside this repository — it owns generation for every artifact built from
+the spec (this SDK, the Terraform provider, the CLI). Consult that tooling directly to
+regenerate; it isn't reproduced here because it doesn't ship to consumers of this SDK.
 
 ## Authentication
 
@@ -57,16 +81,23 @@ host per deployment, so a client built without one sends every request nowhere.
 ## Credentials are shared with the other tools
 
 `~/.mcd/profiles.ini` is written by the CLI and read by the Python SDK, so this SDK reads the
-same file, the same section names and the same keys. A customer configures credentials once
-and every tool picks them up, which is the whole point — an SDK with its own credential store
-would strand anyone who had already run the CLI.
+same file and the same section names. Most keys are shared verbatim — `mcd_id`, `mcd_token`,
+`mcd_oauth_client_id`, `mcd_oauth_client_secret` mean the same thing here as in the CLI and
+pycarlo. `mcd_api_endpoint` is shared but reinterpreted: the CLI and pycarlo write the
+GraphQL endpoint there, and this SDK strips a trailing `/graphql` before treating it as the
+REST base URL. The CLI's `configure` command never writes `mcd_api_endpoint` at all, so a
+CLI-only setup still needs `Endpoint` passed explicitly. A customer who has already run the
+CLI does not need a separate credential store, which is the point — the endpoint key just
+needs that translation to mean the right thing here.
 
-Precedence mirrors the Python SDK exactly: values passed in, then environment variables, then
-the profile. Diverging would mean the same configuration behaving differently depending on
-which tool read it.
+Precedence follows the same three-tier ordering as the Python SDK: values passed in, then
+environment variables, then the profile. It is not exact parity — two known divergences:
+pycarlo rejects a half-set credential outright (`InvalidSessionError`) rather than filling it
+in partially, and this SDK does not read `MCD_API_ENDPOINT` at all, deliberately — see above,
+it carries the GraphQL endpoint, not the REST base URL.
 
 Tests must not read the developer's real credentials. `isolate(t)` in the test package clears
-every environment variable resolution consults and points `ConfigPath` at a temporary
+every environment variable resolution consults and points `ConfigDir` at a temporary
 directory; use it in any test that builds a client or resolves options.
 
 ## Branching
@@ -78,3 +109,9 @@ Branch from `main` as `<person>/<ticket-id>-<slug>`. Never commit directly to `m
 **Not yet.** A Go module path is permanent once a version tag is published, and this
 repository's name is not final. Fetching by commit sha resolves a pseudo-version and is
 enough to verify the module builds for a consumer.
+
+Before this repository goes public, add a `LICENSE` file — there is none today. Without one,
+an external consumer of a public Go module has no grant of rights, and pkg.go.dev renders the
+module as unlicensed. Add whichever license Monte Carlo uses for public SDKs, and add
+`LICENSE` to `.openapi-generator-ignore`'s protected list at the same time — defensive only,
+since the generator never emits a `LICENSE` file, but consistent with the rest of that list.

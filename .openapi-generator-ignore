@@ -1,15 +1,31 @@
-# openapi-generator writes the whole tree on every run. Anything hand-written has to be
-# listed here or it is deleted, silently.
+# openapi-generator overwrites every file it emits, and never deletes anything it does not.
+# So a hand-written file only needs listing here if the generator emits something at the same
+# path — otherwise it is left alone regardless. Six entries below are load-bearing for that
+# reason; the rest are defensive, and are kept so the protected set reads as one list.
+# Verified by running the generator into an empty directory with no ignore file: it writes
+# go.mod, go.sum, README.md, .gitignore, git_push.sh and .travis.yml, and nothing else here.
+#
+# AGENTS.md holds the canonical enumeration, which api-codegen's generate-go-sdk.sh checks
+# against. That guard matches whole lines exactly, so a variant spelling like `auth/**` still
+# protects the files but fails the check.
 
 # Authentication and client construction. The generated client has no notion of our auth
 # methods, and its default server URL is empty, so this package is what makes it usable.
+# Defensive: the generator emits nothing under auth/.
 auth/
 
 # The module path and dependency set are ours, not the generator's guess.
+# Both load-bearing — the generator emits go.mod and go.sum.
 go.mod
 go.sum
 
-# Repository documentation, not generated API reference.
+# The root package doc comment, which is the pkg.go.dev landing page. Points at
+# auth.NewClient, because NewAPIClient and NewConfiguration have no default server URL.
+# Defensive: the Go generator emits no doc.go.
+doc.go
+
+# Repository documentation and tooling config, none of it generated API reference.
+# README.md and .gitignore are load-bearing — the generator emits both.
 README.md
 AGENTS.md
 CLAUDE.md
@@ -18,8 +34,8 @@ CODEOWNERS
 .claude/
 .work/
 .gitignore
-.mcp.json
 
-# The generator's own scaffolding, which we do not use.
+# The generator's own scaffolding, which we do not use. Both load-bearing: listing them is
+# what keeps the generator from ever writing them, which is why neither exists in the tree.
 git_push.sh
 .travis.yml

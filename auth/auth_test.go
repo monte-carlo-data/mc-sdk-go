@@ -2,6 +2,9 @@ package auth
 
 import (
 	"context"
+	"net/http"
+	"net/http/httptest"
+	"slices"
 	"strings"
 	"testing"
 )
@@ -60,7 +63,7 @@ func TestValidate(t *testing.T) {
 
 	for _, c := range cases {
 		t.Run(c.name, func(t *testing.T) {
-			err := c.opts.Validate()
+			err := c.opts.validate()
 			if c.wantErr == "" {
 				if err != nil {
 					t.Fatalf("expected no error, got %v", err)
@@ -86,30 +89,67 @@ func TestAPITokenBecomesColonJoinedBearer(t *testing.T) {
 	}
 }
 
-// OAuth outranks the others, and produces no static bearer: its token is fetched and
-// refreshed per request instead.
+// OAuth outranks the others, and produces no static bearer on the wire: NewClient consults
+// bearer() only when there is no OAuth token source (see the switch in NewClient), so a
+// request actually carries the OAuth-obtained token rather than the API token or the
+// pre-obtained bearer, even though both of those are also set here and bearer() itself
+// reports one of them non-empty. Checking UsesOAuth()/TokenSource() alone (the previous form
+// of this test) proved neither half of the name: bearer() is non-empty for this Options
+// regardless, so the only way to prove "carries no static bearer" is to look at the header
+// that actually goes out.
 func TestOAuthTakesPrecedenceAndCarriesNoStaticBearer(t *testing.T) {
+	dir := isolate(t)
+
+	var apiAuthHeaders []string
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		if r.URL.Path == "/oauth2/token" {
+			_, _ = w.Write([]byte(`{"access_token":"oauth-access-token","token_type":"Bearer"}`))
+			return
+		}
+		apiAuthHeaders = r.Header.Values("Authorization")
+		_, _ = w.Write([]byte(`{
+			"account_frozen": false,
+			"account_id": "a1",
+			"email": "user@example.com",
+			"identity_type": "user",
+			"user_id": "u1"
+		}`))
+	}))
+	defer server.Close()
+
 	o := Options{
-		Endpoint: "https://api.example.com",
+		Endpoint: server.URL,
 		ClientID: "id", ClientSecret: "secret", Instance: "us1",
 		TokenID: "key-id", TokenSecret: "s3cret", Token: "access-token",
+		ConfigDir: dir,
 	}
-	if !o.UsesOAuth() {
+	if !o.usesOAuth() {
 		t.Fatal("expected OAuth to be in use")
 	}
-
-	ts, err := o.TokenSource(context.Background())
-	if err != nil {
-		t.Fatalf("unexpected error: %v", err)
+	if b := o.bearer(); b == "" {
+		t.Fatal("expected a static bearer to also be available, to prove OAuth wins rather than winning by default")
 	}
-	if ts == nil {
-		t.Fatal("expected a token source for OAuth credentials")
+
+	api, err := NewClient(context.Background(), o)
+	if err != nil {
+		t.Fatalf("unexpected error building the client: %v", err)
+	}
+	if _, _, err := api.UsersAPI.GetCurrentUser(context.Background()).Execute(); err != nil {
+		t.Fatalf("unexpected error calling GetCurrentUser: %v", err)
+	}
+
+	if len(apiAuthHeaders) != 1 {
+		t.Fatalf("expected exactly one Authorization header, got %d: %v", len(apiAuthHeaders), apiAuthHeaders)
+	}
+	if apiAuthHeaders[0] != "Bearer oauth-access-token" {
+		t.Fatalf("expected the OAuth-obtained token, not the static bearer, got %q", apiAuthHeaders[0])
 	}
 }
 
 func TestStaticCredentialsHaveNoTokenSource(t *testing.T) {
 	o := Options{Endpoint: "https://api.example.com", TokenID: "id", TokenSecret: "secret"}
-	ts, err := o.TokenSource(context.Background())
+	ts, err := o.tokenSource(context.Background())
 	if err != nil {
 		t.Fatalf("unexpected error: %v", err)
 	}
@@ -130,16 +170,40 @@ func TestTokenURLDefaultsUnderTheEndpoint(t *testing.T) {
 	}
 }
 
-func TestScopesForInstance(t *testing.T) {
-	scopes := ScopesForInstance("us1")
-	want := []string{AccessScope, "https://instance.getmontecarlo.com/us1"}
-	if len(scopes) != len(want) {
-		t.Fatalf("expected %d scopes, got %d", len(want), len(scopes))
+// F42 (NIT): the previous form of this test built its expectation from the accessScope
+// constant under test, so a typo'd accessScope would keep the test green while the gateway
+// rejected every token request. The access scope is spelled out literally here instead.
+func TestScopesForInstanceAppendsTheInstanceScopeAfterAccess(t *testing.T) {
+	cases := []struct {
+		name       string
+		instanceID string
+		want       []string
+	}{
+		{
+			name:       "an instance id",
+			instanceID: "us1",
+			want: []string{
+				"https://api.getmontecarlo.com/access",
+				"https://instance.getmontecarlo.com/us1",
+			},
+		},
+		{
+			name:       "an empty instance id",
+			instanceID: "",
+			want: []string{
+				"https://api.getmontecarlo.com/access",
+				"https://instance.getmontecarlo.com/",
+			},
+		},
 	}
-	for i := range want {
-		if scopes[i] != want[i] {
-			t.Fatalf("scope %d: expected %q, got %q", i, want[i], scopes[i])
-		}
+
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			got := scopesForInstance(c.instanceID)
+			if !slices.Equal(got, c.want) {
+				t.Fatalf("scopesForInstance(%q): got %v, want %v", c.instanceID, got, c.want)
+			}
+		})
 	}
 }
 
@@ -151,7 +215,7 @@ func TestNewClientSetsTheEndpoint(t *testing.T) {
 		context.Background(),
 		Options{
 			Endpoint: "https://api.example.com/", TokenID: "id", TokenSecret: "secret",
-			ConfigPath: dir,
+			ConfigDir: dir,
 		},
 	)
 	if err != nil {
@@ -169,8 +233,69 @@ func TestNewClientSetsTheEndpoint(t *testing.T) {
 
 func TestNewClientRejectsMissingCredentials(t *testing.T) {
 	dir := isolate(t)
-	o := Options{Endpoint: "https://api.example.com", ConfigPath: dir}
+	o := Options{Endpoint: "https://api.example.com", ConfigDir: dir}
 	if _, err := NewClient(context.Background(), o); err == nil {
 		t.Fatal("expected an error when no credentials are set")
+	}
+}
+
+// F7 (ISSUE): Validate only checks that Endpoint is non-empty. It does not enforce a scheme,
+// so a caller can be pointed at a plain-http, or scheme-less, endpoint and never find out
+// until credentials are sent over it in the clear. A loopback http endpoint must stay
+// accepted, since that is exactly what an httptest.Server exposes (see oauth_test.go).
+func TestValidateRequiresAnHTTPSEndpointExceptLoopback(t *testing.T) {
+	cases := []struct {
+		name     string
+		endpoint string
+		wantErr  bool
+	}{
+		{
+			name:     "rejects a plain http endpoint",
+			endpoint: "http://collector.attacker.example",
+			wantErr:  true,
+		},
+		{
+			name:     "rejects a scheme-less endpoint",
+			endpoint: "api.getmontecarlo.com",
+			wantErr:  true,
+		},
+		{
+			name:     "accepts an https endpoint",
+			endpoint: "https://api.getmontecarlo.com",
+			wantErr:  false,
+		},
+		{
+			name:     "accepts an http loopback endpoint",
+			endpoint: "http://127.0.0.1:8080",
+			wantErr:  false,
+		},
+	}
+
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			o := Options{Endpoint: c.endpoint, TokenID: "id", TokenSecret: "secret"}
+			err := o.validate()
+			if c.wantErr && err == nil {
+				t.Fatalf("expected %q to be rejected, but validate accepted it", c.endpoint)
+			}
+			if !c.wantErr && err != nil {
+				t.Fatalf("expected %q to be accepted, got: %v", c.endpoint, err)
+			}
+		})
+	}
+}
+
+// F7 (ISSUE), TokenURL half: an OAuth token exchange endpoint is just as capable of leaking
+// client credentials as the API endpoint is, but validate never looks at TokenURL at all.
+func TestValidateRequiresAnHTTPSTokenURL(t *testing.T) {
+	o := Options{
+		Endpoint:     "https://api.example.com",
+		ClientID:     "id",
+		ClientSecret: "secret",
+		Instance:     "us1",
+		TokenURL:     "http://attacker.example/oauth2/token",
+	}
+	if err := o.validate(); err == nil {
+		t.Fatal("expected an insecure token URL to be rejected")
 	}
 }

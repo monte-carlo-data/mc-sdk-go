@@ -1,0 +1,41 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Read-only: the job builds, vets and tests the module and never writes back to the
+# repository, so the default (often broader) GITHUB_TOKEN permissions are not needed.
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Build
+        run: go build ./...
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Format check
+        run: test -z "$(gofmt -l .)"
+
+      - name: Test
+        run: go test -race ./...
+
+      # This is expected to fail on the current tree: api/openapi.yaml still carries the
+      # internal x-mc-* codegen extensions (see review finding F9). The real fix is a
+      # strip_public_spec.py step in api-codegen that generates this repo from a public
+      # spec — that step does not exist yet. Do NOT delete this check to make it pass;
+      # its job is to fail loudly until the api-codegen side lands, not to pass quietly.
+      - name: Vendored spec must not carry internal x-mc-* extensions
+        run: '! grep -q "x-mc-" api/openapi.yaml'
