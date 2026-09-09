@@ -1,0 +1,40 @@
+name: Test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Read-only: the job builds, vets and tests the module and never writes back to the
+# repository, so the default (often broader) GITHUB_TOKEN permissions are not needed.
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Build
+        run: go build ./...
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Format check
+        run: test -z "$(gofmt -l .)"
+
+      - name: Test
+        run: go test -race ./...
+
+      # openapi-generator vendors a YAML copy of its input spec at api/openapi.yaml by
+      # default. It is suppressed via .openapi-generator-ignore: nothing reads it, and the
+      # input carries internal x-mc-* codegen markers this repo must not publish. Remove that
+      # ignore line and the generator writes the file again, so guard the absence.
+      - name: The generator's vendored spec copy stays suppressed
+        run: test ! -e api/openapi.yaml
