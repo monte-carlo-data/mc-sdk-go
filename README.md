@@ -2,8 +2,8 @@
 
 Official Go SDK for the Monte Carlo REST API.
 
-Most of this repository is generated from the API's OpenAPI spec. The `auth` package is
-hand-written: it builds a client that authenticates every request.
+The SDK is one package, `montecarlo`. Most of it is generated from the API's OpenAPI spec;
+client construction and credentials are hand-written, so every request is authenticated.
 
 > For the GraphQL API, use [pycarlo](https://pypi.org/project/pycarlo/) instead.
 > This SDK targets the REST API.
@@ -31,11 +31,11 @@ import (
     "context"
     "os"
 
-    "github.com/monte-carlo-data/mc-sdk-go/auth"
+    "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
 )
 
 func Example(ctx context.Context) error {
-    api, err := auth.NewClient(ctx, auth.Options{
+    api, err := montecarlo.NewClient(ctx, montecarlo.Options{
         Endpoint:    "https://api.getmontecarlo.com",
         TokenID:     os.Getenv("MCD_ID"),
         TokenSecret: os.Getenv("MCD_TOKEN"),
@@ -57,11 +57,11 @@ import (
     "context"
     "os"
 
-    "github.com/monte-carlo-data/mc-sdk-go/auth"
+    "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
 )
 
 func Example(ctx context.Context) error {
-    api, err := auth.NewClient(ctx, auth.Options{
+    api, err := montecarlo.NewClient(ctx, montecarlo.Options{
         Endpoint:     "https://api.getmontecarlo.com",
         ClientID:     os.Getenv("MCD_CLIENT_ID"),
         ClientSecret: os.Getenv("MCD_CLIENT_SECRET"),
@@ -78,6 +78,10 @@ func Example(ctx context.Context) error {
 
 Tokens are fetched and refreshed as needed, so a long-lived client does not go stale.
 
+The client's operations and the request and response types they take are in the same package,
+so that one import covers everything: `montecarlo.DeploymentIn`, `montecarlo.ProblemOut`, and
+so on.
+
 ### Using credentials you have already configured
 
 If you have configured the Monte Carlo CLI, the SDK reads the same `mcd_id` and `mcd_token`
@@ -85,7 +89,7 @@ from `~/.mcd/profiles.ini` — but you still need to pass `Endpoint` yourself, s
 `configure` command never writes one:
 
 ```go
-api, err := auth.NewClient(ctx, auth.Options{Endpoint: "https://api.getmontecarlo.com"})
+api, err := montecarlo.NewClient(ctx, montecarlo.Options{Endpoint: "https://api.getmontecarlo.com"})
 ```
 
 If your profile also has an `mcd_api_endpoint` key — set when the CLI or pycarlo point at a
@@ -113,32 +117,35 @@ rather than quietly falling back to different credentials.
 
 | Path | |
 |---|---|
-| `api_*.go`, `model_*.go`, `client.go`, `configuration.go`, `response.go`, `utils.go` | Generated. Do not edit. |
-| `.openapi-generator/` | Generator bookkeeping. |
-| `auth/` | Hand-written. Authentication and client construction. |
-| `docs/` | Generated API reference — see [API reference](#api-reference) below. |
+| `montecarlo/` | Generated. Do not edit. The API client, one `api_*.go` per operation group and one `model_*.go` per schema. |
+| `montecarlo/docs/` | Generated API reference — see [API reference](#api-reference) below. |
+| `montecarlo/.openapi-generator/` | Generator bookkeeping. |
+| `montecarlo/auth.go`, `oauth.go`, `profile.go` | Hand-written. `NewClient`, `Options`, and the credential resolution behind them. |
+| `montecarlo/doc.go` | Hand-written. The package's doc comment. |
 
-Generated files are overwritten wholesale on every run, so anything hand-written is listed in
-`.openapi-generator-ignore`. Adding a file outside that list risks having it silently
-overwritten by generator output the next time the tree regenerates — the generator does not
-delete files, but it does replace any path it emits.
+The generator writes only under `montecarlo/`, and overwrites every file it emits there on
+every run. The hand-written files share that directory and are listed in
+`montecarlo/.openapi-generator-ignore`; adding a file there outside that list risks having it
+silently overwritten the next time the tree regenerates — the generator does not delete files,
+but it does replace any path it emits.
 
 ## API reference
 
-`docs/` holds one page per operation and per schema, with no index page. The four operation
-groups:
+`montecarlo/docs/` holds one page per operation and per schema, with no index page. The four
+operation groups:
 
-- [`CollectionAgentsAPI`](docs/CollectionAgentsAPI.md)
-- [`CollectionDataStoresAPI`](docs/CollectionDataStoresAPI.md)
-- [`DeploymentsAPI`](docs/DeploymentsAPI.md)
-- [`UsersAPI`](docs/UsersAPI.md)
+- [`CollectionAgentsAPI`](montecarlo/docs/CollectionAgentsAPI.md)
+- [`CollectionDataStoresAPI`](montecarlo/docs/CollectionDataStoresAPI.md)
+- [`DeploymentsAPI`](montecarlo/docs/DeploymentsAPI.md)
+- [`UsersAPI`](montecarlo/docs/UsersAPI.md)
 
 Each generated page's "All URIs are relative to *http://localhost*" line is a placeholder
 left by the spec's empty default server URL, not a real base URL — the real one is whatever
-`Endpoint` you pass to `auth.NewClient`.
+`Endpoint` you pass to `montecarlo.NewClient`.
 
 ## Contributing
 
 The generated files track the API and are not edited by hand — a fix to one of them belongs
 in the API or in the generator, so please open an issue describing what is wrong rather than
-a patch. Changes to `auth/` are welcome as pull requests.
+a patch. Changes to the hand-written files (`auth.go`, `oauth.go`, `profile.go` and their
+tests) are welcome as pull requests.

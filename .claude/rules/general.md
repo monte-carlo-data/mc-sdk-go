@@ -5,7 +5,8 @@ globs: "**/*"
 
 # General Standards
 
-Almost every file here is `openapi-generator` output. The hand-written surface is `auth/`, the
+Almost everything under `montecarlo/` is `openapi-generator` output. The hand-written surface
+is `montecarlo/auth.go`, `oauth.go`, `profile.go` and their tests, `montecarlo/doc.go`, the
 module files, and the repository documentation — see AGENTS.md for the exact list. These rules
 apply to that surface; do not hand-edit generated files, because the next generation run
 overwrites them.
@@ -23,8 +24,8 @@ overwrites them.
 - Tests are co-located as `<file>_test.go` beside the source, per Go convention, and because the
   package's own tests reach unexported identifiers
 - Write tests for all non-trivial logic
-- `auth`'s boundaries are the filesystem and an OAuth endpoint. Use `t.TempDir()` and
-  `httptest.NewServer` rather than mocks
+- The hand-written code's boundaries are the filesystem and an OAuth endpoint. Use
+  `t.TempDir()` and `httptest.NewServer` rather than mocks
 - Any test that builds a client or resolves options must call `isolate(t)` and pass the directory
   it returns as `Options.ConfigDir`, so the test cannot read the developer's real credentials
 - Use `t.Setenv` rather than saving and restoring environment variables by hand. It is incompatible

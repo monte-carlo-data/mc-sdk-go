@@ -1,6 +1,6 @@
 # mc-sdk-go
 
-> The Go SDK for the Monte Carlo REST API. Generated from the API's OpenAPI spec, except the `auth` package, which is hand-written.
+> The Go SDK for the Monte Carlo REST API: one package, `montecarlo`. Generated from the API's OpenAPI spec, except client construction and credentials (`auth.go`, `oauth.go`, `profile.go`), which are hand-written.
 
 ## Stack
 
@@ -20,37 +20,59 @@ gofmt -l .        # must be empty; generated output is formatted when it is prod
 
 | Path | Purpose |
 |------|---------|
-| `auth/` | **Hand-written.** Client construction, API-token and OAuth credentials |
-| `api_*.go`, `model_*.go` | Generated operations and models, one file per tag group and schema |
-| `client.go`, `configuration.go`, `response.go`, `utils.go` | Generated client plumbing |
-| `.openapi-generator/` | Generator bookkeeping |
-| `docs/` | Generated API reference |
+| `montecarlo/` | The whole SDK and the generator's output directory: package `montecarlo`, import path `github.com/monte-carlo-data/mc-sdk-go/montecarlo` |
+| `montecarlo/auth.go`, `oauth.go`, `profile.go` | **Hand-written.** `NewClient`, `Options`, API-token and OAuth credentials, the CLI's profiles file |
+| `montecarlo/doc.go` | **Hand-written.** The package doc comment |
+| `montecarlo/api_*.go`, `montecarlo/model_*.go` | Generated operations and models, one file per tag group and schema |
+| `montecarlo/client.go`, `configuration.go`, `response.go`, `utils.go` | Generated client plumbing |
+| `montecarlo/.openapi-generator/` | Generator bookkeeping |
+| `montecarlo/docs/` | Generated API reference |
 
 ## What is generated
 
-Everything except the paths listed below. The generator overwrites every path it emits on
-each run — it does not delete anything else — so a fix to a generated file does not survive;
-it belongs in the API or in the generator that reads its spec.
+Everything under `montecarlo/` except `doc.go` and the auth files. The generator is pointed at
+that directory, not the repository root, so the module files and the repository documentation
+are out of its reach by construction. The hand-written files share the package with the
+generated ones so that a caller has one import and one name for the SDK — `montecarlo.NewClient`
+beside `montecarlo.DeploymentIn` — and rely on the ignore file for protection, exactly as
+`doc.go` always has. The generator overwrites every path it emits on each run — it does not
+delete anything else — so a fix to a generated file does not survive; it belongs in the API or
+in the generator that reads its spec.
 
-**Anything hand-written, or anything we don't want touched, must be listed in
-`.openapi-generator-ignore`.** This is the canonical enumeration — `api-codegen`'s generation
-script checks its own copy of this list against it:
+The Go generator emits a flat package: it has no option to nest operations or models in
+subdirectories (its `apiPackage`/`modelPackage` settings are ignored), and Go's one package
+per directory would in any case require cross-package imports it does not produce. The
+directory is the unit of organisation, which is why the output moved there.
 
-- `auth/` — hand-written authentication and client construction
-- `go.mod`, `go.sum` — our dependency set, not the generator's guess
-- `README.md`, `AGENTS.md`, `CLAUDE.md`, `CODEOWNERS` — repository documentation
-- `LICENSE`, `SECURITY.md` — Apache-2.0, matching the Python SDK and the CLI, and the shared vulnerability-reporting policy
-- `doc.go` — the root package doc comment, which is the pkg.go.dev landing page
-- `.github/`, `.claude/`, `.work/` — repository and tooling configuration
-- `.gitignore`, `git_push.sh`, `.travis.yml` — generator scaffolding we don't use
+**Anything hand-written under `montecarlo/`, or anything we don't want emitted there, must be
+listed in `montecarlo/.openapi-generator-ignore`** — the generator reads the ignore file from
+its output directory. This is the canonical enumeration — `api-codegen`'s generation script
+checks its own copy of this list against it:
+
+- `auth.go`, `oauth.go`, `profile.go` and their `_test.go` files — hand-written client construction and credentials
+- `doc.go` — the package doc comment, which is the pkg.go.dev page for the package
+- `go.mod`, `go.sum` — a nested module would split the package off from the repository's
 - `api/openapi.yaml` — suppressed, not protected: the generator's vendored copy of the input spec, which nothing reads and which would publish the input's internal `x-mc-*` markers
+- `README.md`, `.gitignore` — the generator's copies duplicate the root ones
+- `git_push.sh`, `.travis.yml` — generator scaffolding we don't use
 
-Of these, `go.mod`, `go.sum`, `README.md`, `.gitignore`, `git_push.sh`, `.travis.yml` and `api/openapi.yaml` are paths the generator actually emits — those seven entries are load-bearing, confirmed by running the generator into an empty directory with no ignore file. The rest (`auth/`, `doc.go`, `AGENTS.md`, `CLAUDE.md`, `CODEOWNERS`, `LICENSE`, `SECURITY.md`, `.github/`, `.claude/`, `.work/`) sit at paths the generator never writes to, so listing them is defensive rather than required; keep them for clarity and in case that ever changes.
+Of these, `README.md`, `.gitignore`, `git_push.sh`, `.travis.yml` and `api/openapi.yaml` are
+paths the generator actually emits — those five entries are load-bearing, confirmed by running
+the generator into an empty directory with no ignore file. `go.mod` and `go.sum` would be too,
+but the generation script passes `withGoMod=false` so they are never written; `doc.go` and the
+auth files are paths the Go generator never writes to — it names its files `api_*.go`,
+`model_*.go`, `client.go`, `configuration.go`, `response.go` and `utils.go`, and runs with test
+generation off. The rest of the list is defensive rather than required; keep it for clarity
+and in case that ever changes. A hand-written file must never take one of those generated
+names.
+
+The generation script also passes `isGoSubmodule=true`, which is what makes the import path in
+the generated `docs/` examples read `.../mc-sdk-go/montecarlo` rather than the module root.
 
 The cross-repo guard that keeps this list in sync with `api-codegen`'s copy compares whole
-lines exactly, not semantics — an entry written as `auth/**` instead of `auth/` still
-protects the directory from the generator but fails that check, because the text doesn't
-match character-for-character.
+lines exactly, not semantics — an entry written as `./doc.go` instead of `doc.go` still
+protects the file from the generator but fails that check, because the text doesn't match
+character-for-character.
 
 Regeneration is performed by Monte Carlo's internal API code-generation tooling, run by a
 maintainer from outside this repository — it owns generation for every artifact built from

@@ -1,4 +1,4 @@
-package auth
+package montecarlo
 
 import (
 	"context"
@@ -7,8 +7,6 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
-
-	montecarlo "github.com/monte-carlo-data/mc-sdk-go"
 )
 
 // F5 (ISSUE), now fixed: the static-credential path used to put the bearer in
@@ -46,7 +44,7 @@ func TestNewClientSendsOnlyOneAuthorizationHeaderWithADelegatedAccessToken(t *te
 		t.Fatalf("unexpected error building the client: %v", err)
 	}
 
-	ctx := context.WithValue(context.Background(), montecarlo.ContextAccessToken, "delegated-token")
+	ctx := context.WithValue(context.Background(), ContextAccessToken, "delegated-token")
 	if _, _, err := api.UsersAPI.GetCurrentUser(ctx).Execute(); err != nil {
 		t.Fatalf("unexpected error calling GetCurrentUser: %v", err)
 	}

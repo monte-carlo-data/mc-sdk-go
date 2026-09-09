@@ -32,9 +32,15 @@ jobs:
       - name: Test
         run: go test -race ./...
 
-      # openapi-generator vendors a YAML copy of its input spec at api/openapi.yaml by
-      # default. It is suppressed via .openapi-generator-ignore: nothing reads it, and the
-      # input carries internal x-mc-* codegen markers this repo must not publish. Remove that
-      # ignore line and the generator writes the file again, so guard the absence.
+      # openapi-generator vendors a YAML copy of its input spec at api/openapi.yaml under its
+      # output directory by default. It is suppressed via montecarlo/.openapi-generator-ignore:
+      # nothing reads it, and the input carries internal x-mc-* codegen markers this repo must
+      # not publish. Remove that ignore line and the generator writes the file again, so guard
+      # the absence.
       - name: The generator's vendored spec copy stays suppressed
-        run: test ! -e api/openapi.yaml
+        run: test ! -e montecarlo/api/openapi.yaml
+
+      # The whole SDK lives under montecarlo/. A generator pointed at the repository root
+      # would land a second copy of the package here, alongside its own ignore file.
+      - name: The package stays under montecarlo/
+        run: test -z "$(find . -maxdepth 1 -name '*.go')" && test ! -e .openapi-generator-ignore

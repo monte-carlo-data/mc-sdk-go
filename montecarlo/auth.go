@@ -1,13 +1,7 @@
-// Package auth builds an authenticated client for the Monte Carlo REST API.
-//
-// NewClient is the entry point: it returns a ready-to-use *montecarlo.APIClient. Credentials
-// resolve from the Options passed in, then from the environment, then from the credentials
-// file the Monte Carlo CLI writes — so a caller with the CLI already configured can often pass
-// an empty Options and get a working client.
-//
-// The API accepts exactly one credential mechanism per request: an OAuth 2.0 client-credentials
-// access token, or a Monte Carlo API token, sent as an Authorization bearer header.
-package auth
+// Hand-written: client construction and credential resolution. NewClient is the package's
+// entry point; see doc.go for how it relates to the generated code around it.
+
+package montecarlo
 
 import (
 	"context"
@@ -20,8 +14,6 @@ import (
 	"strings"
 
 	"golang.org/x/oauth2"
-
-	montecarlo "github.com/monte-carlo-data/mc-sdk-go"
 )
 
 // defaultUserAgent identifies this SDK and the Go runtime it is built with. Options.UserAgent
@@ -197,7 +189,7 @@ func (o Options) tokenSource(ctx context.Context) (oauth2.TokenSource, error) {
 // generated client's ContextAccessToken always wins cleanly instead of stacking into a second
 // header. Because of this, GetConfig().HTTPClient never needs to be mutated after the fact to
 // add transport-level behaviour — pass it through Options.Transport instead.
-func NewClient(ctx context.Context, o Options) (*montecarlo.APIClient, error) {
+func NewClient(ctx context.Context, o Options) (*APIClient, error) {
 	resolved, err := o.Resolve()
 	if err != nil {
 		return nil, err
@@ -224,14 +216,14 @@ func NewClient(ctx context.Context, o Options) (*montecarlo.APIClient, error) {
 		transport = &bearerTransport{base: base, bearer: b}
 	}
 
-	cfg := montecarlo.NewConfiguration()
-	cfg.Servers = montecarlo.ServerConfigurations{
+	cfg := NewConfiguration()
+	cfg.Servers = ServerConfigurations{
 		{URL: resolved.baseURL()},
 	}
 	cfg.UserAgent = firstNonEmpty(resolved.UserAgent, defaultUserAgent)
 	cfg.HTTPClient = &http.Client{Transport: transport}
 
-	return montecarlo.NewAPIClient(cfg), nil
+	return NewAPIClient(cfg), nil
 }
 
 // bearerTransport attaches a static Authorization header to every request, yielding to one
