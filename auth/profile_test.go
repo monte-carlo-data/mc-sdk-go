@@ -22,18 +22,9 @@ import (
 // explicitly — it only keeps an omission from silently escaping isolation.
 func isolate(t *testing.T) string {
 	t.Helper()
-	// This list mirrors the MCD_DEFAULT_* names Resolve reads directly (auth/profile.go) and
-	// MCD_DEFAULT_PROFILE that loadProfile falls back to. profile.go declares no single list
-	// of these names to range over, so this is a hand-maintained duplicate: adding a variable
-	// to Resolve without adding it here silently reopens the isolation gap.
-	for _, key := range []string{
-		"MCD_DEFAULT_PROFILE",
-		"MCD_DEFAULT_API_ID",
-		"MCD_DEFAULT_API_TOKEN",
-		"MCD_DEFAULT_OAUTH_CLIENT_ID",
-		"MCD_DEFAULT_OAUTH_CLIENT_SECRET",
-		"MCD_DEFAULT_INSTANCE_ID",
-	} {
+	// environmentKeys is profile.go's own list of the names it reads, so this cannot drift from
+	// what Resolve and loadProfile consult. A variable added there is cleared here for free.
+	for _, key := range environmentKeys {
 		t.Setenv(key, "")
 	}
 

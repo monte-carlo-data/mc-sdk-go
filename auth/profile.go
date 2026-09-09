@@ -30,6 +30,29 @@ const (
 	keyInstanceID    = "mcd_instance_id"
 )
 
+// Environment variables this package reads, named as every other Monte Carlo tool names them.
+const (
+	envProfile      = "MCD_DEFAULT_PROFILE"
+	envTokenID      = "MCD_DEFAULT_API_ID"
+	envTokenSecret  = "MCD_DEFAULT_API_TOKEN"
+	envClientID     = "MCD_DEFAULT_OAUTH_CLIENT_ID"
+	envClientSecret = "MCD_DEFAULT_OAUTH_CLIENT_SECRET"
+	envInstance     = "MCD_DEFAULT_INSTANCE_ID"
+)
+
+// environmentKeys is every name above. It exists so a caller can enumerate the set this package
+// consults rather than restate it: a test that has to isolate itself from the developer's own
+// environment ranges over this, so adding a variable to the block above without adding it here
+// is the only way to reopen that gap.
+var environmentKeys = []string{
+	envProfile,
+	envTokenID,
+	envTokenSecret,
+	envClientID,
+	envClientSecret,
+	envInstance,
+}
+
 // configDir returns the default directory holding the credentials file, ~/.mcd.
 // Options.ConfigDir overrides it.
 func configDir() (string, error) {
@@ -57,7 +80,7 @@ func configDir() (string, error) {
 // derive_token_endpoint.
 func loadProfile(name, dir string) (Options, error) {
 	if name == "" {
-		name = os.Getenv("MCD_DEFAULT_PROFILE")
+		name = os.Getenv(envProfile)
 	}
 	if name == "" {
 		name = defaultProfileName
@@ -181,16 +204,16 @@ func (o Options) Resolve() (Options, error) {
 	out := o
 
 	if !out.usesOAuth() && !out.usesAPIToken() && out.Token == "" {
-		switch clientID, clientSecret := os.Getenv("MCD_DEFAULT_OAUTH_CLIENT_ID"), os.Getenv("MCD_DEFAULT_OAUTH_CLIENT_SECRET"); {
+		switch clientID, clientSecret := os.Getenv(envClientID), os.Getenv(envClientSecret); {
 		case clientID != "" && clientSecret != "":
 			out.ClientID, out.ClientSecret = clientID, clientSecret
 		default:
-			if tokenID, tokenSecret := os.Getenv("MCD_DEFAULT_API_ID"), os.Getenv("MCD_DEFAULT_API_TOKEN"); tokenID != "" && tokenSecret != "" {
+			if tokenID, tokenSecret := os.Getenv(envTokenID), os.Getenv(envTokenSecret); tokenID != "" && tokenSecret != "" {
 				out.TokenID, out.TokenSecret = tokenID, tokenSecret
 			}
 		}
 	}
-	out.Instance = firstNonEmpty(out.Instance, os.Getenv("MCD_DEFAULT_INSTANCE_ID"))
+	out.Instance = firstNonEmpty(out.Instance, os.Getenv(envInstance))
 
 	named := out.Profile != ""
 	hasCredentials := out.usesOAuth() || out.usesAPIToken() || out.Token != ""
