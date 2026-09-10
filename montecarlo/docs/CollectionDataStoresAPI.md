@@ -6,13 +6,17 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteAwsCollectionDataStore**](CollectionDataStoresAPI.md#DeleteAwsCollectionDataStore) | **Delete** /api/v2/collection-data-stores/aws/{collection_data_store_id} | Delete an AWS collection data store
 [**DeleteAzureCollectionDataStore**](CollectionDataStoresAPI.md#DeleteAzureCollectionDataStore) | **Delete** /api/v2/collection-data-stores/azure/{collection_data_store_id} | Delete an Azure collection data store
+[**DeleteGcpCollectionDataStore**](CollectionDataStoresAPI.md#DeleteGcpCollectionDataStore) | **Delete** /api/v2/collection-data-stores/gcp/{collection_data_store_id} | Delete a GCP collection data store
 [**GetAwsCollectionDataStore**](CollectionDataStoresAPI.md#GetAwsCollectionDataStore) | **Get** /api/v2/collection-data-stores/aws/{collection_data_store_id} | Get an AWS collection data store
 [**GetAzureCollectionDataStore**](CollectionDataStoresAPI.md#GetAzureCollectionDataStore) | **Get** /api/v2/collection-data-stores/azure/{collection_data_store_id} | Get an Azure collection data store
+[**GetGcpCollectionDataStore**](CollectionDataStoresAPI.md#GetGcpCollectionDataStore) | **Get** /api/v2/collection-data-stores/gcp/{collection_data_store_id} | Get a GCP collection data store
 [**ListCollectionDataStores**](CollectionDataStoresAPI.md#ListCollectionDataStores) | **Get** /api/v2/collection-data-stores | List collection data stores
 [**RegisterAwsCollectionDataStore**](CollectionDataStoresAPI.md#RegisterAwsCollectionDataStore) | **Post** /api/v2/collection-data-stores/aws | Register an AWS collection data store
 [**RegisterAzureCollectionDataStore**](CollectionDataStoresAPI.md#RegisterAzureCollectionDataStore) | **Post** /api/v2/collection-data-stores/azure | Register an Azure collection data store
+[**RegisterGcpCollectionDataStore**](CollectionDataStoresAPI.md#RegisterGcpCollectionDataStore) | **Post** /api/v2/collection-data-stores/gcp | Register a GCP collection data store
 [**UpdateAwsCollectionDataStore**](CollectionDataStoresAPI.md#UpdateAwsCollectionDataStore) | **Patch** /api/v2/collection-data-stores/aws/{collection_data_store_id} | Update an AWS collection data store
 [**UpdateAzureCollectionDataStore**](CollectionDataStoresAPI.md#UpdateAzureCollectionDataStore) | **Patch** /api/v2/collection-data-stores/azure/{collection_data_store_id} | Update an Azure collection data store
+[**UpdateGcpCollectionDataStore**](CollectionDataStoresAPI.md#UpdateGcpCollectionDataStore) | **Patch** /api/v2/collection-data-stores/gcp/{collection_data_store_id} | Update a GCP collection data store
 
 
 
@@ -128,6 +132,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteAzureCollectionDataStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteGcpCollectionDataStore
+
+> DeleteGcpCollectionDataStore(ctx, collectionDataStoreId).Execute()
+
+Delete a GCP collection data store
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CollectionDataStoresAPI.DeleteGcpCollectionDataStore(context.Background(), collectionDataStoreId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CollectionDataStoresAPI.DeleteGcpCollectionDataStore``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**collectionDataStoreId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteGcpCollectionDataStoreRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -277,6 +349,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AzureCollectionDataStoreOut**](AzureCollectionDataStoreOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetGcpCollectionDataStore
+
+> GcpCollectionDataStoreOut GetGcpCollectionDataStore(ctx, collectionDataStoreId).Execute()
+
+Get a GCP collection data store
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CollectionDataStoresAPI.GetGcpCollectionDataStore(context.Background(), collectionDataStoreId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CollectionDataStoresAPI.GetGcpCollectionDataStore``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetGcpCollectionDataStore`: GcpCollectionDataStoreOut
+	fmt.Fprintf(os.Stdout, "Response from `CollectionDataStoresAPI.GetGcpCollectionDataStore`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**collectionDataStoreId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetGcpCollectionDataStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**GcpCollectionDataStoreOut**](GcpCollectionDataStoreOut.md)
 
 ### Authorization
 
@@ -485,6 +627,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## RegisterGcpCollectionDataStore
+
+> GcpCollectionDataStoreOut RegisterGcpCollectionDataStore(ctx).GcpCollectionDataStoreIn(gcpCollectionDataStoreIn).Execute()
+
+Register a GCP collection data store
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	gcpCollectionDataStoreIn := *openapiclient.NewGcpCollectionDataStoreIn("BucketName_example", "DeploymentId_example", "ServiceAccountKey_example") // GcpCollectionDataStoreIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CollectionDataStoresAPI.RegisterGcpCollectionDataStore(context.Background()).GcpCollectionDataStoreIn(gcpCollectionDataStoreIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CollectionDataStoresAPI.RegisterGcpCollectionDataStore``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `RegisterGcpCollectionDataStore`: GcpCollectionDataStoreOut
+	fmt.Fprintf(os.Stdout, "Response from `CollectionDataStoresAPI.RegisterGcpCollectionDataStore`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiRegisterGcpCollectionDataStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **gcpCollectionDataStoreIn** | [**GcpCollectionDataStoreIn**](GcpCollectionDataStoreIn.md) |  | 
+
+### Return type
+
+[**GcpCollectionDataStoreOut**](GcpCollectionDataStoreOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateAwsCollectionDataStore
 
 > AwsCollectionDataStoreOut UpdateAwsCollectionDataStore(ctx, collectionDataStoreId).AwsCollectionDataStorePatch(awsCollectionDataStorePatch).Execute()
@@ -614,6 +822,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AzureCollectionDataStoreOut**](AzureCollectionDataStoreOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateGcpCollectionDataStore
+
+> GcpCollectionDataStoreOut UpdateGcpCollectionDataStore(ctx, collectionDataStoreId).GcpCollectionDataStorePatch(gcpCollectionDataStorePatch).Execute()
+
+Update a GCP collection data store
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	gcpCollectionDataStorePatch := *openapiclient.NewGcpCollectionDataStorePatch() // GcpCollectionDataStorePatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CollectionDataStoresAPI.UpdateGcpCollectionDataStore(context.Background(), collectionDataStoreId).GcpCollectionDataStorePatch(gcpCollectionDataStorePatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CollectionDataStoresAPI.UpdateGcpCollectionDataStore``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateGcpCollectionDataStore`: GcpCollectionDataStoreOut
+	fmt.Fprintf(os.Stdout, "Response from `CollectionDataStoresAPI.UpdateGcpCollectionDataStore`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**collectionDataStoreId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateGcpCollectionDataStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **gcpCollectionDataStorePatch** | [**GcpCollectionDataStorePatch**](GcpCollectionDataStorePatch.md) |  | 
+
+### Return type
+
+[**GcpCollectionDataStoreOut**](GcpCollectionDataStoreOut.md)
 
 ### Authorization
 

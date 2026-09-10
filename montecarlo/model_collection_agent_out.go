@@ -22,16 +22,16 @@ var _ MappedNullable = &CollectionAgentOut{}
 
 // CollectionAgentOut A collection agent: the component that reaches your data on Monte Carlo's behalf.  This is the shape the cross-platform list returns. A platform-specific read returns the same fields, with the agent's address named for that platform.
 type CollectionAgentOut struct {
-	// How Monte Carlo authenticates when it calls the collection agent.
-	AuthenticationType AuthenticationType `json:"authentication_type"`
+	// How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one.
+	AuthenticationType NullableAuthenticationType `json:"authentication_type"`
 	// When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent.
 	CreatedTime NullableTime `json:"created_time,omitempty"`
 	// Identifier of the deployment this collection agent runs on.
 	DeploymentId string `json:"deployment_id"`
 	// Whether Monte Carlo is using this collection agent. An agent Monte Carlo has not validated is not enabled, either because it has not been registered yet or because validation failed.
 	Enabled bool `json:"enabled"`
-	// Address Monte Carlo reaches the collection agent at, in whatever form its platform uses. On AWS that is the ARN of a Lambda function, and on Azure the URL of a function app. Empty until the agent has been registered.
-	Endpoint string `json:"endpoint"`
+	// Address Monte Carlo reaches the collection agent at, in whatever form its platform uses. On AWS that is the ARN of a Lambda function, on Azure the URL of a function app, and on GCP the URL of a Cloud Run service. Empty until the agent has been registered. Null for a generic or Snowflake agent, which connect to Monte Carlo rather than being reached.
+	Endpoint NullableString `json:"endpoint"`
 	// Unique identifier of the collection agent.
 	Id string `json:"id"`
 	// Build of the image the collection agent is running. Null until Monte Carlo has contacted the agent.
@@ -54,7 +54,7 @@ type _CollectionAgentOut CollectionAgentOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCollectionAgentOut(authenticationType AuthenticationType, deploymentId string, enabled bool, endpoint string, id string, isRemoteUpgradeable bool) *CollectionAgentOut {
+func NewCollectionAgentOut(authenticationType NullableAuthenticationType, deploymentId string, enabled bool, endpoint NullableString, id string, isRemoteUpgradeable bool) *CollectionAgentOut {
 	this := CollectionAgentOut{}
 	this.AuthenticationType = authenticationType
 	this.DeploymentId = deploymentId
@@ -74,27 +74,29 @@ func NewCollectionAgentOutWithDefaults() *CollectionAgentOut {
 }
 
 // GetAuthenticationType returns the AuthenticationType field value
+// If the value is explicit nil, the zero value for AuthenticationType will be returned
 func (o *CollectionAgentOut) GetAuthenticationType() AuthenticationType {
-	if o == nil {
+	if o == nil || o.AuthenticationType.Get() == nil {
 		var ret AuthenticationType
 		return ret
 	}
 
-	return o.AuthenticationType
+	return *o.AuthenticationType.Get()
 }
 
 // GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CollectionAgentOut) GetAuthenticationTypeOk() (*AuthenticationType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AuthenticationType, true
+	return o.AuthenticationType.Get(), o.AuthenticationType.IsSet()
 }
 
 // SetAuthenticationType sets field value
 func (o *CollectionAgentOut) SetAuthenticationType(v AuthenticationType) {
-	o.AuthenticationType = v
+	o.AuthenticationType.Set(&v)
 }
 
 // GetCreatedTime returns the CreatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -189,27 +191,29 @@ func (o *CollectionAgentOut) SetEnabled(v bool) {
 }
 
 // GetEndpoint returns the Endpoint field value
+// If the value is explicit nil, the zero value for string will be returned
 func (o *CollectionAgentOut) GetEndpoint() string {
-	if o == nil {
+	if o == nil || o.Endpoint.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Endpoint
+	return *o.Endpoint.Get()
 }
 
 // GetEndpointOk returns a tuple with the Endpoint field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CollectionAgentOut) GetEndpointOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Endpoint, true
+	return o.Endpoint.Get(), o.Endpoint.IsSet()
 }
 
 // SetEndpoint sets field value
 func (o *CollectionAgentOut) SetEndpoint(v string) {
-	o.Endpoint = v
+	o.Endpoint.Set(&v)
 }
 
 // GetId returns the Id field value
@@ -485,13 +489,13 @@ func (o CollectionAgentOut) MarshalJSON() ([]byte, error) {
 
 func (o CollectionAgentOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["authentication_type"] = o.AuthenticationType
+	toSerialize["authentication_type"] = o.AuthenticationType.Get()
 	if o.CreatedTime.IsSet() {
 		toSerialize["created_time"] = o.CreatedTime.Get()
 	}
 	toSerialize["deployment_id"] = o.DeploymentId
 	toSerialize["enabled"] = o.Enabled
-	toSerialize["endpoint"] = o.Endpoint
+	toSerialize["endpoint"] = o.Endpoint.Get()
 	toSerialize["id"] = o.Id
 	if o.ImageBuild.IsSet() {
 		toSerialize["image_build"] = o.ImageBuild.Get()

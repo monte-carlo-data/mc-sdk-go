@@ -17,21 +17,21 @@ import (
 	"time"
 )
 
-// checks if the AzureCollectionAgentOut type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &AzureCollectionAgentOut{}
+// checks if the GcpCollectionAgentOut type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GcpCollectionAgentOut{}
 
-// AzureCollectionAgentOut A collection agent running on Azure.
-type AzureCollectionAgentOut struct {
+// GcpCollectionAgentOut A collection agent running on GCP.
+type GcpCollectionAgentOut struct {
 	// How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one.
 	AuthenticationType NullableAuthenticationType `json:"authentication_type"`
+	// URL of the Cloud Run service Monte Carlo calls. Empty until the agent has been registered.
+	CloudRunUrl string `json:"cloud_run_url"`
 	// When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent.
 	CreatedTime NullableTime `json:"created_time,omitempty"`
 	// Identifier of the deployment this collection agent runs on.
 	DeploymentId string `json:"deployment_id"`
 	// Whether Monte Carlo is using this collection agent. An agent Monte Carlo has not validated is not enabled, either because it has not been registered yet or because validation failed.
 	Enabled bool `json:"enabled"`
-	// URL of the function app Monte Carlo calls. Empty until the agent has been registered.
-	FunctionAppUrl string `json:"function_app_url"`
 	// Unique identifier of the collection agent.
 	Id string `json:"id"`
 	// Build of the image the collection agent is running. Null until Monte Carlo has contacted the agent.
@@ -46,34 +46,34 @@ type AzureCollectionAgentOut struct {
 	Name NullableString `json:"name,omitempty"`
 }
 
-type _AzureCollectionAgentOut AzureCollectionAgentOut
+type _GcpCollectionAgentOut GcpCollectionAgentOut
 
-// NewAzureCollectionAgentOut instantiates a new AzureCollectionAgentOut object
+// NewGcpCollectionAgentOut instantiates a new GcpCollectionAgentOut object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAzureCollectionAgentOut(authenticationType NullableAuthenticationType, deploymentId string, enabled bool, functionAppUrl string, id string, isRemoteUpgradeable bool) *AzureCollectionAgentOut {
-	this := AzureCollectionAgentOut{}
+func NewGcpCollectionAgentOut(authenticationType NullableAuthenticationType, cloudRunUrl string, deploymentId string, enabled bool, id string, isRemoteUpgradeable bool) *GcpCollectionAgentOut {
+	this := GcpCollectionAgentOut{}
 	this.AuthenticationType = authenticationType
+	this.CloudRunUrl = cloudRunUrl
 	this.DeploymentId = deploymentId
 	this.Enabled = enabled
-	this.FunctionAppUrl = functionAppUrl
 	this.Id = id
 	this.IsRemoteUpgradeable = isRemoteUpgradeable
 	return &this
 }
 
-// NewAzureCollectionAgentOutWithDefaults instantiates a new AzureCollectionAgentOut object
+// NewGcpCollectionAgentOutWithDefaults instantiates a new GcpCollectionAgentOut object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewAzureCollectionAgentOutWithDefaults() *AzureCollectionAgentOut {
-	this := AzureCollectionAgentOut{}
+func NewGcpCollectionAgentOutWithDefaults() *GcpCollectionAgentOut {
+	this := GcpCollectionAgentOut{}
 	return &this
 }
 
 // GetAuthenticationType returns the AuthenticationType field value
 // If the value is explicit nil, the zero value for AuthenticationType will be returned
-func (o *AzureCollectionAgentOut) GetAuthenticationType() AuthenticationType {
+func (o *GcpCollectionAgentOut) GetAuthenticationType() AuthenticationType {
 	if o == nil || o.AuthenticationType.Get() == nil {
 		var ret AuthenticationType
 		return ret
@@ -85,7 +85,7 @@ func (o *AzureCollectionAgentOut) GetAuthenticationType() AuthenticationType {
 // GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionAgentOut) GetAuthenticationTypeOk() (*AuthenticationType, bool) {
+func (o *GcpCollectionAgentOut) GetAuthenticationTypeOk() (*AuthenticationType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -93,12 +93,36 @@ func (o *AzureCollectionAgentOut) GetAuthenticationTypeOk() (*AuthenticationType
 }
 
 // SetAuthenticationType sets field value
-func (o *AzureCollectionAgentOut) SetAuthenticationType(v AuthenticationType) {
+func (o *GcpCollectionAgentOut) SetAuthenticationType(v AuthenticationType) {
 	o.AuthenticationType.Set(&v)
 }
 
+// GetCloudRunUrl returns the CloudRunUrl field value
+func (o *GcpCollectionAgentOut) GetCloudRunUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CloudRunUrl
+}
+
+// GetCloudRunUrlOk returns a tuple with the CloudRunUrl field value
+// and a boolean to check if the value has been set.
+func (o *GcpCollectionAgentOut) GetCloudRunUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CloudRunUrl, true
+}
+
+// SetCloudRunUrl sets field value
+func (o *GcpCollectionAgentOut) SetCloudRunUrl(v string) {
+	o.CloudRunUrl = v
+}
+
 // GetCreatedTime returns the CreatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionAgentOut) GetCreatedTime() time.Time {
+func (o *GcpCollectionAgentOut) GetCreatedTime() time.Time {
 	if o == nil || IsNil(o.CreatedTime.Get()) {
 		var ret time.Time
 		return ret
@@ -109,7 +133,7 @@ func (o *AzureCollectionAgentOut) GetCreatedTime() time.Time {
 // GetCreatedTimeOk returns a tuple with the CreatedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionAgentOut) GetCreatedTimeOk() (*time.Time, bool) {
+func (o *GcpCollectionAgentOut) GetCreatedTimeOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -117,7 +141,7 @@ func (o *AzureCollectionAgentOut) GetCreatedTimeOk() (*time.Time, bool) {
 }
 
 // HasCreatedTime returns a boolean if a field has been set.
-func (o *AzureCollectionAgentOut) HasCreatedTime() bool {
+func (o *GcpCollectionAgentOut) HasCreatedTime() bool {
 	if o != nil && o.CreatedTime.IsSet() {
 		return true
 	}
@@ -126,22 +150,22 @@ func (o *AzureCollectionAgentOut) HasCreatedTime() bool {
 }
 
 // SetCreatedTime gets a reference to the given NullableTime and assigns it to the CreatedTime field.
-func (o *AzureCollectionAgentOut) SetCreatedTime(v time.Time) {
+func (o *GcpCollectionAgentOut) SetCreatedTime(v time.Time) {
 	o.CreatedTime.Set(&v)
 }
 
 // SetCreatedTimeNil sets the value for CreatedTime to be an explicit nil
-func (o *AzureCollectionAgentOut) SetCreatedTimeNil() {
+func (o *GcpCollectionAgentOut) SetCreatedTimeNil() {
 	o.CreatedTime.Set(nil)
 }
 
 // UnsetCreatedTime ensures that no value is present for CreatedTime, not even an explicit nil
-func (o *AzureCollectionAgentOut) UnsetCreatedTime() {
+func (o *GcpCollectionAgentOut) UnsetCreatedTime() {
 	o.CreatedTime.Unset()
 }
 
 // GetDeploymentId returns the DeploymentId field value
-func (o *AzureCollectionAgentOut) GetDeploymentId() string {
+func (o *GcpCollectionAgentOut) GetDeploymentId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -152,7 +176,7 @@ func (o *AzureCollectionAgentOut) GetDeploymentId() string {
 
 // GetDeploymentIdOk returns a tuple with the DeploymentId field value
 // and a boolean to check if the value has been set.
-func (o *AzureCollectionAgentOut) GetDeploymentIdOk() (*string, bool) {
+func (o *GcpCollectionAgentOut) GetDeploymentIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -160,12 +184,12 @@ func (o *AzureCollectionAgentOut) GetDeploymentIdOk() (*string, bool) {
 }
 
 // SetDeploymentId sets field value
-func (o *AzureCollectionAgentOut) SetDeploymentId(v string) {
+func (o *GcpCollectionAgentOut) SetDeploymentId(v string) {
 	o.DeploymentId = v
 }
 
 // GetEnabled returns the Enabled field value
-func (o *AzureCollectionAgentOut) GetEnabled() bool {
+func (o *GcpCollectionAgentOut) GetEnabled() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -176,7 +200,7 @@ func (o *AzureCollectionAgentOut) GetEnabled() bool {
 
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
-func (o *AzureCollectionAgentOut) GetEnabledOk() (*bool, bool) {
+func (o *GcpCollectionAgentOut) GetEnabledOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -184,36 +208,12 @@ func (o *AzureCollectionAgentOut) GetEnabledOk() (*bool, bool) {
 }
 
 // SetEnabled sets field value
-func (o *AzureCollectionAgentOut) SetEnabled(v bool) {
+func (o *GcpCollectionAgentOut) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
-// GetFunctionAppUrl returns the FunctionAppUrl field value
-func (o *AzureCollectionAgentOut) GetFunctionAppUrl() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.FunctionAppUrl
-}
-
-// GetFunctionAppUrlOk returns a tuple with the FunctionAppUrl field value
-// and a boolean to check if the value has been set.
-func (o *AzureCollectionAgentOut) GetFunctionAppUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FunctionAppUrl, true
-}
-
-// SetFunctionAppUrl sets field value
-func (o *AzureCollectionAgentOut) SetFunctionAppUrl(v string) {
-	o.FunctionAppUrl = v
-}
-
 // GetId returns the Id field value
-func (o *AzureCollectionAgentOut) GetId() string {
+func (o *GcpCollectionAgentOut) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -224,7 +224,7 @@ func (o *AzureCollectionAgentOut) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *AzureCollectionAgentOut) GetIdOk() (*string, bool) {
+func (o *GcpCollectionAgentOut) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -232,12 +232,12 @@ func (o *AzureCollectionAgentOut) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *AzureCollectionAgentOut) SetId(v string) {
+func (o *GcpCollectionAgentOut) SetId(v string) {
 	o.Id = v
 }
 
 // GetImageBuild returns the ImageBuild field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionAgentOut) GetImageBuild() string {
+func (o *GcpCollectionAgentOut) GetImageBuild() string {
 	if o == nil || IsNil(o.ImageBuild.Get()) {
 		var ret string
 		return ret
@@ -248,7 +248,7 @@ func (o *AzureCollectionAgentOut) GetImageBuild() string {
 // GetImageBuildOk returns a tuple with the ImageBuild field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionAgentOut) GetImageBuildOk() (*string, bool) {
+func (o *GcpCollectionAgentOut) GetImageBuildOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -256,7 +256,7 @@ func (o *AzureCollectionAgentOut) GetImageBuildOk() (*string, bool) {
 }
 
 // HasImageBuild returns a boolean if a field has been set.
-func (o *AzureCollectionAgentOut) HasImageBuild() bool {
+func (o *GcpCollectionAgentOut) HasImageBuild() bool {
 	if o != nil && o.ImageBuild.IsSet() {
 		return true
 	}
@@ -265,22 +265,22 @@ func (o *AzureCollectionAgentOut) HasImageBuild() bool {
 }
 
 // SetImageBuild gets a reference to the given NullableString and assigns it to the ImageBuild field.
-func (o *AzureCollectionAgentOut) SetImageBuild(v string) {
+func (o *GcpCollectionAgentOut) SetImageBuild(v string) {
 	o.ImageBuild.Set(&v)
 }
 
 // SetImageBuildNil sets the value for ImageBuild to be an explicit nil
-func (o *AzureCollectionAgentOut) SetImageBuildNil() {
+func (o *GcpCollectionAgentOut) SetImageBuildNil() {
 	o.ImageBuild.Set(nil)
 }
 
 // UnsetImageBuild ensures that no value is present for ImageBuild, not even an explicit nil
-func (o *AzureCollectionAgentOut) UnsetImageBuild() {
+func (o *GcpCollectionAgentOut) UnsetImageBuild() {
 	o.ImageBuild.Unset()
 }
 
 // GetImageVersion returns the ImageVersion field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionAgentOut) GetImageVersion() string {
+func (o *GcpCollectionAgentOut) GetImageVersion() string {
 	if o == nil || IsNil(o.ImageVersion.Get()) {
 		var ret string
 		return ret
@@ -291,7 +291,7 @@ func (o *AzureCollectionAgentOut) GetImageVersion() string {
 // GetImageVersionOk returns a tuple with the ImageVersion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionAgentOut) GetImageVersionOk() (*string, bool) {
+func (o *GcpCollectionAgentOut) GetImageVersionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -299,7 +299,7 @@ func (o *AzureCollectionAgentOut) GetImageVersionOk() (*string, bool) {
 }
 
 // HasImageVersion returns a boolean if a field has been set.
-func (o *AzureCollectionAgentOut) HasImageVersion() bool {
+func (o *GcpCollectionAgentOut) HasImageVersion() bool {
 	if o != nil && o.ImageVersion.IsSet() {
 		return true
 	}
@@ -308,22 +308,22 @@ func (o *AzureCollectionAgentOut) HasImageVersion() bool {
 }
 
 // SetImageVersion gets a reference to the given NullableString and assigns it to the ImageVersion field.
-func (o *AzureCollectionAgentOut) SetImageVersion(v string) {
+func (o *GcpCollectionAgentOut) SetImageVersion(v string) {
 	o.ImageVersion.Set(&v)
 }
 
 // SetImageVersionNil sets the value for ImageVersion to be an explicit nil
-func (o *AzureCollectionAgentOut) SetImageVersionNil() {
+func (o *GcpCollectionAgentOut) SetImageVersionNil() {
 	o.ImageVersion.Set(nil)
 }
 
 // UnsetImageVersion ensures that no value is present for ImageVersion, not even an explicit nil
-func (o *AzureCollectionAgentOut) UnsetImageVersion() {
+func (o *GcpCollectionAgentOut) UnsetImageVersion() {
 	o.ImageVersion.Unset()
 }
 
 // GetIsRemoteUpgradeable returns the IsRemoteUpgradeable field value
-func (o *AzureCollectionAgentOut) GetIsRemoteUpgradeable() bool {
+func (o *GcpCollectionAgentOut) GetIsRemoteUpgradeable() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -334,7 +334,7 @@ func (o *AzureCollectionAgentOut) GetIsRemoteUpgradeable() bool {
 
 // GetIsRemoteUpgradeableOk returns a tuple with the IsRemoteUpgradeable field value
 // and a boolean to check if the value has been set.
-func (o *AzureCollectionAgentOut) GetIsRemoteUpgradeableOk() (*bool, bool) {
+func (o *GcpCollectionAgentOut) GetIsRemoteUpgradeableOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -342,12 +342,12 @@ func (o *AzureCollectionAgentOut) GetIsRemoteUpgradeableOk() (*bool, bool) {
 }
 
 // SetIsRemoteUpgradeable sets field value
-func (o *AzureCollectionAgentOut) SetIsRemoteUpgradeable(v bool) {
+func (o *GcpCollectionAgentOut) SetIsRemoteUpgradeable(v bool) {
 	o.IsRemoteUpgradeable = v
 }
 
 // GetLastUpdatedTime returns the LastUpdatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionAgentOut) GetLastUpdatedTime() time.Time {
+func (o *GcpCollectionAgentOut) GetLastUpdatedTime() time.Time {
 	if o == nil || IsNil(o.LastUpdatedTime.Get()) {
 		var ret time.Time
 		return ret
@@ -358,7 +358,7 @@ func (o *AzureCollectionAgentOut) GetLastUpdatedTime() time.Time {
 // GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionAgentOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
+func (o *GcpCollectionAgentOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -366,7 +366,7 @@ func (o *AzureCollectionAgentOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
 }
 
 // HasLastUpdatedTime returns a boolean if a field has been set.
-func (o *AzureCollectionAgentOut) HasLastUpdatedTime() bool {
+func (o *GcpCollectionAgentOut) HasLastUpdatedTime() bool {
 	if o != nil && o.LastUpdatedTime.IsSet() {
 		return true
 	}
@@ -375,22 +375,22 @@ func (o *AzureCollectionAgentOut) HasLastUpdatedTime() bool {
 }
 
 // SetLastUpdatedTime gets a reference to the given NullableTime and assigns it to the LastUpdatedTime field.
-func (o *AzureCollectionAgentOut) SetLastUpdatedTime(v time.Time) {
+func (o *GcpCollectionAgentOut) SetLastUpdatedTime(v time.Time) {
 	o.LastUpdatedTime.Set(&v)
 }
 
 // SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
-func (o *AzureCollectionAgentOut) SetLastUpdatedTimeNil() {
+func (o *GcpCollectionAgentOut) SetLastUpdatedTimeNil() {
 	o.LastUpdatedTime.Set(nil)
 }
 
 // UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
-func (o *AzureCollectionAgentOut) UnsetLastUpdatedTime() {
+func (o *GcpCollectionAgentOut) UnsetLastUpdatedTime() {
 	o.LastUpdatedTime.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionAgentOut) GetName() string {
+func (o *GcpCollectionAgentOut) GetName() string {
 	if o == nil || IsNil(o.Name.Get()) {
 		var ret string
 		return ret
@@ -401,7 +401,7 @@ func (o *AzureCollectionAgentOut) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionAgentOut) GetNameOk() (*string, bool) {
+func (o *GcpCollectionAgentOut) GetNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -409,7 +409,7 @@ func (o *AzureCollectionAgentOut) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *AzureCollectionAgentOut) HasName() bool {
+func (o *GcpCollectionAgentOut) HasName() bool {
 	if o != nil && o.Name.IsSet() {
 		return true
 	}
@@ -418,21 +418,21 @@ func (o *AzureCollectionAgentOut) HasName() bool {
 }
 
 // SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *AzureCollectionAgentOut) SetName(v string) {
+func (o *GcpCollectionAgentOut) SetName(v string) {
 	o.Name.Set(&v)
 }
 
 // SetNameNil sets the value for Name to be an explicit nil
-func (o *AzureCollectionAgentOut) SetNameNil() {
+func (o *GcpCollectionAgentOut) SetNameNil() {
 	o.Name.Set(nil)
 }
 
 // UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *AzureCollectionAgentOut) UnsetName() {
+func (o *GcpCollectionAgentOut) UnsetName() {
 	o.Name.Unset()
 }
 
-func (o AzureCollectionAgentOut) MarshalJSON() ([]byte, error) {
+func (o GcpCollectionAgentOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -440,15 +440,15 @@ func (o AzureCollectionAgentOut) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o AzureCollectionAgentOut) ToMap() (map[string]interface{}, error) {
+func (o GcpCollectionAgentOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["authentication_type"] = o.AuthenticationType.Get()
+	toSerialize["cloud_run_url"] = o.CloudRunUrl
 	if o.CreatedTime.IsSet() {
 		toSerialize["created_time"] = o.CreatedTime.Get()
 	}
 	toSerialize["deployment_id"] = o.DeploymentId
 	toSerialize["enabled"] = o.Enabled
-	toSerialize["function_app_url"] = o.FunctionAppUrl
 	toSerialize["id"] = o.Id
 	if o.ImageBuild.IsSet() {
 		toSerialize["image_build"] = o.ImageBuild.Get()
@@ -466,15 +466,15 @@ func (o AzureCollectionAgentOut) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-func (o *AzureCollectionAgentOut) UnmarshalJSON(data []byte) (err error) {
+func (o *GcpCollectionAgentOut) UnmarshalJSON(data []byte) (err error) {
 	// This validates that all required properties are included in the JSON object
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"authentication_type",
+		"cloud_run_url",
 		"deployment_id",
 		"enabled",
-		"function_app_url",
 		"id",
 		"is_remote_upgradeable",
 	}
@@ -493,53 +493,53 @@ func (o *AzureCollectionAgentOut) UnmarshalJSON(data []byte) (err error) {
 		}
 	}
 
-	varAzureCollectionAgentOut := _AzureCollectionAgentOut{}
+	varGcpCollectionAgentOut := _GcpCollectionAgentOut{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
 	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAzureCollectionAgentOut)
+	err = decoder.Decode(&varGcpCollectionAgentOut)
 
 	if err != nil {
 		return err
 	}
 
-	*o = AzureCollectionAgentOut(varAzureCollectionAgentOut)
+	*o = GcpCollectionAgentOut(varGcpCollectionAgentOut)
 
 	return err
 }
 
-type NullableAzureCollectionAgentOut struct {
-	value *AzureCollectionAgentOut
+type NullableGcpCollectionAgentOut struct {
+	value *GcpCollectionAgentOut
 	isSet bool
 }
 
-func (v NullableAzureCollectionAgentOut) Get() *AzureCollectionAgentOut {
+func (v NullableGcpCollectionAgentOut) Get() *GcpCollectionAgentOut {
 	return v.value
 }
 
-func (v *NullableAzureCollectionAgentOut) Set(val *AzureCollectionAgentOut) {
+func (v *NullableGcpCollectionAgentOut) Set(val *GcpCollectionAgentOut) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableAzureCollectionAgentOut) IsSet() bool {
+func (v NullableGcpCollectionAgentOut) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableAzureCollectionAgentOut) Unset() {
+func (v *NullableGcpCollectionAgentOut) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableAzureCollectionAgentOut(val *AzureCollectionAgentOut) *NullableAzureCollectionAgentOut {
-	return &NullableAzureCollectionAgentOut{value: val, isSet: true}
+func NewNullableGcpCollectionAgentOut(val *GcpCollectionAgentOut) *NullableGcpCollectionAgentOut {
+	return &NullableGcpCollectionAgentOut{value: val, isSet: true}
 }
 
-func (v NullableAzureCollectionAgentOut) MarshalJSON() ([]byte, error) {
+func (v NullableGcpCollectionAgentOut) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableAzureCollectionAgentOut) UnmarshalJSON(src []byte) error {
+func (v *NullableGcpCollectionAgentOut) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

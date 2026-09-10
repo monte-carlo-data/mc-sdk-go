@@ -22,8 +22,8 @@ var _ MappedNullable = &AwsCollectionAgentOut{}
 
 // AwsCollectionAgentOut A collection agent running on AWS.
 type AwsCollectionAgentOut struct {
-	// How Monte Carlo authenticates when it calls the collection agent.
-	AuthenticationType AuthenticationType `json:"authentication_type"`
+	// How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one.
+	AuthenticationType NullableAuthenticationType `json:"authentication_type"`
 	// When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent.
 	CreatedTime NullableTime `json:"created_time,omitempty"`
 	// Identifier of the deployment this collection agent runs on.
@@ -54,7 +54,7 @@ type _AwsCollectionAgentOut AwsCollectionAgentOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAwsCollectionAgentOut(authenticationType AuthenticationType, deploymentId string, enabled bool, id string, isRemoteUpgradeable bool, lambdaFunctionArn string) *AwsCollectionAgentOut {
+func NewAwsCollectionAgentOut(authenticationType NullableAuthenticationType, deploymentId string, enabled bool, id string, isRemoteUpgradeable bool, lambdaFunctionArn string) *AwsCollectionAgentOut {
 	this := AwsCollectionAgentOut{}
 	this.AuthenticationType = authenticationType
 	this.DeploymentId = deploymentId
@@ -74,27 +74,29 @@ func NewAwsCollectionAgentOutWithDefaults() *AwsCollectionAgentOut {
 }
 
 // GetAuthenticationType returns the AuthenticationType field value
+// If the value is explicit nil, the zero value for AuthenticationType will be returned
 func (o *AwsCollectionAgentOut) GetAuthenticationType() AuthenticationType {
-	if o == nil {
+	if o == nil || o.AuthenticationType.Get() == nil {
 		var ret AuthenticationType
 		return ret
 	}
 
-	return o.AuthenticationType
+	return *o.AuthenticationType.Get()
 }
 
 // GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *AwsCollectionAgentOut) GetAuthenticationTypeOk() (*AuthenticationType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AuthenticationType, true
+	return o.AuthenticationType.Get(), o.AuthenticationType.IsSet()
 }
 
 // SetAuthenticationType sets field value
 func (o *AwsCollectionAgentOut) SetAuthenticationType(v AuthenticationType) {
-	o.AuthenticationType = v
+	o.AuthenticationType.Set(&v)
 }
 
 // GetCreatedTime returns the CreatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -485,7 +487,7 @@ func (o AwsCollectionAgentOut) MarshalJSON() ([]byte, error) {
 
 func (o AwsCollectionAgentOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["authentication_type"] = o.AuthenticationType
+	toSerialize["authentication_type"] = o.AuthenticationType.Get()
 	if o.CreatedTime.IsSet() {
 		toSerialize["created_time"] = o.CreatedTime.Get()
 	}
