@@ -1,4 +1,6 @@
-package auth
+// Hand-written, not generator output.
+
+package montecarlo
 
 import (
 	"bufio"

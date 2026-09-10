@@ -1,0 +1,54 @@
+# openapi-generator reads this file from its output directory — this one — and overwrites every
+# file it emits under it, never deleting anything it does not. Nothing outside montecarlo/ is
+# reachable, so the module files and the repository documentation need no entry here: the
+# generator cannot write to the repository root at all.
+#
+# Verified by running the generator into an empty directory with no ignore file: it writes
+# README.md, .gitignore, git_push.sh, .travis.yml and api/openapi.yaml, plus go.mod and go.sum
+# unless withGoMod=false, which generate-go-sdk.sh passes. Those five entries are load-bearing;
+# the rest are defensive, and are kept so the protected set reads as one list.
+#
+# This file is what api-codegen's generate-go-sdk.sh compares its PROTECTED array against,
+# whole line for whole line; the root AGENTS.md documents this list entry for entry. A variant
+# spelling still protects the file but fails that check.
+
+# Client construction and credentials: NewClient, Options, the OAuth token source and the
+# CLI's profiles file, plus example_test.go, the external-package example that compiles the
+# public surface as a consumer would. Defensive: the generator names its files api_*.go,
+# model_*.go, client.go, configuration.go, response.go and utils.go, and is run with test
+# generation off.
+auth.go
+auth_test.go
+oauth.go
+oauth_test.go
+profile.go
+profile_test.go
+example_test.go
+
+# The package doc comment, which is the pkg.go.dev page for this package.
+# Defensive: the Go generator emits no doc.go.
+doc.go
+
+# A go.mod here would make this package its own module, separate from the repository's.
+# Defensive: generate-go-sdk.sh passes withGoMod=false, so neither file is emitted.
+go.mod
+go.sum
+
+# Suppressed rather than protected. openapi-generator vendors a YAML copy of its input spec
+# here by default; nothing in this repo or its consumers reads it, docs/ already documents
+# every operation and model, and info.version is the API's major version so the copy cannot
+# identify which export produced this SDK. Keeping it would publish the internal x-mc-*
+# codegen markers the input carries. Load-bearing: remove this line and the generator writes
+# the file again.
+api/openapi.yaml
+
+# The generator's README duplicates the root one and its example builds a client with no
+# server URL; its .gitignore is Go scaffolding the root one covers. Both load-bearing —
+# the generator emits both.
+README.md
+.gitignore
+
+# The generator's own scaffolding, which we do not use. Both load-bearing: listing them is
+# what keeps the generator from ever writing them, which is why neither exists in the tree.
+git_push.sh
+.travis.yml

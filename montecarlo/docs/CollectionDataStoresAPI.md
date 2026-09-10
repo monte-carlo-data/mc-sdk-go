@@ -33,7 +33,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/monte-carlo-data/mc-sdk-go"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
 )
 
 func main() {
@@ -101,7 +101,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/monte-carlo-data/mc-sdk-go"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
 )
 
 func main() {
@@ -169,7 +169,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/monte-carlo-data/mc-sdk-go"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
 )
 
 func main() {
@@ -239,7 +239,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/monte-carlo-data/mc-sdk-go"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
 )
 
 func main() {
@@ -309,7 +309,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/monte-carlo-data/mc-sdk-go"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
 )
 
 func main() {
@@ -370,7 +370,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/monte-carlo-data/mc-sdk-go"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
 )
 
 func main() {
@@ -436,7 +436,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/monte-carlo-data/mc-sdk-go"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
 )
 
 func main() {
@@ -502,7 +502,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/monte-carlo-data/mc-sdk-go"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
 )
 
 func main() {
@@ -574,7 +574,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/monte-carlo-data/mc-sdk-go"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
 )
 
 func main() {
