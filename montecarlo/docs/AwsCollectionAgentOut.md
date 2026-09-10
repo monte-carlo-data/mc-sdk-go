@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationType** | [**AuthenticationType**](AuthenticationType.md) | How Monte Carlo authenticates when it calls the collection agent. | 
+**AuthenticationType** | [**NullableAuthenticationType**](AuthenticationType.md) | How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one. | 
 **CreatedTime** | Pointer to **NullableTime** | When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent. | [optional] 
 **DeploymentId** | **string** | Identifier of the deployment this collection agent runs on. | 
 **Enabled** | **bool** | Whether Monte Carlo is using this collection agent. An agent Monte Carlo has not validated is not enabled, either because it has not been registered yet or because validation failed. | 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewAwsCollectionAgentOut
 
-`func NewAwsCollectionAgentOut(authenticationType AuthenticationType, deploymentId string, enabled bool, id string, isRemoteUpgradeable bool, lambdaFunctionArn string, ) *AwsCollectionAgentOut`
+`func NewAwsCollectionAgentOut(authenticationType NullableAuthenticationType, deploymentId string, enabled bool, id string, isRemoteUpgradeable bool, lambdaFunctionArn string, ) *AwsCollectionAgentOut`
 
 NewAwsCollectionAgentOut instantiates a new AwsCollectionAgentOut object
 This constructor will assign default values to properties that have it defined,
@@ -56,6 +56,16 @@ and a boolean to check if the value has been set.
 SetAuthenticationType sets AuthenticationType field to given value.
 
 
+### SetAuthenticationTypeNil
+
+`func (o *AwsCollectionAgentOut) SetAuthenticationTypeNil(b bool)`
+
+ SetAuthenticationTypeNil sets the value for AuthenticationType to be an explicit nil
+
+### UnsetAuthenticationType
+`func (o *AwsCollectionAgentOut) UnsetAuthenticationType()`
+
+UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
 ### GetCreatedTime
 
 `func (o *AwsCollectionAgentOut) GetCreatedTime() time.Time`
