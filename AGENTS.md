@@ -22,6 +22,7 @@ gofmt -l .        # must be empty; generated output is formatted when it is prod
 |------|---------|
 | `montecarlo/` | The whole SDK and the generator's output directory: package `montecarlo`, import path `github.com/monte-carlo-data/mc-sdk-go/montecarlo` |
 | `montecarlo/auth.go`, `oauth.go`, `profile.go` | **Hand-written.** `NewClient`, `Options`, API-token and OAuth credentials, the CLI's profiles file |
+| `montecarlo/example_test.go` | **Hand-written.** External-package example that compiles the public surface as a consumer would |
 | `montecarlo/doc.go` | **Hand-written.** The package doc comment |
 | `montecarlo/api_*.go`, `montecarlo/model_*.go` | Generated operations and models, one file per tag group and schema |
 | `montecarlo/client.go`, `configuration.go`, `response.go`, `utils.go` | Generated client plumbing |
@@ -30,7 +31,7 @@ gofmt -l .        # must be empty; generated output is formatted when it is prod
 
 ## What is generated
 
-Everything under `montecarlo/` except `doc.go` and the auth files. The generator is pointed at
+Everything under `montecarlo/` except `doc.go`, `example_test.go`, and the auth files. The generator is pointed at
 that directory, not the repository root, so the module files and the repository documentation
 are out of its reach by construction. The hand-written files share the package with the
 generated ones so that a caller has one import and one name for the SDK — `montecarlo.NewClient`
@@ -46,11 +47,14 @@ directory is the unit of organisation, which is why the output moved there.
 
 **Anything hand-written under `montecarlo/`, or anything we don't want emitted there, must be
 listed in `montecarlo/.openapi-generator-ignore`** — the generator reads the ignore file from
-its output directory. This is the canonical enumeration — `api-codegen`'s generation script
-checks its own copy of this list against it:
+its output directory. `montecarlo/.openapi-generator-ignore` is what `generate-go-sdk.sh`
+compares its `PROTECTED` array against, whole line for whole line; this section documents that
+file entry for entry, so the two must be kept in step by hand:
 
-- `auth.go`, `oauth.go`, `profile.go` and their `_test.go` files — hand-written client construction and credentials
+- `auth.go`, `auth_test.go`, `oauth.go`, `oauth_test.go`, `profile.go`, `profile_test.go` — hand-written client construction and credentials
 - `doc.go` — the package doc comment, which is the pkg.go.dev page for the package
+- `example_test.go` — the external-package (`package montecarlo_test`) example that compiles the
+  public surface as a consumer would; hand-written, and must stay in the ignore file
 - `go.mod`, `go.sum` — a nested module would split the package off from the repository's
 - `api/openapi.yaml` — suppressed, not protected: the generator's vendored copy of the input spec, which nothing reads and which would publish the input's internal `x-mc-*` markers
 - `README.md`, `.gitignore` — the generator's copies duplicate the root ones
@@ -59,20 +63,29 @@ checks its own copy of this list against it:
 Of these, `README.md`, `.gitignore`, `git_push.sh`, `.travis.yml` and `api/openapi.yaml` are
 paths the generator actually emits — those five entries are load-bearing, confirmed by running
 the generator into an empty directory with no ignore file. `go.mod` and `go.sum` would be too,
-but the generation script passes `withGoMod=false` so they are never written; `doc.go` and the
-auth files are paths the Go generator never writes to — it names its files `api_*.go`,
-`model_*.go`, `client.go`, `configuration.go`, `response.go` and `utils.go`, and runs with test
-generation off. The rest of the list is defensive rather than required; keep it for clarity
+but the generation script passes `withGoMod=false` so they are never written; `doc.go`,
+`example_test.go`, and the auth files are paths the Go generator never writes to — it names its
+files `api_*.go`, `model_*.go`, `client.go`, `configuration.go`, `response.go` and `utils.go`,
+and runs with test generation off. The rest of the list is defensive rather than required; keep it for clarity
 and in case that ever changes. A hand-written file must never take one of those generated
-names.
+names. The same constraint applies to identifiers: the generator emits `<Schema>`,
+`New<Schema>`, `New<Schema>WithDefaults`, and `NewNullable<Schema>` for every schema in the
+spec, plus fixed names `APIClient`, `Configuration`, `NewConfiguration`, `NewAPIClient`,
+`GenericOpenAPIError`, `BasicAuth`, `APIKey`, `ServerConfiguration`, and the `Nullable*`/`Ptr*`
+helper families. A hand-written package-level identifier — exported or not — must never take a
+name the generator could emit; in particular `NewClient` and `Options` are reserved against
+future schemas named `Client` and `Options`, and a collision surfaces as a compile failure at
+regeneration time whose only fix is renaming the SDK's public API.
 
 The generation script also passes `isGoSubmodule=true`, which is what makes the import path in
 the generated `docs/` examples read `.../mc-sdk-go/montecarlo` rather than the module root.
 
-The cross-repo guard that keeps this list in sync with `api-codegen`'s copy compares whole
-lines exactly, not semantics — an entry written as `./doc.go` instead of `doc.go` still
-protects the file from the generator but fails that check, because the text doesn't match
-character-for-character.
+The cross-repo guard compares `api-codegen`'s `PROTECTED` array against
+`montecarlo/.openapi-generator-ignore` whole line for whole line, not semantically — an entry
+written as `./doc.go` instead of `doc.go` still protects the file from the generator but fails
+that check, because the text doesn't match character-for-character. Since the guard reads the
+ignore file directly rather than this section, keeping the two in step is a manual discipline,
+not something enforced by the check itself.
 
 Regeneration is performed by Monte Carlo's internal API code-generation tooling, run by a
 maintainer from outside this repository — it owns generation for every artifact built from

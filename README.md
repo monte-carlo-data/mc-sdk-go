@@ -11,7 +11,7 @@ client construction and credentials are hand-written, so every request is authen
 ## Install
 
 ```bash
-go get github.com/monte-carlo-data/mc-sdk-go
+go get github.com/monte-carlo-data/mc-sdk-go/montecarlo
 ```
 
 While this repository is internal, that needs `GOPRIVATE=github.com/monte-carlo-data` and a
@@ -117,10 +117,10 @@ rather than quietly falling back to different credentials.
 
 | Path | |
 |---|---|
-| `montecarlo/` | Generated. Do not edit. The API client, one `api_*.go` per operation group and one `model_*.go` per schema. |
+| `montecarlo/api_*.go`, `model_*.go`, `client.go`, `configuration.go`, `response.go`, `utils.go` | Generated. Do not edit. The API client, one `api_*.go` per operation group and one `model_*.go` per schema. |
 | `montecarlo/docs/` | Generated API reference — see [API reference](#api-reference) below. |
 | `montecarlo/.openapi-generator/` | Generator bookkeeping. |
-| `montecarlo/auth.go`, `oauth.go`, `profile.go` | Hand-written. `NewClient`, `Options`, and the credential resolution behind them. |
+| `montecarlo/auth.go`, `oauth.go`, `profile.go`, `example_test.go` | Hand-written. `NewClient`, `Options`, the credential resolution behind them, and a usage example that go test compiles as a consumer would. |
 | `montecarlo/doc.go` | Hand-written. The package's doc comment. |
 
 The generator writes only under `montecarlo/`, and overwrites every file it emits there on

@@ -8,24 +8,24 @@
 # unless withGoMod=false, which generate-go-sdk.sh passes. Those five entries are load-bearing;
 # the rest are defensive, and are kept so the protected set reads as one list.
 #
-# The root AGENTS.md holds the canonical enumeration, which api-codegen's generate-go-sdk.sh
-# checks against. That guard matches whole lines exactly, so a variant spelling still protects
-# the file but fails the check.
+# This file is what api-codegen's generate-go-sdk.sh compares its PROTECTED array against,
+# whole line for whole line; the root AGENTS.md documents this list entry for entry. A variant
+# spelling still protects the file but fails that check.
 
 # Client construction and credentials: NewClient, Options, the OAuth token source and the
-# CLI's profiles file. The generated client has no notion of our auth methods and no default
-# server URL, so these files are what make the package usable. Defensive: the generator names
-# its files api_*.go, model_*.go, client.go, configuration.go, response.go and utils.go, and
-# is run with test generation off.
+# CLI's profiles file, plus example_test.go, the external-package example that compiles the
+# public surface as a consumer would. Defensive: the generator names its files api_*.go,
+# model_*.go, client.go, configuration.go, response.go and utils.go, and is run with test
+# generation off.
 auth.go
 auth_test.go
 oauth.go
 oauth_test.go
 profile.go
 profile_test.go
+example_test.go
 
-# The package doc comment, which is the pkg.go.dev page for this package. Points at
-# NewClient, because NewAPIClient and NewConfiguration have no default server URL.
+# The package doc comment, which is the pkg.go.dev page for this package.
 # Defensive: the Go generator emits no doc.go.
 doc.go
 
@@ -42,9 +42,9 @@ go.sum
 # the file again.
 api/openapi.yaml
 
-# The generator's README duplicates the root one and shows NewConfiguration without a server
-# URL, which is what doc.go warns against; its .gitignore is Go scaffolding the root one already
-# covers. Both load-bearing — the generator emits both.
+# The generator's README duplicates the root one and its example builds a client with no
+# server URL; its .gitignore is Go scaffolding the root one covers. Both load-bearing —
+# the generator emits both.
 README.md
 .gitignore
 

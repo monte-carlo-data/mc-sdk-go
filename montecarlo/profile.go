@@ -1,3 +1,5 @@
+// Hand-written, not generator output.
+
 package montecarlo
 
 import (

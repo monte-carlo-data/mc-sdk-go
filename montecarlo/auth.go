@@ -1,5 +1,4 @@
-// Hand-written: client construction and credential resolution. NewClient is the package's
-// entry point; see doc.go for how it relates to the generated code around it.
+// Hand-written, not generator output.
 
 package montecarlo
 
