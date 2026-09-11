@@ -78,7 +78,8 @@ func Example(ctx context.Context) error {
 }
 ```
 
-Tokens are fetched and refreshed as needed, so a long-lived client does not go stale.
+Tokens are fetched and refreshed as needed, so a long-lived client does not go stale. The
+token exchange does not follow redirects, and neither does the API client.
 
 The client's operations and the request and response types they take are in the same package,
 so that one import covers everything: `montecarlo.DeploymentIn`, `montecarlo.ProblemOut`, and
@@ -106,6 +107,10 @@ Anything you leave unset is filled in, in this order:
 2. `MCD_DEFAULT_API_ID` and `MCD_DEFAULT_API_TOKEN`, or `MCD_DEFAULT_OAUTH_CLIENT_ID` and
    `MCD_DEFAULT_OAUTH_CLIENT_SECRET`, and `MCD_DEFAULT_INSTANCE_ID`.
 3. A profile from `~/.mcd/profiles.ini`, which the CLI writes.
+
+A pair is all or nothing. If you pass one half of an API token or of OAuth client
+credentials, that is an error; the other half is never filled in from the environment or a
+profile.
 
 This SDK does not read `MCD_API_ENDPOINT`, even though the CLI and pycarlo both do — that
 variable carries the GraphQL endpoint, and `Endpoint` here is the REST base URL, so the two

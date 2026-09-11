@@ -350,3 +350,65 @@ func TestParseINIDoesNotEchoTheOffendingLine(t *testing.T) {
 		t.Fatalf("the error carries the credential: %v", err)
 	}
 }
+
+// Regression proof: half of an explicitly supplied pair used to count as "no credentials", so
+// the environment or the profile completed it and the caller authenticated as a different
+// identity without hearing about it.
+func TestHalfAnExplicitCredentialPairIsNeverCompletedByAFallback(t *testing.T) {
+	t.Run("half an api token against an oauth profile", func(t *testing.T) {
+		dir := isolate(t)
+		writeProfiles(t, dir, "[default]\nmcd_oauth_client_id = c\nmcd_oauth_client_secret = s\nmcd_instance_id = us1\n")
+
+		_, err := Options{Endpoint: "https://api.example.com", TokenID: "explicit-id", ConfigDir: dir}.Resolve()
+		if err == nil || !strings.Contains(err.Error(), "token id and token secret are both required") {
+			t.Fatalf("expected the half pair to be refused before the profile is consulted, got: %v", err)
+		}
+	})
+
+	t.Run("half an oauth pair against an api token profile", func(t *testing.T) {
+		dir := isolate(t)
+		writeProfiles(t, dir, "[default]\nmcd_id = id\nmcd_token = secret\n")
+
+		_, err := Options{Endpoint: "https://api.example.com", ClientID: "explicit", ConfigDir: dir}.Resolve()
+		if err == nil || !strings.Contains(err.Error(), "client id and client secret are both required") {
+			t.Fatalf("expected the half pair to be refused before the profile is consulted, got: %v", err)
+		}
+	})
+
+	t.Run("half an api token against an ambient api token environment", func(t *testing.T) {
+		dir := isolate(t)
+		t.Setenv(envTokenID, "env-id")
+		t.Setenv(envTokenSecret, "env-secret")
+
+		_, err := Options{Endpoint: "https://api.example.com", TokenID: "explicit-id", ConfigDir: dir}.Resolve()
+		if err == nil || !strings.Contains(err.Error(), "token id and token secret are both required") {
+			t.Fatalf("expected the half pair to be refused before the environment is consulted, got: %v", err)
+		}
+	})
+
+	t.Run("half an oauth pair against an ambient oauth environment", func(t *testing.T) {
+		dir := isolate(t)
+		t.Setenv(envClientID, "env-client")
+		t.Setenv(envClientSecret, "env-secret")
+
+		_, err := Options{Endpoint: "https://api.example.com", ClientID: "explicit", ConfigDir: dir}.Resolve()
+		if err == nil || !strings.Contains(err.Error(), "client id and client secret are both required") {
+			t.Fatalf("expected the half pair to be refused before the environment is consulted, got: %v", err)
+		}
+	})
+}
+
+// A stray MCD_DEFAULT_OAUTH_CLIENT_ID is not a credential the caller asked for, so it is neither adopted nor an error.
+func TestAHalfSetAmbientVariableIsNotAnError(t *testing.T) {
+	dir := isolate(t)
+	t.Setenv(envClientID, "stray")
+	writeProfiles(t, dir, sampleProfiles)
+
+	resolved, err := Options{ConfigDir: dir}.Resolve()
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if resolved.TokenID != "default-id" {
+		t.Fatalf("expected the default profile's token id, got %+v", resolved)
+	}
+}

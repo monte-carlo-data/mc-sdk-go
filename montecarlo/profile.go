@@ -198,11 +198,17 @@ func parseINI(path string) (map[string]map[string]string, error) {
 // hint, not a credential, and is only adopted from a profile when OAuth ends up being the
 // selected mechanism.
 //
+// Half of a pair supplied by o is an error before the environment or a profile is consulted;
+// neither ever completes one.
+//
 // A profile is consulted only when o names one, or no mechanism was found by then. A profile
 // named explicitly has to exist; otherwise the file is simply absent, and whatever the caller
 // supplied — or nothing — stands on its own. MCD_DEFAULT_PROFILE, if set, still selects which
 // section a consulted profile reads from; it does not by itself make a missing file an error.
 func (o Options) Resolve() (Options, error) {
+	if err := o.checkPairs(); err != nil {
+		return Options{}, err
+	}
 	out := o
 
 	if !out.usesOAuth() && !out.usesAPIToken() && out.Token == "" {

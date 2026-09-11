@@ -2,11 +2,14 @@ package montecarlo
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
+
+	"golang.org/x/oauth2"
 )
 
 // F5 (ISSUE), now fixed: the static-credential path used to put the bearer in
@@ -106,4 +109,124 @@ func TestGetConfigDoesNotLeakTheStaticAPIToken(t *testing.T) {
 			t.Fatalf("expected the OAuth client secret not to be stored on the configuration, got: %s", rendered)
 		}
 	})
+}
+
+// Regression proof: the default token-exchange client used to follow redirects, and a 307 or
+// 308 re-sends the form body, client secret included, to whatever host the Location header
+// names. The exchange must end at the redirect instead.
+func TestTokenExchangeDoesNotFollowARedirectWithTheClientSecret(t *testing.T) {
+	statuses := []int{
+		http.StatusMovedPermanently,
+		http.StatusFound,
+		http.StatusSeeOther,
+		http.StatusTemporaryRedirect,
+		http.StatusPermanentRedirect,
+	}
+	for _, status := range statuses {
+		t.Run(http.StatusText(status), func(t *testing.T) {
+			var collectorHits, tokenHits int
+			var mux http.ServeMux
+			server := httptest.NewServer(&mux)
+			defer server.Close()
+			mux.HandleFunc("/oauth2/token", func(w http.ResponseWriter, r *http.Request) {
+				tokenHits++
+				http.Redirect(w, r, server.URL+"/collector", status)
+			})
+			mux.HandleFunc("/collector", func(w http.ResponseWriter, r *http.Request) {
+				collectorHits++
+				w.Header().Set("Content-Type", "application/json")
+				_, _ = w.Write([]byte(`{"access_token":"leaked","token_type":"Bearer"}`))
+			})
+
+			ts := oauthTokenSource(context.Background(), "id", "secret", "us1", server.URL+"/oauth2/token")
+			_, err := ts.Token()
+			var re *oauth2.RetrieveError
+			if !errors.As(err, &re) {
+				t.Fatalf("expected an *oauth2.RetrieveError, got %v", err)
+			}
+			if re.Response.StatusCode != status {
+				t.Fatalf("expected the error to carry status %d, got %d", status, re.Response.StatusCode)
+			}
+			if collectorHits != 0 {
+				t.Fatalf("the redirect target received %d request(s); the client secret was re-sent", collectorHits)
+			}
+			if tokenHits != 1 {
+				t.Fatalf("expected exactly one token request, got %d", tokenHits)
+			}
+		})
+	}
+}
+
+// The oauth2.HTTPClient context value replaces the default client wholesale, redirect policy included.
+func TestACallerSuppliedHTTPClientKeepsItsOwnRedirectPolicy(t *testing.T) {
+	var collectorHits, tokenHits int
+	var mux http.ServeMux
+	server := httptest.NewServer(&mux)
+	defer server.Close()
+	mux.HandleFunc("/oauth2/token", func(w http.ResponseWriter, r *http.Request) {
+		tokenHits++
+		http.Redirect(w, r, server.URL+"/collector", http.StatusTemporaryRedirect)
+	})
+	mux.HandleFunc("/collector", func(w http.ResponseWriter, r *http.Request) {
+		collectorHits++
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"access_token":"followed","token_type":"Bearer"}`))
+	})
+
+	ctx := context.WithValue(context.Background(), oauth2.HTTPClient, &http.Client{})
+	ts := oauthTokenSource(ctx, "id", "secret", "us1", server.URL+"/oauth2/token")
+	if _, err := ts.Token(); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if collectorHits != 1 {
+		t.Fatalf("expected the redirect to be followed exactly once, got %d hit(s)", collectorHits)
+	}
+}
+
+// Regression proof: the API client used to follow redirects, and bearerTransport re-attached the
+// credential on every hop after Go had stripped it for the new host.
+func TestTheAPIClientDoesNotFollowARedirectWithTheCredential(t *testing.T) {
+	dir := isolate(t)
+
+	var collectorHits int
+	var collectorAuth []string
+	var mux http.ServeMux
+	server := httptest.NewServer(&mux)
+	defer server.Close()
+	mux.HandleFunc("/api/v2/users/me", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, server.URL+"/collector", http.StatusTemporaryRedirect)
+	})
+	mux.HandleFunc("/collector", func(w http.ResponseWriter, r *http.Request) {
+		collectorHits++
+		collectorAuth = r.Header.Values("Authorization")
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte(`{
+			"account_frozen": false,
+			"account_id": "a1",
+			"email": "user@example.com",
+			"identity_type": "user",
+			"user_id": "u1"
+		}`))
+	})
+
+	api, err := NewClient(context.Background(), Options{
+		Endpoint:    server.URL,
+		TokenID:     "static-id",
+		TokenSecret: "static-secret",
+		ConfigDir:   dir,
+	})
+	if err != nil {
+		t.Fatalf("unexpected error building the client: %v", err)
+	}
+
+	if _, _, err := api.UsersAPI.GetCurrentUser(context.Background()).Execute(); err == nil {
+		t.Fatal("expected the redirected call to fail")
+	}
+	if collectorHits != 0 {
+		t.Fatalf("the redirect target received %d request(s); the credential was re-sent", collectorHits)
+	}
+	if len(collectorAuth) != 0 {
+		t.Fatalf("expected no Authorization header to reach the redirect target, got %v", collectorAuth)
+	}
 }
