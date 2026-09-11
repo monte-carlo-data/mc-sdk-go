@@ -516,7 +516,7 @@ import (
 )
 
 func main() {
-	awsCollectionDataStoreIn := *openapiclient.NewAwsCollectionDataStoreIn("BucketName_example", "DeploymentId_example", "RoleArn_example") // AwsCollectionDataStoreIn | 
+	awsCollectionDataStoreIn := *openapiclient.NewAwsCollectionDataStoreIn("DeploymentId_example", "BucketName_example", "RoleArn_example") // AwsCollectionDataStoreIn | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -582,7 +582,7 @@ import (
 )
 
 func main() {
-	azureCollectionDataStoreIn := *openapiclient.NewAzureCollectionDataStoreIn(openapiclient.AzureDataStoreAuthenticationType("AZURE_STORAGE_ACCOUNT_KEYS"), "ContainerName_example", "DeploymentId_example") // AzureCollectionDataStoreIn | 
+	azureCollectionDataStoreIn := *openapiclient.NewAzureCollectionDataStoreIn(openapiclient.AzureDataStoreAuthenticationType("AZURE_STORAGE_ACCOUNT_KEYS"), "DeploymentId_example", "ContainerName_example") // AzureCollectionDataStoreIn | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -648,7 +648,7 @@ import (
 )
 
 func main() {
-	gcpCollectionDataStoreIn := *openapiclient.NewGcpCollectionDataStoreIn("BucketName_example", "DeploymentId_example", "ServiceAccountKey_example") // GcpCollectionDataStoreIn | 
+	gcpCollectionDataStoreIn := *openapiclient.NewGcpCollectionDataStoreIn("DeploymentId_example", "BucketName_example", "ServiceAccountKey_example") // GcpCollectionDataStoreIn | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

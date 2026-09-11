@@ -21,18 +21,18 @@ var _ MappedNullable = &AzureCollectionDataStoreIn{}
 
 // AzureCollectionDataStoreIn Details Monte Carlo needs to access a data store you keep in Azure Blob Storage.
 type AzureCollectionDataStoreIn struct {
-	// How Monte Carlo authenticates to the storage account. Send it together with the matching credentials object.
-	AuthenticationType AzureDataStoreAuthenticationType `json:"authentication_type"`
-	// Name of the blob container Monte Carlo should use.
-	ContainerName string `json:"container_name" validate:"regexp=^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$"`
-	// Deployment to register the data store on. It must already hold an unregistered Azure data store.
-	DeploymentId string `json:"deployment_id"`
-	// Display name for the data store. Replaces the name its deployment gave it.
-	Name NullableString `json:"name,omitempty"`
-	// Credentials for `AZURE_STORAGE_SERVICE_PRINCIPAL`. Send this or `storage_account_keys`, never both.
-	ServicePrincipal NullableStorageServicePrincipalCredentialsIn `json:"service_principal,omitempty"`
 	// Credentials for `AZURE_STORAGE_ACCOUNT_KEYS`. Send this or `service_principal`, never both.
 	StorageAccountKeys NullableStorageAccountKeysCredentialsIn `json:"storage_account_keys,omitempty"`
+	// Credentials for `AZURE_STORAGE_SERVICE_PRINCIPAL`. Send this or `storage_account_keys`, never both.
+	ServicePrincipal NullableStorageServicePrincipalCredentialsIn `json:"service_principal,omitempty"`
+	// How Monte Carlo authenticates to the storage account. Send it together with the matching credentials object.
+	AuthenticationType AzureDataStoreAuthenticationType `json:"authentication_type"`
+	// Deployment to register the data store on. It must already hold an unregistered Azure data store.
+	DeploymentId string `json:"deployment_id"`
+	// Name of the blob container Monte Carlo should use.
+	ContainerName string `json:"container_name" validate:"regexp=^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$"`
+	// Display name for the data store. Replaces the name its deployment gave it.
+	Name NullableString `json:"name,omitempty"`
 }
 
 type _AzureCollectionDataStoreIn AzureCollectionDataStoreIn
@@ -41,11 +41,11 @@ type _AzureCollectionDataStoreIn AzureCollectionDataStoreIn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAzureCollectionDataStoreIn(authenticationType AzureDataStoreAuthenticationType, containerName string, deploymentId string) *AzureCollectionDataStoreIn {
+func NewAzureCollectionDataStoreIn(authenticationType AzureDataStoreAuthenticationType, deploymentId string, containerName string) *AzureCollectionDataStoreIn {
 	this := AzureCollectionDataStoreIn{}
 	this.AuthenticationType = authenticationType
-	this.ContainerName = containerName
 	this.DeploymentId = deploymentId
+	this.ContainerName = containerName
 	return &this
 }
 
@@ -55,164 +55,6 @@ func NewAzureCollectionDataStoreIn(authenticationType AzureDataStoreAuthenticati
 func NewAzureCollectionDataStoreInWithDefaults() *AzureCollectionDataStoreIn {
 	this := AzureCollectionDataStoreIn{}
 	return &this
-}
-
-// GetAuthenticationType returns the AuthenticationType field value
-func (o *AzureCollectionDataStoreIn) GetAuthenticationType() AzureDataStoreAuthenticationType {
-	if o == nil {
-		var ret AzureDataStoreAuthenticationType
-		return ret
-	}
-
-	return o.AuthenticationType
-}
-
-// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value
-// and a boolean to check if the value has been set.
-func (o *AzureCollectionDataStoreIn) GetAuthenticationTypeOk() (*AzureDataStoreAuthenticationType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthenticationType, true
-}
-
-// SetAuthenticationType sets field value
-func (o *AzureCollectionDataStoreIn) SetAuthenticationType(v AzureDataStoreAuthenticationType) {
-	o.AuthenticationType = v
-}
-
-// GetContainerName returns the ContainerName field value
-func (o *AzureCollectionDataStoreIn) GetContainerName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ContainerName
-}
-
-// GetContainerNameOk returns a tuple with the ContainerName field value
-// and a boolean to check if the value has been set.
-func (o *AzureCollectionDataStoreIn) GetContainerNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ContainerName, true
-}
-
-// SetContainerName sets field value
-func (o *AzureCollectionDataStoreIn) SetContainerName(v string) {
-	o.ContainerName = v
-}
-
-// GetDeploymentId returns the DeploymentId field value
-func (o *AzureCollectionDataStoreIn) GetDeploymentId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.DeploymentId
-}
-
-// GetDeploymentIdOk returns a tuple with the DeploymentId field value
-// and a boolean to check if the value has been set.
-func (o *AzureCollectionDataStoreIn) GetDeploymentIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DeploymentId, true
-}
-
-// SetDeploymentId sets field value
-func (o *AzureCollectionDataStoreIn) SetDeploymentId(v string) {
-	o.DeploymentId = v
-}
-
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionDataStoreIn) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Name.Get()
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionDataStoreIn) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name.Get(), o.Name.IsSet()
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *AzureCollectionDataStoreIn) HasName() bool {
-	if o != nil && o.Name.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *AzureCollectionDataStoreIn) SetName(v string) {
-	o.Name.Set(&v)
-}
-
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *AzureCollectionDataStoreIn) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *AzureCollectionDataStoreIn) UnsetName() {
-	o.Name.Unset()
-}
-
-// GetServicePrincipal returns the ServicePrincipal field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionDataStoreIn) GetServicePrincipal() StorageServicePrincipalCredentialsIn {
-	if o == nil || IsNil(o.ServicePrincipal.Get()) {
-		var ret StorageServicePrincipalCredentialsIn
-		return ret
-	}
-	return *o.ServicePrincipal.Get()
-}
-
-// GetServicePrincipalOk returns a tuple with the ServicePrincipal field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionDataStoreIn) GetServicePrincipalOk() (*StorageServicePrincipalCredentialsIn, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ServicePrincipal.Get(), o.ServicePrincipal.IsSet()
-}
-
-// HasServicePrincipal returns a boolean if a field has been set.
-func (o *AzureCollectionDataStoreIn) HasServicePrincipal() bool {
-	if o != nil && o.ServicePrincipal.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetServicePrincipal gets a reference to the given NullableStorageServicePrincipalCredentialsIn and assigns it to the ServicePrincipal field.
-func (o *AzureCollectionDataStoreIn) SetServicePrincipal(v StorageServicePrincipalCredentialsIn) {
-	o.ServicePrincipal.Set(&v)
-}
-
-// SetServicePrincipalNil sets the value for ServicePrincipal to be an explicit nil
-func (o *AzureCollectionDataStoreIn) SetServicePrincipalNil() {
-	o.ServicePrincipal.Set(nil)
-}
-
-// UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
-func (o *AzureCollectionDataStoreIn) UnsetServicePrincipal() {
-	o.ServicePrincipal.Unset()
 }
 
 // GetStorageAccountKeys returns the StorageAccountKeys field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -258,6 +100,164 @@ func (o *AzureCollectionDataStoreIn) UnsetStorageAccountKeys() {
 	o.StorageAccountKeys.Unset()
 }
 
+// GetServicePrincipal returns the ServicePrincipal field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureCollectionDataStoreIn) GetServicePrincipal() StorageServicePrincipalCredentialsIn {
+	if o == nil || IsNil(o.ServicePrincipal.Get()) {
+		var ret StorageServicePrincipalCredentialsIn
+		return ret
+	}
+	return *o.ServicePrincipal.Get()
+}
+
+// GetServicePrincipalOk returns a tuple with the ServicePrincipal field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AzureCollectionDataStoreIn) GetServicePrincipalOk() (*StorageServicePrincipalCredentialsIn, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ServicePrincipal.Get(), o.ServicePrincipal.IsSet()
+}
+
+// HasServicePrincipal returns a boolean if a field has been set.
+func (o *AzureCollectionDataStoreIn) HasServicePrincipal() bool {
+	if o != nil && o.ServicePrincipal.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetServicePrincipal gets a reference to the given NullableStorageServicePrincipalCredentialsIn and assigns it to the ServicePrincipal field.
+func (o *AzureCollectionDataStoreIn) SetServicePrincipal(v StorageServicePrincipalCredentialsIn) {
+	o.ServicePrincipal.Set(&v)
+}
+
+// SetServicePrincipalNil sets the value for ServicePrincipal to be an explicit nil
+func (o *AzureCollectionDataStoreIn) SetServicePrincipalNil() {
+	o.ServicePrincipal.Set(nil)
+}
+
+// UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
+func (o *AzureCollectionDataStoreIn) UnsetServicePrincipal() {
+	o.ServicePrincipal.Unset()
+}
+
+// GetAuthenticationType returns the AuthenticationType field value
+func (o *AzureCollectionDataStoreIn) GetAuthenticationType() AzureDataStoreAuthenticationType {
+	if o == nil {
+		var ret AzureDataStoreAuthenticationType
+		return ret
+	}
+
+	return o.AuthenticationType
+}
+
+// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value
+// and a boolean to check if the value has been set.
+func (o *AzureCollectionDataStoreIn) GetAuthenticationTypeOk() (*AzureDataStoreAuthenticationType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthenticationType, true
+}
+
+// SetAuthenticationType sets field value
+func (o *AzureCollectionDataStoreIn) SetAuthenticationType(v AzureDataStoreAuthenticationType) {
+	o.AuthenticationType = v
+}
+
+// GetDeploymentId returns the DeploymentId field value
+func (o *AzureCollectionDataStoreIn) GetDeploymentId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeploymentId
+}
+
+// GetDeploymentIdOk returns a tuple with the DeploymentId field value
+// and a boolean to check if the value has been set.
+func (o *AzureCollectionDataStoreIn) GetDeploymentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeploymentId, true
+}
+
+// SetDeploymentId sets field value
+func (o *AzureCollectionDataStoreIn) SetDeploymentId(v string) {
+	o.DeploymentId = v
+}
+
+// GetContainerName returns the ContainerName field value
+func (o *AzureCollectionDataStoreIn) GetContainerName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ContainerName
+}
+
+// GetContainerNameOk returns a tuple with the ContainerName field value
+// and a boolean to check if the value has been set.
+func (o *AzureCollectionDataStoreIn) GetContainerNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ContainerName, true
+}
+
+// SetContainerName sets field value
+func (o *AzureCollectionDataStoreIn) SetContainerName(v string) {
+	o.ContainerName = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureCollectionDataStoreIn) GetName() string {
+	if o == nil || IsNil(o.Name.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Name.Get()
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AzureCollectionDataStoreIn) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name.Get(), o.Name.IsSet()
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *AzureCollectionDataStoreIn) HasName() bool {
+	if o != nil && o.Name.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
+func (o *AzureCollectionDataStoreIn) SetName(v string) {
+	o.Name.Set(&v)
+}
+
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *AzureCollectionDataStoreIn) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *AzureCollectionDataStoreIn) UnsetName() {
+	o.Name.Unset()
+}
+
 func (o AzureCollectionDataStoreIn) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -268,17 +268,17 @@ func (o AzureCollectionDataStoreIn) MarshalJSON() ([]byte, error) {
 
 func (o AzureCollectionDataStoreIn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["authentication_type"] = o.AuthenticationType
-	toSerialize["container_name"] = o.ContainerName
-	toSerialize["deployment_id"] = o.DeploymentId
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if o.StorageAccountKeys.IsSet() {
+		toSerialize["storage_account_keys"] = o.StorageAccountKeys.Get()
 	}
 	if o.ServicePrincipal.IsSet() {
 		toSerialize["service_principal"] = o.ServicePrincipal.Get()
 	}
-	if o.StorageAccountKeys.IsSet() {
-		toSerialize["storage_account_keys"] = o.StorageAccountKeys.Get()
+	toSerialize["authentication_type"] = o.AuthenticationType
+	toSerialize["deployment_id"] = o.DeploymentId
+	toSerialize["container_name"] = o.ContainerName
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
 	return toSerialize, nil
 }
@@ -289,8 +289,8 @@ func (o *AzureCollectionDataStoreIn) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"authentication_type",
-		"container_name",
 		"deployment_id",
+		"container_name",
 	}
 
 	allProperties := make(map[string]interface{})

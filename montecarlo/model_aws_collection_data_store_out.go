@@ -22,26 +22,26 @@ var _ MappedNullable = &AwsCollectionDataStoreOut{}
 
 // AwsCollectionDataStoreOut A data store held in an S3 bucket.
 type AwsCollectionDataStoreOut struct {
-	// How Monte Carlo authenticates when it reaches the data store.
-	AuthenticationType AuthenticationType `json:"authentication_type"`
-	// Name of the S3 bucket Monte Carlo uses. Empty until it has been registered.
-	BucketName string `json:"bucket_name"`
-	// When the data store was created, which is when its deployment was provisioned.
-	CreatedTime NullableTime `json:"created_time,omitempty"`
-	// Identifier of the deployment this data store belongs to.
-	DeploymentId string `json:"deployment_id"`
-	// Whether Monte Carlo is using this data store. One that is unregistered, or whose validation failed, is not enabled.
-	Enabled bool `json:"enabled"`
-	// Value to put in the trust policy of the role Monte Carlo assumes to access the bucket. Null before Monte Carlo has generated one, and for a caller who cannot register a data store. Also null if the value could not be read just now, so retry once before treating it as absent.
-	ExternalId NullableString `json:"external_id,omitempty"`
 	// Unique identifier of the data store.
 	Id string `json:"id"`
-	// When the data store was last registered, renamed, or given different storage or credentials. Null until one of those has happened.
-	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
 	// Display name of the data store. Null when it has no name.
 	Name NullableString `json:"name,omitempty"`
+	// Identifier of the deployment this data store belongs to.
+	DeploymentId string `json:"deployment_id"`
 	// Which kind of storage the data store keeps its data in.
 	StorageType StorageType `json:"storage_type"`
+	// How Monte Carlo authenticates when it reaches the data store.
+	AuthenticationType AuthenticationType `json:"authentication_type"`
+	// Whether Monte Carlo is using this data store. One that is unregistered, or whose validation failed, is not enabled.
+	Enabled bool `json:"enabled"`
+	// When the data store was created, which is when its deployment was provisioned.
+	CreatedTime NullableTime `json:"created_time,omitempty"`
+	// When the data store was last registered, renamed, or given different storage or credentials. Null until one of those has happened.
+	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
+	// Name of the S3 bucket Monte Carlo uses. Empty until it has been registered.
+	BucketName string `json:"bucket_name"`
+	// Value to put in the trust policy of the role Monte Carlo assumes to access the bucket. Null before Monte Carlo has generated one, and for a caller who cannot register a data store. Also null if the value could not be read just now, so retry once before treating it as absent.
+	ExternalId NullableString `json:"external_id,omitempty"`
 }
 
 type _AwsCollectionDataStoreOut AwsCollectionDataStoreOut
@@ -50,14 +50,14 @@ type _AwsCollectionDataStoreOut AwsCollectionDataStoreOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAwsCollectionDataStoreOut(authenticationType AuthenticationType, bucketName string, deploymentId string, enabled bool, id string, storageType StorageType) *AwsCollectionDataStoreOut {
+func NewAwsCollectionDataStoreOut(id string, deploymentId string, storageType StorageType, authenticationType AuthenticationType, enabled bool, bucketName string) *AwsCollectionDataStoreOut {
 	this := AwsCollectionDataStoreOut{}
-	this.AuthenticationType = authenticationType
-	this.BucketName = bucketName
-	this.DeploymentId = deploymentId
-	this.Enabled = enabled
 	this.Id = id
+	this.DeploymentId = deploymentId
 	this.StorageType = storageType
+	this.AuthenticationType = authenticationType
+	this.Enabled = enabled
+	this.BucketName = bucketName
 	return &this
 }
 
@@ -67,188 +67,6 @@ func NewAwsCollectionDataStoreOut(authenticationType AuthenticationType, bucketN
 func NewAwsCollectionDataStoreOutWithDefaults() *AwsCollectionDataStoreOut {
 	this := AwsCollectionDataStoreOut{}
 	return &this
-}
-
-// GetAuthenticationType returns the AuthenticationType field value
-func (o *AwsCollectionDataStoreOut) GetAuthenticationType() AuthenticationType {
-	if o == nil {
-		var ret AuthenticationType
-		return ret
-	}
-
-	return o.AuthenticationType
-}
-
-// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value
-// and a boolean to check if the value has been set.
-func (o *AwsCollectionDataStoreOut) GetAuthenticationTypeOk() (*AuthenticationType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthenticationType, true
-}
-
-// SetAuthenticationType sets field value
-func (o *AwsCollectionDataStoreOut) SetAuthenticationType(v AuthenticationType) {
-	o.AuthenticationType = v
-}
-
-// GetBucketName returns the BucketName field value
-func (o *AwsCollectionDataStoreOut) GetBucketName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.BucketName
-}
-
-// GetBucketNameOk returns a tuple with the BucketName field value
-// and a boolean to check if the value has been set.
-func (o *AwsCollectionDataStoreOut) GetBucketNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BucketName, true
-}
-
-// SetBucketName sets field value
-func (o *AwsCollectionDataStoreOut) SetBucketName(v string) {
-	o.BucketName = v
-}
-
-// GetCreatedTime returns the CreatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AwsCollectionDataStoreOut) GetCreatedTime() time.Time {
-	if o == nil || IsNil(o.CreatedTime.Get()) {
-		var ret time.Time
-		return ret
-	}
-	return *o.CreatedTime.Get()
-}
-
-// GetCreatedTimeOk returns a tuple with the CreatedTime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AwsCollectionDataStoreOut) GetCreatedTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreatedTime.Get(), o.CreatedTime.IsSet()
-}
-
-// HasCreatedTime returns a boolean if a field has been set.
-func (o *AwsCollectionDataStoreOut) HasCreatedTime() bool {
-	if o != nil && o.CreatedTime.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedTime gets a reference to the given NullableTime and assigns it to the CreatedTime field.
-func (o *AwsCollectionDataStoreOut) SetCreatedTime(v time.Time) {
-	o.CreatedTime.Set(&v)
-}
-
-// SetCreatedTimeNil sets the value for CreatedTime to be an explicit nil
-func (o *AwsCollectionDataStoreOut) SetCreatedTimeNil() {
-	o.CreatedTime.Set(nil)
-}
-
-// UnsetCreatedTime ensures that no value is present for CreatedTime, not even an explicit nil
-func (o *AwsCollectionDataStoreOut) UnsetCreatedTime() {
-	o.CreatedTime.Unset()
-}
-
-// GetDeploymentId returns the DeploymentId field value
-func (o *AwsCollectionDataStoreOut) GetDeploymentId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.DeploymentId
-}
-
-// GetDeploymentIdOk returns a tuple with the DeploymentId field value
-// and a boolean to check if the value has been set.
-func (o *AwsCollectionDataStoreOut) GetDeploymentIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DeploymentId, true
-}
-
-// SetDeploymentId sets field value
-func (o *AwsCollectionDataStoreOut) SetDeploymentId(v string) {
-	o.DeploymentId = v
-}
-
-// GetEnabled returns the Enabled field value
-func (o *AwsCollectionDataStoreOut) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *AwsCollectionDataStoreOut) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *AwsCollectionDataStoreOut) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
-// GetExternalId returns the ExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AwsCollectionDataStoreOut) GetExternalId() string {
-	if o == nil || IsNil(o.ExternalId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ExternalId.Get()
-}
-
-// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AwsCollectionDataStoreOut) GetExternalIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ExternalId.Get(), o.ExternalId.IsSet()
-}
-
-// HasExternalId returns a boolean if a field has been set.
-func (o *AwsCollectionDataStoreOut) HasExternalId() bool {
-	if o != nil && o.ExternalId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetExternalId gets a reference to the given NullableString and assigns it to the ExternalId field.
-func (o *AwsCollectionDataStoreOut) SetExternalId(v string) {
-	o.ExternalId.Set(&v)
-}
-
-// SetExternalIdNil sets the value for ExternalId to be an explicit nil
-func (o *AwsCollectionDataStoreOut) SetExternalIdNil() {
-	o.ExternalId.Set(nil)
-}
-
-// UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
-func (o *AwsCollectionDataStoreOut) UnsetExternalId() {
-	o.ExternalId.Unset()
 }
 
 // GetId returns the Id field value
@@ -273,49 +91,6 @@ func (o *AwsCollectionDataStoreOut) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *AwsCollectionDataStoreOut) SetId(v string) {
 	o.Id = v
-}
-
-// GetLastUpdatedTime returns the LastUpdatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AwsCollectionDataStoreOut) GetLastUpdatedTime() time.Time {
-	if o == nil || IsNil(o.LastUpdatedTime.Get()) {
-		var ret time.Time
-		return ret
-	}
-	return *o.LastUpdatedTime.Get()
-}
-
-// GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AwsCollectionDataStoreOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LastUpdatedTime.Get(), o.LastUpdatedTime.IsSet()
-}
-
-// HasLastUpdatedTime returns a boolean if a field has been set.
-func (o *AwsCollectionDataStoreOut) HasLastUpdatedTime() bool {
-	if o != nil && o.LastUpdatedTime.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastUpdatedTime gets a reference to the given NullableTime and assigns it to the LastUpdatedTime field.
-func (o *AwsCollectionDataStoreOut) SetLastUpdatedTime(v time.Time) {
-	o.LastUpdatedTime.Set(&v)
-}
-
-// SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
-func (o *AwsCollectionDataStoreOut) SetLastUpdatedTimeNil() {
-	o.LastUpdatedTime.Set(nil)
-}
-
-// UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
-func (o *AwsCollectionDataStoreOut) UnsetLastUpdatedTime() {
-	o.LastUpdatedTime.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -361,6 +136,30 @@ func (o *AwsCollectionDataStoreOut) UnsetName() {
 	o.Name.Unset()
 }
 
+// GetDeploymentId returns the DeploymentId field value
+func (o *AwsCollectionDataStoreOut) GetDeploymentId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeploymentId
+}
+
+// GetDeploymentIdOk returns a tuple with the DeploymentId field value
+// and a boolean to check if the value has been set.
+func (o *AwsCollectionDataStoreOut) GetDeploymentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeploymentId, true
+}
+
+// SetDeploymentId sets field value
+func (o *AwsCollectionDataStoreOut) SetDeploymentId(v string) {
+	o.DeploymentId = v
+}
+
 // GetStorageType returns the StorageType field value
 func (o *AwsCollectionDataStoreOut) GetStorageType() StorageType {
 	if o == nil {
@@ -385,6 +184,207 @@ func (o *AwsCollectionDataStoreOut) SetStorageType(v StorageType) {
 	o.StorageType = v
 }
 
+// GetAuthenticationType returns the AuthenticationType field value
+func (o *AwsCollectionDataStoreOut) GetAuthenticationType() AuthenticationType {
+	if o == nil {
+		var ret AuthenticationType
+		return ret
+	}
+
+	return o.AuthenticationType
+}
+
+// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value
+// and a boolean to check if the value has been set.
+func (o *AwsCollectionDataStoreOut) GetAuthenticationTypeOk() (*AuthenticationType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthenticationType, true
+}
+
+// SetAuthenticationType sets field value
+func (o *AwsCollectionDataStoreOut) SetAuthenticationType(v AuthenticationType) {
+	o.AuthenticationType = v
+}
+
+// GetEnabled returns the Enabled field value
+func (o *AwsCollectionDataStoreOut) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *AwsCollectionDataStoreOut) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *AwsCollectionDataStoreOut) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetCreatedTime returns the CreatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AwsCollectionDataStoreOut) GetCreatedTime() time.Time {
+	if o == nil || IsNil(o.CreatedTime.Get()) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedTime.Get()
+}
+
+// GetCreatedTimeOk returns a tuple with the CreatedTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AwsCollectionDataStoreOut) GetCreatedTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatedTime.Get(), o.CreatedTime.IsSet()
+}
+
+// HasCreatedTime returns a boolean if a field has been set.
+func (o *AwsCollectionDataStoreOut) HasCreatedTime() bool {
+	if o != nil && o.CreatedTime.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedTime gets a reference to the given NullableTime and assigns it to the CreatedTime field.
+func (o *AwsCollectionDataStoreOut) SetCreatedTime(v time.Time) {
+	o.CreatedTime.Set(&v)
+}
+
+// SetCreatedTimeNil sets the value for CreatedTime to be an explicit nil
+func (o *AwsCollectionDataStoreOut) SetCreatedTimeNil() {
+	o.CreatedTime.Set(nil)
+}
+
+// UnsetCreatedTime ensures that no value is present for CreatedTime, not even an explicit nil
+func (o *AwsCollectionDataStoreOut) UnsetCreatedTime() {
+	o.CreatedTime.Unset()
+}
+
+// GetLastUpdatedTime returns the LastUpdatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AwsCollectionDataStoreOut) GetLastUpdatedTime() time.Time {
+	if o == nil || IsNil(o.LastUpdatedTime.Get()) {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastUpdatedTime.Get()
+}
+
+// GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AwsCollectionDataStoreOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LastUpdatedTime.Get(), o.LastUpdatedTime.IsSet()
+}
+
+// HasLastUpdatedTime returns a boolean if a field has been set.
+func (o *AwsCollectionDataStoreOut) HasLastUpdatedTime() bool {
+	if o != nil && o.LastUpdatedTime.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastUpdatedTime gets a reference to the given NullableTime and assigns it to the LastUpdatedTime field.
+func (o *AwsCollectionDataStoreOut) SetLastUpdatedTime(v time.Time) {
+	o.LastUpdatedTime.Set(&v)
+}
+
+// SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
+func (o *AwsCollectionDataStoreOut) SetLastUpdatedTimeNil() {
+	o.LastUpdatedTime.Set(nil)
+}
+
+// UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
+func (o *AwsCollectionDataStoreOut) UnsetLastUpdatedTime() {
+	o.LastUpdatedTime.Unset()
+}
+
+// GetBucketName returns the BucketName field value
+func (o *AwsCollectionDataStoreOut) GetBucketName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.BucketName
+}
+
+// GetBucketNameOk returns a tuple with the BucketName field value
+// and a boolean to check if the value has been set.
+func (o *AwsCollectionDataStoreOut) GetBucketNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.BucketName, true
+}
+
+// SetBucketName sets field value
+func (o *AwsCollectionDataStoreOut) SetBucketName(v string) {
+	o.BucketName = v
+}
+
+// GetExternalId returns the ExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AwsCollectionDataStoreOut) GetExternalId() string {
+	if o == nil || IsNil(o.ExternalId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalId.Get()
+}
+
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AwsCollectionDataStoreOut) GetExternalIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ExternalId.Get(), o.ExternalId.IsSet()
+}
+
+// HasExternalId returns a boolean if a field has been set.
+func (o *AwsCollectionDataStoreOut) HasExternalId() bool {
+	if o != nil && o.ExternalId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalId gets a reference to the given NullableString and assigns it to the ExternalId field.
+func (o *AwsCollectionDataStoreOut) SetExternalId(v string) {
+	o.ExternalId.Set(&v)
+}
+
+// SetExternalIdNil sets the value for ExternalId to be an explicit nil
+func (o *AwsCollectionDataStoreOut) SetExternalIdNil() {
+	o.ExternalId.Set(nil)
+}
+
+// UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
+func (o *AwsCollectionDataStoreOut) UnsetExternalId() {
+	o.ExternalId.Unset()
+}
+
 func (o AwsCollectionDataStoreOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -395,24 +395,24 @@ func (o AwsCollectionDataStoreOut) MarshalJSON() ([]byte, error) {
 
 func (o AwsCollectionDataStoreOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["authentication_type"] = o.AuthenticationType
-	toSerialize["bucket_name"] = o.BucketName
-	if o.CreatedTime.IsSet() {
-		toSerialize["created_time"] = o.CreatedTime.Get()
-	}
-	toSerialize["deployment_id"] = o.DeploymentId
-	toSerialize["enabled"] = o.Enabled
-	if o.ExternalId.IsSet() {
-		toSerialize["external_id"] = o.ExternalId.Get()
-	}
 	toSerialize["id"] = o.Id
-	if o.LastUpdatedTime.IsSet() {
-		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
-	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
+	toSerialize["deployment_id"] = o.DeploymentId
 	toSerialize["storage_type"] = o.StorageType
+	toSerialize["authentication_type"] = o.AuthenticationType
+	toSerialize["enabled"] = o.Enabled
+	if o.CreatedTime.IsSet() {
+		toSerialize["created_time"] = o.CreatedTime.Get()
+	}
+	if o.LastUpdatedTime.IsSet() {
+		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
+	}
+	toSerialize["bucket_name"] = o.BucketName
+	if o.ExternalId.IsSet() {
+		toSerialize["external_id"] = o.ExternalId.Get()
+	}
 	return toSerialize, nil
 }
 
@@ -421,12 +421,12 @@ func (o *AwsCollectionDataStoreOut) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"authentication_type",
-		"bucket_name",
-		"deployment_id",
-		"enabled",
 		"id",
+		"deployment_id",
 		"storage_type",
+		"authentication_type",
+		"enabled",
+		"bucket_name",
 	}
 
 	allProperties := make(map[string]interface{})

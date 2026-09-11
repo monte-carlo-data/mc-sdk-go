@@ -92,6 +92,13 @@ maintainer from outside this repository — it owns generation for every artifac
 the spec (this SDK, the Terraform provider, the CLI). Consult that tooling directly to
 regenerate; it isn't reproduced here because it doesn't ship to consumers of this SDK.
 
+Constructor parameters and struct fields follow the order the spec declares a schema's
+properties in. An export that changes that order changes public signatures with no schema
+change behind it, and two same-typed parameters swapping is invisible to a consumer's
+compiler. Every artifact generated from the spec, this SDK, the Terraform provider and the
+CLI, is regenerated from the same export for that reason. A consumer that moves its pin
+across such a regeneration rechecks every positional constructor call.
+
 ## Authentication
 
 The API publishes one credential mechanism: an `Authorization` bearer header carrying either

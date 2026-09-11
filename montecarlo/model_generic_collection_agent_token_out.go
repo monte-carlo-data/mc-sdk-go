@@ -22,18 +22,18 @@ var _ MappedNullable = &GenericCollectionAgentTokenOut{}
 
 // GenericCollectionAgentTokenOut A key and secret a generic collection agent sends as headers on every request.
 type GenericCollectionAgentTokenOut struct {
-	// When the credential was created.
-	CreatedTime time.Time `json:"created_time"`
-	// Identifier of the deployment whose agent presents this credential.
-	DeploymentId string `json:"deployment_id"`
-	// What this credential is for.
-	Description string `json:"description"`
 	// Unique identifier of the credential. For a token this is also its key id; for an OAuth client, its client id.
 	Id string `json:"id"`
-	// Key id the agent presents, as `mcd_id` in its configuration. The same value as `id`.
-	McdId string `json:"mcd_id"`
+	// Identifier of the deployment whose agent presents this credential.
+	DeploymentId string `json:"deployment_id"`
 	// Which kind of credential this is.
 	Type CredentialType `json:"type"`
+	// What this credential is for.
+	Description string `json:"description"`
+	// When the credential was created.
+	CreatedTime time.Time `json:"created_time"`
+	// Key id the agent presents, as `mcd_id` in its configuration. The same value as `id`.
+	McdId string `json:"mcd_id"`
 }
 
 type _GenericCollectionAgentTokenOut GenericCollectionAgentTokenOut
@@ -42,14 +42,14 @@ type _GenericCollectionAgentTokenOut GenericCollectionAgentTokenOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenericCollectionAgentTokenOut(createdTime time.Time, deploymentId string, description string, id string, mcdId string, type_ CredentialType) *GenericCollectionAgentTokenOut {
+func NewGenericCollectionAgentTokenOut(id string, deploymentId string, type_ CredentialType, description string, createdTime time.Time, mcdId string) *GenericCollectionAgentTokenOut {
 	this := GenericCollectionAgentTokenOut{}
-	this.CreatedTime = createdTime
-	this.DeploymentId = deploymentId
-	this.Description = description
 	this.Id = id
-	this.McdId = mcdId
+	this.DeploymentId = deploymentId
 	this.Type = type_
+	this.Description = description
+	this.CreatedTime = createdTime
+	this.McdId = mcdId
 	return &this
 }
 
@@ -59,78 +59,6 @@ func NewGenericCollectionAgentTokenOut(createdTime time.Time, deploymentId strin
 func NewGenericCollectionAgentTokenOutWithDefaults() *GenericCollectionAgentTokenOut {
 	this := GenericCollectionAgentTokenOut{}
 	return &this
-}
-
-// GetCreatedTime returns the CreatedTime field value
-func (o *GenericCollectionAgentTokenOut) GetCreatedTime() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.CreatedTime
-}
-
-// GetCreatedTimeOk returns a tuple with the CreatedTime field value
-// and a boolean to check if the value has been set.
-func (o *GenericCollectionAgentTokenOut) GetCreatedTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CreatedTime, true
-}
-
-// SetCreatedTime sets field value
-func (o *GenericCollectionAgentTokenOut) SetCreatedTime(v time.Time) {
-	o.CreatedTime = v
-}
-
-// GetDeploymentId returns the DeploymentId field value
-func (o *GenericCollectionAgentTokenOut) GetDeploymentId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.DeploymentId
-}
-
-// GetDeploymentIdOk returns a tuple with the DeploymentId field value
-// and a boolean to check if the value has been set.
-func (o *GenericCollectionAgentTokenOut) GetDeploymentIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DeploymentId, true
-}
-
-// SetDeploymentId sets field value
-func (o *GenericCollectionAgentTokenOut) SetDeploymentId(v string) {
-	o.DeploymentId = v
-}
-
-// GetDescription returns the Description field value
-func (o *GenericCollectionAgentTokenOut) GetDescription() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Description
-}
-
-// GetDescriptionOk returns a tuple with the Description field value
-// and a boolean to check if the value has been set.
-func (o *GenericCollectionAgentTokenOut) GetDescriptionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Description, true
-}
-
-// SetDescription sets field value
-func (o *GenericCollectionAgentTokenOut) SetDescription(v string) {
-	o.Description = v
 }
 
 // GetId returns the Id field value
@@ -157,28 +85,28 @@ func (o *GenericCollectionAgentTokenOut) SetId(v string) {
 	o.Id = v
 }
 
-// GetMcdId returns the McdId field value
-func (o *GenericCollectionAgentTokenOut) GetMcdId() string {
+// GetDeploymentId returns the DeploymentId field value
+func (o *GenericCollectionAgentTokenOut) GetDeploymentId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.McdId
+	return o.DeploymentId
 }
 
-// GetMcdIdOk returns a tuple with the McdId field value
+// GetDeploymentIdOk returns a tuple with the DeploymentId field value
 // and a boolean to check if the value has been set.
-func (o *GenericCollectionAgentTokenOut) GetMcdIdOk() (*string, bool) {
+func (o *GenericCollectionAgentTokenOut) GetDeploymentIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.McdId, true
+	return &o.DeploymentId, true
 }
 
-// SetMcdId sets field value
-func (o *GenericCollectionAgentTokenOut) SetMcdId(v string) {
-	o.McdId = v
+// SetDeploymentId sets field value
+func (o *GenericCollectionAgentTokenOut) SetDeploymentId(v string) {
+	o.DeploymentId = v
 }
 
 // GetType returns the Type field value
@@ -205,6 +133,78 @@ func (o *GenericCollectionAgentTokenOut) SetType(v CredentialType) {
 	o.Type = v
 }
 
+// GetDescription returns the Description field value
+func (o *GenericCollectionAgentTokenOut) GetDescription() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value
+// and a boolean to check if the value has been set.
+func (o *GenericCollectionAgentTokenOut) GetDescriptionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Description, true
+}
+
+// SetDescription sets field value
+func (o *GenericCollectionAgentTokenOut) SetDescription(v string) {
+	o.Description = v
+}
+
+// GetCreatedTime returns the CreatedTime field value
+func (o *GenericCollectionAgentTokenOut) GetCreatedTime() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedTime
+}
+
+// GetCreatedTimeOk returns a tuple with the CreatedTime field value
+// and a boolean to check if the value has been set.
+func (o *GenericCollectionAgentTokenOut) GetCreatedTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedTime, true
+}
+
+// SetCreatedTime sets field value
+func (o *GenericCollectionAgentTokenOut) SetCreatedTime(v time.Time) {
+	o.CreatedTime = v
+}
+
+// GetMcdId returns the McdId field value
+func (o *GenericCollectionAgentTokenOut) GetMcdId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.McdId
+}
+
+// GetMcdIdOk returns a tuple with the McdId field value
+// and a boolean to check if the value has been set.
+func (o *GenericCollectionAgentTokenOut) GetMcdIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.McdId, true
+}
+
+// SetMcdId sets field value
+func (o *GenericCollectionAgentTokenOut) SetMcdId(v string) {
+	o.McdId = v
+}
+
 func (o GenericCollectionAgentTokenOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -215,12 +215,12 @@ func (o GenericCollectionAgentTokenOut) MarshalJSON() ([]byte, error) {
 
 func (o GenericCollectionAgentTokenOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["created_time"] = o.CreatedTime
-	toSerialize["deployment_id"] = o.DeploymentId
-	toSerialize["description"] = o.Description
 	toSerialize["id"] = o.Id
-	toSerialize["mcd_id"] = o.McdId
+	toSerialize["deployment_id"] = o.DeploymentId
 	toSerialize["type"] = o.Type
+	toSerialize["description"] = o.Description
+	toSerialize["created_time"] = o.CreatedTime
+	toSerialize["mcd_id"] = o.McdId
 	return toSerialize, nil
 }
 
@@ -229,12 +229,12 @@ func (o *GenericCollectionAgentTokenOut) UnmarshalJSON(data []byte) (err error) 
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"created_time",
-		"deployment_id",
-		"description",
 		"id",
-		"mcd_id",
+		"deployment_id",
 		"type",
+		"description",
+		"created_time",
+		"mcd_id",
 	}
 
 	allProperties := make(map[string]interface{})

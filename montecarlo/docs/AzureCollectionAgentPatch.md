@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationType** | Pointer to [**NullableAzureAgentAuthenticationType**](AzureAgentAuthenticationType.md) | How Monte Carlo authenticates when it calls the agent. Send it together with the matching credentials object. | [optional] 
 **FunctionAppKey** | Pointer to [**NullableFunctionAppKeyCredentialsIn**](FunctionAppKeyCredentialsIn.md) | Credentials for &#x60;AZURE_FUNCTION_APP_KEY&#x60;. Send this or &#x60;service_principal&#x60;, never both. | [optional] 
+**ServicePrincipal** | Pointer to [**NullableServicePrincipalCredentialsIn**](ServicePrincipalCredentialsIn.md) | Credentials for &#x60;AZURE_FUNCTION_SERVICE_PRINCIPAL&#x60;. Send this or &#x60;function_app_key&#x60;, never both. | [optional] 
 **FunctionAppUrl** | Pointer to **NullableString** | URL of the function app Monte Carlo should call. | [optional] 
 **Name** | Pointer to **NullableString** | Display name for the collection agent. Replaces the name it currently has. | [optional] 
-**ServicePrincipal** | Pointer to [**NullableServicePrincipalCredentialsIn**](ServicePrincipalCredentialsIn.md) | Credentials for &#x60;AZURE_FUNCTION_SERVICE_PRINCIPAL&#x60;. Send this or &#x60;function_app_key&#x60;, never both. | [optional] 
+**AuthenticationType** | Pointer to [**NullableAzureAgentAuthenticationType**](AzureAgentAuthenticationType.md) | How Monte Carlo authenticates when it calls the agent. Send it together with the matching credentials object. | [optional] 
 
 ## Methods
 
@@ -29,41 +29,6 @@ NewAzureCollectionAgentPatchWithDefaults instantiates a new AzureCollectionAgent
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAuthenticationType
-
-`func (o *AzureCollectionAgentPatch) GetAuthenticationType() AzureAgentAuthenticationType`
-
-GetAuthenticationType returns the AuthenticationType field if non-nil, zero value otherwise.
-
-### GetAuthenticationTypeOk
-
-`func (o *AzureCollectionAgentPatch) GetAuthenticationTypeOk() (*AzureAgentAuthenticationType, bool)`
-
-GetAuthenticationTypeOk returns a tuple with the AuthenticationType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAuthenticationType
-
-`func (o *AzureCollectionAgentPatch) SetAuthenticationType(v AzureAgentAuthenticationType)`
-
-SetAuthenticationType sets AuthenticationType field to given value.
-
-### HasAuthenticationType
-
-`func (o *AzureCollectionAgentPatch) HasAuthenticationType() bool`
-
-HasAuthenticationType returns a boolean if a field has been set.
-
-### SetAuthenticationTypeNil
-
-`func (o *AzureCollectionAgentPatch) SetAuthenticationTypeNil(b bool)`
-
- SetAuthenticationTypeNil sets the value for AuthenticationType to be an explicit nil
-
-### UnsetAuthenticationType
-`func (o *AzureCollectionAgentPatch) UnsetAuthenticationType()`
-
-UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
 ### GetFunctionAppKey
 
 `func (o *AzureCollectionAgentPatch) GetFunctionAppKey() FunctionAppKeyCredentialsIn`
@@ -99,6 +64,41 @@ HasFunctionAppKey returns a boolean if a field has been set.
 `func (o *AzureCollectionAgentPatch) UnsetFunctionAppKey()`
 
 UnsetFunctionAppKey ensures that no value is present for FunctionAppKey, not even an explicit nil
+### GetServicePrincipal
+
+`func (o *AzureCollectionAgentPatch) GetServicePrincipal() ServicePrincipalCredentialsIn`
+
+GetServicePrincipal returns the ServicePrincipal field if non-nil, zero value otherwise.
+
+### GetServicePrincipalOk
+
+`func (o *AzureCollectionAgentPatch) GetServicePrincipalOk() (*ServicePrincipalCredentialsIn, bool)`
+
+GetServicePrincipalOk returns a tuple with the ServicePrincipal field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServicePrincipal
+
+`func (o *AzureCollectionAgentPatch) SetServicePrincipal(v ServicePrincipalCredentialsIn)`
+
+SetServicePrincipal sets ServicePrincipal field to given value.
+
+### HasServicePrincipal
+
+`func (o *AzureCollectionAgentPatch) HasServicePrincipal() bool`
+
+HasServicePrincipal returns a boolean if a field has been set.
+
+### SetServicePrincipalNil
+
+`func (o *AzureCollectionAgentPatch) SetServicePrincipalNil(b bool)`
+
+ SetServicePrincipalNil sets the value for ServicePrincipal to be an explicit nil
+
+### UnsetServicePrincipal
+`func (o *AzureCollectionAgentPatch) UnsetServicePrincipal()`
+
+UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
 ### GetFunctionAppUrl
 
 `func (o *AzureCollectionAgentPatch) GetFunctionAppUrl() string`
@@ -169,41 +169,41 @@ HasName returns a boolean if a field has been set.
 `func (o *AzureCollectionAgentPatch) UnsetName()`
 
 UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetServicePrincipal
+### GetAuthenticationType
 
-`func (o *AzureCollectionAgentPatch) GetServicePrincipal() ServicePrincipalCredentialsIn`
+`func (o *AzureCollectionAgentPatch) GetAuthenticationType() AzureAgentAuthenticationType`
 
-GetServicePrincipal returns the ServicePrincipal field if non-nil, zero value otherwise.
+GetAuthenticationType returns the AuthenticationType field if non-nil, zero value otherwise.
 
-### GetServicePrincipalOk
+### GetAuthenticationTypeOk
 
-`func (o *AzureCollectionAgentPatch) GetServicePrincipalOk() (*ServicePrincipalCredentialsIn, bool)`
+`func (o *AzureCollectionAgentPatch) GetAuthenticationTypeOk() (*AzureAgentAuthenticationType, bool)`
 
-GetServicePrincipalOk returns a tuple with the ServicePrincipal field if it's non-nil, zero value otherwise
+GetAuthenticationTypeOk returns a tuple with the AuthenticationType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServicePrincipal
+### SetAuthenticationType
 
-`func (o *AzureCollectionAgentPatch) SetServicePrincipal(v ServicePrincipalCredentialsIn)`
+`func (o *AzureCollectionAgentPatch) SetAuthenticationType(v AzureAgentAuthenticationType)`
 
-SetServicePrincipal sets ServicePrincipal field to given value.
+SetAuthenticationType sets AuthenticationType field to given value.
 
-### HasServicePrincipal
+### HasAuthenticationType
 
-`func (o *AzureCollectionAgentPatch) HasServicePrincipal() bool`
+`func (o *AzureCollectionAgentPatch) HasAuthenticationType() bool`
 
-HasServicePrincipal returns a boolean if a field has been set.
+HasAuthenticationType returns a boolean if a field has been set.
 
-### SetServicePrincipalNil
+### SetAuthenticationTypeNil
 
-`func (o *AzureCollectionAgentPatch) SetServicePrincipalNil(b bool)`
+`func (o *AzureCollectionAgentPatch) SetAuthenticationTypeNil(b bool)`
 
- SetServicePrincipalNil sets the value for ServicePrincipal to be an explicit nil
+ SetAuthenticationTypeNil sets the value for AuthenticationType to be an explicit nil
 
-### UnsetServicePrincipal
-`func (o *AzureCollectionAgentPatch) UnsetServicePrincipal()`
+### UnsetAuthenticationType
+`func (o *AzureCollectionAgentPatch) UnsetAuthenticationType()`
 
-UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
+UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationType** | Pointer to [**NullableAzureDataStoreAuthenticationType**](AzureDataStoreAuthenticationType.md) | How Monte Carlo authenticates to the storage account. Send it together with the matching credentials object. | [optional] 
+**StorageAccountKeys** | Pointer to [**NullableStorageAccountKeysCredentialsIn**](StorageAccountKeysCredentialsIn.md) | Credentials for &#x60;AZURE_STORAGE_ACCOUNT_KEYS&#x60;. Send this or &#x60;service_principal&#x60;, never both. | [optional] 
+**ServicePrincipal** | Pointer to [**NullableStorageServicePrincipalCredentialsIn**](StorageServicePrincipalCredentialsIn.md) | Credentials for &#x60;AZURE_STORAGE_SERVICE_PRINCIPAL&#x60;. Send this or &#x60;storage_account_keys&#x60;, never both. | [optional] 
 **ContainerName** | Pointer to **NullableString** | Name of the blob container Monte Carlo should use. | [optional] 
 **Name** | Pointer to **NullableString** | Display name for the data store. Replaces the name its deployment gave it. | [optional] 
-**ServicePrincipal** | Pointer to [**NullableStorageServicePrincipalCredentialsIn**](StorageServicePrincipalCredentialsIn.md) | Credentials for &#x60;AZURE_STORAGE_SERVICE_PRINCIPAL&#x60;. Send this or &#x60;storage_account_keys&#x60;, never both. | [optional] 
-**StorageAccountKeys** | Pointer to [**NullableStorageAccountKeysCredentialsIn**](StorageAccountKeysCredentialsIn.md) | Credentials for &#x60;AZURE_STORAGE_ACCOUNT_KEYS&#x60;. Send this or &#x60;service_principal&#x60;, never both. | [optional] 
+**AuthenticationType** | Pointer to [**NullableAzureDataStoreAuthenticationType**](AzureDataStoreAuthenticationType.md) | How Monte Carlo authenticates to the storage account. Send it together with the matching credentials object. | [optional] 
 
 ## Methods
 
@@ -29,41 +29,76 @@ NewAzureCollectionDataStorePatchWithDefaults instantiates a new AzureCollectionD
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAuthenticationType
+### GetStorageAccountKeys
 
-`func (o *AzureCollectionDataStorePatch) GetAuthenticationType() AzureDataStoreAuthenticationType`
+`func (o *AzureCollectionDataStorePatch) GetStorageAccountKeys() StorageAccountKeysCredentialsIn`
 
-GetAuthenticationType returns the AuthenticationType field if non-nil, zero value otherwise.
+GetStorageAccountKeys returns the StorageAccountKeys field if non-nil, zero value otherwise.
 
-### GetAuthenticationTypeOk
+### GetStorageAccountKeysOk
 
-`func (o *AzureCollectionDataStorePatch) GetAuthenticationTypeOk() (*AzureDataStoreAuthenticationType, bool)`
+`func (o *AzureCollectionDataStorePatch) GetStorageAccountKeysOk() (*StorageAccountKeysCredentialsIn, bool)`
 
-GetAuthenticationTypeOk returns a tuple with the AuthenticationType field if it's non-nil, zero value otherwise
+GetStorageAccountKeysOk returns a tuple with the StorageAccountKeys field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAuthenticationType
+### SetStorageAccountKeys
 
-`func (o *AzureCollectionDataStorePatch) SetAuthenticationType(v AzureDataStoreAuthenticationType)`
+`func (o *AzureCollectionDataStorePatch) SetStorageAccountKeys(v StorageAccountKeysCredentialsIn)`
 
-SetAuthenticationType sets AuthenticationType field to given value.
+SetStorageAccountKeys sets StorageAccountKeys field to given value.
 
-### HasAuthenticationType
+### HasStorageAccountKeys
 
-`func (o *AzureCollectionDataStorePatch) HasAuthenticationType() bool`
+`func (o *AzureCollectionDataStorePatch) HasStorageAccountKeys() bool`
 
-HasAuthenticationType returns a boolean if a field has been set.
+HasStorageAccountKeys returns a boolean if a field has been set.
 
-### SetAuthenticationTypeNil
+### SetStorageAccountKeysNil
 
-`func (o *AzureCollectionDataStorePatch) SetAuthenticationTypeNil(b bool)`
+`func (o *AzureCollectionDataStorePatch) SetStorageAccountKeysNil(b bool)`
 
- SetAuthenticationTypeNil sets the value for AuthenticationType to be an explicit nil
+ SetStorageAccountKeysNil sets the value for StorageAccountKeys to be an explicit nil
 
-### UnsetAuthenticationType
-`func (o *AzureCollectionDataStorePatch) UnsetAuthenticationType()`
+### UnsetStorageAccountKeys
+`func (o *AzureCollectionDataStorePatch) UnsetStorageAccountKeys()`
 
-UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
+UnsetStorageAccountKeys ensures that no value is present for StorageAccountKeys, not even an explicit nil
+### GetServicePrincipal
+
+`func (o *AzureCollectionDataStorePatch) GetServicePrincipal() StorageServicePrincipalCredentialsIn`
+
+GetServicePrincipal returns the ServicePrincipal field if non-nil, zero value otherwise.
+
+### GetServicePrincipalOk
+
+`func (o *AzureCollectionDataStorePatch) GetServicePrincipalOk() (*StorageServicePrincipalCredentialsIn, bool)`
+
+GetServicePrincipalOk returns a tuple with the ServicePrincipal field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetServicePrincipal
+
+`func (o *AzureCollectionDataStorePatch) SetServicePrincipal(v StorageServicePrincipalCredentialsIn)`
+
+SetServicePrincipal sets ServicePrincipal field to given value.
+
+### HasServicePrincipal
+
+`func (o *AzureCollectionDataStorePatch) HasServicePrincipal() bool`
+
+HasServicePrincipal returns a boolean if a field has been set.
+
+### SetServicePrincipalNil
+
+`func (o *AzureCollectionDataStorePatch) SetServicePrincipalNil(b bool)`
+
+ SetServicePrincipalNil sets the value for ServicePrincipal to be an explicit nil
+
+### UnsetServicePrincipal
+`func (o *AzureCollectionDataStorePatch) UnsetServicePrincipal()`
+
+UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
 ### GetContainerName
 
 `func (o *AzureCollectionDataStorePatch) GetContainerName() string`
@@ -134,76 +169,41 @@ HasName returns a boolean if a field has been set.
 `func (o *AzureCollectionDataStorePatch) UnsetName()`
 
 UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetServicePrincipal
+### GetAuthenticationType
 
-`func (o *AzureCollectionDataStorePatch) GetServicePrincipal() StorageServicePrincipalCredentialsIn`
+`func (o *AzureCollectionDataStorePatch) GetAuthenticationType() AzureDataStoreAuthenticationType`
 
-GetServicePrincipal returns the ServicePrincipal field if non-nil, zero value otherwise.
+GetAuthenticationType returns the AuthenticationType field if non-nil, zero value otherwise.
 
-### GetServicePrincipalOk
+### GetAuthenticationTypeOk
 
-`func (o *AzureCollectionDataStorePatch) GetServicePrincipalOk() (*StorageServicePrincipalCredentialsIn, bool)`
+`func (o *AzureCollectionDataStorePatch) GetAuthenticationTypeOk() (*AzureDataStoreAuthenticationType, bool)`
 
-GetServicePrincipalOk returns a tuple with the ServicePrincipal field if it's non-nil, zero value otherwise
+GetAuthenticationTypeOk returns a tuple with the AuthenticationType field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetServicePrincipal
+### SetAuthenticationType
 
-`func (o *AzureCollectionDataStorePatch) SetServicePrincipal(v StorageServicePrincipalCredentialsIn)`
+`func (o *AzureCollectionDataStorePatch) SetAuthenticationType(v AzureDataStoreAuthenticationType)`
 
-SetServicePrincipal sets ServicePrincipal field to given value.
+SetAuthenticationType sets AuthenticationType field to given value.
 
-### HasServicePrincipal
+### HasAuthenticationType
 
-`func (o *AzureCollectionDataStorePatch) HasServicePrincipal() bool`
+`func (o *AzureCollectionDataStorePatch) HasAuthenticationType() bool`
 
-HasServicePrincipal returns a boolean if a field has been set.
+HasAuthenticationType returns a boolean if a field has been set.
 
-### SetServicePrincipalNil
+### SetAuthenticationTypeNil
 
-`func (o *AzureCollectionDataStorePatch) SetServicePrincipalNil(b bool)`
+`func (o *AzureCollectionDataStorePatch) SetAuthenticationTypeNil(b bool)`
 
- SetServicePrincipalNil sets the value for ServicePrincipal to be an explicit nil
+ SetAuthenticationTypeNil sets the value for AuthenticationType to be an explicit nil
 
-### UnsetServicePrincipal
-`func (o *AzureCollectionDataStorePatch) UnsetServicePrincipal()`
+### UnsetAuthenticationType
+`func (o *AzureCollectionDataStorePatch) UnsetAuthenticationType()`
 
-UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
-### GetStorageAccountKeys
-
-`func (o *AzureCollectionDataStorePatch) GetStorageAccountKeys() StorageAccountKeysCredentialsIn`
-
-GetStorageAccountKeys returns the StorageAccountKeys field if non-nil, zero value otherwise.
-
-### GetStorageAccountKeysOk
-
-`func (o *AzureCollectionDataStorePatch) GetStorageAccountKeysOk() (*StorageAccountKeysCredentialsIn, bool)`
-
-GetStorageAccountKeysOk returns a tuple with the StorageAccountKeys field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStorageAccountKeys
-
-`func (o *AzureCollectionDataStorePatch) SetStorageAccountKeys(v StorageAccountKeysCredentialsIn)`
-
-SetStorageAccountKeys sets StorageAccountKeys field to given value.
-
-### HasStorageAccountKeys
-
-`func (o *AzureCollectionDataStorePatch) HasStorageAccountKeys() bool`
-
-HasStorageAccountKeys returns a boolean if a field has been set.
-
-### SetStorageAccountKeysNil
-
-`func (o *AzureCollectionDataStorePatch) SetStorageAccountKeysNil(b bool)`
-
- SetStorageAccountKeysNil sets the value for StorageAccountKeys to be an explicit nil
-
-### UnsetStorageAccountKeys
-`func (o *AzureCollectionDataStorePatch) UnsetStorageAccountKeys()`
-
-UnsetStorageAccountKeys ensures that no value is present for StorageAccountKeys, not even an explicit nil
+UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

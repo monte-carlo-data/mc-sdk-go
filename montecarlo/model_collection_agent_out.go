@@ -22,30 +22,30 @@ var _ MappedNullable = &CollectionAgentOut{}
 
 // CollectionAgentOut A collection agent: the component that reaches your data on Monte Carlo's behalf.  This is the shape the cross-platform list returns. A platform-specific read returns the same fields, with the agent's address named for that platform.
 type CollectionAgentOut struct {
-	// How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one.
-	AuthenticationType NullableAuthenticationType `json:"authentication_type"`
-	// When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent.
-	CreatedTime NullableTime `json:"created_time,omitempty"`
-	// Identifier of the deployment this collection agent runs on.
-	DeploymentId string `json:"deployment_id"`
-	// Whether Monte Carlo is using this collection agent. An agent Monte Carlo has not validated is not enabled, either because it has not been registered yet or because validation failed.
-	Enabled bool `json:"enabled"`
-	// Address Monte Carlo reaches the collection agent at, in whatever form its platform uses. On AWS that is the ARN of a Lambda function, on Azure the URL of a function app, and on GCP the URL of a Cloud Run service. Empty until the agent has been registered. Null for a generic or Snowflake agent, which connect to Monte Carlo rather than being reached.
-	Endpoint NullableString `json:"endpoint"`
 	// Unique identifier of the collection agent.
 	Id string `json:"id"`
+	// Display name of the collection agent. Null when it has no name.
+	Name NullableString `json:"name,omitempty"`
+	// Identifier of the deployment this collection agent runs on.
+	DeploymentId string `json:"deployment_id"`
+	// How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one.
+	AuthenticationType NullableAuthenticationType `json:"authentication_type"`
+	// Whether Monte Carlo is using this collection agent. An agent Monte Carlo has not validated is not enabled, either because it has not been registered yet or because validation failed.
+	Enabled bool `json:"enabled"`
+	// When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent.
+	CreatedTime NullableTime `json:"created_time,omitempty"`
+	// When the collection agent was last changed. Registering it, renaming it, changing how Monte Carlo reaches it, and Monte Carlo picking up a new image version all update this. Null until any of those has happened.
+	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
 	// Build of the image the collection agent is running. Null until Monte Carlo has contacted the agent.
 	ImageBuild NullableString `json:"image_build,omitempty"`
 	// Version of the image the collection agent is running. Null until Monte Carlo has contacted the agent.
 	ImageVersion NullableString `json:"image_version,omitempty"`
 	// Whether Monte Carlo can update the collection agent's image for you.
 	IsRemoteUpgradeable bool `json:"is_remote_upgradeable"`
-	// When the collection agent was last changed. Registering it, renaming it, changing how Monte Carlo reaches it, and Monte Carlo picking up a new image version all update this. Null until any of those has happened.
-	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
-	// Display name of the collection agent. Null when it has no name.
-	Name NullableString `json:"name,omitempty"`
 	// Where the collection agent runs. Use it to build the platform-specific path for any other operation on this agent. Null for an agent whose platform Monte Carlo has not recorded, and no platform-specific path can address one of those.
 	Platform NullableRuntimePlatform `json:"platform,omitempty"`
+	// Address Monte Carlo reaches the collection agent at, in whatever form its platform uses. On AWS that is the ARN of a Lambda function, on Azure the URL of a function app, and on GCP the URL of a Cloud Run service. Empty until the agent has been registered. Null for a generic or Snowflake agent, which connect to Monte Carlo rather than being reached.
+	Endpoint NullableString `json:"endpoint"`
 }
 
 type _CollectionAgentOut CollectionAgentOut
@@ -54,14 +54,14 @@ type _CollectionAgentOut CollectionAgentOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCollectionAgentOut(authenticationType NullableAuthenticationType, deploymentId string, enabled bool, endpoint NullableString, id string, isRemoteUpgradeable bool) *CollectionAgentOut {
+func NewCollectionAgentOut(id string, deploymentId string, authenticationType NullableAuthenticationType, enabled bool, isRemoteUpgradeable bool, endpoint NullableString) *CollectionAgentOut {
 	this := CollectionAgentOut{}
-	this.AuthenticationType = authenticationType
-	this.DeploymentId = deploymentId
-	this.Enabled = enabled
-	this.Endpoint = endpoint
 	this.Id = id
+	this.DeploymentId = deploymentId
+	this.AuthenticationType = authenticationType
+	this.Enabled = enabled
 	this.IsRemoteUpgradeable = isRemoteUpgradeable
+	this.Endpoint = endpoint
 	return &this
 }
 
@@ -71,6 +71,97 @@ func NewCollectionAgentOut(authenticationType NullableAuthenticationType, deploy
 func NewCollectionAgentOutWithDefaults() *CollectionAgentOut {
 	this := CollectionAgentOut{}
 	return &this
+}
+
+// GetId returns the Id field value
+func (o *CollectionAgentOut) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *CollectionAgentOut) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *CollectionAgentOut) SetId(v string) {
+	o.Id = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CollectionAgentOut) GetName() string {
+	if o == nil || IsNil(o.Name.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Name.Get()
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollectionAgentOut) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name.Get(), o.Name.IsSet()
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *CollectionAgentOut) HasName() bool {
+	if o != nil && o.Name.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
+func (o *CollectionAgentOut) SetName(v string) {
+	o.Name.Set(&v)
+}
+
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *CollectionAgentOut) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *CollectionAgentOut) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetDeploymentId returns the DeploymentId field value
+func (o *CollectionAgentOut) GetDeploymentId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeploymentId
+}
+
+// GetDeploymentIdOk returns a tuple with the DeploymentId field value
+// and a boolean to check if the value has been set.
+func (o *CollectionAgentOut) GetDeploymentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeploymentId, true
+}
+
+// SetDeploymentId sets field value
+func (o *CollectionAgentOut) SetDeploymentId(v string) {
+	o.DeploymentId = v
 }
 
 // GetAuthenticationType returns the AuthenticationType field value
@@ -97,6 +188,30 @@ func (o *CollectionAgentOut) GetAuthenticationTypeOk() (*AuthenticationType, boo
 // SetAuthenticationType sets field value
 func (o *CollectionAgentOut) SetAuthenticationType(v AuthenticationType) {
 	o.AuthenticationType.Set(&v)
+}
+
+// GetEnabled returns the Enabled field value
+func (o *CollectionAgentOut) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *CollectionAgentOut) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *CollectionAgentOut) SetEnabled(v bool) {
+	o.Enabled = v
 }
 
 // GetCreatedTime returns the CreatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -142,102 +257,47 @@ func (o *CollectionAgentOut) UnsetCreatedTime() {
 	o.CreatedTime.Unset()
 }
 
-// GetDeploymentId returns the DeploymentId field value
-func (o *CollectionAgentOut) GetDeploymentId() string {
-	if o == nil {
-		var ret string
+// GetLastUpdatedTime returns the LastUpdatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CollectionAgentOut) GetLastUpdatedTime() time.Time {
+	if o == nil || IsNil(o.LastUpdatedTime.Get()) {
+		var ret time.Time
 		return ret
 	}
-
-	return o.DeploymentId
+	return *o.LastUpdatedTime.Get()
 }
 
-// GetDeploymentIdOk returns a tuple with the DeploymentId field value
-// and a boolean to check if the value has been set.
-func (o *CollectionAgentOut) GetDeploymentIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DeploymentId, true
-}
-
-// SetDeploymentId sets field value
-func (o *CollectionAgentOut) SetDeploymentId(v string) {
-	o.DeploymentId = v
-}
-
-// GetEnabled returns the Enabled field value
-func (o *CollectionAgentOut) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *CollectionAgentOut) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *CollectionAgentOut) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
-// GetEndpoint returns the Endpoint field value
-// If the value is explicit nil, the zero value for string will be returned
-func (o *CollectionAgentOut) GetEndpoint() string {
-	if o == nil || o.Endpoint.Get() == nil {
-		var ret string
-		return ret
-	}
-
-	return *o.Endpoint.Get()
-}
-
-// GetEndpointOk returns a tuple with the Endpoint field value
+// GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CollectionAgentOut) GetEndpointOk() (*string, bool) {
+func (o *CollectionAgentOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Endpoint.Get(), o.Endpoint.IsSet()
+	return o.LastUpdatedTime.Get(), o.LastUpdatedTime.IsSet()
 }
 
-// SetEndpoint sets field value
-func (o *CollectionAgentOut) SetEndpoint(v string) {
-	o.Endpoint.Set(&v)
-}
-
-// GetId returns the Id field value
-func (o *CollectionAgentOut) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
+// HasLastUpdatedTime returns a boolean if a field has been set.
+func (o *CollectionAgentOut) HasLastUpdatedTime() bool {
+	if o != nil && o.LastUpdatedTime.IsSet() {
+		return true
 	}
 
-	return o.Id
+	return false
 }
 
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *CollectionAgentOut) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
+// SetLastUpdatedTime gets a reference to the given NullableTime and assigns it to the LastUpdatedTime field.
+func (o *CollectionAgentOut) SetLastUpdatedTime(v time.Time) {
+	o.LastUpdatedTime.Set(&v)
 }
 
-// SetId sets field value
-func (o *CollectionAgentOut) SetId(v string) {
-	o.Id = v
+// SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
+func (o *CollectionAgentOut) SetLastUpdatedTimeNil() {
+	o.LastUpdatedTime.Set(nil)
+}
+
+// UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
+func (o *CollectionAgentOut) UnsetLastUpdatedTime() {
+	o.LastUpdatedTime.Unset()
 }
 
 // GetImageBuild returns the ImageBuild field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -350,92 +410,6 @@ func (o *CollectionAgentOut) SetIsRemoteUpgradeable(v bool) {
 	o.IsRemoteUpgradeable = v
 }
 
-// GetLastUpdatedTime returns the LastUpdatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CollectionAgentOut) GetLastUpdatedTime() time.Time {
-	if o == nil || IsNil(o.LastUpdatedTime.Get()) {
-		var ret time.Time
-		return ret
-	}
-	return *o.LastUpdatedTime.Get()
-}
-
-// GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CollectionAgentOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LastUpdatedTime.Get(), o.LastUpdatedTime.IsSet()
-}
-
-// HasLastUpdatedTime returns a boolean if a field has been set.
-func (o *CollectionAgentOut) HasLastUpdatedTime() bool {
-	if o != nil && o.LastUpdatedTime.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastUpdatedTime gets a reference to the given NullableTime and assigns it to the LastUpdatedTime field.
-func (o *CollectionAgentOut) SetLastUpdatedTime(v time.Time) {
-	o.LastUpdatedTime.Set(&v)
-}
-
-// SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
-func (o *CollectionAgentOut) SetLastUpdatedTimeNil() {
-	o.LastUpdatedTime.Set(nil)
-}
-
-// UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
-func (o *CollectionAgentOut) UnsetLastUpdatedTime() {
-	o.LastUpdatedTime.Unset()
-}
-
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CollectionAgentOut) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Name.Get()
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CollectionAgentOut) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name.Get(), o.Name.IsSet()
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *CollectionAgentOut) HasName() bool {
-	if o != nil && o.Name.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *CollectionAgentOut) SetName(v string) {
-	o.Name.Set(&v)
-}
-
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *CollectionAgentOut) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *CollectionAgentOut) UnsetName() {
-	o.Name.Unset()
-}
-
 // GetPlatform returns the Platform field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CollectionAgentOut) GetPlatform() RuntimePlatform {
 	if o == nil || IsNil(o.Platform.Get()) {
@@ -479,6 +453,32 @@ func (o *CollectionAgentOut) UnsetPlatform() {
 	o.Platform.Unset()
 }
 
+// GetEndpoint returns the Endpoint field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *CollectionAgentOut) GetEndpoint() string {
+	if o == nil || o.Endpoint.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.Endpoint.Get()
+}
+
+// GetEndpointOk returns a tuple with the Endpoint field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollectionAgentOut) GetEndpointOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Endpoint.Get(), o.Endpoint.IsSet()
+}
+
+// SetEndpoint sets field value
+func (o *CollectionAgentOut) SetEndpoint(v string) {
+	o.Endpoint.Set(&v)
+}
+
 func (o CollectionAgentOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -489,14 +489,19 @@ func (o CollectionAgentOut) MarshalJSON() ([]byte, error) {
 
 func (o CollectionAgentOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
+	}
+	toSerialize["deployment_id"] = o.DeploymentId
 	toSerialize["authentication_type"] = o.AuthenticationType.Get()
+	toSerialize["enabled"] = o.Enabled
 	if o.CreatedTime.IsSet() {
 		toSerialize["created_time"] = o.CreatedTime.Get()
 	}
-	toSerialize["deployment_id"] = o.DeploymentId
-	toSerialize["enabled"] = o.Enabled
-	toSerialize["endpoint"] = o.Endpoint.Get()
-	toSerialize["id"] = o.Id
+	if o.LastUpdatedTime.IsSet() {
+		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
+	}
 	if o.ImageBuild.IsSet() {
 		toSerialize["image_build"] = o.ImageBuild.Get()
 	}
@@ -504,15 +509,10 @@ func (o CollectionAgentOut) ToMap() (map[string]interface{}, error) {
 		toSerialize["image_version"] = o.ImageVersion.Get()
 	}
 	toSerialize["is_remote_upgradeable"] = o.IsRemoteUpgradeable
-	if o.LastUpdatedTime.IsSet() {
-		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
-	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
-	}
 	if o.Platform.IsSet() {
 		toSerialize["platform"] = o.Platform.Get()
 	}
+	toSerialize["endpoint"] = o.Endpoint.Get()
 	return toSerialize, nil
 }
 
@@ -521,12 +521,12 @@ func (o *CollectionAgentOut) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"authentication_type",
-		"deployment_id",
-		"enabled",
-		"endpoint",
 		"id",
+		"deployment_id",
+		"authentication_type",
+		"enabled",
 		"is_remote_upgradeable",
+		"endpoint",
 	}
 
 	allProperties := make(map[string]interface{})

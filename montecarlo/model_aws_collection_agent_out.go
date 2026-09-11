@@ -22,18 +22,20 @@ var _ MappedNullable = &AwsCollectionAgentOut{}
 
 // AwsCollectionAgentOut A collection agent running on AWS.
 type AwsCollectionAgentOut struct {
-	// How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one.
-	AuthenticationType NullableAuthenticationType `json:"authentication_type"`
-	// When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent.
-	CreatedTime NullableTime `json:"created_time,omitempty"`
-	// Identifier of the deployment this collection agent runs on.
-	DeploymentId string `json:"deployment_id"`
-	// Whether Monte Carlo is using this collection agent. An agent Monte Carlo has not validated is not enabled, either because it has not been registered yet or because validation failed.
-	Enabled bool `json:"enabled"`
-	// Value to supply in the trust policy of the role Monte Carlo assumes to invoke the function. Null until Monte Carlo has generated one, for a caller who is not permitted to register an agent, and if the value could not be read just now. Retry the request in that last case.
-	ExternalId NullableString `json:"external_id,omitempty"`
 	// Unique identifier of the collection agent.
 	Id string `json:"id"`
+	// Display name of the collection agent. Null when it has no name.
+	Name NullableString `json:"name,omitempty"`
+	// Identifier of the deployment this collection agent runs on.
+	DeploymentId string `json:"deployment_id"`
+	// How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one.
+	AuthenticationType NullableAuthenticationType `json:"authentication_type"`
+	// Whether Monte Carlo is using this collection agent. An agent Monte Carlo has not validated is not enabled, either because it has not been registered yet or because validation failed.
+	Enabled bool `json:"enabled"`
+	// When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent.
+	CreatedTime NullableTime `json:"created_time,omitempty"`
+	// When the collection agent was last changed. Registering it, renaming it, changing how Monte Carlo reaches it, and Monte Carlo picking up a new image version all update this. Null until any of those has happened.
+	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
 	// Build of the image the collection agent is running. Null until Monte Carlo has contacted the agent.
 	ImageBuild NullableString `json:"image_build,omitempty"`
 	// Version of the image the collection agent is running. Null until Monte Carlo has contacted the agent.
@@ -42,10 +44,8 @@ type AwsCollectionAgentOut struct {
 	IsRemoteUpgradeable bool `json:"is_remote_upgradeable"`
 	// ARN of the Lambda function Monte Carlo invokes. Empty until the agent has been registered.
 	LambdaFunctionArn string `json:"lambda_function_arn"`
-	// When the collection agent was last changed. Registering it, renaming it, changing how Monte Carlo reaches it, and Monte Carlo picking up a new image version all update this. Null until any of those has happened.
-	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
-	// Display name of the collection agent. Null when it has no name.
-	Name NullableString `json:"name,omitempty"`
+	// Value to supply in the trust policy of the role Monte Carlo assumes to invoke the function. Null until Monte Carlo has generated one, for a caller who is not permitted to register an agent, and if the value could not be read just now. Retry the request in that last case.
+	ExternalId NullableString `json:"external_id,omitempty"`
 }
 
 type _AwsCollectionAgentOut AwsCollectionAgentOut
@@ -54,12 +54,12 @@ type _AwsCollectionAgentOut AwsCollectionAgentOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAwsCollectionAgentOut(authenticationType NullableAuthenticationType, deploymentId string, enabled bool, id string, isRemoteUpgradeable bool, lambdaFunctionArn string) *AwsCollectionAgentOut {
+func NewAwsCollectionAgentOut(id string, deploymentId string, authenticationType NullableAuthenticationType, enabled bool, isRemoteUpgradeable bool, lambdaFunctionArn string) *AwsCollectionAgentOut {
 	this := AwsCollectionAgentOut{}
-	this.AuthenticationType = authenticationType
-	this.DeploymentId = deploymentId
-	this.Enabled = enabled
 	this.Id = id
+	this.DeploymentId = deploymentId
+	this.AuthenticationType = authenticationType
+	this.Enabled = enabled
 	this.IsRemoteUpgradeable = isRemoteUpgradeable
 	this.LambdaFunctionArn = lambdaFunctionArn
 	return &this
@@ -71,6 +71,97 @@ func NewAwsCollectionAgentOut(authenticationType NullableAuthenticationType, dep
 func NewAwsCollectionAgentOutWithDefaults() *AwsCollectionAgentOut {
 	this := AwsCollectionAgentOut{}
 	return &this
+}
+
+// GetId returns the Id field value
+func (o *AwsCollectionAgentOut) GetId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *AwsCollectionAgentOut) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value
+func (o *AwsCollectionAgentOut) SetId(v string) {
+	o.Id = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AwsCollectionAgentOut) GetName() string {
+	if o == nil || IsNil(o.Name.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Name.Get()
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AwsCollectionAgentOut) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name.Get(), o.Name.IsSet()
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *AwsCollectionAgentOut) HasName() bool {
+	if o != nil && o.Name.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
+func (o *AwsCollectionAgentOut) SetName(v string) {
+	o.Name.Set(&v)
+}
+
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *AwsCollectionAgentOut) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *AwsCollectionAgentOut) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetDeploymentId returns the DeploymentId field value
+func (o *AwsCollectionAgentOut) GetDeploymentId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeploymentId
+}
+
+// GetDeploymentIdOk returns a tuple with the DeploymentId field value
+// and a boolean to check if the value has been set.
+func (o *AwsCollectionAgentOut) GetDeploymentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeploymentId, true
+}
+
+// SetDeploymentId sets field value
+func (o *AwsCollectionAgentOut) SetDeploymentId(v string) {
+	o.DeploymentId = v
 }
 
 // GetAuthenticationType returns the AuthenticationType field value
@@ -97,6 +188,30 @@ func (o *AwsCollectionAgentOut) GetAuthenticationTypeOk() (*AuthenticationType, 
 // SetAuthenticationType sets field value
 func (o *AwsCollectionAgentOut) SetAuthenticationType(v AuthenticationType) {
 	o.AuthenticationType.Set(&v)
+}
+
+// GetEnabled returns the Enabled field value
+func (o *AwsCollectionAgentOut) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *AwsCollectionAgentOut) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *AwsCollectionAgentOut) SetEnabled(v bool) {
+	o.Enabled = v
 }
 
 // GetCreatedTime returns the CreatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -142,119 +257,47 @@ func (o *AwsCollectionAgentOut) UnsetCreatedTime() {
 	o.CreatedTime.Unset()
 }
 
-// GetDeploymentId returns the DeploymentId field value
-func (o *AwsCollectionAgentOut) GetDeploymentId() string {
-	if o == nil {
-		var ret string
+// GetLastUpdatedTime returns the LastUpdatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AwsCollectionAgentOut) GetLastUpdatedTime() time.Time {
+	if o == nil || IsNil(o.LastUpdatedTime.Get()) {
+		var ret time.Time
 		return ret
 	}
-
-	return o.DeploymentId
+	return *o.LastUpdatedTime.Get()
 }
 
-// GetDeploymentIdOk returns a tuple with the DeploymentId field value
-// and a boolean to check if the value has been set.
-func (o *AwsCollectionAgentOut) GetDeploymentIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DeploymentId, true
-}
-
-// SetDeploymentId sets field value
-func (o *AwsCollectionAgentOut) SetDeploymentId(v string) {
-	o.DeploymentId = v
-}
-
-// GetEnabled returns the Enabled field value
-func (o *AwsCollectionAgentOut) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *AwsCollectionAgentOut) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *AwsCollectionAgentOut) SetEnabled(v bool) {
-	o.Enabled = v
-}
-
-// GetExternalId returns the ExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AwsCollectionAgentOut) GetExternalId() string {
-	if o == nil || IsNil(o.ExternalId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ExternalId.Get()
-}
-
-// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
+// GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AwsCollectionAgentOut) GetExternalIdOk() (*string, bool) {
+func (o *AwsCollectionAgentOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ExternalId.Get(), o.ExternalId.IsSet()
+	return o.LastUpdatedTime.Get(), o.LastUpdatedTime.IsSet()
 }
 
-// HasExternalId returns a boolean if a field has been set.
-func (o *AwsCollectionAgentOut) HasExternalId() bool {
-	if o != nil && o.ExternalId.IsSet() {
+// HasLastUpdatedTime returns a boolean if a field has been set.
+func (o *AwsCollectionAgentOut) HasLastUpdatedTime() bool {
+	if o != nil && o.LastUpdatedTime.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetExternalId gets a reference to the given NullableString and assigns it to the ExternalId field.
-func (o *AwsCollectionAgentOut) SetExternalId(v string) {
-	o.ExternalId.Set(&v)
+// SetLastUpdatedTime gets a reference to the given NullableTime and assigns it to the LastUpdatedTime field.
+func (o *AwsCollectionAgentOut) SetLastUpdatedTime(v time.Time) {
+	o.LastUpdatedTime.Set(&v)
 }
 
-// SetExternalIdNil sets the value for ExternalId to be an explicit nil
-func (o *AwsCollectionAgentOut) SetExternalIdNil() {
-	o.ExternalId.Set(nil)
+// SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
+func (o *AwsCollectionAgentOut) SetLastUpdatedTimeNil() {
+	o.LastUpdatedTime.Set(nil)
 }
 
-// UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
-func (o *AwsCollectionAgentOut) UnsetExternalId() {
-	o.ExternalId.Unset()
-}
-
-// GetId returns the Id field value
-func (o *AwsCollectionAgentOut) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *AwsCollectionAgentOut) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *AwsCollectionAgentOut) SetId(v string) {
-	o.Id = v
+// UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
+func (o *AwsCollectionAgentOut) UnsetLastUpdatedTime() {
+	o.LastUpdatedTime.Unset()
 }
 
 // GetImageBuild returns the ImageBuild field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -391,90 +434,47 @@ func (o *AwsCollectionAgentOut) SetLambdaFunctionArn(v string) {
 	o.LambdaFunctionArn = v
 }
 
-// GetLastUpdatedTime returns the LastUpdatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AwsCollectionAgentOut) GetLastUpdatedTime() time.Time {
-	if o == nil || IsNil(o.LastUpdatedTime.Get()) {
-		var ret time.Time
-		return ret
-	}
-	return *o.LastUpdatedTime.Get()
-}
-
-// GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AwsCollectionAgentOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LastUpdatedTime.Get(), o.LastUpdatedTime.IsSet()
-}
-
-// HasLastUpdatedTime returns a boolean if a field has been set.
-func (o *AwsCollectionAgentOut) HasLastUpdatedTime() bool {
-	if o != nil && o.LastUpdatedTime.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastUpdatedTime gets a reference to the given NullableTime and assigns it to the LastUpdatedTime field.
-func (o *AwsCollectionAgentOut) SetLastUpdatedTime(v time.Time) {
-	o.LastUpdatedTime.Set(&v)
-}
-
-// SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
-func (o *AwsCollectionAgentOut) SetLastUpdatedTimeNil() {
-	o.LastUpdatedTime.Set(nil)
-}
-
-// UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
-func (o *AwsCollectionAgentOut) UnsetLastUpdatedTime() {
-	o.LastUpdatedTime.Unset()
-}
-
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AwsCollectionAgentOut) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
+// GetExternalId returns the ExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AwsCollectionAgentOut) GetExternalId() string {
+	if o == nil || IsNil(o.ExternalId.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.Name.Get()
+	return *o.ExternalId.Get()
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AwsCollectionAgentOut) GetNameOk() (*string, bool) {
+func (o *AwsCollectionAgentOut) GetExternalIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.Name.Get(), o.Name.IsSet()
+	return o.ExternalId.Get(), o.ExternalId.IsSet()
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *AwsCollectionAgentOut) HasName() bool {
-	if o != nil && o.Name.IsSet() {
+// HasExternalId returns a boolean if a field has been set.
+func (o *AwsCollectionAgentOut) HasExternalId() bool {
+	if o != nil && o.ExternalId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *AwsCollectionAgentOut) SetName(v string) {
-	o.Name.Set(&v)
+// SetExternalId gets a reference to the given NullableString and assigns it to the ExternalId field.
+func (o *AwsCollectionAgentOut) SetExternalId(v string) {
+	o.ExternalId.Set(&v)
 }
 
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *AwsCollectionAgentOut) SetNameNil() {
-	o.Name.Set(nil)
+// SetExternalIdNil sets the value for ExternalId to be an explicit nil
+func (o *AwsCollectionAgentOut) SetExternalIdNil() {
+	o.ExternalId.Set(nil)
 }
 
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *AwsCollectionAgentOut) UnsetName() {
-	o.Name.Unset()
+// UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
+func (o *AwsCollectionAgentOut) UnsetExternalId() {
+	o.ExternalId.Unset()
 }
 
 func (o AwsCollectionAgentOut) MarshalJSON() ([]byte, error) {
@@ -487,16 +487,19 @@ func (o AwsCollectionAgentOut) MarshalJSON() ([]byte, error) {
 
 func (o AwsCollectionAgentOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
+	}
+	toSerialize["deployment_id"] = o.DeploymentId
 	toSerialize["authentication_type"] = o.AuthenticationType.Get()
+	toSerialize["enabled"] = o.Enabled
 	if o.CreatedTime.IsSet() {
 		toSerialize["created_time"] = o.CreatedTime.Get()
 	}
-	toSerialize["deployment_id"] = o.DeploymentId
-	toSerialize["enabled"] = o.Enabled
-	if o.ExternalId.IsSet() {
-		toSerialize["external_id"] = o.ExternalId.Get()
+	if o.LastUpdatedTime.IsSet() {
+		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
 	}
-	toSerialize["id"] = o.Id
 	if o.ImageBuild.IsSet() {
 		toSerialize["image_build"] = o.ImageBuild.Get()
 	}
@@ -505,11 +508,8 @@ func (o AwsCollectionAgentOut) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["is_remote_upgradeable"] = o.IsRemoteUpgradeable
 	toSerialize["lambda_function_arn"] = o.LambdaFunctionArn
-	if o.LastUpdatedTime.IsSet() {
-		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
-	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
+	if o.ExternalId.IsSet() {
+		toSerialize["external_id"] = o.ExternalId.Get()
 	}
 	return toSerialize, nil
 }
@@ -519,10 +519,10 @@ func (o *AwsCollectionAgentOut) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"authentication_type",
-		"deployment_id",
-		"enabled",
 		"id",
+		"deployment_id",
+		"authentication_type",
+		"enabled",
 		"is_remote_upgradeable",
 		"lambda_function_arn",
 	}

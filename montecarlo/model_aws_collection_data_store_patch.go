@@ -21,10 +21,10 @@ var _ MappedNullable = &AwsCollectionDataStorePatch{}
 type AwsCollectionDataStorePatch struct {
 	// Name of the S3 bucket Monte Carlo should use.
 	BucketName NullableString `json:"bucket_name,omitempty" validate:"regexp=^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$"`
-	// Display name for the data store. Replaces the name its deployment gave it.
-	Name NullableString `json:"name,omitempty"`
 	// ARN of the role Monte Carlo assumes to access the bucket. Its trust policy must already carry the deployment's external id.
 	RoleArn NullableString `json:"role_arn,omitempty" validate:"regexp=^arn:(aws[a-zA-Z-]*)?:iam::\\\\d{12}:role\\/.+$"`
+	// Display name for the data store. Replaces the name its deployment gave it.
+	Name NullableString `json:"name,omitempty"`
 }
 
 // NewAwsCollectionDataStorePatch instantiates a new AwsCollectionDataStorePatch object
@@ -87,49 +87,6 @@ func (o *AwsCollectionDataStorePatch) UnsetBucketName() {
 	o.BucketName.Unset()
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AwsCollectionDataStorePatch) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Name.Get()
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AwsCollectionDataStorePatch) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name.Get(), o.Name.IsSet()
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *AwsCollectionDataStorePatch) HasName() bool {
-	if o != nil && o.Name.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *AwsCollectionDataStorePatch) SetName(v string) {
-	o.Name.Set(&v)
-}
-
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *AwsCollectionDataStorePatch) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *AwsCollectionDataStorePatch) UnsetName() {
-	o.Name.Unset()
-}
-
 // GetRoleArn returns the RoleArn field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AwsCollectionDataStorePatch) GetRoleArn() string {
 	if o == nil || IsNil(o.RoleArn.Get()) {
@@ -173,6 +130,49 @@ func (o *AwsCollectionDataStorePatch) UnsetRoleArn() {
 	o.RoleArn.Unset()
 }
 
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AwsCollectionDataStorePatch) GetName() string {
+	if o == nil || IsNil(o.Name.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Name.Get()
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AwsCollectionDataStorePatch) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name.Get(), o.Name.IsSet()
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *AwsCollectionDataStorePatch) HasName() bool {
+	if o != nil && o.Name.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
+func (o *AwsCollectionDataStorePatch) SetName(v string) {
+	o.Name.Set(&v)
+}
+
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *AwsCollectionDataStorePatch) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *AwsCollectionDataStorePatch) UnsetName() {
+	o.Name.Unset()
+}
+
 func (o AwsCollectionDataStorePatch) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -186,11 +186,11 @@ func (o AwsCollectionDataStorePatch) ToMap() (map[string]interface{}, error) {
 	if o.BucketName.IsSet() {
 		toSerialize["bucket_name"] = o.BucketName.Get()
 	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
-	}
 	if o.RoleArn.IsSet() {
 		toSerialize["role_arn"] = o.RoleArn.Get()
+	}
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
 	return toSerialize, nil
 }

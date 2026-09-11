@@ -22,24 +22,24 @@ var _ MappedNullable = &AzureCollectionDataStoreOut{}
 
 // AzureCollectionDataStoreOut A data store held in an Azure Blob Storage container.  There is no external id: Monte Carlo assumes no role to reach Azure storage.
 type AzureCollectionDataStoreOut struct {
-	// How Monte Carlo authenticates when it reaches the data store.
-	AuthenticationType AuthenticationType `json:"authentication_type"`
-	// Name of the blob container Monte Carlo uses. Empty until it has been registered. The storage account holding it is part of the credentials, so it is not returned.
-	ContainerName string `json:"container_name"`
-	// When the data store was created, which is when its deployment was provisioned.
-	CreatedTime NullableTime `json:"created_time,omitempty"`
-	// Identifier of the deployment this data store belongs to.
-	DeploymentId string `json:"deployment_id"`
-	// Whether Monte Carlo is using this data store. One that is unregistered, or whose validation failed, is not enabled.
-	Enabled bool `json:"enabled"`
 	// Unique identifier of the data store.
 	Id string `json:"id"`
-	// When the data store was last registered, renamed, or given different storage or credentials. Null until one of those has happened.
-	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
 	// Display name of the data store. Null when it has no name.
 	Name NullableString `json:"name,omitempty"`
+	// Identifier of the deployment this data store belongs to.
+	DeploymentId string `json:"deployment_id"`
 	// Which kind of storage the data store keeps its data in.
 	StorageType StorageType `json:"storage_type"`
+	// How Monte Carlo authenticates when it reaches the data store.
+	AuthenticationType AuthenticationType `json:"authentication_type"`
+	// Whether Monte Carlo is using this data store. One that is unregistered, or whose validation failed, is not enabled.
+	Enabled bool `json:"enabled"`
+	// When the data store was created, which is when its deployment was provisioned.
+	CreatedTime NullableTime `json:"created_time,omitempty"`
+	// When the data store was last registered, renamed, or given different storage or credentials. Null until one of those has happened.
+	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
+	// Name of the blob container Monte Carlo uses. Empty until it has been registered. The storage account holding it is part of the credentials, so it is not returned.
+	ContainerName string `json:"container_name"`
 }
 
 type _AzureCollectionDataStoreOut AzureCollectionDataStoreOut
@@ -48,14 +48,14 @@ type _AzureCollectionDataStoreOut AzureCollectionDataStoreOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAzureCollectionDataStoreOut(authenticationType AuthenticationType, containerName string, deploymentId string, enabled bool, id string, storageType StorageType) *AzureCollectionDataStoreOut {
+func NewAzureCollectionDataStoreOut(id string, deploymentId string, storageType StorageType, authenticationType AuthenticationType, enabled bool, containerName string) *AzureCollectionDataStoreOut {
 	this := AzureCollectionDataStoreOut{}
-	this.AuthenticationType = authenticationType
-	this.ContainerName = containerName
-	this.DeploymentId = deploymentId
-	this.Enabled = enabled
 	this.Id = id
+	this.DeploymentId = deploymentId
 	this.StorageType = storageType
+	this.AuthenticationType = authenticationType
+	this.Enabled = enabled
+	this.ContainerName = containerName
 	return &this
 }
 
@@ -65,145 +65,6 @@ func NewAzureCollectionDataStoreOut(authenticationType AuthenticationType, conta
 func NewAzureCollectionDataStoreOutWithDefaults() *AzureCollectionDataStoreOut {
 	this := AzureCollectionDataStoreOut{}
 	return &this
-}
-
-// GetAuthenticationType returns the AuthenticationType field value
-func (o *AzureCollectionDataStoreOut) GetAuthenticationType() AuthenticationType {
-	if o == nil {
-		var ret AuthenticationType
-		return ret
-	}
-
-	return o.AuthenticationType
-}
-
-// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value
-// and a boolean to check if the value has been set.
-func (o *AzureCollectionDataStoreOut) GetAuthenticationTypeOk() (*AuthenticationType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AuthenticationType, true
-}
-
-// SetAuthenticationType sets field value
-func (o *AzureCollectionDataStoreOut) SetAuthenticationType(v AuthenticationType) {
-	o.AuthenticationType = v
-}
-
-// GetContainerName returns the ContainerName field value
-func (o *AzureCollectionDataStoreOut) GetContainerName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ContainerName
-}
-
-// GetContainerNameOk returns a tuple with the ContainerName field value
-// and a boolean to check if the value has been set.
-func (o *AzureCollectionDataStoreOut) GetContainerNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ContainerName, true
-}
-
-// SetContainerName sets field value
-func (o *AzureCollectionDataStoreOut) SetContainerName(v string) {
-	o.ContainerName = v
-}
-
-// GetCreatedTime returns the CreatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionDataStoreOut) GetCreatedTime() time.Time {
-	if o == nil || IsNil(o.CreatedTime.Get()) {
-		var ret time.Time
-		return ret
-	}
-	return *o.CreatedTime.Get()
-}
-
-// GetCreatedTimeOk returns a tuple with the CreatedTime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionDataStoreOut) GetCreatedTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreatedTime.Get(), o.CreatedTime.IsSet()
-}
-
-// HasCreatedTime returns a boolean if a field has been set.
-func (o *AzureCollectionDataStoreOut) HasCreatedTime() bool {
-	if o != nil && o.CreatedTime.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedTime gets a reference to the given NullableTime and assigns it to the CreatedTime field.
-func (o *AzureCollectionDataStoreOut) SetCreatedTime(v time.Time) {
-	o.CreatedTime.Set(&v)
-}
-
-// SetCreatedTimeNil sets the value for CreatedTime to be an explicit nil
-func (o *AzureCollectionDataStoreOut) SetCreatedTimeNil() {
-	o.CreatedTime.Set(nil)
-}
-
-// UnsetCreatedTime ensures that no value is present for CreatedTime, not even an explicit nil
-func (o *AzureCollectionDataStoreOut) UnsetCreatedTime() {
-	o.CreatedTime.Unset()
-}
-
-// GetDeploymentId returns the DeploymentId field value
-func (o *AzureCollectionDataStoreOut) GetDeploymentId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.DeploymentId
-}
-
-// GetDeploymentIdOk returns a tuple with the DeploymentId field value
-// and a boolean to check if the value has been set.
-func (o *AzureCollectionDataStoreOut) GetDeploymentIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DeploymentId, true
-}
-
-// SetDeploymentId sets field value
-func (o *AzureCollectionDataStoreOut) SetDeploymentId(v string) {
-	o.DeploymentId = v
-}
-
-// GetEnabled returns the Enabled field value
-func (o *AzureCollectionDataStoreOut) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *AzureCollectionDataStoreOut) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *AzureCollectionDataStoreOut) SetEnabled(v bool) {
-	o.Enabled = v
 }
 
 // GetId returns the Id field value
@@ -228,49 +89,6 @@ func (o *AzureCollectionDataStoreOut) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *AzureCollectionDataStoreOut) SetId(v string) {
 	o.Id = v
-}
-
-// GetLastUpdatedTime returns the LastUpdatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionDataStoreOut) GetLastUpdatedTime() time.Time {
-	if o == nil || IsNil(o.LastUpdatedTime.Get()) {
-		var ret time.Time
-		return ret
-	}
-	return *o.LastUpdatedTime.Get()
-}
-
-// GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionDataStoreOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LastUpdatedTime.Get(), o.LastUpdatedTime.IsSet()
-}
-
-// HasLastUpdatedTime returns a boolean if a field has been set.
-func (o *AzureCollectionDataStoreOut) HasLastUpdatedTime() bool {
-	if o != nil && o.LastUpdatedTime.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastUpdatedTime gets a reference to the given NullableTime and assigns it to the LastUpdatedTime field.
-func (o *AzureCollectionDataStoreOut) SetLastUpdatedTime(v time.Time) {
-	o.LastUpdatedTime.Set(&v)
-}
-
-// SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
-func (o *AzureCollectionDataStoreOut) SetLastUpdatedTimeNil() {
-	o.LastUpdatedTime.Set(nil)
-}
-
-// UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
-func (o *AzureCollectionDataStoreOut) UnsetLastUpdatedTime() {
-	o.LastUpdatedTime.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -316,6 +134,30 @@ func (o *AzureCollectionDataStoreOut) UnsetName() {
 	o.Name.Unset()
 }
 
+// GetDeploymentId returns the DeploymentId field value
+func (o *AzureCollectionDataStoreOut) GetDeploymentId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeploymentId
+}
+
+// GetDeploymentIdOk returns a tuple with the DeploymentId field value
+// and a boolean to check if the value has been set.
+func (o *AzureCollectionDataStoreOut) GetDeploymentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeploymentId, true
+}
+
+// SetDeploymentId sets field value
+func (o *AzureCollectionDataStoreOut) SetDeploymentId(v string) {
+	o.DeploymentId = v
+}
+
 // GetStorageType returns the StorageType field value
 func (o *AzureCollectionDataStoreOut) GetStorageType() StorageType {
 	if o == nil {
@@ -340,6 +182,164 @@ func (o *AzureCollectionDataStoreOut) SetStorageType(v StorageType) {
 	o.StorageType = v
 }
 
+// GetAuthenticationType returns the AuthenticationType field value
+func (o *AzureCollectionDataStoreOut) GetAuthenticationType() AuthenticationType {
+	if o == nil {
+		var ret AuthenticationType
+		return ret
+	}
+
+	return o.AuthenticationType
+}
+
+// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value
+// and a boolean to check if the value has been set.
+func (o *AzureCollectionDataStoreOut) GetAuthenticationTypeOk() (*AuthenticationType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AuthenticationType, true
+}
+
+// SetAuthenticationType sets field value
+func (o *AzureCollectionDataStoreOut) SetAuthenticationType(v AuthenticationType) {
+	o.AuthenticationType = v
+}
+
+// GetEnabled returns the Enabled field value
+func (o *AzureCollectionDataStoreOut) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *AzureCollectionDataStoreOut) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *AzureCollectionDataStoreOut) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetCreatedTime returns the CreatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureCollectionDataStoreOut) GetCreatedTime() time.Time {
+	if o == nil || IsNil(o.CreatedTime.Get()) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedTime.Get()
+}
+
+// GetCreatedTimeOk returns a tuple with the CreatedTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AzureCollectionDataStoreOut) GetCreatedTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatedTime.Get(), o.CreatedTime.IsSet()
+}
+
+// HasCreatedTime returns a boolean if a field has been set.
+func (o *AzureCollectionDataStoreOut) HasCreatedTime() bool {
+	if o != nil && o.CreatedTime.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedTime gets a reference to the given NullableTime and assigns it to the CreatedTime field.
+func (o *AzureCollectionDataStoreOut) SetCreatedTime(v time.Time) {
+	o.CreatedTime.Set(&v)
+}
+
+// SetCreatedTimeNil sets the value for CreatedTime to be an explicit nil
+func (o *AzureCollectionDataStoreOut) SetCreatedTimeNil() {
+	o.CreatedTime.Set(nil)
+}
+
+// UnsetCreatedTime ensures that no value is present for CreatedTime, not even an explicit nil
+func (o *AzureCollectionDataStoreOut) UnsetCreatedTime() {
+	o.CreatedTime.Unset()
+}
+
+// GetLastUpdatedTime returns the LastUpdatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureCollectionDataStoreOut) GetLastUpdatedTime() time.Time {
+	if o == nil || IsNil(o.LastUpdatedTime.Get()) {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastUpdatedTime.Get()
+}
+
+// GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AzureCollectionDataStoreOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LastUpdatedTime.Get(), o.LastUpdatedTime.IsSet()
+}
+
+// HasLastUpdatedTime returns a boolean if a field has been set.
+func (o *AzureCollectionDataStoreOut) HasLastUpdatedTime() bool {
+	if o != nil && o.LastUpdatedTime.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastUpdatedTime gets a reference to the given NullableTime and assigns it to the LastUpdatedTime field.
+func (o *AzureCollectionDataStoreOut) SetLastUpdatedTime(v time.Time) {
+	o.LastUpdatedTime.Set(&v)
+}
+
+// SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
+func (o *AzureCollectionDataStoreOut) SetLastUpdatedTimeNil() {
+	o.LastUpdatedTime.Set(nil)
+}
+
+// UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
+func (o *AzureCollectionDataStoreOut) UnsetLastUpdatedTime() {
+	o.LastUpdatedTime.Unset()
+}
+
+// GetContainerName returns the ContainerName field value
+func (o *AzureCollectionDataStoreOut) GetContainerName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ContainerName
+}
+
+// GetContainerNameOk returns a tuple with the ContainerName field value
+// and a boolean to check if the value has been set.
+func (o *AzureCollectionDataStoreOut) GetContainerNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ContainerName, true
+}
+
+// SetContainerName sets field value
+func (o *AzureCollectionDataStoreOut) SetContainerName(v string) {
+	o.ContainerName = v
+}
+
 func (o AzureCollectionDataStoreOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -350,21 +350,21 @@ func (o AzureCollectionDataStoreOut) MarshalJSON() ([]byte, error) {
 
 func (o AzureCollectionDataStoreOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["authentication_type"] = o.AuthenticationType
-	toSerialize["container_name"] = o.ContainerName
-	if o.CreatedTime.IsSet() {
-		toSerialize["created_time"] = o.CreatedTime.Get()
-	}
-	toSerialize["deployment_id"] = o.DeploymentId
-	toSerialize["enabled"] = o.Enabled
 	toSerialize["id"] = o.Id
-	if o.LastUpdatedTime.IsSet() {
-		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
-	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
+	toSerialize["deployment_id"] = o.DeploymentId
 	toSerialize["storage_type"] = o.StorageType
+	toSerialize["authentication_type"] = o.AuthenticationType
+	toSerialize["enabled"] = o.Enabled
+	if o.CreatedTime.IsSet() {
+		toSerialize["created_time"] = o.CreatedTime.Get()
+	}
+	if o.LastUpdatedTime.IsSet() {
+		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
+	}
+	toSerialize["container_name"] = o.ContainerName
 	return toSerialize, nil
 }
 
@@ -373,12 +373,12 @@ func (o *AzureCollectionDataStoreOut) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"authentication_type",
-		"container_name",
-		"deployment_id",
-		"enabled",
 		"id",
+		"deployment_id",
 		"storage_type",
+		"authentication_type",
+		"enabled",
+		"container_name",
 	}
 
 	allProperties := make(map[string]interface{})

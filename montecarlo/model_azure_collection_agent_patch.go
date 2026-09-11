@@ -19,16 +19,16 @@ var _ MappedNullable = &AzureCollectionAgentPatch{}
 
 // AzureCollectionAgentPatch Details to change on an Azure collection agent. Only what you send is changed.  A credentials object is the exception: it replaces the stored credentials instead of merging into them, so send every field of the object you send, along with the matching `authentication_type`. Sending only `name` skips the checks against your function app, since a name is not validated against it.
 type AzureCollectionAgentPatch struct {
-	// How Monte Carlo authenticates when it calls the agent. Send it together with the matching credentials object.
-	AuthenticationType NullableAzureAgentAuthenticationType `json:"authentication_type,omitempty"`
 	// Credentials for `AZURE_FUNCTION_APP_KEY`. Send this or `service_principal`, never both.
 	FunctionAppKey NullableFunctionAppKeyCredentialsIn `json:"function_app_key,omitempty"`
+	// Credentials for `AZURE_FUNCTION_SERVICE_PRINCIPAL`. Send this or `function_app_key`, never both.
+	ServicePrincipal NullableServicePrincipalCredentialsIn `json:"service_principal,omitempty"`
 	// URL of the function app Monte Carlo should call.
 	FunctionAppUrl NullableString `json:"function_app_url,omitempty" validate:"regexp=^https:\\/\\/[^\\\\s\\/?#]+\\\\S*$"`
 	// Display name for the collection agent. Replaces the name it currently has.
 	Name NullableString `json:"name,omitempty"`
-	// Credentials for `AZURE_FUNCTION_SERVICE_PRINCIPAL`. Send this or `function_app_key`, never both.
-	ServicePrincipal NullableServicePrincipalCredentialsIn `json:"service_principal,omitempty"`
+	// How Monte Carlo authenticates when it calls the agent. Send it together with the matching credentials object.
+	AuthenticationType NullableAzureAgentAuthenticationType `json:"authentication_type,omitempty"`
 }
 
 // NewAzureCollectionAgentPatch instantiates a new AzureCollectionAgentPatch object
@@ -46,49 +46,6 @@ func NewAzureCollectionAgentPatch() *AzureCollectionAgentPatch {
 func NewAzureCollectionAgentPatchWithDefaults() *AzureCollectionAgentPatch {
 	this := AzureCollectionAgentPatch{}
 	return &this
-}
-
-// GetAuthenticationType returns the AuthenticationType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionAgentPatch) GetAuthenticationType() AzureAgentAuthenticationType {
-	if o == nil || IsNil(o.AuthenticationType.Get()) {
-		var ret AzureAgentAuthenticationType
-		return ret
-	}
-	return *o.AuthenticationType.Get()
-}
-
-// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionAgentPatch) GetAuthenticationTypeOk() (*AzureAgentAuthenticationType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AuthenticationType.Get(), o.AuthenticationType.IsSet()
-}
-
-// HasAuthenticationType returns a boolean if a field has been set.
-func (o *AzureCollectionAgentPatch) HasAuthenticationType() bool {
-	if o != nil && o.AuthenticationType.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthenticationType gets a reference to the given NullableAzureAgentAuthenticationType and assigns it to the AuthenticationType field.
-func (o *AzureCollectionAgentPatch) SetAuthenticationType(v AzureAgentAuthenticationType) {
-	o.AuthenticationType.Set(&v)
-}
-
-// SetAuthenticationTypeNil sets the value for AuthenticationType to be an explicit nil
-func (o *AzureCollectionAgentPatch) SetAuthenticationTypeNil() {
-	o.AuthenticationType.Set(nil)
-}
-
-// UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
-func (o *AzureCollectionAgentPatch) UnsetAuthenticationType() {
-	o.AuthenticationType.Unset()
 }
 
 // GetFunctionAppKey returns the FunctionAppKey field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -132,6 +89,49 @@ func (o *AzureCollectionAgentPatch) SetFunctionAppKeyNil() {
 // UnsetFunctionAppKey ensures that no value is present for FunctionAppKey, not even an explicit nil
 func (o *AzureCollectionAgentPatch) UnsetFunctionAppKey() {
 	o.FunctionAppKey.Unset()
+}
+
+// GetServicePrincipal returns the ServicePrincipal field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureCollectionAgentPatch) GetServicePrincipal() ServicePrincipalCredentialsIn {
+	if o == nil || IsNil(o.ServicePrincipal.Get()) {
+		var ret ServicePrincipalCredentialsIn
+		return ret
+	}
+	return *o.ServicePrincipal.Get()
+}
+
+// GetServicePrincipalOk returns a tuple with the ServicePrincipal field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AzureCollectionAgentPatch) GetServicePrincipalOk() (*ServicePrincipalCredentialsIn, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ServicePrincipal.Get(), o.ServicePrincipal.IsSet()
+}
+
+// HasServicePrincipal returns a boolean if a field has been set.
+func (o *AzureCollectionAgentPatch) HasServicePrincipal() bool {
+	if o != nil && o.ServicePrincipal.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetServicePrincipal gets a reference to the given NullableServicePrincipalCredentialsIn and assigns it to the ServicePrincipal field.
+func (o *AzureCollectionAgentPatch) SetServicePrincipal(v ServicePrincipalCredentialsIn) {
+	o.ServicePrincipal.Set(&v)
+}
+
+// SetServicePrincipalNil sets the value for ServicePrincipal to be an explicit nil
+func (o *AzureCollectionAgentPatch) SetServicePrincipalNil() {
+	o.ServicePrincipal.Set(nil)
+}
+
+// UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
+func (o *AzureCollectionAgentPatch) UnsetServicePrincipal() {
+	o.ServicePrincipal.Unset()
 }
 
 // GetFunctionAppUrl returns the FunctionAppUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -220,47 +220,47 @@ func (o *AzureCollectionAgentPatch) UnsetName() {
 	o.Name.Unset()
 }
 
-// GetServicePrincipal returns the ServicePrincipal field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionAgentPatch) GetServicePrincipal() ServicePrincipalCredentialsIn {
-	if o == nil || IsNil(o.ServicePrincipal.Get()) {
-		var ret ServicePrincipalCredentialsIn
+// GetAuthenticationType returns the AuthenticationType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureCollectionAgentPatch) GetAuthenticationType() AzureAgentAuthenticationType {
+	if o == nil || IsNil(o.AuthenticationType.Get()) {
+		var ret AzureAgentAuthenticationType
 		return ret
 	}
-	return *o.ServicePrincipal.Get()
+	return *o.AuthenticationType.Get()
 }
 
-// GetServicePrincipalOk returns a tuple with the ServicePrincipal field value if set, nil otherwise
+// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionAgentPatch) GetServicePrincipalOk() (*ServicePrincipalCredentialsIn, bool) {
+func (o *AzureCollectionAgentPatch) GetAuthenticationTypeOk() (*AzureAgentAuthenticationType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ServicePrincipal.Get(), o.ServicePrincipal.IsSet()
+	return o.AuthenticationType.Get(), o.AuthenticationType.IsSet()
 }
 
-// HasServicePrincipal returns a boolean if a field has been set.
-func (o *AzureCollectionAgentPatch) HasServicePrincipal() bool {
-	if o != nil && o.ServicePrincipal.IsSet() {
+// HasAuthenticationType returns a boolean if a field has been set.
+func (o *AzureCollectionAgentPatch) HasAuthenticationType() bool {
+	if o != nil && o.AuthenticationType.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetServicePrincipal gets a reference to the given NullableServicePrincipalCredentialsIn and assigns it to the ServicePrincipal field.
-func (o *AzureCollectionAgentPatch) SetServicePrincipal(v ServicePrincipalCredentialsIn) {
-	o.ServicePrincipal.Set(&v)
+// SetAuthenticationType gets a reference to the given NullableAzureAgentAuthenticationType and assigns it to the AuthenticationType field.
+func (o *AzureCollectionAgentPatch) SetAuthenticationType(v AzureAgentAuthenticationType) {
+	o.AuthenticationType.Set(&v)
 }
 
-// SetServicePrincipalNil sets the value for ServicePrincipal to be an explicit nil
-func (o *AzureCollectionAgentPatch) SetServicePrincipalNil() {
-	o.ServicePrincipal.Set(nil)
+// SetAuthenticationTypeNil sets the value for AuthenticationType to be an explicit nil
+func (o *AzureCollectionAgentPatch) SetAuthenticationTypeNil() {
+	o.AuthenticationType.Set(nil)
 }
 
-// UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
-func (o *AzureCollectionAgentPatch) UnsetServicePrincipal() {
-	o.ServicePrincipal.Unset()
+// UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
+func (o *AzureCollectionAgentPatch) UnsetAuthenticationType() {
+	o.AuthenticationType.Unset()
 }
 
 func (o AzureCollectionAgentPatch) MarshalJSON() ([]byte, error) {
@@ -273,11 +273,11 @@ func (o AzureCollectionAgentPatch) MarshalJSON() ([]byte, error) {
 
 func (o AzureCollectionAgentPatch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AuthenticationType.IsSet() {
-		toSerialize["authentication_type"] = o.AuthenticationType.Get()
-	}
 	if o.FunctionAppKey.IsSet() {
 		toSerialize["function_app_key"] = o.FunctionAppKey.Get()
+	}
+	if o.ServicePrincipal.IsSet() {
+		toSerialize["service_principal"] = o.ServicePrincipal.Get()
 	}
 	if o.FunctionAppUrl.IsSet() {
 		toSerialize["function_app_url"] = o.FunctionAppUrl.Get()
@@ -285,8 +285,8 @@ func (o AzureCollectionAgentPatch) ToMap() (map[string]interface{}, error) {
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
-	if o.ServicePrincipal.IsSet() {
-		toSerialize["service_principal"] = o.ServicePrincipal.Get()
+	if o.AuthenticationType.IsSet() {
+		toSerialize["authentication_type"] = o.AuthenticationType.Get()
 	}
 	return toSerialize, nil
 }

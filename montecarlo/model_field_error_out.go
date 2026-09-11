@@ -21,14 +21,14 @@ var _ MappedNullable = &FieldErrorOut{}
 
 // FieldErrorOut One field of a request that failed validation.
 type FieldErrorOut struct {
-	// Machine-readable code identifying the kind of validation failure.
-	Code string `json:"code"`
-	// Values that parameterize `message`, for a client that renders its own text instead of showing `message` directly. Absent when there is nothing to report.
-	Extra map[string]string `json:"extra,omitempty"`
 	// Where the invalid field sits, as the path to it from the top of the request body. For example `['port']`, or `['settings', 'timeout']` for a field nested inside an object.
 	Field []string `json:"field"`
+	// Machine-readable code identifying the kind of validation failure.
+	Code string `json:"code"`
 	// Human-readable explanation of why this field failed validation.
 	Message string `json:"message"`
+	// Values that parameterize `message`, for a client that renders its own text instead of showing `message` directly. Absent when there is nothing to report.
+	Extra map[string]string `json:"extra,omitempty"`
 }
 
 type _FieldErrorOut FieldErrorOut
@@ -37,10 +37,10 @@ type _FieldErrorOut FieldErrorOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFieldErrorOut(code string, field []string, message string) *FieldErrorOut {
+func NewFieldErrorOut(field []string, code string, message string) *FieldErrorOut {
 	this := FieldErrorOut{}
-	this.Code = code
 	this.Field = field
+	this.Code = code
 	this.Message = message
 	return &this
 }
@@ -51,6 +51,30 @@ func NewFieldErrorOut(code string, field []string, message string) *FieldErrorOu
 func NewFieldErrorOutWithDefaults() *FieldErrorOut {
 	this := FieldErrorOut{}
 	return &this
+}
+
+// GetField returns the Field field value
+func (o *FieldErrorOut) GetField() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Field
+}
+
+// GetFieldOk returns a tuple with the Field field value
+// and a boolean to check if the value has been set.
+func (o *FieldErrorOut) GetFieldOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Field, true
+}
+
+// SetField sets field value
+func (o *FieldErrorOut) SetField(v []string) {
+	o.Field = v
 }
 
 // GetCode returns the Code field value
@@ -75,6 +99,30 @@ func (o *FieldErrorOut) GetCodeOk() (*string, bool) {
 // SetCode sets field value
 func (o *FieldErrorOut) SetCode(v string) {
 	o.Code = v
+}
+
+// GetMessage returns the Message field value
+func (o *FieldErrorOut) GetMessage() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value
+// and a boolean to check if the value has been set.
+func (o *FieldErrorOut) GetMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Message, true
+}
+
+// SetMessage sets field value
+func (o *FieldErrorOut) SetMessage(v string) {
+	o.Message = v
 }
 
 // GetExtra returns the Extra field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -110,54 +158,6 @@ func (o *FieldErrorOut) SetExtra(v map[string]string) {
 	o.Extra = v
 }
 
-// GetField returns the Field field value
-func (o *FieldErrorOut) GetField() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Field
-}
-
-// GetFieldOk returns a tuple with the Field field value
-// and a boolean to check if the value has been set.
-func (o *FieldErrorOut) GetFieldOk() ([]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Field, true
-}
-
-// SetField sets field value
-func (o *FieldErrorOut) SetField(v []string) {
-	o.Field = v
-}
-
-// GetMessage returns the Message field value
-func (o *FieldErrorOut) GetMessage() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Message
-}
-
-// GetMessageOk returns a tuple with the Message field value
-// and a boolean to check if the value has been set.
-func (o *FieldErrorOut) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Message, true
-}
-
-// SetMessage sets field value
-func (o *FieldErrorOut) SetMessage(v string) {
-	o.Message = v
-}
-
 func (o FieldErrorOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -168,12 +168,12 @@ func (o FieldErrorOut) MarshalJSON() ([]byte, error) {
 
 func (o FieldErrorOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["field"] = o.Field
 	toSerialize["code"] = o.Code
+	toSerialize["message"] = o.Message
 	if o.Extra != nil {
 		toSerialize["extra"] = o.Extra
 	}
-	toSerialize["field"] = o.Field
-	toSerialize["message"] = o.Message
 	return toSerialize, nil
 }
 
@@ -182,8 +182,8 @@ func (o *FieldErrorOut) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"code",
 		"field",
+		"code",
 		"message",
 	}
 

@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	deploymentIn := *openapiclient.NewDeploymentIn(openapiclient.RuntimePlatform("AWS"), openapiclient.DeploymentType("COLLECTION_AGENT")) // DeploymentIn | 
+	deploymentIn := *openapiclient.NewDeploymentIn(openapiclient.DeploymentType("COLLECTION_AGENT"), openapiclient.RuntimePlatform("AWS")) // DeploymentIn | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -300,7 +300,7 @@ import (
 
 func main() {
 	deploymentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
-	deploymentIn := *openapiclient.NewDeploymentIn(openapiclient.RuntimePlatform("AWS"), openapiclient.DeploymentType("COLLECTION_AGENT")) // DeploymentIn | 
+	deploymentIn := *openapiclient.NewDeploymentIn(openapiclient.DeploymentType("COLLECTION_AGENT"), openapiclient.RuntimePlatform("AWS")) // DeploymentIn | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

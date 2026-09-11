@@ -21,18 +21,18 @@ var _ MappedNullable = &GcpCollectionAgentIn{}
 
 // GcpCollectionAgentIn Details Monte Carlo needs to reach a collection agent you have deployed on GCP.
 type GcpCollectionAgentIn struct {
+	// Credentials for `GCP_JSON_SERVICE_ACCOUNT_KEY`, as the contents of the JSON key file Google issued for the service account. Send this or `auth_headers`, never both. It replaces the stored credentials rather than merging into them.
+	ServiceAccountKey NullableString `json:"service_account_key,omitempty"`
 	// Credentials for `CUSTOM_AUTH_HEADERS`. Send this or `service_account_key`, never both. It replaces the stored credentials rather than merging into them.
 	AuthHeaders NullableAuthHeadersCredentialsIn `json:"auth_headers,omitempty"`
 	// How Monte Carlo authenticates when it calls the agent. Send it together with the matching credentials.
 	AuthenticationType GcpAgentAuthenticationType `json:"authentication_type"`
-	// URL of the Cloud Run service Monte Carlo should call.
-	CloudRunUrl string `json:"cloud_run_url" validate:"regexp=^https:\\/\\/[^\\\\s\\/?#]+\\\\S*$"`
 	// Deployment to register the collection agent on. It must already hold an unregistered GCP collection agent.
 	DeploymentId string `json:"deployment_id"`
+	// URL of the Cloud Run service Monte Carlo should call.
+	CloudRunUrl string `json:"cloud_run_url" validate:"regexp=^https:\\/\\/[^\\\\s\\/?#]+\\\\S*$"`
 	// Display name for the collection agent. Replaces the name it currently has.
 	Name NullableString `json:"name,omitempty"`
-	// Credentials for `GCP_JSON_SERVICE_ACCOUNT_KEY`, as the contents of the JSON key file Google issued for the service account. Send this or `auth_headers`, never both. It replaces the stored credentials rather than merging into them.
-	ServiceAccountKey NullableString `json:"service_account_key,omitempty"`
 }
 
 type _GcpCollectionAgentIn GcpCollectionAgentIn
@@ -41,11 +41,11 @@ type _GcpCollectionAgentIn GcpCollectionAgentIn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGcpCollectionAgentIn(authenticationType GcpAgentAuthenticationType, cloudRunUrl string, deploymentId string) *GcpCollectionAgentIn {
+func NewGcpCollectionAgentIn(authenticationType GcpAgentAuthenticationType, deploymentId string, cloudRunUrl string) *GcpCollectionAgentIn {
 	this := GcpCollectionAgentIn{}
 	this.AuthenticationType = authenticationType
-	this.CloudRunUrl = cloudRunUrl
 	this.DeploymentId = deploymentId
+	this.CloudRunUrl = cloudRunUrl
 	return &this
 }
 
@@ -55,6 +55,49 @@ func NewGcpCollectionAgentIn(authenticationType GcpAgentAuthenticationType, clou
 func NewGcpCollectionAgentInWithDefaults() *GcpCollectionAgentIn {
 	this := GcpCollectionAgentIn{}
 	return &this
+}
+
+// GetServiceAccountKey returns the ServiceAccountKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GcpCollectionAgentIn) GetServiceAccountKey() string {
+	if o == nil || IsNil(o.ServiceAccountKey.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ServiceAccountKey.Get()
+}
+
+// GetServiceAccountKeyOk returns a tuple with the ServiceAccountKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GcpCollectionAgentIn) GetServiceAccountKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ServiceAccountKey.Get(), o.ServiceAccountKey.IsSet()
+}
+
+// HasServiceAccountKey returns a boolean if a field has been set.
+func (o *GcpCollectionAgentIn) HasServiceAccountKey() bool {
+	if o != nil && o.ServiceAccountKey.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceAccountKey gets a reference to the given NullableString and assigns it to the ServiceAccountKey field.
+func (o *GcpCollectionAgentIn) SetServiceAccountKey(v string) {
+	o.ServiceAccountKey.Set(&v)
+}
+
+// SetServiceAccountKeyNil sets the value for ServiceAccountKey to be an explicit nil
+func (o *GcpCollectionAgentIn) SetServiceAccountKeyNil() {
+	o.ServiceAccountKey.Set(nil)
+}
+
+// UnsetServiceAccountKey ensures that no value is present for ServiceAccountKey, not even an explicit nil
+func (o *GcpCollectionAgentIn) UnsetServiceAccountKey() {
+	o.ServiceAccountKey.Unset()
 }
 
 // GetAuthHeaders returns the AuthHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -124,30 +167,6 @@ func (o *GcpCollectionAgentIn) SetAuthenticationType(v GcpAgentAuthenticationTyp
 	o.AuthenticationType = v
 }
 
-// GetCloudRunUrl returns the CloudRunUrl field value
-func (o *GcpCollectionAgentIn) GetCloudRunUrl() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.CloudRunUrl
-}
-
-// GetCloudRunUrlOk returns a tuple with the CloudRunUrl field value
-// and a boolean to check if the value has been set.
-func (o *GcpCollectionAgentIn) GetCloudRunUrlOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CloudRunUrl, true
-}
-
-// SetCloudRunUrl sets field value
-func (o *GcpCollectionAgentIn) SetCloudRunUrl(v string) {
-	o.CloudRunUrl = v
-}
-
 // GetDeploymentId returns the DeploymentId field value
 func (o *GcpCollectionAgentIn) GetDeploymentId() string {
 	if o == nil {
@@ -170,6 +189,30 @@ func (o *GcpCollectionAgentIn) GetDeploymentIdOk() (*string, bool) {
 // SetDeploymentId sets field value
 func (o *GcpCollectionAgentIn) SetDeploymentId(v string) {
 	o.DeploymentId = v
+}
+
+// GetCloudRunUrl returns the CloudRunUrl field value
+func (o *GcpCollectionAgentIn) GetCloudRunUrl() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.CloudRunUrl
+}
+
+// GetCloudRunUrlOk returns a tuple with the CloudRunUrl field value
+// and a boolean to check if the value has been set.
+func (o *GcpCollectionAgentIn) GetCloudRunUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CloudRunUrl, true
+}
+
+// SetCloudRunUrl sets field value
+func (o *GcpCollectionAgentIn) SetCloudRunUrl(v string) {
+	o.CloudRunUrl = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -215,49 +258,6 @@ func (o *GcpCollectionAgentIn) UnsetName() {
 	o.Name.Unset()
 }
 
-// GetServiceAccountKey returns the ServiceAccountKey field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GcpCollectionAgentIn) GetServiceAccountKey() string {
-	if o == nil || IsNil(o.ServiceAccountKey.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.ServiceAccountKey.Get()
-}
-
-// GetServiceAccountKeyOk returns a tuple with the ServiceAccountKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GcpCollectionAgentIn) GetServiceAccountKeyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ServiceAccountKey.Get(), o.ServiceAccountKey.IsSet()
-}
-
-// HasServiceAccountKey returns a boolean if a field has been set.
-func (o *GcpCollectionAgentIn) HasServiceAccountKey() bool {
-	if o != nil && o.ServiceAccountKey.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetServiceAccountKey gets a reference to the given NullableString and assigns it to the ServiceAccountKey field.
-func (o *GcpCollectionAgentIn) SetServiceAccountKey(v string) {
-	o.ServiceAccountKey.Set(&v)
-}
-
-// SetServiceAccountKeyNil sets the value for ServiceAccountKey to be an explicit nil
-func (o *GcpCollectionAgentIn) SetServiceAccountKeyNil() {
-	o.ServiceAccountKey.Set(nil)
-}
-
-// UnsetServiceAccountKey ensures that no value is present for ServiceAccountKey, not even an explicit nil
-func (o *GcpCollectionAgentIn) UnsetServiceAccountKey() {
-	o.ServiceAccountKey.Unset()
-}
-
 func (o GcpCollectionAgentIn) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -268,17 +268,17 @@ func (o GcpCollectionAgentIn) MarshalJSON() ([]byte, error) {
 
 func (o GcpCollectionAgentIn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.ServiceAccountKey.IsSet() {
+		toSerialize["service_account_key"] = o.ServiceAccountKey.Get()
+	}
 	if o.AuthHeaders.IsSet() {
 		toSerialize["auth_headers"] = o.AuthHeaders.Get()
 	}
 	toSerialize["authentication_type"] = o.AuthenticationType
-	toSerialize["cloud_run_url"] = o.CloudRunUrl
 	toSerialize["deployment_id"] = o.DeploymentId
+	toSerialize["cloud_run_url"] = o.CloudRunUrl
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
-	}
-	if o.ServiceAccountKey.IsSet() {
-		toSerialize["service_account_key"] = o.ServiceAccountKey.Get()
 	}
 	return toSerialize, nil
 }
@@ -289,8 +289,8 @@ func (o *GcpCollectionAgentIn) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"authentication_type",
-		"cloud_run_url",
 		"deployment_id",
+		"cloud_run_url",
 	}
 
 	allProperties := make(map[string]interface{})

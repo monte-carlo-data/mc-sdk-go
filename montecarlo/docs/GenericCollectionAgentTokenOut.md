@@ -4,18 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CreatedTime** | **time.Time** | When the credential was created. | 
-**DeploymentId** | **string** | Identifier of the deployment whose agent presents this credential. | 
-**Description** | **string** | What this credential is for. | 
 **Id** | **string** | Unique identifier of the credential. For a token this is also its key id; for an OAuth client, its client id. | 
-**McdId** | **string** | Key id the agent presents, as &#x60;mcd_id&#x60; in its configuration. The same value as &#x60;id&#x60;. | 
+**DeploymentId** | **string** | Identifier of the deployment whose agent presents this credential. | 
 **Type** | [**CredentialType**](CredentialType.md) | Which kind of credential this is. | 
+**Description** | **string** | What this credential is for. | 
+**CreatedTime** | **time.Time** | When the credential was created. | 
+**McdId** | **string** | Key id the agent presents, as &#x60;mcd_id&#x60; in its configuration. The same value as &#x60;id&#x60;. | 
 
 ## Methods
 
 ### NewGenericCollectionAgentTokenOut
 
-`func NewGenericCollectionAgentTokenOut(createdTime time.Time, deploymentId string, description string, id string, mcdId string, type_ CredentialType, ) *GenericCollectionAgentTokenOut`
+`func NewGenericCollectionAgentTokenOut(id string, deploymentId string, type_ CredentialType, description string, createdTime time.Time, mcdId string, ) *GenericCollectionAgentTokenOut`
 
 NewGenericCollectionAgentTokenOut instantiates a new GenericCollectionAgentTokenOut object
 This constructor will assign default values to properties that have it defined,
@@ -30,24 +30,24 @@ NewGenericCollectionAgentTokenOutWithDefaults instantiates a new GenericCollecti
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetCreatedTime
+### GetId
 
-`func (o *GenericCollectionAgentTokenOut) GetCreatedTime() time.Time`
+`func (o *GenericCollectionAgentTokenOut) GetId() string`
 
-GetCreatedTime returns the CreatedTime field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetCreatedTimeOk
+### GetIdOk
 
-`func (o *GenericCollectionAgentTokenOut) GetCreatedTimeOk() (*time.Time, bool)`
+`func (o *GenericCollectionAgentTokenOut) GetIdOk() (*string, bool)`
 
-GetCreatedTimeOk returns a tuple with the CreatedTime field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCreatedTime
+### SetId
 
-`func (o *GenericCollectionAgentTokenOut) SetCreatedTime(v time.Time)`
+`func (o *GenericCollectionAgentTokenOut) SetId(v string)`
 
-SetCreatedTime sets CreatedTime field to given value.
+SetId sets Id field to given value.
 
 
 ### GetDeploymentId
@@ -70,6 +70,26 @@ and a boolean to check if the value has been set.
 SetDeploymentId sets DeploymentId field to given value.
 
 
+### GetType
+
+`func (o *GenericCollectionAgentTokenOut) GetType() CredentialType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *GenericCollectionAgentTokenOut) GetTypeOk() (*CredentialType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *GenericCollectionAgentTokenOut) SetType(v CredentialType)`
+
+SetType sets Type field to given value.
+
+
 ### GetDescription
 
 `func (o *GenericCollectionAgentTokenOut) GetDescription() string`
@@ -90,24 +110,24 @@ and a boolean to check if the value has been set.
 SetDescription sets Description field to given value.
 
 
-### GetId
+### GetCreatedTime
 
-`func (o *GenericCollectionAgentTokenOut) GetId() string`
+`func (o *GenericCollectionAgentTokenOut) GetCreatedTime() time.Time`
 
-GetId returns the Id field if non-nil, zero value otherwise.
+GetCreatedTime returns the CreatedTime field if non-nil, zero value otherwise.
 
-### GetIdOk
+### GetCreatedTimeOk
 
-`func (o *GenericCollectionAgentTokenOut) GetIdOk() (*string, bool)`
+`func (o *GenericCollectionAgentTokenOut) GetCreatedTimeOk() (*time.Time, bool)`
 
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+GetCreatedTimeOk returns a tuple with the CreatedTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetId
+### SetCreatedTime
 
-`func (o *GenericCollectionAgentTokenOut) SetId(v string)`
+`func (o *GenericCollectionAgentTokenOut) SetCreatedTime(v time.Time)`
 
-SetId sets Id field to given value.
+SetCreatedTime sets CreatedTime field to given value.
 
 
 ### GetMcdId
@@ -128,26 +148,6 @@ and a boolean to check if the value has been set.
 `func (o *GenericCollectionAgentTokenOut) SetMcdId(v string)`
 
 SetMcdId sets McdId field to given value.
-
-
-### GetType
-
-`func (o *GenericCollectionAgentTokenOut) GetType() CredentialType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *GenericCollectionAgentTokenOut) GetTypeOk() (*CredentialType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *GenericCollectionAgentTokenOut) SetType(v CredentialType)`
-
-SetType sets Type field to given value.
 
 
 

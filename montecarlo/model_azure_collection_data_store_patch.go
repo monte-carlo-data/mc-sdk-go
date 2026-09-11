@@ -19,16 +19,16 @@ var _ MappedNullable = &AzureCollectionDataStorePatch{}
 
 // AzureCollectionDataStorePatch Details to change on an Azure data store. Only what you send is changed.  A credentials object is the exception: it replaces the stored credentials instead of merging into them, so send every field of the object you send, along with the matching `authentication_type`. Sending only `name` skips the checks against your storage, since a name is not validated against it.
 type AzureCollectionDataStorePatch struct {
-	// How Monte Carlo authenticates to the storage account. Send it together with the matching credentials object.
-	AuthenticationType NullableAzureDataStoreAuthenticationType `json:"authentication_type,omitempty"`
+	// Credentials for `AZURE_STORAGE_ACCOUNT_KEYS`. Send this or `service_principal`, never both.
+	StorageAccountKeys NullableStorageAccountKeysCredentialsIn `json:"storage_account_keys,omitempty"`
+	// Credentials for `AZURE_STORAGE_SERVICE_PRINCIPAL`. Send this or `storage_account_keys`, never both.
+	ServicePrincipal NullableStorageServicePrincipalCredentialsIn `json:"service_principal,omitempty"`
 	// Name of the blob container Monte Carlo should use.
 	ContainerName NullableString `json:"container_name,omitempty" validate:"regexp=^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$"`
 	// Display name for the data store. Replaces the name its deployment gave it.
 	Name NullableString `json:"name,omitempty"`
-	// Credentials for `AZURE_STORAGE_SERVICE_PRINCIPAL`. Send this or `storage_account_keys`, never both.
-	ServicePrincipal NullableStorageServicePrincipalCredentialsIn `json:"service_principal,omitempty"`
-	// Credentials for `AZURE_STORAGE_ACCOUNT_KEYS`. Send this or `service_principal`, never both.
-	StorageAccountKeys NullableStorageAccountKeysCredentialsIn `json:"storage_account_keys,omitempty"`
+	// How Monte Carlo authenticates to the storage account. Send it together with the matching credentials object.
+	AuthenticationType NullableAzureDataStoreAuthenticationType `json:"authentication_type,omitempty"`
 }
 
 // NewAzureCollectionDataStorePatch instantiates a new AzureCollectionDataStorePatch object
@@ -48,47 +48,90 @@ func NewAzureCollectionDataStorePatchWithDefaults() *AzureCollectionDataStorePat
 	return &this
 }
 
-// GetAuthenticationType returns the AuthenticationType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionDataStorePatch) GetAuthenticationType() AzureDataStoreAuthenticationType {
-	if o == nil || IsNil(o.AuthenticationType.Get()) {
-		var ret AzureDataStoreAuthenticationType
+// GetStorageAccountKeys returns the StorageAccountKeys field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureCollectionDataStorePatch) GetStorageAccountKeys() StorageAccountKeysCredentialsIn {
+	if o == nil || IsNil(o.StorageAccountKeys.Get()) {
+		var ret StorageAccountKeysCredentialsIn
 		return ret
 	}
-	return *o.AuthenticationType.Get()
+	return *o.StorageAccountKeys.Get()
 }
 
-// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value if set, nil otherwise
+// GetStorageAccountKeysOk returns a tuple with the StorageAccountKeys field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionDataStorePatch) GetAuthenticationTypeOk() (*AzureDataStoreAuthenticationType, bool) {
+func (o *AzureCollectionDataStorePatch) GetStorageAccountKeysOk() (*StorageAccountKeysCredentialsIn, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.AuthenticationType.Get(), o.AuthenticationType.IsSet()
+	return o.StorageAccountKeys.Get(), o.StorageAccountKeys.IsSet()
 }
 
-// HasAuthenticationType returns a boolean if a field has been set.
-func (o *AzureCollectionDataStorePatch) HasAuthenticationType() bool {
-	if o != nil && o.AuthenticationType.IsSet() {
+// HasStorageAccountKeys returns a boolean if a field has been set.
+func (o *AzureCollectionDataStorePatch) HasStorageAccountKeys() bool {
+	if o != nil && o.StorageAccountKeys.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetAuthenticationType gets a reference to the given NullableAzureDataStoreAuthenticationType and assigns it to the AuthenticationType field.
-func (o *AzureCollectionDataStorePatch) SetAuthenticationType(v AzureDataStoreAuthenticationType) {
-	o.AuthenticationType.Set(&v)
+// SetStorageAccountKeys gets a reference to the given NullableStorageAccountKeysCredentialsIn and assigns it to the StorageAccountKeys field.
+func (o *AzureCollectionDataStorePatch) SetStorageAccountKeys(v StorageAccountKeysCredentialsIn) {
+	o.StorageAccountKeys.Set(&v)
 }
 
-// SetAuthenticationTypeNil sets the value for AuthenticationType to be an explicit nil
-func (o *AzureCollectionDataStorePatch) SetAuthenticationTypeNil() {
-	o.AuthenticationType.Set(nil)
+// SetStorageAccountKeysNil sets the value for StorageAccountKeys to be an explicit nil
+func (o *AzureCollectionDataStorePatch) SetStorageAccountKeysNil() {
+	o.StorageAccountKeys.Set(nil)
 }
 
-// UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
-func (o *AzureCollectionDataStorePatch) UnsetAuthenticationType() {
-	o.AuthenticationType.Unset()
+// UnsetStorageAccountKeys ensures that no value is present for StorageAccountKeys, not even an explicit nil
+func (o *AzureCollectionDataStorePatch) UnsetStorageAccountKeys() {
+	o.StorageAccountKeys.Unset()
+}
+
+// GetServicePrincipal returns the ServicePrincipal field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureCollectionDataStorePatch) GetServicePrincipal() StorageServicePrincipalCredentialsIn {
+	if o == nil || IsNil(o.ServicePrincipal.Get()) {
+		var ret StorageServicePrincipalCredentialsIn
+		return ret
+	}
+	return *o.ServicePrincipal.Get()
+}
+
+// GetServicePrincipalOk returns a tuple with the ServicePrincipal field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AzureCollectionDataStorePatch) GetServicePrincipalOk() (*StorageServicePrincipalCredentialsIn, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ServicePrincipal.Get(), o.ServicePrincipal.IsSet()
+}
+
+// HasServicePrincipal returns a boolean if a field has been set.
+func (o *AzureCollectionDataStorePatch) HasServicePrincipal() bool {
+	if o != nil && o.ServicePrincipal.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetServicePrincipal gets a reference to the given NullableStorageServicePrincipalCredentialsIn and assigns it to the ServicePrincipal field.
+func (o *AzureCollectionDataStorePatch) SetServicePrincipal(v StorageServicePrincipalCredentialsIn) {
+	o.ServicePrincipal.Set(&v)
+}
+
+// SetServicePrincipalNil sets the value for ServicePrincipal to be an explicit nil
+func (o *AzureCollectionDataStorePatch) SetServicePrincipalNil() {
+	o.ServicePrincipal.Set(nil)
+}
+
+// UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
+func (o *AzureCollectionDataStorePatch) UnsetServicePrincipal() {
+	o.ServicePrincipal.Unset()
 }
 
 // GetContainerName returns the ContainerName field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -177,90 +220,47 @@ func (o *AzureCollectionDataStorePatch) UnsetName() {
 	o.Name.Unset()
 }
 
-// GetServicePrincipal returns the ServicePrincipal field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionDataStorePatch) GetServicePrincipal() StorageServicePrincipalCredentialsIn {
-	if o == nil || IsNil(o.ServicePrincipal.Get()) {
-		var ret StorageServicePrincipalCredentialsIn
+// GetAuthenticationType returns the AuthenticationType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureCollectionDataStorePatch) GetAuthenticationType() AzureDataStoreAuthenticationType {
+	if o == nil || IsNil(o.AuthenticationType.Get()) {
+		var ret AzureDataStoreAuthenticationType
 		return ret
 	}
-	return *o.ServicePrincipal.Get()
+	return *o.AuthenticationType.Get()
 }
 
-// GetServicePrincipalOk returns a tuple with the ServicePrincipal field value if set, nil otherwise
+// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionDataStorePatch) GetServicePrincipalOk() (*StorageServicePrincipalCredentialsIn, bool) {
+func (o *AzureCollectionDataStorePatch) GetAuthenticationTypeOk() (*AzureDataStoreAuthenticationType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ServicePrincipal.Get(), o.ServicePrincipal.IsSet()
+	return o.AuthenticationType.Get(), o.AuthenticationType.IsSet()
 }
 
-// HasServicePrincipal returns a boolean if a field has been set.
-func (o *AzureCollectionDataStorePatch) HasServicePrincipal() bool {
-	if o != nil && o.ServicePrincipal.IsSet() {
+// HasAuthenticationType returns a boolean if a field has been set.
+func (o *AzureCollectionDataStorePatch) HasAuthenticationType() bool {
+	if o != nil && o.AuthenticationType.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetServicePrincipal gets a reference to the given NullableStorageServicePrincipalCredentialsIn and assigns it to the ServicePrincipal field.
-func (o *AzureCollectionDataStorePatch) SetServicePrincipal(v StorageServicePrincipalCredentialsIn) {
-	o.ServicePrincipal.Set(&v)
+// SetAuthenticationType gets a reference to the given NullableAzureDataStoreAuthenticationType and assigns it to the AuthenticationType field.
+func (o *AzureCollectionDataStorePatch) SetAuthenticationType(v AzureDataStoreAuthenticationType) {
+	o.AuthenticationType.Set(&v)
 }
 
-// SetServicePrincipalNil sets the value for ServicePrincipal to be an explicit nil
-func (o *AzureCollectionDataStorePatch) SetServicePrincipalNil() {
-	o.ServicePrincipal.Set(nil)
+// SetAuthenticationTypeNil sets the value for AuthenticationType to be an explicit nil
+func (o *AzureCollectionDataStorePatch) SetAuthenticationTypeNil() {
+	o.AuthenticationType.Set(nil)
 }
 
-// UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
-func (o *AzureCollectionDataStorePatch) UnsetServicePrincipal() {
-	o.ServicePrincipal.Unset()
-}
-
-// GetStorageAccountKeys returns the StorageAccountKeys field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionDataStorePatch) GetStorageAccountKeys() StorageAccountKeysCredentialsIn {
-	if o == nil || IsNil(o.StorageAccountKeys.Get()) {
-		var ret StorageAccountKeysCredentialsIn
-		return ret
-	}
-	return *o.StorageAccountKeys.Get()
-}
-
-// GetStorageAccountKeysOk returns a tuple with the StorageAccountKeys field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionDataStorePatch) GetStorageAccountKeysOk() (*StorageAccountKeysCredentialsIn, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.StorageAccountKeys.Get(), o.StorageAccountKeys.IsSet()
-}
-
-// HasStorageAccountKeys returns a boolean if a field has been set.
-func (o *AzureCollectionDataStorePatch) HasStorageAccountKeys() bool {
-	if o != nil && o.StorageAccountKeys.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetStorageAccountKeys gets a reference to the given NullableStorageAccountKeysCredentialsIn and assigns it to the StorageAccountKeys field.
-func (o *AzureCollectionDataStorePatch) SetStorageAccountKeys(v StorageAccountKeysCredentialsIn) {
-	o.StorageAccountKeys.Set(&v)
-}
-
-// SetStorageAccountKeysNil sets the value for StorageAccountKeys to be an explicit nil
-func (o *AzureCollectionDataStorePatch) SetStorageAccountKeysNil() {
-	o.StorageAccountKeys.Set(nil)
-}
-
-// UnsetStorageAccountKeys ensures that no value is present for StorageAccountKeys, not even an explicit nil
-func (o *AzureCollectionDataStorePatch) UnsetStorageAccountKeys() {
-	o.StorageAccountKeys.Unset()
+// UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
+func (o *AzureCollectionDataStorePatch) UnsetAuthenticationType() {
+	o.AuthenticationType.Unset()
 }
 
 func (o AzureCollectionDataStorePatch) MarshalJSON() ([]byte, error) {
@@ -273,8 +273,11 @@ func (o AzureCollectionDataStorePatch) MarshalJSON() ([]byte, error) {
 
 func (o AzureCollectionDataStorePatch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AuthenticationType.IsSet() {
-		toSerialize["authentication_type"] = o.AuthenticationType.Get()
+	if o.StorageAccountKeys.IsSet() {
+		toSerialize["storage_account_keys"] = o.StorageAccountKeys.Get()
+	}
+	if o.ServicePrincipal.IsSet() {
+		toSerialize["service_principal"] = o.ServicePrincipal.Get()
 	}
 	if o.ContainerName.IsSet() {
 		toSerialize["container_name"] = o.ContainerName.Get()
@@ -282,11 +285,8 @@ func (o AzureCollectionDataStorePatch) ToMap() (map[string]interface{}, error) {
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
-	if o.ServicePrincipal.IsSet() {
-		toSerialize["service_principal"] = o.ServicePrincipal.Get()
-	}
-	if o.StorageAccountKeys.IsSet() {
-		toSerialize["storage_account_keys"] = o.StorageAccountKeys.Get()
+	if o.AuthenticationType.IsSet() {
+		toSerialize["authentication_type"] = o.AuthenticationType.Get()
 	}
 	return toSerialize, nil
 }

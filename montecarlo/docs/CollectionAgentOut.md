@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationType** | [**NullableAuthenticationType**](AuthenticationType.md) | How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one. | 
-**CreatedTime** | Pointer to **NullableTime** | When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent. | [optional] 
-**DeploymentId** | **string** | Identifier of the deployment this collection agent runs on. | 
-**Enabled** | **bool** | Whether Monte Carlo is using this collection agent. An agent Monte Carlo has not validated is not enabled, either because it has not been registered yet or because validation failed. | 
-**Endpoint** | **NullableString** | Address Monte Carlo reaches the collection agent at, in whatever form its platform uses. On AWS that is the ARN of a Lambda function, on Azure the URL of a function app, and on GCP the URL of a Cloud Run service. Empty until the agent has been registered. Null for a generic or Snowflake agent, which connect to Monte Carlo rather than being reached. | 
 **Id** | **string** | Unique identifier of the collection agent. | 
+**Name** | Pointer to **NullableString** | Display name of the collection agent. Null when it has no name. | [optional] 
+**DeploymentId** | **string** | Identifier of the deployment this collection agent runs on. | 
+**AuthenticationType** | [**NullableAuthenticationType**](AuthenticationType.md) | How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one. | 
+**Enabled** | **bool** | Whether Monte Carlo is using this collection agent. An agent Monte Carlo has not validated is not enabled, either because it has not been registered yet or because validation failed. | 
+**CreatedTime** | Pointer to **NullableTime** | When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent. | [optional] 
+**LastUpdatedTime** | Pointer to **NullableTime** | When the collection agent was last changed. Registering it, renaming it, changing how Monte Carlo reaches it, and Monte Carlo picking up a new image version all update this. Null until any of those has happened. | [optional] 
 **ImageBuild** | Pointer to **NullableString** | Build of the image the collection agent is running. Null until Monte Carlo has contacted the agent. | [optional] 
 **ImageVersion** | Pointer to **NullableString** | Version of the image the collection agent is running. Null until Monte Carlo has contacted the agent. | [optional] 
 **IsRemoteUpgradeable** | **bool** | Whether Monte Carlo can update the collection agent&#39;s image for you. | 
-**LastUpdatedTime** | Pointer to **NullableTime** | When the collection agent was last changed. Registering it, renaming it, changing how Monte Carlo reaches it, and Monte Carlo picking up a new image version all update this. Null until any of those has happened. | [optional] 
-**Name** | Pointer to **NullableString** | Display name of the collection agent. Null when it has no name. | [optional] 
 **Platform** | Pointer to [**NullableRuntimePlatform**](RuntimePlatform.md) | Where the collection agent runs. Use it to build the platform-specific path for any other operation on this agent. Null for an agent whose platform Monte Carlo has not recorded, and no platform-specific path can address one of those. | [optional] 
+**Endpoint** | **NullableString** | Address Monte Carlo reaches the collection agent at, in whatever form its platform uses. On AWS that is the ARN of a Lambda function, on Azure the URL of a function app, and on GCP the URL of a Cloud Run service. Empty until the agent has been registered. Null for a generic or Snowflake agent, which connect to Monte Carlo rather than being reached. | 
 
 ## Methods
 
 ### NewCollectionAgentOut
 
-`func NewCollectionAgentOut(authenticationType NullableAuthenticationType, deploymentId string, enabled bool, endpoint NullableString, id string, isRemoteUpgradeable bool, ) *CollectionAgentOut`
+`func NewCollectionAgentOut(id string, deploymentId string, authenticationType NullableAuthenticationType, enabled bool, isRemoteUpgradeable bool, endpoint NullableString, ) *CollectionAgentOut`
 
 NewCollectionAgentOut instantiates a new CollectionAgentOut object
 This constructor will assign default values to properties that have it defined,
@@ -35,6 +35,81 @@ will change when the set of required properties is changed
 NewCollectionAgentOutWithDefaults instantiates a new CollectionAgentOut object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *CollectionAgentOut) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *CollectionAgentOut) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *CollectionAgentOut) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
+### GetName
+
+`func (o *CollectionAgentOut) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *CollectionAgentOut) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *CollectionAgentOut) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *CollectionAgentOut) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetNameNil
+
+`func (o *CollectionAgentOut) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *CollectionAgentOut) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
+### GetDeploymentId
+
+`func (o *CollectionAgentOut) GetDeploymentId() string`
+
+GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
+
+### GetDeploymentIdOk
+
+`func (o *CollectionAgentOut) GetDeploymentIdOk() (*string, bool)`
+
+GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeploymentId
+
+`func (o *CollectionAgentOut) SetDeploymentId(v string)`
+
+SetDeploymentId sets DeploymentId field to given value.
+
 
 ### GetAuthenticationType
 
@@ -66,6 +141,26 @@ SetAuthenticationType sets AuthenticationType field to given value.
 `func (o *CollectionAgentOut) UnsetAuthenticationType()`
 
 UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
+### GetEnabled
+
+`func (o *CollectionAgentOut) GetEnabled() bool`
+
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+
+### GetEnabledOk
+
+`func (o *CollectionAgentOut) GetEnabledOk() (*bool, bool)`
+
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnabled
+
+`func (o *CollectionAgentOut) SetEnabled(v bool)`
+
+SetEnabled sets Enabled field to given value.
+
+
 ### GetCreatedTime
 
 `func (o *CollectionAgentOut) GetCreatedTime() time.Time`
@@ -101,96 +196,41 @@ HasCreatedTime returns a boolean if a field has been set.
 `func (o *CollectionAgentOut) UnsetCreatedTime()`
 
 UnsetCreatedTime ensures that no value is present for CreatedTime, not even an explicit nil
-### GetDeploymentId
+### GetLastUpdatedTime
 
-`func (o *CollectionAgentOut) GetDeploymentId() string`
+`func (o *CollectionAgentOut) GetLastUpdatedTime() time.Time`
 
-GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
+GetLastUpdatedTime returns the LastUpdatedTime field if non-nil, zero value otherwise.
 
-### GetDeploymentIdOk
+### GetLastUpdatedTimeOk
 
-`func (o *CollectionAgentOut) GetDeploymentIdOk() (*string, bool)`
+`func (o *CollectionAgentOut) GetLastUpdatedTimeOk() (*time.Time, bool)`
 
-GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
+GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeploymentId
+### SetLastUpdatedTime
 
-`func (o *CollectionAgentOut) SetDeploymentId(v string)`
+`func (o *CollectionAgentOut) SetLastUpdatedTime(v time.Time)`
 
-SetDeploymentId sets DeploymentId field to given value.
+SetLastUpdatedTime sets LastUpdatedTime field to given value.
 
+### HasLastUpdatedTime
 
-### GetEnabled
+`func (o *CollectionAgentOut) HasLastUpdatedTime() bool`
 
-`func (o *CollectionAgentOut) GetEnabled() bool`
+HasLastUpdatedTime returns a boolean if a field has been set.
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+### SetLastUpdatedTimeNil
 
-### GetEnabledOk
+`func (o *CollectionAgentOut) SetLastUpdatedTimeNil(b bool)`
 
-`func (o *CollectionAgentOut) GetEnabledOk() (*bool, bool)`
+ SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetLastUpdatedTime
+`func (o *CollectionAgentOut) UnsetLastUpdatedTime()`
 
-### SetEnabled
-
-`func (o *CollectionAgentOut) SetEnabled(v bool)`
-
-SetEnabled sets Enabled field to given value.
-
-
-### GetEndpoint
-
-`func (o *CollectionAgentOut) GetEndpoint() string`
-
-GetEndpoint returns the Endpoint field if non-nil, zero value otherwise.
-
-### GetEndpointOk
-
-`func (o *CollectionAgentOut) GetEndpointOk() (*string, bool)`
-
-GetEndpointOk returns a tuple with the Endpoint field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEndpoint
-
-`func (o *CollectionAgentOut) SetEndpoint(v string)`
-
-SetEndpoint sets Endpoint field to given value.
-
-
-### SetEndpointNil
-
-`func (o *CollectionAgentOut) SetEndpointNil(b bool)`
-
- SetEndpointNil sets the value for Endpoint to be an explicit nil
-
-### UnsetEndpoint
-`func (o *CollectionAgentOut) UnsetEndpoint()`
-
-UnsetEndpoint ensures that no value is present for Endpoint, not even an explicit nil
-### GetId
-
-`func (o *CollectionAgentOut) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *CollectionAgentOut) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *CollectionAgentOut) SetId(v string)`
-
-SetId sets Id field to given value.
-
-
+UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
 ### GetImageBuild
 
 `func (o *CollectionAgentOut) GetImageBuild() string`
@@ -281,76 +321,6 @@ and a boolean to check if the value has been set.
 SetIsRemoteUpgradeable sets IsRemoteUpgradeable field to given value.
 
 
-### GetLastUpdatedTime
-
-`func (o *CollectionAgentOut) GetLastUpdatedTime() time.Time`
-
-GetLastUpdatedTime returns the LastUpdatedTime field if non-nil, zero value otherwise.
-
-### GetLastUpdatedTimeOk
-
-`func (o *CollectionAgentOut) GetLastUpdatedTimeOk() (*time.Time, bool)`
-
-GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastUpdatedTime
-
-`func (o *CollectionAgentOut) SetLastUpdatedTime(v time.Time)`
-
-SetLastUpdatedTime sets LastUpdatedTime field to given value.
-
-### HasLastUpdatedTime
-
-`func (o *CollectionAgentOut) HasLastUpdatedTime() bool`
-
-HasLastUpdatedTime returns a boolean if a field has been set.
-
-### SetLastUpdatedTimeNil
-
-`func (o *CollectionAgentOut) SetLastUpdatedTimeNil(b bool)`
-
- SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
-
-### UnsetLastUpdatedTime
-`func (o *CollectionAgentOut) UnsetLastUpdatedTime()`
-
-UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
-### GetName
-
-`func (o *CollectionAgentOut) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *CollectionAgentOut) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *CollectionAgentOut) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *CollectionAgentOut) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetNameNil
-
-`func (o *CollectionAgentOut) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *CollectionAgentOut) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetPlatform
 
 `func (o *CollectionAgentOut) GetPlatform() RuntimePlatform`
@@ -386,6 +356,36 @@ HasPlatform returns a boolean if a field has been set.
 `func (o *CollectionAgentOut) UnsetPlatform()`
 
 UnsetPlatform ensures that no value is present for Platform, not even an explicit nil
+### GetEndpoint
+
+`func (o *CollectionAgentOut) GetEndpoint() string`
+
+GetEndpoint returns the Endpoint field if non-nil, zero value otherwise.
+
+### GetEndpointOk
+
+`func (o *CollectionAgentOut) GetEndpointOk() (*string, bool)`
+
+GetEndpointOk returns a tuple with the Endpoint field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndpoint
+
+`func (o *CollectionAgentOut) SetEndpoint(v string)`
+
+SetEndpoint sets Endpoint field to given value.
+
+
+### SetEndpointNil
+
+`func (o *CollectionAgentOut) SetEndpointNil(b bool)`
+
+ SetEndpointNil sets the value for Endpoint to be an explicit nil
+
+### UnsetEndpoint
+`func (o *CollectionAgentOut) UnsetEndpoint()`
+
+UnsetEndpoint ensures that no value is present for Endpoint, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

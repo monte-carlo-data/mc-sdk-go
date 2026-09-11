@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountName** | Pointer to **NullableString** | Name of the storage account, needed only when &#x60;account_url&#x60; does not start with it. Monte Carlo takes the first label of the host otherwise, which is right for a standard or private-link URL but not for a custom ingress host. | [optional] 
-**AccountUrl** | **string** | URL of the storage account Monte Carlo sends requests to. A private endpoint or a custom host works, so this is not required to be under &#x60;blob.core.windows.net&#x60;. | 
+**TenantId** | **string** | Directory (tenant) id the service principal lives in. | 
 **ClientId** | **string** | Application (client) id of the service principal. | 
 **ClientSecret** | **string** | Client secret of the service principal. | 
-**TenantId** | **string** | Directory (tenant) id the service principal lives in. | 
+**AccountUrl** | **string** | URL of the storage account Monte Carlo sends requests to. A private endpoint or a custom host works, so this is not required to be under &#x60;blob.core.windows.net&#x60;. | 
+**AccountName** | Pointer to **NullableString** | Name of the storage account, needed only when &#x60;account_url&#x60; does not start with it. Monte Carlo takes the first label of the host otherwise, which is right for a standard or private-link URL but not for a custom ingress host. | [optional] 
 
 ## Methods
 
 ### NewStorageServicePrincipalCredentialsIn
 
-`func NewStorageServicePrincipalCredentialsIn(accountUrl string, clientId string, clientSecret string, tenantId string, ) *StorageServicePrincipalCredentialsIn`
+`func NewStorageServicePrincipalCredentialsIn(tenantId string, clientId string, clientSecret string, accountUrl string, ) *StorageServicePrincipalCredentialsIn`
 
 NewStorageServicePrincipalCredentialsIn instantiates a new StorageServicePrincipalCredentialsIn object
 This constructor will assign default values to properties that have it defined,
@@ -29,59 +29,24 @@ NewStorageServicePrincipalCredentialsInWithDefaults instantiates a new StorageSe
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAccountName
+### GetTenantId
 
-`func (o *StorageServicePrincipalCredentialsIn) GetAccountName() string`
+`func (o *StorageServicePrincipalCredentialsIn) GetTenantId() string`
 
-GetAccountName returns the AccountName field if non-nil, zero value otherwise.
+GetTenantId returns the TenantId field if non-nil, zero value otherwise.
 
-### GetAccountNameOk
+### GetTenantIdOk
 
-`func (o *StorageServicePrincipalCredentialsIn) GetAccountNameOk() (*string, bool)`
+`func (o *StorageServicePrincipalCredentialsIn) GetTenantIdOk() (*string, bool)`
 
-GetAccountNameOk returns a tuple with the AccountName field if it's non-nil, zero value otherwise
+GetTenantIdOk returns a tuple with the TenantId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAccountName
+### SetTenantId
 
-`func (o *StorageServicePrincipalCredentialsIn) SetAccountName(v string)`
+`func (o *StorageServicePrincipalCredentialsIn) SetTenantId(v string)`
 
-SetAccountName sets AccountName field to given value.
-
-### HasAccountName
-
-`func (o *StorageServicePrincipalCredentialsIn) HasAccountName() bool`
-
-HasAccountName returns a boolean if a field has been set.
-
-### SetAccountNameNil
-
-`func (o *StorageServicePrincipalCredentialsIn) SetAccountNameNil(b bool)`
-
- SetAccountNameNil sets the value for AccountName to be an explicit nil
-
-### UnsetAccountName
-`func (o *StorageServicePrincipalCredentialsIn) UnsetAccountName()`
-
-UnsetAccountName ensures that no value is present for AccountName, not even an explicit nil
-### GetAccountUrl
-
-`func (o *StorageServicePrincipalCredentialsIn) GetAccountUrl() string`
-
-GetAccountUrl returns the AccountUrl field if non-nil, zero value otherwise.
-
-### GetAccountUrlOk
-
-`func (o *StorageServicePrincipalCredentialsIn) GetAccountUrlOk() (*string, bool)`
-
-GetAccountUrlOk returns a tuple with the AccountUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAccountUrl
-
-`func (o *StorageServicePrincipalCredentialsIn) SetAccountUrl(v string)`
-
-SetAccountUrl sets AccountUrl field to given value.
+SetTenantId sets TenantId field to given value.
 
 
 ### GetClientId
@@ -124,26 +89,61 @@ and a boolean to check if the value has been set.
 SetClientSecret sets ClientSecret field to given value.
 
 
-### GetTenantId
+### GetAccountUrl
 
-`func (o *StorageServicePrincipalCredentialsIn) GetTenantId() string`
+`func (o *StorageServicePrincipalCredentialsIn) GetAccountUrl() string`
 
-GetTenantId returns the TenantId field if non-nil, zero value otherwise.
+GetAccountUrl returns the AccountUrl field if non-nil, zero value otherwise.
 
-### GetTenantIdOk
+### GetAccountUrlOk
 
-`func (o *StorageServicePrincipalCredentialsIn) GetTenantIdOk() (*string, bool)`
+`func (o *StorageServicePrincipalCredentialsIn) GetAccountUrlOk() (*string, bool)`
 
-GetTenantIdOk returns a tuple with the TenantId field if it's non-nil, zero value otherwise
+GetAccountUrlOk returns a tuple with the AccountUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTenantId
+### SetAccountUrl
 
-`func (o *StorageServicePrincipalCredentialsIn) SetTenantId(v string)`
+`func (o *StorageServicePrincipalCredentialsIn) SetAccountUrl(v string)`
 
-SetTenantId sets TenantId field to given value.
+SetAccountUrl sets AccountUrl field to given value.
 
 
+### GetAccountName
+
+`func (o *StorageServicePrincipalCredentialsIn) GetAccountName() string`
+
+GetAccountName returns the AccountName field if non-nil, zero value otherwise.
+
+### GetAccountNameOk
+
+`func (o *StorageServicePrincipalCredentialsIn) GetAccountNameOk() (*string, bool)`
+
+GetAccountNameOk returns a tuple with the AccountName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAccountName
+
+`func (o *StorageServicePrincipalCredentialsIn) SetAccountName(v string)`
+
+SetAccountName sets AccountName field to given value.
+
+### HasAccountName
+
+`func (o *StorageServicePrincipalCredentialsIn) HasAccountName() bool`
+
+HasAccountName returns a boolean if a field has been set.
+
+### SetAccountNameNil
+
+`func (o *StorageServicePrincipalCredentialsIn) SetAccountNameNil(b bool)`
+
+ SetAccountNameNil sets the value for AccountName to be an explicit nil
+
+### UnsetAccountName
+`func (o *StorageServicePrincipalCredentialsIn) UnsetAccountName()`
+
+UnsetAccountName ensures that no value is present for AccountName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

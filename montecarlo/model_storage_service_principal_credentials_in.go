@@ -21,16 +21,16 @@ var _ MappedNullable = &StorageServicePrincipalCredentialsIn{}
 
 // StorageServicePrincipalCredentialsIn The service principal Monte Carlo authenticates to the storage account as.
 type StorageServicePrincipalCredentialsIn struct {
-	// Name of the storage account, needed only when `account_url` does not start with it. Monte Carlo takes the first label of the host otherwise, which is right for a standard or private-link URL but not for a custom ingress host.
-	AccountName NullableString `json:"account_name,omitempty"`
-	// URL of the storage account Monte Carlo sends requests to. A private endpoint or a custom host works, so this is not required to be under `blob.core.windows.net`.
-	AccountUrl string `json:"account_url" validate:"regexp=^https:\\/\\/[^\\\\s\\/?#]+\\\\S*$"`
+	// Directory (tenant) id the service principal lives in.
+	TenantId string `json:"tenant_id"`
 	// Application (client) id of the service principal.
 	ClientId string `json:"client_id"`
 	// Client secret of the service principal.
 	ClientSecret string `json:"client_secret"`
-	// Directory (tenant) id the service principal lives in.
-	TenantId string `json:"tenant_id"`
+	// URL of the storage account Monte Carlo sends requests to. A private endpoint or a custom host works, so this is not required to be under `blob.core.windows.net`.
+	AccountUrl string `json:"account_url" validate:"regexp=^https:\\/\\/[^\\\\s\\/?#]+\\\\S*$"`
+	// Name of the storage account, needed only when `account_url` does not start with it. Monte Carlo takes the first label of the host otherwise, which is right for a standard or private-link URL but not for a custom ingress host.
+	AccountName NullableString `json:"account_name,omitempty"`
 }
 
 type _StorageServicePrincipalCredentialsIn StorageServicePrincipalCredentialsIn
@@ -39,12 +39,12 @@ type _StorageServicePrincipalCredentialsIn StorageServicePrincipalCredentialsIn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStorageServicePrincipalCredentialsIn(accountUrl string, clientId string, clientSecret string, tenantId string) *StorageServicePrincipalCredentialsIn {
+func NewStorageServicePrincipalCredentialsIn(tenantId string, clientId string, clientSecret string, accountUrl string) *StorageServicePrincipalCredentialsIn {
 	this := StorageServicePrincipalCredentialsIn{}
-	this.AccountUrl = accountUrl
+	this.TenantId = tenantId
 	this.ClientId = clientId
 	this.ClientSecret = clientSecret
-	this.TenantId = tenantId
+	this.AccountUrl = accountUrl
 	return &this
 }
 
@@ -56,71 +56,28 @@ func NewStorageServicePrincipalCredentialsInWithDefaults() *StorageServicePrinci
 	return &this
 }
 
-// GetAccountName returns the AccountName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *StorageServicePrincipalCredentialsIn) GetAccountName() string {
-	if o == nil || IsNil(o.AccountName.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.AccountName.Get()
-}
-
-// GetAccountNameOk returns a tuple with the AccountName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *StorageServicePrincipalCredentialsIn) GetAccountNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AccountName.Get(), o.AccountName.IsSet()
-}
-
-// HasAccountName returns a boolean if a field has been set.
-func (o *StorageServicePrincipalCredentialsIn) HasAccountName() bool {
-	if o != nil && o.AccountName.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAccountName gets a reference to the given NullableString and assigns it to the AccountName field.
-func (o *StorageServicePrincipalCredentialsIn) SetAccountName(v string) {
-	o.AccountName.Set(&v)
-}
-
-// SetAccountNameNil sets the value for AccountName to be an explicit nil
-func (o *StorageServicePrincipalCredentialsIn) SetAccountNameNil() {
-	o.AccountName.Set(nil)
-}
-
-// UnsetAccountName ensures that no value is present for AccountName, not even an explicit nil
-func (o *StorageServicePrincipalCredentialsIn) UnsetAccountName() {
-	o.AccountName.Unset()
-}
-
-// GetAccountUrl returns the AccountUrl field value
-func (o *StorageServicePrincipalCredentialsIn) GetAccountUrl() string {
+// GetTenantId returns the TenantId field value
+func (o *StorageServicePrincipalCredentialsIn) GetTenantId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.AccountUrl
+	return o.TenantId
 }
 
-// GetAccountUrlOk returns a tuple with the AccountUrl field value
+// GetTenantIdOk returns a tuple with the TenantId field value
 // and a boolean to check if the value has been set.
-func (o *StorageServicePrincipalCredentialsIn) GetAccountUrlOk() (*string, bool) {
+func (o *StorageServicePrincipalCredentialsIn) GetTenantIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AccountUrl, true
+	return &o.TenantId, true
 }
 
-// SetAccountUrl sets field value
-func (o *StorageServicePrincipalCredentialsIn) SetAccountUrl(v string) {
-	o.AccountUrl = v
+// SetTenantId sets field value
+func (o *StorageServicePrincipalCredentialsIn) SetTenantId(v string) {
+	o.TenantId = v
 }
 
 // GetClientId returns the ClientId field value
@@ -171,28 +128,71 @@ func (o *StorageServicePrincipalCredentialsIn) SetClientSecret(v string) {
 	o.ClientSecret = v
 }
 
-// GetTenantId returns the TenantId field value
-func (o *StorageServicePrincipalCredentialsIn) GetTenantId() string {
+// GetAccountUrl returns the AccountUrl field value
+func (o *StorageServicePrincipalCredentialsIn) GetAccountUrl() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.TenantId
+	return o.AccountUrl
 }
 
-// GetTenantIdOk returns a tuple with the TenantId field value
+// GetAccountUrlOk returns a tuple with the AccountUrl field value
 // and a boolean to check if the value has been set.
-func (o *StorageServicePrincipalCredentialsIn) GetTenantIdOk() (*string, bool) {
+func (o *StorageServicePrincipalCredentialsIn) GetAccountUrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.TenantId, true
+	return &o.AccountUrl, true
 }
 
-// SetTenantId sets field value
-func (o *StorageServicePrincipalCredentialsIn) SetTenantId(v string) {
-	o.TenantId = v
+// SetAccountUrl sets field value
+func (o *StorageServicePrincipalCredentialsIn) SetAccountUrl(v string) {
+	o.AccountUrl = v
+}
+
+// GetAccountName returns the AccountName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *StorageServicePrincipalCredentialsIn) GetAccountName() string {
+	if o == nil || IsNil(o.AccountName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.AccountName.Get()
+}
+
+// GetAccountNameOk returns a tuple with the AccountName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *StorageServicePrincipalCredentialsIn) GetAccountNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AccountName.Get(), o.AccountName.IsSet()
+}
+
+// HasAccountName returns a boolean if a field has been set.
+func (o *StorageServicePrincipalCredentialsIn) HasAccountName() bool {
+	if o != nil && o.AccountName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountName gets a reference to the given NullableString and assigns it to the AccountName field.
+func (o *StorageServicePrincipalCredentialsIn) SetAccountName(v string) {
+	o.AccountName.Set(&v)
+}
+
+// SetAccountNameNil sets the value for AccountName to be an explicit nil
+func (o *StorageServicePrincipalCredentialsIn) SetAccountNameNil() {
+	o.AccountName.Set(nil)
+}
+
+// UnsetAccountName ensures that no value is present for AccountName, not even an explicit nil
+func (o *StorageServicePrincipalCredentialsIn) UnsetAccountName() {
+	o.AccountName.Unset()
 }
 
 func (o StorageServicePrincipalCredentialsIn) MarshalJSON() ([]byte, error) {
@@ -205,13 +205,13 @@ func (o StorageServicePrincipalCredentialsIn) MarshalJSON() ([]byte, error) {
 
 func (o StorageServicePrincipalCredentialsIn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["tenant_id"] = o.TenantId
+	toSerialize["client_id"] = o.ClientId
+	toSerialize["client_secret"] = o.ClientSecret
+	toSerialize["account_url"] = o.AccountUrl
 	if o.AccountName.IsSet() {
 		toSerialize["account_name"] = o.AccountName.Get()
 	}
-	toSerialize["account_url"] = o.AccountUrl
-	toSerialize["client_id"] = o.ClientId
-	toSerialize["client_secret"] = o.ClientSecret
-	toSerialize["tenant_id"] = o.TenantId
 	return toSerialize, nil
 }
 
@@ -220,10 +220,10 @@ func (o *StorageServicePrincipalCredentialsIn) UnmarshalJSON(data []byte) (err e
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"account_url",
+		"tenant_id",
 		"client_id",
 		"client_secret",
-		"tenant_id",
+		"account_url",
 	}
 
 	allProperties := make(map[string]interface{})

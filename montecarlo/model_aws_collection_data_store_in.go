@@ -21,14 +21,14 @@ var _ MappedNullable = &AwsCollectionDataStoreIn{}
 
 // AwsCollectionDataStoreIn Details Monte Carlo needs to access a data store you keep in an S3 bucket.
 type AwsCollectionDataStoreIn struct {
-	// Name of the S3 bucket Monte Carlo should use.
-	BucketName string `json:"bucket_name" validate:"regexp=^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$"`
 	// Deployment to register the data store on. It must already hold an unregistered S3 data store.
 	DeploymentId string `json:"deployment_id"`
-	// Display name for the data store. Replaces the name its deployment gave it.
-	Name NullableString `json:"name,omitempty"`
+	// Name of the S3 bucket Monte Carlo should use.
+	BucketName string `json:"bucket_name" validate:"regexp=^[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]$"`
 	// ARN of the role Monte Carlo assumes to access the bucket. Its trust policy must already carry the deployment's external id.
 	RoleArn string `json:"role_arn" validate:"regexp=^arn:(aws[a-zA-Z-]*)?:iam::\\\\d{12}:role\\/.+$"`
+	// Display name for the data store. Replaces the name its deployment gave it.
+	Name NullableString `json:"name,omitempty"`
 }
 
 type _AwsCollectionDataStoreIn AwsCollectionDataStoreIn
@@ -37,10 +37,10 @@ type _AwsCollectionDataStoreIn AwsCollectionDataStoreIn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAwsCollectionDataStoreIn(bucketName string, deploymentId string, roleArn string) *AwsCollectionDataStoreIn {
+func NewAwsCollectionDataStoreIn(deploymentId string, bucketName string, roleArn string) *AwsCollectionDataStoreIn {
 	this := AwsCollectionDataStoreIn{}
-	this.BucketName = bucketName
 	this.DeploymentId = deploymentId
+	this.BucketName = bucketName
 	this.RoleArn = roleArn
 	return &this
 }
@@ -51,6 +51,30 @@ func NewAwsCollectionDataStoreIn(bucketName string, deploymentId string, roleArn
 func NewAwsCollectionDataStoreInWithDefaults() *AwsCollectionDataStoreIn {
 	this := AwsCollectionDataStoreIn{}
 	return &this
+}
+
+// GetDeploymentId returns the DeploymentId field value
+func (o *AwsCollectionDataStoreIn) GetDeploymentId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeploymentId
+}
+
+// GetDeploymentIdOk returns a tuple with the DeploymentId field value
+// and a boolean to check if the value has been set.
+func (o *AwsCollectionDataStoreIn) GetDeploymentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeploymentId, true
+}
+
+// SetDeploymentId sets field value
+func (o *AwsCollectionDataStoreIn) SetDeploymentId(v string) {
+	o.DeploymentId = v
 }
 
 // GetBucketName returns the BucketName field value
@@ -77,28 +101,28 @@ func (o *AwsCollectionDataStoreIn) SetBucketName(v string) {
 	o.BucketName = v
 }
 
-// GetDeploymentId returns the DeploymentId field value
-func (o *AwsCollectionDataStoreIn) GetDeploymentId() string {
+// GetRoleArn returns the RoleArn field value
+func (o *AwsCollectionDataStoreIn) GetRoleArn() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.DeploymentId
+	return o.RoleArn
 }
 
-// GetDeploymentIdOk returns a tuple with the DeploymentId field value
+// GetRoleArnOk returns a tuple with the RoleArn field value
 // and a boolean to check if the value has been set.
-func (o *AwsCollectionDataStoreIn) GetDeploymentIdOk() (*string, bool) {
+func (o *AwsCollectionDataStoreIn) GetRoleArnOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DeploymentId, true
+	return &o.RoleArn, true
 }
 
-// SetDeploymentId sets field value
-func (o *AwsCollectionDataStoreIn) SetDeploymentId(v string) {
-	o.DeploymentId = v
+// SetRoleArn sets field value
+func (o *AwsCollectionDataStoreIn) SetRoleArn(v string) {
+	o.RoleArn = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -144,30 +168,6 @@ func (o *AwsCollectionDataStoreIn) UnsetName() {
 	o.Name.Unset()
 }
 
-// GetRoleArn returns the RoleArn field value
-func (o *AwsCollectionDataStoreIn) GetRoleArn() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RoleArn
-}
-
-// GetRoleArnOk returns a tuple with the RoleArn field value
-// and a boolean to check if the value has been set.
-func (o *AwsCollectionDataStoreIn) GetRoleArnOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RoleArn, true
-}
-
-// SetRoleArn sets field value
-func (o *AwsCollectionDataStoreIn) SetRoleArn(v string) {
-	o.RoleArn = v
-}
-
 func (o AwsCollectionDataStoreIn) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -178,12 +178,12 @@ func (o AwsCollectionDataStoreIn) MarshalJSON() ([]byte, error) {
 
 func (o AwsCollectionDataStoreIn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["bucket_name"] = o.BucketName
 	toSerialize["deployment_id"] = o.DeploymentId
+	toSerialize["bucket_name"] = o.BucketName
+	toSerialize["role_arn"] = o.RoleArn
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
-	toSerialize["role_arn"] = o.RoleArn
 	return toSerialize, nil
 }
 
@@ -192,8 +192,8 @@ func (o *AwsCollectionDataStoreIn) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"bucket_name",
 		"deployment_id",
+		"bucket_name",
 		"role_arn",
 	}
 

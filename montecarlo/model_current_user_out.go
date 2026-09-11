@@ -21,24 +21,24 @@ var _ MappedNullable = &CurrentUserOut{}
 
 // CurrentUserOut The identity the request was authenticated as, and the account it resolved to.
 type CurrentUserOut struct {
-	// Whether the account is paused. While it is, this endpoint still answers but every other one returns 403 with the code `account_frozen`.
-	AccountFrozen bool `json:"account_frozen"`
-	// Unique identifier of the caller's account.
-	AccountId string `json:"account_id"`
-	// Display name of the account. Null when the account has no name.
-	AccountName NullableString `json:"account_name,omitempty"`
-	// Names of the authorization groups this user belongs to. They determine what the user is permitted to do.
-	AuthGroups []string `json:"auth_groups,omitempty"`
+	// Unique identifier of the user.
+	UserId string `json:"user_id"`
 	// Email address of the user. An identity with no mailbox of its own, such as an AI agent, carries a display label here instead.
 	Email string `json:"email"`
 	// Given name of the user. Null when it is not set.
 	FirstName NullableString `json:"first_name,omitempty"`
-	// What kind of identity this is. It does not decide what the identity may do — that comes from the authorization groups it belongs to.
-	IdentityType IdentityType `json:"identity_type"`
 	// Family name of the user. Null when it is not set.
 	LastName NullableString `json:"last_name,omitempty"`
-	// Unique identifier of the user.
-	UserId string `json:"user_id"`
+	// What kind of identity this is. It does not decide what the identity may do — that comes from the authorization groups it belongs to.
+	IdentityType IdentityType `json:"identity_type"`
+	// Unique identifier of the caller's account.
+	AccountId string `json:"account_id"`
+	// Display name of the account. Null when the account has no name.
+	AccountName NullableString `json:"account_name,omitempty"`
+	// Whether the account is paused. While it is, this endpoint still answers but every other one returns 403 with the code `account_frozen`.
+	AccountFrozen bool `json:"account_frozen"`
+	// Names of the authorization groups this user belongs to. They determine what the user is permitted to do.
+	AuthGroups []string `json:"auth_groups,omitempty"`
 }
 
 type _CurrentUserOut CurrentUserOut
@@ -47,13 +47,13 @@ type _CurrentUserOut CurrentUserOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCurrentUserOut(accountFrozen bool, accountId string, email string, identityType IdentityType, userId string) *CurrentUserOut {
+func NewCurrentUserOut(userId string, email string, identityType IdentityType, accountId string, accountFrozen bool) *CurrentUserOut {
 	this := CurrentUserOut{}
-	this.AccountFrozen = accountFrozen
-	this.AccountId = accountId
+	this.UserId = userId
 	this.Email = email
 	this.IdentityType = identityType
-	this.UserId = userId
+	this.AccountId = accountId
+	this.AccountFrozen = accountFrozen
 	return &this
 }
 
@@ -65,127 +65,28 @@ func NewCurrentUserOutWithDefaults() *CurrentUserOut {
 	return &this
 }
 
-// GetAccountFrozen returns the AccountFrozen field value
-func (o *CurrentUserOut) GetAccountFrozen() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.AccountFrozen
-}
-
-// GetAccountFrozenOk returns a tuple with the AccountFrozen field value
-// and a boolean to check if the value has been set.
-func (o *CurrentUserOut) GetAccountFrozenOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AccountFrozen, true
-}
-
-// SetAccountFrozen sets field value
-func (o *CurrentUserOut) SetAccountFrozen(v bool) {
-	o.AccountFrozen = v
-}
-
-// GetAccountId returns the AccountId field value
-func (o *CurrentUserOut) GetAccountId() string {
+// GetUserId returns the UserId field value
+func (o *CurrentUserOut) GetUserId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.AccountId
+	return o.UserId
 }
 
-// GetAccountIdOk returns a tuple with the AccountId field value
+// GetUserIdOk returns a tuple with the UserId field value
 // and a boolean to check if the value has been set.
-func (o *CurrentUserOut) GetAccountIdOk() (*string, bool) {
+func (o *CurrentUserOut) GetUserIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.AccountId, true
+	return &o.UserId, true
 }
 
-// SetAccountId sets field value
-func (o *CurrentUserOut) SetAccountId(v string) {
-	o.AccountId = v
-}
-
-// GetAccountName returns the AccountName field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CurrentUserOut) GetAccountName() string {
-	if o == nil || IsNil(o.AccountName.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.AccountName.Get()
-}
-
-// GetAccountNameOk returns a tuple with the AccountName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CurrentUserOut) GetAccountNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AccountName.Get(), o.AccountName.IsSet()
-}
-
-// HasAccountName returns a boolean if a field has been set.
-func (o *CurrentUserOut) HasAccountName() bool {
-	if o != nil && o.AccountName.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAccountName gets a reference to the given NullableString and assigns it to the AccountName field.
-func (o *CurrentUserOut) SetAccountName(v string) {
-	o.AccountName.Set(&v)
-}
-
-// SetAccountNameNil sets the value for AccountName to be an explicit nil
-func (o *CurrentUserOut) SetAccountNameNil() {
-	o.AccountName.Set(nil)
-}
-
-// UnsetAccountName ensures that no value is present for AccountName, not even an explicit nil
-func (o *CurrentUserOut) UnsetAccountName() {
-	o.AccountName.Unset()
-}
-
-// GetAuthGroups returns the AuthGroups field value if set, zero value otherwise.
-func (o *CurrentUserOut) GetAuthGroups() []string {
-	if o == nil || IsNil(o.AuthGroups) {
-		var ret []string
-		return ret
-	}
-	return o.AuthGroups
-}
-
-// GetAuthGroupsOk returns a tuple with the AuthGroups field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CurrentUserOut) GetAuthGroupsOk() ([]string, bool) {
-	if o == nil || IsNil(o.AuthGroups) {
-		return nil, false
-	}
-	return o.AuthGroups, true
-}
-
-// HasAuthGroups returns a boolean if a field has been set.
-func (o *CurrentUserOut) HasAuthGroups() bool {
-	if o != nil && !IsNil(o.AuthGroups) {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthGroups gets a reference to the given []string and assigns it to the AuthGroups field.
-func (o *CurrentUserOut) SetAuthGroups(v []string) {
-	o.AuthGroups = v
+// SetUserId sets field value
+func (o *CurrentUserOut) SetUserId(v string) {
+	o.UserId = v
 }
 
 // GetEmail returns the Email field value
@@ -255,30 +156,6 @@ func (o *CurrentUserOut) UnsetFirstName() {
 	o.FirstName.Unset()
 }
 
-// GetIdentityType returns the IdentityType field value
-func (o *CurrentUserOut) GetIdentityType() IdentityType {
-	if o == nil {
-		var ret IdentityType
-		return ret
-	}
-
-	return o.IdentityType
-}
-
-// GetIdentityTypeOk returns a tuple with the IdentityType field value
-// and a boolean to check if the value has been set.
-func (o *CurrentUserOut) GetIdentityTypeOk() (*IdentityType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.IdentityType, true
-}
-
-// SetIdentityType sets field value
-func (o *CurrentUserOut) SetIdentityType(v IdentityType) {
-	o.IdentityType = v
-}
-
 // GetLastName returns the LastName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CurrentUserOut) GetLastName() string {
 	if o == nil || IsNil(o.LastName.Get()) {
@@ -322,28 +199,151 @@ func (o *CurrentUserOut) UnsetLastName() {
 	o.LastName.Unset()
 }
 
-// GetUserId returns the UserId field value
-func (o *CurrentUserOut) GetUserId() string {
+// GetIdentityType returns the IdentityType field value
+func (o *CurrentUserOut) GetIdentityType() IdentityType {
+	if o == nil {
+		var ret IdentityType
+		return ret
+	}
+
+	return o.IdentityType
+}
+
+// GetIdentityTypeOk returns a tuple with the IdentityType field value
+// and a boolean to check if the value has been set.
+func (o *CurrentUserOut) GetIdentityTypeOk() (*IdentityType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.IdentityType, true
+}
+
+// SetIdentityType sets field value
+func (o *CurrentUserOut) SetIdentityType(v IdentityType) {
+	o.IdentityType = v
+}
+
+// GetAccountId returns the AccountId field value
+func (o *CurrentUserOut) GetAccountId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.UserId
+	return o.AccountId
 }
 
-// GetUserIdOk returns a tuple with the UserId field value
+// GetAccountIdOk returns a tuple with the AccountId field value
 // and a boolean to check if the value has been set.
-func (o *CurrentUserOut) GetUserIdOk() (*string, bool) {
+func (o *CurrentUserOut) GetAccountIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.UserId, true
+	return &o.AccountId, true
 }
 
-// SetUserId sets field value
-func (o *CurrentUserOut) SetUserId(v string) {
-	o.UserId = v
+// SetAccountId sets field value
+func (o *CurrentUserOut) SetAccountId(v string) {
+	o.AccountId = v
+}
+
+// GetAccountName returns the AccountName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CurrentUserOut) GetAccountName() string {
+	if o == nil || IsNil(o.AccountName.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.AccountName.Get()
+}
+
+// GetAccountNameOk returns a tuple with the AccountName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CurrentUserOut) GetAccountNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AccountName.Get(), o.AccountName.IsSet()
+}
+
+// HasAccountName returns a boolean if a field has been set.
+func (o *CurrentUserOut) HasAccountName() bool {
+	if o != nil && o.AccountName.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAccountName gets a reference to the given NullableString and assigns it to the AccountName field.
+func (o *CurrentUserOut) SetAccountName(v string) {
+	o.AccountName.Set(&v)
+}
+
+// SetAccountNameNil sets the value for AccountName to be an explicit nil
+func (o *CurrentUserOut) SetAccountNameNil() {
+	o.AccountName.Set(nil)
+}
+
+// UnsetAccountName ensures that no value is present for AccountName, not even an explicit nil
+func (o *CurrentUserOut) UnsetAccountName() {
+	o.AccountName.Unset()
+}
+
+// GetAccountFrozen returns the AccountFrozen field value
+func (o *CurrentUserOut) GetAccountFrozen() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.AccountFrozen
+}
+
+// GetAccountFrozenOk returns a tuple with the AccountFrozen field value
+// and a boolean to check if the value has been set.
+func (o *CurrentUserOut) GetAccountFrozenOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AccountFrozen, true
+}
+
+// SetAccountFrozen sets field value
+func (o *CurrentUserOut) SetAccountFrozen(v bool) {
+	o.AccountFrozen = v
+}
+
+// GetAuthGroups returns the AuthGroups field value if set, zero value otherwise.
+func (o *CurrentUserOut) GetAuthGroups() []string {
+	if o == nil || IsNil(o.AuthGroups) {
+		var ret []string
+		return ret
+	}
+	return o.AuthGroups
+}
+
+// GetAuthGroupsOk returns a tuple with the AuthGroups field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CurrentUserOut) GetAuthGroupsOk() ([]string, bool) {
+	if o == nil || IsNil(o.AuthGroups) {
+		return nil, false
+	}
+	return o.AuthGroups, true
+}
+
+// HasAuthGroups returns a boolean if a field has been set.
+func (o *CurrentUserOut) HasAuthGroups() bool {
+	if o != nil && !IsNil(o.AuthGroups) {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthGroups gets a reference to the given []string and assigns it to the AuthGroups field.
+func (o *CurrentUserOut) SetAuthGroups(v []string) {
+	o.AuthGroups = v
 }
 
 func (o CurrentUserOut) MarshalJSON() ([]byte, error) {
@@ -356,23 +356,23 @@ func (o CurrentUserOut) MarshalJSON() ([]byte, error) {
 
 func (o CurrentUserOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["account_frozen"] = o.AccountFrozen
-	toSerialize["account_id"] = o.AccountId
-	if o.AccountName.IsSet() {
-		toSerialize["account_name"] = o.AccountName.Get()
-	}
-	if !IsNil(o.AuthGroups) {
-		toSerialize["auth_groups"] = o.AuthGroups
-	}
+	toSerialize["user_id"] = o.UserId
 	toSerialize["email"] = o.Email
 	if o.FirstName.IsSet() {
 		toSerialize["first_name"] = o.FirstName.Get()
 	}
-	toSerialize["identity_type"] = o.IdentityType
 	if o.LastName.IsSet() {
 		toSerialize["last_name"] = o.LastName.Get()
 	}
-	toSerialize["user_id"] = o.UserId
+	toSerialize["identity_type"] = o.IdentityType
+	toSerialize["account_id"] = o.AccountId
+	if o.AccountName.IsSet() {
+		toSerialize["account_name"] = o.AccountName.Get()
+	}
+	toSerialize["account_frozen"] = o.AccountFrozen
+	if !IsNil(o.AuthGroups) {
+		toSerialize["auth_groups"] = o.AuthGroups
+	}
 	return toSerialize, nil
 }
 
@@ -381,11 +381,11 @@ func (o *CurrentUserOut) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"account_frozen",
-		"account_id",
+		"user_id",
 		"email",
 		"identity_type",
-		"user_id",
+		"account_id",
+		"account_frozen",
 	}
 
 	allProperties := make(map[string]interface{})

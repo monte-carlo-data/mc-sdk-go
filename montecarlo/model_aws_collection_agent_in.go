@@ -25,10 +25,10 @@ type AwsCollectionAgentIn struct {
 	DeploymentId string `json:"deployment_id"`
 	// ARN of the Lambda function Monte Carlo should invoke.
 	LambdaFunctionArn string `json:"lambda_function_arn"`
-	// Display name for the collection agent. Replaces the name it currently has.
-	Name NullableString `json:"name,omitempty"`
 	// ARN of the role Monte Carlo assumes to invoke the function. Its trust policy must already carry the deployment's external id.
 	RoleArn string `json:"role_arn" validate:"regexp=^arn:(aws[a-zA-Z-]*)?:iam::\\\\d{12}:role\\/.+$"`
+	// Display name for the collection agent. Replaces the name it currently has.
+	Name NullableString `json:"name,omitempty"`
 }
 
 type _AwsCollectionAgentIn AwsCollectionAgentIn
@@ -101,6 +101,30 @@ func (o *AwsCollectionAgentIn) SetLambdaFunctionArn(v string) {
 	o.LambdaFunctionArn = v
 }
 
+// GetRoleArn returns the RoleArn field value
+func (o *AwsCollectionAgentIn) GetRoleArn() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RoleArn
+}
+
+// GetRoleArnOk returns a tuple with the RoleArn field value
+// and a boolean to check if the value has been set.
+func (o *AwsCollectionAgentIn) GetRoleArnOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RoleArn, true
+}
+
+// SetRoleArn sets field value
+func (o *AwsCollectionAgentIn) SetRoleArn(v string) {
+	o.RoleArn = v
+}
+
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AwsCollectionAgentIn) GetName() string {
 	if o == nil || IsNil(o.Name.Get()) {
@@ -144,30 +168,6 @@ func (o *AwsCollectionAgentIn) UnsetName() {
 	o.Name.Unset()
 }
 
-// GetRoleArn returns the RoleArn field value
-func (o *AwsCollectionAgentIn) GetRoleArn() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RoleArn
-}
-
-// GetRoleArnOk returns a tuple with the RoleArn field value
-// and a boolean to check if the value has been set.
-func (o *AwsCollectionAgentIn) GetRoleArnOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RoleArn, true
-}
-
-// SetRoleArn sets field value
-func (o *AwsCollectionAgentIn) SetRoleArn(v string) {
-	o.RoleArn = v
-}
-
 func (o AwsCollectionAgentIn) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -180,10 +180,10 @@ func (o AwsCollectionAgentIn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["deployment_id"] = o.DeploymentId
 	toSerialize["lambda_function_arn"] = o.LambdaFunctionArn
+	toSerialize["role_arn"] = o.RoleArn
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
-	toSerialize["role_arn"] = o.RoleArn
 	return toSerialize, nil
 }
 
