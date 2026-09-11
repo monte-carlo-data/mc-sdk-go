@@ -97,19 +97,26 @@ func (o Options) validate() error {
 			return err
 		}
 	}
-	if o.ClientID != "" || o.ClientSecret != "" {
-		if o.ClientID == "" || o.ClientSecret == "" {
-			return errors.New("client id and client secret are both required for OAuth")
-		}
-		if o.Instance == "" {
-			return errors.New("instance is required with OAuth client credentials, e.g. us1")
-		}
+	if err := o.checkPairs(); err != nil {
+		return err
 	}
-	if (o.TokenID != "") != (o.TokenSecret != "") {
-		return errors.New("token id and token secret are both required for an API token")
+	if o.usesOAuth() && o.Instance == "" {
+		return errors.New("instance is required with OAuth client credentials, e.g. us1")
 	}
 	if !o.usesOAuth() && !o.usesAPIToken() && o.Token == "" {
 		return errors.New("no credentials: set client id and secret, token id and secret, or a token")
+	}
+	return nil
+}
+
+// checkPairs rejects half of a credential pair. Resolve runs it before consulting a profile,
+// so a caller's incomplete pair is an error rather than something the profile fills in.
+func (o Options) checkPairs() error {
+	if (o.ClientID != "") != (o.ClientSecret != "") {
+		return errors.New("client id and client secret are both required for OAuth")
+	}
+	if (o.TokenID != "") != (o.TokenSecret != "") {
+		return errors.New("token id and token secret are both required for an API token")
 	}
 	return nil
 }

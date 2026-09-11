@@ -350,3 +350,28 @@ func TestParseINIDoesNotEchoTheOffendingLine(t *testing.T) {
 		t.Fatalf("the error carries the credential: %v", err)
 	}
 }
+
+// Regression proof: half of an explicitly supplied pair used to count as "no credentials", so
+// Resolve replaced both halves with the profile's and the caller authenticated as a different
+// identity without hearing about it.
+func TestHalfAnExplicitCredentialPairIsNotReplacedByTheProfile(t *testing.T) {
+	t.Run("half an api token against an oauth profile", func(t *testing.T) {
+		dir := isolate(t)
+		writeProfiles(t, dir, "[default]\nmcd_oauth_client_id = c\nmcd_oauth_client_secret = s\nmcd_instance_id = us1\n")
+
+		_, err := Options{Endpoint: "https://api.example.com", TokenID: "explicit-id", ConfigDir: dir}.Resolve()
+		if err == nil || !strings.Contains(err.Error(), "token id and token secret are both required") {
+			t.Fatalf("expected the half pair to be refused before the profile is consulted, got: %v", err)
+		}
+	})
+
+	t.Run("half an oauth pair against an api token profile", func(t *testing.T) {
+		dir := isolate(t)
+		writeProfiles(t, dir, "[default]\nmcd_id = id\nmcd_token = secret\n")
+
+		_, err := Options{Endpoint: "https://api.example.com", ClientID: "explicit", ConfigDir: dir}.Resolve()
+		if err == nil || !strings.Contains(err.Error(), "client id and client secret are both required") {
+			t.Fatalf("expected the half pair to be refused before the profile is consulted, got: %v", err)
+		}
+	})
+}
