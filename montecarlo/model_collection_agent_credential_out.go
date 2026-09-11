@@ -22,24 +22,24 @@ var _ MappedNullable = &CollectionAgentCredentialOut{}
 
 // CollectionAgentCredentialOut A credential of either kind, as the list returns it.  `type` says which kind, and which of the kind-specific fields are set. A kind-specific read returns the same credential with only its own fields.
 type CollectionAgentCredentialOut struct {
-	// Client id the agent presents. Set for an `OAUTH_CLIENT`, null otherwise.
-	ClientId NullableString `json:"client_id,omitempty"`
-	// When the credential was created.
-	CreatedTime time.Time `json:"created_time"`
-	// Identifier of the deployment whose agent presents this credential.
-	DeploymentId string `json:"deployment_id"`
-	// What this credential is for.
-	Description string `json:"description"`
-	// When an `OAUTH_CLIENT` stops being accepted. Null for one that does not expire, and for a `TOKEN`.
-	ExpirationTime NullableTime `json:"expiration_time,omitempty"`
 	// Unique identifier of the credential. For a token this is also its key id; for an OAuth client, its client id.
 	Id string `json:"id"`
-	// Key id the agent presents. Set for a `TOKEN`, null otherwise.
-	McdId NullableString `json:"mcd_id,omitempty"`
-	// OAuth scopes the client is granted. Set for an `OAUTH_CLIENT`, null otherwise.
-	Scopes []string `json:"scopes,omitempty"`
+	// Identifier of the deployment whose agent presents this credential.
+	DeploymentId string `json:"deployment_id"`
 	// Which kind of credential this is.
 	Type CredentialType `json:"type"`
+	// What this credential is for.
+	Description string `json:"description"`
+	// When the credential was created.
+	CreatedTime time.Time `json:"created_time"`
+	// Key id the agent presents. Set for a `TOKEN`, null otherwise.
+	McdId NullableString `json:"mcd_id,omitempty"`
+	// Client id the agent presents. Set for an `OAUTH_CLIENT`, null otherwise.
+	ClientId NullableString `json:"client_id,omitempty"`
+	// OAuth scopes the client is granted. Set for an `OAUTH_CLIENT`, null otherwise.
+	Scopes []string `json:"scopes,omitempty"`
+	// When an `OAUTH_CLIENT` stops being accepted. Null for one that does not expire, and for a `TOKEN`.
+	ExpirationTime NullableTime `json:"expiration_time,omitempty"`
 }
 
 type _CollectionAgentCredentialOut CollectionAgentCredentialOut
@@ -48,13 +48,13 @@ type _CollectionAgentCredentialOut CollectionAgentCredentialOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCollectionAgentCredentialOut(createdTime time.Time, deploymentId string, description string, id string, type_ CredentialType) *CollectionAgentCredentialOut {
+func NewCollectionAgentCredentialOut(id string, deploymentId string, type_ CredentialType, description string, createdTime time.Time) *CollectionAgentCredentialOut {
 	this := CollectionAgentCredentialOut{}
-	this.CreatedTime = createdTime
-	this.DeploymentId = deploymentId
-	this.Description = description
 	this.Id = id
+	this.DeploymentId = deploymentId
 	this.Type = type_
+	this.Description = description
+	this.CreatedTime = createdTime
 	return &this
 }
 
@@ -66,71 +66,28 @@ func NewCollectionAgentCredentialOutWithDefaults() *CollectionAgentCredentialOut
 	return &this
 }
 
-// GetClientId returns the ClientId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CollectionAgentCredentialOut) GetClientId() string {
-	if o == nil || IsNil(o.ClientId.Get()) {
+// GetId returns the Id field value
+func (o *CollectionAgentCredentialOut) GetId() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ClientId.Get()
+
+	return o.Id
 }
 
-// GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CollectionAgentCredentialOut) GetClientIdOk() (*string, bool) {
+func (o *CollectionAgentCredentialOut) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ClientId.Get(), o.ClientId.IsSet()
+	return &o.Id, true
 }
 
-// HasClientId returns a boolean if a field has been set.
-func (o *CollectionAgentCredentialOut) HasClientId() bool {
-	if o != nil && o.ClientId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetClientId gets a reference to the given NullableString and assigns it to the ClientId field.
-func (o *CollectionAgentCredentialOut) SetClientId(v string) {
-	o.ClientId.Set(&v)
-}
-
-// SetClientIdNil sets the value for ClientId to be an explicit nil
-func (o *CollectionAgentCredentialOut) SetClientIdNil() {
-	o.ClientId.Set(nil)
-}
-
-// UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
-func (o *CollectionAgentCredentialOut) UnsetClientId() {
-	o.ClientId.Unset()
-}
-
-// GetCreatedTime returns the CreatedTime field value
-func (o *CollectionAgentCredentialOut) GetCreatedTime() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.CreatedTime
-}
-
-// GetCreatedTimeOk returns a tuple with the CreatedTime field value
-// and a boolean to check if the value has been set.
-func (o *CollectionAgentCredentialOut) GetCreatedTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CreatedTime, true
-}
-
-// SetCreatedTime sets field value
-func (o *CollectionAgentCredentialOut) SetCreatedTime(v time.Time) {
-	o.CreatedTime = v
+// SetId sets field value
+func (o *CollectionAgentCredentialOut) SetId(v string) {
+	o.Id = v
 }
 
 // GetDeploymentId returns the DeploymentId field value
@@ -157,6 +114,30 @@ func (o *CollectionAgentCredentialOut) SetDeploymentId(v string) {
 	o.DeploymentId = v
 }
 
+// GetType returns the Type field value
+func (o *CollectionAgentCredentialOut) GetType() CredentialType {
+	if o == nil {
+		var ret CredentialType
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *CollectionAgentCredentialOut) GetTypeOk() (*CredentialType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *CollectionAgentCredentialOut) SetType(v CredentialType) {
+	o.Type = v
+}
+
 // GetDescription returns the Description field value
 func (o *CollectionAgentCredentialOut) GetDescription() string {
 	if o == nil {
@@ -181,71 +162,28 @@ func (o *CollectionAgentCredentialOut) SetDescription(v string) {
 	o.Description = v
 }
 
-// GetExpirationTime returns the ExpirationTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *CollectionAgentCredentialOut) GetExpirationTime() time.Time {
-	if o == nil || IsNil(o.ExpirationTime.Get()) {
+// GetCreatedTime returns the CreatedTime field value
+func (o *CollectionAgentCredentialOut) GetCreatedTime() time.Time {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.ExpirationTime.Get()
+
+	return o.CreatedTime
 }
 
-// GetExpirationTimeOk returns a tuple with the ExpirationTime field value if set, nil otherwise
+// GetCreatedTimeOk returns a tuple with the CreatedTime field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *CollectionAgentCredentialOut) GetExpirationTimeOk() (*time.Time, bool) {
+func (o *CollectionAgentCredentialOut) GetCreatedTimeOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ExpirationTime.Get(), o.ExpirationTime.IsSet()
+	return &o.CreatedTime, true
 }
 
-// HasExpirationTime returns a boolean if a field has been set.
-func (o *CollectionAgentCredentialOut) HasExpirationTime() bool {
-	if o != nil && o.ExpirationTime.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetExpirationTime gets a reference to the given NullableTime and assigns it to the ExpirationTime field.
-func (o *CollectionAgentCredentialOut) SetExpirationTime(v time.Time) {
-	o.ExpirationTime.Set(&v)
-}
-
-// SetExpirationTimeNil sets the value for ExpirationTime to be an explicit nil
-func (o *CollectionAgentCredentialOut) SetExpirationTimeNil() {
-	o.ExpirationTime.Set(nil)
-}
-
-// UnsetExpirationTime ensures that no value is present for ExpirationTime, not even an explicit nil
-func (o *CollectionAgentCredentialOut) UnsetExpirationTime() {
-	o.ExpirationTime.Unset()
-}
-
-// GetId returns the Id field value
-func (o *CollectionAgentCredentialOut) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *CollectionAgentCredentialOut) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *CollectionAgentCredentialOut) SetId(v string) {
-	o.Id = v
+// SetCreatedTime sets field value
+func (o *CollectionAgentCredentialOut) SetCreatedTime(v time.Time) {
+	o.CreatedTime = v
 }
 
 // GetMcdId returns the McdId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -291,6 +229,49 @@ func (o *CollectionAgentCredentialOut) UnsetMcdId() {
 	o.McdId.Unset()
 }
 
+// GetClientId returns the ClientId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CollectionAgentCredentialOut) GetClientId() string {
+	if o == nil || IsNil(o.ClientId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ClientId.Get()
+}
+
+// GetClientIdOk returns a tuple with the ClientId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollectionAgentCredentialOut) GetClientIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ClientId.Get(), o.ClientId.IsSet()
+}
+
+// HasClientId returns a boolean if a field has been set.
+func (o *CollectionAgentCredentialOut) HasClientId() bool {
+	if o != nil && o.ClientId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetClientId gets a reference to the given NullableString and assigns it to the ClientId field.
+func (o *CollectionAgentCredentialOut) SetClientId(v string) {
+	o.ClientId.Set(&v)
+}
+
+// SetClientIdNil sets the value for ClientId to be an explicit nil
+func (o *CollectionAgentCredentialOut) SetClientIdNil() {
+	o.ClientId.Set(nil)
+}
+
+// UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
+func (o *CollectionAgentCredentialOut) UnsetClientId() {
+	o.ClientId.Unset()
+}
+
 // GetScopes returns the Scopes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CollectionAgentCredentialOut) GetScopes() []string {
 	if o == nil {
@@ -324,28 +305,47 @@ func (o *CollectionAgentCredentialOut) SetScopes(v []string) {
 	o.Scopes = v
 }
 
-// GetType returns the Type field value
-func (o *CollectionAgentCredentialOut) GetType() CredentialType {
-	if o == nil {
-		var ret CredentialType
+// GetExpirationTime returns the ExpirationTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CollectionAgentCredentialOut) GetExpirationTime() time.Time {
+	if o == nil || IsNil(o.ExpirationTime.Get()) {
+		var ret time.Time
 		return ret
 	}
-
-	return o.Type
+	return *o.ExpirationTime.Get()
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetExpirationTimeOk returns a tuple with the ExpirationTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CollectionAgentCredentialOut) GetTypeOk() (*CredentialType, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollectionAgentCredentialOut) GetExpirationTimeOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.ExpirationTime.Get(), o.ExpirationTime.IsSet()
 }
 
-// SetType sets field value
-func (o *CollectionAgentCredentialOut) SetType(v CredentialType) {
-	o.Type = v
+// HasExpirationTime returns a boolean if a field has been set.
+func (o *CollectionAgentCredentialOut) HasExpirationTime() bool {
+	if o != nil && o.ExpirationTime.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetExpirationTime gets a reference to the given NullableTime and assigns it to the ExpirationTime field.
+func (o *CollectionAgentCredentialOut) SetExpirationTime(v time.Time) {
+	o.ExpirationTime.Set(&v)
+}
+
+// SetExpirationTimeNil sets the value for ExpirationTime to be an explicit nil
+func (o *CollectionAgentCredentialOut) SetExpirationTimeNil() {
+	o.ExpirationTime.Set(nil)
+}
+
+// UnsetExpirationTime ensures that no value is present for ExpirationTime, not even an explicit nil
+func (o *CollectionAgentCredentialOut) UnsetExpirationTime() {
+	o.ExpirationTime.Unset()
 }
 
 func (o CollectionAgentCredentialOut) MarshalJSON() ([]byte, error) {
@@ -358,23 +358,23 @@ func (o CollectionAgentCredentialOut) MarshalJSON() ([]byte, error) {
 
 func (o CollectionAgentCredentialOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ClientId.IsSet() {
-		toSerialize["client_id"] = o.ClientId.Get()
-	}
-	toSerialize["created_time"] = o.CreatedTime
-	toSerialize["deployment_id"] = o.DeploymentId
-	toSerialize["description"] = o.Description
-	if o.ExpirationTime.IsSet() {
-		toSerialize["expiration_time"] = o.ExpirationTime.Get()
-	}
 	toSerialize["id"] = o.Id
+	toSerialize["deployment_id"] = o.DeploymentId
+	toSerialize["type"] = o.Type
+	toSerialize["description"] = o.Description
+	toSerialize["created_time"] = o.CreatedTime
 	if o.McdId.IsSet() {
 		toSerialize["mcd_id"] = o.McdId.Get()
+	}
+	if o.ClientId.IsSet() {
+		toSerialize["client_id"] = o.ClientId.Get()
 	}
 	if o.Scopes != nil {
 		toSerialize["scopes"] = o.Scopes
 	}
-	toSerialize["type"] = o.Type
+	if o.ExpirationTime.IsSet() {
+		toSerialize["expiration_time"] = o.ExpirationTime.Get()
+	}
 	return toSerialize, nil
 }
 
@@ -383,11 +383,11 @@ func (o *CollectionAgentCredentialOut) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"created_time",
-		"deployment_id",
-		"description",
 		"id",
+		"deployment_id",
 		"type",
+		"description",
+		"created_time",
 	}
 
 	allProperties := make(map[string]interface{})

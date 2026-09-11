@@ -22,22 +22,22 @@ var _ MappedNullable = &DeploymentOut{}
 
 // DeploymentOut One deployment, with the fields only a single read returns.
 type DeploymentOut struct {
-	// Value to supply when you register an AWS collection agent or data store on this deployment. It goes in the trust policy of the role Monte Carlo assumes. Null until Monte Carlo has generated one, for a deployment on another platform, for a caller who is not permitted to register one, and if the value could not be read just now. Retry the request in that last case.
-	AwsExternalId NullableString `json:"aws_external_id,omitempty"`
-	// When the deployment was assigned to your account. Null when Monte Carlo has no record of that.
-	CreatedTime NullableTime `json:"created_time,omitempty"`
-	// Whether the deployment can serve connections. A deployment still waiting for its collection agent or data store to be registered, or with nothing provisioned on it, is not enabled.
-	Enabled bool `json:"enabled"`
 	// Unique identifier of the deployment.
 	Id string `json:"id"`
-	// When Monte Carlo last updated the infrastructure behind the deployment. Null when Monte Carlo has no record of an update.
-	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
 	// Display name of the deployment.
 	Name string `json:"name"`
-	// Where the deployment's collection agent or data store runs. Null for a Monte Carlo hosted deployment, which runs neither, for one with nothing provisioned on it, and for one whose platform Monte Carlo has not recorded.
-	RuntimePlatform NullableRuntimePlatform `json:"runtime_platform,omitempty"`
 	// What the deployment hosts. Null when nothing is provisioned on it, in which case it has to be provisioned before it can be used.
 	Type NullableDeploymentType `json:"type,omitempty"`
+	// Where the deployment's collection agent or data store runs. Null for a Monte Carlo hosted deployment, which runs neither, for one with nothing provisioned on it, and for one whose platform Monte Carlo has not recorded.
+	RuntimePlatform NullableRuntimePlatform `json:"runtime_platform,omitempty"`
+	// Whether the deployment can serve connections. A deployment still waiting for its collection agent or data store to be registered, or with nothing provisioned on it, is not enabled.
+	Enabled bool `json:"enabled"`
+	// When the deployment was assigned to your account. Null when Monte Carlo has no record of that.
+	CreatedTime NullableTime `json:"created_time,omitempty"`
+	// When Monte Carlo last updated the infrastructure behind the deployment. Null when Monte Carlo has no record of an update.
+	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
+	// Value to supply when you register an AWS collection agent or data store on this deployment. It goes in the trust policy of the role Monte Carlo assumes. Null until Monte Carlo has generated one, for a deployment on another platform, for a caller who is not permitted to register one, and if the value could not be read just now. Retry the request in that last case.
+	AwsExternalId NullableString `json:"aws_external_id,omitempty"`
 }
 
 type _DeploymentOut DeploymentOut
@@ -46,11 +46,11 @@ type _DeploymentOut DeploymentOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeploymentOut(enabled bool, id string, name string) *DeploymentOut {
+func NewDeploymentOut(id string, name string, enabled bool) *DeploymentOut {
 	this := DeploymentOut{}
-	this.Enabled = enabled
 	this.Id = id
 	this.Name = name
+	this.Enabled = enabled
 	return &this
 }
 
@@ -60,116 +60,6 @@ func NewDeploymentOut(enabled bool, id string, name string) *DeploymentOut {
 func NewDeploymentOutWithDefaults() *DeploymentOut {
 	this := DeploymentOut{}
 	return &this
-}
-
-// GetAwsExternalId returns the AwsExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DeploymentOut) GetAwsExternalId() string {
-	if o == nil || IsNil(o.AwsExternalId.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.AwsExternalId.Get()
-}
-
-// GetAwsExternalIdOk returns a tuple with the AwsExternalId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DeploymentOut) GetAwsExternalIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AwsExternalId.Get(), o.AwsExternalId.IsSet()
-}
-
-// HasAwsExternalId returns a boolean if a field has been set.
-func (o *DeploymentOut) HasAwsExternalId() bool {
-	if o != nil && o.AwsExternalId.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAwsExternalId gets a reference to the given NullableString and assigns it to the AwsExternalId field.
-func (o *DeploymentOut) SetAwsExternalId(v string) {
-	o.AwsExternalId.Set(&v)
-}
-
-// SetAwsExternalIdNil sets the value for AwsExternalId to be an explicit nil
-func (o *DeploymentOut) SetAwsExternalIdNil() {
-	o.AwsExternalId.Set(nil)
-}
-
-// UnsetAwsExternalId ensures that no value is present for AwsExternalId, not even an explicit nil
-func (o *DeploymentOut) UnsetAwsExternalId() {
-	o.AwsExternalId.Unset()
-}
-
-// GetCreatedTime returns the CreatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DeploymentOut) GetCreatedTime() time.Time {
-	if o == nil || IsNil(o.CreatedTime.Get()) {
-		var ret time.Time
-		return ret
-	}
-	return *o.CreatedTime.Get()
-}
-
-// GetCreatedTimeOk returns a tuple with the CreatedTime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DeploymentOut) GetCreatedTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.CreatedTime.Get(), o.CreatedTime.IsSet()
-}
-
-// HasCreatedTime returns a boolean if a field has been set.
-func (o *DeploymentOut) HasCreatedTime() bool {
-	if o != nil && o.CreatedTime.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedTime gets a reference to the given NullableTime and assigns it to the CreatedTime field.
-func (o *DeploymentOut) SetCreatedTime(v time.Time) {
-	o.CreatedTime.Set(&v)
-}
-
-// SetCreatedTimeNil sets the value for CreatedTime to be an explicit nil
-func (o *DeploymentOut) SetCreatedTimeNil() {
-	o.CreatedTime.Set(nil)
-}
-
-// UnsetCreatedTime ensures that no value is present for CreatedTime, not even an explicit nil
-func (o *DeploymentOut) UnsetCreatedTime() {
-	o.CreatedTime.Unset()
-}
-
-// GetEnabled returns the Enabled field value
-func (o *DeploymentOut) GetEnabled() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-
-	return o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value
-// and a boolean to check if the value has been set.
-func (o *DeploymentOut) GetEnabledOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Enabled, true
-}
-
-// SetEnabled sets field value
-func (o *DeploymentOut) SetEnabled(v bool) {
-	o.Enabled = v
 }
 
 // GetId returns the Id field value
@@ -196,49 +86,6 @@ func (o *DeploymentOut) SetId(v string) {
 	o.Id = v
 }
 
-// GetLastUpdatedTime returns the LastUpdatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DeploymentOut) GetLastUpdatedTime() time.Time {
-	if o == nil || IsNil(o.LastUpdatedTime.Get()) {
-		var ret time.Time
-		return ret
-	}
-	return *o.LastUpdatedTime.Get()
-}
-
-// GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DeploymentOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.LastUpdatedTime.Get(), o.LastUpdatedTime.IsSet()
-}
-
-// HasLastUpdatedTime returns a boolean if a field has been set.
-func (o *DeploymentOut) HasLastUpdatedTime() bool {
-	if o != nil && o.LastUpdatedTime.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetLastUpdatedTime gets a reference to the given NullableTime and assigns it to the LastUpdatedTime field.
-func (o *DeploymentOut) SetLastUpdatedTime(v time.Time) {
-	o.LastUpdatedTime.Set(&v)
-}
-
-// SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
-func (o *DeploymentOut) SetLastUpdatedTimeNil() {
-	o.LastUpdatedTime.Set(nil)
-}
-
-// UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
-func (o *DeploymentOut) UnsetLastUpdatedTime() {
-	o.LastUpdatedTime.Unset()
-}
-
 // GetName returns the Name field value
 func (o *DeploymentOut) GetName() string {
 	if o == nil {
@@ -261,49 +108,6 @@ func (o *DeploymentOut) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *DeploymentOut) SetName(v string) {
 	o.Name = v
-}
-
-// GetRuntimePlatform returns the RuntimePlatform field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *DeploymentOut) GetRuntimePlatform() RuntimePlatform {
-	if o == nil || IsNil(o.RuntimePlatform.Get()) {
-		var ret RuntimePlatform
-		return ret
-	}
-	return *o.RuntimePlatform.Get()
-}
-
-// GetRuntimePlatformOk returns a tuple with the RuntimePlatform field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *DeploymentOut) GetRuntimePlatformOk() (*RuntimePlatform, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.RuntimePlatform.Get(), o.RuntimePlatform.IsSet()
-}
-
-// HasRuntimePlatform returns a boolean if a field has been set.
-func (o *DeploymentOut) HasRuntimePlatform() bool {
-	if o != nil && o.RuntimePlatform.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetRuntimePlatform gets a reference to the given NullableRuntimePlatform and assigns it to the RuntimePlatform field.
-func (o *DeploymentOut) SetRuntimePlatform(v RuntimePlatform) {
-	o.RuntimePlatform.Set(&v)
-}
-
-// SetRuntimePlatformNil sets the value for RuntimePlatform to be an explicit nil
-func (o *DeploymentOut) SetRuntimePlatformNil() {
-	o.RuntimePlatform.Set(nil)
-}
-
-// UnsetRuntimePlatform ensures that no value is present for RuntimePlatform, not even an explicit nil
-func (o *DeploymentOut) UnsetRuntimePlatform() {
-	o.RuntimePlatform.Unset()
 }
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -349,6 +153,202 @@ func (o *DeploymentOut) UnsetType() {
 	o.Type.Unset()
 }
 
+// GetRuntimePlatform returns the RuntimePlatform field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeploymentOut) GetRuntimePlatform() RuntimePlatform {
+	if o == nil || IsNil(o.RuntimePlatform.Get()) {
+		var ret RuntimePlatform
+		return ret
+	}
+	return *o.RuntimePlatform.Get()
+}
+
+// GetRuntimePlatformOk returns a tuple with the RuntimePlatform field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeploymentOut) GetRuntimePlatformOk() (*RuntimePlatform, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RuntimePlatform.Get(), o.RuntimePlatform.IsSet()
+}
+
+// HasRuntimePlatform returns a boolean if a field has been set.
+func (o *DeploymentOut) HasRuntimePlatform() bool {
+	if o != nil && o.RuntimePlatform.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRuntimePlatform gets a reference to the given NullableRuntimePlatform and assigns it to the RuntimePlatform field.
+func (o *DeploymentOut) SetRuntimePlatform(v RuntimePlatform) {
+	o.RuntimePlatform.Set(&v)
+}
+
+// SetRuntimePlatformNil sets the value for RuntimePlatform to be an explicit nil
+func (o *DeploymentOut) SetRuntimePlatformNil() {
+	o.RuntimePlatform.Set(nil)
+}
+
+// UnsetRuntimePlatform ensures that no value is present for RuntimePlatform, not even an explicit nil
+func (o *DeploymentOut) UnsetRuntimePlatform() {
+	o.RuntimePlatform.Unset()
+}
+
+// GetEnabled returns the Enabled field value
+func (o *DeploymentOut) GetEnabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value
+// and a boolean to check if the value has been set.
+func (o *DeploymentOut) GetEnabledOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Enabled, true
+}
+
+// SetEnabled sets field value
+func (o *DeploymentOut) SetEnabled(v bool) {
+	o.Enabled = v
+}
+
+// GetCreatedTime returns the CreatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeploymentOut) GetCreatedTime() time.Time {
+	if o == nil || IsNil(o.CreatedTime.Get()) {
+		var ret time.Time
+		return ret
+	}
+	return *o.CreatedTime.Get()
+}
+
+// GetCreatedTimeOk returns a tuple with the CreatedTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeploymentOut) GetCreatedTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CreatedTime.Get(), o.CreatedTime.IsSet()
+}
+
+// HasCreatedTime returns a boolean if a field has been set.
+func (o *DeploymentOut) HasCreatedTime() bool {
+	if o != nil && o.CreatedTime.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedTime gets a reference to the given NullableTime and assigns it to the CreatedTime field.
+func (o *DeploymentOut) SetCreatedTime(v time.Time) {
+	o.CreatedTime.Set(&v)
+}
+
+// SetCreatedTimeNil sets the value for CreatedTime to be an explicit nil
+func (o *DeploymentOut) SetCreatedTimeNil() {
+	o.CreatedTime.Set(nil)
+}
+
+// UnsetCreatedTime ensures that no value is present for CreatedTime, not even an explicit nil
+func (o *DeploymentOut) UnsetCreatedTime() {
+	o.CreatedTime.Unset()
+}
+
+// GetLastUpdatedTime returns the LastUpdatedTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeploymentOut) GetLastUpdatedTime() time.Time {
+	if o == nil || IsNil(o.LastUpdatedTime.Get()) {
+		var ret time.Time
+		return ret
+	}
+	return *o.LastUpdatedTime.Get()
+}
+
+// GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeploymentOut) GetLastUpdatedTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LastUpdatedTime.Get(), o.LastUpdatedTime.IsSet()
+}
+
+// HasLastUpdatedTime returns a boolean if a field has been set.
+func (o *DeploymentOut) HasLastUpdatedTime() bool {
+	if o != nil && o.LastUpdatedTime.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLastUpdatedTime gets a reference to the given NullableTime and assigns it to the LastUpdatedTime field.
+func (o *DeploymentOut) SetLastUpdatedTime(v time.Time) {
+	o.LastUpdatedTime.Set(&v)
+}
+
+// SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
+func (o *DeploymentOut) SetLastUpdatedTimeNil() {
+	o.LastUpdatedTime.Set(nil)
+}
+
+// UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
+func (o *DeploymentOut) UnsetLastUpdatedTime() {
+	o.LastUpdatedTime.Unset()
+}
+
+// GetAwsExternalId returns the AwsExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeploymentOut) GetAwsExternalId() string {
+	if o == nil || IsNil(o.AwsExternalId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.AwsExternalId.Get()
+}
+
+// GetAwsExternalIdOk returns a tuple with the AwsExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeploymentOut) GetAwsExternalIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AwsExternalId.Get(), o.AwsExternalId.IsSet()
+}
+
+// HasAwsExternalId returns a boolean if a field has been set.
+func (o *DeploymentOut) HasAwsExternalId() bool {
+	if o != nil && o.AwsExternalId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAwsExternalId gets a reference to the given NullableString and assigns it to the AwsExternalId field.
+func (o *DeploymentOut) SetAwsExternalId(v string) {
+	o.AwsExternalId.Set(&v)
+}
+
+// SetAwsExternalIdNil sets the value for AwsExternalId to be an explicit nil
+func (o *DeploymentOut) SetAwsExternalIdNil() {
+	o.AwsExternalId.Set(nil)
+}
+
+// UnsetAwsExternalId ensures that no value is present for AwsExternalId, not even an explicit nil
+func (o *DeploymentOut) UnsetAwsExternalId() {
+	o.AwsExternalId.Unset()
+}
+
 func (o DeploymentOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -359,23 +359,23 @@ func (o DeploymentOut) MarshalJSON() ([]byte, error) {
 
 func (o DeploymentOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AwsExternalId.IsSet() {
-		toSerialize["aws_external_id"] = o.AwsExternalId.Get()
-	}
-	if o.CreatedTime.IsSet() {
-		toSerialize["created_time"] = o.CreatedTime.Get()
-	}
-	toSerialize["enabled"] = o.Enabled
 	toSerialize["id"] = o.Id
-	if o.LastUpdatedTime.IsSet() {
-		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
-	}
 	toSerialize["name"] = o.Name
+	if o.Type.IsSet() {
+		toSerialize["type"] = o.Type.Get()
+	}
 	if o.RuntimePlatform.IsSet() {
 		toSerialize["runtime_platform"] = o.RuntimePlatform.Get()
 	}
-	if o.Type.IsSet() {
-		toSerialize["type"] = o.Type.Get()
+	toSerialize["enabled"] = o.Enabled
+	if o.CreatedTime.IsSet() {
+		toSerialize["created_time"] = o.CreatedTime.Get()
+	}
+	if o.LastUpdatedTime.IsSet() {
+		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
+	}
+	if o.AwsExternalId.IsSet() {
+		toSerialize["aws_external_id"] = o.AwsExternalId.Get()
 	}
 	return toSerialize, nil
 }
@@ -385,9 +385,9 @@ func (o *DeploymentOut) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"enabled",
 		"id",
 		"name",
+		"enabled",
 	}
 
 	allProperties := make(map[string]interface{})

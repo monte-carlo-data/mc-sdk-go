@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BucketName** | **string** | Name of the S3 bucket Monte Carlo should use. | 
 **DeploymentId** | **string** | Deployment to register the data store on. It must already hold an unregistered S3 data store. | 
-**Name** | Pointer to **NullableString** | Display name for the data store. Replaces the name its deployment gave it. | [optional] 
+**BucketName** | **string** | Name of the S3 bucket Monte Carlo should use. | 
 **RoleArn** | **string** | ARN of the role Monte Carlo assumes to access the bucket. Its trust policy must already carry the deployment&#39;s external id. | 
+**Name** | Pointer to **NullableString** | Display name for the data store. Replaces the name its deployment gave it. | [optional] 
 
 ## Methods
 
 ### NewAwsCollectionDataStoreIn
 
-`func NewAwsCollectionDataStoreIn(bucketName string, deploymentId string, roleArn string, ) *AwsCollectionDataStoreIn`
+`func NewAwsCollectionDataStoreIn(deploymentId string, bucketName string, roleArn string, ) *AwsCollectionDataStoreIn`
 
 NewAwsCollectionDataStoreIn instantiates a new AwsCollectionDataStoreIn object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +27,26 @@ will change when the set of required properties is changed
 NewAwsCollectionDataStoreInWithDefaults instantiates a new AwsCollectionDataStoreIn object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDeploymentId
+
+`func (o *AwsCollectionDataStoreIn) GetDeploymentId() string`
+
+GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
+
+### GetDeploymentIdOk
+
+`func (o *AwsCollectionDataStoreIn) GetDeploymentIdOk() (*string, bool)`
+
+GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeploymentId
+
+`func (o *AwsCollectionDataStoreIn) SetDeploymentId(v string)`
+
+SetDeploymentId sets DeploymentId field to given value.
+
 
 ### GetBucketName
 
@@ -48,24 +68,24 @@ and a boolean to check if the value has been set.
 SetBucketName sets BucketName field to given value.
 
 
-### GetDeploymentId
+### GetRoleArn
 
-`func (o *AwsCollectionDataStoreIn) GetDeploymentId() string`
+`func (o *AwsCollectionDataStoreIn) GetRoleArn() string`
 
-GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
+GetRoleArn returns the RoleArn field if non-nil, zero value otherwise.
 
-### GetDeploymentIdOk
+### GetRoleArnOk
 
-`func (o *AwsCollectionDataStoreIn) GetDeploymentIdOk() (*string, bool)`
+`func (o *AwsCollectionDataStoreIn) GetRoleArnOk() (*string, bool)`
 
-GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
+GetRoleArnOk returns a tuple with the RoleArn field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeploymentId
+### SetRoleArn
 
-`func (o *AwsCollectionDataStoreIn) SetDeploymentId(v string)`
+`func (o *AwsCollectionDataStoreIn) SetRoleArn(v string)`
 
-SetDeploymentId sets DeploymentId field to given value.
+SetRoleArn sets RoleArn field to given value.
 
 
 ### GetName
@@ -103,26 +123,6 @@ HasName returns a boolean if a field has been set.
 `func (o *AwsCollectionDataStoreIn) UnsetName()`
 
 UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetRoleArn
-
-`func (o *AwsCollectionDataStoreIn) GetRoleArn() string`
-
-GetRoleArn returns the RoleArn field if non-nil, zero value otherwise.
-
-### GetRoleArnOk
-
-`func (o *AwsCollectionDataStoreIn) GetRoleArnOk() (*string, bool)`
-
-GetRoleArnOk returns a tuple with the RoleArn field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRoleArn
-
-`func (o *AwsCollectionDataStoreIn) SetRoleArn(v string)`
-
-SetRoleArn sets RoleArn field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

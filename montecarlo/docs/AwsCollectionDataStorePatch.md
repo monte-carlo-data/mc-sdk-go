@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BucketName** | Pointer to **NullableString** | Name of the S3 bucket Monte Carlo should use. | [optional] 
-**Name** | Pointer to **NullableString** | Display name for the data store. Replaces the name its deployment gave it. | [optional] 
 **RoleArn** | Pointer to **NullableString** | ARN of the role Monte Carlo assumes to access the bucket. Its trust policy must already carry the deployment&#39;s external id. | [optional] 
+**Name** | Pointer to **NullableString** | Display name for the data store. Replaces the name its deployment gave it. | [optional] 
 
 ## Methods
 
@@ -62,41 +62,6 @@ HasBucketName returns a boolean if a field has been set.
 `func (o *AwsCollectionDataStorePatch) UnsetBucketName()`
 
 UnsetBucketName ensures that no value is present for BucketName, not even an explicit nil
-### GetName
-
-`func (o *AwsCollectionDataStorePatch) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *AwsCollectionDataStorePatch) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *AwsCollectionDataStorePatch) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *AwsCollectionDataStorePatch) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetNameNil
-
-`func (o *AwsCollectionDataStorePatch) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AwsCollectionDataStorePatch) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 ### GetRoleArn
 
 `func (o *AwsCollectionDataStorePatch) GetRoleArn() string`
@@ -132,6 +97,41 @@ HasRoleArn returns a boolean if a field has been set.
 `func (o *AwsCollectionDataStorePatch) UnsetRoleArn()`
 
 UnsetRoleArn ensures that no value is present for RoleArn, not even an explicit nil
+### GetName
+
+`func (o *AwsCollectionDataStorePatch) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *AwsCollectionDataStorePatch) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *AwsCollectionDataStorePatch) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *AwsCollectionDataStorePatch) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetNameNil
+
+`func (o *AwsCollectionDataStorePatch) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *AwsCollectionDataStorePatch) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

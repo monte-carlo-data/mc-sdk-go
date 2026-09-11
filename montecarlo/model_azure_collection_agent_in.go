@@ -21,18 +21,18 @@ var _ MappedNullable = &AzureCollectionAgentIn{}
 
 // AzureCollectionAgentIn Details Monte Carlo needs to reach a collection agent you have deployed on Azure.
 type AzureCollectionAgentIn struct {
+	// Credentials for `AZURE_FUNCTION_APP_KEY`. Send this or `service_principal`, never both.
+	FunctionAppKey NullableFunctionAppKeyCredentialsIn `json:"function_app_key,omitempty"`
+	// Credentials for `AZURE_FUNCTION_SERVICE_PRINCIPAL`. Send this or `function_app_key`, never both.
+	ServicePrincipal NullableServicePrincipalCredentialsIn `json:"service_principal,omitempty"`
 	// How Monte Carlo authenticates when it calls the agent. Send it together with the matching credentials object.
 	AuthenticationType AzureAgentAuthenticationType `json:"authentication_type"`
 	// Deployment to register the collection agent on. It must already hold an unregistered Azure collection agent.
 	DeploymentId string `json:"deployment_id"`
-	// Credentials for `AZURE_FUNCTION_APP_KEY`. Send this or `service_principal`, never both.
-	FunctionAppKey NullableFunctionAppKeyCredentialsIn `json:"function_app_key,omitempty"`
 	// URL of the function app Monte Carlo should call.
 	FunctionAppUrl string `json:"function_app_url" validate:"regexp=^https:\\/\\/[^\\\\s\\/?#]+\\\\S*$"`
 	// Display name for the collection agent. Replaces the name it currently has.
 	Name NullableString `json:"name,omitempty"`
-	// Credentials for `AZURE_FUNCTION_SERVICE_PRINCIPAL`. Send this or `function_app_key`, never both.
-	ServicePrincipal NullableServicePrincipalCredentialsIn `json:"service_principal,omitempty"`
 }
 
 type _AzureCollectionAgentIn AzureCollectionAgentIn
@@ -55,6 +55,92 @@ func NewAzureCollectionAgentIn(authenticationType AzureAgentAuthenticationType, 
 func NewAzureCollectionAgentInWithDefaults() *AzureCollectionAgentIn {
 	this := AzureCollectionAgentIn{}
 	return &this
+}
+
+// GetFunctionAppKey returns the FunctionAppKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureCollectionAgentIn) GetFunctionAppKey() FunctionAppKeyCredentialsIn {
+	if o == nil || IsNil(o.FunctionAppKey.Get()) {
+		var ret FunctionAppKeyCredentialsIn
+		return ret
+	}
+	return *o.FunctionAppKey.Get()
+}
+
+// GetFunctionAppKeyOk returns a tuple with the FunctionAppKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AzureCollectionAgentIn) GetFunctionAppKeyOk() (*FunctionAppKeyCredentialsIn, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.FunctionAppKey.Get(), o.FunctionAppKey.IsSet()
+}
+
+// HasFunctionAppKey returns a boolean if a field has been set.
+func (o *AzureCollectionAgentIn) HasFunctionAppKey() bool {
+	if o != nil && o.FunctionAppKey.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFunctionAppKey gets a reference to the given NullableFunctionAppKeyCredentialsIn and assigns it to the FunctionAppKey field.
+func (o *AzureCollectionAgentIn) SetFunctionAppKey(v FunctionAppKeyCredentialsIn) {
+	o.FunctionAppKey.Set(&v)
+}
+
+// SetFunctionAppKeyNil sets the value for FunctionAppKey to be an explicit nil
+func (o *AzureCollectionAgentIn) SetFunctionAppKeyNil() {
+	o.FunctionAppKey.Set(nil)
+}
+
+// UnsetFunctionAppKey ensures that no value is present for FunctionAppKey, not even an explicit nil
+func (o *AzureCollectionAgentIn) UnsetFunctionAppKey() {
+	o.FunctionAppKey.Unset()
+}
+
+// GetServicePrincipal returns the ServicePrincipal field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureCollectionAgentIn) GetServicePrincipal() ServicePrincipalCredentialsIn {
+	if o == nil || IsNil(o.ServicePrincipal.Get()) {
+		var ret ServicePrincipalCredentialsIn
+		return ret
+	}
+	return *o.ServicePrincipal.Get()
+}
+
+// GetServicePrincipalOk returns a tuple with the ServicePrincipal field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AzureCollectionAgentIn) GetServicePrincipalOk() (*ServicePrincipalCredentialsIn, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ServicePrincipal.Get(), o.ServicePrincipal.IsSet()
+}
+
+// HasServicePrincipal returns a boolean if a field has been set.
+func (o *AzureCollectionAgentIn) HasServicePrincipal() bool {
+	if o != nil && o.ServicePrincipal.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetServicePrincipal gets a reference to the given NullableServicePrincipalCredentialsIn and assigns it to the ServicePrincipal field.
+func (o *AzureCollectionAgentIn) SetServicePrincipal(v ServicePrincipalCredentialsIn) {
+	o.ServicePrincipal.Set(&v)
+}
+
+// SetServicePrincipalNil sets the value for ServicePrincipal to be an explicit nil
+func (o *AzureCollectionAgentIn) SetServicePrincipalNil() {
+	o.ServicePrincipal.Set(nil)
+}
+
+// UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
+func (o *AzureCollectionAgentIn) UnsetServicePrincipal() {
+	o.ServicePrincipal.Unset()
 }
 
 // GetAuthenticationType returns the AuthenticationType field value
@@ -103,49 +189,6 @@ func (o *AzureCollectionAgentIn) GetDeploymentIdOk() (*string, bool) {
 // SetDeploymentId sets field value
 func (o *AzureCollectionAgentIn) SetDeploymentId(v string) {
 	o.DeploymentId = v
-}
-
-// GetFunctionAppKey returns the FunctionAppKey field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionAgentIn) GetFunctionAppKey() FunctionAppKeyCredentialsIn {
-	if o == nil || IsNil(o.FunctionAppKey.Get()) {
-		var ret FunctionAppKeyCredentialsIn
-		return ret
-	}
-	return *o.FunctionAppKey.Get()
-}
-
-// GetFunctionAppKeyOk returns a tuple with the FunctionAppKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionAgentIn) GetFunctionAppKeyOk() (*FunctionAppKeyCredentialsIn, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.FunctionAppKey.Get(), o.FunctionAppKey.IsSet()
-}
-
-// HasFunctionAppKey returns a boolean if a field has been set.
-func (o *AzureCollectionAgentIn) HasFunctionAppKey() bool {
-	if o != nil && o.FunctionAppKey.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetFunctionAppKey gets a reference to the given NullableFunctionAppKeyCredentialsIn and assigns it to the FunctionAppKey field.
-func (o *AzureCollectionAgentIn) SetFunctionAppKey(v FunctionAppKeyCredentialsIn) {
-	o.FunctionAppKey.Set(&v)
-}
-
-// SetFunctionAppKeyNil sets the value for FunctionAppKey to be an explicit nil
-func (o *AzureCollectionAgentIn) SetFunctionAppKeyNil() {
-	o.FunctionAppKey.Set(nil)
-}
-
-// UnsetFunctionAppKey ensures that no value is present for FunctionAppKey, not even an explicit nil
-func (o *AzureCollectionAgentIn) UnsetFunctionAppKey() {
-	o.FunctionAppKey.Unset()
 }
 
 // GetFunctionAppUrl returns the FunctionAppUrl field value
@@ -215,49 +258,6 @@ func (o *AzureCollectionAgentIn) UnsetName() {
 	o.Name.Unset()
 }
 
-// GetServicePrincipal returns the ServicePrincipal field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureCollectionAgentIn) GetServicePrincipal() ServicePrincipalCredentialsIn {
-	if o == nil || IsNil(o.ServicePrincipal.Get()) {
-		var ret ServicePrincipalCredentialsIn
-		return ret
-	}
-	return *o.ServicePrincipal.Get()
-}
-
-// GetServicePrincipalOk returns a tuple with the ServicePrincipal field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureCollectionAgentIn) GetServicePrincipalOk() (*ServicePrincipalCredentialsIn, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.ServicePrincipal.Get(), o.ServicePrincipal.IsSet()
-}
-
-// HasServicePrincipal returns a boolean if a field has been set.
-func (o *AzureCollectionAgentIn) HasServicePrincipal() bool {
-	if o != nil && o.ServicePrincipal.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetServicePrincipal gets a reference to the given NullableServicePrincipalCredentialsIn and assigns it to the ServicePrincipal field.
-func (o *AzureCollectionAgentIn) SetServicePrincipal(v ServicePrincipalCredentialsIn) {
-	o.ServicePrincipal.Set(&v)
-}
-
-// SetServicePrincipalNil sets the value for ServicePrincipal to be an explicit nil
-func (o *AzureCollectionAgentIn) SetServicePrincipalNil() {
-	o.ServicePrincipal.Set(nil)
-}
-
-// UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
-func (o *AzureCollectionAgentIn) UnsetServicePrincipal() {
-	o.ServicePrincipal.Unset()
-}
-
 func (o AzureCollectionAgentIn) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -268,17 +268,17 @@ func (o AzureCollectionAgentIn) MarshalJSON() ([]byte, error) {
 
 func (o AzureCollectionAgentIn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["authentication_type"] = o.AuthenticationType
-	toSerialize["deployment_id"] = o.DeploymentId
 	if o.FunctionAppKey.IsSet() {
 		toSerialize["function_app_key"] = o.FunctionAppKey.Get()
 	}
+	if o.ServicePrincipal.IsSet() {
+		toSerialize["service_principal"] = o.ServicePrincipal.Get()
+	}
+	toSerialize["authentication_type"] = o.AuthenticationType
+	toSerialize["deployment_id"] = o.DeploymentId
 	toSerialize["function_app_url"] = o.FunctionAppUrl
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
-	}
-	if o.ServicePrincipal.IsSet() {
-		toSerialize["service_principal"] = o.ServicePrincipal.Get()
 	}
 	return toSerialize, nil
 }

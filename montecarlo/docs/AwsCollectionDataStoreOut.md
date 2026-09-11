@@ -4,22 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationType** | [**AuthenticationType**](AuthenticationType.md) | How Monte Carlo authenticates when it reaches the data store. | 
-**BucketName** | **string** | Name of the S3 bucket Monte Carlo uses. Empty until it has been registered. | 
-**CreatedTime** | Pointer to **NullableTime** | When the data store was created, which is when its deployment was provisioned. | [optional] 
-**DeploymentId** | **string** | Identifier of the deployment this data store belongs to. | 
-**Enabled** | **bool** | Whether Monte Carlo is using this data store. One that is unregistered, or whose validation failed, is not enabled. | 
-**ExternalId** | Pointer to **NullableString** | Value to put in the trust policy of the role Monte Carlo assumes to access the bucket. Null before Monte Carlo has generated one, and for a caller who cannot register a data store. Also null if the value could not be read just now, so retry once before treating it as absent. | [optional] 
 **Id** | **string** | Unique identifier of the data store. | 
-**LastUpdatedTime** | Pointer to **NullableTime** | When the data store was last registered, renamed, or given different storage or credentials. Null until one of those has happened. | [optional] 
 **Name** | Pointer to **NullableString** | Display name of the data store. Null when it has no name. | [optional] 
+**DeploymentId** | **string** | Identifier of the deployment this data store belongs to. | 
 **StorageType** | [**StorageType**](StorageType.md) | Which kind of storage the data store keeps its data in. | 
+**AuthenticationType** | [**AuthenticationType**](AuthenticationType.md) | How Monte Carlo authenticates when it reaches the data store. | 
+**Enabled** | **bool** | Whether Monte Carlo is using this data store. One that is unregistered, or whose validation failed, is not enabled. | 
+**CreatedTime** | Pointer to **NullableTime** | When the data store was created, which is when its deployment was provisioned. | [optional] 
+**LastUpdatedTime** | Pointer to **NullableTime** | When the data store was last registered, renamed, or given different storage or credentials. Null until one of those has happened. | [optional] 
+**BucketName** | **string** | Name of the S3 bucket Monte Carlo uses. Empty until it has been registered. | 
+**ExternalId** | Pointer to **NullableString** | Value to put in the trust policy of the role Monte Carlo assumes to access the bucket. Null before Monte Carlo has generated one, and for a caller who cannot register a data store. Also null if the value could not be read just now, so retry once before treating it as absent. | [optional] 
 
 ## Methods
 
 ### NewAwsCollectionDataStoreOut
 
-`func NewAwsCollectionDataStoreOut(authenticationType AuthenticationType, bucketName string, deploymentId string, enabled bool, id string, storageType StorageType, ) *AwsCollectionDataStoreOut`
+`func NewAwsCollectionDataStoreOut(id string, deploymentId string, storageType StorageType, authenticationType AuthenticationType, enabled bool, bucketName string, ) *AwsCollectionDataStoreOut`
 
 NewAwsCollectionDataStoreOut instantiates a new AwsCollectionDataStoreOut object
 This constructor will assign default values to properties that have it defined,
@@ -33,6 +33,101 @@ will change when the set of required properties is changed
 NewAwsCollectionDataStoreOutWithDefaults instantiates a new AwsCollectionDataStoreOut object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *AwsCollectionDataStoreOut) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *AwsCollectionDataStoreOut) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *AwsCollectionDataStoreOut) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
+### GetName
+
+`func (o *AwsCollectionDataStoreOut) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *AwsCollectionDataStoreOut) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *AwsCollectionDataStoreOut) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *AwsCollectionDataStoreOut) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetNameNil
+
+`func (o *AwsCollectionDataStoreOut) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *AwsCollectionDataStoreOut) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
+### GetDeploymentId
+
+`func (o *AwsCollectionDataStoreOut) GetDeploymentId() string`
+
+GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
+
+### GetDeploymentIdOk
+
+`func (o *AwsCollectionDataStoreOut) GetDeploymentIdOk() (*string, bool)`
+
+GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeploymentId
+
+`func (o *AwsCollectionDataStoreOut) SetDeploymentId(v string)`
+
+SetDeploymentId sets DeploymentId field to given value.
+
+
+### GetStorageType
+
+`func (o *AwsCollectionDataStoreOut) GetStorageType() StorageType`
+
+GetStorageType returns the StorageType field if non-nil, zero value otherwise.
+
+### GetStorageTypeOk
+
+`func (o *AwsCollectionDataStoreOut) GetStorageTypeOk() (*StorageType, bool)`
+
+GetStorageTypeOk returns a tuple with the StorageType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStorageType
+
+`func (o *AwsCollectionDataStoreOut) SetStorageType(v StorageType)`
+
+SetStorageType sets StorageType field to given value.
+
 
 ### GetAuthenticationType
 
@@ -54,24 +149,24 @@ and a boolean to check if the value has been set.
 SetAuthenticationType sets AuthenticationType field to given value.
 
 
-### GetBucketName
+### GetEnabled
 
-`func (o *AwsCollectionDataStoreOut) GetBucketName() string`
+`func (o *AwsCollectionDataStoreOut) GetEnabled() bool`
 
-GetBucketName returns the BucketName field if non-nil, zero value otherwise.
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
 
-### GetBucketNameOk
+### GetEnabledOk
 
-`func (o *AwsCollectionDataStoreOut) GetBucketNameOk() (*string, bool)`
+`func (o *AwsCollectionDataStoreOut) GetEnabledOk() (*bool, bool)`
 
-GetBucketNameOk returns a tuple with the BucketName field if it's non-nil, zero value otherwise
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetBucketName
+### SetEnabled
 
-`func (o *AwsCollectionDataStoreOut) SetBucketName(v string)`
+`func (o *AwsCollectionDataStoreOut) SetEnabled(v bool)`
 
-SetBucketName sets BucketName field to given value.
+SetEnabled sets Enabled field to given value.
 
 
 ### GetCreatedTime
@@ -109,44 +204,59 @@ HasCreatedTime returns a boolean if a field has been set.
 `func (o *AwsCollectionDataStoreOut) UnsetCreatedTime()`
 
 UnsetCreatedTime ensures that no value is present for CreatedTime, not even an explicit nil
-### GetDeploymentId
+### GetLastUpdatedTime
 
-`func (o *AwsCollectionDataStoreOut) GetDeploymentId() string`
+`func (o *AwsCollectionDataStoreOut) GetLastUpdatedTime() time.Time`
 
-GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
+GetLastUpdatedTime returns the LastUpdatedTime field if non-nil, zero value otherwise.
 
-### GetDeploymentIdOk
+### GetLastUpdatedTimeOk
 
-`func (o *AwsCollectionDataStoreOut) GetDeploymentIdOk() (*string, bool)`
+`func (o *AwsCollectionDataStoreOut) GetLastUpdatedTimeOk() (*time.Time, bool)`
 
-GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
+GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeploymentId
+### SetLastUpdatedTime
 
-`func (o *AwsCollectionDataStoreOut) SetDeploymentId(v string)`
+`func (o *AwsCollectionDataStoreOut) SetLastUpdatedTime(v time.Time)`
 
-SetDeploymentId sets DeploymentId field to given value.
+SetLastUpdatedTime sets LastUpdatedTime field to given value.
 
+### HasLastUpdatedTime
 
-### GetEnabled
+`func (o *AwsCollectionDataStoreOut) HasLastUpdatedTime() bool`
 
-`func (o *AwsCollectionDataStoreOut) GetEnabled() bool`
+HasLastUpdatedTime returns a boolean if a field has been set.
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+### SetLastUpdatedTimeNil
 
-### GetEnabledOk
+`func (o *AwsCollectionDataStoreOut) SetLastUpdatedTimeNil(b bool)`
 
-`func (o *AwsCollectionDataStoreOut) GetEnabledOk() (*bool, bool)`
+ SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+### UnsetLastUpdatedTime
+`func (o *AwsCollectionDataStoreOut) UnsetLastUpdatedTime()`
+
+UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
+### GetBucketName
+
+`func (o *AwsCollectionDataStoreOut) GetBucketName() string`
+
+GetBucketName returns the BucketName field if non-nil, zero value otherwise.
+
+### GetBucketNameOk
+
+`func (o *AwsCollectionDataStoreOut) GetBucketNameOk() (*string, bool)`
+
+GetBucketNameOk returns a tuple with the BucketName field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetEnabled
+### SetBucketName
 
-`func (o *AwsCollectionDataStoreOut) SetEnabled(v bool)`
+`func (o *AwsCollectionDataStoreOut) SetBucketName(v string)`
 
-SetEnabled sets Enabled field to given value.
+SetBucketName sets BucketName field to given value.
 
 
 ### GetExternalId
@@ -184,116 +294,6 @@ HasExternalId returns a boolean if a field has been set.
 `func (o *AwsCollectionDataStoreOut) UnsetExternalId()`
 
 UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
-### GetId
-
-`func (o *AwsCollectionDataStoreOut) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *AwsCollectionDataStoreOut) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *AwsCollectionDataStoreOut) SetId(v string)`
-
-SetId sets Id field to given value.
-
-
-### GetLastUpdatedTime
-
-`func (o *AwsCollectionDataStoreOut) GetLastUpdatedTime() time.Time`
-
-GetLastUpdatedTime returns the LastUpdatedTime field if non-nil, zero value otherwise.
-
-### GetLastUpdatedTimeOk
-
-`func (o *AwsCollectionDataStoreOut) GetLastUpdatedTimeOk() (*time.Time, bool)`
-
-GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastUpdatedTime
-
-`func (o *AwsCollectionDataStoreOut) SetLastUpdatedTime(v time.Time)`
-
-SetLastUpdatedTime sets LastUpdatedTime field to given value.
-
-### HasLastUpdatedTime
-
-`func (o *AwsCollectionDataStoreOut) HasLastUpdatedTime() bool`
-
-HasLastUpdatedTime returns a boolean if a field has been set.
-
-### SetLastUpdatedTimeNil
-
-`func (o *AwsCollectionDataStoreOut) SetLastUpdatedTimeNil(b bool)`
-
- SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
-
-### UnsetLastUpdatedTime
-`func (o *AwsCollectionDataStoreOut) UnsetLastUpdatedTime()`
-
-UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
-### GetName
-
-`func (o *AwsCollectionDataStoreOut) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *AwsCollectionDataStoreOut) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *AwsCollectionDataStoreOut) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *AwsCollectionDataStoreOut) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetNameNil
-
-`func (o *AwsCollectionDataStoreOut) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AwsCollectionDataStoreOut) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetStorageType
-
-`func (o *AwsCollectionDataStoreOut) GetStorageType() StorageType`
-
-GetStorageType returns the StorageType field if non-nil, zero value otherwise.
-
-### GetStorageTypeOk
-
-`func (o *AwsCollectionDataStoreOut) GetStorageTypeOk() (*StorageType, bool)`
-
-GetStorageTypeOk returns a tuple with the StorageType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetStorageType
-
-`func (o *AwsCollectionDataStoreOut) SetStorageType(v StorageType)`
-
-SetStorageType sets StorageType field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

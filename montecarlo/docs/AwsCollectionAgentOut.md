@@ -4,24 +4,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationType** | [**NullableAuthenticationType**](AuthenticationType.md) | How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one. | 
-**CreatedTime** | Pointer to **NullableTime** | When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent. | [optional] 
-**DeploymentId** | **string** | Identifier of the deployment this collection agent runs on. | 
-**Enabled** | **bool** | Whether Monte Carlo is using this collection agent. An agent Monte Carlo has not validated is not enabled, either because it has not been registered yet or because validation failed. | 
-**ExternalId** | Pointer to **NullableString** | Value to supply in the trust policy of the role Monte Carlo assumes to invoke the function. Null until Monte Carlo has generated one, for a caller who is not permitted to register an agent, and if the value could not be read just now. Retry the request in that last case. | [optional] 
 **Id** | **string** | Unique identifier of the collection agent. | 
+**Name** | Pointer to **NullableString** | Display name of the collection agent. Null when it has no name. | [optional] 
+**DeploymentId** | **string** | Identifier of the deployment this collection agent runs on. | 
+**AuthenticationType** | [**NullableAuthenticationType**](AuthenticationType.md) | How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one. | 
+**Enabled** | **bool** | Whether Monte Carlo is using this collection agent. An agent Monte Carlo has not validated is not enabled, either because it has not been registered yet or because validation failed. | 
+**CreatedTime** | Pointer to **NullableTime** | When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent. | [optional] 
+**LastUpdatedTime** | Pointer to **NullableTime** | When the collection agent was last changed. Registering it, renaming it, changing how Monte Carlo reaches it, and Monte Carlo picking up a new image version all update this. Null until any of those has happened. | [optional] 
 **ImageBuild** | Pointer to **NullableString** | Build of the image the collection agent is running. Null until Monte Carlo has contacted the agent. | [optional] 
 **ImageVersion** | Pointer to **NullableString** | Version of the image the collection agent is running. Null until Monte Carlo has contacted the agent. | [optional] 
 **IsRemoteUpgradeable** | **bool** | Whether Monte Carlo can update the collection agent&#39;s image for you. | 
 **LambdaFunctionArn** | **string** | ARN of the Lambda function Monte Carlo invokes. Empty until the agent has been registered. | 
-**LastUpdatedTime** | Pointer to **NullableTime** | When the collection agent was last changed. Registering it, renaming it, changing how Monte Carlo reaches it, and Monte Carlo picking up a new image version all update this. Null until any of those has happened. | [optional] 
-**Name** | Pointer to **NullableString** | Display name of the collection agent. Null when it has no name. | [optional] 
+**ExternalId** | Pointer to **NullableString** | Value to supply in the trust policy of the role Monte Carlo assumes to invoke the function. Null until Monte Carlo has generated one, for a caller who is not permitted to register an agent, and if the value could not be read just now. Retry the request in that last case. | [optional] 
 
 ## Methods
 
 ### NewAwsCollectionAgentOut
 
-`func NewAwsCollectionAgentOut(authenticationType NullableAuthenticationType, deploymentId string, enabled bool, id string, isRemoteUpgradeable bool, lambdaFunctionArn string, ) *AwsCollectionAgentOut`
+`func NewAwsCollectionAgentOut(id string, deploymentId string, authenticationType NullableAuthenticationType, enabled bool, isRemoteUpgradeable bool, lambdaFunctionArn string, ) *AwsCollectionAgentOut`
 
 NewAwsCollectionAgentOut instantiates a new AwsCollectionAgentOut object
 This constructor will assign default values to properties that have it defined,
@@ -35,6 +35,81 @@ will change when the set of required properties is changed
 NewAwsCollectionAgentOutWithDefaults instantiates a new AwsCollectionAgentOut object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *AwsCollectionAgentOut) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *AwsCollectionAgentOut) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *AwsCollectionAgentOut) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
+### GetName
+
+`func (o *AwsCollectionAgentOut) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *AwsCollectionAgentOut) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *AwsCollectionAgentOut) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *AwsCollectionAgentOut) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetNameNil
+
+`func (o *AwsCollectionAgentOut) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *AwsCollectionAgentOut) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
+### GetDeploymentId
+
+`func (o *AwsCollectionAgentOut) GetDeploymentId() string`
+
+GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
+
+### GetDeploymentIdOk
+
+`func (o *AwsCollectionAgentOut) GetDeploymentIdOk() (*string, bool)`
+
+GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeploymentId
+
+`func (o *AwsCollectionAgentOut) SetDeploymentId(v string)`
+
+SetDeploymentId sets DeploymentId field to given value.
+
 
 ### GetAuthenticationType
 
@@ -66,6 +141,26 @@ SetAuthenticationType sets AuthenticationType field to given value.
 `func (o *AwsCollectionAgentOut) UnsetAuthenticationType()`
 
 UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
+### GetEnabled
+
+`func (o *AwsCollectionAgentOut) GetEnabled() bool`
+
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+
+### GetEnabledOk
+
+`func (o *AwsCollectionAgentOut) GetEnabledOk() (*bool, bool)`
+
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnabled
+
+`func (o *AwsCollectionAgentOut) SetEnabled(v bool)`
+
+SetEnabled sets Enabled field to given value.
+
+
 ### GetCreatedTime
 
 `func (o *AwsCollectionAgentOut) GetCreatedTime() time.Time`
@@ -101,101 +196,41 @@ HasCreatedTime returns a boolean if a field has been set.
 `func (o *AwsCollectionAgentOut) UnsetCreatedTime()`
 
 UnsetCreatedTime ensures that no value is present for CreatedTime, not even an explicit nil
-### GetDeploymentId
+### GetLastUpdatedTime
 
-`func (o *AwsCollectionAgentOut) GetDeploymentId() string`
+`func (o *AwsCollectionAgentOut) GetLastUpdatedTime() time.Time`
 
-GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
+GetLastUpdatedTime returns the LastUpdatedTime field if non-nil, zero value otherwise.
 
-### GetDeploymentIdOk
+### GetLastUpdatedTimeOk
 
-`func (o *AwsCollectionAgentOut) GetDeploymentIdOk() (*string, bool)`
+`func (o *AwsCollectionAgentOut) GetLastUpdatedTimeOk() (*time.Time, bool)`
 
-GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
+GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeploymentId
+### SetLastUpdatedTime
 
-`func (o *AwsCollectionAgentOut) SetDeploymentId(v string)`
+`func (o *AwsCollectionAgentOut) SetLastUpdatedTime(v time.Time)`
 
-SetDeploymentId sets DeploymentId field to given value.
+SetLastUpdatedTime sets LastUpdatedTime field to given value.
 
+### HasLastUpdatedTime
 
-### GetEnabled
+`func (o *AwsCollectionAgentOut) HasLastUpdatedTime() bool`
 
-`func (o *AwsCollectionAgentOut) GetEnabled() bool`
+HasLastUpdatedTime returns a boolean if a field has been set.
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+### SetLastUpdatedTimeNil
 
-### GetEnabledOk
+`func (o *AwsCollectionAgentOut) SetLastUpdatedTimeNil(b bool)`
 
-`func (o *AwsCollectionAgentOut) GetEnabledOk() (*bool, bool)`
+ SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetLastUpdatedTime
+`func (o *AwsCollectionAgentOut) UnsetLastUpdatedTime()`
 
-### SetEnabled
-
-`func (o *AwsCollectionAgentOut) SetEnabled(v bool)`
-
-SetEnabled sets Enabled field to given value.
-
-
-### GetExternalId
-
-`func (o *AwsCollectionAgentOut) GetExternalId() string`
-
-GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
-
-### GetExternalIdOk
-
-`func (o *AwsCollectionAgentOut) GetExternalIdOk() (*string, bool)`
-
-GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetExternalId
-
-`func (o *AwsCollectionAgentOut) SetExternalId(v string)`
-
-SetExternalId sets ExternalId field to given value.
-
-### HasExternalId
-
-`func (o *AwsCollectionAgentOut) HasExternalId() bool`
-
-HasExternalId returns a boolean if a field has been set.
-
-### SetExternalIdNil
-
-`func (o *AwsCollectionAgentOut) SetExternalIdNil(b bool)`
-
- SetExternalIdNil sets the value for ExternalId to be an explicit nil
-
-### UnsetExternalId
-`func (o *AwsCollectionAgentOut) UnsetExternalId()`
-
-UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
-### GetId
-
-`func (o *AwsCollectionAgentOut) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *AwsCollectionAgentOut) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *AwsCollectionAgentOut) SetId(v string)`
-
-SetId sets Id field to given value.
-
-
+UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
 ### GetImageBuild
 
 `func (o *AwsCollectionAgentOut) GetImageBuild() string`
@@ -306,76 +341,41 @@ and a boolean to check if the value has been set.
 SetLambdaFunctionArn sets LambdaFunctionArn field to given value.
 
 
-### GetLastUpdatedTime
+### GetExternalId
 
-`func (o *AwsCollectionAgentOut) GetLastUpdatedTime() time.Time`
+`func (o *AwsCollectionAgentOut) GetExternalId() string`
 
-GetLastUpdatedTime returns the LastUpdatedTime field if non-nil, zero value otherwise.
+GetExternalId returns the ExternalId field if non-nil, zero value otherwise.
 
-### GetLastUpdatedTimeOk
+### GetExternalIdOk
 
-`func (o *AwsCollectionAgentOut) GetLastUpdatedTimeOk() (*time.Time, bool)`
+`func (o *AwsCollectionAgentOut) GetExternalIdOk() (*string, bool)`
 
-GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field if it's non-nil, zero value otherwise
+GetExternalIdOk returns a tuple with the ExternalId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLastUpdatedTime
+### SetExternalId
 
-`func (o *AwsCollectionAgentOut) SetLastUpdatedTime(v time.Time)`
+`func (o *AwsCollectionAgentOut) SetExternalId(v string)`
 
-SetLastUpdatedTime sets LastUpdatedTime field to given value.
+SetExternalId sets ExternalId field to given value.
 
-### HasLastUpdatedTime
+### HasExternalId
 
-`func (o *AwsCollectionAgentOut) HasLastUpdatedTime() bool`
+`func (o *AwsCollectionAgentOut) HasExternalId() bool`
 
-HasLastUpdatedTime returns a boolean if a field has been set.
+HasExternalId returns a boolean if a field has been set.
 
-### SetLastUpdatedTimeNil
+### SetExternalIdNil
 
-`func (o *AwsCollectionAgentOut) SetLastUpdatedTimeNil(b bool)`
+`func (o *AwsCollectionAgentOut) SetExternalIdNil(b bool)`
 
- SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
+ SetExternalIdNil sets the value for ExternalId to be an explicit nil
 
-### UnsetLastUpdatedTime
-`func (o *AwsCollectionAgentOut) UnsetLastUpdatedTime()`
+### UnsetExternalId
+`func (o *AwsCollectionAgentOut) UnsetExternalId()`
 
-UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
-### GetName
-
-`func (o *AwsCollectionAgentOut) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *AwsCollectionAgentOut) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *AwsCollectionAgentOut) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *AwsCollectionAgentOut) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetNameNil
-
-`func (o *AwsCollectionAgentOut) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AwsCollectionAgentOut) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
+UnsetExternalId ensures that no value is present for ExternalId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

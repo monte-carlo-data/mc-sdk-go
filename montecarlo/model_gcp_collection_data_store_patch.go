@@ -21,10 +21,10 @@ var _ MappedNullable = &GcpCollectionDataStorePatch{}
 type GcpCollectionDataStorePatch struct {
 	// Name of the Cloud Storage bucket Monte Carlo should use.
 	BucketName NullableString `json:"bucket_name,omitempty" validate:"regexp=^[a-z0-9][a-z0-9._-]{1,61}[a-z0-9]$"`
-	// Display name for the data store. Replaces the name its deployment gave it.
-	Name NullableString `json:"name,omitempty"`
 	// Service account key Monte Carlo reaches the bucket with, as the contents of the JSON key file Google issued for it. It replaces the stored key rather than merging into it.
 	ServiceAccountKey NullableString `json:"service_account_key,omitempty"`
+	// Display name for the data store. Replaces the name its deployment gave it.
+	Name NullableString `json:"name,omitempty"`
 }
 
 // NewGcpCollectionDataStorePatch instantiates a new GcpCollectionDataStorePatch object
@@ -87,49 +87,6 @@ func (o *GcpCollectionDataStorePatch) UnsetBucketName() {
 	o.BucketName.Unset()
 }
 
-// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GcpCollectionDataStorePatch) GetName() string {
-	if o == nil || IsNil(o.Name.Get()) {
-		var ret string
-		return ret
-	}
-	return *o.Name.Get()
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GcpCollectionDataStorePatch) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Name.Get(), o.Name.IsSet()
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *GcpCollectionDataStorePatch) HasName() bool {
-	if o != nil && o.Name.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
-func (o *GcpCollectionDataStorePatch) SetName(v string) {
-	o.Name.Set(&v)
-}
-
-// SetNameNil sets the value for Name to be an explicit nil
-func (o *GcpCollectionDataStorePatch) SetNameNil() {
-	o.Name.Set(nil)
-}
-
-// UnsetName ensures that no value is present for Name, not even an explicit nil
-func (o *GcpCollectionDataStorePatch) UnsetName() {
-	o.Name.Unset()
-}
-
 // GetServiceAccountKey returns the ServiceAccountKey field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GcpCollectionDataStorePatch) GetServiceAccountKey() string {
 	if o == nil || IsNil(o.ServiceAccountKey.Get()) {
@@ -173,6 +130,49 @@ func (o *GcpCollectionDataStorePatch) UnsetServiceAccountKey() {
 	o.ServiceAccountKey.Unset()
 }
 
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GcpCollectionDataStorePatch) GetName() string {
+	if o == nil || IsNil(o.Name.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Name.Get()
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GcpCollectionDataStorePatch) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Name.Get(), o.Name.IsSet()
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *GcpCollectionDataStorePatch) HasName() bool {
+	if o != nil && o.Name.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given NullableString and assigns it to the Name field.
+func (o *GcpCollectionDataStorePatch) SetName(v string) {
+	o.Name.Set(&v)
+}
+
+// SetNameNil sets the value for Name to be an explicit nil
+func (o *GcpCollectionDataStorePatch) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil
+func (o *GcpCollectionDataStorePatch) UnsetName() {
+	o.Name.Unset()
+}
+
 func (o GcpCollectionDataStorePatch) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -186,11 +186,11 @@ func (o GcpCollectionDataStorePatch) ToMap() (map[string]interface{}, error) {
 	if o.BucketName.IsSet() {
 		toSerialize["bucket_name"] = o.BucketName.Get()
 	}
-	if o.Name.IsSet() {
-		toSerialize["name"] = o.Name.Get()
-	}
 	if o.ServiceAccountKey.IsSet() {
 		toSerialize["service_account_key"] = o.ServiceAccountKey.Get()
+	}
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
 	return toSerialize, nil
 }

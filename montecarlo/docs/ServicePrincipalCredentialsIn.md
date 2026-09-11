@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Audience** | **string** | Audience the issued token is for, usually the function app&#39;s application id. | 
+**TenantId** | **string** | Directory (tenant) id the service principal lives in. | 
 **ClientId** | **string** | Application (client) id of the service principal. | 
 **ClientSecret** | **string** | Client secret of the service principal. | 
-**TenantId** | **string** | Directory (tenant) id the service principal lives in. | 
+**Audience** | **string** | Audience the issued token is for, usually the function app&#39;s application id. | 
 
 ## Methods
 
 ### NewServicePrincipalCredentialsIn
 
-`func NewServicePrincipalCredentialsIn(audience string, clientId string, clientSecret string, tenantId string, ) *ServicePrincipalCredentialsIn`
+`func NewServicePrincipalCredentialsIn(tenantId string, clientId string, clientSecret string, audience string, ) *ServicePrincipalCredentialsIn`
 
 NewServicePrincipalCredentialsIn instantiates a new ServicePrincipalCredentialsIn object
 This constructor will assign default values to properties that have it defined,
@@ -28,24 +28,24 @@ NewServicePrincipalCredentialsInWithDefaults instantiates a new ServicePrincipal
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAudience
+### GetTenantId
 
-`func (o *ServicePrincipalCredentialsIn) GetAudience() string`
+`func (o *ServicePrincipalCredentialsIn) GetTenantId() string`
 
-GetAudience returns the Audience field if non-nil, zero value otherwise.
+GetTenantId returns the TenantId field if non-nil, zero value otherwise.
 
-### GetAudienceOk
+### GetTenantIdOk
 
-`func (o *ServicePrincipalCredentialsIn) GetAudienceOk() (*string, bool)`
+`func (o *ServicePrincipalCredentialsIn) GetTenantIdOk() (*string, bool)`
 
-GetAudienceOk returns a tuple with the Audience field if it's non-nil, zero value otherwise
+GetTenantIdOk returns a tuple with the TenantId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAudience
+### SetTenantId
 
-`func (o *ServicePrincipalCredentialsIn) SetAudience(v string)`
+`func (o *ServicePrincipalCredentialsIn) SetTenantId(v string)`
 
-SetAudience sets Audience field to given value.
+SetTenantId sets TenantId field to given value.
 
 
 ### GetClientId
@@ -88,24 +88,24 @@ and a boolean to check if the value has been set.
 SetClientSecret sets ClientSecret field to given value.
 
 
-### GetTenantId
+### GetAudience
 
-`func (o *ServicePrincipalCredentialsIn) GetTenantId() string`
+`func (o *ServicePrincipalCredentialsIn) GetAudience() string`
 
-GetTenantId returns the TenantId field if non-nil, zero value otherwise.
+GetAudience returns the Audience field if non-nil, zero value otherwise.
 
-### GetTenantIdOk
+### GetAudienceOk
 
-`func (o *ServicePrincipalCredentialsIn) GetTenantIdOk() (*string, bool)`
+`func (o *ServicePrincipalCredentialsIn) GetAudienceOk() (*string, bool)`
 
-GetTenantIdOk returns a tuple with the TenantId field if it's non-nil, zero value otherwise
+GetAudienceOk returns a tuple with the Audience field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTenantId
+### SetAudience
 
-`func (o *ServicePrincipalCredentialsIn) SetTenantId(v string)`
+`func (o *ServicePrincipalCredentialsIn) SetAudience(v string)`
 
-SetTenantId sets TenantId field to given value.
+SetAudience sets Audience field to given value.
 
 
 

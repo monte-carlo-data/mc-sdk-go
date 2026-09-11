@@ -21,22 +21,22 @@ var _ MappedNullable = &ProblemOut{}
 
 // ProblemOut The error body returned by every failed request.  Every response with a status of 400 or higher has this shape, so a client only has one error contract to handle no matter which endpoint or which failure produced it.
 type ProblemOut struct {
+	// URI identifying the category of error. The same category always uses the same URI.
+	Type string `json:"type"`
+	// Short, human-readable summary of the category of error.
+	Title string `json:"title"`
+	// HTTP status code, repeated here for clients that only see the body.
+	Status int32 `json:"status"`
 	// Machine-readable code identifying the category of error. Branch on this rather than on `status`, because several codes can share one status.
 	Code string `json:"code"`
 	// Human-readable explanation of this particular occurrence of the error.
 	Detail string `json:"detail"`
+	// Identifier for this request, also returned in the `X-Request-Id` header. Quote it when reporting the error to support.
+	RequestId string `json:"request_id"`
 	// The fields that failed validation. Empty unless this is a validation error.
 	Errors []FieldErrorOut `json:"errors,omitempty"`
 	// Values that parameterize `message`, for a client that renders its own text instead of showing `message` directly. Absent when there is nothing to report.
 	Extra map[string]string `json:"extra,omitempty"`
-	// Identifier for this request, also returned in the `X-Request-Id` header. Quote it when reporting the error to support.
-	RequestId string `json:"request_id"`
-	// HTTP status code, repeated here for clients that only see the body.
-	Status int32 `json:"status"`
-	// Short, human-readable summary of the category of error.
-	Title string `json:"title"`
-	// URI identifying the category of error. The same category always uses the same URI.
-	Type string `json:"type"`
 }
 
 type _ProblemOut ProblemOut
@@ -45,14 +45,14 @@ type _ProblemOut ProblemOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewProblemOut(code string, detail string, requestId string, status int32, title string, type_ string) *ProblemOut {
+func NewProblemOut(type_ string, title string, status int32, code string, detail string, requestId string) *ProblemOut {
 	this := ProblemOut{}
+	this.Type = type_
+	this.Title = title
+	this.Status = status
 	this.Code = code
 	this.Detail = detail
 	this.RequestId = requestId
-	this.Status = status
-	this.Title = title
-	this.Type = type_
 	return &this
 }
 
@@ -62,6 +62,78 @@ func NewProblemOut(code string, detail string, requestId string, status int32, t
 func NewProblemOutWithDefaults() *ProblemOut {
 	this := ProblemOut{}
 	return &this
+}
+
+// GetType returns the Type field value
+func (o *ProblemOut) GetType() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *ProblemOut) GetTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *ProblemOut) SetType(v string) {
+	o.Type = v
+}
+
+// GetTitle returns the Title field value
+func (o *ProblemOut) GetTitle() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Title
+}
+
+// GetTitleOk returns a tuple with the Title field value
+// and a boolean to check if the value has been set.
+func (o *ProblemOut) GetTitleOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Title, true
+}
+
+// SetTitle sets field value
+func (o *ProblemOut) SetTitle(v string) {
+	o.Title = v
+}
+
+// GetStatus returns the Status field value
+func (o *ProblemOut) GetStatus() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *ProblemOut) GetStatusOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *ProblemOut) SetStatus(v int32) {
+	o.Status = v
 }
 
 // GetCode returns the Code field value
@@ -110,6 +182,30 @@ func (o *ProblemOut) GetDetailOk() (*string, bool) {
 // SetDetail sets field value
 func (o *ProblemOut) SetDetail(v string) {
 	o.Detail = v
+}
+
+// GetRequestId returns the RequestId field value
+func (o *ProblemOut) GetRequestId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.RequestId
+}
+
+// GetRequestIdOk returns a tuple with the RequestId field value
+// and a boolean to check if the value has been set.
+func (o *ProblemOut) GetRequestIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RequestId, true
+}
+
+// SetRequestId sets field value
+func (o *ProblemOut) SetRequestId(v string) {
+	o.RequestId = v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -177,102 +273,6 @@ func (o *ProblemOut) SetExtra(v map[string]string) {
 	o.Extra = v
 }
 
-// GetRequestId returns the RequestId field value
-func (o *ProblemOut) GetRequestId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.RequestId
-}
-
-// GetRequestIdOk returns a tuple with the RequestId field value
-// and a boolean to check if the value has been set.
-func (o *ProblemOut) GetRequestIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RequestId, true
-}
-
-// SetRequestId sets field value
-func (o *ProblemOut) SetRequestId(v string) {
-	o.RequestId = v
-}
-
-// GetStatus returns the Status field value
-func (o *ProblemOut) GetStatus() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.Status
-}
-
-// GetStatusOk returns a tuple with the Status field value
-// and a boolean to check if the value has been set.
-func (o *ProblemOut) GetStatusOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Status, true
-}
-
-// SetStatus sets field value
-func (o *ProblemOut) SetStatus(v int32) {
-	o.Status = v
-}
-
-// GetTitle returns the Title field value
-func (o *ProblemOut) GetTitle() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Title
-}
-
-// GetTitleOk returns a tuple with the Title field value
-// and a boolean to check if the value has been set.
-func (o *ProblemOut) GetTitleOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Title, true
-}
-
-// SetTitle sets field value
-func (o *ProblemOut) SetTitle(v string) {
-	o.Title = v
-}
-
-// GetType returns the Type field value
-func (o *ProblemOut) GetType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *ProblemOut) GetTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *ProblemOut) SetType(v string) {
-	o.Type = v
-}
-
 func (o ProblemOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -283,18 +283,18 @@ func (o ProblemOut) MarshalJSON() ([]byte, error) {
 
 func (o ProblemOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	toSerialize["title"] = o.Title
+	toSerialize["status"] = o.Status
 	toSerialize["code"] = o.Code
 	toSerialize["detail"] = o.Detail
+	toSerialize["request_id"] = o.RequestId
 	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
 	}
 	if o.Extra != nil {
 		toSerialize["extra"] = o.Extra
 	}
-	toSerialize["request_id"] = o.RequestId
-	toSerialize["status"] = o.Status
-	toSerialize["title"] = o.Title
-	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -303,12 +303,12 @@ func (o *ProblemOut) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
+		"type",
+		"title",
+		"status",
 		"code",
 		"detail",
 		"request_id",
-		"status",
-		"title",
-		"type",
 	}
 
 	allProperties := make(map[string]interface{})

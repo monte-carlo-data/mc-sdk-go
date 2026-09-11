@@ -21,12 +21,12 @@ var _ MappedNullable = &DeploymentIn{}
 
 // DeploymentIn What to provision a deployment for. Sent both when creating one and when reprovisioning.
 type DeploymentIn struct {
-	// Display name for the deployment. Monte Carlo generates one if you leave it out.
-	Name NullableString `json:"name,omitempty"`
-	// Where the deployment's collection agent or data store will run. Either can be provisioned on `AWS`, `AZURE` or `GCP`, and a collection agent also on `GENERIC`. Any other combination is rejected.
-	RuntimePlatform RuntimePlatform `json:"runtime_platform"`
 	// What the deployment will host. Only `COLLECTION_AGENT` and `COLLECTION_DATA_STORE` can be provisioned today. Any other value is rejected.
 	Type DeploymentType `json:"type"`
+	// Where the deployment's collection agent or data store will run. Either can be provisioned on `AWS`, `AZURE` or `GCP`, and a collection agent also on `GENERIC`. Any other combination is rejected.
+	RuntimePlatform RuntimePlatform `json:"runtime_platform"`
+	// Display name for the deployment. Monte Carlo generates one if you leave it out.
+	Name NullableString `json:"name,omitempty"`
 }
 
 type _DeploymentIn DeploymentIn
@@ -35,10 +35,10 @@ type _DeploymentIn DeploymentIn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeploymentIn(runtimePlatform RuntimePlatform, type_ DeploymentType) *DeploymentIn {
+func NewDeploymentIn(type_ DeploymentType, runtimePlatform RuntimePlatform) *DeploymentIn {
 	this := DeploymentIn{}
-	this.RuntimePlatform = runtimePlatform
 	this.Type = type_
+	this.RuntimePlatform = runtimePlatform
 	return &this
 }
 
@@ -48,6 +48,54 @@ func NewDeploymentIn(runtimePlatform RuntimePlatform, type_ DeploymentType) *Dep
 func NewDeploymentInWithDefaults() *DeploymentIn {
 	this := DeploymentIn{}
 	return &this
+}
+
+// GetType returns the Type field value
+func (o *DeploymentIn) GetType() DeploymentType {
+	if o == nil {
+		var ret DeploymentType
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *DeploymentIn) GetTypeOk() (*DeploymentType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *DeploymentIn) SetType(v DeploymentType) {
+	o.Type = v
+}
+
+// GetRuntimePlatform returns the RuntimePlatform field value
+func (o *DeploymentIn) GetRuntimePlatform() RuntimePlatform {
+	if o == nil {
+		var ret RuntimePlatform
+		return ret
+	}
+
+	return o.RuntimePlatform
+}
+
+// GetRuntimePlatformOk returns a tuple with the RuntimePlatform field value
+// and a boolean to check if the value has been set.
+func (o *DeploymentIn) GetRuntimePlatformOk() (*RuntimePlatform, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RuntimePlatform, true
+}
+
+// SetRuntimePlatform sets field value
+func (o *DeploymentIn) SetRuntimePlatform(v RuntimePlatform) {
+	o.RuntimePlatform = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -93,54 +141,6 @@ func (o *DeploymentIn) UnsetName() {
 	o.Name.Unset()
 }
 
-// GetRuntimePlatform returns the RuntimePlatform field value
-func (o *DeploymentIn) GetRuntimePlatform() RuntimePlatform {
-	if o == nil {
-		var ret RuntimePlatform
-		return ret
-	}
-
-	return o.RuntimePlatform
-}
-
-// GetRuntimePlatformOk returns a tuple with the RuntimePlatform field value
-// and a boolean to check if the value has been set.
-func (o *DeploymentIn) GetRuntimePlatformOk() (*RuntimePlatform, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RuntimePlatform, true
-}
-
-// SetRuntimePlatform sets field value
-func (o *DeploymentIn) SetRuntimePlatform(v RuntimePlatform) {
-	o.RuntimePlatform = v
-}
-
-// GetType returns the Type field value
-func (o *DeploymentIn) GetType() DeploymentType {
-	if o == nil {
-		var ret DeploymentType
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *DeploymentIn) GetTypeOk() (*DeploymentType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *DeploymentIn) SetType(v DeploymentType) {
-	o.Type = v
-}
-
 func (o DeploymentIn) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -151,11 +151,11 @@ func (o DeploymentIn) MarshalJSON() ([]byte, error) {
 
 func (o DeploymentIn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["type"] = o.Type
+	toSerialize["runtime_platform"] = o.RuntimePlatform
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
-	toSerialize["runtime_platform"] = o.RuntimePlatform
-	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -164,8 +164,8 @@ func (o *DeploymentIn) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"runtime_platform",
 		"type",
+		"runtime_platform",
 	}
 
 	allProperties := make(map[string]interface{})

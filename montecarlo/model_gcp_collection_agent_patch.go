@@ -19,16 +19,16 @@ var _ MappedNullable = &GcpCollectionAgentPatch{}
 
 // GcpCollectionAgentPatch Details to change on a GCP collection agent. Only what you send is changed.  Credentials are the exception: they replace the stored credentials instead of merging into them, so send them in full along with the matching `authentication_type`. Sending only `name` skips the checks against your Cloud Run service, since a name is not validated against it.
 type GcpCollectionAgentPatch struct {
+	// Credentials for `GCP_JSON_SERVICE_ACCOUNT_KEY`, as the contents of the JSON key file Google issued for the service account. Send this or `auth_headers`, never both. It replaces the stored credentials rather than merging into them.
+	ServiceAccountKey NullableString `json:"service_account_key,omitempty"`
 	// Credentials for `CUSTOM_AUTH_HEADERS`. Send this or `service_account_key`, never both. It replaces the stored credentials rather than merging into them.
 	AuthHeaders NullableAuthHeadersCredentialsIn `json:"auth_headers,omitempty"`
-	// How Monte Carlo authenticates when it calls the agent. Send it together with the matching credentials.
-	AuthenticationType NullableGcpAgentAuthenticationType `json:"authentication_type,omitempty"`
 	// URL of the Cloud Run service Monte Carlo should call.
 	CloudRunUrl NullableString `json:"cloud_run_url,omitempty" validate:"regexp=^https:\\/\\/[^\\\\s\\/?#]+\\\\S*$"`
 	// Display name for the collection agent. Replaces the name it currently has.
 	Name NullableString `json:"name,omitempty"`
-	// Credentials for `GCP_JSON_SERVICE_ACCOUNT_KEY`, as the contents of the JSON key file Google issued for the service account. Send this or `auth_headers`, never both. It replaces the stored credentials rather than merging into them.
-	ServiceAccountKey NullableString `json:"service_account_key,omitempty"`
+	// How Monte Carlo authenticates when it calls the agent. Send it together with the matching credentials.
+	AuthenticationType NullableGcpAgentAuthenticationType `json:"authentication_type,omitempty"`
 }
 
 // NewGcpCollectionAgentPatch instantiates a new GcpCollectionAgentPatch object
@@ -46,6 +46,49 @@ func NewGcpCollectionAgentPatch() *GcpCollectionAgentPatch {
 func NewGcpCollectionAgentPatchWithDefaults() *GcpCollectionAgentPatch {
 	this := GcpCollectionAgentPatch{}
 	return &this
+}
+
+// GetServiceAccountKey returns the ServiceAccountKey field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GcpCollectionAgentPatch) GetServiceAccountKey() string {
+	if o == nil || IsNil(o.ServiceAccountKey.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ServiceAccountKey.Get()
+}
+
+// GetServiceAccountKeyOk returns a tuple with the ServiceAccountKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GcpCollectionAgentPatch) GetServiceAccountKeyOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ServiceAccountKey.Get(), o.ServiceAccountKey.IsSet()
+}
+
+// HasServiceAccountKey returns a boolean if a field has been set.
+func (o *GcpCollectionAgentPatch) HasServiceAccountKey() bool {
+	if o != nil && o.ServiceAccountKey.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetServiceAccountKey gets a reference to the given NullableString and assigns it to the ServiceAccountKey field.
+func (o *GcpCollectionAgentPatch) SetServiceAccountKey(v string) {
+	o.ServiceAccountKey.Set(&v)
+}
+
+// SetServiceAccountKeyNil sets the value for ServiceAccountKey to be an explicit nil
+func (o *GcpCollectionAgentPatch) SetServiceAccountKeyNil() {
+	o.ServiceAccountKey.Set(nil)
+}
+
+// UnsetServiceAccountKey ensures that no value is present for ServiceAccountKey, not even an explicit nil
+func (o *GcpCollectionAgentPatch) UnsetServiceAccountKey() {
+	o.ServiceAccountKey.Unset()
 }
 
 // GetAuthHeaders returns the AuthHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -89,49 +132,6 @@ func (o *GcpCollectionAgentPatch) SetAuthHeadersNil() {
 // UnsetAuthHeaders ensures that no value is present for AuthHeaders, not even an explicit nil
 func (o *GcpCollectionAgentPatch) UnsetAuthHeaders() {
 	o.AuthHeaders.Unset()
-}
-
-// GetAuthenticationType returns the AuthenticationType field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GcpCollectionAgentPatch) GetAuthenticationType() GcpAgentAuthenticationType {
-	if o == nil || IsNil(o.AuthenticationType.Get()) {
-		var ret GcpAgentAuthenticationType
-		return ret
-	}
-	return *o.AuthenticationType.Get()
-}
-
-// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GcpCollectionAgentPatch) GetAuthenticationTypeOk() (*GcpAgentAuthenticationType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.AuthenticationType.Get(), o.AuthenticationType.IsSet()
-}
-
-// HasAuthenticationType returns a boolean if a field has been set.
-func (o *GcpCollectionAgentPatch) HasAuthenticationType() bool {
-	if o != nil && o.AuthenticationType.IsSet() {
-		return true
-	}
-
-	return false
-}
-
-// SetAuthenticationType gets a reference to the given NullableGcpAgentAuthenticationType and assigns it to the AuthenticationType field.
-func (o *GcpCollectionAgentPatch) SetAuthenticationType(v GcpAgentAuthenticationType) {
-	o.AuthenticationType.Set(&v)
-}
-
-// SetAuthenticationTypeNil sets the value for AuthenticationType to be an explicit nil
-func (o *GcpCollectionAgentPatch) SetAuthenticationTypeNil() {
-	o.AuthenticationType.Set(nil)
-}
-
-// UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
-func (o *GcpCollectionAgentPatch) UnsetAuthenticationType() {
-	o.AuthenticationType.Unset()
 }
 
 // GetCloudRunUrl returns the CloudRunUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -220,47 +220,47 @@ func (o *GcpCollectionAgentPatch) UnsetName() {
 	o.Name.Unset()
 }
 
-// GetServiceAccountKey returns the ServiceAccountKey field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GcpCollectionAgentPatch) GetServiceAccountKey() string {
-	if o == nil || IsNil(o.ServiceAccountKey.Get()) {
-		var ret string
+// GetAuthenticationType returns the AuthenticationType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GcpCollectionAgentPatch) GetAuthenticationType() GcpAgentAuthenticationType {
+	if o == nil || IsNil(o.AuthenticationType.Get()) {
+		var ret GcpAgentAuthenticationType
 		return ret
 	}
-	return *o.ServiceAccountKey.Get()
+	return *o.AuthenticationType.Get()
 }
 
-// GetServiceAccountKeyOk returns a tuple with the ServiceAccountKey field value if set, nil otherwise
+// GetAuthenticationTypeOk returns a tuple with the AuthenticationType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GcpCollectionAgentPatch) GetServiceAccountKeyOk() (*string, bool) {
+func (o *GcpCollectionAgentPatch) GetAuthenticationTypeOk() (*GcpAgentAuthenticationType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.ServiceAccountKey.Get(), o.ServiceAccountKey.IsSet()
+	return o.AuthenticationType.Get(), o.AuthenticationType.IsSet()
 }
 
-// HasServiceAccountKey returns a boolean if a field has been set.
-func (o *GcpCollectionAgentPatch) HasServiceAccountKey() bool {
-	if o != nil && o.ServiceAccountKey.IsSet() {
+// HasAuthenticationType returns a boolean if a field has been set.
+func (o *GcpCollectionAgentPatch) HasAuthenticationType() bool {
+	if o != nil && o.AuthenticationType.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetServiceAccountKey gets a reference to the given NullableString and assigns it to the ServiceAccountKey field.
-func (o *GcpCollectionAgentPatch) SetServiceAccountKey(v string) {
-	o.ServiceAccountKey.Set(&v)
+// SetAuthenticationType gets a reference to the given NullableGcpAgentAuthenticationType and assigns it to the AuthenticationType field.
+func (o *GcpCollectionAgentPatch) SetAuthenticationType(v GcpAgentAuthenticationType) {
+	o.AuthenticationType.Set(&v)
 }
 
-// SetServiceAccountKeyNil sets the value for ServiceAccountKey to be an explicit nil
-func (o *GcpCollectionAgentPatch) SetServiceAccountKeyNil() {
-	o.ServiceAccountKey.Set(nil)
+// SetAuthenticationTypeNil sets the value for AuthenticationType to be an explicit nil
+func (o *GcpCollectionAgentPatch) SetAuthenticationTypeNil() {
+	o.AuthenticationType.Set(nil)
 }
 
-// UnsetServiceAccountKey ensures that no value is present for ServiceAccountKey, not even an explicit nil
-func (o *GcpCollectionAgentPatch) UnsetServiceAccountKey() {
-	o.ServiceAccountKey.Unset()
+// UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
+func (o *GcpCollectionAgentPatch) UnsetAuthenticationType() {
+	o.AuthenticationType.Unset()
 }
 
 func (o GcpCollectionAgentPatch) MarshalJSON() ([]byte, error) {
@@ -273,11 +273,11 @@ func (o GcpCollectionAgentPatch) MarshalJSON() ([]byte, error) {
 
 func (o GcpCollectionAgentPatch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.ServiceAccountKey.IsSet() {
+		toSerialize["service_account_key"] = o.ServiceAccountKey.Get()
+	}
 	if o.AuthHeaders.IsSet() {
 		toSerialize["auth_headers"] = o.AuthHeaders.Get()
-	}
-	if o.AuthenticationType.IsSet() {
-		toSerialize["authentication_type"] = o.AuthenticationType.Get()
 	}
 	if o.CloudRunUrl.IsSet() {
 		toSerialize["cloud_run_url"] = o.CloudRunUrl.Get()
@@ -285,8 +285,8 @@ func (o GcpCollectionAgentPatch) ToMap() (map[string]interface{}, error) {
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
-	if o.ServiceAccountKey.IsSet() {
-		toSerialize["service_account_key"] = o.ServiceAccountKey.Get()
+	if o.AuthenticationType.IsSet() {
+		toSerialize["authentication_type"] = o.AuthenticationType.Get()
 	}
 	return toSerialize, nil
 }

@@ -4,23 +4,23 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AuthenticationType** | [**NullableAuthenticationType**](AuthenticationType.md) | How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one. | 
-**CreatedTime** | Pointer to **NullableTime** | When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent. | [optional] 
-**DeploymentId** | **string** | Identifier of the deployment this collection agent runs on. | 
-**Enabled** | **bool** | Whether Monte Carlo is using this collection agent. An agent Monte Carlo has not validated is not enabled, either because it has not been registered yet or because validation failed. | 
-**FunctionAppUrl** | **string** | URL of the function app Monte Carlo calls. Empty until the agent has been registered. | 
 **Id** | **string** | Unique identifier of the collection agent. | 
+**Name** | Pointer to **NullableString** | Display name of the collection agent. Null when it has no name. | [optional] 
+**DeploymentId** | **string** | Identifier of the deployment this collection agent runs on. | 
+**AuthenticationType** | [**NullableAuthenticationType**](AuthenticationType.md) | How Monte Carlo authenticates when it calls the collection agent. Null for an agent that connects out instead, such as a generic one. | 
+**Enabled** | **bool** | Whether Monte Carlo is using this collection agent. An agent Monte Carlo has not validated is not enabled, either because it has not been registered yet or because validation failed. | 
+**CreatedTime** | Pointer to **NullableTime** | When the collection agent was created. That is when its deployment was provisioned, which is before you register the agent. | [optional] 
+**LastUpdatedTime** | Pointer to **NullableTime** | When the collection agent was last changed. Registering it, renaming it, changing how Monte Carlo reaches it, and Monte Carlo picking up a new image version all update this. Null until any of those has happened. | [optional] 
 **ImageBuild** | Pointer to **NullableString** | Build of the image the collection agent is running. Null until Monte Carlo has contacted the agent. | [optional] 
 **ImageVersion** | Pointer to **NullableString** | Version of the image the collection agent is running. Null until Monte Carlo has contacted the agent. | [optional] 
 **IsRemoteUpgradeable** | **bool** | Whether Monte Carlo can update the collection agent&#39;s image for you. | 
-**LastUpdatedTime** | Pointer to **NullableTime** | When the collection agent was last changed. Registering it, renaming it, changing how Monte Carlo reaches it, and Monte Carlo picking up a new image version all update this. Null until any of those has happened. | [optional] 
-**Name** | Pointer to **NullableString** | Display name of the collection agent. Null when it has no name. | [optional] 
+**FunctionAppUrl** | **string** | URL of the function app Monte Carlo calls. Empty until the agent has been registered. | 
 
 ## Methods
 
 ### NewAzureCollectionAgentOut
 
-`func NewAzureCollectionAgentOut(authenticationType NullableAuthenticationType, deploymentId string, enabled bool, functionAppUrl string, id string, isRemoteUpgradeable bool, ) *AzureCollectionAgentOut`
+`func NewAzureCollectionAgentOut(id string, deploymentId string, authenticationType NullableAuthenticationType, enabled bool, isRemoteUpgradeable bool, functionAppUrl string, ) *AzureCollectionAgentOut`
 
 NewAzureCollectionAgentOut instantiates a new AzureCollectionAgentOut object
 This constructor will assign default values to properties that have it defined,
@@ -34,6 +34,81 @@ will change when the set of required properties is changed
 NewAzureCollectionAgentOutWithDefaults instantiates a new AzureCollectionAgentOut object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *AzureCollectionAgentOut) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *AzureCollectionAgentOut) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *AzureCollectionAgentOut) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
+### GetName
+
+`func (o *AzureCollectionAgentOut) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *AzureCollectionAgentOut) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *AzureCollectionAgentOut) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *AzureCollectionAgentOut) HasName() bool`
+
+HasName returns a boolean if a field has been set.
+
+### SetNameNil
+
+`func (o *AzureCollectionAgentOut) SetNameNil(b bool)`
+
+ SetNameNil sets the value for Name to be an explicit nil
+
+### UnsetName
+`func (o *AzureCollectionAgentOut) UnsetName()`
+
+UnsetName ensures that no value is present for Name, not even an explicit nil
+### GetDeploymentId
+
+`func (o *AzureCollectionAgentOut) GetDeploymentId() string`
+
+GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
+
+### GetDeploymentIdOk
+
+`func (o *AzureCollectionAgentOut) GetDeploymentIdOk() (*string, bool)`
+
+GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeploymentId
+
+`func (o *AzureCollectionAgentOut) SetDeploymentId(v string)`
+
+SetDeploymentId sets DeploymentId field to given value.
+
 
 ### GetAuthenticationType
 
@@ -65,6 +140,26 @@ SetAuthenticationType sets AuthenticationType field to given value.
 `func (o *AzureCollectionAgentOut) UnsetAuthenticationType()`
 
 UnsetAuthenticationType ensures that no value is present for AuthenticationType, not even an explicit nil
+### GetEnabled
+
+`func (o *AzureCollectionAgentOut) GetEnabled() bool`
+
+GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+
+### GetEnabledOk
+
+`func (o *AzureCollectionAgentOut) GetEnabledOk() (*bool, bool)`
+
+GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnabled
+
+`func (o *AzureCollectionAgentOut) SetEnabled(v bool)`
+
+SetEnabled sets Enabled field to given value.
+
+
 ### GetCreatedTime
 
 `func (o *AzureCollectionAgentOut) GetCreatedTime() time.Time`
@@ -100,86 +195,41 @@ HasCreatedTime returns a boolean if a field has been set.
 `func (o *AzureCollectionAgentOut) UnsetCreatedTime()`
 
 UnsetCreatedTime ensures that no value is present for CreatedTime, not even an explicit nil
-### GetDeploymentId
+### GetLastUpdatedTime
 
-`func (o *AzureCollectionAgentOut) GetDeploymentId() string`
+`func (o *AzureCollectionAgentOut) GetLastUpdatedTime() time.Time`
 
-GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
+GetLastUpdatedTime returns the LastUpdatedTime field if non-nil, zero value otherwise.
 
-### GetDeploymentIdOk
+### GetLastUpdatedTimeOk
 
-`func (o *AzureCollectionAgentOut) GetDeploymentIdOk() (*string, bool)`
+`func (o *AzureCollectionAgentOut) GetLastUpdatedTimeOk() (*time.Time, bool)`
 
-GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
+GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeploymentId
+### SetLastUpdatedTime
 
-`func (o *AzureCollectionAgentOut) SetDeploymentId(v string)`
+`func (o *AzureCollectionAgentOut) SetLastUpdatedTime(v time.Time)`
 
-SetDeploymentId sets DeploymentId field to given value.
+SetLastUpdatedTime sets LastUpdatedTime field to given value.
 
+### HasLastUpdatedTime
 
-### GetEnabled
+`func (o *AzureCollectionAgentOut) HasLastUpdatedTime() bool`
 
-`func (o *AzureCollectionAgentOut) GetEnabled() bool`
+HasLastUpdatedTime returns a boolean if a field has been set.
 
-GetEnabled returns the Enabled field if non-nil, zero value otherwise.
+### SetLastUpdatedTimeNil
 
-### GetEnabledOk
+`func (o *AzureCollectionAgentOut) SetLastUpdatedTimeNil(b bool)`
 
-`func (o *AzureCollectionAgentOut) GetEnabledOk() (*bool, bool)`
+ SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
 
-GetEnabledOk returns a tuple with the Enabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
+### UnsetLastUpdatedTime
+`func (o *AzureCollectionAgentOut) UnsetLastUpdatedTime()`
 
-### SetEnabled
-
-`func (o *AzureCollectionAgentOut) SetEnabled(v bool)`
-
-SetEnabled sets Enabled field to given value.
-
-
-### GetFunctionAppUrl
-
-`func (o *AzureCollectionAgentOut) GetFunctionAppUrl() string`
-
-GetFunctionAppUrl returns the FunctionAppUrl field if non-nil, zero value otherwise.
-
-### GetFunctionAppUrlOk
-
-`func (o *AzureCollectionAgentOut) GetFunctionAppUrlOk() (*string, bool)`
-
-GetFunctionAppUrlOk returns a tuple with the FunctionAppUrl field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFunctionAppUrl
-
-`func (o *AzureCollectionAgentOut) SetFunctionAppUrl(v string)`
-
-SetFunctionAppUrl sets FunctionAppUrl field to given value.
-
-
-### GetId
-
-`func (o *AzureCollectionAgentOut) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *AzureCollectionAgentOut) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *AzureCollectionAgentOut) SetId(v string)`
-
-SetId sets Id field to given value.
-
-
+UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
 ### GetImageBuild
 
 `func (o *AzureCollectionAgentOut) GetImageBuild() string`
@@ -270,76 +320,26 @@ and a boolean to check if the value has been set.
 SetIsRemoteUpgradeable sets IsRemoteUpgradeable field to given value.
 
 
-### GetLastUpdatedTime
+### GetFunctionAppUrl
 
-`func (o *AzureCollectionAgentOut) GetLastUpdatedTime() time.Time`
+`func (o *AzureCollectionAgentOut) GetFunctionAppUrl() string`
 
-GetLastUpdatedTime returns the LastUpdatedTime field if non-nil, zero value otherwise.
+GetFunctionAppUrl returns the FunctionAppUrl field if non-nil, zero value otherwise.
 
-### GetLastUpdatedTimeOk
+### GetFunctionAppUrlOk
 
-`func (o *AzureCollectionAgentOut) GetLastUpdatedTimeOk() (*time.Time, bool)`
+`func (o *AzureCollectionAgentOut) GetFunctionAppUrlOk() (*string, bool)`
 
-GetLastUpdatedTimeOk returns a tuple with the LastUpdatedTime field if it's non-nil, zero value otherwise
+GetFunctionAppUrlOk returns a tuple with the FunctionAppUrl field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetLastUpdatedTime
+### SetFunctionAppUrl
 
-`func (o *AzureCollectionAgentOut) SetLastUpdatedTime(v time.Time)`
+`func (o *AzureCollectionAgentOut) SetFunctionAppUrl(v string)`
 
-SetLastUpdatedTime sets LastUpdatedTime field to given value.
+SetFunctionAppUrl sets FunctionAppUrl field to given value.
 
-### HasLastUpdatedTime
 
-`func (o *AzureCollectionAgentOut) HasLastUpdatedTime() bool`
-
-HasLastUpdatedTime returns a boolean if a field has been set.
-
-### SetLastUpdatedTimeNil
-
-`func (o *AzureCollectionAgentOut) SetLastUpdatedTimeNil(b bool)`
-
- SetLastUpdatedTimeNil sets the value for LastUpdatedTime to be an explicit nil
-
-### UnsetLastUpdatedTime
-`func (o *AzureCollectionAgentOut) UnsetLastUpdatedTime()`
-
-UnsetLastUpdatedTime ensures that no value is present for LastUpdatedTime, not even an explicit nil
-### GetName
-
-`func (o *AzureCollectionAgentOut) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *AzureCollectionAgentOut) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *AzureCollectionAgentOut) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *AzureCollectionAgentOut) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
-### SetNameNil
-
-`func (o *AzureCollectionAgentOut) SetNameNil(b bool)`
-
- SetNameNil sets the value for Name to be an explicit nil
-
-### UnsetName
-`func (o *AzureCollectionAgentOut) UnsetName()`
-
-UnsetName ensures that no value is present for Name, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

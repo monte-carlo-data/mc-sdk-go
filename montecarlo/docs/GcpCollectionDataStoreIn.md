@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BucketName** | **string** | Name of the Cloud Storage bucket Monte Carlo should use. | 
 **DeploymentId** | **string** | Deployment to register the data store on. It must already hold an unregistered Cloud Storage data store. | 
-**Name** | Pointer to **NullableString** | Display name for the data store. Replaces the name its deployment gave it. | [optional] 
+**BucketName** | **string** | Name of the Cloud Storage bucket Monte Carlo should use. | 
 **ServiceAccountKey** | **string** | Service account key Monte Carlo reaches the bucket with, as the contents of the JSON key file Google issued for it. It replaces the stored key rather than merging into it. | 
+**Name** | Pointer to **NullableString** | Display name for the data store. Replaces the name its deployment gave it. | [optional] 
 
 ## Methods
 
 ### NewGcpCollectionDataStoreIn
 
-`func NewGcpCollectionDataStoreIn(bucketName string, deploymentId string, serviceAccountKey string, ) *GcpCollectionDataStoreIn`
+`func NewGcpCollectionDataStoreIn(deploymentId string, bucketName string, serviceAccountKey string, ) *GcpCollectionDataStoreIn`
 
 NewGcpCollectionDataStoreIn instantiates a new GcpCollectionDataStoreIn object
 This constructor will assign default values to properties that have it defined,
@@ -27,6 +27,26 @@ will change when the set of required properties is changed
 NewGcpCollectionDataStoreInWithDefaults instantiates a new GcpCollectionDataStoreIn object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetDeploymentId
+
+`func (o *GcpCollectionDataStoreIn) GetDeploymentId() string`
+
+GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
+
+### GetDeploymentIdOk
+
+`func (o *GcpCollectionDataStoreIn) GetDeploymentIdOk() (*string, bool)`
+
+GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeploymentId
+
+`func (o *GcpCollectionDataStoreIn) SetDeploymentId(v string)`
+
+SetDeploymentId sets DeploymentId field to given value.
+
 
 ### GetBucketName
 
@@ -48,24 +68,24 @@ and a boolean to check if the value has been set.
 SetBucketName sets BucketName field to given value.
 
 
-### GetDeploymentId
+### GetServiceAccountKey
 
-`func (o *GcpCollectionDataStoreIn) GetDeploymentId() string`
+`func (o *GcpCollectionDataStoreIn) GetServiceAccountKey() string`
 
-GetDeploymentId returns the DeploymentId field if non-nil, zero value otherwise.
+GetServiceAccountKey returns the ServiceAccountKey field if non-nil, zero value otherwise.
 
-### GetDeploymentIdOk
+### GetServiceAccountKeyOk
 
-`func (o *GcpCollectionDataStoreIn) GetDeploymentIdOk() (*string, bool)`
+`func (o *GcpCollectionDataStoreIn) GetServiceAccountKeyOk() (*string, bool)`
 
-GetDeploymentIdOk returns a tuple with the DeploymentId field if it's non-nil, zero value otherwise
+GetServiceAccountKeyOk returns a tuple with the ServiceAccountKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDeploymentId
+### SetServiceAccountKey
 
-`func (o *GcpCollectionDataStoreIn) SetDeploymentId(v string)`
+`func (o *GcpCollectionDataStoreIn) SetServiceAccountKey(v string)`
 
-SetDeploymentId sets DeploymentId field to given value.
+SetServiceAccountKey sets ServiceAccountKey field to given value.
 
 
 ### GetName
@@ -103,26 +123,6 @@ HasName returns a boolean if a field has been set.
 `func (o *GcpCollectionDataStoreIn) UnsetName()`
 
 UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetServiceAccountKey
-
-`func (o *GcpCollectionDataStoreIn) GetServiceAccountKey() string`
-
-GetServiceAccountKey returns the ServiceAccountKey field if non-nil, zero value otherwise.
-
-### GetServiceAccountKeyOk
-
-`func (o *GcpCollectionDataStoreIn) GetServiceAccountKeyOk() (*string, bool)`
-
-GetServiceAccountKeyOk returns a tuple with the ServiceAccountKey field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetServiceAccountKey
-
-`func (o *GcpCollectionDataStoreIn) SetServiceAccountKey(v string)`
-
-SetServiceAccountKey sets ServiceAccountKey field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

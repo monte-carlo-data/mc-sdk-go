@@ -1271,7 +1271,7 @@ import (
 )
 
 func main() {
-	gcpCollectionAgentIn := *openapiclient.NewGcpCollectionAgentIn(openapiclient.GcpAgentAuthenticationType("GCP_JSON_SERVICE_ACCOUNT_KEY"), "CloudRunUrl_example", "DeploymentId_example") // GcpCollectionAgentIn | 
+	gcpCollectionAgentIn := *openapiclient.NewGcpCollectionAgentIn(openapiclient.GcpAgentAuthenticationType("GCP_JSON_SERVICE_ACCOUNT_KEY"), "DeploymentId_example", "CloudRunUrl_example") // GcpCollectionAgentIn | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

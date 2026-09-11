@@ -4,21 +4,21 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ClientId** | Pointer to **NullableString** | Client id the agent presents. Set for an &#x60;OAUTH_CLIENT&#x60;, null otherwise. | [optional] 
-**CreatedTime** | **time.Time** | When the credential was created. | 
-**DeploymentId** | **string** | Identifier of the deployment whose agent presents this credential. | 
-**Description** | **string** | What this credential is for. | 
-**ExpirationTime** | Pointer to **NullableTime** | When an &#x60;OAUTH_CLIENT&#x60; stops being accepted. Null for one that does not expire, and for a &#x60;TOKEN&#x60;. | [optional] 
 **Id** | **string** | Unique identifier of the credential. For a token this is also its key id; for an OAuth client, its client id. | 
-**McdId** | Pointer to **NullableString** | Key id the agent presents. Set for a &#x60;TOKEN&#x60;, null otherwise. | [optional] 
-**Scopes** | Pointer to **[]string** | OAuth scopes the client is granted. Set for an &#x60;OAUTH_CLIENT&#x60;, null otherwise. | [optional] 
+**DeploymentId** | **string** | Identifier of the deployment whose agent presents this credential. | 
 **Type** | [**CredentialType**](CredentialType.md) | Which kind of credential this is. | 
+**Description** | **string** | What this credential is for. | 
+**CreatedTime** | **time.Time** | When the credential was created. | 
+**McdId** | Pointer to **NullableString** | Key id the agent presents. Set for a &#x60;TOKEN&#x60;, null otherwise. | [optional] 
+**ClientId** | Pointer to **NullableString** | Client id the agent presents. Set for an &#x60;OAUTH_CLIENT&#x60;, null otherwise. | [optional] 
+**Scopes** | Pointer to **[]string** | OAuth scopes the client is granted. Set for an &#x60;OAUTH_CLIENT&#x60;, null otherwise. | [optional] 
+**ExpirationTime** | Pointer to **NullableTime** | When an &#x60;OAUTH_CLIENT&#x60; stops being accepted. Null for one that does not expire, and for a &#x60;TOKEN&#x60;. | [optional] 
 
 ## Methods
 
 ### NewCollectionAgentCredentialOut
 
-`func NewCollectionAgentCredentialOut(createdTime time.Time, deploymentId string, description string, id string, type_ CredentialType, ) *CollectionAgentCredentialOut`
+`func NewCollectionAgentCredentialOut(id string, deploymentId string, type_ CredentialType, description string, createdTime time.Time, ) *CollectionAgentCredentialOut`
 
 NewCollectionAgentCredentialOut instantiates a new CollectionAgentCredentialOut object
 This constructor will assign default values to properties that have it defined,
@@ -33,59 +33,24 @@ NewCollectionAgentCredentialOutWithDefaults instantiates a new CollectionAgentCr
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetClientId
+### GetId
 
-`func (o *CollectionAgentCredentialOut) GetClientId() string`
+`func (o *CollectionAgentCredentialOut) GetId() string`
 
-GetClientId returns the ClientId field if non-nil, zero value otherwise.
+GetId returns the Id field if non-nil, zero value otherwise.
 
-### GetClientIdOk
+### GetIdOk
 
-`func (o *CollectionAgentCredentialOut) GetClientIdOk() (*string, bool)`
+`func (o *CollectionAgentCredentialOut) GetIdOk() (*string, bool)`
 
-GetClientIdOk returns a tuple with the ClientId field if it's non-nil, zero value otherwise
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetClientId
+### SetId
 
-`func (o *CollectionAgentCredentialOut) SetClientId(v string)`
+`func (o *CollectionAgentCredentialOut) SetId(v string)`
 
-SetClientId sets ClientId field to given value.
-
-### HasClientId
-
-`func (o *CollectionAgentCredentialOut) HasClientId() bool`
-
-HasClientId returns a boolean if a field has been set.
-
-### SetClientIdNil
-
-`func (o *CollectionAgentCredentialOut) SetClientIdNil(b bool)`
-
- SetClientIdNil sets the value for ClientId to be an explicit nil
-
-### UnsetClientId
-`func (o *CollectionAgentCredentialOut) UnsetClientId()`
-
-UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
-### GetCreatedTime
-
-`func (o *CollectionAgentCredentialOut) GetCreatedTime() time.Time`
-
-GetCreatedTime returns the CreatedTime field if non-nil, zero value otherwise.
-
-### GetCreatedTimeOk
-
-`func (o *CollectionAgentCredentialOut) GetCreatedTimeOk() (*time.Time, bool)`
-
-GetCreatedTimeOk returns a tuple with the CreatedTime field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedTime
-
-`func (o *CollectionAgentCredentialOut) SetCreatedTime(v time.Time)`
-
-SetCreatedTime sets CreatedTime field to given value.
+SetId sets Id field to given value.
 
 
 ### GetDeploymentId
@@ -108,6 +73,26 @@ and a boolean to check if the value has been set.
 SetDeploymentId sets DeploymentId field to given value.
 
 
+### GetType
+
+`func (o *CollectionAgentCredentialOut) GetType() CredentialType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *CollectionAgentCredentialOut) GetTypeOk() (*CredentialType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *CollectionAgentCredentialOut) SetType(v CredentialType)`
+
+SetType sets Type field to given value.
+
+
 ### GetDescription
 
 `func (o *CollectionAgentCredentialOut) GetDescription() string`
@@ -128,59 +113,24 @@ and a boolean to check if the value has been set.
 SetDescription sets Description field to given value.
 
 
-### GetExpirationTime
+### GetCreatedTime
 
-`func (o *CollectionAgentCredentialOut) GetExpirationTime() time.Time`
+`func (o *CollectionAgentCredentialOut) GetCreatedTime() time.Time`
 
-GetExpirationTime returns the ExpirationTime field if non-nil, zero value otherwise.
+GetCreatedTime returns the CreatedTime field if non-nil, zero value otherwise.
 
-### GetExpirationTimeOk
+### GetCreatedTimeOk
 
-`func (o *CollectionAgentCredentialOut) GetExpirationTimeOk() (*time.Time, bool)`
+`func (o *CollectionAgentCredentialOut) GetCreatedTimeOk() (*time.Time, bool)`
 
-GetExpirationTimeOk returns a tuple with the ExpirationTime field if it's non-nil, zero value otherwise
+GetCreatedTimeOk returns a tuple with the CreatedTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetExpirationTime
+### SetCreatedTime
 
-`func (o *CollectionAgentCredentialOut) SetExpirationTime(v time.Time)`
+`func (o *CollectionAgentCredentialOut) SetCreatedTime(v time.Time)`
 
-SetExpirationTime sets ExpirationTime field to given value.
-
-### HasExpirationTime
-
-`func (o *CollectionAgentCredentialOut) HasExpirationTime() bool`
-
-HasExpirationTime returns a boolean if a field has been set.
-
-### SetExpirationTimeNil
-
-`func (o *CollectionAgentCredentialOut) SetExpirationTimeNil(b bool)`
-
- SetExpirationTimeNil sets the value for ExpirationTime to be an explicit nil
-
-### UnsetExpirationTime
-`func (o *CollectionAgentCredentialOut) UnsetExpirationTime()`
-
-UnsetExpirationTime ensures that no value is present for ExpirationTime, not even an explicit nil
-### GetId
-
-`func (o *CollectionAgentCredentialOut) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *CollectionAgentCredentialOut) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *CollectionAgentCredentialOut) SetId(v string)`
-
-SetId sets Id field to given value.
+SetCreatedTime sets CreatedTime field to given value.
 
 
 ### GetMcdId
@@ -218,6 +168,41 @@ HasMcdId returns a boolean if a field has been set.
 `func (o *CollectionAgentCredentialOut) UnsetMcdId()`
 
 UnsetMcdId ensures that no value is present for McdId, not even an explicit nil
+### GetClientId
+
+`func (o *CollectionAgentCredentialOut) GetClientId() string`
+
+GetClientId returns the ClientId field if non-nil, zero value otherwise.
+
+### GetClientIdOk
+
+`func (o *CollectionAgentCredentialOut) GetClientIdOk() (*string, bool)`
+
+GetClientIdOk returns a tuple with the ClientId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetClientId
+
+`func (o *CollectionAgentCredentialOut) SetClientId(v string)`
+
+SetClientId sets ClientId field to given value.
+
+### HasClientId
+
+`func (o *CollectionAgentCredentialOut) HasClientId() bool`
+
+HasClientId returns a boolean if a field has been set.
+
+### SetClientIdNil
+
+`func (o *CollectionAgentCredentialOut) SetClientIdNil(b bool)`
+
+ SetClientIdNil sets the value for ClientId to be an explicit nil
+
+### UnsetClientId
+`func (o *CollectionAgentCredentialOut) UnsetClientId()`
+
+UnsetClientId ensures that no value is present for ClientId, not even an explicit nil
 ### GetScopes
 
 `func (o *CollectionAgentCredentialOut) GetScopes() []string`
@@ -253,26 +238,41 @@ HasScopes returns a boolean if a field has been set.
 `func (o *CollectionAgentCredentialOut) UnsetScopes()`
 
 UnsetScopes ensures that no value is present for Scopes, not even an explicit nil
-### GetType
+### GetExpirationTime
 
-`func (o *CollectionAgentCredentialOut) GetType() CredentialType`
+`func (o *CollectionAgentCredentialOut) GetExpirationTime() time.Time`
 
-GetType returns the Type field if non-nil, zero value otherwise.
+GetExpirationTime returns the ExpirationTime field if non-nil, zero value otherwise.
 
-### GetTypeOk
+### GetExpirationTimeOk
 
-`func (o *CollectionAgentCredentialOut) GetTypeOk() (*CredentialType, bool)`
+`func (o *CollectionAgentCredentialOut) GetExpirationTimeOk() (*time.Time, bool)`
 
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+GetExpirationTimeOk returns a tuple with the ExpirationTime field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetType
+### SetExpirationTime
 
-`func (o *CollectionAgentCredentialOut) SetType(v CredentialType)`
+`func (o *CollectionAgentCredentialOut) SetExpirationTime(v time.Time)`
 
-SetType sets Type field to given value.
+SetExpirationTime sets ExpirationTime field to given value.
 
+### HasExpirationTime
 
+`func (o *CollectionAgentCredentialOut) HasExpirationTime() bool`
+
+HasExpirationTime returns a boolean if a field has been set.
+
+### SetExpirationTimeNil
+
+`func (o *CollectionAgentCredentialOut) SetExpirationTimeNil(b bool)`
+
+ SetExpirationTimeNil sets the value for ExpirationTime to be an explicit nil
+
+### UnsetExpirationTime
+`func (o *CollectionAgentCredentialOut) UnsetExpirationTime()`
+
+UnsetExpirationTime ensures that no value is present for ExpirationTime, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

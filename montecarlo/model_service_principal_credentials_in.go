@@ -21,14 +21,14 @@ var _ MappedNullable = &ServicePrincipalCredentialsIn{}
 
 // ServicePrincipalCredentialsIn The service principal Monte Carlo authenticates as.
 type ServicePrincipalCredentialsIn struct {
-	// Audience the issued token is for, usually the function app's application id.
-	Audience string `json:"audience"`
+	// Directory (tenant) id the service principal lives in.
+	TenantId string `json:"tenant_id"`
 	// Application (client) id of the service principal.
 	ClientId string `json:"client_id"`
 	// Client secret of the service principal.
 	ClientSecret string `json:"client_secret"`
-	// Directory (tenant) id the service principal lives in.
-	TenantId string `json:"tenant_id"`
+	// Audience the issued token is for, usually the function app's application id.
+	Audience string `json:"audience"`
 }
 
 type _ServicePrincipalCredentialsIn ServicePrincipalCredentialsIn
@@ -37,12 +37,12 @@ type _ServicePrincipalCredentialsIn ServicePrincipalCredentialsIn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewServicePrincipalCredentialsIn(audience string, clientId string, clientSecret string, tenantId string) *ServicePrincipalCredentialsIn {
+func NewServicePrincipalCredentialsIn(tenantId string, clientId string, clientSecret string, audience string) *ServicePrincipalCredentialsIn {
 	this := ServicePrincipalCredentialsIn{}
-	this.Audience = audience
+	this.TenantId = tenantId
 	this.ClientId = clientId
 	this.ClientSecret = clientSecret
-	this.TenantId = tenantId
+	this.Audience = audience
 	return &this
 }
 
@@ -54,28 +54,28 @@ func NewServicePrincipalCredentialsInWithDefaults() *ServicePrincipalCredentials
 	return &this
 }
 
-// GetAudience returns the Audience field value
-func (o *ServicePrincipalCredentialsIn) GetAudience() string {
+// GetTenantId returns the TenantId field value
+func (o *ServicePrincipalCredentialsIn) GetTenantId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.Audience
+	return o.TenantId
 }
 
-// GetAudienceOk returns a tuple with the Audience field value
+// GetTenantIdOk returns a tuple with the TenantId field value
 // and a boolean to check if the value has been set.
-func (o *ServicePrincipalCredentialsIn) GetAudienceOk() (*string, bool) {
+func (o *ServicePrincipalCredentialsIn) GetTenantIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Audience, true
+	return &o.TenantId, true
 }
 
-// SetAudience sets field value
-func (o *ServicePrincipalCredentialsIn) SetAudience(v string) {
-	o.Audience = v
+// SetTenantId sets field value
+func (o *ServicePrincipalCredentialsIn) SetTenantId(v string) {
+	o.TenantId = v
 }
 
 // GetClientId returns the ClientId field value
@@ -126,28 +126,28 @@ func (o *ServicePrincipalCredentialsIn) SetClientSecret(v string) {
 	o.ClientSecret = v
 }
 
-// GetTenantId returns the TenantId field value
-func (o *ServicePrincipalCredentialsIn) GetTenantId() string {
+// GetAudience returns the Audience field value
+func (o *ServicePrincipalCredentialsIn) GetAudience() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.TenantId
+	return o.Audience
 }
 
-// GetTenantIdOk returns a tuple with the TenantId field value
+// GetAudienceOk returns a tuple with the Audience field value
 // and a boolean to check if the value has been set.
-func (o *ServicePrincipalCredentialsIn) GetTenantIdOk() (*string, bool) {
+func (o *ServicePrincipalCredentialsIn) GetAudienceOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.TenantId, true
+	return &o.Audience, true
 }
 
-// SetTenantId sets field value
-func (o *ServicePrincipalCredentialsIn) SetTenantId(v string) {
-	o.TenantId = v
+// SetAudience sets field value
+func (o *ServicePrincipalCredentialsIn) SetAudience(v string) {
+	o.Audience = v
 }
 
 func (o ServicePrincipalCredentialsIn) MarshalJSON() ([]byte, error) {
@@ -160,10 +160,10 @@ func (o ServicePrincipalCredentialsIn) MarshalJSON() ([]byte, error) {
 
 func (o ServicePrincipalCredentialsIn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["audience"] = o.Audience
+	toSerialize["tenant_id"] = o.TenantId
 	toSerialize["client_id"] = o.ClientId
 	toSerialize["client_secret"] = o.ClientSecret
-	toSerialize["tenant_id"] = o.TenantId
+	toSerialize["audience"] = o.Audience
 	return toSerialize, nil
 }
 
@@ -172,10 +172,10 @@ func (o *ServicePrincipalCredentialsIn) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"audience",
+		"tenant_id",
 		"client_id",
 		"client_secret",
-		"tenant_id",
+		"audience",
 	}
 
 	allProperties := make(map[string]interface{})

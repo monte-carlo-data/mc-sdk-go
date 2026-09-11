@@ -4,15 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | Pointer to **NullableString** | Display name for the deployment. Monte Carlo generates one if you leave it out. | [optional] 
-**RuntimePlatform** | [**RuntimePlatform**](RuntimePlatform.md) | Where the deployment&#39;s collection agent or data store will run. Either can be provisioned on &#x60;AWS&#x60;, &#x60;AZURE&#x60; or &#x60;GCP&#x60;, and a collection agent also on &#x60;GENERIC&#x60;. Any other combination is rejected. | 
 **Type** | [**DeploymentType**](DeploymentType.md) | What the deployment will host. Only &#x60;COLLECTION_AGENT&#x60; and &#x60;COLLECTION_DATA_STORE&#x60; can be provisioned today. Any other value is rejected. | 
+**RuntimePlatform** | [**RuntimePlatform**](RuntimePlatform.md) | Where the deployment&#39;s collection agent or data store will run. Either can be provisioned on &#x60;AWS&#x60;, &#x60;AZURE&#x60; or &#x60;GCP&#x60;, and a collection agent also on &#x60;GENERIC&#x60;. Any other combination is rejected. | 
+**Name** | Pointer to **NullableString** | Display name for the deployment. Monte Carlo generates one if you leave it out. | [optional] 
 
 ## Methods
 
 ### NewDeploymentIn
 
-`func NewDeploymentIn(runtimePlatform RuntimePlatform, type_ DeploymentType, ) *DeploymentIn`
+`func NewDeploymentIn(type_ DeploymentType, runtimePlatform RuntimePlatform, ) *DeploymentIn`
 
 NewDeploymentIn instantiates a new DeploymentIn object
 This constructor will assign default values to properties that have it defined,
@@ -26,6 +26,46 @@ will change when the set of required properties is changed
 NewDeploymentInWithDefaults instantiates a new DeploymentIn object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetType
+
+`func (o *DeploymentIn) GetType() DeploymentType`
+
+GetType returns the Type field if non-nil, zero value otherwise.
+
+### GetTypeOk
+
+`func (o *DeploymentIn) GetTypeOk() (*DeploymentType, bool)`
+
+GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetType
+
+`func (o *DeploymentIn) SetType(v DeploymentType)`
+
+SetType sets Type field to given value.
+
+
+### GetRuntimePlatform
+
+`func (o *DeploymentIn) GetRuntimePlatform() RuntimePlatform`
+
+GetRuntimePlatform returns the RuntimePlatform field if non-nil, zero value otherwise.
+
+### GetRuntimePlatformOk
+
+`func (o *DeploymentIn) GetRuntimePlatformOk() (*RuntimePlatform, bool)`
+
+GetRuntimePlatformOk returns a tuple with the RuntimePlatform field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRuntimePlatform
+
+`func (o *DeploymentIn) SetRuntimePlatform(v RuntimePlatform)`
+
+SetRuntimePlatform sets RuntimePlatform field to given value.
+
 
 ### GetName
 
@@ -62,46 +102,6 @@ HasName returns a boolean if a field has been set.
 `func (o *DeploymentIn) UnsetName()`
 
 UnsetName ensures that no value is present for Name, not even an explicit nil
-### GetRuntimePlatform
-
-`func (o *DeploymentIn) GetRuntimePlatform() RuntimePlatform`
-
-GetRuntimePlatform returns the RuntimePlatform field if non-nil, zero value otherwise.
-
-### GetRuntimePlatformOk
-
-`func (o *DeploymentIn) GetRuntimePlatformOk() (*RuntimePlatform, bool)`
-
-GetRuntimePlatformOk returns a tuple with the RuntimePlatform field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetRuntimePlatform
-
-`func (o *DeploymentIn) SetRuntimePlatform(v RuntimePlatform)`
-
-SetRuntimePlatform sets RuntimePlatform field to given value.
-
-
-### GetType
-
-`func (o *DeploymentIn) GetType() DeploymentType`
-
-GetType returns the Type field if non-nil, zero value otherwise.
-
-### GetTypeOk
-
-`func (o *DeploymentIn) GetTypeOk() (*DeploymentType, bool)`
-
-GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetType
-
-`func (o *DeploymentIn) SetType(v DeploymentType)`
-
-SetType sets Type field to given value.
-
-
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

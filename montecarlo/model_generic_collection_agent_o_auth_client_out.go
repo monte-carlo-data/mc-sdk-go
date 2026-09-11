@@ -22,22 +22,22 @@ var _ MappedNullable = &GenericCollectionAgentOAuthClientOut{}
 
 // GenericCollectionAgentOAuthClientOut An OAuth 2.0 client a generic collection agent exchanges for short-lived access tokens.
 type GenericCollectionAgentOAuthClientOut struct {
-	// Client id the agent presents, as `client_id` in its configuration. The same value as `id`.
-	ClientId string `json:"client_id"`
-	// When the credential was created.
-	CreatedTime time.Time `json:"created_time"`
-	// Identifier of the deployment whose agent presents this credential.
-	DeploymentId string `json:"deployment_id"`
-	// What this credential is for.
-	Description string `json:"description"`
-	// When the client stops being accepted. Null for a client that does not expire.
-	ExpirationTime NullableTime `json:"expiration_time,omitempty"`
 	// Unique identifier of the credential. For a token this is also its key id; for an OAuth client, its client id.
 	Id string `json:"id"`
-	// OAuth scopes the client is granted.
-	Scopes []string `json:"scopes"`
+	// Identifier of the deployment whose agent presents this credential.
+	DeploymentId string `json:"deployment_id"`
 	// Which kind of credential this is.
 	Type CredentialType `json:"type"`
+	// What this credential is for.
+	Description string `json:"description"`
+	// When the credential was created.
+	CreatedTime time.Time `json:"created_time"`
+	// Client id the agent presents, as `client_id` in its configuration. The same value as `id`.
+	ClientId string `json:"client_id"`
+	// OAuth scopes the client is granted.
+	Scopes []string `json:"scopes"`
+	// When the client stops being accepted. Null for a client that does not expire.
+	ExpirationTime NullableTime `json:"expiration_time,omitempty"`
 }
 
 type _GenericCollectionAgentOAuthClientOut GenericCollectionAgentOAuthClientOut
@@ -46,15 +46,15 @@ type _GenericCollectionAgentOAuthClientOut GenericCollectionAgentOAuthClientOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenericCollectionAgentOAuthClientOut(clientId string, createdTime time.Time, deploymentId string, description string, id string, scopes []string, type_ CredentialType) *GenericCollectionAgentOAuthClientOut {
+func NewGenericCollectionAgentOAuthClientOut(id string, deploymentId string, type_ CredentialType, description string, createdTime time.Time, clientId string, scopes []string) *GenericCollectionAgentOAuthClientOut {
 	this := GenericCollectionAgentOAuthClientOut{}
-	this.ClientId = clientId
-	this.CreatedTime = createdTime
-	this.DeploymentId = deploymentId
-	this.Description = description
 	this.Id = id
-	this.Scopes = scopes
+	this.DeploymentId = deploymentId
 	this.Type = type_
+	this.Description = description
+	this.CreatedTime = createdTime
+	this.ClientId = clientId
+	this.Scopes = scopes
 	return &this
 }
 
@@ -66,52 +66,28 @@ func NewGenericCollectionAgentOAuthClientOutWithDefaults() *GenericCollectionAge
 	return &this
 }
 
-// GetClientId returns the ClientId field value
-func (o *GenericCollectionAgentOAuthClientOut) GetClientId() string {
+// GetId returns the Id field value
+func (o *GenericCollectionAgentOAuthClientOut) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.ClientId
+	return o.Id
 }
 
-// GetClientIdOk returns a tuple with the ClientId field value
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *GenericCollectionAgentOAuthClientOut) GetClientIdOk() (*string, bool) {
+func (o *GenericCollectionAgentOAuthClientOut) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.ClientId, true
+	return &o.Id, true
 }
 
-// SetClientId sets field value
-func (o *GenericCollectionAgentOAuthClientOut) SetClientId(v string) {
-	o.ClientId = v
-}
-
-// GetCreatedTime returns the CreatedTime field value
-func (o *GenericCollectionAgentOAuthClientOut) GetCreatedTime() time.Time {
-	if o == nil {
-		var ret time.Time
-		return ret
-	}
-
-	return o.CreatedTime
-}
-
-// GetCreatedTimeOk returns a tuple with the CreatedTime field value
-// and a boolean to check if the value has been set.
-func (o *GenericCollectionAgentOAuthClientOut) GetCreatedTimeOk() (*time.Time, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.CreatedTime, true
-}
-
-// SetCreatedTime sets field value
-func (o *GenericCollectionAgentOAuthClientOut) SetCreatedTime(v time.Time) {
-	o.CreatedTime = v
+// SetId sets field value
+func (o *GenericCollectionAgentOAuthClientOut) SetId(v string) {
+	o.Id = v
 }
 
 // GetDeploymentId returns the DeploymentId field value
@@ -138,6 +114,30 @@ func (o *GenericCollectionAgentOAuthClientOut) SetDeploymentId(v string) {
 	o.DeploymentId = v
 }
 
+// GetType returns the Type field value
+func (o *GenericCollectionAgentOAuthClientOut) GetType() CredentialType {
+	if o == nil {
+		var ret CredentialType
+		return ret
+	}
+
+	return o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value
+// and a boolean to check if the value has been set.
+func (o *GenericCollectionAgentOAuthClientOut) GetTypeOk() (*CredentialType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Type, true
+}
+
+// SetType sets field value
+func (o *GenericCollectionAgentOAuthClientOut) SetType(v CredentialType) {
+	o.Type = v
+}
+
 // GetDescription returns the Description field value
 func (o *GenericCollectionAgentOAuthClientOut) GetDescription() string {
 	if o == nil {
@@ -160,6 +160,78 @@ func (o *GenericCollectionAgentOAuthClientOut) GetDescriptionOk() (*string, bool
 // SetDescription sets field value
 func (o *GenericCollectionAgentOAuthClientOut) SetDescription(v string) {
 	o.Description = v
+}
+
+// GetCreatedTime returns the CreatedTime field value
+func (o *GenericCollectionAgentOAuthClientOut) GetCreatedTime() time.Time {
+	if o == nil {
+		var ret time.Time
+		return ret
+	}
+
+	return o.CreatedTime
+}
+
+// GetCreatedTimeOk returns a tuple with the CreatedTime field value
+// and a boolean to check if the value has been set.
+func (o *GenericCollectionAgentOAuthClientOut) GetCreatedTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CreatedTime, true
+}
+
+// SetCreatedTime sets field value
+func (o *GenericCollectionAgentOAuthClientOut) SetCreatedTime(v time.Time) {
+	o.CreatedTime = v
+}
+
+// GetClientId returns the ClientId field value
+func (o *GenericCollectionAgentOAuthClientOut) GetClientId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ClientId
+}
+
+// GetClientIdOk returns a tuple with the ClientId field value
+// and a boolean to check if the value has been set.
+func (o *GenericCollectionAgentOAuthClientOut) GetClientIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ClientId, true
+}
+
+// SetClientId sets field value
+func (o *GenericCollectionAgentOAuthClientOut) SetClientId(v string) {
+	o.ClientId = v
+}
+
+// GetScopes returns the Scopes field value
+func (o *GenericCollectionAgentOAuthClientOut) GetScopes() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.Scopes
+}
+
+// GetScopesOk returns a tuple with the Scopes field value
+// and a boolean to check if the value has been set.
+func (o *GenericCollectionAgentOAuthClientOut) GetScopesOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Scopes, true
+}
+
+// SetScopes sets field value
+func (o *GenericCollectionAgentOAuthClientOut) SetScopes(v []string) {
+	o.Scopes = v
 }
 
 // GetExpirationTime returns the ExpirationTime field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -205,78 +277,6 @@ func (o *GenericCollectionAgentOAuthClientOut) UnsetExpirationTime() {
 	o.ExpirationTime.Unset()
 }
 
-// GetId returns the Id field value
-func (o *GenericCollectionAgentOAuthClientOut) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *GenericCollectionAgentOAuthClientOut) GetIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *GenericCollectionAgentOAuthClientOut) SetId(v string) {
-	o.Id = v
-}
-
-// GetScopes returns the Scopes field value
-func (o *GenericCollectionAgentOAuthClientOut) GetScopes() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-
-	return o.Scopes
-}
-
-// GetScopesOk returns a tuple with the Scopes field value
-// and a boolean to check if the value has been set.
-func (o *GenericCollectionAgentOAuthClientOut) GetScopesOk() ([]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Scopes, true
-}
-
-// SetScopes sets field value
-func (o *GenericCollectionAgentOAuthClientOut) SetScopes(v []string) {
-	o.Scopes = v
-}
-
-// GetType returns the Type field value
-func (o *GenericCollectionAgentOAuthClientOut) GetType() CredentialType {
-	if o == nil {
-		var ret CredentialType
-		return ret
-	}
-
-	return o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value
-// and a boolean to check if the value has been set.
-func (o *GenericCollectionAgentOAuthClientOut) GetTypeOk() (*CredentialType, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Type, true
-}
-
-// SetType sets field value
-func (o *GenericCollectionAgentOAuthClientOut) SetType(v CredentialType) {
-	o.Type = v
-}
-
 func (o GenericCollectionAgentOAuthClientOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -287,16 +287,16 @@ func (o GenericCollectionAgentOAuthClientOut) MarshalJSON() ([]byte, error) {
 
 func (o GenericCollectionAgentOAuthClientOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["client_id"] = o.ClientId
-	toSerialize["created_time"] = o.CreatedTime
+	toSerialize["id"] = o.Id
 	toSerialize["deployment_id"] = o.DeploymentId
+	toSerialize["type"] = o.Type
 	toSerialize["description"] = o.Description
+	toSerialize["created_time"] = o.CreatedTime
+	toSerialize["client_id"] = o.ClientId
+	toSerialize["scopes"] = o.Scopes
 	if o.ExpirationTime.IsSet() {
 		toSerialize["expiration_time"] = o.ExpirationTime.Get()
 	}
-	toSerialize["id"] = o.Id
-	toSerialize["scopes"] = o.Scopes
-	toSerialize["type"] = o.Type
 	return toSerialize, nil
 }
 
@@ -305,13 +305,13 @@ func (o *GenericCollectionAgentOAuthClientOut) UnmarshalJSON(data []byte) (err e
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"client_id",
-		"created_time",
-		"deployment_id",
-		"description",
 		"id",
-		"scopes",
+		"deployment_id",
 		"type",
+		"description",
+		"created_time",
+		"client_id",
+		"scopes",
 	}
 
 	allProperties := make(map[string]interface{})

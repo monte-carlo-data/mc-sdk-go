@@ -21,14 +21,14 @@ var _ MappedNullable = &GcpCollectionDataStoreIn{}
 
 // GcpCollectionDataStoreIn Details Monte Carlo needs to access a data store you keep in a Google Cloud Storage bucket.  Registering through this API always authenticates with a service account key. There is no authentication type to choose.
 type GcpCollectionDataStoreIn struct {
-	// Name of the Cloud Storage bucket Monte Carlo should use.
-	BucketName string `json:"bucket_name" validate:"regexp=^[a-z0-9][a-z0-9._-]{1,61}[a-z0-9]$"`
 	// Deployment to register the data store on. It must already hold an unregistered Cloud Storage data store.
 	DeploymentId string `json:"deployment_id"`
-	// Display name for the data store. Replaces the name its deployment gave it.
-	Name NullableString `json:"name,omitempty"`
+	// Name of the Cloud Storage bucket Monte Carlo should use.
+	BucketName string `json:"bucket_name" validate:"regexp=^[a-z0-9][a-z0-9._-]{1,61}[a-z0-9]$"`
 	// Service account key Monte Carlo reaches the bucket with, as the contents of the JSON key file Google issued for it. It replaces the stored key rather than merging into it.
 	ServiceAccountKey string `json:"service_account_key"`
+	// Display name for the data store. Replaces the name its deployment gave it.
+	Name NullableString `json:"name,omitempty"`
 }
 
 type _GcpCollectionDataStoreIn GcpCollectionDataStoreIn
@@ -37,10 +37,10 @@ type _GcpCollectionDataStoreIn GcpCollectionDataStoreIn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGcpCollectionDataStoreIn(bucketName string, deploymentId string, serviceAccountKey string) *GcpCollectionDataStoreIn {
+func NewGcpCollectionDataStoreIn(deploymentId string, bucketName string, serviceAccountKey string) *GcpCollectionDataStoreIn {
 	this := GcpCollectionDataStoreIn{}
-	this.BucketName = bucketName
 	this.DeploymentId = deploymentId
+	this.BucketName = bucketName
 	this.ServiceAccountKey = serviceAccountKey
 	return &this
 }
@@ -51,6 +51,30 @@ func NewGcpCollectionDataStoreIn(bucketName string, deploymentId string, service
 func NewGcpCollectionDataStoreInWithDefaults() *GcpCollectionDataStoreIn {
 	this := GcpCollectionDataStoreIn{}
 	return &this
+}
+
+// GetDeploymentId returns the DeploymentId field value
+func (o *GcpCollectionDataStoreIn) GetDeploymentId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DeploymentId
+}
+
+// GetDeploymentIdOk returns a tuple with the DeploymentId field value
+// and a boolean to check if the value has been set.
+func (o *GcpCollectionDataStoreIn) GetDeploymentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeploymentId, true
+}
+
+// SetDeploymentId sets field value
+func (o *GcpCollectionDataStoreIn) SetDeploymentId(v string) {
+	o.DeploymentId = v
 }
 
 // GetBucketName returns the BucketName field value
@@ -77,28 +101,28 @@ func (o *GcpCollectionDataStoreIn) SetBucketName(v string) {
 	o.BucketName = v
 }
 
-// GetDeploymentId returns the DeploymentId field value
-func (o *GcpCollectionDataStoreIn) GetDeploymentId() string {
+// GetServiceAccountKey returns the ServiceAccountKey field value
+func (o *GcpCollectionDataStoreIn) GetServiceAccountKey() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.DeploymentId
+	return o.ServiceAccountKey
 }
 
-// GetDeploymentIdOk returns a tuple with the DeploymentId field value
+// GetServiceAccountKeyOk returns a tuple with the ServiceAccountKey field value
 // and a boolean to check if the value has been set.
-func (o *GcpCollectionDataStoreIn) GetDeploymentIdOk() (*string, bool) {
+func (o *GcpCollectionDataStoreIn) GetServiceAccountKeyOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DeploymentId, true
+	return &o.ServiceAccountKey, true
 }
 
-// SetDeploymentId sets field value
-func (o *GcpCollectionDataStoreIn) SetDeploymentId(v string) {
-	o.DeploymentId = v
+// SetServiceAccountKey sets field value
+func (o *GcpCollectionDataStoreIn) SetServiceAccountKey(v string) {
+	o.ServiceAccountKey = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -144,30 +168,6 @@ func (o *GcpCollectionDataStoreIn) UnsetName() {
 	o.Name.Unset()
 }
 
-// GetServiceAccountKey returns the ServiceAccountKey field value
-func (o *GcpCollectionDataStoreIn) GetServiceAccountKey() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ServiceAccountKey
-}
-
-// GetServiceAccountKeyOk returns a tuple with the ServiceAccountKey field value
-// and a boolean to check if the value has been set.
-func (o *GcpCollectionDataStoreIn) GetServiceAccountKeyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ServiceAccountKey, true
-}
-
-// SetServiceAccountKey sets field value
-func (o *GcpCollectionDataStoreIn) SetServiceAccountKey(v string) {
-	o.ServiceAccountKey = v
-}
-
 func (o GcpCollectionDataStoreIn) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -178,12 +178,12 @@ func (o GcpCollectionDataStoreIn) MarshalJSON() ([]byte, error) {
 
 func (o GcpCollectionDataStoreIn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["bucket_name"] = o.BucketName
 	toSerialize["deployment_id"] = o.DeploymentId
+	toSerialize["bucket_name"] = o.BucketName
+	toSerialize["service_account_key"] = o.ServiceAccountKey
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
 	}
-	toSerialize["service_account_key"] = o.ServiceAccountKey
 	return toSerialize, nil
 }
 
@@ -192,8 +192,8 @@ func (o *GcpCollectionDataStoreIn) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"bucket_name",
 		"deployment_id",
+		"bucket_name",
 		"service_account_key",
 	}
 
