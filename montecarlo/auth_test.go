@@ -31,6 +31,11 @@ func TestValidate(t *testing.T) {
 			wantErr: "client id and client secret are both required",
 		},
 		{
+			name:    "client secret without id",
+			opts:    Options{Endpoint: "https://api.example.com", ClientSecret: "s"},
+			wantErr: "client id and client secret are both required",
+		},
+		{
 			name: "oauth without instance",
 			opts: Options{
 				Endpoint: "https://api.example.com", ClientID: "id", ClientSecret: "secret",
@@ -40,6 +45,11 @@ func TestValidate(t *testing.T) {
 		{
 			name:    "token id without secret",
 			opts:    Options{Endpoint: "https://api.example.com", TokenID: "id"},
+			wantErr: "token id and token secret are both required",
+		},
+		{
+			name:    "token secret without id",
+			opts:    Options{Endpoint: "https://api.example.com", TokenSecret: "s"},
 			wantErr: "token id and token secret are both required",
 		},
 		{

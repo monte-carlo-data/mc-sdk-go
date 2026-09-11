@@ -45,10 +45,8 @@ func oauthTokenSource(
 	// oauth2.HTTPClient context value, in which case that client is used as the caller built
 	// it, timeout and redirect policy included.
 	//
-	// The default client never follows a redirect. The token request carries the client secret
-	// in its form body, and a 307 or 308 would re-send that body to whatever host the Location
-	// header names, which the https check on TokenURL cannot see. A redirect therefore ends the
-	// exchange as a failed status instead.
+	// The token request carries the client secret in its form body. A 307 or 308 would re-send
+	// it to whatever host the Location header names, which the https check on TokenURL never saw.
 	detached := context.WithoutCancel(ctx)
 	if ctx.Value(oauth2.HTTPClient) == nil {
 		detached = context.WithValue(detached, oauth2.HTTPClient, &http.Client{

@@ -83,8 +83,8 @@ func (o Options) usesAPIToken() bool {
 }
 
 // validate enforces each mechanism's contract, so a misconfiguration is an error at
-// construction rather than a 401 on the first call. NewClient calls this explicitly right
-// after Resolve; tokenSource calls it again for a caller that uses it standalone.
+// construction rather than a 401 on the first call. NewClient calls this right after Resolve;
+// tokenSource calls it too, so it never builds a source from incomplete options.
 func (o Options) validate() error {
 	if o.Endpoint == "" {
 		return errors.New("endpoint is required")
@@ -109,8 +109,8 @@ func (o Options) validate() error {
 	return nil
 }
 
-// checkPairs rejects half of a credential pair. Resolve runs it before consulting a profile,
-// so a caller's incomplete pair is an error rather than something the profile fills in.
+// checkPairs rejects half of a credential pair. Resolve runs it on the caller's options before any
+// fallback is consulted, and validate runs it again on the resolved options.
 func (o Options) checkPairs() error {
 	if (o.ClientID != "") != (o.ClientSecret != "") {
 		return errors.New("client id and client secret are both required for OAuth")
@@ -195,6 +195,12 @@ func (o Options) tokenSource(ctx context.Context) (oauth2.TokenSource, error) {
 // generated client's ContextAccessToken always wins cleanly instead of stacking into a second
 // header. Because of this, GetConfig().HTTPClient never needs to be mutated after the fact to
 // add transport-level behaviour — pass it through Options.Transport instead.
+//
+// Neither client follows a redirect. The API client returns a 3xx as the response, and the
+// token exchange fails on one, because its request carries the client secret in its form
+// body. Options.Transport does not reach the token exchange; an http.Client supplied through
+// the oauth2.HTTPClient context value replaces the exchange's default client wholesale,
+// timeout and redirect policy included.
 func NewClient(ctx context.Context, o Options) (*APIClient, error) {
 	resolved, err := o.Resolve()
 	if err != nil {
@@ -227,7 +233,9 @@ func NewClient(ctx context.Context, o Options) (*APIClient, error) {
 		{URL: resolved.baseURL()},
 	}
 	cfg.UserAgent = firstNonEmpty(resolved.UserAgent, defaultUserAgent)
-	cfg.HTTPClient = &http.Client{Transport: transport}
+	// The API has one host, so a redirect is refused rather than followed: both transports attach
+	// the credential on every hop, which would hand it to whatever host Location names.
+	cfg.HTTPClient = &http.Client{Transport: transport, CheckRedirect: refuseRedirect}
 
 	return NewAPIClient(cfg), nil
 }

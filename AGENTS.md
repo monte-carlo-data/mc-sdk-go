@@ -116,6 +116,12 @@ credential that expires mid-run.
 The generated client has no default server URL, because the API is reached at a different
 host per deployment, so a client built without one sends every request nowhere.
 
+Neither client follows a redirect. The API client returns a 3xx as the response, since the API
+has one host and both transports attach the credential on every hop. The token exchange fails
+on a 3xx, since its request carries the client secret in its form body. A caller who supplies
+their own `http.Client` through the `oauth2.HTTPClient` context value owns that client's
+redirect policy; `Options.Transport` does not reach the token exchange.
+
 ## Credentials are shared with the other tools
 
 `~/.mcd/profiles.ini` is written by the CLI and read by the Python SDK, so this SDK reads the
@@ -130,15 +136,10 @@ needs that translation to mean the right thing here.
 
 Precedence follows the same three-tier ordering as the Python SDK: values passed in, then
 environment variables, then the profile. Half of a credential pair passed in is an error before
-the environment or the profile is consulted, as in pycarlo and mc-sdk-python; it is never
-filled in from a profile. One known divergence from pycarlo: this SDK does not read
+the environment or the profile is consulted; neither ever completes one. pycarlo rejects a
+half-set pair the same way. One known divergence from pycarlo: this SDK does not read
 `MCD_API_ENDPOINT` at all, deliberately — see above, it carries the GraphQL endpoint, not the
 REST base URL.
-
-The OAuth token exchange never follows a redirect. The request carries the client secret in
-its form body, so a redirect is reported as a failed exchange rather than re-sent to the host
-the `Location` header names. A caller who supplies their own `http.Client` through the
-`oauth2.HTTPClient` context value owns that client's redirect policy.
 
 Tests must not read the developer's real credentials. `isolate(t)` in the test package clears
 every environment variable resolution consults and points `ConfigDir` at a temporary
