@@ -129,10 +129,16 @@ CLI does not need a separate credential store, which is the point — the endpoi
 needs that translation to mean the right thing here.
 
 Precedence follows the same three-tier ordering as the Python SDK: values passed in, then
-environment variables, then the profile. It is not exact parity — two known divergences:
-pycarlo rejects a half-set credential outright (`InvalidSessionError`) rather than filling it
-in partially, and this SDK does not read `MCD_API_ENDPOINT` at all, deliberately — see above,
-it carries the GraphQL endpoint, not the REST base URL.
+environment variables, then the profile. Half of a credential pair passed in is an error before
+the environment or the profile is consulted, as in pycarlo and mc-sdk-python; it is never
+filled in from a profile. One known divergence from pycarlo: this SDK does not read
+`MCD_API_ENDPOINT` at all, deliberately — see above, it carries the GraphQL endpoint, not the
+REST base URL.
+
+The OAuth token exchange never follows a redirect. The request carries the client secret in
+its form body, so a redirect is reported as a failed exchange rather than re-sent to the host
+the `Location` header names. A caller who supplies their own `http.Client` through the
+`oauth2.HTTPClient` context value owns that client's redirect policy.
 
 Tests must not read the developer's real credentials. `isolate(t)` in the test package clears
 every environment variable resolution consults and points `ConfigDir` at a temporary

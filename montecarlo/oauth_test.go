@@ -107,3 +107,33 @@ func TestGetConfigDoesNotLeakTheStaticAPIToken(t *testing.T) {
 		}
 	})
 }
+
+// Regression proof: the default token-exchange client used to follow redirects, and a 307 or
+// 308 re-sends the form body, client secret included, to whatever host the Location header
+// names. The exchange must end at the redirect instead.
+func TestTokenExchangeDoesNotFollowARedirectWithTheClientSecret(t *testing.T) {
+	var collectorHits, tokenHits int
+	var mux http.ServeMux
+	server := httptest.NewServer(&mux)
+	defer server.Close()
+	mux.HandleFunc("/oauth2/token", func(w http.ResponseWriter, r *http.Request) {
+		tokenHits++
+		http.Redirect(w, r, server.URL+"/collector", http.StatusTemporaryRedirect)
+	})
+	mux.HandleFunc("/collector", func(w http.ResponseWriter, r *http.Request) {
+		collectorHits++
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{"access_token":"leaked","token_type":"Bearer"}`))
+	})
+
+	ts := oauthTokenSource(context.Background(), "id", "secret", "us1", server.URL+"/oauth2/token")
+	if _, err := ts.Token(); err == nil {
+		t.Fatal("expected the redirected exchange to fail")
+	}
+	if collectorHits != 0 {
+		t.Fatalf("the redirect target received %d request(s); the client secret was re-sent", collectorHits)
+	}
+	if tokenHits != 1 {
+		t.Fatalf("expected exactly one token request, got %d", tokenHits)
+	}
+}
