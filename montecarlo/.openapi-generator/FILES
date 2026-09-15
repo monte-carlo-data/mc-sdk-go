@@ -2,6 +2,7 @@ api_collection_agents.go
 api_collection_data_stores.go
 api_deployments.go
 api_users.go
+api_warehouses.go
 client.go
 configuration.go
 docs/AuthHeadersCredentialsIn.md
@@ -52,6 +53,8 @@ docs/GenericCollectionAgentTokenCreatedOut.md
 docs/GenericCollectionAgentTokenIn.md
 docs/GenericCollectionAgentTokenOut.md
 docs/IdentityType.md
+docs/Input.md
+docs/PagedWarehouseOut.md
 docs/ProblemOut.md
 docs/RuntimePlatform.md
 docs/ServicePrincipalCredentialsIn.md
@@ -59,6 +62,11 @@ docs/StorageAccountKeysCredentialsIn.md
 docs/StorageServicePrincipalCredentialsIn.md
 docs/StorageType.md
 docs/UsersAPI.md
+docs/WarehouseIn.md
+docs/WarehouseOut.md
+docs/WarehousePatch.md
+docs/WarehouseType.md
+docs/WarehousesAPI.md
 model_auth_headers_credentials_in.go
 model_authentication_type.go
 model_aws_collection_agent_in.go
@@ -104,11 +112,17 @@ model_generic_collection_agent_token_created_out.go
 model_generic_collection_agent_token_in.go
 model_generic_collection_agent_token_out.go
 model_identity_type.go
+model_input.go
+model_paged_warehouse_out.go
 model_problem_out.go
 model_runtime_platform.go
 model_service_principal_credentials_in.go
 model_storage_account_keys_credentials_in.go
 model_storage_service_principal_credentials_in.go
 model_storage_type.go
+model_warehouse_in.go
+model_warehouse_out.go
+model_warehouse_patch.go
+model_warehouse_type.go
 response.go
 utils.go
