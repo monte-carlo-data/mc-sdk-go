@@ -1,1 +1,16 @@
 * @monte-carlo-data/apollo
+
+# Written by api-codegen's propagate workflow. No owner, so a bot pull request requests no
+# review. The hand-written files in the package keep theirs.
+/montecarlo/
+/montecarlo/auth.go @monte-carlo-data/apollo
+/montecarlo/auth_test.go @monte-carlo-data/apollo
+/montecarlo/oauth.go @monte-carlo-data/apollo
+/montecarlo/oauth_test.go @monte-carlo-data/apollo
+/montecarlo/profile.go @monte-carlo-data/apollo
+/montecarlo/profile_test.go @monte-carlo-data/apollo
+/montecarlo/doc.go @monte-carlo-data/apollo
+/montecarlo/example_test.go @monte-carlo-data/apollo
+/montecarlo/README.md @monte-carlo-data/apollo
+/montecarlo/.openapi-generator-ignore @monte-carlo-data/apollo
+/.api-codegen-source.json
