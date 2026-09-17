@@ -194,6 +194,7 @@ func TestAllWalksEveryPageThroughTheGeneratedClient(t *testing.T) {
 		Endpoint:    server.URL,
 		TokenID:     "id",
 		TokenSecret: "secret",
+		ConfigDir:   isolate(t),
 	})
 	if err != nil {
 		t.Fatalf("building the client failed: %v", err)
@@ -242,7 +243,12 @@ func TestAllKeepsAPageSizeTheCallerSet(t *testing.T) {
 	defer server.Close()
 
 	ctx := context.Background()
-	api, err := NewClient(ctx, Options{Endpoint: server.URL, TokenID: "id", TokenSecret: "secret"})
+	api, err := NewClient(ctx, Options{
+		Endpoint:    server.URL,
+		TokenID:     "id",
+		TokenSecret: "secret",
+		ConfigDir:   isolate(t),
+	})
 	if err != nil {
 		t.Fatalf("building the client failed: %v", err)
 	}
