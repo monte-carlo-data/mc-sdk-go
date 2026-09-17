@@ -12,7 +12,12 @@
 // bearer header.
 //
 // NewClient, Options and the credential resolution behind them are hand-written, in auth.go,
-// oauth.go and profile.go. Everything else in this package is generated from the API's
-// OpenAPI spec and must not be hand-edited; changes are overwritten on the next generation
-// run.
+// oauth.go and profile.go. The pagination driver, in paginate.go, is hand-written too.
+// Everything else in this package is generated from the API's OpenAPI spec and must not be
+// hand-edited; changes are overwritten on the next generation run.
+//
+// A paginated list's request type has an All method, returning an [iter.Seq2] of the item
+// type and an error. All walks every page, following the list's cursor, and yields the error
+// as the final pair if a request fails — matchable with errors.Is against [ErrNoCursor] or
+// [ErrRepeatedCursor]. Execute still returns a single page.
 package montecarlo

@@ -4,6 +4,7 @@ package montecarlo_test
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/monte-carlo-data/mc-sdk-go/montecarlo"
 )
@@ -19,4 +20,26 @@ func ExampleNewClient() {
 		TokenSecret: "secret",
 	})
 	_, _ = api, err
+}
+
+// ExampleAPIClient_walk ranges over a paginated list without tracking cursors itself. Every
+// generated list operation's All method has this same shape. Like ExampleNewClient, it has no
+// Output comment, so a rename of All fails here rather than downstream.
+func ExampleAPIClient_walk() {
+	ctx := context.Background()
+	api, err := montecarlo.NewClient(ctx, montecarlo.Options{
+		Endpoint:    "https://api.getmontecarlo.com",
+		TokenID:     "id",
+		TokenSecret: "secret",
+	})
+	if err != nil {
+		return
+	}
+
+	for warehouse, err := range api.WarehousesAPI.ListWarehouses(ctx).All() {
+		if err != nil {
+			return
+		}
+		fmt.Println(warehouse.GetName())
+	}
 }

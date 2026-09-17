@@ -5,11 +5,13 @@ globs: "**/*"
 
 # General Standards
 
-Almost everything under `montecarlo/` is `openapi-generator` output. The hand-written surface
-is `montecarlo/auth.go`, `oauth.go`, `profile.go` and their tests, `montecarlo/doc.go`, the
-module files, and the repository documentation — see AGENTS.md for the exact list. These rules
-apply to that surface; do not hand-edit generated files, because the next generation run
-overwrites them.
+Almost everything under `montecarlo/` is generated output. The hand-written surface is
+`montecarlo/auth.go`, `oauth.go`, `profile.go`, `paginate.go` and their tests,
+`montecarlo/doc.go`, the module files, and the repository documentation — see AGENTS.md for
+the exact list. `montecarlo/api_*_paging.gen.go` is generated even though it calls into the
+hand-written `paginate.go` — the pairing is easy to misread, so check AGENTS.md before assuming
+either half is what it looks like. These rules apply to the hand-written surface; do not
+hand-edit generated files, because the next generation run overwrites them.
 
 ## Code Style
 
