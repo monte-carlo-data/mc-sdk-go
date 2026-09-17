@@ -85,6 +85,24 @@ The client's operations and the request and response types they take are in the 
 so that one import covers everything: `montecarlo.DeploymentIn`, `montecarlo.ProblemOut`, and
 so on.
 
+### Walking a paginated list
+
+A list that pages returns one page per `Execute`, with `next_cursor` to ask for the next. `All`
+walks them for you and iterates every item, so nothing has to follow the cursor by hand:
+
+```go
+for warehouse, err := range api.WarehousesAPI.ListWarehouses(ctx).All() {
+    if err != nil {
+        return err
+    }
+    fmt.Println(warehouse.Id, warehouse.Name)
+}
+```
+
+The error is yielded once, as the final pair, and ends the iteration — so a walk must check it.
+`All` asks for the largest page the operation serves; `Limit` still sets the page size if you
+want a smaller one. Call `Execute` instead when you want one page and the cursor yourself.
+
 ### Using credentials you have already configured
 
 If you have configured the Monte Carlo CLI, the SDK reads the same `mcd_id` and `mcd_token`

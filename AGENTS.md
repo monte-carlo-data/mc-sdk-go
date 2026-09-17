@@ -31,7 +31,12 @@ gofmt -l .        # must be empty; generated output is formatted when it is prod
 
 ## What is generated
 
-Everything under `montecarlo/` except `doc.go`, `example_test.go`, and the auth files. The generator is pointed at
+Everything under `montecarlo/` except `doc.go`, `example_test.go`, the auth files and the
+pagination driver. Two generators write here rather than one: `openapi-generator` emits the
+client, and api-codegen's own templates emit the `api_*_paging.gen.go` files, one per tag
+holding a paginated list. Those carry the `api_` prefix, so the guard below already treats them
+as generated; `openapi-generator` neither writes nor prunes them, and the generation script
+clears that filename pattern itself. The generator is pointed at
 that directory, not the repository root, so the module files and the repository documentation
 are out of its reach by construction. The hand-written files share the package with the
 generated ones so that a caller has one import and one name for the SDK — `montecarlo.NewClient`
@@ -53,6 +58,7 @@ file entry for entry, so the two must be kept in step by hand:
 
 - `auth.go`, `auth_test.go`, `oauth.go`, `oauth_test.go`, `profile.go`, `profile_test.go` — hand-written client construction and credentials
 - `doc.go` — the package doc comment, which is the pkg.go.dev page for the package
+- `paginate.go`, `paginate_test.go` — the pagination driver the generated `All` methods call
 - `example_test.go` — the external-package (`package montecarlo_test`) example that compiles the
   public surface as a consumer would; hand-written, and must stay in the ignore file
 - `go.mod`, `go.sum` — a nested module would split the package off from the repository's
@@ -64,7 +70,7 @@ Of these, `README.md`, `.gitignore`, `git_push.sh`, `.travis.yml` and `api/opena
 paths the generator actually emits — those five entries are load-bearing, confirmed by running
 the generator into an empty directory with no ignore file. `go.mod` and `go.sum` would be too,
 but the generation script passes `withGoMod=false` so they are never written; `doc.go`,
-`example_test.go`, and the auth files are paths the Go generator never writes to — it names its
+`example_test.go`, the auth files and the pagination driver are paths the Go generator never writes to — it names its
 files `api_*.go`, `model_*.go`, `client.go`, `configuration.go`, `response.go` and `utils.go`,
 and runs with test generation off. The rest of the list is defensive rather than required; keep it for clarity
 and in case that ever changes. A hand-written file must never take one of those generated

@@ -29,6 +29,12 @@ example_test.go
 # Defensive: the Go generator emits no doc.go.
 doc.go
 
+# The pagination driver the generated All methods call. api-codegen renders those methods into
+# api_*_paging.gen.go files, which openapi-generator does not write and does not know about.
+# Defensive: the generator emits no paginate.go.
+paginate.go
+paginate_test.go
+
 # A go.mod here would make this package its own module, separate from the repository's.
 # Defensive: generate-go-sdk.sh passes withGoMod=false, so neither file is emitted.
 go.mod
