@@ -8,9 +8,11 @@
 # unless withGoMod=false, which generate-go-sdk.sh passes. Those five entries are load-bearing;
 # the rest are defensive, and are kept so the protected set reads as one list.
 #
-# This file is what api-codegen's generate-go-sdk.sh compares its PROTECTED array against,
-# whole line for whole line; the root AGENTS.md documents this list entry for entry. A variant
-# spelling still protects the file but fails that check.
+# generate-go-sdk.sh's PROTECTED array holds the five generator-emitted paths below and
+# compares each against this file whole line for whole line; a variant spelling of one of
+# those five still protects the file but fails that check. The hand-written entries are owned
+# here instead, asserted by this repository's own CI gate rather than by api-codegen. The root
+# AGENTS.md documents the whole list entry for entry.
 
 # Client construction and credentials: NewClient, Options, the OAuth token source and the
 # CLI's profiles file, plus example_test.go, the external-package example that compiles the
@@ -29,9 +31,9 @@ example_test.go
 # Defensive: the Go generator emits no doc.go.
 doc.go
 
-# The pagination driver the generated All methods call. api-codegen renders those methods into
-# api_*_paging.gen.go files, which openapi-generator does not write and does not know about.
-# Defensive: the generator emits no paginate.go.
+# The pagination driver the generated All methods call.
+# Defensive: the generator names its files api_*.go, model_*.go, client.go, configuration.go,
+# response.go and utils.go, and runs with test generation off.
 paginate.go
 paginate_test.go
 

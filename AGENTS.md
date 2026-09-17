@@ -1,10 +1,10 @@
 # mc-sdk-go
 
-> The Go SDK for the Monte Carlo REST API: one package, `montecarlo`. Generated from the API's OpenAPI spec, except client construction and credentials (`auth.go`, `oauth.go`, `profile.go`), which are hand-written.
+> The Go SDK for the Monte Carlo REST API: one package, `montecarlo`. Generated from the API's OpenAPI spec, except client construction, credentials (`auth.go`, `oauth.go`, `profile.go`), and the pagination driver (`paginate.go`), which are hand-written.
 
 ## Stack
 
-- **Language:** Go 1.23+
+- **Language:** Go 1.24.0, matching `go.mod`, which is the source of truth for the floor
 - **Only dependency:** `golang.org/x/oauth2`
 
 ## Common Commands
@@ -24,7 +24,9 @@ gofmt -l .        # must be empty; generated output is formatted when it is prod
 | `montecarlo/auth.go`, `oauth.go`, `profile.go` | **Hand-written.** `NewClient`, `Options`, API-token and OAuth credentials, the CLI's profiles file |
 | `montecarlo/example_test.go` | **Hand-written.** External-package example that compiles the public surface as a consumer would |
 | `montecarlo/doc.go` | **Hand-written.** The package doc comment |
+| `montecarlo/paginate.go` | **Hand-written.** The cursor loop the generated `All` methods call |
 | `montecarlo/api_*.go`, `montecarlo/model_*.go` | Generated operations and models, one file per tag group and schema |
+| `montecarlo/api_*_paging.gen.go` | Generated, but not by `openapi-generator` — one file per tag with a paginated list, from api-codegen's own templates |
 | `montecarlo/client.go`, `configuration.go`, `response.go`, `utils.go` | Generated client plumbing |
 | `montecarlo/.openapi-generator/` | Generator bookkeeping |
 | `montecarlo/docs/` | Generated API reference |
@@ -34,16 +36,16 @@ gofmt -l .        # must be empty; generated output is formatted when it is prod
 Everything under `montecarlo/` except `doc.go`, `example_test.go`, the auth files and the
 pagination driver. Two generators write here rather than one: `openapi-generator` emits the
 client, and api-codegen's own templates emit the `api_*_paging.gen.go` files, one per tag
-holding a paginated list. Those carry the `api_` prefix, so the guard below already treats them
-as generated; `openapi-generator` neither writes nor prunes them, and the generation script
-clears that filename pattern itself. The generator is pointed at
-that directory, not the repository root, so the module files and the repository documentation
-are out of its reach by construction. The hand-written files share the package with the
-generated ones so that a caller has one import and one name for the SDK — `montecarlo.NewClient`
-beside `montecarlo.DeploymentIn` — and rely on the ignore file for protection, exactly as
-`doc.go` always has. The generator overwrites every path it emits on each run — it does not
-delete anything else — so a fix to a generated file does not survive; it belongs in the API or
-in the generator that reads its spec.
+holding a paginated list. Those carry the `api_` prefix, so the guard below already treats
+them as generated; `openapi-generator` neither writes nor prunes them, and the generation
+script clears that filename pattern itself. The generator is pointed at that directory, not
+the repository root, so the module files and the repository documentation are out of its
+reach by construction. The hand-written files share the package with the generated ones so
+that a caller has one import and one name for the SDK — `montecarlo.NewClient` beside
+`montecarlo.DeploymentIn` — and rely on the ignore file for protection, exactly as `doc.go`
+always has. The generator overwrites every path it emits on each run — it does not delete
+anything else — so a fix to a generated file does not survive; it belongs in the API or in
+the generator that reads its spec.
 
 The Go generator emits a flat package: it has no option to nest operations or models in
 subdirectories (its `apiPackage`/`modelPackage` settings are ignored), and Go's one package
@@ -52,9 +54,10 @@ directory is the unit of organisation, which is why the output moved there.
 
 **Anything hand-written under `montecarlo/`, or anything we don't want emitted there, must be
 listed in `montecarlo/.openapi-generator-ignore`** — the generator reads the ignore file from
-its output directory. `montecarlo/.openapi-generator-ignore` is what `generate-go-sdk.sh`
-compares its `PROTECTED` array against, whole line for whole line; this section documents that
-file entry for entry, so the two must be kept in step by hand:
+its output directory. `generate-go-sdk.sh` and this repository's own CI gate both check
+`montecarlo/.openapi-generator-ignore` against this list — see below for exactly how each
+does; this section documents the file entry for entry, so the two must be kept in step by
+hand:
 
 - `auth.go`, `auth_test.go`, `oauth.go`, `oauth_test.go`, `profile.go`, `profile_test.go` — hand-written client construction and credentials
 - `doc.go` — the package doc comment, which is the pkg.go.dev page for the package
@@ -67,31 +70,40 @@ file entry for entry, so the two must be kept in step by hand:
 - `git_push.sh`, `.travis.yml` — generator scaffolding we don't use
 
 Of these, `README.md`, `.gitignore`, `git_push.sh`, `.travis.yml` and `api/openapi.yaml` are
-paths the generator actually emits — those five entries are load-bearing, confirmed by running
-the generator into an empty directory with no ignore file. `go.mod` and `go.sum` would be too,
-but the generation script passes `withGoMod=false` so they are never written; `doc.go`,
-`example_test.go`, the auth files and the pagination driver are paths the Go generator never writes to — it names its
-files `api_*.go`, `model_*.go`, `client.go`, `configuration.go`, `response.go` and `utils.go`,
-and runs with test generation off. The rest of the list is defensive rather than required; keep it for clarity
-and in case that ever changes. A hand-written file must never take one of those generated
-names. The same constraint applies to identifiers: the generator emits `<Schema>`,
-`New<Schema>`, `New<Schema>WithDefaults`, and `NewNullable<Schema>` for every schema in the
-spec, plus fixed names `APIClient`, `Configuration`, `NewConfiguration`, `NewAPIClient`,
-`GenericOpenAPIError`, `BasicAuth`, `APIKey`, `ServerConfiguration`, and the `Nullable*`/`Ptr*`
-helper families. A hand-written package-level identifier — exported or not — must never take a
-name the generator could emit; in particular `NewClient` and `Options` are reserved against
-future schemas named `Client` and `Options`, and a collision surfaces as a compile failure at
-regeneration time whose only fix is renaming the SDK's public API.
+paths the generator actually emits — those five entries are load-bearing, confirmed by
+running the generator into an empty directory with no ignore file. `go.mod` and `go.sum`
+would be too, but the generation script passes `withGoMod=false` so they are never written;
+`doc.go`, `example_test.go`, the auth files and the pagination driver are paths the Go
+generator never writes to — it names its files `api_*.go`, `model_*.go`, `client.go`,
+`configuration.go`, `response.go` and `utils.go`, and runs with test generation off. The rest
+of the list is defensive rather than required; keep it for clarity and in case that ever
+changes. A hand-written file must never take one of those generated names. The same
+constraint applies to identifiers: the generator emits `<Schema>`, `New<Schema>`,
+`New<Schema>WithDefaults`, and `NewNullable<Schema>` for every schema in the spec, plus fixed
+names `APIClient`, `Configuration`, `NewConfiguration`, `NewAPIClient`,
+`GenericOpenAPIError`, `BasicAuth`, `APIKey`, `ServerConfiguration`, and the
+`Nullable*`/`Ptr*` helper families. A hand-written package-level identifier — exported or not
+— must never take a name the generator could emit; in particular `NewClient` and `Options`
+are reserved against future schemas named `Client` and `Options`, and a collision surfaces as
+a compile failure at regeneration time whose only fix is renaming the SDK's public API.
+api-codegen's own templates also declare into `package montecarlo`, via
+`api_*_paging.gen.go`, so `paginate` is reserved to the hand-written driver the same way;
+api-codegen records that reservation on its side too, in `GO_SDK_HELPERS`.
 
 The generation script also passes `isGoSubmodule=true`, which is what makes the import path in
 the generated `docs/` examples read `.../mc-sdk-go/montecarlo` rather than the module root.
 
-The cross-repo guard compares `api-codegen`'s `PROTECTED` array against
-`montecarlo/.openapi-generator-ignore` whole line for whole line, not semantically — an entry
-written as `./doc.go` instead of `doc.go` still protects the file from the generator but fails
-that check, because the text doesn't match character-for-character. Since the guard reads the
-ignore file directly rather than this section, keeping the two in step is a manual discipline,
-not something enforced by the check itself.
+Two separate checks read `montecarlo/.openapi-generator-ignore`, and only one of them is
+`api-codegen`'s. `generate-go-sdk.sh`'s `PROTECTED` array holds the five paths
+`openapi-generator` itself emits — `README.md`, `.gitignore`, `git_push.sh`, `.travis.yml`,
+`api/openapi.yaml` — and asserts each appears in the ignore file whole line for whole line.
+`doc.go` and `paginate.go` are not in that array, so a variant spelling such as `./doc.go`
+would pass it untouched. The hand-written entries, including those two, are owned here
+instead: this repository's own CI gate checks that every `montecarlo/*.go` file not matching
+one of the generator's own names (`api_*.go`, `model_*.go`, `client.go`, `configuration.go`,
+`response.go`, `utils.go`) is listed in the ignore file. Since neither check reads this
+section, keeping it in step with the ignore file is a manual discipline. One consequence worth
+stating: adding a hand-written file here needs no change on the api-codegen side.
 
 Regeneration is performed by Monte Carlo's internal API code-generation tooling, run by a
 maintainer from outside this repository — it owns generation for every artifact built from

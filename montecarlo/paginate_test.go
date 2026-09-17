@@ -13,49 +13,76 @@ import (
 	"testing"
 )
 
-// page is one canned response for a fake fetch: the items it serves, the cursor it reports as
-// next, and whether it claims more pages follow.
-type page struct {
+// cannedPage is one response fetchRecorder replays. It can claim more pages than it has a
+// cursor for, which the malformed-response tests depend on.
+type cannedPage struct {
 	items []string
 	next  string
 	more  bool
 }
 
-// fakeFetch serves pages in order and records the cursor each call received, so a test can
-// assert both what a walk yielded and what it asked for.
-func fakeFetch(pages ...page) (func(string) ([]string, string, bool, error), *[]string) {
-	var asked []string
-	i := 0
-	return func(cursor string) ([]string, string, bool, error) {
-		asked = append(asked, cursor)
-		p := pages[i]
-		i++
-		return p.items, p.next, p.more, nil
-	}, &asked
+// fetchRecorder replays a fixed sequence of cannedPages and records the cursor each call
+// received, so a test can assert both what a walk yielded and what it asked for. A call past
+// the last canned page reports a distinguishable error instead of panicking, so a test that
+// over-fetches fails on a named assertion rather than a crash.
+type fetchRecorder struct {
+	pages []cannedPage
+	asked []string
 }
 
-// collect drains an iterator into its items and the first error it yielded.
-func collect[T any](seq func(func(T, error) bool)) ([]T, error) {
-	var items []T
-	var failure error
+func newFetchRecorder(pages ...cannedPage) *fetchRecorder {
+	return &fetchRecorder{pages: pages}
+}
+
+func (r *fetchRecorder) fetch(cursor string) ([]string, string, bool, error) {
+	r.asked = append(r.asked, cursor)
+	i := len(r.asked) - 1
+	if i >= len(r.pages) {
+		return nil, "", false, fmt.Errorf("fetchRecorder: fetch called %d times, only %d pages canned", len(r.asked), len(r.pages))
+	}
+	p := r.pages[i]
+	return p.items, p.next, p.more, nil
+}
+
+// collectedPair is one item, err pair an iterator yielded, in yield order.
+type collectedPair[T any] struct {
+	item T
+	err  error
+}
+
+// collect drains an iterator into the full sequence of pairs it yielded, in order.
+func collect[T any](seq func(func(T, error) bool)) []collectedPair[T] {
+	var pairs []collectedPair[T]
 	for item, err := range seq {
-		if err != nil {
-			failure = err
+		pairs = append(pairs, collectedPair[T]{item, err})
+	}
+	return pairs
+}
+
+// itemsAndErr extracts a walk's items and its final error, for tests that only care about the
+// common case rather than the full pair-by-pair contract. TestPaginateEndsOnAFailedRequest pins
+// that fuller contract directly against collect's own return value.
+func itemsAndErr[T any](pairs []collectedPair[T]) ([]T, error) {
+	var items []T
+	var err error
+	for _, p := range pairs {
+		if p.err != nil {
+			err = p.err
 			continue
 		}
-		items = append(items, item)
+		items = append(items, p.item)
 	}
-	return items, failure
+	return items, err
 }
 
 func TestPaginateYieldsEveryPageInOrder(t *testing.T) {
-	fetch, asked := fakeFetch(
-		page{items: []string{"a", "b"}, next: "c1", more: true},
-		page{items: []string{"c"}, next: "c2", more: true},
-		page{items: []string{"d", "e"}},
+	rec := newFetchRecorder(
+		cannedPage{items: []string{"a", "b"}, next: "c1", more: true},
+		cannedPage{items: []string{"c"}, next: "c2", more: true},
+		cannedPage{items: []string{"d", "e"}},
 	)
 
-	items, err := collect(paginate(fetch))
+	items, err := itemsAndErr(collect(paginate(rec.fetch)))
 
 	if err != nil {
 		t.Fatalf("walk failed: %v", err)
@@ -64,7 +91,7 @@ func TestPaginateYieldsEveryPageInOrder(t *testing.T) {
 		t.Errorf("items = %q, want %q", got, "abcde")
 	}
 	// The first page is asked for with no cursor; each later page with the one before it.
-	if got := strings.Join(*asked, ","); got != ",c1,c2" {
+	if got := strings.Join(rec.asked, ","); got != ",c1,c2" {
 		t.Errorf("cursors asked = %q, want %q", got, ",c1,c2")
 	}
 }
@@ -97,24 +124,31 @@ func TestPaginateEndsOnAFailedRequest(t *testing.T) {
 		return nil, "", false, boom
 	}
 
-	items, err := collect(paginate(fetch))
+	pairs := collect(paginate(fetch))
 
-	if !errors.Is(err, boom) {
-		t.Errorf("error = %v, want %v", err, boom)
+	if len(pairs) != 2 {
+		t.Fatalf("pairs = %d, want 2: %+v", len(pairs), pairs)
 	}
-	// The items read before the failure are still yielded.
-	if len(items) != 1 || items[0] != "a" {
-		t.Errorf("items = %v, want [a]", items)
+	if pairs[0].item != "a" || pairs[0].err != nil {
+		t.Errorf("pairs[0] = %+v, want {item: \"a\", err: nil}", pairs[0])
+	}
+	last := pairs[1]
+	if !errors.Is(last.err, boom) {
+		t.Errorf("final error = %v, want %v", last.err, boom)
+	}
+	var zero string
+	if last.item != zero {
+		t.Errorf("final item = %q, want the zero value", last.item)
 	}
 }
 
 func TestPaginateRefusesMorePagesWithNoCursor(t *testing.T) {
-	fetch, _ := fakeFetch(page{items: []string{"a"}, more: true})
+	rec := newFetchRecorder(cannedPage{items: []string{"a"}, more: true})
 
-	_, err := collect(paginate(fetch))
+	_, err := itemsAndErr(collect(paginate(rec.fetch)))
 
-	if err == nil || !strings.Contains(err.Error(), "no cursor") {
-		t.Errorf("error = %v, want one naming the missing cursor", err)
+	if !errors.Is(err, ErrNoCursor) {
+		t.Errorf("error = %v, want %v", err, ErrNoCursor)
 	}
 }
 
@@ -123,30 +157,18 @@ func TestPaginateRefusesARepeatedCursor(t *testing.T) {
 		return []string{"a"}, "same", true, nil
 	}
 
-	_, err := collect(paginate(fetch))
+	_, err := itemsAndErr(collect(paginate(fetch)))
 
-	if err == nil || !strings.Contains(err.Error(), "twice") {
-		t.Errorf("error = %v, want one naming the repeated cursor", err)
-	}
-}
-
-func TestPaginateRefusesTheFirstCursorComingBack(t *testing.T) {
-	// The first page is requested with an empty cursor, so a server echoing that back is the
-	// same loop by another name.
-	fetch, _ := fakeFetch(page{items: []string{"a"}, next: "", more: true})
-
-	_, err := collect(paginate(fetch))
-
-	if err == nil {
-		t.Error("error = nil, want the walk refused")
+	if !errors.Is(err, ErrRepeatedCursor) {
+		t.Errorf("error = %v, want %v", err, ErrRepeatedCursor)
 	}
 }
 
 // warehousePage is one page of the warehouses list as the API serves it. Every field the
 // generated models require is present, so a page that unmarshals here would unmarshal in
-// production too.
-func warehousePage(t *testing.T, ids []string, next string) string {
-	t.Helper()
+// production too. hasMore and next are independent, so a caller can render the malformed
+// shape ErrNoCursor exists for: more pages promised with a null cursor.
+func warehousePage(ids []string, next string, hasMore bool) string {
 	items := make([]map[string]any, 0, len(ids))
 	for _, id := range ids {
 		items = append(items, map[string]any{
@@ -157,22 +179,21 @@ func warehousePage(t *testing.T, ids []string, next string) string {
 			"created_time":  "2026-09-17T00:00:00Z",
 		})
 	}
-	body := map[string]any{"items": items, "has_more": next != "", "count": nil}
+	body := map[string]any{"items": items, "has_more": hasMore, "count": nil}
 	if next != "" {
 		body["next_cursor"] = next
 	} else {
 		body["next_cursor"] = nil
 	}
-	encoded, err := json.Marshal(body)
-	if err != nil {
-		t.Fatalf("encoding the page failed: %v", err)
-	}
+	// The value marshaled above is a fixed map of strings, bools, and nil, so json.Marshal
+	// cannot fail.
+	encoded, _ := json.Marshal(body)
 	return string(encoded)
 }
 
-// TestAllWalksEveryPageThroughTheGeneratedClient exercises the generated All method rather than
-// the driver alone: it proves the closure api-codegen renders threads the cursor onto the real
-// request, asks for the operation's largest page, and stops where the driver says to.
+// The closure api-codegen renders threads the cursor onto the real request and asks for the
+// operation's largest page. This exercises the generated All method rather than the driver
+// alone.
 func TestAllWalksEveryPageThroughTheGeneratedClient(t *testing.T) {
 	var queries []string
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -180,11 +201,11 @@ func TestAllWalksEveryPageThroughTheGeneratedClient(t *testing.T) {
 		w.Header().Set("Content-Type", "application/json")
 		switch r.URL.Query().Get("cursor") {
 		case "":
-			fmt.Fprint(w, warehousePage(t, []string{"1", "2"}, "c1"))
+			fmt.Fprint(w, warehousePage([]string{"1", "2"}, "c1", true))
 		case "c1":
-			fmt.Fprint(w, warehousePage(t, []string{"3"}, "c2"))
+			fmt.Fprint(w, warehousePage([]string{"3"}, "c2", true))
 		default:
-			fmt.Fprint(w, warehousePage(t, []string{"4"}, ""))
+			fmt.Fprint(w, warehousePage([]string{"4"}, "", false))
 		}
 	}))
 	defer server.Close()
@@ -231,14 +252,14 @@ func TestAllWalksEveryPageThroughTheGeneratedClient(t *testing.T) {
 	}
 }
 
-// TestAllKeepsAPageSizeTheCallerSet pins the published doc comment's claim that Limit overrides
-// the largest-page default.
+// api_warehouses_paging.gen.go's All doc comment claims a page size set with Limit overrides
+// the largest-page default; this pins that claim.
 func TestAllKeepsAPageSizeTheCallerSet(t *testing.T) {
 	var queries []string
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		queries = append(queries, r.URL.RawQuery)
 		w.Header().Set("Content-Type", "application/json")
-		fmt.Fprint(w, warehousePage(t, []string{"1"}, ""))
+		fmt.Fprint(w, warehousePage([]string{"1"}, "", false))
 	}))
 	defer server.Close()
 
@@ -259,15 +280,96 @@ func TestAllKeepsAPageSizeTheCallerSet(t *testing.T) {
 		}
 	}
 
-	if len(queries) != 1 || !strings.Contains(queries[0], "limit=25") {
-		t.Errorf("queries = %v, want one carrying limit=25", queries)
+	if want := "limit=25&with_count=false"; len(queries) != 1 || queries[0] != want {
+		t.Errorf("queries = %v, want [%q]", queries, want)
+	}
+}
+
+// GetNextCursor on the generated model turns a null next_cursor into an empty string before
+// the driver ever sees it, so a has_more: true page with no cursor reaches paginate as
+// ErrNoCursor's own trigger. This drives that shape through the real generated closure rather
+// than asserting it against the driver alone.
+func TestAllEndsWithErrNoCursorWhenTheServerPromisesMoreWithNoCursor(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		fmt.Fprint(w, warehousePage([]string{"1"}, "", true))
+	}))
+	defer server.Close()
+
+	ctx := context.Background()
+	api, err := NewClient(ctx, Options{
+		Endpoint:    server.URL,
+		TokenID:     "id",
+		TokenSecret: "secret",
+		ConfigDir:   isolate(t),
+	})
+	if err != nil {
+		t.Fatalf("building the client failed: %v", err)
+	}
+
+	var walkErr error
+	for _, err := range api.WarehousesAPI.ListWarehouses(ctx).All() {
+		if err != nil {
+			walkErr = err
+		}
+	}
+	if !errors.Is(walkErr, ErrNoCursor) {
+		t.Errorf("error = %v, want %v", walkErr, ErrNoCursor)
+	}
+}
+
+// A regeneration that dropped All's `if err != nil { return }` would leave a walk silently
+// truncating on a mid-walk 500 instead of surfacing it, and nothing else in this suite drives a
+// real failed request through the generated closure to catch that.
+func TestAllYieldsAFailedRequestAsItsFinalPair(t *testing.T) {
+	var calls int
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		calls++
+		if calls == 1 {
+			w.Header().Set("Content-Type", "application/json")
+			fmt.Fprint(w, warehousePage([]string{"1"}, "c1", true))
+			return
+		}
+		http.Error(w, "boom", http.StatusInternalServerError)
+	}))
+	defer server.Close()
+
+	ctx := context.Background()
+	api, err := NewClient(ctx, Options{
+		Endpoint:    server.URL,
+		TokenID:     "id",
+		TokenSecret: "secret",
+		ConfigDir:   isolate(t),
+	})
+	if err != nil {
+		t.Fatalf("building the client failed: %v", err)
+	}
+
+	var ids []string
+	var walkErr error
+	for warehouse, err := range api.WarehousesAPI.ListWarehouses(ctx).All() {
+		if err != nil {
+			walkErr = err
+			continue
+		}
+		ids = append(ids, warehouse.Id)
+	}
+
+	if got := strings.Join(ids, ","); got != "1" {
+		t.Errorf("ids = %q, want %q", got, "1")
+	}
+	if walkErr == nil {
+		t.Error("error = nil, want the 500 surfaced as the walk's final pair")
+	}
+	if calls != 2 {
+		t.Errorf("requests = %d, want 2: the walk should stop at the failure", calls)
 	}
 }
 
 func TestPaginateServesAnEmptyList(t *testing.T) {
-	fetch, asked := fakeFetch(page{})
+	rec := newFetchRecorder(cannedPage{})
 
-	items, err := collect(paginate(fetch))
+	items, err := itemsAndErr(collect(paginate(rec.fetch)))
 
 	if err != nil {
 		t.Fatalf("walk failed: %v", err)
@@ -275,7 +377,7 @@ func TestPaginateServesAnEmptyList(t *testing.T) {
 	if len(items) != 0 {
 		t.Errorf("items = %v, want none", items)
 	}
-	if len(*asked) != 1 {
-		t.Errorf("fetch called %d times, want 1", len(*asked))
+	if len(rec.asked) != 1 {
+		t.Errorf("fetch called %d times, want 1", len(rec.asked))
 	}
 }
