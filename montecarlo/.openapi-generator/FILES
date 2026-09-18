@@ -1,5 +1,6 @@
 api_collection_agents.go
 api_collection_data_stores.go
+api_connections.go
 api_credentials.go
 api_deployments.go
 api_users.go
@@ -33,6 +34,10 @@ docs/CollectionAgentOut.md
 docs/CollectionAgentsAPI.md
 docs/CollectionDataStoreOut.md
 docs/CollectionDataStoresAPI.md
+docs/ConnectionIn.md
+docs/ConnectionOut.md
+docs/ConnectionPatch.md
+docs/ConnectionsAPI.md
 docs/CredentialType.md
 docs/CredentialsAPI.md
 docs/CredentialsStorageType.md
@@ -73,6 +78,7 @@ docs/GenericCollectionAgentTokenIn.md
 docs/GenericCollectionAgentTokenOut.md
 docs/IdentityType.md
 docs/Input.md
+docs/PagedConnectionOut.md
 docs/PagedCredentialsSummaryOut.md
 docs/PagedWarehouseOut.md
 docs/ProblemOut.md
@@ -115,6 +121,9 @@ model_azure_key_vault_credentials_patch.go
 model_collection_agent_credential_out.go
 model_collection_agent_out.go
 model_collection_data_store_out.go
+model_connection_in.go
+model_connection_out.go
+model_connection_patch.go
 model_credential_type.go
 model_credentials_storage_type.go
 model_credentials_summary_out.go
@@ -153,6 +162,7 @@ model_generic_collection_agent_token_in.go
 model_generic_collection_agent_token_out.go
 model_identity_type.go
 model_input.go
+model_paged_connection_out.go
 model_paged_credentials_summary_out.go
 model_paged_warehouse_out.go
 model_problem_out.go
