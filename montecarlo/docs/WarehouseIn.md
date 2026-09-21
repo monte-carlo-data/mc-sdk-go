@@ -5,14 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | Display name for the warehouse. Unique among your warehouses of the same type. | 
-**Type** | [**WarehouseType**](WarehouseType.md) | The kind of data platform the warehouse represents. Every connection added to it has to fit. Cannot be changed after the warehouse is created. | 
+**Type** | Pointer to [**NullableWarehouseType**](WarehouseType.md) | The kind of data platform the warehouse represents. Every connection added to it has to fit. Cannot be changed after the warehouse is created. Send this or &#x60;connection_type&#x60;, not both. | [optional] 
+**ConnectionType** | Pointer to **NullableString** | The type of the first connection you plan to add. The warehouse type is taken from it and returned as &#x60;type&#x60;. Send this or &#x60;type&#x60;, not both. A connection type no warehouse type can be taken from is refused, custom connectors included. So is one this account does not have. | [optional] 
 **DeploymentId** | **string** | The deployment the warehouse&#39;s connections will run through. Pick one from the deployments list. Only a deployment on Monte Carlo&#39;s current collection platform is accepted. | 
 
 ## Methods
 
 ### NewWarehouseIn
 
-`func NewWarehouseIn(name string, type_ WarehouseType, deploymentId string, ) *WarehouseIn`
+`func NewWarehouseIn(name string, deploymentId string, ) *WarehouseIn`
 
 NewWarehouseIn instantiates a new WarehouseIn object
 This constructor will assign default values to properties that have it defined,
@@ -66,7 +67,57 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
+### HasType
 
+`func (o *WarehouseIn) HasType() bool`
+
+HasType returns a boolean if a field has been set.
+
+### SetTypeNil
+
+`func (o *WarehouseIn) SetTypeNil(b bool)`
+
+ SetTypeNil sets the value for Type to be an explicit nil
+
+### UnsetType
+`func (o *WarehouseIn) UnsetType()`
+
+UnsetType ensures that no value is present for Type, not even an explicit nil
+### GetConnectionType
+
+`func (o *WarehouseIn) GetConnectionType() string`
+
+GetConnectionType returns the ConnectionType field if non-nil, zero value otherwise.
+
+### GetConnectionTypeOk
+
+`func (o *WarehouseIn) GetConnectionTypeOk() (*string, bool)`
+
+GetConnectionTypeOk returns a tuple with the ConnectionType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConnectionType
+
+`func (o *WarehouseIn) SetConnectionType(v string)`
+
+SetConnectionType sets ConnectionType field to given value.
+
+### HasConnectionType
+
+`func (o *WarehouseIn) HasConnectionType() bool`
+
+HasConnectionType returns a boolean if a field has been set.
+
+### SetConnectionTypeNil
+
+`func (o *WarehouseIn) SetConnectionTypeNil(b bool)`
+
+ SetConnectionTypeNil sets the value for ConnectionType to be an explicit nil
+
+### UnsetConnectionType
+`func (o *WarehouseIn) UnsetConnectionType()`
+
+UnsetConnectionType ensures that no value is present for ConnectionType, not even an explicit nil
 ### GetDeploymentId
 
 `func (o *WarehouseIn) GetDeploymentId() string`

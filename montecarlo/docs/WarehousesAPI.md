@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	warehouseIn := *openapiclient.NewWarehouseIn("Name_example", openapiclient.WarehouseType("bigquery"), "DeploymentId_example") // WarehouseIn | 
+	warehouseIn := *openapiclient.NewWarehouseIn("Name_example", "DeploymentId_example") // WarehouseIn | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
