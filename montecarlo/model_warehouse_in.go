@@ -23,8 +23,10 @@ var _ MappedNullable = &WarehouseIn{}
 type WarehouseIn struct {
 	// Display name for the warehouse. Unique among your warehouses of the same type.
 	Name string `json:"name"`
-	// The kind of data platform the warehouse represents. Every connection added to it has to fit. Cannot be changed after the warehouse is created.
-	Type WarehouseType `json:"type"`
+	// The kind of data platform the warehouse represents. Every connection added to it has to fit. Cannot be changed after the warehouse is created. Send this or `connection_type`, not both.
+	Type NullableWarehouseType `json:"type,omitempty"`
+	// The type of the first connection you plan to add. The warehouse type is taken from it and returned as `type`. Send this or `type`, not both. A connection type no warehouse type can be taken from is refused, custom connectors included. So is one this account does not have.
+	ConnectionType NullableString `json:"connection_type,omitempty"`
 	// The deployment the warehouse's connections will run through. Pick one from the deployments list. Only a deployment on Monte Carlo's current collection platform is accepted.
 	DeploymentId string `json:"deployment_id"`
 }
@@ -35,10 +37,9 @@ type _WarehouseIn WarehouseIn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewWarehouseIn(name string, type_ WarehouseType, deploymentId string) *WarehouseIn {
+func NewWarehouseIn(name string, deploymentId string) *WarehouseIn {
 	this := WarehouseIn{}
 	this.Name = name
-	this.Type = type_
 	this.DeploymentId = deploymentId
 	return &this
 }
@@ -75,28 +76,90 @@ func (o *WarehouseIn) SetName(v string) {
 	o.Name = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WarehouseIn) GetType() WarehouseType {
-	if o == nil {
+	if o == nil || IsNil(o.Type.Get()) {
 		var ret WarehouseType
 		return ret
 	}
-
-	return o.Type
+	return *o.Type.Get()
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WarehouseIn) GetTypeOk() (*WarehouseType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type.Get(), o.Type.IsSet()
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *WarehouseIn) HasType() bool {
+	if o != nil && o.Type.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given NullableWarehouseType and assigns it to the Type field.
 func (o *WarehouseIn) SetType(v WarehouseType) {
-	o.Type = v
+	o.Type.Set(&v)
+}
+
+// SetTypeNil sets the value for Type to be an explicit nil
+func (o *WarehouseIn) SetTypeNil() {
+	o.Type.Set(nil)
+}
+
+// UnsetType ensures that no value is present for Type, not even an explicit nil
+func (o *WarehouseIn) UnsetType() {
+	o.Type.Unset()
+}
+
+// GetConnectionType returns the ConnectionType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *WarehouseIn) GetConnectionType() string {
+	if o == nil || IsNil(o.ConnectionType.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.ConnectionType.Get()
+}
+
+// GetConnectionTypeOk returns a tuple with the ConnectionType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *WarehouseIn) GetConnectionTypeOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ConnectionType.Get(), o.ConnectionType.IsSet()
+}
+
+// HasConnectionType returns a boolean if a field has been set.
+func (o *WarehouseIn) HasConnectionType() bool {
+	if o != nil && o.ConnectionType.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetConnectionType gets a reference to the given NullableString and assigns it to the ConnectionType field.
+func (o *WarehouseIn) SetConnectionType(v string) {
+	o.ConnectionType.Set(&v)
+}
+
+// SetConnectionTypeNil sets the value for ConnectionType to be an explicit nil
+func (o *WarehouseIn) SetConnectionTypeNil() {
+	o.ConnectionType.Set(nil)
+}
+
+// UnsetConnectionType ensures that no value is present for ConnectionType, not even an explicit nil
+func (o *WarehouseIn) UnsetConnectionType() {
+	o.ConnectionType.Unset()
 }
 
 // GetDeploymentId returns the DeploymentId field value
@@ -134,7 +197,12 @@ func (o WarehouseIn) MarshalJSON() ([]byte, error) {
 func (o WarehouseIn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
-	toSerialize["type"] = o.Type
+	if o.Type.IsSet() {
+		toSerialize["type"] = o.Type.Get()
+	}
+	if o.ConnectionType.IsSet() {
+		toSerialize["connection_type"] = o.ConnectionType.Get()
+	}
 	toSerialize["deployment_id"] = o.DeploymentId
 	return toSerialize, nil
 }
@@ -145,7 +213,6 @@ func (o *WarehouseIn) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
-		"type",
 		"deployment_id",
 	}
 
