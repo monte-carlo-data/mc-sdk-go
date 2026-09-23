@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**GetConnection**](ConnectionsAPI.md#GetConnection) | **Get** /api/v2/connections/{connection_id} | Get a connection
 [**ListConnections**](ConnectionsAPI.md#ListConnections) | **Get** /api/v2/connections | List connections
 [**UpdateConnection**](ConnectionsAPI.md#UpdateConnection) | **Patch** /api/v2/connections/{connection_id} | Update a connection
+[**ValidateConnection**](ConnectionsAPI.md#ValidateConnection) | **Post** /api/v2/connections/{connection_id}/validate | Validate a connection
 
 
 
@@ -353,6 +354,76 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateConnection
+
+> ValidationRunOut ValidateConnection(ctx, connectionId).Execute()
+
+Validate a connection
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ConnectionsAPI.ValidateConnection(context.Background(), connectionId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsAPI.ValidateConnection``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateConnection`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `ConnectionsAPI.ValidateConnection`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**connectionId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateConnectionRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json, application/problem+json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
