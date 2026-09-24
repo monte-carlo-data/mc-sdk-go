@@ -1202,8 +1202,8 @@ DeleteAwsSecretsManagerCredentials Delete AWS Secrets Manager credentials
 
 Delete AWS Secrets Manager credentials.
 
-Refused while a connection still uses them: delete the connection or point it at other
-credentials first. The secret in AWS is untouched.
+Refused while a connection still uses them. Delete the connection first. The secret in AWS
+is untouched.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param credentialsId
@@ -1362,8 +1362,8 @@ DeleteAzureKeyVaultCredentials Delete Azure Key Vault credentials
 
 Delete Azure Key Vault credentials.
 
-Refused while a connection still uses them: delete the connection or point it at other
-credentials first. The secret in Azure is untouched.
+Refused while a connection still uses them. Delete the connection first. The secret in Azure
+is untouched.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param credentialsId
@@ -1507,6 +1507,167 @@ func (a *CredentialsAPIService) DeleteAzureKeyVaultCredentialsExecute(r ApiDelet
 	return localVarHTTPResponse, nil
 }
 
+type ApiDeleteCredentialsRequest struct {
+	ctx           context.Context
+	ApiService    *CredentialsAPIService
+	credentialsId string
+}
+
+func (r ApiDeleteCredentialsRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteCredentialsExecute(r)
+}
+
+/*
+DeleteCredentials Delete credentials
+
+Delete credentials of any connection type and storage.
+
+Takes the id the list or a connection returns. Refused while a connection still uses them.
+Delete the connection first. Monte Carlo stops using them. Whatever they point at is
+untouched.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId
+	@return ApiDeleteCredentialsRequest
+*/
+func (a *CredentialsAPIService) DeleteCredentials(ctx context.Context, credentialsId string) ApiDeleteCredentialsRequest {
+	return ApiDeleteCredentialsRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+func (a *CredentialsAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.DeleteCredentials")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/{credentials_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiDeleteEnvVarCredentialsRequest struct {
 	ctx           context.Context
 	ApiService    *CredentialsAPIService
@@ -1522,8 +1683,8 @@ DeleteEnvVarCredentials Delete environment variable credentials
 
 Delete environment variable credentials.
 
-Refused while a connection still uses them: delete the connection or point it at other
-credentials first. The variable on the deployment is untouched.
+Refused while a connection still uses them. Delete the connection first. The variable on the
+deployment is untouched.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param credentialsId
@@ -1682,8 +1843,8 @@ DeleteFileCredentials Delete file credentials
 
 Delete file credentials.
 
-Refused while a connection still uses them: delete the connection or point it at other
-credentials first. The file on the deployment is untouched.
+Refused while a connection still uses them. Delete the connection first. The file on the
+deployment is untouched.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param credentialsId
@@ -1842,8 +2003,8 @@ DeleteGcpSecretManagerCredentials Delete GCP Secret Manager credentials
 
 Delete GCP Secret Manager credentials.
 
-Refused while a connection still uses them: delete the connection or point it at other
-credentials first. The secret in GCP is untouched.
+Refused while a connection still uses them. Delete the connection first. The secret in GCP
+is untouched.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param credentialsId
@@ -2002,9 +2163,9 @@ DeleteSnowflakeCredentials Delete Snowflake credentials
 
 Delete Snowflake credentials.
 
-Refused while a connection still uses them: delete the connection or point it at other
-credentials first. Monte Carlo stops using the stored key. Rotate or revoke the key pair
-in Snowflake if the key itself must be retired.
+Refused while a connection still uses them. Delete the connection first. Monte Carlo stops
+using the stored key. Rotate or revoke the key pair in Snowflake if the key itself must be
+retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param credentialsId
