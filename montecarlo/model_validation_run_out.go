@@ -26,6 +26,8 @@ type ValidationRunOut struct {
 	Id string `json:"id"`
 	// Whether the run is still going. Every validation is final once it is not.
 	Status RunStatus `json:"status"`
+	// Moves forward every time a validation changes. Pass it as `since` on the next poll to get only the validations that changed after this response.
+	Revision int32 `json:"revision"`
 	// What the run validates.
 	TargetType TargetType `json:"target_type"`
 	// Identifier of what is being validated. Null for candidate values, which are not stored anywhere.
@@ -40,7 +42,7 @@ type ValidationRunOut struct {
 	FinishedAt NullableTime `json:"finished_at"`
 	// When the run stops being readable. Measured from the start, not the finish, and never extended, so a slow run is readable for less time after it ends.
 	ExpiresAt time.Time `json:"expires_at"`
-	// Every validation the run covers, in the order they are declared. Validations waiting on a prerequisite are listed before they start.
+	// The run's validations, in the order they are declared. Validations waiting on a prerequisite are listed before they start. A read with `since` lists only the validations that changed after that revision, and may list none.
 	Validations []ValidationOut `json:"validations"`
 }
 
@@ -50,10 +52,11 @@ type _ValidationRunOut ValidationRunOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewValidationRunOut(id string, status RunStatus, targetType TargetType, targetId NullableString, validationsPassed int32, validationsTotal int32, startedAt time.Time, finishedAt NullableTime, expiresAt time.Time, validations []ValidationOut) *ValidationRunOut {
+func NewValidationRunOut(id string, status RunStatus, revision int32, targetType TargetType, targetId NullableString, validationsPassed int32, validationsTotal int32, startedAt time.Time, finishedAt NullableTime, expiresAt time.Time, validations []ValidationOut) *ValidationRunOut {
 	this := ValidationRunOut{}
 	this.Id = id
 	this.Status = status
+	this.Revision = revision
 	this.TargetType = targetType
 	this.TargetId = targetId
 	this.ValidationsPassed = validationsPassed
@@ -119,6 +122,30 @@ func (o *ValidationRunOut) GetStatusOk() (*RunStatus, bool) {
 // SetStatus sets field value
 func (o *ValidationRunOut) SetStatus(v RunStatus) {
 	o.Status = v
+}
+
+// GetRevision returns the Revision field value
+func (o *ValidationRunOut) GetRevision() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.Revision
+}
+
+// GetRevisionOk returns a tuple with the Revision field value
+// and a boolean to check if the value has been set.
+func (o *ValidationRunOut) GetRevisionOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Revision, true
+}
+
+// SetRevision sets field value
+func (o *ValidationRunOut) SetRevision(v int32) {
+	o.Revision = v
 }
 
 // GetTargetType returns the TargetType field value
@@ -329,6 +356,7 @@ func (o ValidationRunOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
 	toSerialize["status"] = o.Status
+	toSerialize["revision"] = o.Revision
 	toSerialize["target_type"] = o.TargetType
 	toSerialize["target_id"] = o.TargetId.Get()
 	toSerialize["validations_passed"] = o.ValidationsPassed
@@ -347,6 +375,7 @@ func (o *ValidationRunOut) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"id",
 		"status",
+		"revision",
 		"target_type",
 		"target_id",
 		"validations_passed",

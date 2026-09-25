@@ -23,9 +23,23 @@ import (
 type ValidationsAPIService service
 
 type ApiGetValidationRunRequest struct {
-	ctx        context.Context
-	ApiService *ValidationsAPIService
-	runId      string
+	ctx         context.Context
+	ApiService  *ValidationsAPIService
+	runId       string
+	since       *int32
+	ifNoneMatch *string
+}
+
+// The &#x60;revision&#x60; from the previous response. Only validations that changed after it are returned. Omit it to get every validation.
+func (r ApiGetValidationRunRequest) Since(since int32) ApiGetValidationRunRequest {
+	r.since = &since
+	return r
+}
+
+// The &#x60;ETag&#x60; from a previous response. The read answers 304 with no body while the run&#39;s &#x60;revision&#x60; is unchanged.
+func (r ApiGetValidationRunRequest) IfNoneMatch(ifNoneMatch string) ApiGetValidationRunRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
 }
 
 func (r ApiGetValidationRunRequest) Execute() (*ValidationRunOut, *http.Response, error) {
@@ -39,6 +53,12 @@ Read a validation run started by a validate operation.
 
 Poll this until `status` is `completed`. Each validation carries its own `status` and,
 once it has one, a `passed` verdict with the problems behind it.
+
+Pass the `revision` from each response as `since` on the next poll to get only the
+validations that changed. The run's other fields are always returned in full.
+
+A response with the run carries an `ETag`. Send it back as `If-None-Match` to get a 304 with no
+body when nothing has changed.
 
 A run is kept for a limited time after it starts and then forgotten. An id that has
 expired, never existed, or belongs to another account all return 404.
@@ -80,6 +100,9 @@ func (a *ValidationsAPIService) GetValidationRunExecute(r ApiGetValidationRunReq
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.since != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "since", r.since, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -96,6 +119,9 @@ func (a *ValidationsAPIService) GetValidationRunExecute(r ApiGetValidationRunReq
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifNoneMatch != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "If-None-Match", r.ifNoneMatch, "simple", "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -120,6 +146,17 @@ func (a *ValidationsAPIService) GetValidationRunExecute(r ApiGetValidationRunReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
