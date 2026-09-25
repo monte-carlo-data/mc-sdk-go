@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **string** | Identifier of the run. Poll &#x60;GET /validations/{run_id}&#x60; with it. | 
 **Status** | [**RunStatus**](RunStatus.md) | Whether the run is still going. Every validation is final once it is not. | 
+**Revision** | **int32** | Moves forward every time a validation changes. Pass it as &#x60;since&#x60; on the next poll to get only the validations that changed after this response. | 
 **TargetType** | [**TargetType**](TargetType.md) | What the run validates. | 
 **TargetId** | **NullableString** | Identifier of what is being validated. Null for candidate values, which are not stored anywhere. | 
 **ValidationsPassed** | **int32** | How many validations reached a passing verdict. One that was skipped or never reached a verdict is not counted here, but is still in &#x60;validations_total&#x60;. | 
@@ -13,13 +14,13 @@ Name | Type | Description | Notes
 **StartedAt** | **time.Time** | When the run started. | 
 **FinishedAt** | **NullableTime** | When the run finished. Null while it is still going. | 
 **ExpiresAt** | **time.Time** | When the run stops being readable. Measured from the start, not the finish, and never extended, so a slow run is readable for less time after it ends. | 
-**Validations** | [**[]ValidationOut**](ValidationOut.md) | Every validation the run covers, in the order they are declared. Validations waiting on a prerequisite are listed before they start. | 
+**Validations** | [**[]ValidationOut**](ValidationOut.md) | The run&#39;s validations, in the order they are declared. Validations waiting on a prerequisite are listed before they start. A read with &#x60;since&#x60; lists only the validations that changed after that revision, and may list none. | 
 
 ## Methods
 
 ### NewValidationRunOut
 
-`func NewValidationRunOut(id string, status RunStatus, targetType TargetType, targetId NullableString, validationsPassed int32, validationsTotal int32, startedAt time.Time, finishedAt NullableTime, expiresAt time.Time, validations []ValidationOut, ) *ValidationRunOut`
+`func NewValidationRunOut(id string, status RunStatus, revision int32, targetType TargetType, targetId NullableString, validationsPassed int32, validationsTotal int32, startedAt time.Time, finishedAt NullableTime, expiresAt time.Time, validations []ValidationOut, ) *ValidationRunOut`
 
 NewValidationRunOut instantiates a new ValidationRunOut object
 This constructor will assign default values to properties that have it defined,
@@ -72,6 +73,26 @@ and a boolean to check if the value has been set.
 `func (o *ValidationRunOut) SetStatus(v RunStatus)`
 
 SetStatus sets Status field to given value.
+
+
+### GetRevision
+
+`func (o *ValidationRunOut) GetRevision() int32`
+
+GetRevision returns the Revision field if non-nil, zero value otherwise.
+
+### GetRevisionOk
+
+`func (o *ValidationRunOut) GetRevisionOk() (*int32, bool)`
+
+GetRevisionOk returns a tuple with the Revision field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRevision
+
+`func (o *ValidationRunOut) SetRevision(v int32)`
+
+SetRevision sets Revision field to given value.
 
 
 ### GetTargetType
