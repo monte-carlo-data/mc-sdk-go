@@ -70,6 +70,15 @@ type Options struct {
 	// UserAgent overrides the User-Agent sent with every request. Empty means a default that
 	// identifies this SDK and the Go runtime it is built with.
 	UserAgent string
+
+	// TelemetryReason, TelemetryService and TelemetryCommand identify the calling client to
+	// Monte Carlo's usage telemetry, sent as the x-mcd-telemetry-* headers. They are the only
+	// client identity that reaches the API: the gateway drops User-Agent. Empty reason and
+	// service mean "user" and "mc-sdk-go"; an empty command sends no command header.
+	// WithTelemetryCommand sets the command for a single request instead.
+	TelemetryReason  string
+	TelemetryService string
+	TelemetryCommand string
 }
 
 // usesOAuth reports whether client-credentials auth is configured.
@@ -227,6 +236,12 @@ func NewClient(ctx context.Context, o Options) (*APIClient, error) {
 	case b != "":
 		transport = &bearerTransport{base: base, bearer: b}
 	}
+	transport = &telemetryTransport{
+		base:    transport,
+		reason:  firstNonEmpty(resolved.TelemetryReason, defaultTelemetryReason),
+		service: firstNonEmpty(resolved.TelemetryService, defaultTelemetryService),
+		command: resolved.TelemetryCommand,
+	}
 
 	cfg := NewConfiguration()
 	cfg.Servers = ServerConfigurations{
@@ -255,4 +270,49 @@ func (t *bearerTransport) RoundTrip(req *http.Request) (*http.Response, error) {
 	clone := req.Clone(req.Context())
 	clone.Header.Set("Authorization", "Bearer "+t.bearer)
 	return t.base.RoundTrip(clone)
+}
+
+const (
+	headerTelemetryReason  = "x-mcd-telemetry-reason"
+	headerTelemetryService = "x-mcd-telemetry-service"
+	headerTelemetryCommand = "x-mcd-telemetry-command"
+
+	// defaultTelemetryReason matches pycarlo's RequestReason.USER.
+	defaultTelemetryReason  = "user"
+	defaultTelemetryService = "mc-sdk-go"
+)
+
+type telemetryCommandKey struct{}
+
+// WithTelemetryCommand returns a context that sends command as the x-mcd-telemetry-command
+// header on requests made with it, overriding Options.TelemetryCommand. Name the operation, not
+// its arguments, e.g. "connections add snowflake".
+func WithTelemetryCommand(ctx context.Context, command string) context.Context {
+	return context.WithValue(ctx, telemetryCommandKey{}, command)
+}
+
+// telemetryTransport sets the x-mcd-telemetry-* headers on every request, yielding to any
+// already present so a header added through the generated client's DefaultHeader is not
+// stacked into a second value.
+type telemetryTransport struct {
+	base                     http.RoundTripper
+	reason, service, command string
+}
+
+func (t *telemetryTransport) RoundTrip(req *http.Request) (*http.Response, error) {
+	command := t.command
+	if c, ok := req.Context().Value(telemetryCommandKey{}).(string); ok && c != "" {
+		command = c
+	}
+	clone := req.Clone(req.Context())
+	setIfAbsent(clone.Header, headerTelemetryReason, t.reason)
+	setIfAbsent(clone.Header, headerTelemetryService, t.service)
+	setIfAbsent(clone.Header, headerTelemetryCommand, command)
+	return t.base.RoundTrip(clone)
+}
+
+func setIfAbsent(h http.Header, key, value string) {
+	if value != "" && h.Get(key) == "" {
+		h.Set(key, value)
+	}
 }
