@@ -42,7 +42,7 @@ type ValidationRunOut struct {
 	FinishedAt NullableTime `json:"finished_at"`
 	// When the run stops being readable. Measured from the start, not the finish, and never extended, so a slow run is readable for less time after it ends.
 	ExpiresAt time.Time `json:"expires_at"`
-	// The run's validations, in the order they are declared. Validations waiting on a prerequisite are listed before they start. A read with `since` lists only the validations that changed after that revision, and may list none.
+	// The run's validations, in the order they are declared. A validation stays `pending` until it starts. It can wait on a prerequisite, or for earlier validations to finish. A read with `since` lists only the validations that changed after that revision, and may list none.
 	Validations []ValidationOut `json:"validations"`
 }
 

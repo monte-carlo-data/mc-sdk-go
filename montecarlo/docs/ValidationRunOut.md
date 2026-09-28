@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **StartedAt** | **time.Time** | When the run started. | 
 **FinishedAt** | **NullableTime** | When the run finished. Null while it is still going. | 
 **ExpiresAt** | **time.Time** | When the run stops being readable. Measured from the start, not the finish, and never extended, so a slow run is readable for less time after it ends. | 
-**Validations** | [**[]ValidationOut**](ValidationOut.md) | The run&#39;s validations, in the order they are declared. Validations waiting on a prerequisite are listed before they start. A read with &#x60;since&#x60; lists only the validations that changed after that revision, and may list none. | 
+**Validations** | [**[]ValidationOut**](ValidationOut.md) | The run&#39;s validations, in the order they are declared. A validation stays &#x60;pending&#x60; until it starts. It can wait on a prerequisite, or for earlier validations to finish. A read with &#x60;since&#x60; lists only the validations that changed after that revision, and may list none. | 
 
 ## Methods
 
