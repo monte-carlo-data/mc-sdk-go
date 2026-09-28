@@ -351,8 +351,6 @@ func assertHeader(t *testing.T, h http.Header, key string, want ...string) {
 	}
 }
 
-// The gateway drops User-Agent and x-mcd-source, so the telemetry headers are the only client
-// identity that reaches the API.
 func TestNewClientSendsDefaultTelemetry(t *testing.T) {
 	h := sentHeaders(t, context.Background(), Options{}, nil)
 	assertHeader(t, h, "x-mcd-telemetry-reason", "user")
