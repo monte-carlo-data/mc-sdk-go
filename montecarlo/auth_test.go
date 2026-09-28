@@ -309,3 +309,77 @@ func TestValidateRequiresAnHTTPSTokenURL(t *testing.T) {
 		t.Fatal("expected an insecure token URL to be rejected")
 	}
 }
+
+// sentHeaders builds a client from o against a test server, makes one call with ctx, and
+// returns the headers that call carried.
+func sentHeaders(t *testing.T, ctx context.Context, o Options, configure func(*APIClient)) http.Header {
+	t.Helper()
+	var got http.Header
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		got = r.Header.Clone()
+		w.Header().Set("Content-Type", "application/json")
+		_, _ = w.Write([]byte(`{
+			"account_frozen": false,
+			"account_id": "a1",
+			"email": "user@example.com",
+			"identity_type": "user",
+			"user_id": "u1"
+		}`))
+	}))
+	defer server.Close()
+
+	o.Endpoint = server.URL
+	o.TokenID, o.TokenSecret = "id", "secret"
+	o.ConfigDir = isolate(t)
+	api, err := NewClient(context.Background(), o)
+	if err != nil {
+		t.Fatalf("unexpected error building the client: %v", err)
+	}
+	if configure != nil {
+		configure(api)
+	}
+	if _, _, err := api.UsersAPI.GetCurrentUser(ctx).Execute(); err != nil {
+		t.Fatalf("unexpected error calling GetCurrentUser: %v", err)
+	}
+	return got
+}
+
+func assertHeader(t *testing.T, h http.Header, key string, want ...string) {
+	t.Helper()
+	if got := h.Values(key); !slices.Equal(got, want) {
+		t.Fatalf("%s: expected %q, got %q", key, want, got)
+	}
+}
+
+// The gateway drops User-Agent and x-mcd-source, so the telemetry headers are the only client
+// identity that reaches the API.
+func TestNewClientSendsDefaultTelemetry(t *testing.T) {
+	h := sentHeaders(t, context.Background(), Options{}, nil)
+	assertHeader(t, h, "x-mcd-telemetry-reason", "user")
+	assertHeader(t, h, "x-mcd-telemetry-service", "mc-sdk-go")
+	assertHeader(t, h, "x-mcd-telemetry-command")
+	assertHeader(t, h, "x-mcd-source")
+}
+
+func TestTelemetryOptionsOverrideTheDefaults(t *testing.T) {
+	o := Options{TelemetryReason: "cli", TelemetryService: "mc-cli", TelemetryCommand: "whoami"}
+	h := sentHeaders(t, context.Background(), o, nil)
+	assertHeader(t, h, "x-mcd-telemetry-reason", "cli")
+	assertHeader(t, h, "x-mcd-telemetry-service", "mc-cli")
+	assertHeader(t, h, "x-mcd-telemetry-command", "whoami")
+}
+
+func TestWithTelemetryCommandOverridesTheOption(t *testing.T) {
+	ctx := WithTelemetryCommand(context.Background(), "montecarlo_warehouse create")
+	h := sentHeaders(t, ctx, Options{TelemetryCommand: "whoami"}, nil)
+	assertHeader(t, h, "x-mcd-telemetry-command", "montecarlo_warehouse create")
+}
+
+// A header the caller adds through the generated client's DefaultHeader wins, rather than
+// going out alongside the default as a second value.
+func TestTelemetryYieldsToADefaultHeader(t *testing.T) {
+	h := sentHeaders(t, context.Background(), Options{}, func(api *APIClient) {
+		api.GetConfig().AddDefaultHeader("x-mcd-telemetry-reason", "service")
+	})
+	assertHeader(t, h, "x-mcd-telemetry-reason", "service")
+}

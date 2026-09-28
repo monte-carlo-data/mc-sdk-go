@@ -143,6 +143,14 @@ To pick a profile other than `default`, set `Profile`, or the `MCD_DEFAULT_PROFI
 environment variable. A profile you name explicitly has to exist — the SDK reports that
 rather than quietly falling back to different credentials.
 
+### Usage telemetry
+
+Every request carries `x-mcd-telemetry-reason: user` and `x-mcd-telemetry-service: mc-sdk-go`,
+the same headers pycarlo and the CLI send, so Monte Carlo can tell which client made a call.
+They carry no arguments or payload. A tool built on the SDK names itself with
+`Options.TelemetryReason`, `TelemetryService` and `TelemetryCommand`, or sets the command for
+one call with `montecarlo.WithTelemetryCommand(ctx, "...")`.
+
 ## What is generated and what is not
 
 | Path | |
