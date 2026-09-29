@@ -32,6 +32,10 @@ docs/AzureKeyVaultCredentialsIn.md
 docs/AzureKeyVaultCredentialsOut.md
 docs/AzureKeyVaultCredentialsPatch.md
 docs/AzureKeyVaultCredentialsValidateIn.md
+docs/BigQueryCredentialsIn.md
+docs/BigQueryCredentialsOut.md
+docs/BigQueryCredentialsPatch.md
+docs/BigQueryCredentialsValidateIn.md
 docs/CollectionAgentCredentialOut.md
 docs/CollectionAgentOut.md
 docs/CollectionAgentsAPI.md
@@ -88,6 +92,10 @@ docs/PagedConnectionOut.md
 docs/PagedCredentialsSummaryOut.md
 docs/PagedWarehouseOut.md
 docs/ProblemOut.md
+docs/RedshiftCredentialsIn.md
+docs/RedshiftCredentialsOut.md
+docs/RedshiftCredentialsPatch.md
+docs/RedshiftCredentialsValidateIn.md
 docs/RunStatus.md
 docs/RuntimePlatform.md
 docs/ServicePrincipalCredentialsIn.md
@@ -134,6 +142,10 @@ model_azure_key_vault_credentials_in.go
 model_azure_key_vault_credentials_out.go
 model_azure_key_vault_credentials_patch.go
 model_azure_key_vault_credentials_validate_in.go
+model_big_query_credentials_in.go
+model_big_query_credentials_out.go
+model_big_query_credentials_patch.go
+model_big_query_credentials_validate_in.go
 model_collection_agent_credential_out.go
 model_collection_agent_out.go
 model_collection_data_store_out.go
@@ -185,6 +197,10 @@ model_paged_connection_out.go
 model_paged_credentials_summary_out.go
 model_paged_warehouse_out.go
 model_problem_out.go
+model_redshift_credentials_in.go
+model_redshift_credentials_out.go
+model_redshift_credentials_patch.go
+model_redshift_credentials_validate_in.go
 model_run_status.go
 model_runtime_platform.go
 model_service_principal_credentials_in.go

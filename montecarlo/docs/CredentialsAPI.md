@@ -6,35 +6,45 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateAwsSecretsManagerCredentials**](CredentialsAPI.md#CreateAwsSecretsManagerCredentials) | **Post** /api/v2/credentials/self-hosted/aws | Create AWS Secrets Manager credentials
 [**CreateAzureKeyVaultCredentials**](CredentialsAPI.md#CreateAzureKeyVaultCredentials) | **Post** /api/v2/credentials/self-hosted/azure | Create Azure Key Vault credentials
+[**CreateBigqueryCredentials**](CredentialsAPI.md#CreateBigqueryCredentials) | **Post** /api/v2/credentials/bigquery | Create BigQuery credentials
 [**CreateEnvVarCredentials**](CredentialsAPI.md#CreateEnvVarCredentials) | **Post** /api/v2/credentials/self-hosted/env-var | Create environment variable credentials
 [**CreateFileCredentials**](CredentialsAPI.md#CreateFileCredentials) | **Post** /api/v2/credentials/self-hosted/file | Create file credentials
 [**CreateGcpSecretManagerCredentials**](CredentialsAPI.md#CreateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp | Create GCP Secret Manager credentials
+[**CreateRedshiftCredentials**](CredentialsAPI.md#CreateRedshiftCredentials) | **Post** /api/v2/credentials/redshift | Create Redshift credentials
 [**CreateSnowflakeCredentials**](CredentialsAPI.md#CreateSnowflakeCredentials) | **Post** /api/v2/credentials/snowflake | Create Snowflake credentials
 [**DeleteAwsSecretsManagerCredentials**](CredentialsAPI.md#DeleteAwsSecretsManagerCredentials) | **Delete** /api/v2/credentials/self-hosted/aws/{credentials_id} | Delete AWS Secrets Manager credentials
 [**DeleteAzureKeyVaultCredentials**](CredentialsAPI.md#DeleteAzureKeyVaultCredentials) | **Delete** /api/v2/credentials/self-hosted/azure/{credentials_id} | Delete Azure Key Vault credentials
+[**DeleteBigqueryCredentials**](CredentialsAPI.md#DeleteBigqueryCredentials) | **Delete** /api/v2/credentials/bigquery/{credentials_id} | Delete BigQuery credentials
 [**DeleteCredentials**](CredentialsAPI.md#DeleteCredentials) | **Delete** /api/v2/credentials/{credentials_id} | Delete credentials
 [**DeleteEnvVarCredentials**](CredentialsAPI.md#DeleteEnvVarCredentials) | **Delete** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Delete environment variable credentials
 [**DeleteFileCredentials**](CredentialsAPI.md#DeleteFileCredentials) | **Delete** /api/v2/credentials/self-hosted/file/{credentials_id} | Delete file credentials
 [**DeleteGcpSecretManagerCredentials**](CredentialsAPI.md#DeleteGcpSecretManagerCredentials) | **Delete** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Delete GCP Secret Manager credentials
+[**DeleteRedshiftCredentials**](CredentialsAPI.md#DeleteRedshiftCredentials) | **Delete** /api/v2/credentials/redshift/{credentials_id} | Delete Redshift credentials
 [**DeleteSnowflakeCredentials**](CredentialsAPI.md#DeleteSnowflakeCredentials) | **Delete** /api/v2/credentials/snowflake/{credentials_id} | Delete Snowflake credentials
 [**GetAwsSecretsManagerCredentials**](CredentialsAPI.md#GetAwsSecretsManagerCredentials) | **Get** /api/v2/credentials/self-hosted/aws/{credentials_id} | Get AWS Secrets Manager credentials
 [**GetAzureKeyVaultCredentials**](CredentialsAPI.md#GetAzureKeyVaultCredentials) | **Get** /api/v2/credentials/self-hosted/azure/{credentials_id} | Get Azure Key Vault credentials
+[**GetBigqueryCredentials**](CredentialsAPI.md#GetBigqueryCredentials) | **Get** /api/v2/credentials/bigquery/{credentials_id} | Get BigQuery credentials
 [**GetEnvVarCredentials**](CredentialsAPI.md#GetEnvVarCredentials) | **Get** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Get environment variable credentials
 [**GetFileCredentials**](CredentialsAPI.md#GetFileCredentials) | **Get** /api/v2/credentials/self-hosted/file/{credentials_id} | Get file credentials
 [**GetGcpSecretManagerCredentials**](CredentialsAPI.md#GetGcpSecretManagerCredentials) | **Get** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Get GCP Secret Manager credentials
+[**GetRedshiftCredentials**](CredentialsAPI.md#GetRedshiftCredentials) | **Get** /api/v2/credentials/redshift/{credentials_id} | Get Redshift credentials
 [**GetSnowflakeCredentials**](CredentialsAPI.md#GetSnowflakeCredentials) | **Get** /api/v2/credentials/snowflake/{credentials_id} | Get Snowflake credentials
 [**ListCredentials**](CredentialsAPI.md#ListCredentials) | **Get** /api/v2/credentials | List credentials
 [**UpdateAwsSecretsManagerCredentials**](CredentialsAPI.md#UpdateAwsSecretsManagerCredentials) | **Patch** /api/v2/credentials/self-hosted/aws/{credentials_id} | Update AWS Secrets Manager credentials
 [**UpdateAzureKeyVaultCredentials**](CredentialsAPI.md#UpdateAzureKeyVaultCredentials) | **Patch** /api/v2/credentials/self-hosted/azure/{credentials_id} | Update Azure Key Vault credentials
+[**UpdateBigqueryCredentials**](CredentialsAPI.md#UpdateBigqueryCredentials) | **Patch** /api/v2/credentials/bigquery/{credentials_id} | Update BigQuery credentials
 [**UpdateEnvVarCredentials**](CredentialsAPI.md#UpdateEnvVarCredentials) | **Patch** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Update environment variable credentials
 [**UpdateFileCredentials**](CredentialsAPI.md#UpdateFileCredentials) | **Patch** /api/v2/credentials/self-hosted/file/{credentials_id} | Update file credentials
 [**UpdateGcpSecretManagerCredentials**](CredentialsAPI.md#UpdateGcpSecretManagerCredentials) | **Patch** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Update GCP Secret Manager credentials
+[**UpdateRedshiftCredentials**](CredentialsAPI.md#UpdateRedshiftCredentials) | **Patch** /api/v2/credentials/redshift/{credentials_id} | Update Redshift credentials
 [**UpdateSnowflakeCredentials**](CredentialsAPI.md#UpdateSnowflakeCredentials) | **Patch** /api/v2/credentials/snowflake/{credentials_id} | Update Snowflake credentials
 [**ValidateAwsSecretsManagerCredentials**](CredentialsAPI.md#ValidateAwsSecretsManagerCredentials) | **Post** /api/v2/credentials/self-hosted/aws/validate | Validate AWS Secrets Manager credentials
 [**ValidateAzureKeyVaultCredentials**](CredentialsAPI.md#ValidateAzureKeyVaultCredentials) | **Post** /api/v2/credentials/self-hosted/azure/validate | Validate Azure Key Vault credentials
+[**ValidateBigqueryCredentials**](CredentialsAPI.md#ValidateBigqueryCredentials) | **Post** /api/v2/credentials/bigquery/validate | Validate BigQuery credentials
 [**ValidateEnvVarCredentials**](CredentialsAPI.md#ValidateEnvVarCredentials) | **Post** /api/v2/credentials/self-hosted/env-var/validate | Validate environment variable credentials
 [**ValidateFileCredentials**](CredentialsAPI.md#ValidateFileCredentials) | **Post** /api/v2/credentials/self-hosted/file/validate | Validate file credentials
 [**ValidateGcpSecretManagerCredentials**](CredentialsAPI.md#ValidateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp/validate | Validate GCP Secret Manager credentials
+[**ValidateRedshiftCredentials**](CredentialsAPI.md#ValidateRedshiftCredentials) | **Post** /api/v2/credentials/redshift/validate | Validate Redshift credentials
 [**ValidateSnowflakeCredentials**](CredentialsAPI.md#ValidateSnowflakeCredentials) | **Post** /api/v2/credentials/snowflake/validate | Validate Snowflake credentials
 
 
@@ -156,6 +166,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AzureKeyVaultCredentialsOut**](AzureKeyVaultCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateBigqueryCredentials
+
+> BigQueryCredentialsOut CreateBigqueryCredentials(ctx).BigQueryCredentialsIn(bigQueryCredentialsIn).Execute()
+
+Create BigQuery credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	bigQueryCredentialsIn := *openapiclient.NewBigQueryCredentialsIn("ServiceAccountKey_example") // BigQueryCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateBigqueryCredentials(context.Background()).BigQueryCredentialsIn(bigQueryCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateBigqueryCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateBigqueryCredentials`: BigQueryCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateBigqueryCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateBigqueryCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bigQueryCredentialsIn** | [**BigQueryCredentialsIn**](BigQueryCredentialsIn.md) |  | 
+
+### Return type
+
+[**BigQueryCredentialsOut**](BigQueryCredentialsOut.md)
 
 ### Authorization
 
@@ -369,6 +445,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateRedshiftCredentials
+
+> RedshiftCredentialsOut CreateRedshiftCredentials(ctx).RedshiftCredentialsIn(redshiftCredentialsIn).Execute()
+
+Create Redshift credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	redshiftCredentialsIn := *openapiclient.NewRedshiftCredentialsIn("Host_example", int32(123), "User_example", "Password_example", "DbName_example") // RedshiftCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateRedshiftCredentials(context.Background()).RedshiftCredentialsIn(redshiftCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateRedshiftCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateRedshiftCredentials`: RedshiftCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateRedshiftCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateRedshiftCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **redshiftCredentialsIn** | [**RedshiftCredentialsIn**](RedshiftCredentialsIn.md) |  | 
+
+### Return type
+
+[**RedshiftCredentialsOut**](RedshiftCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateSnowflakeCredentials
 
 > SnowflakeCredentialsOut CreateSnowflakeCredentials(ctx).SnowflakeCredentialsIn(snowflakeCredentialsIn).Execute()
@@ -547,6 +689,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteAzureKeyVaultCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteBigqueryCredentials
+
+> DeleteBigqueryCredentials(ctx, credentialsId).Execute()
+
+Delete BigQuery credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteBigqueryCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteBigqueryCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteBigqueryCredentialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -843,6 +1053,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteRedshiftCredentials
+
+> DeleteRedshiftCredentials(ctx, credentialsId).Execute()
+
+Delete Redshift credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteRedshiftCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteRedshiftCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteRedshiftCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteSnowflakeCredentials
 
 > DeleteSnowflakeCredentials(ctx, credentialsId).Execute()
@@ -1036,6 +1314,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AzureKeyVaultCredentialsOut**](AzureKeyVaultCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetBigqueryCredentials
+
+> BigQueryCredentialsOut GetBigqueryCredentials(ctx, credentialsId).Execute()
+
+Get BigQuery credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetBigqueryCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetBigqueryCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetBigqueryCredentials`: BigQueryCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetBigqueryCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetBigqueryCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**BigQueryCredentialsOut**](BigQueryCredentialsOut.md)
 
 ### Authorization
 
@@ -1246,6 +1594,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GcpSecretManagerCredentialsOut**](GcpSecretManagerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetRedshiftCredentials
+
+> RedshiftCredentialsOut GetRedshiftCredentials(ctx, credentialsId).Execute()
+
+Get Redshift credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetRedshiftCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetRedshiftCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetRedshiftCredentials`: RedshiftCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetRedshiftCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetRedshiftCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**RedshiftCredentialsOut**](RedshiftCredentialsOut.md)
 
 ### Authorization
 
@@ -1545,6 +1963,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateBigqueryCredentials
+
+> BigQueryCredentialsOut UpdateBigqueryCredentials(ctx, credentialsId).BigQueryCredentialsPatch(bigQueryCredentialsPatch).Execute()
+
+Update BigQuery credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	bigQueryCredentialsPatch := *openapiclient.NewBigQueryCredentialsPatch() // BigQueryCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateBigqueryCredentials(context.Background(), credentialsId).BigQueryCredentialsPatch(bigQueryCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateBigqueryCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateBigqueryCredentials`: BigQueryCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateBigqueryCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateBigqueryCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **bigQueryCredentialsPatch** | [**BigQueryCredentialsPatch**](BigQueryCredentialsPatch.md) |  | 
+
+### Return type
+
+[**BigQueryCredentialsOut**](BigQueryCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateEnvVarCredentials
 
 > EnvVarCredentialsOut UpdateEnvVarCredentials(ctx, credentialsId).EnvVarCredentialsPatch(envVarCredentialsPatch).Execute()
@@ -1746,6 +2236,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GcpSecretManagerCredentialsOut**](GcpSecretManagerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateRedshiftCredentials
+
+> RedshiftCredentialsOut UpdateRedshiftCredentials(ctx, credentialsId).RedshiftCredentialsPatch(redshiftCredentialsPatch).Execute()
+
+Update Redshift credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	redshiftCredentialsPatch := *openapiclient.NewRedshiftCredentialsPatch() // RedshiftCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateRedshiftCredentials(context.Background(), credentialsId).RedshiftCredentialsPatch(redshiftCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateRedshiftCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateRedshiftCredentials`: RedshiftCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateRedshiftCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateRedshiftCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **redshiftCredentialsPatch** | [**RedshiftCredentialsPatch**](RedshiftCredentialsPatch.md) |  | 
+
+### Return type
+
+[**RedshiftCredentialsOut**](RedshiftCredentialsOut.md)
 
 ### Authorization
 
@@ -1965,6 +2527,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateBigqueryCredentials
+
+> ValidationRunOut ValidateBigqueryCredentials(ctx).BigQueryCredentialsValidateIn(bigQueryCredentialsValidateIn).Execute()
+
+Validate BigQuery credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	bigQueryCredentialsValidateIn := *openapiclient.NewBigQueryCredentialsValidateIn("DeploymentId_example", "ServiceAccountKey_example") // BigQueryCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateBigqueryCredentials(context.Background()).BigQueryCredentialsValidateIn(bigQueryCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateBigqueryCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateBigqueryCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateBigqueryCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateBigqueryCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **bigQueryCredentialsValidateIn** | [**BigQueryCredentialsValidateIn**](BigQueryCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateEnvVarCredentials
 
 > ValidationRunOut ValidateEnvVarCredentials(ctx).EnvVarCredentialsValidateIn(envVarCredentialsValidateIn).Execute()
@@ -2144,6 +2772,72 @@ Other parameters are passed through a pointer to a apiValidateGcpSecretManagerCr
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **gcpSecretManagerCredentialsValidateIn** | [**GcpSecretManagerCredentialsValidateIn**](GcpSecretManagerCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateRedshiftCredentials
+
+> ValidationRunOut ValidateRedshiftCredentials(ctx).RedshiftCredentialsValidateIn(redshiftCredentialsValidateIn).Execute()
+
+Validate Redshift credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	redshiftCredentialsValidateIn := *openapiclient.NewRedshiftCredentialsValidateIn("DeploymentId_example", "Host_example", int32(123), "User_example", "Password_example", "DbName_example") // RedshiftCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateRedshiftCredentials(context.Background()).RedshiftCredentialsValidateIn(redshiftCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateRedshiftCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateRedshiftCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateRedshiftCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateRedshiftCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **redshiftCredentialsValidateIn** | [**RedshiftCredentialsValidateIn**](RedshiftCredentialsValidateIn.md) |  | 
 
 ### Return type
 
