@@ -33,7 +33,7 @@ type AwsSecretsManagerCredentialsOut struct {
 	// BigQuery project the connection reads from. Null unless set.
 	BqProjectId NullableString `json:"bq_project_id"`
 	// Databricks SQL warehouse the connection runs queries on. Null unless set.
-	DatabricksWarehouseId NullableString `json:"databricks_warehouse_id"`
+	SqlWarehouseId NullableString `json:"sql_warehouse_id"`
 	// Name or ARN of the AWS Secrets Manager secret holding the connection's credentials.
 	AwsSecret string `json:"aws_secret"`
 	// AWS region of the secret. Null when unset.
@@ -50,14 +50,14 @@ type _AwsSecretsManagerCredentialsOut AwsSecretsManagerCredentialsOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAwsSecretsManagerCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, bqProjectId NullableString, databricksWarehouseId NullableString, awsSecret string, awsRegion NullableString, assumableRole NullableString, externalId NullableString) *AwsSecretsManagerCredentialsOut {
+func NewAwsSecretsManagerCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, bqProjectId NullableString, sqlWarehouseId NullableString, awsSecret string, awsRegion NullableString, assumableRole NullableString, externalId NullableString) *AwsSecretsManagerCredentialsOut {
 	this := AwsSecretsManagerCredentialsOut{}
 	this.Id = id
 	this.ConnectionType = connectionType
 	this.StorageType = storageType
 	this.CreatedTime = createdTime
 	this.BqProjectId = bqProjectId
-	this.DatabricksWarehouseId = databricksWarehouseId
+	this.SqlWarehouseId = sqlWarehouseId
 	this.AwsSecret = awsSecret
 	this.AwsRegion = awsRegion
 	this.AssumableRole = assumableRole
@@ -195,30 +195,30 @@ func (o *AwsSecretsManagerCredentialsOut) SetBqProjectId(v string) {
 	o.BqProjectId.Set(&v)
 }
 
-// GetDatabricksWarehouseId returns the DatabricksWarehouseId field value
+// GetSqlWarehouseId returns the SqlWarehouseId field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *AwsSecretsManagerCredentialsOut) GetDatabricksWarehouseId() string {
-	if o == nil || o.DatabricksWarehouseId.Get() == nil {
+func (o *AwsSecretsManagerCredentialsOut) GetSqlWarehouseId() string {
+	if o == nil || o.SqlWarehouseId.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.DatabricksWarehouseId.Get()
+	return *o.SqlWarehouseId.Get()
 }
 
-// GetDatabricksWarehouseIdOk returns a tuple with the DatabricksWarehouseId field value
+// GetSqlWarehouseIdOk returns a tuple with the SqlWarehouseId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AwsSecretsManagerCredentialsOut) GetDatabricksWarehouseIdOk() (*string, bool) {
+func (o *AwsSecretsManagerCredentialsOut) GetSqlWarehouseIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.DatabricksWarehouseId.Get(), o.DatabricksWarehouseId.IsSet()
+	return o.SqlWarehouseId.Get(), o.SqlWarehouseId.IsSet()
 }
 
-// SetDatabricksWarehouseId sets field value
-func (o *AwsSecretsManagerCredentialsOut) SetDatabricksWarehouseId(v string) {
-	o.DatabricksWarehouseId.Set(&v)
+// SetSqlWarehouseId sets field value
+func (o *AwsSecretsManagerCredentialsOut) SetSqlWarehouseId(v string) {
+	o.SqlWarehouseId.Set(&v)
 }
 
 // GetAwsSecret returns the AwsSecret field value
@@ -338,7 +338,7 @@ func (o AwsSecretsManagerCredentialsOut) ToMap() (map[string]interface{}, error)
 	toSerialize["storage_type"] = o.StorageType
 	toSerialize["created_time"] = o.CreatedTime
 	toSerialize["bq_project_id"] = o.BqProjectId.Get()
-	toSerialize["databricks_warehouse_id"] = o.DatabricksWarehouseId.Get()
+	toSerialize["sql_warehouse_id"] = o.SqlWarehouseId.Get()
 	toSerialize["aws_secret"] = o.AwsSecret
 	toSerialize["aws_region"] = o.AwsRegion.Get()
 	toSerialize["assumable_role"] = o.AssumableRole.Get()
@@ -356,7 +356,7 @@ func (o *AwsSecretsManagerCredentialsOut) UnmarshalJSON(data []byte) (err error)
 		"storage_type",
 		"created_time",
 		"bq_project_id",
-		"databricks_warehouse_id",
+		"sql_warehouse_id",
 		"aws_secret",
 		"aws_region",
 		"assumable_role",

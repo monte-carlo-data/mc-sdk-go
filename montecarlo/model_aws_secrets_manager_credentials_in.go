@@ -26,7 +26,7 @@ type AwsSecretsManagerCredentialsIn struct {
 	// BigQuery project the connection reads from. Only for a BigQuery connection.
 	BqProjectId NullableString `json:"bq_project_id,omitempty"`
 	// Databricks SQL warehouse the connection runs queries on. Required for a `databricks-sql-warehouse` or `databricks-metastore-sql-warehouse` connection.
-	DatabricksWarehouseId NullableString `json:"databricks_warehouse_id,omitempty"`
+	SqlWarehouseId NullableString `json:"sql_warehouse_id,omitempty"`
 	// Name or ARN of the AWS Secrets Manager secret holding the connection's credentials.
 	AwsSecret string `json:"aws_secret"`
 	// AWS region of the secret. Omit it to use the deployment's own region.
@@ -125,47 +125,47 @@ func (o *AwsSecretsManagerCredentialsIn) UnsetBqProjectId() {
 	o.BqProjectId.Unset()
 }
 
-// GetDatabricksWarehouseId returns the DatabricksWarehouseId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AwsSecretsManagerCredentialsIn) GetDatabricksWarehouseId() string {
-	if o == nil || IsNil(o.DatabricksWarehouseId.Get()) {
+// GetSqlWarehouseId returns the SqlWarehouseId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AwsSecretsManagerCredentialsIn) GetSqlWarehouseId() string {
+	if o == nil || IsNil(o.SqlWarehouseId.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.DatabricksWarehouseId.Get()
+	return *o.SqlWarehouseId.Get()
 }
 
-// GetDatabricksWarehouseIdOk returns a tuple with the DatabricksWarehouseId field value if set, nil otherwise
+// GetSqlWarehouseIdOk returns a tuple with the SqlWarehouseId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AwsSecretsManagerCredentialsIn) GetDatabricksWarehouseIdOk() (*string, bool) {
+func (o *AwsSecretsManagerCredentialsIn) GetSqlWarehouseIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.DatabricksWarehouseId.Get(), o.DatabricksWarehouseId.IsSet()
+	return o.SqlWarehouseId.Get(), o.SqlWarehouseId.IsSet()
 }
 
-// HasDatabricksWarehouseId returns a boolean if a field has been set.
-func (o *AwsSecretsManagerCredentialsIn) HasDatabricksWarehouseId() bool {
-	if o != nil && o.DatabricksWarehouseId.IsSet() {
+// HasSqlWarehouseId returns a boolean if a field has been set.
+func (o *AwsSecretsManagerCredentialsIn) HasSqlWarehouseId() bool {
+	if o != nil && o.SqlWarehouseId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDatabricksWarehouseId gets a reference to the given NullableString and assigns it to the DatabricksWarehouseId field.
-func (o *AwsSecretsManagerCredentialsIn) SetDatabricksWarehouseId(v string) {
-	o.DatabricksWarehouseId.Set(&v)
+// SetSqlWarehouseId gets a reference to the given NullableString and assigns it to the SqlWarehouseId field.
+func (o *AwsSecretsManagerCredentialsIn) SetSqlWarehouseId(v string) {
+	o.SqlWarehouseId.Set(&v)
 }
 
-// SetDatabricksWarehouseIdNil sets the value for DatabricksWarehouseId to be an explicit nil
-func (o *AwsSecretsManagerCredentialsIn) SetDatabricksWarehouseIdNil() {
-	o.DatabricksWarehouseId.Set(nil)
+// SetSqlWarehouseIdNil sets the value for SqlWarehouseId to be an explicit nil
+func (o *AwsSecretsManagerCredentialsIn) SetSqlWarehouseIdNil() {
+	o.SqlWarehouseId.Set(nil)
 }
 
-// UnsetDatabricksWarehouseId ensures that no value is present for DatabricksWarehouseId, not even an explicit nil
-func (o *AwsSecretsManagerCredentialsIn) UnsetDatabricksWarehouseId() {
-	o.DatabricksWarehouseId.Unset()
+// UnsetSqlWarehouseId ensures that no value is present for SqlWarehouseId, not even an explicit nil
+func (o *AwsSecretsManagerCredentialsIn) UnsetSqlWarehouseId() {
+	o.SqlWarehouseId.Unset()
 }
 
 // GetAwsSecret returns the AwsSecret field value
@@ -335,8 +335,8 @@ func (o AwsSecretsManagerCredentialsIn) ToMap() (map[string]interface{}, error) 
 	if o.BqProjectId.IsSet() {
 		toSerialize["bq_project_id"] = o.BqProjectId.Get()
 	}
-	if o.DatabricksWarehouseId.IsSet() {
-		toSerialize["databricks_warehouse_id"] = o.DatabricksWarehouseId.Get()
+	if o.SqlWarehouseId.IsSet() {
+		toSerialize["sql_warehouse_id"] = o.SqlWarehouseId.Get()
 	}
 	toSerialize["aws_secret"] = o.AwsSecret
 	if o.AwsRegion.IsSet() {

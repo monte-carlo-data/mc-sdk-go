@@ -26,7 +26,7 @@ type AzureKeyVaultCredentialsIn struct {
 	// BigQuery project the connection reads from. Only for a BigQuery connection.
 	BqProjectId NullableString `json:"bq_project_id,omitempty"`
 	// Databricks SQL warehouse the connection runs queries on. Required for a `databricks-sql-warehouse` or `databricks-metastore-sql-warehouse` connection.
-	DatabricksWarehouseId NullableString `json:"databricks_warehouse_id,omitempty"`
+	SqlWarehouseId NullableString `json:"sql_warehouse_id,omitempty"`
 	// Name of the Azure Key Vault secret holding the connection's credentials.
 	AkvSecret string `json:"akv_secret"`
 	// Name of the key vault. Send this, `akv_vault_url`, or both.
@@ -123,47 +123,47 @@ func (o *AzureKeyVaultCredentialsIn) UnsetBqProjectId() {
 	o.BqProjectId.Unset()
 }
 
-// GetDatabricksWarehouseId returns the DatabricksWarehouseId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *AzureKeyVaultCredentialsIn) GetDatabricksWarehouseId() string {
-	if o == nil || IsNil(o.DatabricksWarehouseId.Get()) {
+// GetSqlWarehouseId returns the SqlWarehouseId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureKeyVaultCredentialsIn) GetSqlWarehouseId() string {
+	if o == nil || IsNil(o.SqlWarehouseId.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.DatabricksWarehouseId.Get()
+	return *o.SqlWarehouseId.Get()
 }
 
-// GetDatabricksWarehouseIdOk returns a tuple with the DatabricksWarehouseId field value if set, nil otherwise
+// GetSqlWarehouseIdOk returns a tuple with the SqlWarehouseId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureKeyVaultCredentialsIn) GetDatabricksWarehouseIdOk() (*string, bool) {
+func (o *AzureKeyVaultCredentialsIn) GetSqlWarehouseIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.DatabricksWarehouseId.Get(), o.DatabricksWarehouseId.IsSet()
+	return o.SqlWarehouseId.Get(), o.SqlWarehouseId.IsSet()
 }
 
-// HasDatabricksWarehouseId returns a boolean if a field has been set.
-func (o *AzureKeyVaultCredentialsIn) HasDatabricksWarehouseId() bool {
-	if o != nil && o.DatabricksWarehouseId.IsSet() {
+// HasSqlWarehouseId returns a boolean if a field has been set.
+func (o *AzureKeyVaultCredentialsIn) HasSqlWarehouseId() bool {
+	if o != nil && o.SqlWarehouseId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDatabricksWarehouseId gets a reference to the given NullableString and assigns it to the DatabricksWarehouseId field.
-func (o *AzureKeyVaultCredentialsIn) SetDatabricksWarehouseId(v string) {
-	o.DatabricksWarehouseId.Set(&v)
+// SetSqlWarehouseId gets a reference to the given NullableString and assigns it to the SqlWarehouseId field.
+func (o *AzureKeyVaultCredentialsIn) SetSqlWarehouseId(v string) {
+	o.SqlWarehouseId.Set(&v)
 }
 
-// SetDatabricksWarehouseIdNil sets the value for DatabricksWarehouseId to be an explicit nil
-func (o *AzureKeyVaultCredentialsIn) SetDatabricksWarehouseIdNil() {
-	o.DatabricksWarehouseId.Set(nil)
+// SetSqlWarehouseIdNil sets the value for SqlWarehouseId to be an explicit nil
+func (o *AzureKeyVaultCredentialsIn) SetSqlWarehouseIdNil() {
+	o.SqlWarehouseId.Set(nil)
 }
 
-// UnsetDatabricksWarehouseId ensures that no value is present for DatabricksWarehouseId, not even an explicit nil
-func (o *AzureKeyVaultCredentialsIn) UnsetDatabricksWarehouseId() {
-	o.DatabricksWarehouseId.Unset()
+// UnsetSqlWarehouseId ensures that no value is present for SqlWarehouseId, not even an explicit nil
+func (o *AzureKeyVaultCredentialsIn) UnsetSqlWarehouseId() {
+	o.SqlWarehouseId.Unset()
 }
 
 // GetAkvSecret returns the AkvSecret field value
@@ -290,8 +290,8 @@ func (o AzureKeyVaultCredentialsIn) ToMap() (map[string]interface{}, error) {
 	if o.BqProjectId.IsSet() {
 		toSerialize["bq_project_id"] = o.BqProjectId.Get()
 	}
-	if o.DatabricksWarehouseId.IsSet() {
-		toSerialize["databricks_warehouse_id"] = o.DatabricksWarehouseId.Get()
+	if o.SqlWarehouseId.IsSet() {
+		toSerialize["sql_warehouse_id"] = o.SqlWarehouseId.Get()
 	}
 	toSerialize["akv_secret"] = o.AkvSecret
 	if o.AkvVaultName.IsSet() {

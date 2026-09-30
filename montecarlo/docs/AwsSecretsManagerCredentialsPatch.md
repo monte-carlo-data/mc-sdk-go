@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BqProjectId** | Pointer to **NullableString** | BigQuery project the connection reads from. Only for a BigQuery connection. | [optional] 
-**DatabricksWarehouseId** | Pointer to **NullableString** | Databricks SQL warehouse the connection runs queries on. Required for a &#x60;databricks-sql-warehouse&#x60; or &#x60;databricks-metastore-sql-warehouse&#x60; connection. | [optional] 
+**SqlWarehouseId** | Pointer to **NullableString** | Databricks SQL warehouse the connection runs queries on. Required for a &#x60;databricks-sql-warehouse&#x60; or &#x60;databricks-metastore-sql-warehouse&#x60; connection. | [optional] 
 **AwsSecret** | Pointer to **NullableString** | Name or ARN of the AWS Secrets Manager secret holding the connection&#39;s credentials. | [optional] 
 **AwsRegion** | Pointer to **NullableString** | AWS region of the secret. Omit it to use the deployment&#39;s own region. | [optional] 
 **AssumableRole** | Pointer to **NullableString** | ARN of a role the deployment assumes to read the secret. Omit it to read as itself. | [optional] 
@@ -65,41 +65,41 @@ HasBqProjectId returns a boolean if a field has been set.
 `func (o *AwsSecretsManagerCredentialsPatch) UnsetBqProjectId()`
 
 UnsetBqProjectId ensures that no value is present for BqProjectId, not even an explicit nil
-### GetDatabricksWarehouseId
+### GetSqlWarehouseId
 
-`func (o *AwsSecretsManagerCredentialsPatch) GetDatabricksWarehouseId() string`
+`func (o *AwsSecretsManagerCredentialsPatch) GetSqlWarehouseId() string`
 
-GetDatabricksWarehouseId returns the DatabricksWarehouseId field if non-nil, zero value otherwise.
+GetSqlWarehouseId returns the SqlWarehouseId field if non-nil, zero value otherwise.
 
-### GetDatabricksWarehouseIdOk
+### GetSqlWarehouseIdOk
 
-`func (o *AwsSecretsManagerCredentialsPatch) GetDatabricksWarehouseIdOk() (*string, bool)`
+`func (o *AwsSecretsManagerCredentialsPatch) GetSqlWarehouseIdOk() (*string, bool)`
 
-GetDatabricksWarehouseIdOk returns a tuple with the DatabricksWarehouseId field if it's non-nil, zero value otherwise
+GetSqlWarehouseIdOk returns a tuple with the SqlWarehouseId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDatabricksWarehouseId
+### SetSqlWarehouseId
 
-`func (o *AwsSecretsManagerCredentialsPatch) SetDatabricksWarehouseId(v string)`
+`func (o *AwsSecretsManagerCredentialsPatch) SetSqlWarehouseId(v string)`
 
-SetDatabricksWarehouseId sets DatabricksWarehouseId field to given value.
+SetSqlWarehouseId sets SqlWarehouseId field to given value.
 
-### HasDatabricksWarehouseId
+### HasSqlWarehouseId
 
-`func (o *AwsSecretsManagerCredentialsPatch) HasDatabricksWarehouseId() bool`
+`func (o *AwsSecretsManagerCredentialsPatch) HasSqlWarehouseId() bool`
 
-HasDatabricksWarehouseId returns a boolean if a field has been set.
+HasSqlWarehouseId returns a boolean if a field has been set.
 
-### SetDatabricksWarehouseIdNil
+### SetSqlWarehouseIdNil
 
-`func (o *AwsSecretsManagerCredentialsPatch) SetDatabricksWarehouseIdNil(b bool)`
+`func (o *AwsSecretsManagerCredentialsPatch) SetSqlWarehouseIdNil(b bool)`
 
- SetDatabricksWarehouseIdNil sets the value for DatabricksWarehouseId to be an explicit nil
+ SetSqlWarehouseIdNil sets the value for SqlWarehouseId to be an explicit nil
 
-### UnsetDatabricksWarehouseId
-`func (o *AwsSecretsManagerCredentialsPatch) UnsetDatabricksWarehouseId()`
+### UnsetSqlWarehouseId
+`func (o *AwsSecretsManagerCredentialsPatch) UnsetSqlWarehouseId()`
 
-UnsetDatabricksWarehouseId ensures that no value is present for DatabricksWarehouseId, not even an explicit nil
+UnsetSqlWarehouseId ensures that no value is present for SqlWarehouseId, not even an explicit nil
 ### GetAwsSecret
 
 `func (o *AwsSecretsManagerCredentialsPatch) GetAwsSecret() string`

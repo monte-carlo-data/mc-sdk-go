@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **StorageType** | [**CredentialsStorageType**](CredentialsStorageType.md) | Where the secret lives. Fixed once created. | 
 **CreatedTime** | **time.Time** | When the credentials were created. | 
 **BqProjectId** | **NullableString** | BigQuery project the connection reads from. Null unless set. | 
-**DatabricksWarehouseId** | **NullableString** | Databricks SQL warehouse the connection runs queries on. Null unless set. | 
+**SqlWarehouseId** | **NullableString** | Databricks SQL warehouse the connection runs queries on. Null unless set. | 
 **AkvSecret** | **string** | Name of the Azure Key Vault secret holding the connection&#39;s credentials. | 
 **AkvVaultName** | **NullableString** | Name of the key vault. Null when unset. | 
 **AkvVaultUrl** | **NullableString** | URL of the key vault. Null when unset. | 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 
 ### NewAzureKeyVaultCredentialsOut
 
-`func NewAzureKeyVaultCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, bqProjectId NullableString, databricksWarehouseId NullableString, akvSecret string, akvVaultName NullableString, akvVaultUrl NullableString, ) *AzureKeyVaultCredentialsOut`
+`func NewAzureKeyVaultCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, bqProjectId NullableString, sqlWarehouseId NullableString, akvSecret string, akvVaultName NullableString, akvVaultUrl NullableString, ) *AzureKeyVaultCredentialsOut`
 
 NewAzureKeyVaultCredentialsOut instantiates a new AzureKeyVaultCredentialsOut object
 This constructor will assign default values to properties that have it defined,
@@ -143,36 +143,36 @@ SetBqProjectId sets BqProjectId field to given value.
 `func (o *AzureKeyVaultCredentialsOut) UnsetBqProjectId()`
 
 UnsetBqProjectId ensures that no value is present for BqProjectId, not even an explicit nil
-### GetDatabricksWarehouseId
+### GetSqlWarehouseId
 
-`func (o *AzureKeyVaultCredentialsOut) GetDatabricksWarehouseId() string`
+`func (o *AzureKeyVaultCredentialsOut) GetSqlWarehouseId() string`
 
-GetDatabricksWarehouseId returns the DatabricksWarehouseId field if non-nil, zero value otherwise.
+GetSqlWarehouseId returns the SqlWarehouseId field if non-nil, zero value otherwise.
 
-### GetDatabricksWarehouseIdOk
+### GetSqlWarehouseIdOk
 
-`func (o *AzureKeyVaultCredentialsOut) GetDatabricksWarehouseIdOk() (*string, bool)`
+`func (o *AzureKeyVaultCredentialsOut) GetSqlWarehouseIdOk() (*string, bool)`
 
-GetDatabricksWarehouseIdOk returns a tuple with the DatabricksWarehouseId field if it's non-nil, zero value otherwise
+GetSqlWarehouseIdOk returns a tuple with the SqlWarehouseId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDatabricksWarehouseId
+### SetSqlWarehouseId
 
-`func (o *AzureKeyVaultCredentialsOut) SetDatabricksWarehouseId(v string)`
+`func (o *AzureKeyVaultCredentialsOut) SetSqlWarehouseId(v string)`
 
-SetDatabricksWarehouseId sets DatabricksWarehouseId field to given value.
+SetSqlWarehouseId sets SqlWarehouseId field to given value.
 
 
-### SetDatabricksWarehouseIdNil
+### SetSqlWarehouseIdNil
 
-`func (o *AzureKeyVaultCredentialsOut) SetDatabricksWarehouseIdNil(b bool)`
+`func (o *AzureKeyVaultCredentialsOut) SetSqlWarehouseIdNil(b bool)`
 
- SetDatabricksWarehouseIdNil sets the value for DatabricksWarehouseId to be an explicit nil
+ SetSqlWarehouseIdNil sets the value for SqlWarehouseId to be an explicit nil
 
-### UnsetDatabricksWarehouseId
-`func (o *AzureKeyVaultCredentialsOut) UnsetDatabricksWarehouseId()`
+### UnsetSqlWarehouseId
+`func (o *AzureKeyVaultCredentialsOut) UnsetSqlWarehouseId()`
 
-UnsetDatabricksWarehouseId ensures that no value is present for DatabricksWarehouseId, not even an explicit nil
+UnsetSqlWarehouseId ensures that no value is present for SqlWarehouseId, not even an explicit nil
 ### GetAkvSecret
 
 `func (o *AzureKeyVaultCredentialsOut) GetAkvSecret() string`

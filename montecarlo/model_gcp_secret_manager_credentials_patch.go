@@ -22,7 +22,7 @@ type GcpSecretManagerCredentialsPatch struct {
 	// BigQuery project the connection reads from. Only for a BigQuery connection.
 	BqProjectId NullableString `json:"bq_project_id,omitempty"`
 	// Databricks SQL warehouse the connection runs queries on. Required for a `databricks-sql-warehouse` or `databricks-metastore-sql-warehouse` connection.
-	DatabricksWarehouseId NullableString `json:"databricks_warehouse_id,omitempty"`
+	SqlWarehouseId NullableString `json:"sql_warehouse_id,omitempty"`
 	// Name of the GCP Secret Manager secret holding the connection's credentials.
 	GcpSecret NullableString `json:"gcp_secret,omitempty"`
 }
@@ -87,47 +87,47 @@ func (o *GcpSecretManagerCredentialsPatch) UnsetBqProjectId() {
 	o.BqProjectId.Unset()
 }
 
-// GetDatabricksWarehouseId returns the DatabricksWarehouseId field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GcpSecretManagerCredentialsPatch) GetDatabricksWarehouseId() string {
-	if o == nil || IsNil(o.DatabricksWarehouseId.Get()) {
+// GetSqlWarehouseId returns the SqlWarehouseId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GcpSecretManagerCredentialsPatch) GetSqlWarehouseId() string {
+	if o == nil || IsNil(o.SqlWarehouseId.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.DatabricksWarehouseId.Get()
+	return *o.SqlWarehouseId.Get()
 }
 
-// GetDatabricksWarehouseIdOk returns a tuple with the DatabricksWarehouseId field value if set, nil otherwise
+// GetSqlWarehouseIdOk returns a tuple with the SqlWarehouseId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GcpSecretManagerCredentialsPatch) GetDatabricksWarehouseIdOk() (*string, bool) {
+func (o *GcpSecretManagerCredentialsPatch) GetSqlWarehouseIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.DatabricksWarehouseId.Get(), o.DatabricksWarehouseId.IsSet()
+	return o.SqlWarehouseId.Get(), o.SqlWarehouseId.IsSet()
 }
 
-// HasDatabricksWarehouseId returns a boolean if a field has been set.
-func (o *GcpSecretManagerCredentialsPatch) HasDatabricksWarehouseId() bool {
-	if o != nil && o.DatabricksWarehouseId.IsSet() {
+// HasSqlWarehouseId returns a boolean if a field has been set.
+func (o *GcpSecretManagerCredentialsPatch) HasSqlWarehouseId() bool {
+	if o != nil && o.SqlWarehouseId.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetDatabricksWarehouseId gets a reference to the given NullableString and assigns it to the DatabricksWarehouseId field.
-func (o *GcpSecretManagerCredentialsPatch) SetDatabricksWarehouseId(v string) {
-	o.DatabricksWarehouseId.Set(&v)
+// SetSqlWarehouseId gets a reference to the given NullableString and assigns it to the SqlWarehouseId field.
+func (o *GcpSecretManagerCredentialsPatch) SetSqlWarehouseId(v string) {
+	o.SqlWarehouseId.Set(&v)
 }
 
-// SetDatabricksWarehouseIdNil sets the value for DatabricksWarehouseId to be an explicit nil
-func (o *GcpSecretManagerCredentialsPatch) SetDatabricksWarehouseIdNil() {
-	o.DatabricksWarehouseId.Set(nil)
+// SetSqlWarehouseIdNil sets the value for SqlWarehouseId to be an explicit nil
+func (o *GcpSecretManagerCredentialsPatch) SetSqlWarehouseIdNil() {
+	o.SqlWarehouseId.Set(nil)
 }
 
-// UnsetDatabricksWarehouseId ensures that no value is present for DatabricksWarehouseId, not even an explicit nil
-func (o *GcpSecretManagerCredentialsPatch) UnsetDatabricksWarehouseId() {
-	o.DatabricksWarehouseId.Unset()
+// UnsetSqlWarehouseId ensures that no value is present for SqlWarehouseId, not even an explicit nil
+func (o *GcpSecretManagerCredentialsPatch) UnsetSqlWarehouseId() {
+	o.SqlWarehouseId.Unset()
 }
 
 // GetGcpSecret returns the GcpSecret field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -186,8 +186,8 @@ func (o GcpSecretManagerCredentialsPatch) ToMap() (map[string]interface{}, error
 	if o.BqProjectId.IsSet() {
 		toSerialize["bq_project_id"] = o.BqProjectId.Get()
 	}
-	if o.DatabricksWarehouseId.IsSet() {
-		toSerialize["databricks_warehouse_id"] = o.DatabricksWarehouseId.Get()
+	if o.SqlWarehouseId.IsSet() {
+		toSerialize["sql_warehouse_id"] = o.SqlWarehouseId.Get()
 	}
 	if o.GcpSecret.IsSet() {
 		toSerialize["gcp_secret"] = o.GcpSecret.Get()

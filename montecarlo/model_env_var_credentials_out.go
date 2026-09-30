@@ -33,7 +33,7 @@ type EnvVarCredentialsOut struct {
 	// BigQuery project the connection reads from. Null unless set.
 	BqProjectId NullableString `json:"bq_project_id"`
 	// Databricks SQL warehouse the connection runs queries on. Null unless set.
-	DatabricksWarehouseId NullableString `json:"databricks_warehouse_id"`
+	SqlWarehouseId NullableString `json:"sql_warehouse_id"`
 	// Name of the environment variable on the deployment that holds the connection's credentials. Must start with `MCD_`.
 	EnvVarName string `json:"env_var_name"`
 	// AWS KMS key the value is encrypted with. Null for a value in the clear.
@@ -46,14 +46,14 @@ type _EnvVarCredentialsOut EnvVarCredentialsOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEnvVarCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, bqProjectId NullableString, databricksWarehouseId NullableString, envVarName string, kmsKeyId NullableString) *EnvVarCredentialsOut {
+func NewEnvVarCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, bqProjectId NullableString, sqlWarehouseId NullableString, envVarName string, kmsKeyId NullableString) *EnvVarCredentialsOut {
 	this := EnvVarCredentialsOut{}
 	this.Id = id
 	this.ConnectionType = connectionType
 	this.StorageType = storageType
 	this.CreatedTime = createdTime
 	this.BqProjectId = bqProjectId
-	this.DatabricksWarehouseId = databricksWarehouseId
+	this.SqlWarehouseId = sqlWarehouseId
 	this.EnvVarName = envVarName
 	this.KmsKeyId = kmsKeyId
 	return &this
@@ -189,30 +189,30 @@ func (o *EnvVarCredentialsOut) SetBqProjectId(v string) {
 	o.BqProjectId.Set(&v)
 }
 
-// GetDatabricksWarehouseId returns the DatabricksWarehouseId field value
+// GetSqlWarehouseId returns the SqlWarehouseId field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *EnvVarCredentialsOut) GetDatabricksWarehouseId() string {
-	if o == nil || o.DatabricksWarehouseId.Get() == nil {
+func (o *EnvVarCredentialsOut) GetSqlWarehouseId() string {
+	if o == nil || o.SqlWarehouseId.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.DatabricksWarehouseId.Get()
+	return *o.SqlWarehouseId.Get()
 }
 
-// GetDatabricksWarehouseIdOk returns a tuple with the DatabricksWarehouseId field value
+// GetSqlWarehouseIdOk returns a tuple with the SqlWarehouseId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EnvVarCredentialsOut) GetDatabricksWarehouseIdOk() (*string, bool) {
+func (o *EnvVarCredentialsOut) GetSqlWarehouseIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.DatabricksWarehouseId.Get(), o.DatabricksWarehouseId.IsSet()
+	return o.SqlWarehouseId.Get(), o.SqlWarehouseId.IsSet()
 }
 
-// SetDatabricksWarehouseId sets field value
-func (o *EnvVarCredentialsOut) SetDatabricksWarehouseId(v string) {
-	o.DatabricksWarehouseId.Set(&v)
+// SetSqlWarehouseId sets field value
+func (o *EnvVarCredentialsOut) SetSqlWarehouseId(v string) {
+	o.SqlWarehouseId.Set(&v)
 }
 
 // GetEnvVarName returns the EnvVarName field value
@@ -280,7 +280,7 @@ func (o EnvVarCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["storage_type"] = o.StorageType
 	toSerialize["created_time"] = o.CreatedTime
 	toSerialize["bq_project_id"] = o.BqProjectId.Get()
-	toSerialize["databricks_warehouse_id"] = o.DatabricksWarehouseId.Get()
+	toSerialize["sql_warehouse_id"] = o.SqlWarehouseId.Get()
 	toSerialize["env_var_name"] = o.EnvVarName
 	toSerialize["kms_key_id"] = o.KmsKeyId.Get()
 	return toSerialize, nil
@@ -296,7 +296,7 @@ func (o *EnvVarCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 		"storage_type",
 		"created_time",
 		"bq_project_id",
-		"databricks_warehouse_id",
+		"sql_warehouse_id",
 		"env_var_name",
 		"kms_key_id",
 	}
