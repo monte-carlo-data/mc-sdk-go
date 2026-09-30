@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ConnectionType** | **string** | The connection type the credentials are for, such as &#x60;snowflake&#x60; or &#x60;bigquery&#x60;, or one of your custom connector types. Fixed once created. | 
 **BqProjectId** | Pointer to **NullableString** | BigQuery project the connection reads from. Only for a BigQuery connection. | [optional] 
-**DatabricksWarehouseId** | Pointer to **NullableString** | Databricks SQL warehouse the connection runs queries on. Required for a &#x60;databricks-sql-warehouse&#x60; or &#x60;databricks-metastore-sql-warehouse&#x60; connection. | [optional] 
+**SqlWarehouseId** | Pointer to **NullableString** | Databricks SQL warehouse the connection runs queries on. Required for a &#x60;databricks-sql-warehouse&#x60; or &#x60;databricks-metastore-sql-warehouse&#x60; connection. | [optional] 
 **FilePath** | **string** | Path of the file on the deployment that holds the connection&#39;s credentials. | 
 
 ## Methods
@@ -83,41 +83,41 @@ HasBqProjectId returns a boolean if a field has been set.
 `func (o *FileCredentialsIn) UnsetBqProjectId()`
 
 UnsetBqProjectId ensures that no value is present for BqProjectId, not even an explicit nil
-### GetDatabricksWarehouseId
+### GetSqlWarehouseId
 
-`func (o *FileCredentialsIn) GetDatabricksWarehouseId() string`
+`func (o *FileCredentialsIn) GetSqlWarehouseId() string`
 
-GetDatabricksWarehouseId returns the DatabricksWarehouseId field if non-nil, zero value otherwise.
+GetSqlWarehouseId returns the SqlWarehouseId field if non-nil, zero value otherwise.
 
-### GetDatabricksWarehouseIdOk
+### GetSqlWarehouseIdOk
 
-`func (o *FileCredentialsIn) GetDatabricksWarehouseIdOk() (*string, bool)`
+`func (o *FileCredentialsIn) GetSqlWarehouseIdOk() (*string, bool)`
 
-GetDatabricksWarehouseIdOk returns a tuple with the DatabricksWarehouseId field if it's non-nil, zero value otherwise
+GetSqlWarehouseIdOk returns a tuple with the SqlWarehouseId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDatabricksWarehouseId
+### SetSqlWarehouseId
 
-`func (o *FileCredentialsIn) SetDatabricksWarehouseId(v string)`
+`func (o *FileCredentialsIn) SetSqlWarehouseId(v string)`
 
-SetDatabricksWarehouseId sets DatabricksWarehouseId field to given value.
+SetSqlWarehouseId sets SqlWarehouseId field to given value.
 
-### HasDatabricksWarehouseId
+### HasSqlWarehouseId
 
-`func (o *FileCredentialsIn) HasDatabricksWarehouseId() bool`
+`func (o *FileCredentialsIn) HasSqlWarehouseId() bool`
 
-HasDatabricksWarehouseId returns a boolean if a field has been set.
+HasSqlWarehouseId returns a boolean if a field has been set.
 
-### SetDatabricksWarehouseIdNil
+### SetSqlWarehouseIdNil
 
-`func (o *FileCredentialsIn) SetDatabricksWarehouseIdNil(b bool)`
+`func (o *FileCredentialsIn) SetSqlWarehouseIdNil(b bool)`
 
- SetDatabricksWarehouseIdNil sets the value for DatabricksWarehouseId to be an explicit nil
+ SetSqlWarehouseIdNil sets the value for SqlWarehouseId to be an explicit nil
 
-### UnsetDatabricksWarehouseId
-`func (o *FileCredentialsIn) UnsetDatabricksWarehouseId()`
+### UnsetSqlWarehouseId
+`func (o *FileCredentialsIn) UnsetSqlWarehouseId()`
 
-UnsetDatabricksWarehouseId ensures that no value is present for DatabricksWarehouseId, not even an explicit nil
+UnsetSqlWarehouseId ensures that no value is present for SqlWarehouseId, not even an explicit nil
 ### GetFilePath
 
 `func (o *FileCredentialsIn) GetFilePath() string`

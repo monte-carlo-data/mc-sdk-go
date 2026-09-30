@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **StorageType** | [**CredentialsStorageType**](CredentialsStorageType.md) | Where the secret lives. Fixed once created. | 
 **CreatedTime** | **time.Time** | When the credentials were created. | 
 **BqProjectId** | **NullableString** | BigQuery project the connection reads from. Null unless set. | 
-**DatabricksWarehouseId** | **NullableString** | Databricks SQL warehouse the connection runs queries on. Null unless set. | 
+**SqlWarehouseId** | **NullableString** | Databricks SQL warehouse the connection runs queries on. Null unless set. | 
 **EnvVarName** | **string** | Name of the environment variable on the deployment that holds the connection&#39;s credentials. Must start with &#x60;MCD_&#x60;. | 
 **KmsKeyId** | **NullableString** | AWS KMS key the value is encrypted with. Null for a value in the clear. | 
 
@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewEnvVarCredentialsOut
 
-`func NewEnvVarCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, bqProjectId NullableString, databricksWarehouseId NullableString, envVarName string, kmsKeyId NullableString, ) *EnvVarCredentialsOut`
+`func NewEnvVarCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, bqProjectId NullableString, sqlWarehouseId NullableString, envVarName string, kmsKeyId NullableString, ) *EnvVarCredentialsOut`
 
 NewEnvVarCredentialsOut instantiates a new EnvVarCredentialsOut object
 This constructor will assign default values to properties that have it defined,
@@ -142,36 +142,36 @@ SetBqProjectId sets BqProjectId field to given value.
 `func (o *EnvVarCredentialsOut) UnsetBqProjectId()`
 
 UnsetBqProjectId ensures that no value is present for BqProjectId, not even an explicit nil
-### GetDatabricksWarehouseId
+### GetSqlWarehouseId
 
-`func (o *EnvVarCredentialsOut) GetDatabricksWarehouseId() string`
+`func (o *EnvVarCredentialsOut) GetSqlWarehouseId() string`
 
-GetDatabricksWarehouseId returns the DatabricksWarehouseId field if non-nil, zero value otherwise.
+GetSqlWarehouseId returns the SqlWarehouseId field if non-nil, zero value otherwise.
 
-### GetDatabricksWarehouseIdOk
+### GetSqlWarehouseIdOk
 
-`func (o *EnvVarCredentialsOut) GetDatabricksWarehouseIdOk() (*string, bool)`
+`func (o *EnvVarCredentialsOut) GetSqlWarehouseIdOk() (*string, bool)`
 
-GetDatabricksWarehouseIdOk returns a tuple with the DatabricksWarehouseId field if it's non-nil, zero value otherwise
+GetSqlWarehouseIdOk returns a tuple with the SqlWarehouseId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDatabricksWarehouseId
+### SetSqlWarehouseId
 
-`func (o *EnvVarCredentialsOut) SetDatabricksWarehouseId(v string)`
+`func (o *EnvVarCredentialsOut) SetSqlWarehouseId(v string)`
 
-SetDatabricksWarehouseId sets DatabricksWarehouseId field to given value.
+SetSqlWarehouseId sets SqlWarehouseId field to given value.
 
 
-### SetDatabricksWarehouseIdNil
+### SetSqlWarehouseIdNil
 
-`func (o *EnvVarCredentialsOut) SetDatabricksWarehouseIdNil(b bool)`
+`func (o *EnvVarCredentialsOut) SetSqlWarehouseIdNil(b bool)`
 
- SetDatabricksWarehouseIdNil sets the value for DatabricksWarehouseId to be an explicit nil
+ SetSqlWarehouseIdNil sets the value for SqlWarehouseId to be an explicit nil
 
-### UnsetDatabricksWarehouseId
-`func (o *EnvVarCredentialsOut) UnsetDatabricksWarehouseId()`
+### UnsetSqlWarehouseId
+`func (o *EnvVarCredentialsOut) UnsetSqlWarehouseId()`
 
-UnsetDatabricksWarehouseId ensures that no value is present for DatabricksWarehouseId, not even an explicit nil
+UnsetSqlWarehouseId ensures that no value is present for SqlWarehouseId, not even an explicit nil
 ### GetEnvVarName
 
 `func (o *EnvVarCredentialsOut) GetEnvVarName() string`

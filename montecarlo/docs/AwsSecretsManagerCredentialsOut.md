@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **StorageType** | [**CredentialsStorageType**](CredentialsStorageType.md) | Where the secret lives. Fixed once created. | 
 **CreatedTime** | **time.Time** | When the credentials were created. | 
 **BqProjectId** | **NullableString** | BigQuery project the connection reads from. Null unless set. | 
-**DatabricksWarehouseId** | **NullableString** | Databricks SQL warehouse the connection runs queries on. Null unless set. | 
+**SqlWarehouseId** | **NullableString** | Databricks SQL warehouse the connection runs queries on. Null unless set. | 
 **AwsSecret** | **string** | Name or ARN of the AWS Secrets Manager secret holding the connection&#39;s credentials. | 
 **AwsRegion** | **NullableString** | AWS region of the secret. Null when unset. | 
 **AssumableRole** | **NullableString** | ARN of the role the deployment assumes to read the secret. Null when unset. | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 
 ### NewAwsSecretsManagerCredentialsOut
 
-`func NewAwsSecretsManagerCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, bqProjectId NullableString, databricksWarehouseId NullableString, awsSecret string, awsRegion NullableString, assumableRole NullableString, externalId NullableString, ) *AwsSecretsManagerCredentialsOut`
+`func NewAwsSecretsManagerCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, bqProjectId NullableString, sqlWarehouseId NullableString, awsSecret string, awsRegion NullableString, assumableRole NullableString, externalId NullableString, ) *AwsSecretsManagerCredentialsOut`
 
 NewAwsSecretsManagerCredentialsOut instantiates a new AwsSecretsManagerCredentialsOut object
 This constructor will assign default values to properties that have it defined,
@@ -144,36 +144,36 @@ SetBqProjectId sets BqProjectId field to given value.
 `func (o *AwsSecretsManagerCredentialsOut) UnsetBqProjectId()`
 
 UnsetBqProjectId ensures that no value is present for BqProjectId, not even an explicit nil
-### GetDatabricksWarehouseId
+### GetSqlWarehouseId
 
-`func (o *AwsSecretsManagerCredentialsOut) GetDatabricksWarehouseId() string`
+`func (o *AwsSecretsManagerCredentialsOut) GetSqlWarehouseId() string`
 
-GetDatabricksWarehouseId returns the DatabricksWarehouseId field if non-nil, zero value otherwise.
+GetSqlWarehouseId returns the SqlWarehouseId field if non-nil, zero value otherwise.
 
-### GetDatabricksWarehouseIdOk
+### GetSqlWarehouseIdOk
 
-`func (o *AwsSecretsManagerCredentialsOut) GetDatabricksWarehouseIdOk() (*string, bool)`
+`func (o *AwsSecretsManagerCredentialsOut) GetSqlWarehouseIdOk() (*string, bool)`
 
-GetDatabricksWarehouseIdOk returns a tuple with the DatabricksWarehouseId field if it's non-nil, zero value otherwise
+GetSqlWarehouseIdOk returns a tuple with the SqlWarehouseId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDatabricksWarehouseId
+### SetSqlWarehouseId
 
-`func (o *AwsSecretsManagerCredentialsOut) SetDatabricksWarehouseId(v string)`
+`func (o *AwsSecretsManagerCredentialsOut) SetSqlWarehouseId(v string)`
 
-SetDatabricksWarehouseId sets DatabricksWarehouseId field to given value.
+SetSqlWarehouseId sets SqlWarehouseId field to given value.
 
 
-### SetDatabricksWarehouseIdNil
+### SetSqlWarehouseIdNil
 
-`func (o *AwsSecretsManagerCredentialsOut) SetDatabricksWarehouseIdNil(b bool)`
+`func (o *AwsSecretsManagerCredentialsOut) SetSqlWarehouseIdNil(b bool)`
 
- SetDatabricksWarehouseIdNil sets the value for DatabricksWarehouseId to be an explicit nil
+ SetSqlWarehouseIdNil sets the value for SqlWarehouseId to be an explicit nil
 
-### UnsetDatabricksWarehouseId
-`func (o *AwsSecretsManagerCredentialsOut) UnsetDatabricksWarehouseId()`
+### UnsetSqlWarehouseId
+`func (o *AwsSecretsManagerCredentialsOut) UnsetSqlWarehouseId()`
 
-UnsetDatabricksWarehouseId ensures that no value is present for DatabricksWarehouseId, not even an explicit nil
+UnsetSqlWarehouseId ensures that no value is present for SqlWarehouseId, not even an explicit nil
 ### GetAwsSecret
 
 `func (o *AwsSecretsManagerCredentialsOut) GetAwsSecret() string`

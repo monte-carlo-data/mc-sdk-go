@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **DeploymentId** | **string** | Deployment that runs the validations. It has to be one &#x60;GET /deployments&#x60; lists, and it has to be able to reach the system the credentials are for. | 
 **ConnectionType** | **string** | What the credentials are for, hyphenated, such as &#x60;snowflake&#x60; or &#x60;bigquery&#x60;. Decides which checks run. | 
 **BqProjectId** | Pointer to **NullableString** | BigQuery project the connection reads from. Only for a BigQuery connection. | [optional] 
-**DatabricksWarehouseId** | Pointer to **NullableString** | Databricks SQL warehouse the connection runs queries on. Required for a &#x60;databricks-sql-warehouse&#x60; or &#x60;databricks-metastore-sql-warehouse&#x60; connection. | [optional] 
+**SqlWarehouseId** | Pointer to **NullableString** | Databricks SQL warehouse the connection runs queries on. Required for a &#x60;databricks-sql-warehouse&#x60; or &#x60;databricks-metastore-sql-warehouse&#x60; connection. | [optional] 
 **AkvSecret** | **string** | Name of the Azure Key Vault secret holding the connection&#39;s credentials. | 
 **AkvVaultName** | Pointer to **NullableString** | Name of the key vault. Send this, &#x60;akv_vault_url&#x60;, or both. | [optional] 
 **AkvVaultUrl** | Pointer to **NullableString** | URL of the key vault. Send this, &#x60;akv_vault_name&#x60;, or both. | [optional] 
@@ -106,41 +106,41 @@ HasBqProjectId returns a boolean if a field has been set.
 `func (o *AzureKeyVaultCredentialsValidateIn) UnsetBqProjectId()`
 
 UnsetBqProjectId ensures that no value is present for BqProjectId, not even an explicit nil
-### GetDatabricksWarehouseId
+### GetSqlWarehouseId
 
-`func (o *AzureKeyVaultCredentialsValidateIn) GetDatabricksWarehouseId() string`
+`func (o *AzureKeyVaultCredentialsValidateIn) GetSqlWarehouseId() string`
 
-GetDatabricksWarehouseId returns the DatabricksWarehouseId field if non-nil, zero value otherwise.
+GetSqlWarehouseId returns the SqlWarehouseId field if non-nil, zero value otherwise.
 
-### GetDatabricksWarehouseIdOk
+### GetSqlWarehouseIdOk
 
-`func (o *AzureKeyVaultCredentialsValidateIn) GetDatabricksWarehouseIdOk() (*string, bool)`
+`func (o *AzureKeyVaultCredentialsValidateIn) GetSqlWarehouseIdOk() (*string, bool)`
 
-GetDatabricksWarehouseIdOk returns a tuple with the DatabricksWarehouseId field if it's non-nil, zero value otherwise
+GetSqlWarehouseIdOk returns a tuple with the SqlWarehouseId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDatabricksWarehouseId
+### SetSqlWarehouseId
 
-`func (o *AzureKeyVaultCredentialsValidateIn) SetDatabricksWarehouseId(v string)`
+`func (o *AzureKeyVaultCredentialsValidateIn) SetSqlWarehouseId(v string)`
 
-SetDatabricksWarehouseId sets DatabricksWarehouseId field to given value.
+SetSqlWarehouseId sets SqlWarehouseId field to given value.
 
-### HasDatabricksWarehouseId
+### HasSqlWarehouseId
 
-`func (o *AzureKeyVaultCredentialsValidateIn) HasDatabricksWarehouseId() bool`
+`func (o *AzureKeyVaultCredentialsValidateIn) HasSqlWarehouseId() bool`
 
-HasDatabricksWarehouseId returns a boolean if a field has been set.
+HasSqlWarehouseId returns a boolean if a field has been set.
 
-### SetDatabricksWarehouseIdNil
+### SetSqlWarehouseIdNil
 
-`func (o *AzureKeyVaultCredentialsValidateIn) SetDatabricksWarehouseIdNil(b bool)`
+`func (o *AzureKeyVaultCredentialsValidateIn) SetSqlWarehouseIdNil(b bool)`
 
- SetDatabricksWarehouseIdNil sets the value for DatabricksWarehouseId to be an explicit nil
+ SetSqlWarehouseIdNil sets the value for SqlWarehouseId to be an explicit nil
 
-### UnsetDatabricksWarehouseId
-`func (o *AzureKeyVaultCredentialsValidateIn) UnsetDatabricksWarehouseId()`
+### UnsetSqlWarehouseId
+`func (o *AzureKeyVaultCredentialsValidateIn) UnsetSqlWarehouseId()`
 
-UnsetDatabricksWarehouseId ensures that no value is present for DatabricksWarehouseId, not even an explicit nil
+UnsetSqlWarehouseId ensures that no value is present for SqlWarehouseId, not even an explicit nil
 ### GetAkvSecret
 
 `func (o *AzureKeyVaultCredentialsValidateIn) GetAkvSecret() string`

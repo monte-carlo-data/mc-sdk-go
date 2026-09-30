@@ -7,6 +7,8 @@ Method | HTTP request | Description
 [**CreateAwsSecretsManagerCredentials**](CredentialsAPI.md#CreateAwsSecretsManagerCredentials) | **Post** /api/v2/credentials/self-hosted/aws | Create AWS Secrets Manager credentials
 [**CreateAzureKeyVaultCredentials**](CredentialsAPI.md#CreateAzureKeyVaultCredentials) | **Post** /api/v2/credentials/self-hosted/azure | Create Azure Key Vault credentials
 [**CreateBigqueryCredentials**](CredentialsAPI.md#CreateBigqueryCredentials) | **Post** /api/v2/credentials/bigquery | Create BigQuery credentials
+[**CreateDatabricksMetastoreSqlWarehouseCredentials**](CredentialsAPI.md#CreateDatabricksMetastoreSqlWarehouseCredentials) | **Post** /api/v2/credentials/databricks-metastore-sql-warehouse | Create Databricks metadata collection credentials
+[**CreateDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#CreateDatabricksSqlWarehouseCredentials) | **Post** /api/v2/credentials/databricks-sql-warehouse | Create Databricks query credentials
 [**CreateEnvVarCredentials**](CredentialsAPI.md#CreateEnvVarCredentials) | **Post** /api/v2/credentials/self-hosted/env-var | Create environment variable credentials
 [**CreateFileCredentials**](CredentialsAPI.md#CreateFileCredentials) | **Post** /api/v2/credentials/self-hosted/file | Create file credentials
 [**CreateGcpSecretManagerCredentials**](CredentialsAPI.md#CreateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp | Create GCP Secret Manager credentials
@@ -16,6 +18,8 @@ Method | HTTP request | Description
 [**DeleteAzureKeyVaultCredentials**](CredentialsAPI.md#DeleteAzureKeyVaultCredentials) | **Delete** /api/v2/credentials/self-hosted/azure/{credentials_id} | Delete Azure Key Vault credentials
 [**DeleteBigqueryCredentials**](CredentialsAPI.md#DeleteBigqueryCredentials) | **Delete** /api/v2/credentials/bigquery/{credentials_id} | Delete BigQuery credentials
 [**DeleteCredentials**](CredentialsAPI.md#DeleteCredentials) | **Delete** /api/v2/credentials/{credentials_id} | Delete credentials
+[**DeleteDatabricksMetastoreSqlWarehouseCredentials**](CredentialsAPI.md#DeleteDatabricksMetastoreSqlWarehouseCredentials) | **Delete** /api/v2/credentials/databricks-metastore-sql-warehouse/{credentials_id} | Delete Databricks metadata collection credentials
+[**DeleteDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#DeleteDatabricksSqlWarehouseCredentials) | **Delete** /api/v2/credentials/databricks-sql-warehouse/{credentials_id} | Delete Databricks query credentials
 [**DeleteEnvVarCredentials**](CredentialsAPI.md#DeleteEnvVarCredentials) | **Delete** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Delete environment variable credentials
 [**DeleteFileCredentials**](CredentialsAPI.md#DeleteFileCredentials) | **Delete** /api/v2/credentials/self-hosted/file/{credentials_id} | Delete file credentials
 [**DeleteGcpSecretManagerCredentials**](CredentialsAPI.md#DeleteGcpSecretManagerCredentials) | **Delete** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Delete GCP Secret Manager credentials
@@ -24,6 +28,8 @@ Method | HTTP request | Description
 [**GetAwsSecretsManagerCredentials**](CredentialsAPI.md#GetAwsSecretsManagerCredentials) | **Get** /api/v2/credentials/self-hosted/aws/{credentials_id} | Get AWS Secrets Manager credentials
 [**GetAzureKeyVaultCredentials**](CredentialsAPI.md#GetAzureKeyVaultCredentials) | **Get** /api/v2/credentials/self-hosted/azure/{credentials_id} | Get Azure Key Vault credentials
 [**GetBigqueryCredentials**](CredentialsAPI.md#GetBigqueryCredentials) | **Get** /api/v2/credentials/bigquery/{credentials_id} | Get BigQuery credentials
+[**GetDatabricksMetastoreSqlWarehouseCredentials**](CredentialsAPI.md#GetDatabricksMetastoreSqlWarehouseCredentials) | **Get** /api/v2/credentials/databricks-metastore-sql-warehouse/{credentials_id} | Get Databricks metadata collection credentials
+[**GetDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#GetDatabricksSqlWarehouseCredentials) | **Get** /api/v2/credentials/databricks-sql-warehouse/{credentials_id} | Get Databricks query credentials
 [**GetEnvVarCredentials**](CredentialsAPI.md#GetEnvVarCredentials) | **Get** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Get environment variable credentials
 [**GetFileCredentials**](CredentialsAPI.md#GetFileCredentials) | **Get** /api/v2/credentials/self-hosted/file/{credentials_id} | Get file credentials
 [**GetGcpSecretManagerCredentials**](CredentialsAPI.md#GetGcpSecretManagerCredentials) | **Get** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Get GCP Secret Manager credentials
@@ -33,6 +39,8 @@ Method | HTTP request | Description
 [**UpdateAwsSecretsManagerCredentials**](CredentialsAPI.md#UpdateAwsSecretsManagerCredentials) | **Patch** /api/v2/credentials/self-hosted/aws/{credentials_id} | Update AWS Secrets Manager credentials
 [**UpdateAzureKeyVaultCredentials**](CredentialsAPI.md#UpdateAzureKeyVaultCredentials) | **Patch** /api/v2/credentials/self-hosted/azure/{credentials_id} | Update Azure Key Vault credentials
 [**UpdateBigqueryCredentials**](CredentialsAPI.md#UpdateBigqueryCredentials) | **Patch** /api/v2/credentials/bigquery/{credentials_id} | Update BigQuery credentials
+[**UpdateDatabricksMetastoreSqlWarehouseCredentials**](CredentialsAPI.md#UpdateDatabricksMetastoreSqlWarehouseCredentials) | **Patch** /api/v2/credentials/databricks-metastore-sql-warehouse/{credentials_id} | Update Databricks metadata collection credentials
+[**UpdateDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#UpdateDatabricksSqlWarehouseCredentials) | **Patch** /api/v2/credentials/databricks-sql-warehouse/{credentials_id} | Update Databricks query credentials
 [**UpdateEnvVarCredentials**](CredentialsAPI.md#UpdateEnvVarCredentials) | **Patch** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Update environment variable credentials
 [**UpdateFileCredentials**](CredentialsAPI.md#UpdateFileCredentials) | **Patch** /api/v2/credentials/self-hosted/file/{credentials_id} | Update file credentials
 [**UpdateGcpSecretManagerCredentials**](CredentialsAPI.md#UpdateGcpSecretManagerCredentials) | **Patch** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Update GCP Secret Manager credentials
@@ -41,6 +49,8 @@ Method | HTTP request | Description
 [**ValidateAwsSecretsManagerCredentials**](CredentialsAPI.md#ValidateAwsSecretsManagerCredentials) | **Post** /api/v2/credentials/self-hosted/aws/validate | Validate AWS Secrets Manager credentials
 [**ValidateAzureKeyVaultCredentials**](CredentialsAPI.md#ValidateAzureKeyVaultCredentials) | **Post** /api/v2/credentials/self-hosted/azure/validate | Validate Azure Key Vault credentials
 [**ValidateBigqueryCredentials**](CredentialsAPI.md#ValidateBigqueryCredentials) | **Post** /api/v2/credentials/bigquery/validate | Validate BigQuery credentials
+[**ValidateDatabricksMetastoreSqlWarehouseCredentials**](CredentialsAPI.md#ValidateDatabricksMetastoreSqlWarehouseCredentials) | **Post** /api/v2/credentials/databricks-metastore-sql-warehouse/validate | Validate Databricks metadata collection credentials
+[**ValidateDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#ValidateDatabricksSqlWarehouseCredentials) | **Post** /api/v2/credentials/databricks-sql-warehouse/validate | Validate Databricks query credentials
 [**ValidateEnvVarCredentials**](CredentialsAPI.md#ValidateEnvVarCredentials) | **Post** /api/v2/credentials/self-hosted/env-var/validate | Validate environment variable credentials
 [**ValidateFileCredentials**](CredentialsAPI.md#ValidateFileCredentials) | **Post** /api/v2/credentials/self-hosted/file/validate | Validate file credentials
 [**ValidateGcpSecretManagerCredentials**](CredentialsAPI.md#ValidateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp/validate | Validate GCP Secret Manager credentials
@@ -232,6 +242,138 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BigQueryCredentialsOut**](BigQueryCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateDatabricksMetastoreSqlWarehouseCredentials
+
+> DatabricksMetastoreSqlWarehouseCredentialsOut CreateDatabricksMetastoreSqlWarehouseCredentials(ctx).DatabricksMetastoreSqlWarehouseCredentialsIn(databricksMetastoreSqlWarehouseCredentialsIn).Execute()
+
+Create Databricks metadata collection credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	databricksMetastoreSqlWarehouseCredentialsIn := *openapiclient.NewDatabricksMetastoreSqlWarehouseCredentialsIn("WorkspaceUrl_example", "SqlWarehouseId_example", "WorkspaceId_example") // DatabricksMetastoreSqlWarehouseCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateDatabricksMetastoreSqlWarehouseCredentials(context.Background()).DatabricksMetastoreSqlWarehouseCredentialsIn(databricksMetastoreSqlWarehouseCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateDatabricksMetastoreSqlWarehouseCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateDatabricksMetastoreSqlWarehouseCredentials`: DatabricksMetastoreSqlWarehouseCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateDatabricksMetastoreSqlWarehouseCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateDatabricksMetastoreSqlWarehouseCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **databricksMetastoreSqlWarehouseCredentialsIn** | [**DatabricksMetastoreSqlWarehouseCredentialsIn**](DatabricksMetastoreSqlWarehouseCredentialsIn.md) |  | 
+
+### Return type
+
+[**DatabricksMetastoreSqlWarehouseCredentialsOut**](DatabricksMetastoreSqlWarehouseCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateDatabricksSqlWarehouseCredentials
+
+> DatabricksSqlWarehouseCredentialsOut CreateDatabricksSqlWarehouseCredentials(ctx).DatabricksSqlWarehouseCredentialsIn(databricksSqlWarehouseCredentialsIn).Execute()
+
+Create Databricks query credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	databricksSqlWarehouseCredentialsIn := *openapiclient.NewDatabricksSqlWarehouseCredentialsIn("WorkspaceUrl_example", "SqlWarehouseId_example") // DatabricksSqlWarehouseCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateDatabricksSqlWarehouseCredentials(context.Background()).DatabricksSqlWarehouseCredentialsIn(databricksSqlWarehouseCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateDatabricksSqlWarehouseCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateDatabricksSqlWarehouseCredentials`: DatabricksSqlWarehouseCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateDatabricksSqlWarehouseCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateDatabricksSqlWarehouseCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **databricksSqlWarehouseCredentialsIn** | [**DatabricksSqlWarehouseCredentialsIn**](DatabricksSqlWarehouseCredentialsIn.md) |  | 
+
+### Return type
+
+[**DatabricksSqlWarehouseCredentialsOut**](DatabricksSqlWarehouseCredentialsOut.md)
 
 ### Authorization
 
@@ -849,6 +991,142 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteDatabricksMetastoreSqlWarehouseCredentials
+
+> DeleteDatabricksMetastoreSqlWarehouseCredentials(ctx, credentialsId).Execute()
+
+Delete Databricks metadata collection credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteDatabricksMetastoreSqlWarehouseCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteDatabricksMetastoreSqlWarehouseCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteDatabricksMetastoreSqlWarehouseCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteDatabricksSqlWarehouseCredentials
+
+> DeleteDatabricksSqlWarehouseCredentials(ctx, credentialsId).Execute()
+
+Delete Databricks query credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteDatabricksSqlWarehouseCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteDatabricksSqlWarehouseCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteDatabricksSqlWarehouseCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteEnvVarCredentials
 
 > DeleteEnvVarCredentials(ctx, credentialsId).Execute()
@@ -1384,6 +1662,146 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**BigQueryCredentialsOut**](BigQueryCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDatabricksMetastoreSqlWarehouseCredentials
+
+> DatabricksMetastoreSqlWarehouseCredentialsOut GetDatabricksMetastoreSqlWarehouseCredentials(ctx, credentialsId).Execute()
+
+Get Databricks metadata collection credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetDatabricksMetastoreSqlWarehouseCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetDatabricksMetastoreSqlWarehouseCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetDatabricksMetastoreSqlWarehouseCredentials`: DatabricksMetastoreSqlWarehouseCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetDatabricksMetastoreSqlWarehouseCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDatabricksMetastoreSqlWarehouseCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DatabricksMetastoreSqlWarehouseCredentialsOut**](DatabricksMetastoreSqlWarehouseCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDatabricksSqlWarehouseCredentials
+
+> DatabricksSqlWarehouseCredentialsOut GetDatabricksSqlWarehouseCredentials(ctx, credentialsId).Execute()
+
+Get Databricks query credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetDatabricksSqlWarehouseCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetDatabricksSqlWarehouseCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetDatabricksSqlWarehouseCredentials`: DatabricksSqlWarehouseCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetDatabricksSqlWarehouseCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDatabricksSqlWarehouseCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DatabricksSqlWarehouseCredentialsOut**](DatabricksSqlWarehouseCredentialsOut.md)
 
 ### Authorization
 
@@ -2035,6 +2453,150 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateDatabricksMetastoreSqlWarehouseCredentials
+
+> DatabricksMetastoreSqlWarehouseCredentialsOut UpdateDatabricksMetastoreSqlWarehouseCredentials(ctx, credentialsId).DatabricksMetastoreSqlWarehouseCredentialsPatch(databricksMetastoreSqlWarehouseCredentialsPatch).Execute()
+
+Update Databricks metadata collection credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	databricksMetastoreSqlWarehouseCredentialsPatch := *openapiclient.NewDatabricksMetastoreSqlWarehouseCredentialsPatch() // DatabricksMetastoreSqlWarehouseCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateDatabricksMetastoreSqlWarehouseCredentials(context.Background(), credentialsId).DatabricksMetastoreSqlWarehouseCredentialsPatch(databricksMetastoreSqlWarehouseCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateDatabricksMetastoreSqlWarehouseCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateDatabricksMetastoreSqlWarehouseCredentials`: DatabricksMetastoreSqlWarehouseCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateDatabricksMetastoreSqlWarehouseCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateDatabricksMetastoreSqlWarehouseCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **databricksMetastoreSqlWarehouseCredentialsPatch** | [**DatabricksMetastoreSqlWarehouseCredentialsPatch**](DatabricksMetastoreSqlWarehouseCredentialsPatch.md) |  | 
+
+### Return type
+
+[**DatabricksMetastoreSqlWarehouseCredentialsOut**](DatabricksMetastoreSqlWarehouseCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateDatabricksSqlWarehouseCredentials
+
+> DatabricksSqlWarehouseCredentialsOut UpdateDatabricksSqlWarehouseCredentials(ctx, credentialsId).DatabricksSqlWarehouseCredentialsPatch(databricksSqlWarehouseCredentialsPatch).Execute()
+
+Update Databricks query credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	databricksSqlWarehouseCredentialsPatch := *openapiclient.NewDatabricksSqlWarehouseCredentialsPatch() // DatabricksSqlWarehouseCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateDatabricksSqlWarehouseCredentials(context.Background(), credentialsId).DatabricksSqlWarehouseCredentialsPatch(databricksSqlWarehouseCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateDatabricksSqlWarehouseCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateDatabricksSqlWarehouseCredentials`: DatabricksSqlWarehouseCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateDatabricksSqlWarehouseCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateDatabricksSqlWarehouseCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **databricksSqlWarehouseCredentialsPatch** | [**DatabricksSqlWarehouseCredentialsPatch**](DatabricksSqlWarehouseCredentialsPatch.md) |  | 
+
+### Return type
+
+[**DatabricksSqlWarehouseCredentialsOut**](DatabricksSqlWarehouseCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateEnvVarCredentials
 
 > EnvVarCredentialsOut UpdateEnvVarCredentials(ctx, credentialsId).EnvVarCredentialsPatch(envVarCredentialsPatch).Execute()
@@ -2574,6 +3136,138 @@ Other parameters are passed through a pointer to a apiValidateBigqueryCredential
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **bigQueryCredentialsValidateIn** | [**BigQueryCredentialsValidateIn**](BigQueryCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateDatabricksMetastoreSqlWarehouseCredentials
+
+> ValidationRunOut ValidateDatabricksMetastoreSqlWarehouseCredentials(ctx).DatabricksMetastoreSqlWarehouseCredentialsValidateIn(databricksMetastoreSqlWarehouseCredentialsValidateIn).Execute()
+
+Validate Databricks metadata collection credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	databricksMetastoreSqlWarehouseCredentialsValidateIn := *openapiclient.NewDatabricksMetastoreSqlWarehouseCredentialsValidateIn("DeploymentId_example", "WorkspaceUrl_example", "SqlWarehouseId_example", "WorkspaceId_example") // DatabricksMetastoreSqlWarehouseCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateDatabricksMetastoreSqlWarehouseCredentials(context.Background()).DatabricksMetastoreSqlWarehouseCredentialsValidateIn(databricksMetastoreSqlWarehouseCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateDatabricksMetastoreSqlWarehouseCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateDatabricksMetastoreSqlWarehouseCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateDatabricksMetastoreSqlWarehouseCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateDatabricksMetastoreSqlWarehouseCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **databricksMetastoreSqlWarehouseCredentialsValidateIn** | [**DatabricksMetastoreSqlWarehouseCredentialsValidateIn**](DatabricksMetastoreSqlWarehouseCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateDatabricksSqlWarehouseCredentials
+
+> ValidationRunOut ValidateDatabricksSqlWarehouseCredentials(ctx).DatabricksSqlWarehouseCredentialsValidateIn(databricksSqlWarehouseCredentialsValidateIn).Execute()
+
+Validate Databricks query credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	databricksSqlWarehouseCredentialsValidateIn := *openapiclient.NewDatabricksSqlWarehouseCredentialsValidateIn("DeploymentId_example", "WorkspaceUrl_example", "SqlWarehouseId_example") // DatabricksSqlWarehouseCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateDatabricksSqlWarehouseCredentials(context.Background()).DatabricksSqlWarehouseCredentialsValidateIn(databricksSqlWarehouseCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateDatabricksSqlWarehouseCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateDatabricksSqlWarehouseCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateDatabricksSqlWarehouseCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateDatabricksSqlWarehouseCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **databricksSqlWarehouseCredentialsValidateIn** | [**DatabricksSqlWarehouseCredentialsValidateIn**](DatabricksSqlWarehouseCredentialsValidateIn.md) |  | 
 
 ### Return type
 

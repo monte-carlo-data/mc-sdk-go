@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ConnectionType** | **string** | The connection type the credentials are for, such as &#x60;snowflake&#x60; or &#x60;bigquery&#x60;, or one of your custom connector types. Fixed once created. | 
 **BqProjectId** | Pointer to **NullableString** | BigQuery project the connection reads from. Only for a BigQuery connection. | [optional] 
-**DatabricksWarehouseId** | Pointer to **NullableString** | Databricks SQL warehouse the connection runs queries on. Required for a &#x60;databricks-sql-warehouse&#x60; or &#x60;databricks-metastore-sql-warehouse&#x60; connection. | [optional] 
+**SqlWarehouseId** | Pointer to **NullableString** | Databricks SQL warehouse the connection runs queries on. Required for a &#x60;databricks-sql-warehouse&#x60; or &#x60;databricks-metastore-sql-warehouse&#x60; connection. | [optional] 
 **GcpSecret** | **string** | Name of the GCP Secret Manager secret holding the connection&#39;s credentials. | 
 
 ## Methods
@@ -83,41 +83,41 @@ HasBqProjectId returns a boolean if a field has been set.
 `func (o *GcpSecretManagerCredentialsIn) UnsetBqProjectId()`
 
 UnsetBqProjectId ensures that no value is present for BqProjectId, not even an explicit nil
-### GetDatabricksWarehouseId
+### GetSqlWarehouseId
 
-`func (o *GcpSecretManagerCredentialsIn) GetDatabricksWarehouseId() string`
+`func (o *GcpSecretManagerCredentialsIn) GetSqlWarehouseId() string`
 
-GetDatabricksWarehouseId returns the DatabricksWarehouseId field if non-nil, zero value otherwise.
+GetSqlWarehouseId returns the SqlWarehouseId field if non-nil, zero value otherwise.
 
-### GetDatabricksWarehouseIdOk
+### GetSqlWarehouseIdOk
 
-`func (o *GcpSecretManagerCredentialsIn) GetDatabricksWarehouseIdOk() (*string, bool)`
+`func (o *GcpSecretManagerCredentialsIn) GetSqlWarehouseIdOk() (*string, bool)`
 
-GetDatabricksWarehouseIdOk returns a tuple with the DatabricksWarehouseId field if it's non-nil, zero value otherwise
+GetSqlWarehouseIdOk returns a tuple with the SqlWarehouseId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetDatabricksWarehouseId
+### SetSqlWarehouseId
 
-`func (o *GcpSecretManagerCredentialsIn) SetDatabricksWarehouseId(v string)`
+`func (o *GcpSecretManagerCredentialsIn) SetSqlWarehouseId(v string)`
 
-SetDatabricksWarehouseId sets DatabricksWarehouseId field to given value.
+SetSqlWarehouseId sets SqlWarehouseId field to given value.
 
-### HasDatabricksWarehouseId
+### HasSqlWarehouseId
 
-`func (o *GcpSecretManagerCredentialsIn) HasDatabricksWarehouseId() bool`
+`func (o *GcpSecretManagerCredentialsIn) HasSqlWarehouseId() bool`
 
-HasDatabricksWarehouseId returns a boolean if a field has been set.
+HasSqlWarehouseId returns a boolean if a field has been set.
 
-### SetDatabricksWarehouseIdNil
+### SetSqlWarehouseIdNil
 
-`func (o *GcpSecretManagerCredentialsIn) SetDatabricksWarehouseIdNil(b bool)`
+`func (o *GcpSecretManagerCredentialsIn) SetSqlWarehouseIdNil(b bool)`
 
- SetDatabricksWarehouseIdNil sets the value for DatabricksWarehouseId to be an explicit nil
+ SetSqlWarehouseIdNil sets the value for SqlWarehouseId to be an explicit nil
 
-### UnsetDatabricksWarehouseId
-`func (o *GcpSecretManagerCredentialsIn) UnsetDatabricksWarehouseId()`
+### UnsetSqlWarehouseId
+`func (o *GcpSecretManagerCredentialsIn) UnsetSqlWarehouseId()`
 
-UnsetDatabricksWarehouseId ensures that no value is present for DatabricksWarehouseId, not even an explicit nil
+UnsetSqlWarehouseId ensures that no value is present for SqlWarehouseId, not even an explicit nil
 ### GetGcpSecret
 
 `func (o *GcpSecretManagerCredentialsIn) GetGcpSecret() string`

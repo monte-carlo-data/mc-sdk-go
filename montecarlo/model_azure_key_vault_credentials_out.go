@@ -33,7 +33,7 @@ type AzureKeyVaultCredentialsOut struct {
 	// BigQuery project the connection reads from. Null unless set.
 	BqProjectId NullableString `json:"bq_project_id"`
 	// Databricks SQL warehouse the connection runs queries on. Null unless set.
-	DatabricksWarehouseId NullableString `json:"databricks_warehouse_id"`
+	SqlWarehouseId NullableString `json:"sql_warehouse_id"`
 	// Name of the Azure Key Vault secret holding the connection's credentials.
 	AkvSecret string `json:"akv_secret"`
 	// Name of the key vault. Null when unset.
@@ -48,14 +48,14 @@ type _AzureKeyVaultCredentialsOut AzureKeyVaultCredentialsOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAzureKeyVaultCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, bqProjectId NullableString, databricksWarehouseId NullableString, akvSecret string, akvVaultName NullableString, akvVaultUrl NullableString) *AzureKeyVaultCredentialsOut {
+func NewAzureKeyVaultCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, bqProjectId NullableString, sqlWarehouseId NullableString, akvSecret string, akvVaultName NullableString, akvVaultUrl NullableString) *AzureKeyVaultCredentialsOut {
 	this := AzureKeyVaultCredentialsOut{}
 	this.Id = id
 	this.ConnectionType = connectionType
 	this.StorageType = storageType
 	this.CreatedTime = createdTime
 	this.BqProjectId = bqProjectId
-	this.DatabricksWarehouseId = databricksWarehouseId
+	this.SqlWarehouseId = sqlWarehouseId
 	this.AkvSecret = akvSecret
 	this.AkvVaultName = akvVaultName
 	this.AkvVaultUrl = akvVaultUrl
@@ -192,30 +192,30 @@ func (o *AzureKeyVaultCredentialsOut) SetBqProjectId(v string) {
 	o.BqProjectId.Set(&v)
 }
 
-// GetDatabricksWarehouseId returns the DatabricksWarehouseId field value
+// GetSqlWarehouseId returns the SqlWarehouseId field value
 // If the value is explicit nil, the zero value for string will be returned
-func (o *AzureKeyVaultCredentialsOut) GetDatabricksWarehouseId() string {
-	if o == nil || o.DatabricksWarehouseId.Get() == nil {
+func (o *AzureKeyVaultCredentialsOut) GetSqlWarehouseId() string {
+	if o == nil || o.SqlWarehouseId.Get() == nil {
 		var ret string
 		return ret
 	}
 
-	return *o.DatabricksWarehouseId.Get()
+	return *o.SqlWarehouseId.Get()
 }
 
-// GetDatabricksWarehouseIdOk returns a tuple with the DatabricksWarehouseId field value
+// GetSqlWarehouseIdOk returns a tuple with the SqlWarehouseId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *AzureKeyVaultCredentialsOut) GetDatabricksWarehouseIdOk() (*string, bool) {
+func (o *AzureKeyVaultCredentialsOut) GetSqlWarehouseIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.DatabricksWarehouseId.Get(), o.DatabricksWarehouseId.IsSet()
+	return o.SqlWarehouseId.Get(), o.SqlWarehouseId.IsSet()
 }
 
-// SetDatabricksWarehouseId sets field value
-func (o *AzureKeyVaultCredentialsOut) SetDatabricksWarehouseId(v string) {
-	o.DatabricksWarehouseId.Set(&v)
+// SetSqlWarehouseId sets field value
+func (o *AzureKeyVaultCredentialsOut) SetSqlWarehouseId(v string) {
+	o.SqlWarehouseId.Set(&v)
 }
 
 // GetAkvSecret returns the AkvSecret field value
@@ -309,7 +309,7 @@ func (o AzureKeyVaultCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["storage_type"] = o.StorageType
 	toSerialize["created_time"] = o.CreatedTime
 	toSerialize["bq_project_id"] = o.BqProjectId.Get()
-	toSerialize["databricks_warehouse_id"] = o.DatabricksWarehouseId.Get()
+	toSerialize["sql_warehouse_id"] = o.SqlWarehouseId.Get()
 	toSerialize["akv_secret"] = o.AkvSecret
 	toSerialize["akv_vault_name"] = o.AkvVaultName.Get()
 	toSerialize["akv_vault_url"] = o.AkvVaultUrl.Get()
@@ -326,7 +326,7 @@ func (o *AzureKeyVaultCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 		"storage_type",
 		"created_time",
 		"bq_project_id",
-		"databricks_warehouse_id",
+		"sql_warehouse_id",
 		"akv_secret",
 		"akv_vault_name",
 		"akv_vault_url",
