@@ -7,9 +7,11 @@ Name | Type | Description | Notes
 **Id** | **string** | Unique identifier of the connection. | 
 **ConnectionType** | **string** | What the connection reaches, such as &#x60;snowflake&#x60;. Taken from the credentials the connection was created with, and fixed once created. | 
 **Name** | **NullableString** | Display name of the connection. Null for a connection that was never named. | 
-**WarehouseId** | **string** | The warehouse the connection belongs to. Fixed once created. | 
-**WarehouseName** | **NullableString** | Display name of that warehouse. Null for a warehouse that was never named. | 
-**DeploymentId** | **NullableString** | The deployment the connection runs through, taken from its warehouse. Null for a warehouse that has no deployment. The id may name a deployment on Monte Carlo&#39;s older collection platform, which the deployments endpoints do not list. | 
+**WarehouseId** | **NullableString** | The warehouse the connection belongs to. Null for a connection on a BI container. Fixed once created. | 
+**WarehouseName** | **NullableString** | Display name of that warehouse. Null for a warehouse that was never named, and for a connection on a BI container. | 
+**BiContainerId** | **NullableString** | The BI container the connection belongs to. Null for a connection on a warehouse. Fixed once created. | 
+**BiContainerName** | **NullableString** | Display name of that BI container. Null for a container that was never named, and for a connection on a warehouse. | 
+**DeploymentId** | **NullableString** | The deployment the connection runs through, taken from its warehouse or BI container. Null when that has no deployment. The id may name a deployment on Monte Carlo&#39;s older collection platform, which the deployments endpoints do not list. | 
 **DeploymentName** | **NullableString** | Display name of that deployment. Null when there is no deployment to name. | 
 **CredentialsId** | **NullableString** | The credentials the connection reads with. Null for a connection created before credentials became their own resource, and for one created outside this API. | 
 **CredentialsStorageType** | [**NullableCredentialsStorageType**](CredentialsStorageType.md) | Where that secret lives. Null when there are no credentials to describe. | 
@@ -20,7 +22,7 @@ Name | Type | Description | Notes
 
 ### NewConnectionOut
 
-`func NewConnectionOut(id string, connectionType string, name NullableString, warehouseId string, warehouseName NullableString, deploymentId NullableString, deploymentName NullableString, credentialsId NullableString, credentialsStorageType NullableCredentialsStorageType, jobTypes []string, createdTime time.Time, ) *ConnectionOut`
+`func NewConnectionOut(id string, connectionType string, name NullableString, warehouseId NullableString, warehouseName NullableString, biContainerId NullableString, biContainerName NullableString, deploymentId NullableString, deploymentName NullableString, credentialsId NullableString, credentialsStorageType NullableCredentialsStorageType, jobTypes []string, createdTime time.Time, ) *ConnectionOut`
 
 NewConnectionOut instantiates a new ConnectionOut object
 This constructor will assign default values to properties that have it defined,
@@ -125,6 +127,16 @@ and a boolean to check if the value has been set.
 SetWarehouseId sets WarehouseId field to given value.
 
 
+### SetWarehouseIdNil
+
+`func (o *ConnectionOut) SetWarehouseIdNil(b bool)`
+
+ SetWarehouseIdNil sets the value for WarehouseId to be an explicit nil
+
+### UnsetWarehouseId
+`func (o *ConnectionOut) UnsetWarehouseId()`
+
+UnsetWarehouseId ensures that no value is present for WarehouseId, not even an explicit nil
 ### GetWarehouseName
 
 `func (o *ConnectionOut) GetWarehouseName() string`
@@ -155,6 +167,66 @@ SetWarehouseName sets WarehouseName field to given value.
 `func (o *ConnectionOut) UnsetWarehouseName()`
 
 UnsetWarehouseName ensures that no value is present for WarehouseName, not even an explicit nil
+### GetBiContainerId
+
+`func (o *ConnectionOut) GetBiContainerId() string`
+
+GetBiContainerId returns the BiContainerId field if non-nil, zero value otherwise.
+
+### GetBiContainerIdOk
+
+`func (o *ConnectionOut) GetBiContainerIdOk() (*string, bool)`
+
+GetBiContainerIdOk returns a tuple with the BiContainerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBiContainerId
+
+`func (o *ConnectionOut) SetBiContainerId(v string)`
+
+SetBiContainerId sets BiContainerId field to given value.
+
+
+### SetBiContainerIdNil
+
+`func (o *ConnectionOut) SetBiContainerIdNil(b bool)`
+
+ SetBiContainerIdNil sets the value for BiContainerId to be an explicit nil
+
+### UnsetBiContainerId
+`func (o *ConnectionOut) UnsetBiContainerId()`
+
+UnsetBiContainerId ensures that no value is present for BiContainerId, not even an explicit nil
+### GetBiContainerName
+
+`func (o *ConnectionOut) GetBiContainerName() string`
+
+GetBiContainerName returns the BiContainerName field if non-nil, zero value otherwise.
+
+### GetBiContainerNameOk
+
+`func (o *ConnectionOut) GetBiContainerNameOk() (*string, bool)`
+
+GetBiContainerNameOk returns a tuple with the BiContainerName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBiContainerName
+
+`func (o *ConnectionOut) SetBiContainerName(v string)`
+
+SetBiContainerName sets BiContainerName field to given value.
+
+
+### SetBiContainerNameNil
+
+`func (o *ConnectionOut) SetBiContainerNameNil(b bool)`
+
+ SetBiContainerNameNil sets the value for BiContainerName to be an explicit nil
+
+### UnsetBiContainerName
+`func (o *ConnectionOut) UnsetBiContainerName()`
+
+UnsetBiContainerName ensures that no value is present for BiContainerName, not even an explicit nil
 ### GetDeploymentId
 
 `func (o *ConnectionOut) GetDeploymentId() string`

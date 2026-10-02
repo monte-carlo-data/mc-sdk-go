@@ -21,10 +21,12 @@ var _ MappedNullable = &ConnectionIn{}
 
 // ConnectionIn What to create a connection with.
 type ConnectionIn struct {
-	// Display name for the connection. Unique among the warehouse's connections.
+	// Display name for the connection. Unique among the connections of its warehouse or BI container.
 	Name string `json:"name"`
-	// The warehouse to add the connection to. Its type has to match what the credentials are for.
-	WarehouseId string `json:"warehouse_id"`
+	// The warehouse to add the connection to. Its type has to match what the credentials are for. Send this or `bi_container_id`, not both.
+	WarehouseId NullableString `json:"warehouse_id,omitempty"`
+	// The BI container to add the connection to, for Tableau, Looker or Power BI credentials. Its type has to match what the credentials are for: a `looker` container takes both `looker` and `looker-git-clone` credentials. Send this or `warehouse_id`, not both.
+	BiContainerId NullableString `json:"bi_container_id,omitempty"`
 	// The credentials the connection reads with. They also decide the connection's type. Create them first, through one of the credentials endpoints.
 	CredentialsId string `json:"credentials_id"`
 	// The jobs to run on this connection. Omit it to run what the connection type runs by default, which is what the app does. Which values are accepted depends on the connection type. An empty list is not accepted; omit the field to take the defaults.
@@ -37,10 +39,9 @@ type _ConnectionIn ConnectionIn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectionIn(name string, warehouseId string, credentialsId string) *ConnectionIn {
+func NewConnectionIn(name string, credentialsId string) *ConnectionIn {
 	this := ConnectionIn{}
 	this.Name = name
-	this.WarehouseId = warehouseId
 	this.CredentialsId = credentialsId
 	return &this
 }
@@ -77,28 +78,90 @@ func (o *ConnectionIn) SetName(v string) {
 	o.Name = v
 }
 
-// GetWarehouseId returns the WarehouseId field value
+// GetWarehouseId returns the WarehouseId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ConnectionIn) GetWarehouseId() string {
-	if o == nil {
+	if o == nil || IsNil(o.WarehouseId.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.WarehouseId
+	return *o.WarehouseId.Get()
 }
 
-// GetWarehouseIdOk returns a tuple with the WarehouseId field value
+// GetWarehouseIdOk returns a tuple with the WarehouseId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ConnectionIn) GetWarehouseIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.WarehouseId, true
+	return o.WarehouseId.Get(), o.WarehouseId.IsSet()
 }
 
-// SetWarehouseId sets field value
+// HasWarehouseId returns a boolean if a field has been set.
+func (o *ConnectionIn) HasWarehouseId() bool {
+	if o != nil && o.WarehouseId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetWarehouseId gets a reference to the given NullableString and assigns it to the WarehouseId field.
 func (o *ConnectionIn) SetWarehouseId(v string) {
-	o.WarehouseId = v
+	o.WarehouseId.Set(&v)
+}
+
+// SetWarehouseIdNil sets the value for WarehouseId to be an explicit nil
+func (o *ConnectionIn) SetWarehouseIdNil() {
+	o.WarehouseId.Set(nil)
+}
+
+// UnsetWarehouseId ensures that no value is present for WarehouseId, not even an explicit nil
+func (o *ConnectionIn) UnsetWarehouseId() {
+	o.WarehouseId.Unset()
+}
+
+// GetBiContainerId returns the BiContainerId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ConnectionIn) GetBiContainerId() string {
+	if o == nil || IsNil(o.BiContainerId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.BiContainerId.Get()
+}
+
+// GetBiContainerIdOk returns a tuple with the BiContainerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectionIn) GetBiContainerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.BiContainerId.Get(), o.BiContainerId.IsSet()
+}
+
+// HasBiContainerId returns a boolean if a field has been set.
+func (o *ConnectionIn) HasBiContainerId() bool {
+	if o != nil && o.BiContainerId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetBiContainerId gets a reference to the given NullableString and assigns it to the BiContainerId field.
+func (o *ConnectionIn) SetBiContainerId(v string) {
+	o.BiContainerId.Set(&v)
+}
+
+// SetBiContainerIdNil sets the value for BiContainerId to be an explicit nil
+func (o *ConnectionIn) SetBiContainerIdNil() {
+	o.BiContainerId.Set(nil)
+}
+
+// UnsetBiContainerId ensures that no value is present for BiContainerId, not even an explicit nil
+func (o *ConnectionIn) UnsetBiContainerId() {
+	o.BiContainerId.Unset()
 }
 
 // GetCredentialsId returns the CredentialsId field value
@@ -169,7 +232,12 @@ func (o ConnectionIn) MarshalJSON() ([]byte, error) {
 func (o ConnectionIn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["name"] = o.Name
-	toSerialize["warehouse_id"] = o.WarehouseId
+	if o.WarehouseId.IsSet() {
+		toSerialize["warehouse_id"] = o.WarehouseId.Get()
+	}
+	if o.BiContainerId.IsSet() {
+		toSerialize["bi_container_id"] = o.BiContainerId.Get()
+	}
 	toSerialize["credentials_id"] = o.CredentialsId
 	if o.JobTypes != nil {
 		toSerialize["job_types"] = o.JobTypes
@@ -183,7 +251,6 @@ func (o *ConnectionIn) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"name",
-		"warehouse_id",
 		"credentials_id",
 	}
 
