@@ -19,47 +19,40 @@ import (
 	"strings"
 )
 
-// ConnectionsAPIService ConnectionsAPI service
-type ConnectionsAPIService service
+// BiContainersAPIService BiContainersAPI service
+type BiContainersAPIService service
 
-type ApiCreateConnectionRequest struct {
-	ctx          context.Context
-	ApiService   *ConnectionsAPIService
-	connectionIn *ConnectionIn
+type ApiCreateBiContainerRequest struct {
+	ctx           context.Context
+	ApiService    *BiContainersAPIService
+	biContainerIn *BiContainerIn
 }
 
-func (r ApiCreateConnectionRequest) ConnectionIn(connectionIn ConnectionIn) ApiCreateConnectionRequest {
-	r.connectionIn = &connectionIn
+func (r ApiCreateBiContainerRequest) BiContainerIn(biContainerIn BiContainerIn) ApiCreateBiContainerRequest {
+	r.biContainerIn = &biContainerIn
 	return r
 }
 
-func (r ApiCreateConnectionRequest) Execute() (*ConnectionOut, *http.Response, error) {
-	return r.ApiService.CreateConnectionExecute(r)
+func (r ApiCreateBiContainerRequest) Execute() (*BiContainerOut, *http.Response, error) {
+	return r.ApiService.CreateBiContainerExecute(r)
 }
 
 /*
-CreateConnection Create a connection
+CreateBiContainer Create a BI container
 
-Add a connection to a warehouse or a BI container.
+Create an empty BI container.
 
-Create the credentials first, through one of the credentials endpoints, then name them
-here. The connection's type comes from them, and has to be a type the parent accepts and
-its deployment supports. Send `warehouse_id` or `bi_container_id`, exactly one.
-
-A type that depends on a metastore, such as `databricks-sql-warehouse`, goes on a data
-lake warehouse that already has a metastore connection. Tableau, Looker and Power BI
-credentials go on a BI container of the same tool; a `looker` container takes both the
-`looker` and the `looker-git-clone` connection.
-
-Omit `job_types` to run what the type runs by default.
-
-An unknown warehouse, BI container or credentials id returns 404.
+The container holds no connections until you add some. Its type is fixed at creation and
+decides which connections it accepts. A `looker` container takes both the Looker API
+connection and the LookML git connection. The deployment has to be one the deployments
+list returns; any other id returns 404. A deployment that does not support the BI tool,
+or needs an upgrade first, returns 409.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCreateConnectionRequest
+	@return ApiCreateBiContainerRequest
 */
-func (a *ConnectionsAPIService) CreateConnection(ctx context.Context) ApiCreateConnectionRequest {
-	return ApiCreateConnectionRequest{
+func (a *BiContainersAPIService) CreateBiContainer(ctx context.Context) ApiCreateBiContainerRequest {
+	return ApiCreateBiContainerRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
@@ -67,27 +60,27 @@ func (a *ConnectionsAPIService) CreateConnection(ctx context.Context) ApiCreateC
 
 // Execute executes the request
 //
-//	@return ConnectionOut
-func (a *ConnectionsAPIService) CreateConnectionExecute(r ApiCreateConnectionRequest) (*ConnectionOut, *http.Response, error) {
+//	@return BiContainerOut
+func (a *BiContainersAPIService) CreateBiContainerExecute(r ApiCreateBiContainerRequest) (*BiContainerOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ConnectionOut
+		localVarReturnValue *BiContainerOut
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.CreateConnection")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BiContainersAPIService.CreateBiContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/connections"
+	localVarPath := localBasePath + "/api/v2/bi-containers"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.connectionIn == nil {
-		return localVarReturnValue, nil, reportError("connectionIn is required and must be specified")
+	if r.biContainerIn == nil {
+		return localVarReturnValue, nil, reportError("biContainerIn is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -108,7 +101,7 @@ func (a *ConnectionsAPIService) CreateConnectionExecute(r ApiCreateConnectionReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.connectionIn
+	localVarPostBody = r.biContainerIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -130,17 +123,6 @@ func (a *ConnectionsAPIService) CreateConnectionExecute(r ApiCreateConnectionReq
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
@@ -186,7 +168,7 @@ func (a *ConnectionsAPIService) CreateConnectionExecute(r ApiCreateConnectionReq
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 503 {
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -197,7 +179,7 @@ func (a *ConnectionsAPIService) CreateConnectionExecute(r ApiCreateConnectionReq
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 401 {
+		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -233,57 +215,52 @@ func (a *ConnectionsAPIService) CreateConnectionExecute(r ApiCreateConnectionReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteConnectionRequest struct {
-	ctx          context.Context
-	ApiService   *ConnectionsAPIService
-	connectionId string
+type ApiDeleteBiContainerRequest struct {
+	ctx           context.Context
+	ApiService    *BiContainersAPIService
+	biContainerId string
 }
 
-func (r ApiDeleteConnectionRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteConnectionExecute(r)
+func (r ApiDeleteBiContainerRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteBiContainerExecute(r)
 }
 
 /*
-DeleteConnection Delete a connection
+DeleteBiContainer Delete a BI container
 
-Delete a connection.
+Delete a BI container.
 
-The warehouse or BI container and the credentials are left in place. Delete each of those
-through its own endpoint once nothing uses it. Deleting the connection also deletes its
-own schedules, monitors and rules.
-
-Deleting a warehouse's last connection is refused when that would also take monitors,
-rules or use cases that belong to the warehouse as a whole. Delete the warehouse instead.
-Deleting a custom BI connector's connection is refused too, since its BI container and
-the assets collected through it would go with it.
+Only an empty container can be deleted. Connections are managed as their own resources
+and are never deleted with a container, so remove them first. Deleting the container also
+removes the BI assets, such as dashboards and reports, collected through it.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param connectionId
-	@return ApiDeleteConnectionRequest
+	@param biContainerId
+	@return ApiDeleteBiContainerRequest
 */
-func (a *ConnectionsAPIService) DeleteConnection(ctx context.Context, connectionId string) ApiDeleteConnectionRequest {
-	return ApiDeleteConnectionRequest{
-		ApiService:   a,
-		ctx:          ctx,
-		connectionId: connectionId,
+func (a *BiContainersAPIService) DeleteBiContainer(ctx context.Context, biContainerId string) ApiDeleteBiContainerRequest {
+	return ApiDeleteBiContainerRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		biContainerId: biContainerId,
 	}
 }
 
 // Execute executes the request
-func (a *ConnectionsAPIService) DeleteConnectionExecute(r ApiDeleteConnectionRequest) (*http.Response, error) {
+func (a *BiContainersAPIService) DeleteBiContainerExecute(r ApiDeleteBiContainerRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.DeleteConnection")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BiContainersAPIService.DeleteBiContainer")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/connections/{connection_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
+	localVarPath := localBasePath + "/api/v2/bi-containers/{bi_container_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"bi_container_id"+"}", url.PathEscape(parameterValueToString(r.biContainerId, "biContainerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -399,54 +376,53 @@ func (a *ConnectionsAPIService) DeleteConnectionExecute(r ApiDeleteConnectionReq
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetConnectionRequest struct {
-	ctx          context.Context
-	ApiService   *ConnectionsAPIService
-	connectionId string
+type ApiGetBiContainerRequest struct {
+	ctx           context.Context
+	ApiService    *BiContainersAPIService
+	biContainerId string
 }
 
-func (r ApiGetConnectionRequest) Execute() (*ConnectionOut, *http.Response, error) {
-	return r.ApiService.GetConnectionExecute(r)
+func (r ApiGetBiContainerRequest) Execute() (*BiContainerOut, *http.Response, error) {
+	return r.ApiService.GetBiContainerExecute(r)
 }
 
 /*
-GetConnection Get a connection
+GetBiContainer Get a BI container
 
-Get one connection.
+Get one BI container.
 
-An id that does not exist, belongs to another account, or names a connection your domain
-restrictions hide from you returns 404.
+An id that does not exist or belongs to another account returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param connectionId
-	@return ApiGetConnectionRequest
+	@param biContainerId
+	@return ApiGetBiContainerRequest
 */
-func (a *ConnectionsAPIService) GetConnection(ctx context.Context, connectionId string) ApiGetConnectionRequest {
-	return ApiGetConnectionRequest{
-		ApiService:   a,
-		ctx:          ctx,
-		connectionId: connectionId,
+func (a *BiContainersAPIService) GetBiContainer(ctx context.Context, biContainerId string) ApiGetBiContainerRequest {
+	return ApiGetBiContainerRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		biContainerId: biContainerId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return ConnectionOut
-func (a *ConnectionsAPIService) GetConnectionExecute(r ApiGetConnectionRequest) (*ConnectionOut, *http.Response, error) {
+//	@return BiContainerOut
+func (a *BiContainersAPIService) GetBiContainerExecute(r ApiGetBiContainerRequest) (*BiContainerOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ConnectionOut
+		localVarReturnValue *BiContainerOut
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.GetConnection")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BiContainersAPIService.GetBiContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/connections/{connection_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
+	localVarPath := localBasePath + "/api/v2/bi-containers/{bi_container_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"bi_container_id"+"}", url.PathEscape(parameterValueToString(r.biContainerId, "biContainerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -549,67 +525,25 @@ func (a *ConnectionsAPIService) GetConnectionExecute(r ApiGetConnectionRequest) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListConnectionsRequest struct {
-	ctx           context.Context
-	ApiService    *ConnectionsAPIService
-	warehouseId   *string
-	biContainerId *string
-	cursor        *string
-	limit         *int32
-	withCount     *bool
+type ApiListBiContainersRequest struct {
+	ctx        context.Context
+	ApiService *BiContainersAPIService
 }
 
-// Only list connections on this warehouse. Omit it to list every connection in your account.
-func (r ApiListConnectionsRequest) WarehouseId(warehouseId string) ApiListConnectionsRequest {
-	r.warehouseId = &warehouseId
-	return r
-}
-
-// Only list connections on this BI container. Omit it to list every connection in your account.
-func (r ApiListConnectionsRequest) BiContainerId(biContainerId string) ApiListConnectionsRequest {
-	r.biContainerId = &biContainerId
-	return r
-}
-
-// Position to continue from, as returned in &#x60;next_cursor&#x60; by the previous page. Omit it to start from the first page. The value is opaque; do not build or modify one.
-func (r ApiListConnectionsRequest) Cursor(cursor string) ApiListConnectionsRequest {
-	r.cursor = &cursor
-	return r
-}
-
-// Maximum number of items to return, between 1 and 100.
-func (r ApiListConnectionsRequest) Limit(limit int32) ApiListConnectionsRequest {
-	r.limit = &limit
-	return r
-}
-
-// Whether to also return the total number of items across every page, in &#x60;count&#x60;. Off by default: counting costs an extra query.
-func (r ApiListConnectionsRequest) WithCount(withCount bool) ApiListConnectionsRequest {
-	r.withCount = &withCount
-	return r
-}
-
-func (r ApiListConnectionsRequest) Execute() (*PagedConnectionOut, *http.Response, error) {
-	return r.ApiService.ListConnectionsExecute(r)
+func (r ApiListBiContainersRequest) Execute() ([]BiContainerOut, *http.Response, error) {
+	return r.ApiService.ListBiContainersExecute(r)
 }
 
 /*
-ListConnections List connections
+ListBiContainers List BI containers
 
-List the connections in your account, a page at a time.
-
-Connections are returned oldest first. Pass `warehouse_id` or `bi_container_id` to list
-one warehouse's or one BI container's connections; an id you cannot see returns an empty
-page. A caller whose asset access is restricted to certain domains sees only the
-connections of warehouses holding assets in those domains, and every BI connection.
-
-Connections that belong to an ETL integration are not listed here.
+List every BI container in your account, oldest first.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListConnectionsRequest
+	@return ApiListBiContainersRequest
 */
-func (a *ConnectionsAPIService) ListConnections(ctx context.Context) ApiListConnectionsRequest {
-	return ApiListConnectionsRequest{
+func (a *BiContainersAPIService) ListBiContainers(ctx context.Context) ApiListBiContainersRequest {
+	return ApiListBiContainersRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
@@ -617,49 +551,26 @@ func (a *ConnectionsAPIService) ListConnections(ctx context.Context) ApiListConn
 
 // Execute executes the request
 //
-//	@return PagedConnectionOut
-func (a *ConnectionsAPIService) ListConnectionsExecute(r ApiListConnectionsRequest) (*PagedConnectionOut, *http.Response, error) {
+//	@return []BiContainerOut
+func (a *BiContainersAPIService) ListBiContainersExecute(r ApiListBiContainersRequest) ([]BiContainerOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *PagedConnectionOut
+		localVarReturnValue []BiContainerOut
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.ListConnections")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BiContainersAPIService.ListBiContainers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/connections"
+	localVarPath := localBasePath + "/api/v2/bi-containers"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.warehouseId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "warehouse_id", r.warehouseId, "form", "")
-	}
-	if r.biContainerId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "bi_container_id", r.biContainerId, "form", "")
-	}
-	if r.cursor != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "cursor", r.cursor, "form", "")
-	}
-	if r.limit != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
-	} else {
-		var defaultValue int32 = 50
-		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", defaultValue, "form", "")
-		r.limit = &defaultValue
-	}
-	if r.withCount != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "with_count", r.withCount, "form", "")
-	} else {
-		var defaultValue bool = false
-		parameterAddToHeaderOrQuery(localVarQueryParams, "with_count", defaultValue, "form", "")
-		r.withCount = &defaultValue
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -698,17 +609,6 @@ func (a *ConnectionsAPIService) ListConnectionsExecute(r ApiListConnectionsReque
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
@@ -757,68 +657,66 @@ func (a *ConnectionsAPIService) ListConnectionsExecute(r ApiListConnectionsReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiUpdateConnectionRequest struct {
-	ctx             context.Context
-	ApiService      *ConnectionsAPIService
-	connectionId    string
-	connectionPatch *ConnectionPatch
+type ApiUpdateBiContainerRequest struct {
+	ctx              context.Context
+	ApiService       *BiContainersAPIService
+	biContainerId    string
+	biContainerPatch *BiContainerPatch
 }
 
-func (r ApiUpdateConnectionRequest) ConnectionPatch(connectionPatch ConnectionPatch) ApiUpdateConnectionRequest {
-	r.connectionPatch = &connectionPatch
+func (r ApiUpdateBiContainerRequest) BiContainerPatch(biContainerPatch BiContainerPatch) ApiUpdateBiContainerRequest {
+	r.biContainerPatch = &biContainerPatch
 	return r
 }
 
-func (r ApiUpdateConnectionRequest) Execute() (*ConnectionOut, *http.Response, error) {
-	return r.ApiService.UpdateConnectionExecute(r)
+func (r ApiUpdateBiContainerRequest) Execute() (*BiContainerOut, *http.Response, error) {
+	return r.ApiService.UpdateBiContainerExecute(r)
 }
 
 /*
-UpdateConnection Update a connection
+UpdateBiContainer Update a BI container
 
-Rename a connection.
+Rename a BI container.
 
-The name is the only thing you can change. The type, the warehouse or BI container and the
-credentials are fixed when the connection is created. Two connections on one warehouse or
-BI container cannot share a name. Sending an empty body leaves the connection as it is and
-returns it.
+The name is the only thing you can change. The type and the deployment are fixed when the
+container is created. Sending an empty body leaves the container as it is and returns it.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param connectionId
-	@return ApiUpdateConnectionRequest
+	@param biContainerId
+	@return ApiUpdateBiContainerRequest
 */
-func (a *ConnectionsAPIService) UpdateConnection(ctx context.Context, connectionId string) ApiUpdateConnectionRequest {
-	return ApiUpdateConnectionRequest{
-		ApiService:   a,
-		ctx:          ctx,
-		connectionId: connectionId,
+func (a *BiContainersAPIService) UpdateBiContainer(ctx context.Context, biContainerId string) ApiUpdateBiContainerRequest {
+	return ApiUpdateBiContainerRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		biContainerId: biContainerId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return ConnectionOut
-func (a *ConnectionsAPIService) UpdateConnectionExecute(r ApiUpdateConnectionRequest) (*ConnectionOut, *http.Response, error) {
+//	@return BiContainerOut
+func (a *BiContainersAPIService) UpdateBiContainerExecute(r ApiUpdateBiContainerRequest) (*BiContainerOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *ConnectionOut
+		localVarReturnValue *BiContainerOut
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.UpdateConnection")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "BiContainersAPIService.UpdateBiContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/connections/{connection_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
+	localVarPath := localBasePath + "/api/v2/bi-containers/{bi_container_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"bi_container_id"+"}", url.PathEscape(parameterValueToString(r.biContainerId, "biContainerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.connectionPatch == nil {
-		return localVarReturnValue, nil, reportError("connectionPatch is required and must be specified")
+	if r.biContainerPatch == nil {
+		return localVarReturnValue, nil, reportError("biContainerPatch is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -839,7 +737,7 @@ func (a *ConnectionsAPIService) UpdateConnectionExecute(r ApiUpdateConnectionReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.connectionPatch
+	localVarPostBody = r.biContainerPatch
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -863,17 +761,6 @@ func (a *ConnectionsAPIService) UpdateConnectionExecute(r ApiUpdateConnectionReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -896,194 +783,6 @@ func (a *ConnectionsAPIService) UpdateConnectionExecute(r ApiUpdateConnectionReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiValidateConnectionRequest struct {
-	ctx          context.Context
-	ApiService   *ConnectionsAPIService
-	connectionId string
-}
-
-func (r ApiValidateConnectionRequest) Execute() (*ValidationRunOut, *http.Response, error) {
-	return r.ApiService.ValidateConnectionExecute(r)
-}
-
-/*
-ValidateConnection Validate a connection
-
-Check a connection against the system it reads from.
-
-Tests the connection as it stands, with the credentials it already uses. Nothing is
-changed, and you send no credentials.
-
-The response is the run as it starts, and `Location` names where to read it. Poll that
-until the run's status is `completed`; each validation carries its own verdict.
-
-An id that does not exist or belongs to another account returns 404.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param connectionId
-	@return ApiValidateConnectionRequest
-*/
-func (a *ConnectionsAPIService) ValidateConnection(ctx context.Context, connectionId string) ApiValidateConnectionRequest {
-	return ApiValidateConnectionRequest{
-		ApiService:   a,
-		ctx:          ctx,
-		connectionId: connectionId,
-	}
-}
-
-// Execute executes the request
-//
-//	@return ValidationRunOut
-func (a *ConnectionsAPIService) ValidateConnectionExecute(r ApiValidateConnectionRequest) (*ValidationRunOut, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *ValidationRunOut
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ConnectionsAPIService.ValidateConnection")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/connections/{connection_id}/validate"
-	localVarPath = strings.Replace(localVarPath, "{"+"connection_id"+"}", url.PathEscape(parameterValueToString(r.connectionId, "connectionId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 409 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

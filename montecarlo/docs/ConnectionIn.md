@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | Display name for the connection. Unique among the warehouse&#39;s connections. | 
-**WarehouseId** | **string** | The warehouse to add the connection to. Its type has to match what the credentials are for. | 
+**Name** | **string** | Display name for the connection. Unique among the connections of its warehouse or BI container. | 
+**WarehouseId** | Pointer to **NullableString** | The warehouse to add the connection to. Its type has to match what the credentials are for. Send this or &#x60;bi_container_id&#x60;, not both. | [optional] 
+**BiContainerId** | Pointer to **NullableString** | The BI container to add the connection to, for Tableau, Looker or Power BI credentials. Its type has to match what the credentials are for: a &#x60;looker&#x60; container takes both &#x60;looker&#x60; and &#x60;looker-git-clone&#x60; credentials. Send this or &#x60;warehouse_id&#x60;, not both. | [optional] 
 **CredentialsId** | **string** | The credentials the connection reads with. They also decide the connection&#39;s type. Create them first, through one of the credentials endpoints. | 
 **JobTypes** | Pointer to **[]string** | The jobs to run on this connection. Omit it to run what the connection type runs by default, which is what the app does. Which values are accepted depends on the connection type. An empty list is not accepted; omit the field to take the defaults. | [optional] 
 
@@ -13,7 +14,7 @@ Name | Type | Description | Notes
 
 ### NewConnectionIn
 
-`func NewConnectionIn(name string, warehouseId string, credentialsId string, ) *ConnectionIn`
+`func NewConnectionIn(name string, credentialsId string, ) *ConnectionIn`
 
 NewConnectionIn instantiates a new ConnectionIn object
 This constructor will assign default values to properties that have it defined,
@@ -67,7 +68,57 @@ and a boolean to check if the value has been set.
 
 SetWarehouseId sets WarehouseId field to given value.
 
+### HasWarehouseId
 
+`func (o *ConnectionIn) HasWarehouseId() bool`
+
+HasWarehouseId returns a boolean if a field has been set.
+
+### SetWarehouseIdNil
+
+`func (o *ConnectionIn) SetWarehouseIdNil(b bool)`
+
+ SetWarehouseIdNil sets the value for WarehouseId to be an explicit nil
+
+### UnsetWarehouseId
+`func (o *ConnectionIn) UnsetWarehouseId()`
+
+UnsetWarehouseId ensures that no value is present for WarehouseId, not even an explicit nil
+### GetBiContainerId
+
+`func (o *ConnectionIn) GetBiContainerId() string`
+
+GetBiContainerId returns the BiContainerId field if non-nil, zero value otherwise.
+
+### GetBiContainerIdOk
+
+`func (o *ConnectionIn) GetBiContainerIdOk() (*string, bool)`
+
+GetBiContainerIdOk returns a tuple with the BiContainerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBiContainerId
+
+`func (o *ConnectionIn) SetBiContainerId(v string)`
+
+SetBiContainerId sets BiContainerId field to given value.
+
+### HasBiContainerId
+
+`func (o *ConnectionIn) HasBiContainerId() bool`
+
+HasBiContainerId returns a boolean if a field has been set.
+
+### SetBiContainerIdNil
+
+`func (o *ConnectionIn) SetBiContainerIdNil(b bool)`
+
+ SetBiContainerIdNil sets the value for BiContainerId to be an explicit nil
+
+### UnsetBiContainerId
+`func (o *ConnectionIn) UnsetBiContainerId()`
+
+UnsetBiContainerId ensures that no value is present for BiContainerId, not even an explicit nil
 ### GetCredentialsId
 
 `func (o *ConnectionIn) GetCredentialsId() string`

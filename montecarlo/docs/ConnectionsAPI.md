@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	connectionIn := *openapiclient.NewConnectionIn("Name_example", "WarehouseId_example", "CredentialsId_example") // ConnectionIn | 
+	connectionIn := *openapiclient.NewConnectionIn("Name_example", "CredentialsId_example") // ConnectionIn | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ## ListConnections
 
-> PagedConnectionOut ListConnections(ctx).WarehouseId(warehouseId).Cursor(cursor).Limit(limit).WithCount(withCount).Execute()
+> PagedConnectionOut ListConnections(ctx).WarehouseId(warehouseId).BiContainerId(biContainerId).Cursor(cursor).Limit(limit).WithCount(withCount).Execute()
 
 List connections
 
@@ -239,13 +239,14 @@ import (
 
 func main() {
 	warehouseId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Only list connections on this warehouse. Omit it to list every connection in your account. (optional)
+	biContainerId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Only list connections on this BI container. Omit it to list every connection in your account. (optional)
 	cursor := "cursor_example" // string | Position to continue from, as returned in `next_cursor` by the previous page. Omit it to start from the first page. The value is opaque; do not build or modify one. (optional)
 	limit := int32(56) // int32 | Maximum number of items to return, between 1 and 100. (optional) (default to 50)
 	withCount := true // bool | Whether to also return the total number of items across every page, in `count`. Off by default: counting costs an extra query. (optional) (default to false)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.ConnectionsAPI.ListConnections(context.Background()).WarehouseId(warehouseId).Cursor(cursor).Limit(limit).WithCount(withCount).Execute()
+	resp, r, err := apiClient.ConnectionsAPI.ListConnections(context.Background()).WarehouseId(warehouseId).BiContainerId(biContainerId).Cursor(cursor).Limit(limit).WithCount(withCount).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ConnectionsAPI.ListConnections``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -267,6 +268,7 @@ Other parameters are passed through a pointer to a apiListConnectionsRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **warehouseId** | **string** | Only list connections on this warehouse. Omit it to list every connection in your account. | 
+ **biContainerId** | **string** | Only list connections on this BI container. Omit it to list every connection in your account. | 
  **cursor** | **string** | Position to continue from, as returned in &#x60;next_cursor&#x60; by the previous page. Omit it to start from the first page. The value is opaque; do not build or modify one. | 
  **limit** | **int32** | Maximum number of items to return, between 1 and 100. | [default to 50]
  **withCount** | **bool** | Whether to also return the total number of items across every page, in &#x60;count&#x60;. Off by default: counting costs an extra query. | [default to false]

@@ -16,15 +16,19 @@ Method | HTTP request | Description
 [**CreateEnvVarCredentials**](CredentialsAPI.md#CreateEnvVarCredentials) | **Post** /api/v2/credentials/self-hosted/env-var | Create environment variable credentials
 [**CreateFileCredentials**](CredentialsAPI.md#CreateFileCredentials) | **Post** /api/v2/credentials/self-hosted/file | Create file credentials
 [**CreateGcpSecretManagerCredentials**](CredentialsAPI.md#CreateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp | Create GCP Secret Manager credentials
+[**CreateLookerCredentials**](CredentialsAPI.md#CreateLookerCredentials) | **Post** /api/v2/credentials/looker | Create Looker credentials
+[**CreateLookerGitCloneCredentials**](CredentialsAPI.md#CreateLookerGitCloneCredentials) | **Post** /api/v2/credentials/looker-git-clone | Create LookML repository credentials
 [**CreateMariadbCredentials**](CredentialsAPI.md#CreateMariadbCredentials) | **Post** /api/v2/credentials/mariadb | Create MariaDB credentials
 [**CreateMysqlCredentials**](CredentialsAPI.md#CreateMysqlCredentials) | **Post** /api/v2/credentials/mysql | Create MySQL credentials
 [**CreateOracleCredentials**](CredentialsAPI.md#CreateOracleCredentials) | **Post** /api/v2/credentials/oracle | Create Oracle credentials
 [**CreatePostgresCredentials**](CredentialsAPI.md#CreatePostgresCredentials) | **Post** /api/v2/credentials/postgres | Create PostgreSQL credentials
+[**CreatePowerBiCredentials**](CredentialsAPI.md#CreatePowerBiCredentials) | **Post** /api/v2/credentials/power-bi | Create Power BI credentials
 [**CreateRedshiftCredentials**](CredentialsAPI.md#CreateRedshiftCredentials) | **Post** /api/v2/credentials/redshift | Create Redshift credentials
 [**CreateSapHanaCredentials**](CredentialsAPI.md#CreateSapHanaCredentials) | **Post** /api/v2/credentials/sap-hana | Create SAP HANA credentials
 [**CreateSnowflakeCredentials**](CredentialsAPI.md#CreateSnowflakeCredentials) | **Post** /api/v2/credentials/snowflake | Create Snowflake credentials
 [**CreateStarburstEnterpriseCredentials**](CredentialsAPI.md#CreateStarburstEnterpriseCredentials) | **Post** /api/v2/credentials/starburst-enterprise | Create Starburst Enterprise credentials
 [**CreateStarburstGalaxyCredentials**](CredentialsAPI.md#CreateStarburstGalaxyCredentials) | **Post** /api/v2/credentials/starburst-galaxy | Create Starburst Galaxy credentials
+[**CreateTableauCredentials**](CredentialsAPI.md#CreateTableauCredentials) | **Post** /api/v2/credentials/tableau | Create Tableau credentials
 [**CreateTeradataCredentials**](CredentialsAPI.md#CreateTeradataCredentials) | **Post** /api/v2/credentials/teradata | Create Teradata credentials
 [**DeleteAwsSecretsManagerCredentials**](CredentialsAPI.md#DeleteAwsSecretsManagerCredentials) | **Delete** /api/v2/credentials/self-hosted/aws/{credentials_id} | Delete AWS Secrets Manager credentials
 [**DeleteAzureDedicatedSqlPoolCredentials**](CredentialsAPI.md#DeleteAzureDedicatedSqlPoolCredentials) | **Delete** /api/v2/credentials/azure-dedicated-sql-pool/{credentials_id} | Delete Azure Dedicated SQL Pool credentials
@@ -39,15 +43,19 @@ Method | HTTP request | Description
 [**DeleteEnvVarCredentials**](CredentialsAPI.md#DeleteEnvVarCredentials) | **Delete** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Delete environment variable credentials
 [**DeleteFileCredentials**](CredentialsAPI.md#DeleteFileCredentials) | **Delete** /api/v2/credentials/self-hosted/file/{credentials_id} | Delete file credentials
 [**DeleteGcpSecretManagerCredentials**](CredentialsAPI.md#DeleteGcpSecretManagerCredentials) | **Delete** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Delete GCP Secret Manager credentials
+[**DeleteLookerCredentials**](CredentialsAPI.md#DeleteLookerCredentials) | **Delete** /api/v2/credentials/looker/{credentials_id} | Delete Looker credentials
+[**DeleteLookerGitCloneCredentials**](CredentialsAPI.md#DeleteLookerGitCloneCredentials) | **Delete** /api/v2/credentials/looker-git-clone/{credentials_id} | Delete LookML repository credentials
 [**DeleteMariadbCredentials**](CredentialsAPI.md#DeleteMariadbCredentials) | **Delete** /api/v2/credentials/mariadb/{credentials_id} | Delete MariaDB credentials
 [**DeleteMysqlCredentials**](CredentialsAPI.md#DeleteMysqlCredentials) | **Delete** /api/v2/credentials/mysql/{credentials_id} | Delete MySQL credentials
 [**DeleteOracleCredentials**](CredentialsAPI.md#DeleteOracleCredentials) | **Delete** /api/v2/credentials/oracle/{credentials_id} | Delete Oracle credentials
 [**DeletePostgresCredentials**](CredentialsAPI.md#DeletePostgresCredentials) | **Delete** /api/v2/credentials/postgres/{credentials_id} | Delete PostgreSQL credentials
+[**DeletePowerBiCredentials**](CredentialsAPI.md#DeletePowerBiCredentials) | **Delete** /api/v2/credentials/power-bi/{credentials_id} | Delete Power BI credentials
 [**DeleteRedshiftCredentials**](CredentialsAPI.md#DeleteRedshiftCredentials) | **Delete** /api/v2/credentials/redshift/{credentials_id} | Delete Redshift credentials
 [**DeleteSapHanaCredentials**](CredentialsAPI.md#DeleteSapHanaCredentials) | **Delete** /api/v2/credentials/sap-hana/{credentials_id} | Delete SAP HANA credentials
 [**DeleteSnowflakeCredentials**](CredentialsAPI.md#DeleteSnowflakeCredentials) | **Delete** /api/v2/credentials/snowflake/{credentials_id} | Delete Snowflake credentials
 [**DeleteStarburstEnterpriseCredentials**](CredentialsAPI.md#DeleteStarburstEnterpriseCredentials) | **Delete** /api/v2/credentials/starburst-enterprise/{credentials_id} | Delete Starburst Enterprise credentials
 [**DeleteStarburstGalaxyCredentials**](CredentialsAPI.md#DeleteStarburstGalaxyCredentials) | **Delete** /api/v2/credentials/starburst-galaxy/{credentials_id} | Delete Starburst Galaxy credentials
+[**DeleteTableauCredentials**](CredentialsAPI.md#DeleteTableauCredentials) | **Delete** /api/v2/credentials/tableau/{credentials_id} | Delete Tableau credentials
 [**DeleteTeradataCredentials**](CredentialsAPI.md#DeleteTeradataCredentials) | **Delete** /api/v2/credentials/teradata/{credentials_id} | Delete Teradata credentials
 [**GetAwsSecretsManagerCredentials**](CredentialsAPI.md#GetAwsSecretsManagerCredentials) | **Get** /api/v2/credentials/self-hosted/aws/{credentials_id} | Get AWS Secrets Manager credentials
 [**GetAzureDedicatedSqlPoolCredentials**](CredentialsAPI.md#GetAzureDedicatedSqlPoolCredentials) | **Get** /api/v2/credentials/azure-dedicated-sql-pool/{credentials_id} | Get Azure Dedicated SQL Pool credentials
@@ -61,15 +69,19 @@ Method | HTTP request | Description
 [**GetEnvVarCredentials**](CredentialsAPI.md#GetEnvVarCredentials) | **Get** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Get environment variable credentials
 [**GetFileCredentials**](CredentialsAPI.md#GetFileCredentials) | **Get** /api/v2/credentials/self-hosted/file/{credentials_id} | Get file credentials
 [**GetGcpSecretManagerCredentials**](CredentialsAPI.md#GetGcpSecretManagerCredentials) | **Get** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Get GCP Secret Manager credentials
+[**GetLookerCredentials**](CredentialsAPI.md#GetLookerCredentials) | **Get** /api/v2/credentials/looker/{credentials_id} | Get Looker credentials
+[**GetLookerGitCloneCredentials**](CredentialsAPI.md#GetLookerGitCloneCredentials) | **Get** /api/v2/credentials/looker-git-clone/{credentials_id} | Get LookML repository credentials
 [**GetMariadbCredentials**](CredentialsAPI.md#GetMariadbCredentials) | **Get** /api/v2/credentials/mariadb/{credentials_id} | Get MariaDB credentials
 [**GetMysqlCredentials**](CredentialsAPI.md#GetMysqlCredentials) | **Get** /api/v2/credentials/mysql/{credentials_id} | Get MySQL credentials
 [**GetOracleCredentials**](CredentialsAPI.md#GetOracleCredentials) | **Get** /api/v2/credentials/oracle/{credentials_id} | Get Oracle credentials
 [**GetPostgresCredentials**](CredentialsAPI.md#GetPostgresCredentials) | **Get** /api/v2/credentials/postgres/{credentials_id} | Get PostgreSQL credentials
+[**GetPowerBiCredentials**](CredentialsAPI.md#GetPowerBiCredentials) | **Get** /api/v2/credentials/power-bi/{credentials_id} | Get Power BI credentials
 [**GetRedshiftCredentials**](CredentialsAPI.md#GetRedshiftCredentials) | **Get** /api/v2/credentials/redshift/{credentials_id} | Get Redshift credentials
 [**GetSapHanaCredentials**](CredentialsAPI.md#GetSapHanaCredentials) | **Get** /api/v2/credentials/sap-hana/{credentials_id} | Get SAP HANA credentials
 [**GetSnowflakeCredentials**](CredentialsAPI.md#GetSnowflakeCredentials) | **Get** /api/v2/credentials/snowflake/{credentials_id} | Get Snowflake credentials
 [**GetStarburstEnterpriseCredentials**](CredentialsAPI.md#GetStarburstEnterpriseCredentials) | **Get** /api/v2/credentials/starburst-enterprise/{credentials_id} | Get Starburst Enterprise credentials
 [**GetStarburstGalaxyCredentials**](CredentialsAPI.md#GetStarburstGalaxyCredentials) | **Get** /api/v2/credentials/starburst-galaxy/{credentials_id} | Get Starburst Galaxy credentials
+[**GetTableauCredentials**](CredentialsAPI.md#GetTableauCredentials) | **Get** /api/v2/credentials/tableau/{credentials_id} | Get Tableau credentials
 [**GetTeradataCredentials**](CredentialsAPI.md#GetTeradataCredentials) | **Get** /api/v2/credentials/teradata/{credentials_id} | Get Teradata credentials
 [**ListCredentials**](CredentialsAPI.md#ListCredentials) | **Get** /api/v2/credentials | List credentials
 [**UpdateAwsSecretsManagerCredentials**](CredentialsAPI.md#UpdateAwsSecretsManagerCredentials) | **Patch** /api/v2/credentials/self-hosted/aws/{credentials_id} | Update AWS Secrets Manager credentials
@@ -84,15 +96,19 @@ Method | HTTP request | Description
 [**UpdateEnvVarCredentials**](CredentialsAPI.md#UpdateEnvVarCredentials) | **Patch** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Update environment variable credentials
 [**UpdateFileCredentials**](CredentialsAPI.md#UpdateFileCredentials) | **Patch** /api/v2/credentials/self-hosted/file/{credentials_id} | Update file credentials
 [**UpdateGcpSecretManagerCredentials**](CredentialsAPI.md#UpdateGcpSecretManagerCredentials) | **Patch** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Update GCP Secret Manager credentials
+[**UpdateLookerCredentials**](CredentialsAPI.md#UpdateLookerCredentials) | **Patch** /api/v2/credentials/looker/{credentials_id} | Update Looker credentials
+[**UpdateLookerGitCloneCredentials**](CredentialsAPI.md#UpdateLookerGitCloneCredentials) | **Patch** /api/v2/credentials/looker-git-clone/{credentials_id} | Update LookML repository credentials
 [**UpdateMariadbCredentials**](CredentialsAPI.md#UpdateMariadbCredentials) | **Patch** /api/v2/credentials/mariadb/{credentials_id} | Update MariaDB credentials
 [**UpdateMysqlCredentials**](CredentialsAPI.md#UpdateMysqlCredentials) | **Patch** /api/v2/credentials/mysql/{credentials_id} | Update MySQL credentials
 [**UpdateOracleCredentials**](CredentialsAPI.md#UpdateOracleCredentials) | **Patch** /api/v2/credentials/oracle/{credentials_id} | Update Oracle credentials
 [**UpdatePostgresCredentials**](CredentialsAPI.md#UpdatePostgresCredentials) | **Patch** /api/v2/credentials/postgres/{credentials_id} | Update PostgreSQL credentials
+[**UpdatePowerBiCredentials**](CredentialsAPI.md#UpdatePowerBiCredentials) | **Patch** /api/v2/credentials/power-bi/{credentials_id} | Update Power BI credentials
 [**UpdateRedshiftCredentials**](CredentialsAPI.md#UpdateRedshiftCredentials) | **Patch** /api/v2/credentials/redshift/{credentials_id} | Update Redshift credentials
 [**UpdateSapHanaCredentials**](CredentialsAPI.md#UpdateSapHanaCredentials) | **Patch** /api/v2/credentials/sap-hana/{credentials_id} | Update SAP HANA credentials
 [**UpdateSnowflakeCredentials**](CredentialsAPI.md#UpdateSnowflakeCredentials) | **Patch** /api/v2/credentials/snowflake/{credentials_id} | Update Snowflake credentials
 [**UpdateStarburstEnterpriseCredentials**](CredentialsAPI.md#UpdateStarburstEnterpriseCredentials) | **Patch** /api/v2/credentials/starburst-enterprise/{credentials_id} | Update Starburst Enterprise credentials
 [**UpdateStarburstGalaxyCredentials**](CredentialsAPI.md#UpdateStarburstGalaxyCredentials) | **Patch** /api/v2/credentials/starburst-galaxy/{credentials_id} | Update Starburst Galaxy credentials
+[**UpdateTableauCredentials**](CredentialsAPI.md#UpdateTableauCredentials) | **Patch** /api/v2/credentials/tableau/{credentials_id} | Update Tableau credentials
 [**UpdateTeradataCredentials**](CredentialsAPI.md#UpdateTeradataCredentials) | **Patch** /api/v2/credentials/teradata/{credentials_id} | Update Teradata credentials
 [**ValidateAwsSecretsManagerCredentials**](CredentialsAPI.md#ValidateAwsSecretsManagerCredentials) | **Post** /api/v2/credentials/self-hosted/aws/validate | Validate AWS Secrets Manager credentials
 [**ValidateAzureDedicatedSqlPoolCredentials**](CredentialsAPI.md#ValidateAzureDedicatedSqlPoolCredentials) | **Post** /api/v2/credentials/azure-dedicated-sql-pool/validate | Validate Azure Dedicated SQL Pool credentials
@@ -106,15 +122,19 @@ Method | HTTP request | Description
 [**ValidateEnvVarCredentials**](CredentialsAPI.md#ValidateEnvVarCredentials) | **Post** /api/v2/credentials/self-hosted/env-var/validate | Validate environment variable credentials
 [**ValidateFileCredentials**](CredentialsAPI.md#ValidateFileCredentials) | **Post** /api/v2/credentials/self-hosted/file/validate | Validate file credentials
 [**ValidateGcpSecretManagerCredentials**](CredentialsAPI.md#ValidateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp/validate | Validate GCP Secret Manager credentials
+[**ValidateLookerCredentials**](CredentialsAPI.md#ValidateLookerCredentials) | **Post** /api/v2/credentials/looker/validate | Validate Looker credentials
+[**ValidateLookerGitCloneCredentials**](CredentialsAPI.md#ValidateLookerGitCloneCredentials) | **Post** /api/v2/credentials/looker-git-clone/validate | Validate LookML repository credentials
 [**ValidateMariadbCredentials**](CredentialsAPI.md#ValidateMariadbCredentials) | **Post** /api/v2/credentials/mariadb/validate | Validate MariaDB credentials
 [**ValidateMysqlCredentials**](CredentialsAPI.md#ValidateMysqlCredentials) | **Post** /api/v2/credentials/mysql/validate | Validate MySQL credentials
 [**ValidateOracleCredentials**](CredentialsAPI.md#ValidateOracleCredentials) | **Post** /api/v2/credentials/oracle/validate | Validate Oracle credentials
 [**ValidatePostgresCredentials**](CredentialsAPI.md#ValidatePostgresCredentials) | **Post** /api/v2/credentials/postgres/validate | Validate PostgreSQL credentials
+[**ValidatePowerBiCredentials**](CredentialsAPI.md#ValidatePowerBiCredentials) | **Post** /api/v2/credentials/power-bi/validate | Validate Power BI credentials
 [**ValidateRedshiftCredentials**](CredentialsAPI.md#ValidateRedshiftCredentials) | **Post** /api/v2/credentials/redshift/validate | Validate Redshift credentials
 [**ValidateSapHanaCredentials**](CredentialsAPI.md#ValidateSapHanaCredentials) | **Post** /api/v2/credentials/sap-hana/validate | Validate SAP HANA credentials
 [**ValidateSnowflakeCredentials**](CredentialsAPI.md#ValidateSnowflakeCredentials) | **Post** /api/v2/credentials/snowflake/validate | Validate Snowflake credentials
 [**ValidateStarburstEnterpriseCredentials**](CredentialsAPI.md#ValidateStarburstEnterpriseCredentials) | **Post** /api/v2/credentials/starburst-enterprise/validate | Validate Starburst Enterprise credentials
 [**ValidateStarburstGalaxyCredentials**](CredentialsAPI.md#ValidateStarburstGalaxyCredentials) | **Post** /api/v2/credentials/starburst-galaxy/validate | Validate Starburst Galaxy credentials
+[**ValidateTableauCredentials**](CredentialsAPI.md#ValidateTableauCredentials) | **Post** /api/v2/credentials/tableau/validate | Validate Tableau credentials
 [**ValidateTeradataCredentials**](CredentialsAPI.md#ValidateTeradataCredentials) | **Post** /api/v2/credentials/teradata/validate | Validate Teradata credentials
 
 
@@ -911,6 +931,138 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateLookerCredentials
+
+> LookerCredentialsOut CreateLookerCredentials(ctx).LookerCredentialsIn(lookerCredentialsIn).Execute()
+
+Create Looker credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	lookerCredentialsIn := *openapiclient.NewLookerCredentialsIn("BaseUrl_example", "ApiClientId_example", "ApiClientSecret_example") // LookerCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateLookerCredentials(context.Background()).LookerCredentialsIn(lookerCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateLookerCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateLookerCredentials`: LookerCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateLookerCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateLookerCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **lookerCredentialsIn** | [**LookerCredentialsIn**](LookerCredentialsIn.md) |  | 
+
+### Return type
+
+[**LookerCredentialsOut**](LookerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateLookerGitCloneCredentials
+
+> LookerGitCloneCredentialsOut CreateLookerGitCloneCredentials(ctx).LookerGitCloneCredentialsIn(lookerGitCloneCredentialsIn).Execute()
+
+Create LookML repository credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	lookerGitCloneCredentialsIn := *openapiclient.NewLookerGitCloneCredentialsIn("RepoUrl_example") // LookerGitCloneCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateLookerGitCloneCredentials(context.Background()).LookerGitCloneCredentialsIn(lookerGitCloneCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateLookerGitCloneCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateLookerGitCloneCredentials`: LookerGitCloneCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateLookerGitCloneCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateLookerGitCloneCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **lookerGitCloneCredentialsIn** | [**LookerGitCloneCredentialsIn**](LookerGitCloneCredentialsIn.md) |  | 
+
+### Return type
+
+[**LookerGitCloneCredentialsOut**](LookerGitCloneCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateMariadbCredentials
 
 > MariaDbCredentialsOut CreateMariadbCredentials(ctx).MariaDbCredentialsIn(mariaDbCredentialsIn).Execute()
@@ -1160,6 +1312,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PostgresCredentialsOut**](PostgresCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreatePowerBiCredentials
+
+> PowerBiCredentialsOut CreatePowerBiCredentials(ctx).PowerBiCredentialsIn(powerBiCredentialsIn).Execute()
+
+Create Power BI credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	powerBiCredentialsIn := *openapiclient.NewPowerBiCredentialsIn("TenantId_example", "AppClientId_example", openapiclient.PowerBiAuthMode("service_principal")) // PowerBiCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreatePowerBiCredentials(context.Background()).PowerBiCredentialsIn(powerBiCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreatePowerBiCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreatePowerBiCredentials`: PowerBiCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreatePowerBiCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreatePowerBiCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **powerBiCredentialsIn** | [**PowerBiCredentialsIn**](PowerBiCredentialsIn.md) |  | 
+
+### Return type
+
+[**PowerBiCredentialsOut**](PowerBiCredentialsOut.md)
 
 ### Authorization
 
@@ -1490,6 +1708,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**StarburstGalaxyCredentialsOut**](StarburstGalaxyCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateTableauCredentials
+
+> TableauCredentialsOut CreateTableauCredentials(ctx).TableauCredentialsIn(tableauCredentialsIn).Execute()
+
+Create Tableau credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	tableauCredentialsIn := *openapiclient.NewTableauCredentialsIn("ServerName_example") // TableauCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateTableauCredentials(context.Background()).TableauCredentialsIn(tableauCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateTableauCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateTableauCredentials`: TableauCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateTableauCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateTableauCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tableauCredentialsIn** | [**TableauCredentialsIn**](TableauCredentialsIn.md) |  | 
+
+### Return type
+
+[**TableauCredentialsOut**](TableauCredentialsOut.md)
 
 ### Authorization
 
@@ -2455,6 +2739,142 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteLookerCredentials
+
+> DeleteLookerCredentials(ctx, credentialsId).Execute()
+
+Delete Looker credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteLookerCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteLookerCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteLookerCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteLookerGitCloneCredentials
+
+> DeleteLookerGitCloneCredentials(ctx, credentialsId).Execute()
+
+Delete LookML repository credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteLookerGitCloneCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteLookerGitCloneCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteLookerGitCloneCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteMariadbCredentials
 
 > DeleteMariadbCredentials(ctx, credentialsId).Execute()
@@ -2703,6 +3123,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeletePostgresCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeletePowerBiCredentials
+
+> DeletePowerBiCredentials(ctx, credentialsId).Execute()
+
+Delete Power BI credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeletePowerBiCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeletePowerBiCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeletePowerBiCredentialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -3043,6 +3531,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteStarburstGalaxyCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteTableauCredentials
+
+> DeleteTableauCredentials(ctx, credentialsId).Execute()
+
+Delete Tableau credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteTableauCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteTableauCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteTableauCredentialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -3975,6 +4531,146 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetLookerCredentials
+
+> LookerCredentialsOut GetLookerCredentials(ctx, credentialsId).Execute()
+
+Get Looker credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetLookerCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetLookerCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetLookerCredentials`: LookerCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetLookerCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLookerCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**LookerCredentialsOut**](LookerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetLookerGitCloneCredentials
+
+> LookerGitCloneCredentialsOut GetLookerGitCloneCredentials(ctx, credentialsId).Execute()
+
+Get LookML repository credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetLookerGitCloneCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetLookerGitCloneCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetLookerGitCloneCredentials`: LookerGitCloneCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetLookerGitCloneCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetLookerGitCloneCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**LookerGitCloneCredentialsOut**](LookerGitCloneCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetMariadbCredentials
 
 > MariaDbCredentialsOut GetMariadbCredentials(ctx, credentialsId).Execute()
@@ -4240,6 +4936,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PostgresCredentialsOut**](PostgresCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPowerBiCredentials
+
+> PowerBiCredentialsOut GetPowerBiCredentials(ctx, credentialsId).Execute()
+
+Get Power BI credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetPowerBiCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetPowerBiCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPowerBiCredentials`: PowerBiCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetPowerBiCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPowerBiCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**PowerBiCredentialsOut**](PowerBiCredentialsOut.md)
 
 ### Authorization
 
@@ -4590,6 +5356,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**StarburstGalaxyCredentialsOut**](StarburstGalaxyCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetTableauCredentials
+
+> TableauCredentialsOut GetTableauCredentials(ctx, credentialsId).Execute()
+
+Get Tableau credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetTableauCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetTableauCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetTableauCredentials`: TableauCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetTableauCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetTableauCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**TableauCredentialsOut**](TableauCredentialsOut.md)
 
 ### Authorization
 
@@ -5609,6 +6445,150 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateLookerCredentials
+
+> LookerCredentialsOut UpdateLookerCredentials(ctx, credentialsId).LookerCredentialsPatch(lookerCredentialsPatch).Execute()
+
+Update Looker credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	lookerCredentialsPatch := *openapiclient.NewLookerCredentialsPatch() // LookerCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateLookerCredentials(context.Background(), credentialsId).LookerCredentialsPatch(lookerCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateLookerCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateLookerCredentials`: LookerCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateLookerCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateLookerCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **lookerCredentialsPatch** | [**LookerCredentialsPatch**](LookerCredentialsPatch.md) |  | 
+
+### Return type
+
+[**LookerCredentialsOut**](LookerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateLookerGitCloneCredentials
+
+> LookerGitCloneCredentialsOut UpdateLookerGitCloneCredentials(ctx, credentialsId).LookerGitCloneCredentialsPatch(lookerGitCloneCredentialsPatch).Execute()
+
+Update LookML repository credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	lookerGitCloneCredentialsPatch := *openapiclient.NewLookerGitCloneCredentialsPatch() // LookerGitCloneCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateLookerGitCloneCredentials(context.Background(), credentialsId).LookerGitCloneCredentialsPatch(lookerGitCloneCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateLookerGitCloneCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateLookerGitCloneCredentials`: LookerGitCloneCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateLookerGitCloneCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateLookerGitCloneCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **lookerGitCloneCredentialsPatch** | [**LookerGitCloneCredentialsPatch**](LookerGitCloneCredentialsPatch.md) |  | 
+
+### Return type
+
+[**LookerGitCloneCredentialsOut**](LookerGitCloneCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateMariadbCredentials
 
 > MariaDbCredentialsOut UpdateMariadbCredentials(ctx, credentialsId).MariaDbCredentialsPatch(mariaDbCredentialsPatch).Execute()
@@ -5882,6 +6862,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PostgresCredentialsOut**](PostgresCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdatePowerBiCredentials
+
+> PowerBiCredentialsOut UpdatePowerBiCredentials(ctx, credentialsId).PowerBiCredentialsPatch(powerBiCredentialsPatch).Execute()
+
+Update Power BI credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	powerBiCredentialsPatch := *openapiclient.NewPowerBiCredentialsPatch() // PowerBiCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdatePowerBiCredentials(context.Background(), credentialsId).PowerBiCredentialsPatch(powerBiCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdatePowerBiCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdatePowerBiCredentials`: PowerBiCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdatePowerBiCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdatePowerBiCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **powerBiCredentialsPatch** | [**PowerBiCredentialsPatch**](PowerBiCredentialsPatch.md) |  | 
+
+### Return type
+
+[**PowerBiCredentialsOut**](PowerBiCredentialsOut.md)
 
 ### Authorization
 
@@ -6242,6 +7294,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**StarburstGalaxyCredentialsOut**](StarburstGalaxyCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateTableauCredentials
+
+> TableauCredentialsOut UpdateTableauCredentials(ctx, credentialsId).TableauCredentialsPatch(tableauCredentialsPatch).Execute()
+
+Update Tableau credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	tableauCredentialsPatch := *openapiclient.NewTableauCredentialsPatch() // TableauCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateTableauCredentials(context.Background(), credentialsId).TableauCredentialsPatch(tableauCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateTableauCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateTableauCredentials`: TableauCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateTableauCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateTableauCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **tableauCredentialsPatch** | [**TableauCredentialsPatch**](TableauCredentialsPatch.md) |  | 
+
+### Return type
+
+[**TableauCredentialsOut**](TableauCredentialsOut.md)
 
 ### Authorization
 
@@ -7121,6 +8245,138 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateLookerCredentials
+
+> ValidationRunOut ValidateLookerCredentials(ctx).LookerCredentialsValidateIn(lookerCredentialsValidateIn).Execute()
+
+Validate Looker credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	lookerCredentialsValidateIn := *openapiclient.NewLookerCredentialsValidateIn("DeploymentId_example", "BaseUrl_example", "ApiClientId_example", "ApiClientSecret_example") // LookerCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateLookerCredentials(context.Background()).LookerCredentialsValidateIn(lookerCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateLookerCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateLookerCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateLookerCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateLookerCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **lookerCredentialsValidateIn** | [**LookerCredentialsValidateIn**](LookerCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateLookerGitCloneCredentials
+
+> ValidationRunOut ValidateLookerGitCloneCredentials(ctx).LookerGitCloneCredentialsValidateIn(lookerGitCloneCredentialsValidateIn).Execute()
+
+Validate LookML repository credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	lookerGitCloneCredentialsValidateIn := *openapiclient.NewLookerGitCloneCredentialsValidateIn("DeploymentId_example", "RepoUrl_example") // LookerGitCloneCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateLookerGitCloneCredentials(context.Background()).LookerGitCloneCredentialsValidateIn(lookerGitCloneCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateLookerGitCloneCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateLookerGitCloneCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateLookerGitCloneCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateLookerGitCloneCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **lookerGitCloneCredentialsValidateIn** | [**LookerGitCloneCredentialsValidateIn**](LookerGitCloneCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateMariadbCredentials
 
 > ValidationRunOut ValidateMariadbCredentials(ctx).MariaDbCredentialsValidateIn(mariaDbCredentialsValidateIn).Execute()
@@ -7366,6 +8622,72 @@ Other parameters are passed through a pointer to a apiValidatePostgresCredential
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **postgresCredentialsValidateIn** | [**PostgresCredentialsValidateIn**](PostgresCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidatePowerBiCredentials
+
+> ValidationRunOut ValidatePowerBiCredentials(ctx).PowerBiCredentialsValidateIn(powerBiCredentialsValidateIn).Execute()
+
+Validate Power BI credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	powerBiCredentialsValidateIn := *openapiclient.NewPowerBiCredentialsValidateIn("DeploymentId_example", "TenantId_example", "AppClientId_example", openapiclient.PowerBiAuthMode("service_principal")) // PowerBiCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidatePowerBiCredentials(context.Background()).PowerBiCredentialsValidateIn(powerBiCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidatePowerBiCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidatePowerBiCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidatePowerBiCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidatePowerBiCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **powerBiCredentialsValidateIn** | [**PowerBiCredentialsValidateIn**](PowerBiCredentialsValidateIn.md) |  | 
 
 ### Return type
 
@@ -7696,6 +9018,72 @@ Other parameters are passed through a pointer to a apiValidateStarburstGalaxyCre
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **starburstGalaxyCredentialsValidateIn** | [**StarburstGalaxyCredentialsValidateIn**](StarburstGalaxyCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateTableauCredentials
+
+> ValidationRunOut ValidateTableauCredentials(ctx).TableauCredentialsValidateIn(tableauCredentialsValidateIn).Execute()
+
+Validate Tableau credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	tableauCredentialsValidateIn := *openapiclient.NewTableauCredentialsValidateIn("DeploymentId_example", "ServerName_example") // TableauCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateTableauCredentials(context.Background()).TableauCredentialsValidateIn(tableauCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateTableauCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateTableauCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateTableauCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateTableauCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tableauCredentialsValidateIn** | [**TableauCredentialsValidateIn**](TableauCredentialsValidateIn.md) |  | 
 
 ### Return type
 
