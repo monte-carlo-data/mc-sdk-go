@@ -435,7 +435,7 @@ it. Delete or move those connections first.
 An id that names an agent on another platform, or no agent in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionAgentId
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
 	@return ApiDeleteAwsCollectionAgentRequest
 */
 func (a *CollectionAgentsAPIService) DeleteAwsCollectionAgent(ctx context.Context, collectionAgentId string) ApiDeleteAwsCollectionAgentRequest {
@@ -600,7 +600,7 @@ Delete or move those connections first.
 An id that names an agent on another platform, or no agent in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionAgentId
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
 	@return ApiDeleteAzureCollectionAgentRequest
 */
 func (a *CollectionAgentsAPIService) DeleteAzureCollectionAgent(ctx context.Context, collectionAgentId string) ApiDeleteAzureCollectionAgentRequest {
@@ -765,7 +765,7 @@ Delete or move those connections first.
 An id that names an agent on another platform, or no agent in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionAgentId
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
 	@return ApiDeleteGcpCollectionAgentRequest
 */
 func (a *CollectionAgentsAPIService) DeleteGcpCollectionAgent(ctx context.Context, collectionAgentId string) ApiDeleteGcpCollectionAgentRequest {
@@ -931,7 +931,7 @@ Delete or move those connections first.
 An id that names an agent on another platform, or no agent in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionAgentId
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
 	@return ApiDeleteGenericCollectionAgentRequest
 */
 func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgent(ctx context.Context, collectionAgentId string) ApiDeleteGenericCollectionAgentRequest {
@@ -1093,7 +1093,7 @@ already holds stay valid until they expire.
 Deleting an id your account does not hold, or has already deleted, also returns 204.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialId
+	@param credentialId Id of the token or OAuth client, as returned when it is created or listed.
 	@return ApiDeleteGenericCollectionAgentOauthClientRequest
 */
 func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentOauthClient(ctx context.Context, credentialId string) ApiDeleteGenericCollectionAgentOauthClientRequest {
@@ -1230,7 +1230,7 @@ Delete a token. An agent still running with it stops being able to connect.
 Deleting an id your account does not hold, or has already deleted, also returns 204.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialId
+	@param credentialId Id of the token or OAuth client, as returned when it is created or listed.
 	@return ApiDeleteGenericCollectionAgentTokenRequest
 */
 func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentToken(ctx context.Context, credentialId string) ApiDeleteGenericCollectionAgentTokenRequest {
@@ -1367,7 +1367,7 @@ Get one collection agent running on AWS, including its external id.
 An id that names an agent on another platform, or no agent in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionAgentId
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
 	@return ApiGetAwsCollectionAgentRequest
 */
 func (a *CollectionAgentsAPIService) GetAwsCollectionAgent(ctx context.Context, collectionAgentId string) ApiGetAwsCollectionAgentRequest {
@@ -1516,7 +1516,7 @@ Get one collection agent running on Azure.
 An id that names an agent on another platform, or no agent in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionAgentId
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
 	@return ApiGetAzureCollectionAgentRequest
 */
 func (a *CollectionAgentsAPIService) GetAzureCollectionAgent(ctx context.Context, collectionAgentId string) ApiGetAzureCollectionAgentRequest {
@@ -1665,7 +1665,7 @@ Get one collection agent running on GCP.
 An id that names an agent on another platform, or no agent in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionAgentId
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
 	@return ApiGetGcpCollectionAgentRequest
 */
 func (a *CollectionAgentsAPIService) GetGcpCollectionAgent(ctx context.Context, collectionAgentId string) ApiGetGcpCollectionAgentRequest {
@@ -1814,7 +1814,7 @@ Get one generic collection agent.
 An id that names an agent on another platform, or no agent in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionAgentId
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
 	@return ApiGetGenericCollectionAgentRequest
 */
 func (a *CollectionAgentsAPIService) GetGenericCollectionAgent(ctx context.Context, collectionAgentId string) ApiGetGenericCollectionAgentRequest {
@@ -1963,7 +1963,7 @@ Get one OAuth client. The secret is not part of it.
 An id that names another kind of credential, or no credential in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialId
+	@param credentialId Id of the token or OAuth client, as returned when it is created or listed.
 	@return ApiGetGenericCollectionAgentOauthClientRequest
 */
 func (a *CollectionAgentsAPIService) GetGenericCollectionAgentOauthClient(ctx context.Context, credentialId string) ApiGetGenericCollectionAgentOauthClientRequest {
@@ -2112,7 +2112,7 @@ Get one token. The secret is not part of it.
 An id that names another kind of credential, or no credential in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialId
+	@param credentialId Id of the token or OAuth client, as returned when it is created or listed.
 	@return ApiGetGenericCollectionAgentTokenRequest
 */
 func (a *CollectionAgentsAPIService) GetGenericCollectionAgentToken(ctx context.Context, credentialId string) ApiGetGenericCollectionAgentTokenRequest {
@@ -3398,7 +3398,7 @@ check.
 An id that names an agent on another platform, or no agent in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionAgentId
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
 	@return ApiUpdateAwsCollectionAgentRequest
 */
 func (a *CollectionAgentsAPIService) UpdateAwsCollectionAgent(ctx context.Context, collectionAgentId string) ApiUpdateAwsCollectionAgentRequest {
@@ -3615,7 +3615,7 @@ check.
 An id that names an agent on another platform, or no agent in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionAgentId
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
 	@return ApiUpdateAzureCollectionAgentRequest
 */
 func (a *CollectionAgentsAPIService) UpdateAzureCollectionAgent(ctx context.Context, collectionAgentId string) ApiUpdateAzureCollectionAgentRequest {
@@ -3831,7 +3831,7 @@ check.
 An id that names an agent on another platform, or no agent in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionAgentId
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
 	@return ApiUpdateGcpCollectionAgentRequest
 */
 func (a *CollectionAgentsAPIService) UpdateGcpCollectionAgent(ctx context.Context, collectionAgentId string) ApiUpdateGcpCollectionAgentRequest {
@@ -4039,7 +4039,7 @@ leaves the agent as it is and returns it.
 An id that names an agent on another platform, or no agent in your account, returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionAgentId
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
 	@return ApiUpdateGenericCollectionAgentRequest
 */
 func (a *CollectionAgentsAPIService) UpdateGenericCollectionAgent(ctx context.Context, collectionAgentId string) ApiUpdateGenericCollectionAgentRequest {

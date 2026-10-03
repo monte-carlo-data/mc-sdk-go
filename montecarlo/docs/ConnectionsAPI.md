@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the connection, as returned when it is created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionId** | **string** |  | 
+**connectionId** | **string** | Id of the connection, as returned when it is created or listed. | 
 
 ### Other Parameters
 
@@ -168,7 +168,7 @@ import (
 )
 
 func main() {
-	connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the connection, as returned when it is created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -188,7 +188,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionId** | **string** |  | 
+**connectionId** | **string** | Id of the connection, as returned when it is created or listed. | 
 
 ### Other Parameters
 
@@ -312,7 +312,7 @@ import (
 )
 
 func main() {
-	connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the connection, as returned when it is created or listed.
 	connectionPatch := *openapiclient.NewConnectionPatch() // ConnectionPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -333,7 +333,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionId** | **string** |  | 
+**connectionId** | **string** | Id of the connection, as returned when it is created or listed. | 
 
 ### Other Parameters
 
@@ -384,7 +384,7 @@ import (
 )
 
 func main() {
-	connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	connectionId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the connection, as returned when it is created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -404,7 +404,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**connectionId** | **string** |  | 
+**connectionId** | **string** | Id of the connection, as returned when it is created or listed. | 
 
 ### Other Parameters
 

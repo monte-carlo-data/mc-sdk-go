@@ -240,7 +240,7 @@ warehouses consume from, is refused. Connections are managed as their own resour
 are never deleted with a warehouse. Remove them first.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param warehouseId
+	@param warehouseId Id of the warehouse, as returned when it is created or listed.
 	@return ApiDeleteWarehouseRequest
 */
 func (a *WarehousesAPIService) DeleteWarehouse(ctx context.Context, warehouseId string) ApiDeleteWarehouseRequest {
@@ -400,7 +400,7 @@ An id that does not exist, belongs to another account, or names a warehouse your
 restrictions hide from you returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param warehouseId
+	@param warehouseId Id of the warehouse, as returned when it is created or listed.
 	@return ApiGetWarehouseRequest
 */
 func (a *WarehousesAPIService) GetWarehouse(ctx context.Context, warehouseId string) ApiGetWarehouseRequest {
@@ -741,7 +741,7 @@ the warehouse is created. Two warehouses of the same type cannot share a name. S
 empty body leaves the warehouse as it is and returns it.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param warehouseId
+	@param warehouseId Id of the warehouse, as returned when it is created or listed.
 	@return ApiUpdateWarehouseRequest
 */
 func (a *WarehousesAPIService) UpdateWarehouse(ctx context.Context, warehouseId string) ApiUpdateWarehouseRequest {

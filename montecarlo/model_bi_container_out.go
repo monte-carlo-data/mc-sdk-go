@@ -28,7 +28,7 @@ type BiContainerOut struct {
 	Type BiContainerType `json:"type"`
 	// Display name of the BI container. Null for a container that was never named.
 	Name NullableString `json:"name"`
-	// The deployment the container's connections run through. Null for a custom BI connector's container, which has none. The id may name a deployment on Monte Carlo's older collection platform. The deployments endpoints do not list those.
+	// The deployment the container's connections run through. Null for a container with no deployment, such as a push-only custom BI connector's. The id may name a deployment on Monte Carlo's older collection platform. The deployments endpoints do not list those.
 	DeploymentId NullableString `json:"deployment_id"`
 	// Display name of the deployment. Null exactly when `deployment_id` is.
 	DeploymentName NullableString `json:"deployment_name"`

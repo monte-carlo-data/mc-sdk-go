@@ -48,7 +48,7 @@ An id that names a data store on another platform, or no data store in your acco
 returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionDataStoreId
+	@param collectionDataStoreId Id of the collection data store, as returned when it is registered or listed.
 	@return ApiDeleteAwsCollectionDataStoreRequest
 */
 func (a *CollectionDataStoresAPIService) DeleteAwsCollectionDataStore(ctx context.Context, collectionDataStoreId string) ApiDeleteAwsCollectionDataStoreRequest {
@@ -215,7 +215,7 @@ An id that names a data store on another platform, or no data store in your acco
 returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionDataStoreId
+	@param collectionDataStoreId Id of the collection data store, as returned when it is registered or listed.
 	@return ApiDeleteAzureCollectionDataStoreRequest
 */
 func (a *CollectionDataStoresAPIService) DeleteAzureCollectionDataStore(ctx context.Context, collectionDataStoreId string) ApiDeleteAzureCollectionDataStoreRequest {
@@ -382,7 +382,7 @@ An id that names a data store on another platform, or no data store in your acco
 returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionDataStoreId
+	@param collectionDataStoreId Id of the collection data store, as returned when it is registered or listed.
 	@return ApiDeleteGcpCollectionDataStoreRequest
 */
 func (a *CollectionDataStoresAPIService) DeleteGcpCollectionDataStore(ctx context.Context, collectionDataStoreId string) ApiDeleteGcpCollectionDataStoreRequest {
@@ -542,7 +542,7 @@ An id that names a data store on another platform, or no data store in your acco
 returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionDataStoreId
+	@param collectionDataStoreId Id of the collection data store, as returned when it is registered or listed.
 	@return ApiGetAwsCollectionDataStoreRequest
 */
 func (a *CollectionDataStoresAPIService) GetAwsCollectionDataStore(ctx context.Context, collectionDataStoreId string) ApiGetAwsCollectionDataStoreRequest {
@@ -692,7 +692,7 @@ An id that names a data store on another platform, or no data store in your acco
 returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionDataStoreId
+	@param collectionDataStoreId Id of the collection data store, as returned when it is registered or listed.
 	@return ApiGetAzureCollectionDataStoreRequest
 */
 func (a *CollectionDataStoresAPIService) GetAzureCollectionDataStore(ctx context.Context, collectionDataStoreId string) ApiGetAzureCollectionDataStoreRequest {
@@ -842,7 +842,7 @@ An id that names a data store on another platform, or no data store in your acco
 returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionDataStoreId
+	@param collectionDataStoreId Id of the collection data store, as returned when it is registered or listed.
 	@return ApiGetGcpCollectionDataStoreRequest
 */
 func (a *CollectionDataStoresAPIService) GetGcpCollectionDataStore(ctx context.Context, collectionDataStoreId string) ApiGetGcpCollectionDataStoreRequest {
@@ -1772,7 +1772,7 @@ An id that names a data store on another platform, or no data store in your acco
 returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionDataStoreId
+	@param collectionDataStoreId Id of the collection data store, as returned when it is registered or listed.
 	@return ApiUpdateAwsCollectionDataStoreRequest
 */
 func (a *CollectionDataStoresAPIService) UpdateAwsCollectionDataStore(ctx context.Context, collectionDataStoreId string) ApiUpdateAwsCollectionDataStoreRequest {
@@ -1988,7 +1988,7 @@ An id that names a data store on another platform, or no data store in your acco
 returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionDataStoreId
+	@param collectionDataStoreId Id of the collection data store, as returned when it is registered or listed.
 	@return ApiUpdateAzureCollectionDataStoreRequest
 */
 func (a *CollectionDataStoresAPIService) UpdateAzureCollectionDataStore(ctx context.Context, collectionDataStoreId string) ApiUpdateAzureCollectionDataStoreRequest {
@@ -2202,7 +2202,7 @@ An id that names a data store on another platform, or no data store in your acco
 returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param collectionDataStoreId
+	@param collectionDataStoreId Id of the collection data store, as returned when it is registered or listed.
 	@return ApiUpdateGcpCollectionDataStoreRequest
 */
 func (a *CollectionDataStoresAPIService) UpdateGcpCollectionDataStore(ctx context.Context, collectionDataStoreId string) ApiUpdateGcpCollectionDataStoreRequest {

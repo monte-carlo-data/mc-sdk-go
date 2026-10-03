@@ -41,7 +41,7 @@ import (
 )
 
 func main() {
-	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection data store, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -59,7 +59,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionDataStoreId** | **string** |  | 
+**collectionDataStoreId** | **string** | Id of the collection data store, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -109,7 +109,7 @@ import (
 )
 
 func main() {
-	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection data store, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -127,7 +127,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionDataStoreId** | **string** |  | 
+**collectionDataStoreId** | **string** | Id of the collection data store, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -177,7 +177,7 @@ import (
 )
 
 func main() {
-	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection data store, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -195,7 +195,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionDataStoreId** | **string** |  | 
+**collectionDataStoreId** | **string** | Id of the collection data store, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -245,7 +245,7 @@ import (
 )
 
 func main() {
-	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection data store, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -265,7 +265,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionDataStoreId** | **string** |  | 
+**collectionDataStoreId** | **string** | Id of the collection data store, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -315,7 +315,7 @@ import (
 )
 
 func main() {
-	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection data store, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -335,7 +335,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionDataStoreId** | **string** |  | 
+**collectionDataStoreId** | **string** | Id of the collection data store, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -385,7 +385,7 @@ import (
 )
 
 func main() {
-	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection data store, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -405,7 +405,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionDataStoreId** | **string** |  | 
+**collectionDataStoreId** | **string** | Id of the collection data store, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -714,7 +714,7 @@ import (
 )
 
 func main() {
-	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection data store, as returned when it is registered or listed.
 	awsCollectionDataStorePatch := *openapiclient.NewAwsCollectionDataStorePatch() // AwsCollectionDataStorePatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -735,7 +735,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionDataStoreId** | **string** |  | 
+**collectionDataStoreId** | **string** | Id of the collection data store, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -786,7 +786,7 @@ import (
 )
 
 func main() {
-	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection data store, as returned when it is registered or listed.
 	azureCollectionDataStorePatch := *openapiclient.NewAzureCollectionDataStorePatch() // AzureCollectionDataStorePatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -807,7 +807,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionDataStoreId** | **string** |  | 
+**collectionDataStoreId** | **string** | Id of the collection data store, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -858,7 +858,7 @@ import (
 )
 
 func main() {
-	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection data store, as returned when it is registered or listed.
 	gcpCollectionDataStorePatch := *openapiclient.NewGcpCollectionDataStorePatch() // GcpCollectionDataStorePatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -879,7 +879,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionDataStoreId** | **string** |  | 
+**collectionDataStoreId** | **string** | Id of the collection data store, as returned when it is registered or listed. | 
 
 ### Other Parameters
 

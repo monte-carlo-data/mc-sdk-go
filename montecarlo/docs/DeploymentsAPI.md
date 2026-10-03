@@ -100,7 +100,7 @@ import (
 )
 
 func main() {
-	deploymentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	deploymentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the deployment, as returned when it is created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -118,7 +118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deploymentId** | **string** |  | 
+**deploymentId** | **string** | Id of the deployment, as returned when it is created or listed. | 
 
 ### Other Parameters
 
@@ -168,7 +168,7 @@ import (
 )
 
 func main() {
-	deploymentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	deploymentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the deployment, as returned when it is created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -188,7 +188,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deploymentId** | **string** |  | 
+**deploymentId** | **string** | Id of the deployment, as returned when it is created or listed. | 
 
 ### Other Parameters
 
@@ -299,7 +299,7 @@ import (
 )
 
 func main() {
-	deploymentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	deploymentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the deployment, as returned when it is created or listed.
 	deploymentIn := *openapiclient.NewDeploymentIn(openapiclient.DeploymentType("COLLECTION_AGENT"), openapiclient.RuntimePlatform("AWS")) // DeploymentIn | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -320,7 +320,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deploymentId** | **string** |  | 
+**deploymentId** | **string** | Id of the deployment, as returned when it is created or listed. | 
 
 ### Other Parameters
 
@@ -371,7 +371,7 @@ import (
 )
 
 func main() {
-	deploymentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	deploymentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the deployment, as returned when it is created or listed.
 	deploymentPatch := *openapiclient.NewDeploymentPatch() // DeploymentPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -392,7 +392,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**deploymentId** | **string** |  | 
+**deploymentId** | **string** | Id of the deployment, as returned when it is created or listed. | 
 
 ### Other Parameters
 

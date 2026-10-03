@@ -258,7 +258,7 @@ Deleting a custom BI connector's connection is refused too, since its BI contain
 the assets collected through it would go with it.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param connectionId
+	@param connectionId Id of the connection, as returned when it is created or listed.
 	@return ApiDeleteConnectionRequest
 */
 func (a *ConnectionsAPIService) DeleteConnection(ctx context.Context, connectionId string) ApiDeleteConnectionRequest {
@@ -418,7 +418,7 @@ An id that does not exist, belongs to another account, or names a connection you
 restrictions hide from you returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param connectionId
+	@param connectionId Id of the connection, as returned when it is created or listed.
 	@return ApiGetConnectionRequest
 */
 func (a *ConnectionsAPIService) GetConnection(ctx context.Context, connectionId string) ApiGetConnectionRequest {
@@ -784,7 +784,7 @@ BI container cannot share a name. Sending an empty body leaves the connection as
 returns it.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param connectionId
+	@param connectionId Id of the connection, as returned when it is created or listed.
 	@return ApiUpdateConnectionRequest
 */
 func (a *ConnectionsAPIService) UpdateConnection(ctx context.Context, connectionId string) ApiUpdateConnectionRequest {
@@ -977,7 +977,7 @@ until the run's status is `completed`; each validation carries its own verdict.
 An id that does not exist or belongs to another account returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param connectionId
+	@param connectionId Id of the connection, as returned when it is created or listed.
 	@return ApiValidateConnectionRequest
 */
 func (a *ConnectionsAPIService) ValidateConnection(ctx context.Context, connectionId string) ApiValidateConnectionRequest {
