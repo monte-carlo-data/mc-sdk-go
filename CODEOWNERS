@@ -2,6 +2,7 @@
 
 # Written by api-codegen's propagate workflow. No owner, so a bot pull request requests no
 # review. The hand-written files in the package keep theirs.
+# Keep this above the per-file lines below: the last matching line wins.
 /montecarlo/
 /montecarlo/auth.go @monte-carlo-data/apollo
 /montecarlo/auth_test.go @monte-carlo-data/apollo
