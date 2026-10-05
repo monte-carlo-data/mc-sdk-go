@@ -112,15 +112,6 @@ changes it opens a pull request from `mc-ci-cd-app`, and because `montecarlo/` c
 owner, that pull request asks nobody for review. Every hand-written file under `montecarlo/`
 therefore needs its own line in `CODEOWNERS`, and CI fails when one is missing.
 
-`.github/workflows/bot-auto-merge.yml` can approve that pull request and turn on auto-merge, so
-the merge waits only for the required checks. It acts only when the pull request is the bot's
-(by author, from a branch in this repository) and every changed file is a generated one. It is
-off until the repository variable `BOT_AUTO_MERGE` is `true`, which also needs "Allow
-auto-merge" enabled in the repository settings. It runs on `pull_request_target`, so it always
-runs as it is on `main`, and it never checks out the pull request's code. Keep it that way.
-Its list of generated files mirrors the unowned paths in `CODEOWNERS`, and the two have to
-change together.
-
 Constructor parameters and struct fields follow the order the spec declares a schema's
 properties in. An export that changes that order changes public signatures with no schema
 change behind it, and two same-typed parameters swapping is invisible to a consumer's
