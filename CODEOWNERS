@@ -1,5 +1,8 @@
 * @monte-carlo-data/apollo
 
+# Every unowned path below is one the bot may change. The auto-merge workflow
+# (.github/workflows/bot-auto-merge.yml) lists the same paths; keep the two in step.
+
 # Written by api-codegen's propagate workflow. No owner, so a bot pull request requests no
 # review. The hand-written files in the package keep theirs.
 /montecarlo/
@@ -9,8 +12,9 @@
 /montecarlo/oauth_test.go @monte-carlo-data/apollo
 /montecarlo/profile.go @monte-carlo-data/apollo
 /montecarlo/profile_test.go @monte-carlo-data/apollo
+/montecarlo/paginate.go @monte-carlo-data/apollo
+/montecarlo/paginate_test.go @monte-carlo-data/apollo
 /montecarlo/doc.go @monte-carlo-data/apollo
 /montecarlo/example_test.go @monte-carlo-data/apollo
-/montecarlo/README.md @monte-carlo-data/apollo
 /montecarlo/.openapi-generator-ignore @monte-carlo-data/apollo
 /.api-codegen-source.json
