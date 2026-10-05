@@ -14,9 +14,7 @@ client construction, credentials, and the pagination driver are hand-written.
 go get github.com/monte-carlo-data/mc-sdk-go/montecarlo
 ```
 
-While this repository is internal, that needs `GOPRIVATE=github.com/monte-carlo-data` and a
-git credential with access, since the public module proxy cannot resolve it. No version has
-been published yet either, so `go get` resolves a pseudo-version from a commit. Moving the
+No version has been published yet, so `go get` resolves a pseudo-version from a commit. Moving the
 pinned commit can reorder a constructor's parameters, so recompile and recheck positional
 calls after a bump.
 
