@@ -189,9 +189,9 @@ Branch from `main` as `<person>/<ticket-id>-<slug>`. Never commit directly to `m
 
 ## Releasing
 
-**Not yet.** A Go module path is permanent once a version tag is published, and this
-repository's name is not final. Fetching by commit sha resolves a pseudo-version and is
-enough to verify the module builds for a consumer.
+**Not yet.** The module path is final, but no version is tagged. A published version is
+permanent: `proxy.golang.org` caches it. Fetching by commit sha resolves a pseudo-version and
+is enough to verify the module builds for a consumer.
 
 The licence is Apache-2.0, matching the Python SDK and the CLI. That is the SDK precedent
 rather than the agents' one: the agents ship as deployed artifacts under a proprietary licence,
