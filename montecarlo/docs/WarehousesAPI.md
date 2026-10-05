@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	warehouseId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	warehouseId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the warehouse, as returned when it is created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -117,7 +117,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**warehouseId** | **string** |  | 
+**warehouseId** | **string** | Id of the warehouse, as returned when it is created or listed. | 
 
 ### Other Parameters
 
@@ -167,7 +167,7 @@ import (
 )
 
 func main() {
-	warehouseId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	warehouseId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the warehouse, as returned when it is created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -187,7 +187,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**warehouseId** | **string** |  | 
+**warehouseId** | **string** | Id of the warehouse, as returned when it is created or listed. | 
 
 ### Other Parameters
 
@@ -307,7 +307,7 @@ import (
 )
 
 func main() {
-	warehouseId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	warehouseId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the warehouse, as returned when it is created or listed.
 	warehousePatch := *openapiclient.NewWarehousePatch() // WarehousePatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -328,7 +328,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**warehouseId** | **string** |  | 
+**warehouseId** | **string** | Id of the warehouse, as returned when it is created or listed. | 
 
 ### Other Parameters
 

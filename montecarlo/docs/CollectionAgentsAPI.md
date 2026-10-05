@@ -184,7 +184,7 @@ import (
 )
 
 func main() {
-	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -202,7 +202,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionAgentId** | **string** |  | 
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -252,7 +252,7 @@ import (
 )
 
 func main() {
-	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -270,7 +270,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionAgentId** | **string** |  | 
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -320,7 +320,7 @@ import (
 )
 
 func main() {
-	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -338,7 +338,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionAgentId** | **string** |  | 
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -388,7 +388,7 @@ import (
 )
 
 func main() {
-	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -406,7 +406,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionAgentId** | **string** |  | 
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -456,7 +456,7 @@ import (
 )
 
 func main() {
-	credentialId := "credentialId_example" // string | 
+	credentialId := "credentialId_example" // string | Id of the token or OAuth client, as returned when it is created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -474,7 +474,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialId** | **string** |  | 
+**credentialId** | **string** | Id of the token or OAuth client, as returned when it is created or listed. | 
 
 ### Other Parameters
 
@@ -524,7 +524,7 @@ import (
 )
 
 func main() {
-	credentialId := "credentialId_example" // string | 
+	credentialId := "credentialId_example" // string | Id of the token or OAuth client, as returned when it is created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -542,7 +542,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialId** | **string** |  | 
+**credentialId** | **string** | Id of the token or OAuth client, as returned when it is created or listed. | 
 
 ### Other Parameters
 
@@ -592,7 +592,7 @@ import (
 )
 
 func main() {
-	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -612,7 +612,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionAgentId** | **string** |  | 
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -662,7 +662,7 @@ import (
 )
 
 func main() {
-	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -682,7 +682,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionAgentId** | **string** |  | 
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -732,7 +732,7 @@ import (
 )
 
 func main() {
-	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -752,7 +752,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionAgentId** | **string** |  | 
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -802,7 +802,7 @@ import (
 )
 
 func main() {
-	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -822,7 +822,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionAgentId** | **string** |  | 
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -872,7 +872,7 @@ import (
 )
 
 func main() {
-	credentialId := "credentialId_example" // string | 
+	credentialId := "credentialId_example" // string | Id of the token or OAuth client, as returned when it is created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -892,7 +892,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialId** | **string** |  | 
+**credentialId** | **string** | Id of the token or OAuth client, as returned when it is created or listed. | 
 
 ### Other Parameters
 
@@ -942,7 +942,7 @@ import (
 )
 
 func main() {
-	credentialId := "credentialId_example" // string | 
+	credentialId := "credentialId_example" // string | Id of the token or OAuth client, as returned when it is created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -962,7 +962,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialId** | **string** |  | 
+**credentialId** | **string** | Id of the token or OAuth client, as returned when it is created or listed. | 
 
 ### Other Parameters
 
@@ -1403,7 +1403,7 @@ import (
 )
 
 func main() {
-	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
 	awsCollectionAgentPatch := *openapiclient.NewAwsCollectionAgentPatch() // AwsCollectionAgentPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -1424,7 +1424,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionAgentId** | **string** |  | 
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -1475,7 +1475,7 @@ import (
 )
 
 func main() {
-	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
 	azureCollectionAgentPatch := *openapiclient.NewAzureCollectionAgentPatch() // AzureCollectionAgentPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -1496,7 +1496,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionAgentId** | **string** |  | 
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -1547,7 +1547,7 @@ import (
 )
 
 func main() {
-	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
 	gcpCollectionAgentPatch := *openapiclient.NewGcpCollectionAgentPatch() // GcpCollectionAgentPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -1568,7 +1568,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionAgentId** | **string** |  | 
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
 
 ### Other Parameters
 
@@ -1619,7 +1619,7 @@ import (
 )
 
 func main() {
-	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
 	genericCollectionAgentPatch := *openapiclient.NewGenericCollectionAgentPatch() // GenericCollectionAgentPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -1640,7 +1640,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**collectionAgentId** | **string** |  | 
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
 
 ### Other Parameters
 

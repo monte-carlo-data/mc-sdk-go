@@ -3536,7 +3536,7 @@ CreatePowerBiCredentials Create Power BI credentials
 Store Power BI credentials.
 
 Monte Carlo keeps the client secret or the password and returns everything else. Create
-the credentials first, then create a connection that references them, on a Power BI BI
+the credentials first, then create a connection that references them, on a Power BI
 container. Nothing is checked against Power BI here.
 
 `auth_mode` decides what else to send: `app_client_secret` for `service_principal`, or
@@ -5084,7 +5084,7 @@ Refused while a connection still uses them. Delete the connection first. The sec
 is untouched.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteAwsSecretsManagerCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteAwsSecretsManagerCredentials(ctx context.Context, credentialsId string) ApiDeleteAwsSecretsManagerCredentialsRequest {
@@ -5245,7 +5245,7 @@ the stored password. Change it in Azure Dedicated SQL Pool if the password itsel
 retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteAzureDedicatedSqlPoolCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteAzureDedicatedSqlPoolCredentials(ctx context.Context, credentialsId string) ApiDeleteAzureDedicatedSqlPoolCredentialsRequest {
@@ -5405,7 +5405,7 @@ Refused while a connection still uses them. Delete the connection first. The sec
 is untouched.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteAzureKeyVaultCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteAzureKeyVaultCredentials(ctx context.Context, credentialsId string) ApiDeleteAzureKeyVaultCredentialsRequest {
@@ -5565,7 +5565,7 @@ Refused while a connection still uses them. Delete the connection first. Monte C
 the stored password. Change it in Azure SQL Database if the password itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteAzureSqlDatabaseCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteAzureSqlDatabaseCredentials(ctx context.Context, credentialsId string) ApiDeleteAzureSqlDatabaseCredentialsRequest {
@@ -5725,7 +5725,7 @@ Refused while a connection still uses them. Delete the connection first. Monte C
 using the stored key. Revoke the key in Google Cloud if the key itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteBigqueryCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteBigqueryCredentials(ctx context.Context, credentialsId string) ApiDeleteBigqueryCredentialsRequest {
@@ -5885,7 +5885,7 @@ Refused while a connection still uses them. Delete the connection first. Monte C
 the stored password. Change it in ClickHouse if the password itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteClickhouseCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteClickhouseCredentials(ctx context.Context, credentialsId string) ApiDeleteClickhouseCredentialsRequest {
@@ -6046,7 +6046,7 @@ Delete the connection first. Monte Carlo stops using them. Whatever they point a
 untouched.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteCredentials(ctx context.Context, credentialsId string) ApiDeleteCredentialsRequest {
@@ -6207,7 +6207,7 @@ using the stored token or OAuth secret. Revoke it in Databricks, or in Microsoft
 for a service principal Azure manages, if the secret itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteDatabricksMetastoreSqlWarehouseCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteDatabricksMetastoreSqlWarehouseCredentials(ctx context.Context, credentialsId string) ApiDeleteDatabricksMetastoreSqlWarehouseCredentialsRequest {
@@ -6368,7 +6368,7 @@ using the stored token or OAuth secret. Revoke it in Databricks, or in Microsoft
 for a service principal Azure manages, if the secret itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteDatabricksSqlWarehouseCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteDatabricksSqlWarehouseCredentials(ctx context.Context, credentialsId string) ApiDeleteDatabricksSqlWarehouseCredentialsRequest {
@@ -6528,7 +6528,7 @@ Refused while a connection still uses them. Delete the connection first. Monte C
 the stored password. Change it in Db2 if the password itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteDb2CredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteDb2Credentials(ctx context.Context, credentialsId string) ApiDeleteDb2CredentialsRequest {
@@ -6688,7 +6688,7 @@ Refused while a connection still uses them. Delete the connection first. The var
 deployment is untouched.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteEnvVarCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteEnvVarCredentials(ctx context.Context, credentialsId string) ApiDeleteEnvVarCredentialsRequest {
@@ -6848,7 +6848,7 @@ Refused while a connection still uses them. Delete the connection first. The fil
 deployment is untouched.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteFileCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteFileCredentials(ctx context.Context, credentialsId string) ApiDeleteFileCredentialsRequest {
@@ -7008,7 +7008,7 @@ Refused while a connection still uses them. Delete the connection first. The sec
 is untouched.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteGcpSecretManagerCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteGcpSecretManagerCredentials(ctx context.Context, credentialsId string) ApiDeleteGcpSecretManagerCredentialsRequest {
@@ -7489,7 +7489,7 @@ Refused while a connection still uses them. Delete the connection first. Monte C
 the stored password. Change it in MariaDB if the password itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteMariadbCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteMariadbCredentials(ctx context.Context, credentialsId string) ApiDeleteMariadbCredentialsRequest {
@@ -7649,7 +7649,7 @@ Refused while a connection still uses them. Delete the connection first. Monte C
 the stored password. Change it in MySQL if the password itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteMysqlCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteMysqlCredentials(ctx context.Context, credentialsId string) ApiDeleteMysqlCredentialsRequest {
@@ -7809,7 +7809,7 @@ Refused while a connection still uses them. Delete the connection first. Monte C
 the stored password. Change it in Oracle if the password itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteOracleCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteOracleCredentials(ctx context.Context, credentialsId string) ApiDeleteOracleCredentialsRequest {
@@ -7969,7 +7969,7 @@ Refused while a connection still uses them. Delete the connection first. Monte C
 the stored password. Change it in PostgreSQL if the password itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeletePostgresCredentialsRequest
 */
 func (a *CredentialsAPIService) DeletePostgresCredentials(ctx context.Context, credentialsId string) ApiDeletePostgresCredentialsRequest {
@@ -8290,7 +8290,7 @@ Refused while a connection still uses them. Delete the connection first. Monte C
 using the stored password. Change it in Redshift if the password itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteRedshiftCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteRedshiftCredentials(ctx context.Context, credentialsId string) ApiDeleteRedshiftCredentialsRequest {
@@ -8450,7 +8450,7 @@ Refused while a connection still uses them. Delete the connection first. Monte C
 the stored password. Change it in SAP HANA if the password itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteSapHanaCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteSapHanaCredentials(ctx context.Context, credentialsId string) ApiDeleteSapHanaCredentialsRequest {
@@ -8611,7 +8611,7 @@ using the stored key. Rotate or revoke the key pair in Snowflake if the key itse
 retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteSnowflakeCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteSnowflakeCredentials(ctx context.Context, credentialsId string) ApiDeleteSnowflakeCredentialsRequest {
@@ -8771,7 +8771,7 @@ Refused while a connection still uses them. Delete the connection first. Monte C
 the stored password. Change it in Starburst Enterprise if the password itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteStarburstEnterpriseCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteStarburstEnterpriseCredentials(ctx context.Context, credentialsId string) ApiDeleteStarburstEnterpriseCredentialsRequest {
@@ -8931,7 +8931,7 @@ Refused while a connection still uses them. Delete the connection first. Monte C
 the stored password. Change it in Starburst Galaxy if the password itself must be retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteStarburstGalaxyCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteStarburstGalaxyCredentials(ctx context.Context, credentialsId string) ApiDeleteStarburstGalaxyCredentialsRequest {
@@ -9253,7 +9253,7 @@ the stored password. Change it where Teradata checks it if the password itself m
 retired.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiDeleteTeradataCredentialsRequest
 */
 func (a *CredentialsAPIService) DeleteTeradataCredentials(ctx context.Context, credentialsId string) ApiDeleteTeradataCredentialsRequest {
@@ -9413,7 +9413,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetAwsSecretsManagerCredentialsRequest
 */
 func (a *CredentialsAPIService) GetAwsSecretsManagerCredentials(ctx context.Context, credentialsId string) ApiGetAwsSecretsManagerCredentialsRequest {
@@ -9574,7 +9574,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetAzureDedicatedSqlPoolCredentialsRequest
 */
 func (a *CredentialsAPIService) GetAzureDedicatedSqlPoolCredentials(ctx context.Context, credentialsId string) ApiGetAzureDedicatedSqlPoolCredentialsRequest {
@@ -9735,7 +9735,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetAzureKeyVaultCredentialsRequest
 */
 func (a *CredentialsAPIService) GetAzureKeyVaultCredentials(ctx context.Context, credentialsId string) ApiGetAzureKeyVaultCredentialsRequest {
@@ -9896,7 +9896,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetAzureSqlDatabaseCredentialsRequest
 */
 func (a *CredentialsAPIService) GetAzureSqlDatabaseCredentials(ctx context.Context, credentialsId string) ApiGetAzureSqlDatabaseCredentialsRequest {
@@ -10057,7 +10057,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetBigqueryCredentialsRequest
 */
 func (a *CredentialsAPIService) GetBigqueryCredentials(ctx context.Context, credentialsId string) ApiGetBigqueryCredentialsRequest {
@@ -10218,7 +10218,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetClickhouseCredentialsRequest
 */
 func (a *CredentialsAPIService) GetClickhouseCredentials(ctx context.Context, credentialsId string) ApiGetClickhouseCredentialsRequest {
@@ -10379,7 +10379,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetDatabricksMetastoreSqlWarehouseCredentialsRequest
 */
 func (a *CredentialsAPIService) GetDatabricksMetastoreSqlWarehouseCredentials(ctx context.Context, credentialsId string) ApiGetDatabricksMetastoreSqlWarehouseCredentialsRequest {
@@ -10540,7 +10540,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetDatabricksSqlWarehouseCredentialsRequest
 */
 func (a *CredentialsAPIService) GetDatabricksSqlWarehouseCredentials(ctx context.Context, credentialsId string) ApiGetDatabricksSqlWarehouseCredentialsRequest {
@@ -10701,7 +10701,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetDb2CredentialsRequest
 */
 func (a *CredentialsAPIService) GetDb2Credentials(ctx context.Context, credentialsId string) ApiGetDb2CredentialsRequest {
@@ -10862,7 +10862,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetEnvVarCredentialsRequest
 */
 func (a *CredentialsAPIService) GetEnvVarCredentials(ctx context.Context, credentialsId string) ApiGetEnvVarCredentialsRequest {
@@ -11023,7 +11023,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetFileCredentialsRequest
 */
 func (a *CredentialsAPIService) GetFileCredentials(ctx context.Context, credentialsId string) ApiGetFileCredentialsRequest {
@@ -11184,7 +11184,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetGcpSecretManagerCredentialsRequest
 */
 func (a *CredentialsAPIService) GetGcpSecretManagerCredentials(ctx context.Context, credentialsId string) ApiGetGcpSecretManagerCredentialsRequest {
@@ -11667,7 +11667,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetMariadbCredentialsRequest
 */
 func (a *CredentialsAPIService) GetMariadbCredentials(ctx context.Context, credentialsId string) ApiGetMariadbCredentialsRequest {
@@ -11828,7 +11828,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetMysqlCredentialsRequest
 */
 func (a *CredentialsAPIService) GetMysqlCredentials(ctx context.Context, credentialsId string) ApiGetMysqlCredentialsRequest {
@@ -11989,7 +11989,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetOracleCredentialsRequest
 */
 func (a *CredentialsAPIService) GetOracleCredentials(ctx context.Context, credentialsId string) ApiGetOracleCredentialsRequest {
@@ -12150,7 +12150,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetPostgresCredentialsRequest
 */
 func (a *CredentialsAPIService) GetPostgresCredentials(ctx context.Context, credentialsId string) ApiGetPostgresCredentialsRequest {
@@ -12472,7 +12472,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetRedshiftCredentialsRequest
 */
 func (a *CredentialsAPIService) GetRedshiftCredentials(ctx context.Context, credentialsId string) ApiGetRedshiftCredentialsRequest {
@@ -12633,7 +12633,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetSapHanaCredentialsRequest
 */
 func (a *CredentialsAPIService) GetSapHanaCredentials(ctx context.Context, credentialsId string) ApiGetSapHanaCredentialsRequest {
@@ -12794,7 +12794,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetSnowflakeCredentialsRequest
 */
 func (a *CredentialsAPIService) GetSnowflakeCredentials(ctx context.Context, credentialsId string) ApiGetSnowflakeCredentialsRequest {
@@ -12955,7 +12955,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetStarburstEnterpriseCredentialsRequest
 */
 func (a *CredentialsAPIService) GetStarburstEnterpriseCredentials(ctx context.Context, credentialsId string) ApiGetStarburstEnterpriseCredentialsRequest {
@@ -13116,7 +13116,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetStarburstGalaxyCredentialsRequest
 */
 func (a *CredentialsAPIService) GetStarburstGalaxyCredentials(ctx context.Context, credentialsId string) ApiGetStarburstGalaxyCredentialsRequest {
@@ -13438,7 +13438,7 @@ An id that does not exist, belongs to another account, or names credentials of a
 kind returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiGetTeradataCredentialsRequest
 */
 func (a *CredentialsAPIService) GetTeradataCredentials(ctx context.Context, credentialsId string) ApiGetTeradataCredentialsRequest {
@@ -13790,7 +13790,7 @@ change: a field left out is unchanged, and an optional field set to null is clea
 Sending an empty body returns the credentials as they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateAwsSecretsManagerCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateAwsSecretsManagerCredentials(ctx context.Context, credentialsId string) ApiUpdateAwsSecretsManagerCredentialsRequest {
@@ -13985,7 +13985,7 @@ field left out is unchanged, and `password` set to null is unchanged. Sending an
 returns the credentials as they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateAzureDedicatedSqlPoolCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateAzureDedicatedSqlPoolCredentials(ctx context.Context, credentialsId string) ApiUpdateAzureDedicatedSqlPoolCredentialsRequest {
@@ -14181,7 +14181,7 @@ long as the vault stays named one way. Sending an empty body returns the credent
 they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateAzureKeyVaultCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateAzureKeyVaultCredentials(ctx context.Context, credentialsId string) ApiUpdateAzureKeyVaultCredentialsRequest {
@@ -14376,7 +14376,7 @@ field left out is unchanged, and `password` set to null is unchanged. Sending an
 returns the credentials as they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateAzureSqlDatabaseCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateAzureSqlDatabaseCredentials(ctx context.Context, credentialsId string) ApiUpdateAzureSqlDatabaseCredentialsRequest {
@@ -14570,7 +14570,7 @@ Every connection using the credentials picks up the change. A new `service_accou
 replaces the stored key whole. Sending an empty body returns the credentials as they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateBigqueryCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateBigqueryCredentials(ctx context.Context, credentialsId string) ApiUpdateBigqueryCredentialsRequest {
@@ -14765,7 +14765,7 @@ field left out is unchanged, `db_name` set to null is cleared, and `password` se
 unchanged. Sending an empty body returns the credentials as they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateClickhouseCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateClickhouseCredentials(ctx context.Context, credentialsId string) ApiUpdateClickhouseCredentialsRequest {
@@ -14961,7 +14961,7 @@ OAuth client drops the stored token. Sending an empty body returns the credentia
 they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateDatabricksMetastoreSqlWarehouseCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateDatabricksMetastoreSqlWarehouseCredentials(ctx context.Context, credentialsId string) ApiUpdateDatabricksMetastoreSqlWarehouseCredentialsRequest {
@@ -15157,7 +15157,7 @@ OAuth client drops the stored token. Sending an empty body returns the credentia
 they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateDatabricksSqlWarehouseCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateDatabricksSqlWarehouseCredentials(ctx context.Context, credentialsId string) ApiUpdateDatabricksSqlWarehouseCredentialsRequest {
@@ -15353,7 +15353,7 @@ field left out is unchanged, `db_name` or an `ssl_*` field set to null is cleare
 are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateDb2CredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateDb2Credentials(ctx context.Context, credentialsId string) ApiUpdateDb2CredentialsRequest {
@@ -15548,7 +15548,7 @@ change: a field left out is unchanged, and an optional field set to null is clea
 Sending an empty body returns the credentials as they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateEnvVarCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateEnvVarCredentials(ctx context.Context, credentialsId string) ApiUpdateEnvVarCredentialsRequest {
@@ -15743,7 +15743,7 @@ change: a field left out is unchanged, and an optional field set to null is clea
 Sending an empty body returns the credentials as they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateFileCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateFileCredentials(ctx context.Context, credentialsId string) ApiUpdateFileCredentialsRequest {
@@ -15938,7 +15938,7 @@ change: a field left out is unchanged, and an optional field set to null is clea
 Sending an empty body returns the credentials as they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateGcpSecretManagerCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateGcpSecretManagerCredentials(ctx context.Context, credentialsId string) ApiUpdateGcpSecretManagerCredentialsRequest {
@@ -16522,7 +16522,7 @@ field left out is unchanged, `db_name` set to null is cleared, and `password` se
 unchanged. Sending an empty body returns the credentials as they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateMariadbCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateMariadbCredentials(ctx context.Context, credentialsId string) ApiUpdateMariadbCredentialsRequest {
@@ -16718,7 +16718,7 @@ field left out is unchanged, `db_name` or an `ssl_*` field set to null is cleare
 are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateMysqlCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateMysqlCredentials(ctx context.Context, credentialsId string) ApiUpdateMysqlCredentialsRequest {
@@ -16913,7 +16913,7 @@ field left out is unchanged, an `ssl_*` field set to null is cleared, and `passw
 is unchanged. Sending an empty body returns the credentials as they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateOracleCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateOracleCredentials(ctx context.Context, credentialsId string) ApiUpdateOracleCredentialsRequest {
@@ -17108,7 +17108,7 @@ field left out is unchanged, a setting or an `ssl_*` field set to null is cleare
 `password` set to null is unchanged. Sending an empty body returns the credentials as they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdatePostgresCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdatePostgresCredentials(ctx context.Context, credentialsId string) ApiUpdatePostgresCredentialsRequest {
@@ -17499,7 +17499,7 @@ change: a field left out is unchanged, an `ssl_*` field set to null is cleared, 
 are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateRedshiftCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateRedshiftCredentials(ctx context.Context, credentialsId string) ApiUpdateRedshiftCredentialsRequest {
@@ -17694,7 +17694,7 @@ field left out is unchanged, and `password` set to null is unchanged. Sending an
 returns the credentials as they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateSapHanaCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateSapHanaCredentials(ctx context.Context, credentialsId string) ApiUpdateSapHanaCredentialsRequest {
@@ -17890,7 +17890,7 @@ change: a field left out is unchanged, `warehouse` set to null is cleared, and a
 they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateSnowflakeCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateSnowflakeCredentials(ctx context.Context, credentialsId string) ApiUpdateSnowflakeCredentialsRequest {
@@ -18086,7 +18086,7 @@ field left out is unchanged, `db_name` or an `ssl_*` field set to null is cleare
 are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateStarburstEnterpriseCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateStarburstEnterpriseCredentials(ctx context.Context, credentialsId string) ApiUpdateStarburstEnterpriseCredentialsRequest {
@@ -18281,7 +18281,7 @@ field left out is unchanged, `db_name` set to null is cleared, and `password` se
 unchanged. Sending an empty body returns the credentials as they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateStarburstGalaxyCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateStarburstGalaxyCredentials(ctx context.Context, credentialsId string) ApiUpdateStarburstGalaxyCredentialsRequest {
@@ -18684,7 +18684,7 @@ and `password` set to null is unchanged. Sending an empty body returns the crede
 they are.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param credentialsId
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
 	@return ApiUpdateTeradataCredentialsRequest
 */
 func (a *CredentialsAPIService) UpdateTeradataCredentials(ctx context.Context, credentialsId string) ApiUpdateTeradataCredentialsRequest {

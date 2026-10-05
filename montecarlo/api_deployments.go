@@ -241,7 +241,7 @@ Deleting reaches several systems and can stop partway through. Repeating the req
 picks up where it stopped, so clear whatever a refusal named and send it again.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deploymentId
+	@param deploymentId Id of the deployment, as returned when it is created or listed.
 	@return ApiDeleteDeploymentRequest
 */
 func (a *DeploymentsAPIService) DeleteDeployment(ctx context.Context, deploymentId string) ApiDeleteDeploymentRequest {
@@ -401,7 +401,7 @@ An id that does not exist, belongs to another account, or names a deployment on 
 Carlo's older collection platform all return 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deploymentId
+	@param deploymentId Id of the deployment, as returned when it is created or listed.
 	@return ApiGetDeploymentRequest
 */
 func (a *DeploymentsAPIService) GetDeployment(ctx context.Context, deploymentId string) ApiGetDeploymentRequest {
@@ -706,7 +706,7 @@ delete that first. Neither can one hosted by Monte Carlo, which this API does no
 provision.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deploymentId
+	@param deploymentId Id of the deployment, as returned when it is created or listed.
 	@return ApiReprovisionDeploymentRequest
 */
 func (a *DeploymentsAPIService) ReprovisionDeployment(ctx context.Context, deploymentId string) ApiReprovisionDeploymentRequest {
@@ -904,7 +904,7 @@ can be renamed, including one hosted by Monte Carlo. Sending an empty body leave
 deployment as it is and returns it.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deploymentId
+	@param deploymentId Id of the deployment, as returned when it is created or listed.
 	@return ApiUpdateDeploymentRequest
 */
 func (a *DeploymentsAPIService) UpdateDeployment(ctx context.Context, deploymentId string) ApiUpdateDeploymentRequest {

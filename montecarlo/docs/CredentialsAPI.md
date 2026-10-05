@@ -1876,7 +1876,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1894,7 +1894,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -1944,7 +1944,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -1962,7 +1962,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -2012,7 +2012,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2030,7 +2030,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -2080,7 +2080,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2098,7 +2098,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -2148,7 +2148,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2166,7 +2166,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -2216,7 +2216,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2234,7 +2234,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -2284,7 +2284,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2302,7 +2302,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -2352,7 +2352,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2370,7 +2370,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -2420,7 +2420,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2438,7 +2438,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -2488,7 +2488,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2506,7 +2506,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -2556,7 +2556,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2574,7 +2574,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -2624,7 +2624,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2642,7 +2642,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -2692,7 +2692,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2710,7 +2710,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -2896,7 +2896,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2914,7 +2914,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -2964,7 +2964,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -2982,7 +2982,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -3032,7 +3032,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3050,7 +3050,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -3100,7 +3100,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3118,7 +3118,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -3236,7 +3236,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3254,7 +3254,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -3304,7 +3304,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3322,7 +3322,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -3372,7 +3372,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3390,7 +3390,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -3440,7 +3440,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3458,7 +3458,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -3508,7 +3508,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3526,7 +3526,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -3644,7 +3644,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3662,7 +3662,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -3712,7 +3712,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3732,7 +3732,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -3782,7 +3782,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3802,7 +3802,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -3852,7 +3852,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3872,7 +3872,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -3922,7 +3922,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -3942,7 +3942,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -3992,7 +3992,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4012,7 +4012,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -4062,7 +4062,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4082,7 +4082,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -4132,7 +4132,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4152,7 +4152,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -4202,7 +4202,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4222,7 +4222,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -4272,7 +4272,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4292,7 +4292,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -4342,7 +4342,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4362,7 +4362,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -4412,7 +4412,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4432,7 +4432,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -4482,7 +4482,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4502,7 +4502,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -4692,7 +4692,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4712,7 +4712,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -4762,7 +4762,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4782,7 +4782,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -4832,7 +4832,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4852,7 +4852,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -4902,7 +4902,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -4922,7 +4922,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -5042,7 +5042,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -5062,7 +5062,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -5112,7 +5112,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -5132,7 +5132,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -5182,7 +5182,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -5202,7 +5202,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -5252,7 +5252,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -5272,7 +5272,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -5322,7 +5322,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -5342,7 +5342,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -5462,7 +5462,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -5482,7 +5482,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -5602,7 +5602,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	awsSecretsManagerCredentialsPatch := *openapiclient.NewAwsSecretsManagerCredentialsPatch() // AwsSecretsManagerCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -5623,7 +5623,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -5674,7 +5674,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	azureDedicatedSqlPoolCredentialsPatch := *openapiclient.NewAzureDedicatedSqlPoolCredentialsPatch() // AzureDedicatedSqlPoolCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -5695,7 +5695,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -5746,7 +5746,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	azureKeyVaultCredentialsPatch := *openapiclient.NewAzureKeyVaultCredentialsPatch() // AzureKeyVaultCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -5767,7 +5767,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -5818,7 +5818,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	azureSqlDatabaseCredentialsPatch := *openapiclient.NewAzureSqlDatabaseCredentialsPatch() // AzureSqlDatabaseCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -5839,7 +5839,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -5890,7 +5890,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	bigQueryCredentialsPatch := *openapiclient.NewBigQueryCredentialsPatch() // BigQueryCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -5911,7 +5911,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -5962,7 +5962,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	clickHouseCredentialsPatch := *openapiclient.NewClickHouseCredentialsPatch() // ClickHouseCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -5983,7 +5983,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -6034,7 +6034,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	databricksMetastoreSqlWarehouseCredentialsPatch := *openapiclient.NewDatabricksMetastoreSqlWarehouseCredentialsPatch() // DatabricksMetastoreSqlWarehouseCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -6055,7 +6055,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -6106,7 +6106,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	databricksSqlWarehouseCredentialsPatch := *openapiclient.NewDatabricksSqlWarehouseCredentialsPatch() // DatabricksSqlWarehouseCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -6127,7 +6127,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -6178,7 +6178,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	db2CredentialsPatch := *openapiclient.NewDb2CredentialsPatch() // Db2CredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -6199,7 +6199,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -6250,7 +6250,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	envVarCredentialsPatch := *openapiclient.NewEnvVarCredentialsPatch() // EnvVarCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -6271,7 +6271,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -6322,7 +6322,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	fileCredentialsPatch := *openapiclient.NewFileCredentialsPatch() // FileCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -6343,7 +6343,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -6394,7 +6394,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	gcpSecretManagerCredentialsPatch := *openapiclient.NewGcpSecretManagerCredentialsPatch() // GcpSecretManagerCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -6415,7 +6415,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -6610,7 +6610,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	mariaDbCredentialsPatch := *openapiclient.NewMariaDbCredentialsPatch() // MariaDbCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -6631,7 +6631,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -6682,7 +6682,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	mySqlCredentialsPatch := *openapiclient.NewMySqlCredentialsPatch() // MySqlCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -6703,7 +6703,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -6754,7 +6754,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	oracleCredentialsPatch := *openapiclient.NewOracleCredentialsPatch() // OracleCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -6775,7 +6775,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -6826,7 +6826,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	postgresCredentialsPatch := *openapiclient.NewPostgresCredentialsPatch() // PostgresCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -6847,7 +6847,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -6970,7 +6970,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	redshiftCredentialsPatch := *openapiclient.NewRedshiftCredentialsPatch() // RedshiftCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -6991,7 +6991,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -7042,7 +7042,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	sapHanaCredentialsPatch := *openapiclient.NewSapHanaCredentialsPatch() // SapHanaCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -7063,7 +7063,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -7114,7 +7114,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	snowflakeCredentialsPatch := *openapiclient.NewSnowflakeCredentialsPatch() // SnowflakeCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -7135,7 +7135,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -7186,7 +7186,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	starburstEnterpriseCredentialsPatch := *openapiclient.NewStarburstEnterpriseCredentialsPatch() // StarburstEnterpriseCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -7207,7 +7207,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -7258,7 +7258,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	starburstGalaxyCredentialsPatch := *openapiclient.NewStarburstGalaxyCredentialsPatch() // StarburstGalaxyCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -7279,7 +7279,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
@@ -7402,7 +7402,7 @@ import (
 )
 
 func main() {
-	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
 	teradataCredentialsPatch := *openapiclient.NewTeradataCredentialsPatch() // TeradataCredentialsPatch | 
 
 	configuration := openapiclient.NewConfiguration()
@@ -7423,7 +7423,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**credentialsId** | **string** |  | 
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
 
 ### Other Parameters
 
