@@ -4,7 +4,9 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CreateAirflowCredentials**](CredentialsAPI.md#CreateAirflowCredentials) | **Post** /api/v2/credentials/airflow | Create Airflow credentials
 [**CreateAwsSecretsManagerCredentials**](CredentialsAPI.md#CreateAwsSecretsManagerCredentials) | **Post** /api/v2/credentials/self-hosted/aws | Create AWS Secrets Manager credentials
+[**CreateAzureDataFactoryCredentials**](CredentialsAPI.md#CreateAzureDataFactoryCredentials) | **Post** /api/v2/credentials/azure-data-factory | Create Azure Data Factory credentials
 [**CreateAzureDedicatedSqlPoolCredentials**](CredentialsAPI.md#CreateAzureDedicatedSqlPoolCredentials) | **Post** /api/v2/credentials/azure-dedicated-sql-pool | Create Azure Dedicated SQL Pool credentials
 [**CreateAzureKeyVaultCredentials**](CredentialsAPI.md#CreateAzureKeyVaultCredentials) | **Post** /api/v2/credentials/self-hosted/azure | Create Azure Key Vault credentials
 [**CreateAzureSqlDatabaseCredentials**](CredentialsAPI.md#CreateAzureSqlDatabaseCredentials) | **Post** /api/v2/credentials/azure-sql-database | Create Azure SQL Database credentials
@@ -15,10 +17,14 @@ Method | HTTP request | Description
 [**CreateDb2Credentials**](CredentialsAPI.md#CreateDb2Credentials) | **Post** /api/v2/credentials/db2 | Create Db2 credentials
 [**CreateEnvVarCredentials**](CredentialsAPI.md#CreateEnvVarCredentials) | **Post** /api/v2/credentials/self-hosted/env-var | Create environment variable credentials
 [**CreateFileCredentials**](CredentialsAPI.md#CreateFileCredentials) | **Post** /api/v2/credentials/self-hosted/file | Create file credentials
+[**CreateFivetranCredentials**](CredentialsAPI.md#CreateFivetranCredentials) | **Post** /api/v2/credentials/fivetran | Create Fivetran credentials
+[**CreateGcpDataformCredentials**](CredentialsAPI.md#CreateGcpDataformCredentials) | **Post** /api/v2/credentials/gcp-dataform | Create GCP Dataform credentials
 [**CreateGcpSecretManagerCredentials**](CredentialsAPI.md#CreateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp | Create GCP Secret Manager credentials
+[**CreateInformaticaV2Credentials**](CredentialsAPI.md#CreateInformaticaV2Credentials) | **Post** /api/v2/credentials/informatica-v2 | Create Informatica credentials
 [**CreateLookerCredentials**](CredentialsAPI.md#CreateLookerCredentials) | **Post** /api/v2/credentials/looker | Create Looker credentials
 [**CreateLookerGitCloneCredentials**](CredentialsAPI.md#CreateLookerGitCloneCredentials) | **Post** /api/v2/credentials/looker-git-clone | Create LookML repository credentials
 [**CreateMariadbCredentials**](CredentialsAPI.md#CreateMariadbCredentials) | **Post** /api/v2/credentials/mariadb | Create MariaDB credentials
+[**CreateMulesoftCredentials**](CredentialsAPI.md#CreateMulesoftCredentials) | **Post** /api/v2/credentials/mulesoft | Create MuleSoft credentials
 [**CreateMysqlCredentials**](CredentialsAPI.md#CreateMysqlCredentials) | **Post** /api/v2/credentials/mysql | Create MySQL credentials
 [**CreateOracleCredentials**](CredentialsAPI.md#CreateOracleCredentials) | **Post** /api/v2/credentials/oracle | Create Oracle credentials
 [**CreatePostgresCredentials**](CredentialsAPI.md#CreatePostgresCredentials) | **Post** /api/v2/credentials/postgres | Create PostgreSQL credentials
@@ -30,7 +36,9 @@ Method | HTTP request | Description
 [**CreateStarburstGalaxyCredentials**](CredentialsAPI.md#CreateStarburstGalaxyCredentials) | **Post** /api/v2/credentials/starburst-galaxy | Create Starburst Galaxy credentials
 [**CreateTableauCredentials**](CredentialsAPI.md#CreateTableauCredentials) | **Post** /api/v2/credentials/tableau | Create Tableau credentials
 [**CreateTeradataCredentials**](CredentialsAPI.md#CreateTeradataCredentials) | **Post** /api/v2/credentials/teradata | Create Teradata credentials
+[**DeleteAirflowCredentials**](CredentialsAPI.md#DeleteAirflowCredentials) | **Delete** /api/v2/credentials/airflow/{credentials_id} | Delete Airflow credentials
 [**DeleteAwsSecretsManagerCredentials**](CredentialsAPI.md#DeleteAwsSecretsManagerCredentials) | **Delete** /api/v2/credentials/self-hosted/aws/{credentials_id} | Delete AWS Secrets Manager credentials
+[**DeleteAzureDataFactoryCredentials**](CredentialsAPI.md#DeleteAzureDataFactoryCredentials) | **Delete** /api/v2/credentials/azure-data-factory/{credentials_id} | Delete Azure Data Factory credentials
 [**DeleteAzureDedicatedSqlPoolCredentials**](CredentialsAPI.md#DeleteAzureDedicatedSqlPoolCredentials) | **Delete** /api/v2/credentials/azure-dedicated-sql-pool/{credentials_id} | Delete Azure Dedicated SQL Pool credentials
 [**DeleteAzureKeyVaultCredentials**](CredentialsAPI.md#DeleteAzureKeyVaultCredentials) | **Delete** /api/v2/credentials/self-hosted/azure/{credentials_id} | Delete Azure Key Vault credentials
 [**DeleteAzureSqlDatabaseCredentials**](CredentialsAPI.md#DeleteAzureSqlDatabaseCredentials) | **Delete** /api/v2/credentials/azure-sql-database/{credentials_id} | Delete Azure SQL Database credentials
@@ -42,10 +50,14 @@ Method | HTTP request | Description
 [**DeleteDb2Credentials**](CredentialsAPI.md#DeleteDb2Credentials) | **Delete** /api/v2/credentials/db2/{credentials_id} | Delete Db2 credentials
 [**DeleteEnvVarCredentials**](CredentialsAPI.md#DeleteEnvVarCredentials) | **Delete** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Delete environment variable credentials
 [**DeleteFileCredentials**](CredentialsAPI.md#DeleteFileCredentials) | **Delete** /api/v2/credentials/self-hosted/file/{credentials_id} | Delete file credentials
+[**DeleteFivetranCredentials**](CredentialsAPI.md#DeleteFivetranCredentials) | **Delete** /api/v2/credentials/fivetran/{credentials_id} | Delete Fivetran credentials
+[**DeleteGcpDataformCredentials**](CredentialsAPI.md#DeleteGcpDataformCredentials) | **Delete** /api/v2/credentials/gcp-dataform/{credentials_id} | Delete GCP Dataform credentials
 [**DeleteGcpSecretManagerCredentials**](CredentialsAPI.md#DeleteGcpSecretManagerCredentials) | **Delete** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Delete GCP Secret Manager credentials
+[**DeleteInformaticaV2Credentials**](CredentialsAPI.md#DeleteInformaticaV2Credentials) | **Delete** /api/v2/credentials/informatica-v2/{credentials_id} | Delete Informatica credentials
 [**DeleteLookerCredentials**](CredentialsAPI.md#DeleteLookerCredentials) | **Delete** /api/v2/credentials/looker/{credentials_id} | Delete Looker credentials
 [**DeleteLookerGitCloneCredentials**](CredentialsAPI.md#DeleteLookerGitCloneCredentials) | **Delete** /api/v2/credentials/looker-git-clone/{credentials_id} | Delete LookML repository credentials
 [**DeleteMariadbCredentials**](CredentialsAPI.md#DeleteMariadbCredentials) | **Delete** /api/v2/credentials/mariadb/{credentials_id} | Delete MariaDB credentials
+[**DeleteMulesoftCredentials**](CredentialsAPI.md#DeleteMulesoftCredentials) | **Delete** /api/v2/credentials/mulesoft/{credentials_id} | Delete MuleSoft credentials
 [**DeleteMysqlCredentials**](CredentialsAPI.md#DeleteMysqlCredentials) | **Delete** /api/v2/credentials/mysql/{credentials_id} | Delete MySQL credentials
 [**DeleteOracleCredentials**](CredentialsAPI.md#DeleteOracleCredentials) | **Delete** /api/v2/credentials/oracle/{credentials_id} | Delete Oracle credentials
 [**DeletePostgresCredentials**](CredentialsAPI.md#DeletePostgresCredentials) | **Delete** /api/v2/credentials/postgres/{credentials_id} | Delete PostgreSQL credentials
@@ -57,7 +69,9 @@ Method | HTTP request | Description
 [**DeleteStarburstGalaxyCredentials**](CredentialsAPI.md#DeleteStarburstGalaxyCredentials) | **Delete** /api/v2/credentials/starburst-galaxy/{credentials_id} | Delete Starburst Galaxy credentials
 [**DeleteTableauCredentials**](CredentialsAPI.md#DeleteTableauCredentials) | **Delete** /api/v2/credentials/tableau/{credentials_id} | Delete Tableau credentials
 [**DeleteTeradataCredentials**](CredentialsAPI.md#DeleteTeradataCredentials) | **Delete** /api/v2/credentials/teradata/{credentials_id} | Delete Teradata credentials
+[**GetAirflowCredentials**](CredentialsAPI.md#GetAirflowCredentials) | **Get** /api/v2/credentials/airflow/{credentials_id} | Get Airflow credentials
 [**GetAwsSecretsManagerCredentials**](CredentialsAPI.md#GetAwsSecretsManagerCredentials) | **Get** /api/v2/credentials/self-hosted/aws/{credentials_id} | Get AWS Secrets Manager credentials
+[**GetAzureDataFactoryCredentials**](CredentialsAPI.md#GetAzureDataFactoryCredentials) | **Get** /api/v2/credentials/azure-data-factory/{credentials_id} | Get Azure Data Factory credentials
 [**GetAzureDedicatedSqlPoolCredentials**](CredentialsAPI.md#GetAzureDedicatedSqlPoolCredentials) | **Get** /api/v2/credentials/azure-dedicated-sql-pool/{credentials_id} | Get Azure Dedicated SQL Pool credentials
 [**GetAzureKeyVaultCredentials**](CredentialsAPI.md#GetAzureKeyVaultCredentials) | **Get** /api/v2/credentials/self-hosted/azure/{credentials_id} | Get Azure Key Vault credentials
 [**GetAzureSqlDatabaseCredentials**](CredentialsAPI.md#GetAzureSqlDatabaseCredentials) | **Get** /api/v2/credentials/azure-sql-database/{credentials_id} | Get Azure SQL Database credentials
@@ -68,10 +82,14 @@ Method | HTTP request | Description
 [**GetDb2Credentials**](CredentialsAPI.md#GetDb2Credentials) | **Get** /api/v2/credentials/db2/{credentials_id} | Get Db2 credentials
 [**GetEnvVarCredentials**](CredentialsAPI.md#GetEnvVarCredentials) | **Get** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Get environment variable credentials
 [**GetFileCredentials**](CredentialsAPI.md#GetFileCredentials) | **Get** /api/v2/credentials/self-hosted/file/{credentials_id} | Get file credentials
+[**GetFivetranCredentials**](CredentialsAPI.md#GetFivetranCredentials) | **Get** /api/v2/credentials/fivetran/{credentials_id} | Get Fivetran credentials
+[**GetGcpDataformCredentials**](CredentialsAPI.md#GetGcpDataformCredentials) | **Get** /api/v2/credentials/gcp-dataform/{credentials_id} | Get GCP Dataform credentials
 [**GetGcpSecretManagerCredentials**](CredentialsAPI.md#GetGcpSecretManagerCredentials) | **Get** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Get GCP Secret Manager credentials
+[**GetInformaticaV2Credentials**](CredentialsAPI.md#GetInformaticaV2Credentials) | **Get** /api/v2/credentials/informatica-v2/{credentials_id} | Get Informatica credentials
 [**GetLookerCredentials**](CredentialsAPI.md#GetLookerCredentials) | **Get** /api/v2/credentials/looker/{credentials_id} | Get Looker credentials
 [**GetLookerGitCloneCredentials**](CredentialsAPI.md#GetLookerGitCloneCredentials) | **Get** /api/v2/credentials/looker-git-clone/{credentials_id} | Get LookML repository credentials
 [**GetMariadbCredentials**](CredentialsAPI.md#GetMariadbCredentials) | **Get** /api/v2/credentials/mariadb/{credentials_id} | Get MariaDB credentials
+[**GetMulesoftCredentials**](CredentialsAPI.md#GetMulesoftCredentials) | **Get** /api/v2/credentials/mulesoft/{credentials_id} | Get MuleSoft credentials
 [**GetMysqlCredentials**](CredentialsAPI.md#GetMysqlCredentials) | **Get** /api/v2/credentials/mysql/{credentials_id} | Get MySQL credentials
 [**GetOracleCredentials**](CredentialsAPI.md#GetOracleCredentials) | **Get** /api/v2/credentials/oracle/{credentials_id} | Get Oracle credentials
 [**GetPostgresCredentials**](CredentialsAPI.md#GetPostgresCredentials) | **Get** /api/v2/credentials/postgres/{credentials_id} | Get PostgreSQL credentials
@@ -84,7 +102,9 @@ Method | HTTP request | Description
 [**GetTableauCredentials**](CredentialsAPI.md#GetTableauCredentials) | **Get** /api/v2/credentials/tableau/{credentials_id} | Get Tableau credentials
 [**GetTeradataCredentials**](CredentialsAPI.md#GetTeradataCredentials) | **Get** /api/v2/credentials/teradata/{credentials_id} | Get Teradata credentials
 [**ListCredentials**](CredentialsAPI.md#ListCredentials) | **Get** /api/v2/credentials | List credentials
+[**UpdateAirflowCredentials**](CredentialsAPI.md#UpdateAirflowCredentials) | **Patch** /api/v2/credentials/airflow/{credentials_id} | Update Airflow credentials
 [**UpdateAwsSecretsManagerCredentials**](CredentialsAPI.md#UpdateAwsSecretsManagerCredentials) | **Patch** /api/v2/credentials/self-hosted/aws/{credentials_id} | Update AWS Secrets Manager credentials
+[**UpdateAzureDataFactoryCredentials**](CredentialsAPI.md#UpdateAzureDataFactoryCredentials) | **Patch** /api/v2/credentials/azure-data-factory/{credentials_id} | Update Azure Data Factory credentials
 [**UpdateAzureDedicatedSqlPoolCredentials**](CredentialsAPI.md#UpdateAzureDedicatedSqlPoolCredentials) | **Patch** /api/v2/credentials/azure-dedicated-sql-pool/{credentials_id} | Update Azure Dedicated SQL Pool credentials
 [**UpdateAzureKeyVaultCredentials**](CredentialsAPI.md#UpdateAzureKeyVaultCredentials) | **Patch** /api/v2/credentials/self-hosted/azure/{credentials_id} | Update Azure Key Vault credentials
 [**UpdateAzureSqlDatabaseCredentials**](CredentialsAPI.md#UpdateAzureSqlDatabaseCredentials) | **Patch** /api/v2/credentials/azure-sql-database/{credentials_id} | Update Azure SQL Database credentials
@@ -95,10 +115,14 @@ Method | HTTP request | Description
 [**UpdateDb2Credentials**](CredentialsAPI.md#UpdateDb2Credentials) | **Patch** /api/v2/credentials/db2/{credentials_id} | Update Db2 credentials
 [**UpdateEnvVarCredentials**](CredentialsAPI.md#UpdateEnvVarCredentials) | **Patch** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Update environment variable credentials
 [**UpdateFileCredentials**](CredentialsAPI.md#UpdateFileCredentials) | **Patch** /api/v2/credentials/self-hosted/file/{credentials_id} | Update file credentials
+[**UpdateFivetranCredentials**](CredentialsAPI.md#UpdateFivetranCredentials) | **Patch** /api/v2/credentials/fivetran/{credentials_id} | Update Fivetran credentials
+[**UpdateGcpDataformCredentials**](CredentialsAPI.md#UpdateGcpDataformCredentials) | **Patch** /api/v2/credentials/gcp-dataform/{credentials_id} | Update GCP Dataform credentials
 [**UpdateGcpSecretManagerCredentials**](CredentialsAPI.md#UpdateGcpSecretManagerCredentials) | **Patch** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Update GCP Secret Manager credentials
+[**UpdateInformaticaV2Credentials**](CredentialsAPI.md#UpdateInformaticaV2Credentials) | **Patch** /api/v2/credentials/informatica-v2/{credentials_id} | Update Informatica credentials
 [**UpdateLookerCredentials**](CredentialsAPI.md#UpdateLookerCredentials) | **Patch** /api/v2/credentials/looker/{credentials_id} | Update Looker credentials
 [**UpdateLookerGitCloneCredentials**](CredentialsAPI.md#UpdateLookerGitCloneCredentials) | **Patch** /api/v2/credentials/looker-git-clone/{credentials_id} | Update LookML repository credentials
 [**UpdateMariadbCredentials**](CredentialsAPI.md#UpdateMariadbCredentials) | **Patch** /api/v2/credentials/mariadb/{credentials_id} | Update MariaDB credentials
+[**UpdateMulesoftCredentials**](CredentialsAPI.md#UpdateMulesoftCredentials) | **Patch** /api/v2/credentials/mulesoft/{credentials_id} | Update MuleSoft credentials
 [**UpdateMysqlCredentials**](CredentialsAPI.md#UpdateMysqlCredentials) | **Patch** /api/v2/credentials/mysql/{credentials_id} | Update MySQL credentials
 [**UpdateOracleCredentials**](CredentialsAPI.md#UpdateOracleCredentials) | **Patch** /api/v2/credentials/oracle/{credentials_id} | Update Oracle credentials
 [**UpdatePostgresCredentials**](CredentialsAPI.md#UpdatePostgresCredentials) | **Patch** /api/v2/credentials/postgres/{credentials_id} | Update PostgreSQL credentials
@@ -111,6 +135,7 @@ Method | HTTP request | Description
 [**UpdateTableauCredentials**](CredentialsAPI.md#UpdateTableauCredentials) | **Patch** /api/v2/credentials/tableau/{credentials_id} | Update Tableau credentials
 [**UpdateTeradataCredentials**](CredentialsAPI.md#UpdateTeradataCredentials) | **Patch** /api/v2/credentials/teradata/{credentials_id} | Update Teradata credentials
 [**ValidateAwsSecretsManagerCredentials**](CredentialsAPI.md#ValidateAwsSecretsManagerCredentials) | **Post** /api/v2/credentials/self-hosted/aws/validate | Validate AWS Secrets Manager credentials
+[**ValidateAzureDataFactoryCredentials**](CredentialsAPI.md#ValidateAzureDataFactoryCredentials) | **Post** /api/v2/credentials/azure-data-factory/validate | Validate Azure Data Factory credentials
 [**ValidateAzureDedicatedSqlPoolCredentials**](CredentialsAPI.md#ValidateAzureDedicatedSqlPoolCredentials) | **Post** /api/v2/credentials/azure-dedicated-sql-pool/validate | Validate Azure Dedicated SQL Pool credentials
 [**ValidateAzureKeyVaultCredentials**](CredentialsAPI.md#ValidateAzureKeyVaultCredentials) | **Post** /api/v2/credentials/self-hosted/azure/validate | Validate Azure Key Vault credentials
 [**ValidateAzureSqlDatabaseCredentials**](CredentialsAPI.md#ValidateAzureSqlDatabaseCredentials) | **Post** /api/v2/credentials/azure-sql-database/validate | Validate Azure SQL Database credentials
@@ -121,10 +146,14 @@ Method | HTTP request | Description
 [**ValidateDb2Credentials**](CredentialsAPI.md#ValidateDb2Credentials) | **Post** /api/v2/credentials/db2/validate | Validate Db2 credentials
 [**ValidateEnvVarCredentials**](CredentialsAPI.md#ValidateEnvVarCredentials) | **Post** /api/v2/credentials/self-hosted/env-var/validate | Validate environment variable credentials
 [**ValidateFileCredentials**](CredentialsAPI.md#ValidateFileCredentials) | **Post** /api/v2/credentials/self-hosted/file/validate | Validate file credentials
+[**ValidateFivetranCredentials**](CredentialsAPI.md#ValidateFivetranCredentials) | **Post** /api/v2/credentials/fivetran/validate | Validate Fivetran credentials
+[**ValidateGcpDataformCredentials**](CredentialsAPI.md#ValidateGcpDataformCredentials) | **Post** /api/v2/credentials/gcp-dataform/validate | Validate GCP Dataform credentials
 [**ValidateGcpSecretManagerCredentials**](CredentialsAPI.md#ValidateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp/validate | Validate GCP Secret Manager credentials
+[**ValidateInformaticaV2Credentials**](CredentialsAPI.md#ValidateInformaticaV2Credentials) | **Post** /api/v2/credentials/informatica-v2/validate | Validate Informatica credentials
 [**ValidateLookerCredentials**](CredentialsAPI.md#ValidateLookerCredentials) | **Post** /api/v2/credentials/looker/validate | Validate Looker credentials
 [**ValidateLookerGitCloneCredentials**](CredentialsAPI.md#ValidateLookerGitCloneCredentials) | **Post** /api/v2/credentials/looker-git-clone/validate | Validate LookML repository credentials
 [**ValidateMariadbCredentials**](CredentialsAPI.md#ValidateMariadbCredentials) | **Post** /api/v2/credentials/mariadb/validate | Validate MariaDB credentials
+[**ValidateMulesoftCredentials**](CredentialsAPI.md#ValidateMulesoftCredentials) | **Post** /api/v2/credentials/mulesoft/validate | Validate MuleSoft credentials
 [**ValidateMysqlCredentials**](CredentialsAPI.md#ValidateMysqlCredentials) | **Post** /api/v2/credentials/mysql/validate | Validate MySQL credentials
 [**ValidateOracleCredentials**](CredentialsAPI.md#ValidateOracleCredentials) | **Post** /api/v2/credentials/oracle/validate | Validate Oracle credentials
 [**ValidatePostgresCredentials**](CredentialsAPI.md#ValidatePostgresCredentials) | **Post** /api/v2/credentials/postgres/validate | Validate PostgreSQL credentials
@@ -137,6 +166,72 @@ Method | HTTP request | Description
 [**ValidateTableauCredentials**](CredentialsAPI.md#ValidateTableauCredentials) | **Post** /api/v2/credentials/tableau/validate | Validate Tableau credentials
 [**ValidateTeradataCredentials**](CredentialsAPI.md#ValidateTeradataCredentials) | **Post** /api/v2/credentials/teradata/validate | Validate Teradata credentials
 
+
+
+## CreateAirflowCredentials
+
+> AirflowCredentialsOut CreateAirflowCredentials(ctx).AirflowCredentialsIn(airflowCredentialsIn).Execute()
+
+Create Airflow credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	airflowCredentialsIn := *openapiclient.NewAirflowCredentialsIn("HostName_example") // AirflowCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateAirflowCredentials(context.Background()).AirflowCredentialsIn(airflowCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateAirflowCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateAirflowCredentials`: AirflowCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateAirflowCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateAirflowCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **airflowCredentialsIn** | [**AirflowCredentialsIn**](AirflowCredentialsIn.md) |  | 
+
+### Return type
+
+[**AirflowCredentialsOut**](AirflowCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CreateAwsSecretsManagerCredentials
@@ -190,6 +285,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AwsSecretsManagerCredentialsOut**](AwsSecretsManagerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateAzureDataFactoryCredentials
+
+> AzureDataFactoryCredentialsOut CreateAzureDataFactoryCredentials(ctx).AzureDataFactoryCredentialsIn(azureDataFactoryCredentialsIn).Execute()
+
+Create Azure Data Factory credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	azureDataFactoryCredentialsIn := *openapiclient.NewAzureDataFactoryCredentialsIn("TenantId_example", "AppClientId_example", "AppClientSecret_example", "SubscriptionId_example", "ResourceGroupName_example", "FactoryName_example") // AzureDataFactoryCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateAzureDataFactoryCredentials(context.Background()).AzureDataFactoryCredentialsIn(azureDataFactoryCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateAzureDataFactoryCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateAzureDataFactoryCredentials`: AzureDataFactoryCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateAzureDataFactoryCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateAzureDataFactoryCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **azureDataFactoryCredentialsIn** | [**AzureDataFactoryCredentialsIn**](AzureDataFactoryCredentialsIn.md) |  | 
+
+### Return type
+
+[**AzureDataFactoryCredentialsOut**](AzureDataFactoryCredentialsOut.md)
 
 ### Authorization
 
@@ -865,6 +1026,138 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateFivetranCredentials
+
+> FivetranCredentialsOut CreateFivetranCredentials(ctx).FivetranCredentialsIn(fivetranCredentialsIn).Execute()
+
+Create Fivetran credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	fivetranCredentialsIn := *openapiclient.NewFivetranCredentialsIn("ApiKey_example", "ApiPassword_example") // FivetranCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateFivetranCredentials(context.Background()).FivetranCredentialsIn(fivetranCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateFivetranCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateFivetranCredentials`: FivetranCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateFivetranCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateFivetranCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fivetranCredentialsIn** | [**FivetranCredentialsIn**](FivetranCredentialsIn.md) |  | 
+
+### Return type
+
+[**FivetranCredentialsOut**](FivetranCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateGcpDataformCredentials
+
+> GcpDataformCredentialsOut CreateGcpDataformCredentials(ctx).GcpDataformCredentialsIn(gcpDataformCredentialsIn).Execute()
+
+Create GCP Dataform credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	gcpDataformCredentialsIn := *openapiclient.NewGcpDataformCredentialsIn("ProjectId_example", []string{"Locations_example"}, "ServiceAccountKey_example") // GcpDataformCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateGcpDataformCredentials(context.Background()).GcpDataformCredentialsIn(gcpDataformCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateGcpDataformCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateGcpDataformCredentials`: GcpDataformCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateGcpDataformCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateGcpDataformCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **gcpDataformCredentialsIn** | [**GcpDataformCredentialsIn**](GcpDataformCredentialsIn.md) |  | 
+
+### Return type
+
+[**GcpDataformCredentialsOut**](GcpDataformCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateGcpSecretManagerCredentials
 
 > GcpSecretManagerCredentialsOut CreateGcpSecretManagerCredentials(ctx).GcpSecretManagerCredentialsIn(gcpSecretManagerCredentialsIn).Execute()
@@ -916,6 +1209,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GcpSecretManagerCredentialsOut**](GcpSecretManagerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateInformaticaV2Credentials
+
+> InformaticaV2CredentialsOut CreateInformaticaV2Credentials(ctx).InformaticaV2CredentialsIn(informaticaV2CredentialsIn).Execute()
+
+Create Informatica credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	informaticaV2CredentialsIn := *openapiclient.NewInformaticaV2CredentialsIn(openapiclient.InformaticaV2AuthMode("password")) // InformaticaV2CredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateInformaticaV2Credentials(context.Background()).InformaticaV2CredentialsIn(informaticaV2CredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateInformaticaV2Credentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateInformaticaV2Credentials`: InformaticaV2CredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateInformaticaV2Credentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateInformaticaV2CredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **informaticaV2CredentialsIn** | [**InformaticaV2CredentialsIn**](InformaticaV2CredentialsIn.md) |  | 
+
+### Return type
+
+[**InformaticaV2CredentialsOut**](InformaticaV2CredentialsOut.md)
 
 ### Authorization
 
@@ -1114,6 +1473,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MariaDbCredentialsOut**](MariaDbCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateMulesoftCredentials
+
+> MulesoftCredentialsOut CreateMulesoftCredentials(ctx).MulesoftCredentialsIn(mulesoftCredentialsIn).Execute()
+
+Create MuleSoft credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	mulesoftCredentialsIn := *openapiclient.NewMulesoftCredentialsIn("AppClientId_example", "AppClientSecret_example") // MulesoftCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateMulesoftCredentials(context.Background()).MulesoftCredentialsIn(mulesoftCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateMulesoftCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateMulesoftCredentials`: MulesoftCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateMulesoftCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateMulesoftCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **mulesoftCredentialsIn** | [**MulesoftCredentialsIn**](MulesoftCredentialsIn.md) |  | 
+
+### Return type
+
+[**MulesoftCredentialsOut**](MulesoftCredentialsOut.md)
 
 ### Authorization
 
@@ -1855,6 +2280,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteAirflowCredentials
+
+> DeleteAirflowCredentials(ctx, credentialsId).Execute()
+
+Delete Airflow credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteAirflowCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteAirflowCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAirflowCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteAwsSecretsManagerCredentials
 
 > DeleteAwsSecretsManagerCredentials(ctx, credentialsId).Execute()
@@ -1899,6 +2392,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteAwsSecretsManagerCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteAzureDataFactoryCredentials
+
+> DeleteAzureDataFactoryCredentials(ctx, credentialsId).Execute()
+
+Delete Azure Data Factory credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteAzureDataFactoryCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteAzureDataFactoryCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAzureDataFactoryCredentialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -2671,6 +3232,142 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteFivetranCredentials
+
+> DeleteFivetranCredentials(ctx, credentialsId).Execute()
+
+Delete Fivetran credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteFivetranCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteFivetranCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteFivetranCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteGcpDataformCredentials
+
+> DeleteGcpDataformCredentials(ctx, credentialsId).Execute()
+
+Delete GCP Dataform credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteGcpDataformCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteGcpDataformCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteGcpDataformCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteGcpSecretManagerCredentials
 
 > DeleteGcpSecretManagerCredentials(ctx, credentialsId).Execute()
@@ -2715,6 +3412,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteGcpSecretManagerCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteInformaticaV2Credentials
+
+> DeleteInformaticaV2Credentials(ctx, credentialsId).Execute()
+
+Delete Informatica credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteInformaticaV2Credentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteInformaticaV2Credentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteInformaticaV2CredentialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -2919,6 +3684,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteMariadbCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteMulesoftCredentials
+
+> DeleteMulesoftCredentials(ctx, credentialsId).Execute()
+
+Delete MuleSoft credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteMulesoftCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteMulesoftCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteMulesoftCredentialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -3691,6 +4524,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetAirflowCredentials
+
+> AirflowCredentialsOut GetAirflowCredentials(ctx, credentialsId).Execute()
+
+Get Airflow credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetAirflowCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetAirflowCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAirflowCredentials`: AirflowCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetAirflowCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAirflowCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**AirflowCredentialsOut**](AirflowCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetAwsSecretsManagerCredentials
 
 > AwsSecretsManagerCredentialsOut GetAwsSecretsManagerCredentials(ctx, credentialsId).Execute()
@@ -3746,6 +4649,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AwsSecretsManagerCredentialsOut**](AwsSecretsManagerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAzureDataFactoryCredentials
+
+> AzureDataFactoryCredentialsOut GetAzureDataFactoryCredentials(ctx, credentialsId).Execute()
+
+Get Azure Data Factory credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetAzureDataFactoryCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetAzureDataFactoryCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAzureDataFactoryCredentials`: AzureDataFactoryCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetAzureDataFactoryCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAzureDataFactoryCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**AzureDataFactoryCredentialsOut**](AzureDataFactoryCredentialsOut.md)
 
 ### Authorization
 
@@ -4461,6 +5434,146 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetFivetranCredentials
+
+> FivetranCredentialsOut GetFivetranCredentials(ctx, credentialsId).Execute()
+
+Get Fivetran credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetFivetranCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetFivetranCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetFivetranCredentials`: FivetranCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetFivetranCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetFivetranCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**FivetranCredentialsOut**](FivetranCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetGcpDataformCredentials
+
+> GcpDataformCredentialsOut GetGcpDataformCredentials(ctx, credentialsId).Execute()
+
+Get GCP Dataform credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetGcpDataformCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetGcpDataformCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetGcpDataformCredentials`: GcpDataformCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetGcpDataformCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetGcpDataformCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**GcpDataformCredentialsOut**](GcpDataformCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetGcpSecretManagerCredentials
 
 > GcpSecretManagerCredentialsOut GetGcpSecretManagerCredentials(ctx, credentialsId).Execute()
@@ -4516,6 +5629,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GcpSecretManagerCredentialsOut**](GcpSecretManagerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetInformaticaV2Credentials
+
+> InformaticaV2CredentialsOut GetInformaticaV2Credentials(ctx, credentialsId).Execute()
+
+Get Informatica credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetInformaticaV2Credentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetInformaticaV2Credentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetInformaticaV2Credentials`: InformaticaV2CredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetInformaticaV2Credentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetInformaticaV2CredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**InformaticaV2CredentialsOut**](InformaticaV2CredentialsOut.md)
 
 ### Authorization
 
@@ -4726,6 +5909,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MariaDbCredentialsOut**](MariaDbCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetMulesoftCredentials
+
+> MulesoftCredentialsOut GetMulesoftCredentials(ctx, credentialsId).Execute()
+
+Get MuleSoft credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetMulesoftCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetMulesoftCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetMulesoftCredentials`: MulesoftCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetMulesoftCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetMulesoftCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**MulesoftCredentialsOut**](MulesoftCredentialsOut.md)
 
 ### Authorization
 
@@ -5581,6 +6834,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateAirflowCredentials
+
+> AirflowCredentialsOut UpdateAirflowCredentials(ctx, credentialsId).AirflowCredentialsPatch(airflowCredentialsPatch).Execute()
+
+Update Airflow credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	airflowCredentialsPatch := *openapiclient.NewAirflowCredentialsPatch() // AirflowCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateAirflowCredentials(context.Background(), credentialsId).AirflowCredentialsPatch(airflowCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateAirflowCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateAirflowCredentials`: AirflowCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateAirflowCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateAirflowCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **airflowCredentialsPatch** | [**AirflowCredentialsPatch**](AirflowCredentialsPatch.md) |  | 
+
+### Return type
+
+[**AirflowCredentialsOut**](AirflowCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateAwsSecretsManagerCredentials
 
 > AwsSecretsManagerCredentialsOut UpdateAwsSecretsManagerCredentials(ctx, credentialsId).AwsSecretsManagerCredentialsPatch(awsSecretsManagerCredentialsPatch).Execute()
@@ -5638,6 +6963,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AwsSecretsManagerCredentialsOut**](AwsSecretsManagerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateAzureDataFactoryCredentials
+
+> AzureDataFactoryCredentialsOut UpdateAzureDataFactoryCredentials(ctx, credentialsId).AzureDataFactoryCredentialsPatch(azureDataFactoryCredentialsPatch).Execute()
+
+Update Azure Data Factory credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	azureDataFactoryCredentialsPatch := *openapiclient.NewAzureDataFactoryCredentialsPatch() // AzureDataFactoryCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateAzureDataFactoryCredentials(context.Background(), credentialsId).AzureDataFactoryCredentialsPatch(azureDataFactoryCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateAzureDataFactoryCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateAzureDataFactoryCredentials`: AzureDataFactoryCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateAzureDataFactoryCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateAzureDataFactoryCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **azureDataFactoryCredentialsPatch** | [**AzureDataFactoryCredentialsPatch**](AzureDataFactoryCredentialsPatch.md) |  | 
+
+### Return type
+
+[**AzureDataFactoryCredentialsOut**](AzureDataFactoryCredentialsOut.md)
 
 ### Authorization
 
@@ -6373,6 +7770,150 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateFivetranCredentials
+
+> FivetranCredentialsOut UpdateFivetranCredentials(ctx, credentialsId).FivetranCredentialsPatch(fivetranCredentialsPatch).Execute()
+
+Update Fivetran credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	fivetranCredentialsPatch := *openapiclient.NewFivetranCredentialsPatch() // FivetranCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateFivetranCredentials(context.Background(), credentialsId).FivetranCredentialsPatch(fivetranCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateFivetranCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateFivetranCredentials`: FivetranCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateFivetranCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateFivetranCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fivetranCredentialsPatch** | [**FivetranCredentialsPatch**](FivetranCredentialsPatch.md) |  | 
+
+### Return type
+
+[**FivetranCredentialsOut**](FivetranCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateGcpDataformCredentials
+
+> GcpDataformCredentialsOut UpdateGcpDataformCredentials(ctx, credentialsId).GcpDataformCredentialsPatch(gcpDataformCredentialsPatch).Execute()
+
+Update GCP Dataform credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	gcpDataformCredentialsPatch := *openapiclient.NewGcpDataformCredentialsPatch() // GcpDataformCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateGcpDataformCredentials(context.Background(), credentialsId).GcpDataformCredentialsPatch(gcpDataformCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateGcpDataformCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateGcpDataformCredentials`: GcpDataformCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateGcpDataformCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateGcpDataformCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **gcpDataformCredentialsPatch** | [**GcpDataformCredentialsPatch**](GcpDataformCredentialsPatch.md) |  | 
+
+### Return type
+
+[**GcpDataformCredentialsOut**](GcpDataformCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateGcpSecretManagerCredentials
 
 > GcpSecretManagerCredentialsOut UpdateGcpSecretManagerCredentials(ctx, credentialsId).GcpSecretManagerCredentialsPatch(gcpSecretManagerCredentialsPatch).Execute()
@@ -6430,6 +7971,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GcpSecretManagerCredentialsOut**](GcpSecretManagerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateInformaticaV2Credentials
+
+> InformaticaV2CredentialsOut UpdateInformaticaV2Credentials(ctx, credentialsId).InformaticaV2CredentialsPatch(informaticaV2CredentialsPatch).Execute()
+
+Update Informatica credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	informaticaV2CredentialsPatch := *openapiclient.NewInformaticaV2CredentialsPatch() // InformaticaV2CredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateInformaticaV2Credentials(context.Background(), credentialsId).InformaticaV2CredentialsPatch(informaticaV2CredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateInformaticaV2Credentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateInformaticaV2Credentials`: InformaticaV2CredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateInformaticaV2Credentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateInformaticaV2CredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **informaticaV2CredentialsPatch** | [**InformaticaV2CredentialsPatch**](InformaticaV2CredentialsPatch.md) |  | 
+
+### Return type
+
+[**InformaticaV2CredentialsOut**](InformaticaV2CredentialsOut.md)
 
 ### Authorization
 
@@ -6646,6 +8259,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MariaDbCredentialsOut**](MariaDbCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateMulesoftCredentials
+
+> MulesoftCredentialsOut UpdateMulesoftCredentials(ctx, credentialsId).MulesoftCredentialsPatch(mulesoftCredentialsPatch).Execute()
+
+Update MuleSoft credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | 
+	mulesoftCredentialsPatch := *openapiclient.NewMulesoftCredentialsPatch() // MulesoftCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateMulesoftCredentials(context.Background(), credentialsId).MulesoftCredentialsPatch(mulesoftCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateMulesoftCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateMulesoftCredentials`: MulesoftCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateMulesoftCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** |  | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateMulesoftCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **mulesoftCredentialsPatch** | [**MulesoftCredentialsPatch**](MulesoftCredentialsPatch.md) |  | 
+
+### Return type
+
+[**MulesoftCredentialsOut**](MulesoftCredentialsOut.md)
 
 ### Authorization
 
@@ -7519,6 +9204,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateAzureDataFactoryCredentials
+
+> ValidationRunOut ValidateAzureDataFactoryCredentials(ctx).AzureDataFactoryCredentialsValidateIn(azureDataFactoryCredentialsValidateIn).Execute()
+
+Validate Azure Data Factory credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	azureDataFactoryCredentialsValidateIn := *openapiclient.NewAzureDataFactoryCredentialsValidateIn("DeploymentId_example", "TenantId_example", "AppClientId_example", "AppClientSecret_example", "SubscriptionId_example", "ResourceGroupName_example", "FactoryName_example") // AzureDataFactoryCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateAzureDataFactoryCredentials(context.Background()).AzureDataFactoryCredentialsValidateIn(azureDataFactoryCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateAzureDataFactoryCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateAzureDataFactoryCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateAzureDataFactoryCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateAzureDataFactoryCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **azureDataFactoryCredentialsValidateIn** | [**AzureDataFactoryCredentialsValidateIn**](AzureDataFactoryCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateAzureDedicatedSqlPoolCredentials
 
 > ValidationRunOut ValidateAzureDedicatedSqlPoolCredentials(ctx).AzureDedicatedSqlPoolCredentialsValidateIn(azureDedicatedSqlPoolCredentialsValidateIn).Execute()
@@ -8179,6 +9930,138 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateFivetranCredentials
+
+> ValidationRunOut ValidateFivetranCredentials(ctx).FivetranCredentialsValidateIn(fivetranCredentialsValidateIn).Execute()
+
+Validate Fivetran credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	fivetranCredentialsValidateIn := *openapiclient.NewFivetranCredentialsValidateIn("DeploymentId_example", "ApiKey_example", "ApiPassword_example") // FivetranCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateFivetranCredentials(context.Background()).FivetranCredentialsValidateIn(fivetranCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateFivetranCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateFivetranCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateFivetranCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateFivetranCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fivetranCredentialsValidateIn** | [**FivetranCredentialsValidateIn**](FivetranCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateGcpDataformCredentials
+
+> ValidationRunOut ValidateGcpDataformCredentials(ctx).GcpDataformCredentialsValidateIn(gcpDataformCredentialsValidateIn).Execute()
+
+Validate GCP Dataform credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	gcpDataformCredentialsValidateIn := *openapiclient.NewGcpDataformCredentialsValidateIn("DeploymentId_example", "ProjectId_example", []string{"Locations_example"}, "ServiceAccountKey_example") // GcpDataformCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateGcpDataformCredentials(context.Background()).GcpDataformCredentialsValidateIn(gcpDataformCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateGcpDataformCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateGcpDataformCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateGcpDataformCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateGcpDataformCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **gcpDataformCredentialsValidateIn** | [**GcpDataformCredentialsValidateIn**](GcpDataformCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateGcpSecretManagerCredentials
 
 > ValidationRunOut ValidateGcpSecretManagerCredentials(ctx).GcpSecretManagerCredentialsValidateIn(gcpSecretManagerCredentialsValidateIn).Execute()
@@ -8226,6 +10109,72 @@ Other parameters are passed through a pointer to a apiValidateGcpSecretManagerCr
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **gcpSecretManagerCredentialsValidateIn** | [**GcpSecretManagerCredentialsValidateIn**](GcpSecretManagerCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateInformaticaV2Credentials
+
+> ValidationRunOut ValidateInformaticaV2Credentials(ctx).InformaticaV2CredentialsValidateIn(informaticaV2CredentialsValidateIn).Execute()
+
+Validate Informatica credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	informaticaV2CredentialsValidateIn := *openapiclient.NewInformaticaV2CredentialsValidateIn("DeploymentId_example", openapiclient.InformaticaV2AuthMode("password")) // InformaticaV2CredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateInformaticaV2Credentials(context.Background()).InformaticaV2CredentialsValidateIn(informaticaV2CredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateInformaticaV2Credentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateInformaticaV2Credentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateInformaticaV2Credentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateInformaticaV2CredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **informaticaV2CredentialsValidateIn** | [**InformaticaV2CredentialsValidateIn**](InformaticaV2CredentialsValidateIn.md) |  | 
 
 ### Return type
 
@@ -8424,6 +10373,72 @@ Other parameters are passed through a pointer to a apiValidateMariadbCredentials
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mariaDbCredentialsValidateIn** | [**MariaDbCredentialsValidateIn**](MariaDbCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateMulesoftCredentials
+
+> ValidationRunOut ValidateMulesoftCredentials(ctx).MulesoftCredentialsValidateIn(mulesoftCredentialsValidateIn).Execute()
+
+Validate MuleSoft credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	mulesoftCredentialsValidateIn := *openapiclient.NewMulesoftCredentialsValidateIn("DeploymentId_example", "AppClientId_example", "AppClientSecret_example") // MulesoftCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateMulesoftCredentials(context.Background()).MulesoftCredentialsValidateIn(mulesoftCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateMulesoftCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateMulesoftCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateMulesoftCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateMulesoftCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **mulesoftCredentialsValidateIn** | [**MulesoftCredentialsValidateIn**](MulesoftCredentialsValidateIn.md) |  | 
 
 ### Return type
 
