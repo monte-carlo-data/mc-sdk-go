@@ -72,7 +72,7 @@ directory is the unit of organisation, which is why the output moved there.
 
 **Anything hand-written under `montecarlo/`, or anything we don't want emitted there, must be
 listed in `montecarlo/.openapi-generator-ignore`** — the generator reads the ignore file from
-its output directory. `generate-go-sdk.sh` and this repository's own CI gate both check
+its output directory. api-codegen's generation script and this repository's own CI gate both check
 `montecarlo/.openapi-generator-ignore` against this list — see below for exactly how each
 does; this section documents the file entry for entry, so the two must be kept in step by
 hand:
@@ -106,16 +106,16 @@ are reserved against future schemas named `Client` and `Options`, and a collisio
 a compile failure at regeneration time whose only fix is renaming the SDK's public API.
 api-codegen's own templates also declare into `package montecarlo`, via
 `api_*_paging.gen.go`, so `paginate` is reserved to the hand-written driver the same way;
-api-codegen records that reservation on its side too, in `GO_SDK_HELPERS`.
+api-codegen records that reservation on its side too.
 
 The generation script also passes `isGoSubmodule=true`, which is what makes the import path in
 the generated `docs/` examples read `.../mc-sdk-go/montecarlo` rather than the module root.
 
 Two separate checks read `montecarlo/.openapi-generator-ignore`, and only one of them is
-`api-codegen`'s. `generate-go-sdk.sh`'s `PROTECTED` array holds the five paths
+`api-codegen`'s. Its generation script holds a list of the five paths
 `openapi-generator` itself emits — `README.md`, `.gitignore`, `git_push.sh`, `.travis.yml`,
 `api/openapi.yaml` — and asserts each appears in the ignore file whole line for whole line.
-`doc.go` and `paginate.go` are not in that array, so a variant spelling such as `./doc.go`
+`doc.go` and `paginate.go` are not in that list, so a variant spelling such as `./doc.go`
 would pass it untouched. The hand-written entries, including those two, are owned here
 instead: this repository's own CI gate checks that every `montecarlo/*.go` file not matching
 one of the generator's own names (`api_*.go`, `model_*.go`, `client.go`, `configuration.go`,
