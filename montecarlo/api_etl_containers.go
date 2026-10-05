@@ -19,42 +19,41 @@ import (
 	"strings"
 )
 
-// DeploymentsAPIService DeploymentsAPI service
-type DeploymentsAPIService service
+// EtlContainersAPIService EtlContainersAPI service
+type EtlContainersAPIService service
 
-type ApiCreateDeploymentRequest struct {
-	ctx          context.Context
-	ApiService   *DeploymentsAPIService
-	deploymentIn *DeploymentIn
+type ApiCreateEtlContainerRequest struct {
+	ctx            context.Context
+	ApiService     *EtlContainersAPIService
+	etlContainerIn *EtlContainerIn
 }
 
-func (r ApiCreateDeploymentRequest) DeploymentIn(deploymentIn DeploymentIn) ApiCreateDeploymentRequest {
-	r.deploymentIn = &deploymentIn
+func (r ApiCreateEtlContainerRequest) EtlContainerIn(etlContainerIn EtlContainerIn) ApiCreateEtlContainerRequest {
+	r.etlContainerIn = &etlContainerIn
 	return r
 }
 
-func (r ApiCreateDeploymentRequest) Execute() (*DeploymentOut, *http.Response, error) {
-	return r.ApiService.CreateDeploymentExecute(r)
+func (r ApiCreateEtlContainerRequest) Execute() (*EtlContainerOut, *http.Response, error) {
+	return r.ApiService.CreateEtlContainerExecute(r)
 }
 
 /*
-CreateDeployment Create a deployment
+CreateEtlContainer Create an ETL container
 
-Provision a deployment for a collection agent or a data store to be registered on.
+Create an empty ETL container.
 
-Connecting either one takes two calls, and this is the first. Monte Carlo allocates the
-deployment, and returns an external id for a deployment it will reach by assuming a role.
-Registering on the deployment is the second call, and that is what enables it.
-
-The new deployment is not enabled and serves no connections until something is registered
-on it. It counts against your account's deployment limit as soon as it is created, whether
-or not anything ever is.
+The container holds no connection until you add one. Its type is fixed at creation and
+decides which connection it accepts. Every type except `airflow` runs through a
+deployment, which has to be one the deployments list returns; any other id returns 404.
+A deployment that does not support the ETL tool, or needs an upgrade first, returns 409.
+A deployment takes one `fivetran` container. A name another container of the same type
+already uses returns 409. A type your account's plan does not include returns 403.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiCreateDeploymentRequest
+	@return ApiCreateEtlContainerRequest
 */
-func (a *DeploymentsAPIService) CreateDeployment(ctx context.Context) ApiCreateDeploymentRequest {
-	return ApiCreateDeploymentRequest{
+func (a *EtlContainersAPIService) CreateEtlContainer(ctx context.Context) ApiCreateEtlContainerRequest {
+	return ApiCreateEtlContainerRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
@@ -62,27 +61,27 @@ func (a *DeploymentsAPIService) CreateDeployment(ctx context.Context) ApiCreateD
 
 // Execute executes the request
 //
-//	@return DeploymentOut
-func (a *DeploymentsAPIService) CreateDeploymentExecute(r ApiCreateDeploymentRequest) (*DeploymentOut, *http.Response, error) {
+//	@return EtlContainerOut
+func (a *EtlContainersAPIService) CreateEtlContainerExecute(r ApiCreateEtlContainerRequest) (*EtlContainerOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *DeploymentOut
+		localVarReturnValue *EtlContainerOut
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeploymentsAPIService.CreateDeployment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EtlContainersAPIService.CreateEtlContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/deployments"
+	localVarPath := localBasePath + "/api/v2/etl-containers"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.deploymentIn == nil {
-		return localVarReturnValue, nil, reportError("deploymentIn is required and must be specified")
+	if r.etlContainerIn == nil {
+		return localVarReturnValue, nil, reportError("etlContainerIn is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -103,7 +102,7 @@ func (a *DeploymentsAPIService) CreateDeploymentExecute(r ApiCreateDeploymentReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.deploymentIn
+	localVarPostBody = r.etlContainerIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -125,6 +124,17 @@ func (a *DeploymentsAPIService) CreateDeploymentExecute(r ApiCreateDeploymentReq
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
@@ -149,17 +159,6 @@ func (a *DeploymentsAPIService) CreateDeploymentExecute(r ApiCreateDeploymentReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -217,56 +216,52 @@ func (a *DeploymentsAPIService) CreateDeploymentExecute(r ApiCreateDeploymentReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiDeleteDeploymentRequest struct {
-	ctx          context.Context
-	ApiService   *DeploymentsAPIService
-	deploymentId string
+type ApiDeleteEtlContainerRequest struct {
+	ctx            context.Context
+	ApiService     *EtlContainersAPIService
+	etlContainerId string
 }
 
-func (r ApiDeleteDeploymentRequest) Execute() (*http.Response, error) {
-	return r.ApiService.DeleteDeploymentExecute(r)
+func (r ApiDeleteEtlContainerRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteEtlContainerExecute(r)
 }
 
 /*
-DeleteDeployment Delete a deployment
+DeleteEtlContainer Delete an ETL container
 
-Delete a deployment, releasing the infrastructure Monte Carlo runs for it.
+Delete an ETL container.
 
-The deployment's storage is deleted with it, so empty that storage first. A deployment
-with an enabled collection agent or data store, connections still running through it, or
-ETL containers on it, cannot be deleted. Neither can one hosted by Monte Carlo, which this
-API does not provision. One that is not enabled is deleted along with the deployment.
-
-Deleting reaches several systems and can stop partway through. Repeating the request
-picks up where it stopped, so clear whatever a refusal named and send it again.
+Only an empty container can be deleted. A connection is managed as its own resource and
+is never deleted with its container, so remove it first. A synthetic container cannot be
+deleted here. Both refusals return 409.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deploymentId Id of the deployment, as returned when it is created or listed.
-	@return ApiDeleteDeploymentRequest
+	@param etlContainerId
+	@return ApiDeleteEtlContainerRequest
 */
-func (a *DeploymentsAPIService) DeleteDeployment(ctx context.Context, deploymentId string) ApiDeleteDeploymentRequest {
-	return ApiDeleteDeploymentRequest{
-		ApiService:   a,
-		ctx:          ctx,
-		deploymentId: deploymentId,
+func (a *EtlContainersAPIService) DeleteEtlContainer(ctx context.Context, etlContainerId string) ApiDeleteEtlContainerRequest {
+	return ApiDeleteEtlContainerRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		etlContainerId: etlContainerId,
 	}
 }
 
 // Execute executes the request
-func (a *DeploymentsAPIService) DeleteDeploymentExecute(r ApiDeleteDeploymentRequest) (*http.Response, error) {
+func (a *EtlContainersAPIService) DeleteEtlContainerExecute(r ApiDeleteEtlContainerRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeploymentsAPIService.DeleteDeployment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EtlContainersAPIService.DeleteEtlContainer")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/deployments/{deployment_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"deployment_id"+"}", url.PathEscape(parameterValueToString(r.deploymentId, "deploymentId")), -1)
+	localVarPath := localBasePath + "/api/v2/etl-containers/{etl_container_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"etl_container_id"+"}", url.PathEscape(parameterValueToString(r.etlContainerId, "etlContainerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -333,7 +328,7 @@ func (a *DeploymentsAPIService) DeleteDeploymentExecute(r ApiDeleteDeploymentReq
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 503 {
+		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -382,54 +377,53 @@ func (a *DeploymentsAPIService) DeleteDeploymentExecute(r ApiDeleteDeploymentReq
 	return localVarHTTPResponse, nil
 }
 
-type ApiGetDeploymentRequest struct {
-	ctx          context.Context
-	ApiService   *DeploymentsAPIService
-	deploymentId string
+type ApiGetEtlContainerRequest struct {
+	ctx            context.Context
+	ApiService     *EtlContainersAPIService
+	etlContainerId string
 }
 
-func (r ApiGetDeploymentRequest) Execute() (*DeploymentOut, *http.Response, error) {
-	return r.ApiService.GetDeploymentExecute(r)
+func (r ApiGetEtlContainerRequest) Execute() (*EtlContainerOut, *http.Response, error) {
+	return r.ApiService.GetEtlContainerExecute(r)
 }
 
 /*
-GetDeployment Get a deployment
+GetEtlContainer Get an ETL container
 
-Get one deployment. An AWS deployment includes the external id needed to register on it.
+Get one ETL container.
 
-An id that does not exist, belongs to another account, or names a deployment on Monte
-Carlo's older collection platform all return 404.
+An id that does not exist or belongs to another account returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deploymentId Id of the deployment, as returned when it is created or listed.
-	@return ApiGetDeploymentRequest
+	@param etlContainerId
+	@return ApiGetEtlContainerRequest
 */
-func (a *DeploymentsAPIService) GetDeployment(ctx context.Context, deploymentId string) ApiGetDeploymentRequest {
-	return ApiGetDeploymentRequest{
-		ApiService:   a,
-		ctx:          ctx,
-		deploymentId: deploymentId,
+func (a *EtlContainersAPIService) GetEtlContainer(ctx context.Context, etlContainerId string) ApiGetEtlContainerRequest {
+	return ApiGetEtlContainerRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		etlContainerId: etlContainerId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return DeploymentOut
-func (a *DeploymentsAPIService) GetDeploymentExecute(r ApiGetDeploymentRequest) (*DeploymentOut, *http.Response, error) {
+//	@return EtlContainerOut
+func (a *EtlContainersAPIService) GetEtlContainerExecute(r ApiGetEtlContainerRequest) (*EtlContainerOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *DeploymentOut
+		localVarReturnValue *EtlContainerOut
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeploymentsAPIService.GetDeployment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EtlContainersAPIService.GetEtlContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/deployments/{deployment_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"deployment_id"+"}", url.PathEscape(parameterValueToString(r.deploymentId, "deploymentId")), -1)
+	localVarPath := localBasePath + "/api/v2/etl-containers/{etl_container_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"etl_container_id"+"}", url.PathEscape(parameterValueToString(r.etlContainerId, "etlContainerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -532,35 +526,27 @@ func (a *DeploymentsAPIService) GetDeploymentExecute(r ApiGetDeploymentRequest) 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListDeploymentsRequest struct {
+type ApiListEtlContainersRequest struct {
 	ctx        context.Context
-	ApiService *DeploymentsAPIService
+	ApiService *EtlContainersAPIService
 }
 
-func (r ApiListDeploymentsRequest) Execute() ([]DeploymentSummaryOut, *http.Response, error) {
-	return r.ApiService.ListDeploymentsExecute(r)
+func (r ApiListEtlContainersRequest) Execute() ([]EtlContainerOut, *http.Response, error) {
+	return r.ApiService.ListEtlContainersExecute(r)
 }
 
 /*
-ListDeployments List deployments
+ListEtlContainers List ETL containers
 
-List the deployments in your account.
+List every ETL container in your account, oldest first.
 
-A deployment is the infrastructure that connects Monte Carlo to your environment. Each
-one hosts a collection agent or a data store, or is hosted by Monte Carlo itself.
-
-Only deployments on Monte Carlo's current collection platform are listed. Deployments on
-the older platform are managed separately and do not appear here.
-
-Deployments are sorted by name, ignoring case.
-
-A deployment's external id is returned by the single-deployment read, not by this list.
+The list includes synthetic containers, which this API does not create or delete.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListDeploymentsRequest
+	@return ApiListEtlContainersRequest
 */
-func (a *DeploymentsAPIService) ListDeployments(ctx context.Context) ApiListDeploymentsRequest {
-	return ApiListDeploymentsRequest{
+func (a *EtlContainersAPIService) ListEtlContainers(ctx context.Context) ApiListEtlContainersRequest {
+	return ApiListEtlContainersRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
@@ -568,21 +554,21 @@ func (a *DeploymentsAPIService) ListDeployments(ctx context.Context) ApiListDepl
 
 // Execute executes the request
 //
-//	@return []DeploymentSummaryOut
-func (a *DeploymentsAPIService) ListDeploymentsExecute(r ApiListDeploymentsRequest) ([]DeploymentSummaryOut, *http.Response, error) {
+//	@return []EtlContainerOut
+func (a *EtlContainersAPIService) ListEtlContainersExecute(r ApiListEtlContainersRequest) ([]EtlContainerOut, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue []DeploymentSummaryOut
+		localVarReturnValue []EtlContainerOut
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeploymentsAPIService.ListDeployments")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EtlContainersAPIService.ListEtlContainers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/deployments"
+	localVarPath := localBasePath + "/api/v2/etl-containers"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -674,73 +660,67 @@ func (a *DeploymentsAPIService) ListDeploymentsExecute(r ApiListDeploymentsReque
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiReprovisionDeploymentRequest struct {
-	ctx          context.Context
-	ApiService   *DeploymentsAPIService
-	deploymentId string
-	deploymentIn *DeploymentIn
+type ApiUpdateEtlContainerRequest struct {
+	ctx               context.Context
+	ApiService        *EtlContainersAPIService
+	etlContainerId    string
+	etlContainerPatch *EtlContainerPatch
 }
 
-func (r ApiReprovisionDeploymentRequest) DeploymentIn(deploymentIn DeploymentIn) ApiReprovisionDeploymentRequest {
-	r.deploymentIn = &deploymentIn
+func (r ApiUpdateEtlContainerRequest) EtlContainerPatch(etlContainerPatch EtlContainerPatch) ApiUpdateEtlContainerRequest {
+	r.etlContainerPatch = &etlContainerPatch
 	return r
 }
 
-func (r ApiReprovisionDeploymentRequest) Execute() (*DeploymentOut, *http.Response, error) {
-	return r.ApiService.ReprovisionDeploymentExecute(r)
+func (r ApiUpdateEtlContainerRequest) Execute() (*EtlContainerOut, *http.Response, error) {
+	return r.ApiService.UpdateEtlContainerExecute(r)
 }
 
 /*
-ReprovisionDeployment Reprovision a deployment
+UpdateEtlContainer Update an ETL container
 
-Give a deployment something fresh to register.
+Rename an ETL container.
 
-Use this to recover a deployment whose collection agent or data store was deleted, and to
-change what a deployment hosts. The deployment itself is kept, so it does not count
-against your account's limit a second time, and what it hosted is discarded. An AWS
-deployment is given a new external id, so a role trust policy naming the old one has to be
-updated.
-
-A deployment whose collection agent or data store is enabled cannot be reprovisioned;
-delete that first. Neither can one hosted by Monte Carlo, which this API does not
-provision.
+The name is the only thing you can change. The type and the deployment are fixed when the
+container is created. A name another container of the same type already uses returns 409.
+Sending an empty body leaves the container as it is and returns it.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deploymentId Id of the deployment, as returned when it is created or listed.
-	@return ApiReprovisionDeploymentRequest
+	@param etlContainerId
+	@return ApiUpdateEtlContainerRequest
 */
-func (a *DeploymentsAPIService) ReprovisionDeployment(ctx context.Context, deploymentId string) ApiReprovisionDeploymentRequest {
-	return ApiReprovisionDeploymentRequest{
-		ApiService:   a,
-		ctx:          ctx,
-		deploymentId: deploymentId,
+func (a *EtlContainersAPIService) UpdateEtlContainer(ctx context.Context, etlContainerId string) ApiUpdateEtlContainerRequest {
+	return ApiUpdateEtlContainerRequest{
+		ApiService:     a,
+		ctx:            ctx,
+		etlContainerId: etlContainerId,
 	}
 }
 
 // Execute executes the request
 //
-//	@return DeploymentOut
-func (a *DeploymentsAPIService) ReprovisionDeploymentExecute(r ApiReprovisionDeploymentRequest) (*DeploymentOut, *http.Response, error) {
+//	@return EtlContainerOut
+func (a *EtlContainersAPIService) UpdateEtlContainerExecute(r ApiUpdateEtlContainerRequest) (*EtlContainerOut, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
+		localVarHTTPMethod  = http.MethodPatch
 		localVarPostBody    interface{}
 		formFiles           []formFile
-		localVarReturnValue *DeploymentOut
+		localVarReturnValue *EtlContainerOut
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeploymentsAPIService.ReprovisionDeployment")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EtlContainersAPIService.UpdateEtlContainer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/deployments/{deployment_id}/reprovision"
-	localVarPath = strings.Replace(localVarPath, "{"+"deployment_id"+"}", url.PathEscape(parameterValueToString(r.deploymentId, "deploymentId")), -1)
+	localVarPath := localBasePath + "/api/v2/etl-containers/{etl_container_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"etl_container_id"+"}", url.PathEscape(parameterValueToString(r.etlContainerId, "etlContainerId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.deploymentIn == nil {
-		return localVarReturnValue, nil, reportError("deploymentIn is required and must be specified")
+	if r.etlContainerPatch == nil {
+		return localVarReturnValue, nil, reportError("etlContainerPatch is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -761,7 +741,7 @@ func (a *DeploymentsAPIService) ReprovisionDeploymentExecute(r ApiReprovisionDep
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.deploymentIn
+	localVarPostBody = r.etlContainerPatch
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -796,193 +776,6 @@ func (a *DeploymentsAPIService) ReprovisionDeploymentExecute(r ApiReprovisionDep
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 422 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 429 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 401 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 403 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type ApiUpdateDeploymentRequest struct {
-	ctx             context.Context
-	ApiService      *DeploymentsAPIService
-	deploymentId    string
-	deploymentPatch *DeploymentPatch
-}
-
-func (r ApiUpdateDeploymentRequest) DeploymentPatch(deploymentPatch DeploymentPatch) ApiUpdateDeploymentRequest {
-	r.deploymentPatch = &deploymentPatch
-	return r
-}
-
-func (r ApiUpdateDeploymentRequest) Execute() (*DeploymentOut, *http.Response, error) {
-	return r.ApiService.UpdateDeploymentExecute(r)
-}
-
-/*
-UpdateDeployment Update a deployment
-
-Rename a deployment.
-
-The name is the only thing you can change here. What a deployment hosts and where it runs
-are settled when it is provisioned, so use reprovision to change either.
-
-Renaming changes nothing about the infrastructure behind the deployment. Every deployment
-can be renamed, including one hosted by Monte Carlo. Sending an empty body leaves the
-deployment as it is and returns it.
-
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param deploymentId Id of the deployment, as returned when it is created or listed.
-	@return ApiUpdateDeploymentRequest
-*/
-func (a *DeploymentsAPIService) UpdateDeployment(ctx context.Context, deploymentId string) ApiUpdateDeploymentRequest {
-	return ApiUpdateDeploymentRequest{
-		ApiService:   a,
-		ctx:          ctx,
-		deploymentId: deploymentId,
-	}
-}
-
-// Execute executes the request
-//
-//	@return DeploymentOut
-func (a *DeploymentsAPIService) UpdateDeploymentExecute(r ApiUpdateDeploymentRequest) (*DeploymentOut, *http.Response, error) {
-	var (
-		localVarHTTPMethod  = http.MethodPatch
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *DeploymentOut
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeploymentsAPIService.UpdateDeployment")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/api/v2/deployments/{deployment_id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"deployment_id"+"}", url.PathEscape(parameterValueToString(r.deploymentId, "deploymentId")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.deploymentPatch == nil {
-		return localVarReturnValue, nil, reportError("deploymentPatch is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.deploymentPatch
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
