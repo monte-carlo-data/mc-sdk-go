@@ -14,9 +14,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          persist-credentials: false
 
-      - uses: actions/setup-go@v5
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
         with:
           go-version-file: go.mod
 
@@ -48,12 +50,16 @@ jobs:
 
       # Hand-written files share the generator's output directory and are protected from
       # overwrite only by the ignore file. Every .go file that is not one of the generator's
-      # own names must be listed there, or the next generation run replaces it.
-      - name: Every hand-written file stays protected from the generator
+      # own names must be listed there, or the next generation run replaces it. It, and the
+      # ignore file itself, also need their own CODEOWNERS line: montecarlo/ is unowned, so
+      # without one a regeneration could change them unreviewed (see AGENTS.md).
+      - name: Every hand-written file stays protected from the generator and owned
         run: |
           test -s montecarlo/.openapi-generator-ignore
           for f in montecarlo/*.go; do
             b=$(basename "$f")
             case "$b" in api_*.go|model_*.go|client.go|configuration.go|response.go|utils.go) continue ;; esac
             grep -qxF "$b" montecarlo/.openapi-generator-ignore || { echo "$b is hand-written but not protected"; exit 1; }
+            grep -qE "^/montecarlo/${b}[[:space:]]+@" CODEOWNERS || { echo "$b is hand-written but has no code owner"; exit 1; }
           done
+          grep -qE '^/montecarlo/\.openapi-generator-ignore[[:space:]]+@' CODEOWNERS || { echo ".openapi-generator-ignore has no code owner"; exit 1; }

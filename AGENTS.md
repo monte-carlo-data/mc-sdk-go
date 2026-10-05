@@ -105,10 +105,12 @@ one of the generator's own names (`api_*.go`, `model_*.go`, `client.go`, `config
 section, keeping it in step with the ignore file is a manual discipline. One consequence worth
 stating: adding a hand-written file here needs no change on the api-codegen side.
 
-Regeneration is performed by Monte Carlo's internal API code-generation tooling, run by a
-maintainer from outside this repository — it owns generation for every artifact built from
-the spec (this SDK, the Terraform provider, the CLI). Consult that tooling directly to
-regenerate; it isn't reproduced here because it doesn't ship to consumers of this SDK.
+Regeneration is performed by Monte Carlo's internal API code-generation tooling, which owns
+generation for every artifact built from the spec (this SDK, the Terraform provider, the CLI).
+It isn't reproduced here because it doesn't ship to consumers of this SDK. When the spec
+changes it opens a pull request from `mc-ci-cd-app`, and because `montecarlo/` carries no code
+owner, that pull request asks nobody for review. Every hand-written file under `montecarlo/`
+therefore needs its own line in `CODEOWNERS`, and CI fails when one is missing.
 
 Constructor parameters and struct fields follow the order the spec declares a schema's
 properties in. An export that changes that order changes public signatures with no schema
