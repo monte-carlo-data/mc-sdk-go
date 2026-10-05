@@ -2,6 +2,24 @@
 
 > The Go SDK for the Monte Carlo REST API: one package, `montecarlo`. Generated from the API's OpenAPI spec, except client construction, credentials (`auth.go`, `oauth.go`, `profile.go`), and the pagination driver (`paginate.go`), which are hand-written.
 
+## This repository is public
+
+Treat everything here as customer-facing, including commit messages and pull request
+descriptions: a closed pull request stays visible, a force-pushed commit stays reachable by its
+sha, and an edited description keeps its edit history. Doc comments become the package's
+pkg.go.dev page, and generated code ships as it is.
+
+So, **in the contents of any file committed here**: no internal file paths, no ticket
+identifiers, and no design rationale that only makes sense from the inside. Write that down in
+the ticket, or in the internal repository that owns generation, instead.
+
+Two internal names are the exception: api-codegen, the generator, and monolith, the service
+the API spec is exported from. Generated files and `.api-codegen-source.json` already name
+them. Name no other internal repository.
+
+Branch names and pull request metadata may carry a username and a ticket id, as in the
+`<person>/<ticket-id>-<slug>` convention under [Branching](#branching).
+
 ## Stack
 
 - **Language:** Go 1.24.0, matching `go.mod`, which is the source of truth for the floor
