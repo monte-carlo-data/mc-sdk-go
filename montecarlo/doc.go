@@ -1,3 +1,6 @@
+// Copyright Monte Carlo AI, Inc.
+// SPDX-License-Identifier: Apache-2.0
+
 // Package montecarlo is the Go SDK for the Monte Carlo REST API.
 //
 // Build a client with [NewClient]. Credentials resolve from the [Options] passed in, then
