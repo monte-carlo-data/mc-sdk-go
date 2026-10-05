@@ -4,6 +4,7 @@ api_collection_data_stores.go
 api_connections.go
 api_credentials.go
 api_deployments.go
+api_etl_containers.go
 api_users.go
 api_validations.go
 api_warehouses.go
@@ -90,6 +91,11 @@ docs/EnvVarCredentialsIn.md
 docs/EnvVarCredentialsOut.md
 docs/EnvVarCredentialsPatch.md
 docs/EnvVarCredentialsValidateIn.md
+docs/EtlContainerIn.md
+docs/EtlContainerOut.md
+docs/EtlContainerPatch.md
+docs/EtlContainerType.md
+docs/EtlContainersAPI.md
 docs/FieldErrorOut.md
 docs/FileCredentialsIn.md
 docs/FileCredentialsOut.md
@@ -135,6 +141,7 @@ docs/MySqlCredentialsOut.md
 docs/MySqlCredentialsPatch.md
 docs/MySqlCredentialsValidateIn.md
 docs/NewBiContainerType.md
+docs/NewEtlContainerType.md
 docs/OracleCredentialsIn.md
 docs/OracleCredentialsOut.md
 docs/OracleCredentialsPatch.md
@@ -275,6 +282,10 @@ model_env_var_credentials_in.go
 model_env_var_credentials_out.go
 model_env_var_credentials_patch.go
 model_env_var_credentials_validate_in.go
+model_etl_container_in.go
+model_etl_container_out.go
+model_etl_container_patch.go
+model_etl_container_type.go
 model_field_error_out.go
 model_file_credentials_in.go
 model_file_credentials_out.go
@@ -320,6 +331,7 @@ model_my_sql_credentials_out.go
 model_my_sql_credentials_patch.go
 model_my_sql_credentials_validate_in.go
 model_new_bi_container_type.go
+model_new_etl_container_type.go
 model_oracle_credentials_in.go
 model_oracle_credentials_out.go
 model_oracle_credentials_patch.go
