@@ -20,7 +20,7 @@ import (
 // checks if the ConnectionOut type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ConnectionOut{}
 
-// ConnectionOut A connection: what Monte Carlo reaches one of a warehouse's or a BI container's systems with.  A connection belongs to a warehouse or to a BI container, and reads its secret from a credentials row. Deleting it leaves both in place.
+// ConnectionOut A connection: what Monte Carlo reaches one of a warehouse's, a BI container's or an ETL container's systems with.  A connection belongs to a warehouse, a BI container or an ETL container, and reads its secret from a credentials row. Deleting it leaves both in place.
 type ConnectionOut struct {
 	// Unique identifier of the connection.
 	Id string `json:"id"`
@@ -28,15 +28,19 @@ type ConnectionOut struct {
 	ConnectionType string `json:"connection_type"`
 	// Display name of the connection. Null for a connection that was never named.
 	Name NullableString `json:"name"`
-	// The warehouse the connection belongs to. Null for a connection on a BI container. Fixed once created.
+	// The warehouse the connection belongs to. Null for a connection on a BI or ETL container. Fixed once created.
 	WarehouseId NullableString `json:"warehouse_id"`
-	// Display name of that warehouse. Null for a warehouse that was never named, and for a connection on a BI container.
+	// Display name of that warehouse. Null for a warehouse that was never named, and for a connection on a BI or ETL container.
 	WarehouseName NullableString `json:"warehouse_name"`
-	// The BI container the connection belongs to. Null for a connection on a warehouse. Fixed once created.
+	// The BI container the connection belongs to. Null for a connection on a warehouse or an ETL container. Fixed once created.
 	BiContainerId NullableString `json:"bi_container_id"`
-	// Display name of that BI container. Null for a container that was never named, and for a connection on a warehouse.
+	// Display name of that BI container. Null for a container that was never named, and for a connection on a warehouse or an ETL container.
 	BiContainerName NullableString `json:"bi_container_name"`
-	// The deployment the connection runs through, taken from its warehouse or BI container. Null when that has no deployment. The id may name a deployment on Monte Carlo's older collection platform, which the deployments endpoints do not list.
+	// The ETL container the connection belongs to. Fixed once created for a connection on an ETL container. A warehouse or BI connection has one while it collects ETL jobs through a container of its own, such as Snowflake Tasks, a Databricks metastore or Power BI dataflows, and it changes when that is turned on or off. Null otherwise.
+	EtlContainerId NullableString `json:"etl_container_id"`
+	// Display name of that ETL container. Null when there is no ETL container.
+	EtlContainerName NullableString `json:"etl_container_name"`
+	// The deployment the connection runs through, taken from its warehouse, BI container or ETL container. Null when that has no deployment, as an Airflow ETL container has none. The id may name a deployment on Monte Carlo's older collection platform, which the deployments endpoints do not list.
 	DeploymentId NullableString `json:"deployment_id"`
 	// Display name of that deployment. Null when there is no deployment to name.
 	DeploymentName NullableString `json:"deployment_name"`
@@ -56,7 +60,7 @@ type _ConnectionOut ConnectionOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectionOut(id string, connectionType string, name NullableString, warehouseId NullableString, warehouseName NullableString, biContainerId NullableString, biContainerName NullableString, deploymentId NullableString, deploymentName NullableString, credentialsId NullableString, credentialsStorageType NullableCredentialsStorageType, jobTypes []string, createdTime time.Time) *ConnectionOut {
+func NewConnectionOut(id string, connectionType string, name NullableString, warehouseId NullableString, warehouseName NullableString, biContainerId NullableString, biContainerName NullableString, etlContainerId NullableString, etlContainerName NullableString, deploymentId NullableString, deploymentName NullableString, credentialsId NullableString, credentialsStorageType NullableCredentialsStorageType, jobTypes []string, createdTime time.Time) *ConnectionOut {
 	this := ConnectionOut{}
 	this.Id = id
 	this.ConnectionType = connectionType
@@ -65,6 +69,8 @@ func NewConnectionOut(id string, connectionType string, name NullableString, war
 	this.WarehouseName = warehouseName
 	this.BiContainerId = biContainerId
 	this.BiContainerName = biContainerName
+	this.EtlContainerId = etlContainerId
+	this.EtlContainerName = etlContainerName
 	this.DeploymentId = deploymentId
 	this.DeploymentName = deploymentName
 	this.CredentialsId = credentialsId
@@ -260,6 +266,58 @@ func (o *ConnectionOut) SetBiContainerName(v string) {
 	o.BiContainerName.Set(&v)
 }
 
+// GetEtlContainerId returns the EtlContainerId field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ConnectionOut) GetEtlContainerId() string {
+	if o == nil || o.EtlContainerId.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.EtlContainerId.Get()
+}
+
+// GetEtlContainerIdOk returns a tuple with the EtlContainerId field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectionOut) GetEtlContainerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EtlContainerId.Get(), o.EtlContainerId.IsSet()
+}
+
+// SetEtlContainerId sets field value
+func (o *ConnectionOut) SetEtlContainerId(v string) {
+	o.EtlContainerId.Set(&v)
+}
+
+// GetEtlContainerName returns the EtlContainerName field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ConnectionOut) GetEtlContainerName() string {
+	if o == nil || o.EtlContainerName.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.EtlContainerName.Get()
+}
+
+// GetEtlContainerNameOk returns a tuple with the EtlContainerName field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectionOut) GetEtlContainerNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EtlContainerName.Get(), o.EtlContainerName.IsSet()
+}
+
+// SetEtlContainerName sets field value
+func (o *ConnectionOut) SetEtlContainerName(v string) {
+	o.EtlContainerName.Set(&v)
+}
+
 // GetDeploymentId returns the DeploymentId field value
 // If the value is explicit nil, the zero value for string will be returned
 func (o *ConnectionOut) GetDeploymentId() string {
@@ -429,6 +487,8 @@ func (o ConnectionOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["warehouse_name"] = o.WarehouseName.Get()
 	toSerialize["bi_container_id"] = o.BiContainerId.Get()
 	toSerialize["bi_container_name"] = o.BiContainerName.Get()
+	toSerialize["etl_container_id"] = o.EtlContainerId.Get()
+	toSerialize["etl_container_name"] = o.EtlContainerName.Get()
 	toSerialize["deployment_id"] = o.DeploymentId.Get()
 	toSerialize["deployment_name"] = o.DeploymentName.Get()
 	toSerialize["credentials_id"] = o.CredentialsId.Get()
@@ -450,6 +510,8 @@ func (o *ConnectionOut) UnmarshalJSON(data []byte) (err error) {
 		"warehouse_name",
 		"bi_container_id",
 		"bi_container_name",
+		"etl_container_id",
+		"etl_container_name",
 		"deployment_id",
 		"deployment_name",
 		"credentials_id",
