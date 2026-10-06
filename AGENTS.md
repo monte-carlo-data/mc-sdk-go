@@ -32,6 +32,7 @@ go build ./...
 go test ./...
 go vet ./...
 gofmt -l .        # must be empty; generated output is formatted when it is produced
+.github/scripts/next-tag_test.sh   # the release-tag logic
 ```
 
 ## Key Directories
@@ -48,6 +49,8 @@ gofmt -l .        # must be empty; generated output is formatted when it is prod
 | `montecarlo/client.go`, `configuration.go`, `response.go`, `utils.go` | Generated client plumbing |
 | `montecarlo/.openapi-generator/` | Generator bookkeeping |
 | `montecarlo/docs/` | Generated API reference |
+| `VERSION` | The major.minor release base |
+| `.github/scripts/` | The release-tag script and its test |
 
 ## What is generated
 
@@ -128,7 +131,9 @@ generation for every artifact built from the spec (this SDK, the Terraform provi
 It isn't reproduced here because it doesn't ship to consumers of this SDK. When the spec
 changes it opens a pull request from `mc-ci-cd-app`, and because `montecarlo/` carries no code
 owner, that pull request asks nobody for review. Every hand-written file under `montecarlo/`
-therefore needs its own line in `CODEOWNERS`, and CI fails when one is missing.
+therefore needs its own line in `CODEOWNERS`, and CI fails when one is missing. Merging that
+pull request is a release. If it removes or renames an exported identifier, bump `VERSION` in
+the same pull request first (see [Releasing](#releasing)).
 
 Constructor parameters and struct fields follow the order the spec declares a schema's
 properties in. An export that changes that order changes public signatures with no schema
@@ -189,12 +194,17 @@ Branch from `main` as `<person>/<ticket-id>-<slug>`. Never commit directly to `m
 
 ## Releasing
 
-Every merge to `main` is a release. `.github/workflows/tag.yml` tags the merge commit
-`v<base>.<n>`: `<base>` is the major.minor in `VERSION`, and `<n>` is one past the highest
-patch already tagged on that base. `.github/scripts/next-tag.sh` works the tag out, and CI
-runs its test. The tag is pushed by the org App, which with Apollo is the only actor allowed
-to create tags, and tags are immutable. The same workflow then tells api-codegen, which moves
-the Terraform provider and the CLI to the new tag.
+Every merge to `main` is a release. The `tag` job in `.github/workflows/test.yml` tags the
+merge commit once the tests pass on it, as `v<base>.<n>`: `<base>` is the major.minor in
+`VERSION`, and `<n>` is one past the highest patch already tagged on that base.
+`.github/scripts/next-tag.sh` works the tag out, and CI runs its test. The tag is pushed by the
+org App, which with the `apollo` team is the only actor allowed to create tags, and tags are
+immutable. The job then tells api-codegen, which moves the Terraform provider and the CLI to
+this SDK's latest version. If a run fails after tagging, use "Re-run failed jobs"; a commit
+older than an already-tagged one is never tagged (the script skips it).
+
+The same `next-tag.sh`, its test and the tag job also live in terraform-provider-montecarlo;
+change them together.
 
 Only the patch is bumped automatically. To start a new minor, change `VERSION` (`0.1` to
 `0.2`) in a pull request; its merge is tagged `v0.2.0`. While the major is 0, a minor bump is

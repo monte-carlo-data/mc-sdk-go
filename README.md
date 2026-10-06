@@ -14,7 +14,7 @@ client construction, credentials, and the pagination driver are hand-written.
 go get github.com/monte-carlo-data/mc-sdk-go/montecarlo
 ```
 
-Every change is released as a new `v0.1.x` version. While the major version is 0, a new minor
+Every change is released as a new patch version. While the major version is 0, a new minor
 version (`v0.2.0`) marks a breaking change. A patch release can still reorder a generated
 constructor's parameters, so recompile and recheck positional calls after any upgrade.
 
