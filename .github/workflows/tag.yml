@@ -1,0 +1,77 @@
+# Every merge to main is a release. This tags it v<base>.<n>, with <base> read from VERSION,
+# then tells api-codegen, which moves the Terraform provider and the CLI to the new tag.
+#
+# The dispatch is a nudge, not a message. api-codegen reads this module's tags and each
+# target's own pin for itself, so the dispatch carries no payload to be trusted, and a missed
+# one costs nothing but time: the next push to api-codegen main reaches the same check.
+
+name: Tag a release
+
+on:
+  push:
+    branches: [main]
+
+# Nothing here writes with GITHUB_TOKEN. Both writes go out under tokens minted from the org
+# App, each scoped to the one repository it writes to.
+permissions:
+  contents: read
+
+# One run at a time, so two quick merges cannot pick the same tag. A run still waiting here is
+# replaced by a newer one, whose tag then covers both merges.
+concurrency:
+  group: tag
+  cancel-in-progress: false
+
+jobs:
+  tag:
+    name: Tag and tell api-codegen
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Work out the tag
+        id: next
+        run: echo "tag=$(.github/scripts/next-tag.sh)" >> "$GITHUB_OUTPUT"
+
+      # Tag creation is restricted to the App and Apollo by a ruleset, and tags are immutable.
+      - uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
+        id: tag-token
+        if: steps.next.outputs.tag != ''
+        with:
+          app-id: ${{ secrets.MC_GITHUB_APP_ID }}
+          private-key: ${{ secrets.MC_GITHUB_APP_PRIVATE_KEY }}
+          owner: monte-carlo-data
+          repositories: mc-sdk-go
+          permission-contents: write
+
+      - name: Tag ${{ steps.next.outputs.tag }}
+        if: steps.next.outputs.tag != ''
+        env:
+          GH_TOKEN: ${{ steps.tag-token.outputs.token }}
+          TAG: ${{ steps.next.outputs.tag }}
+        run: |
+          gh api -X POST "repos/$GITHUB_REPOSITORY/git/refs" \
+            -f ref="refs/tags/$TAG" -f sha="$GITHUB_SHA" > /dev/null
+          echo "Tagged $GITHUB_SHA as $TAG."
+
+      # contents: write is what the dispatches endpoint requires; it grants no more than
+      # api-codegen.
+      - uses: actions/create-github-app-token@fee1f7d63c2ff003460e3d139729b119787bc349 # v2.2.2
+        id: dispatch-token
+        with:
+          app-id: ${{ secrets.MC_GITHUB_APP_ID }}
+          private-key: ${{ secrets.MC_GITHUB_APP_PRIVATE_KEY }}
+          owner: monte-carlo-data
+          repositories: api-codegen
+          permission-contents: write
+
+      - name: Ask api-codegen to propagate
+        env:
+          GH_TOKEN: ${{ steps.dispatch-token.outputs.token }}
+        run: |
+          gh api -X POST repos/monte-carlo-data/api-codegen/dispatches \
+            -f event_type=sdk-merged
+          echo "Asked api-codegen to check whether its targets are behind this SDK."

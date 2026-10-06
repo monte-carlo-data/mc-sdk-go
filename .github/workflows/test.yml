@@ -31,6 +31,9 @@ jobs:
       - name: Format check
         run: test -z "$(gofmt -l .)"
 
+      - name: The release tag is worked out correctly
+        run: .github/scripts/next-tag_test.sh
+
       - name: Test
         run: go test -race ./...
 

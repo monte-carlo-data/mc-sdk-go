@@ -189,9 +189,19 @@ Branch from `main` as `<person>/<ticket-id>-<slug>`. Never commit directly to `m
 
 ## Releasing
 
-**Not yet.** The module path is final, but no version is tagged. A published version is
-permanent: `proxy.golang.org` caches it. Fetching by commit sha resolves a pseudo-version and
-is enough to verify the module builds for a consumer.
+Every merge to `main` is a release. `.github/workflows/tag.yml` tags the merge commit
+`v<base>.<n>`: `<base>` is the major.minor in `VERSION`, and `<n>` is one past the highest
+patch already tagged on that base. `.github/scripts/next-tag.sh` works the tag out, and CI
+runs its test. The tag is pushed by the org App, which with Apollo is the only actor allowed
+to create tags, and tags are immutable. The same workflow then tells api-codegen, which moves
+the Terraform provider and the CLI to the new tag.
+
+Only the patch is bumped automatically. To start a new minor, change `VERSION` (`0.1` to
+`0.2`) in a pull request; its merge is tagged `v0.2.0`. While the major is 0, a minor bump is
+how a deliberate breaking change is signalled. `VERSION` accepts a major of 0 or 1 only: a
+major of 2 or above changes the module path to `/v2` and every import with it.
+
+A published version is permanent: `proxy.golang.org` caches it.
 
 The licence is Apache-2.0, matching the Python SDK and the CLI. That is the SDK precedent
 rather than the agents' one: the agents ship as deployed artifacts under a proprietary licence,
