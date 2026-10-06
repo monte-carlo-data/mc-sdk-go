@@ -45,4 +45,5 @@ hand-edit generated files, because the next generation run overwrites them.
 
 ## Verification
 
-`go build ./...`, `go vet ./...`, `gofmt -l .` (must be empty), and `go test -race ./...`.
+`go build ./...`, `go vet ./...`, `gofmt -l .` (must be empty), `go test -race ./...`, and
+`.github/scripts/next-tag_test.sh`.
