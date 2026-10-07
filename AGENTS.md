@@ -203,8 +203,8 @@ immutable. The job then tells api-codegen, which moves the Terraform provider an
 this SDK's latest version. If a run fails after tagging, use "Re-run failed jobs"; a commit
 older than an already-tagged one is never tagged (the script skips it).
 
-The same `next-tag.sh`, its test and the tag job also live in terraform-provider-montecarlo;
-change them together.
+The same `next-tag.sh`, its test and the tag job also live in terraform-provider-montecarlo
+and mc-cli; change them together.
 
 Only the patch is bumped automatically. To start a new minor, change `VERSION` (`0.1` to
 `0.2`) in a pull request; its merge is tagged `v0.2.0`. While the major is 0, a minor bump is
