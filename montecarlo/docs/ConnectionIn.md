@@ -4,9 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | Display name for the connection. Unique among the connections of its warehouse or BI container. | 
-**WarehouseId** | Pointer to **NullableString** | The warehouse to add the connection to. Its type has to match what the credentials are for. Send this or &#x60;bi_container_id&#x60;, not both. | [optional] 
-**BiContainerId** | Pointer to **NullableString** | The BI container to add the connection to, for Tableau, Looker or Power BI credentials. Its type has to match what the credentials are for: a &#x60;looker&#x60; container takes both &#x60;looker&#x60; and &#x60;looker-git-clone&#x60; credentials. Send this or &#x60;warehouse_id&#x60;, not both. | [optional] 
+**Name** | **string** | Display name for the connection. Unique among the connections of its warehouse or BI container. An ETL container holds one connection. | 
+**WarehouseId** | Pointer to **NullableString** | The warehouse to add the connection to. Its type has to match what the credentials are for. Send exactly one of this, &#x60;bi_container_id&#x60; and &#x60;etl_container_id&#x60;. | [optional] 
+**BiContainerId** | Pointer to **NullableString** | The BI container to add the connection to, for Tableau, Looker or Power BI credentials. Its type has to match what the credentials are for: a &#x60;looker&#x60; container takes both &#x60;looker&#x60; and &#x60;looker-git-clone&#x60; credentials. Send exactly one of this, &#x60;warehouse_id&#x60; and &#x60;etl_container_id&#x60;. | [optional] 
+**EtlContainerId** | Pointer to **NullableString** | The ETL container to add the connection to, for ETL tool credentials such as Fivetran or Airflow. The container&#39;s type has to equal the credentials&#39; type, and the container must not have a connection yet. Send exactly one of this, &#x60;warehouse_id&#x60; and &#x60;bi_container_id&#x60;. | [optional] 
 **CredentialsId** | **string** | The credentials the connection reads with. They also decide the connection&#39;s type. Create them first, through one of the credentials endpoints. | 
 **JobTypes** | Pointer to **[]string** | The jobs to run on this connection. Omit it to run what the connection type runs by default, which is what the app does. Which values are accepted depends on the connection type. An empty list is not accepted; omit the field to take the defaults. | [optional] 
 
@@ -119,6 +120,41 @@ HasBiContainerId returns a boolean if a field has been set.
 `func (o *ConnectionIn) UnsetBiContainerId()`
 
 UnsetBiContainerId ensures that no value is present for BiContainerId, not even an explicit nil
+### GetEtlContainerId
+
+`func (o *ConnectionIn) GetEtlContainerId() string`
+
+GetEtlContainerId returns the EtlContainerId field if non-nil, zero value otherwise.
+
+### GetEtlContainerIdOk
+
+`func (o *ConnectionIn) GetEtlContainerIdOk() (*string, bool)`
+
+GetEtlContainerIdOk returns a tuple with the EtlContainerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEtlContainerId
+
+`func (o *ConnectionIn) SetEtlContainerId(v string)`
+
+SetEtlContainerId sets EtlContainerId field to given value.
+
+### HasEtlContainerId
+
+`func (o *ConnectionIn) HasEtlContainerId() bool`
+
+HasEtlContainerId returns a boolean if a field has been set.
+
+### SetEtlContainerIdNil
+
+`func (o *ConnectionIn) SetEtlContainerIdNil(b bool)`
+
+ SetEtlContainerIdNil sets the value for EtlContainerId to be an explicit nil
+
+### UnsetEtlContainerId
+`func (o *ConnectionIn) UnsetEtlContainerId()`
+
+UnsetEtlContainerId ensures that no value is present for EtlContainerId, not even an explicit nil
 ### GetCredentialsId
 
 `func (o *ConnectionIn) GetCredentialsId() string`

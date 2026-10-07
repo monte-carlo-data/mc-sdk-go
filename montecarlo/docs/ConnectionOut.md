@@ -7,11 +7,13 @@ Name | Type | Description | Notes
 **Id** | **string** | Unique identifier of the connection. | 
 **ConnectionType** | **string** | What the connection reaches, such as &#x60;snowflake&#x60;. Taken from the credentials the connection was created with, and fixed once created. | 
 **Name** | **NullableString** | Display name of the connection. Null for a connection that was never named. | 
-**WarehouseId** | **NullableString** | The warehouse the connection belongs to. Null for a connection on a BI container. Fixed once created. | 
-**WarehouseName** | **NullableString** | Display name of that warehouse. Null for a warehouse that was never named, and for a connection on a BI container. | 
-**BiContainerId** | **NullableString** | The BI container the connection belongs to. Null for a connection on a warehouse. Fixed once created. | 
-**BiContainerName** | **NullableString** | Display name of that BI container. Null for a container that was never named, and for a connection on a warehouse. | 
-**DeploymentId** | **NullableString** | The deployment the connection runs through, taken from its warehouse or BI container. Null when that has no deployment. The id may name a deployment on Monte Carlo&#39;s older collection platform, which the deployments endpoints do not list. | 
+**WarehouseId** | **NullableString** | The warehouse the connection belongs to. Null for a connection on a BI or ETL container. Fixed once created. | 
+**WarehouseName** | **NullableString** | Display name of that warehouse. Null for a warehouse that was never named, and for a connection on a BI or ETL container. | 
+**BiContainerId** | **NullableString** | The BI container the connection belongs to. Null for a connection on a warehouse or an ETL container. Fixed once created. | 
+**BiContainerName** | **NullableString** | Display name of that BI container. Null for a container that was never named, and for a connection on a warehouse or an ETL container. | 
+**EtlContainerId** | **NullableString** | The ETL container the connection belongs to. Fixed once created for a connection on an ETL container. A warehouse or BI connection has one while it collects ETL jobs through a container of its own, such as Snowflake Tasks, a Databricks metastore or Power BI dataflows, and it changes when that is turned on or off. Null otherwise. | 
+**EtlContainerName** | **NullableString** | Display name of that ETL container. Null when there is no ETL container. | 
+**DeploymentId** | **NullableString** | The deployment the connection runs through, taken from its warehouse, BI container or ETL container. Null when that has no deployment, as an Airflow ETL container has none. The id may name a deployment on Monte Carlo&#39;s older collection platform, which the deployments endpoints do not list. | 
 **DeploymentName** | **NullableString** | Display name of that deployment. Null when there is no deployment to name. | 
 **CredentialsId** | **NullableString** | The credentials the connection reads with. Null for a connection created before credentials became their own resource, and for one created outside this API. | 
 **CredentialsStorageType** | [**NullableCredentialsStorageType**](CredentialsStorageType.md) | Where that secret lives. Null when there are no credentials to describe. | 
@@ -22,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewConnectionOut
 
-`func NewConnectionOut(id string, connectionType string, name NullableString, warehouseId NullableString, warehouseName NullableString, biContainerId NullableString, biContainerName NullableString, deploymentId NullableString, deploymentName NullableString, credentialsId NullableString, credentialsStorageType NullableCredentialsStorageType, jobTypes []string, createdTime time.Time, ) *ConnectionOut`
+`func NewConnectionOut(id string, connectionType string, name NullableString, warehouseId NullableString, warehouseName NullableString, biContainerId NullableString, biContainerName NullableString, etlContainerId NullableString, etlContainerName NullableString, deploymentId NullableString, deploymentName NullableString, credentialsId NullableString, credentialsStorageType NullableCredentialsStorageType, jobTypes []string, createdTime time.Time, ) *ConnectionOut`
 
 NewConnectionOut instantiates a new ConnectionOut object
 This constructor will assign default values to properties that have it defined,
@@ -227,6 +229,66 @@ SetBiContainerName sets BiContainerName field to given value.
 `func (o *ConnectionOut) UnsetBiContainerName()`
 
 UnsetBiContainerName ensures that no value is present for BiContainerName, not even an explicit nil
+### GetEtlContainerId
+
+`func (o *ConnectionOut) GetEtlContainerId() string`
+
+GetEtlContainerId returns the EtlContainerId field if non-nil, zero value otherwise.
+
+### GetEtlContainerIdOk
+
+`func (o *ConnectionOut) GetEtlContainerIdOk() (*string, bool)`
+
+GetEtlContainerIdOk returns a tuple with the EtlContainerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEtlContainerId
+
+`func (o *ConnectionOut) SetEtlContainerId(v string)`
+
+SetEtlContainerId sets EtlContainerId field to given value.
+
+
+### SetEtlContainerIdNil
+
+`func (o *ConnectionOut) SetEtlContainerIdNil(b bool)`
+
+ SetEtlContainerIdNil sets the value for EtlContainerId to be an explicit nil
+
+### UnsetEtlContainerId
+`func (o *ConnectionOut) UnsetEtlContainerId()`
+
+UnsetEtlContainerId ensures that no value is present for EtlContainerId, not even an explicit nil
+### GetEtlContainerName
+
+`func (o *ConnectionOut) GetEtlContainerName() string`
+
+GetEtlContainerName returns the EtlContainerName field if non-nil, zero value otherwise.
+
+### GetEtlContainerNameOk
+
+`func (o *ConnectionOut) GetEtlContainerNameOk() (*string, bool)`
+
+GetEtlContainerNameOk returns a tuple with the EtlContainerName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEtlContainerName
+
+`func (o *ConnectionOut) SetEtlContainerName(v string)`
+
+SetEtlContainerName sets EtlContainerName field to given value.
+
+
+### SetEtlContainerNameNil
+
+`func (o *ConnectionOut) SetEtlContainerNameNil(b bool)`
+
+ SetEtlContainerNameNil sets the value for EtlContainerName to be an explicit nil
+
+### UnsetEtlContainerName
+`func (o *ConnectionOut) UnsetEtlContainerName()`
+
+UnsetEtlContainerName ensures that no value is present for EtlContainerName, not even an explicit nil
 ### GetDeploymentId
 
 `func (o *ConnectionOut) GetDeploymentId() string`

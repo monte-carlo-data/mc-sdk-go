@@ -40,20 +40,25 @@ func (r ApiCreateConnectionRequest) Execute() (*ConnectionOut, *http.Response, e
 /*
 CreateConnection Create a connection
 
-Add a connection to a warehouse or a BI container.
+Add a connection to a warehouse, a BI container or an ETL container.
 
 Create the credentials first, through one of the credentials endpoints, then name them
 here. The connection's type comes from them, and has to be a type the parent accepts and
-its deployment supports. Send `warehouse_id` or `bi_container_id`, exactly one.
+its deployment supports. Send exactly one of `warehouse_id`, `bi_container_id` and
+`etl_container_id`.
 
 A type that depends on a metastore, such as `databricks-sql-warehouse`, goes on a data
 lake warehouse that already has a metastore connection. Tableau, Looker and Power BI
 credentials go on a BI container of the same tool; a `looker` container takes both the
 `looker` and the `looker-git-clone` connection.
 
+ETL tool credentials go on an empty ETL container of the same type, created through
+`/etl-containers`. A container takes one connection. A container of a type this API does
+not create, such as Snowflake Tasks, takes none.
+
 Omit `job_types` to run what the type runs by default.
 
-An unknown warehouse, BI container or credentials id returns 404.
+An unknown warehouse, BI container, ETL container or credentials id returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateConnectionRequest
@@ -248,7 +253,8 @@ DeleteConnection Delete a connection
 
 Delete a connection.
 
-The warehouse or BI container and the credentials are left in place. Delete each of those
+The warehouse, BI container or ETL container and the credentials are left in place. An ETL
+container keeps what it collected, and takes a new connection. Delete each of those
 through its own endpoint once nothing uses it. Deleting the connection also deletes its
 own schedules, monitors and rules.
 
@@ -550,13 +556,14 @@ func (a *ConnectionsAPIService) GetConnectionExecute(r ApiGetConnectionRequest) 
 }
 
 type ApiListConnectionsRequest struct {
-	ctx           context.Context
-	ApiService    *ConnectionsAPIService
-	warehouseId   *string
-	biContainerId *string
-	cursor        *string
-	limit         *int32
-	withCount     *bool
+	ctx            context.Context
+	ApiService     *ConnectionsAPIService
+	warehouseId    *string
+	biContainerId  *string
+	etlContainerId *string
+	cursor         *string
+	limit          *int32
+	withCount      *bool
 }
 
 // Only list connections on this warehouse. Omit it to list every connection in your account.
@@ -568,6 +575,12 @@ func (r ApiListConnectionsRequest) WarehouseId(warehouseId string) ApiListConnec
 // Only list connections on this BI container. Omit it to list every connection in your account.
 func (r ApiListConnectionsRequest) BiContainerId(biContainerId string) ApiListConnectionsRequest {
 	r.biContainerId = &biContainerId
+	return r
+}
+
+// Only list connections on this ETL container. Omit it to list every connection in your account.
+func (r ApiListConnectionsRequest) EtlContainerId(etlContainerId string) ApiListConnectionsRequest {
+	r.etlContainerId = &etlContainerId
 	return r
 }
 
@@ -598,12 +611,14 @@ ListConnections List connections
 
 List the connections in your account, a page at a time.
 
-Connections are returned oldest first. Pass `warehouse_id` or `bi_container_id` to list
-one warehouse's or one BI container's connections; an id you cannot see returns an empty
-page. A caller whose asset access is restricted to certain domains sees only the
-connections of warehouses holding assets in those domains, and every BI connection.
+Connections are returned oldest first. Pass `warehouse_id`, `bi_container_id` or
+`etl_container_id` to list one parent's connections; an id you cannot see returns an
+empty page. A caller whose asset access is restricted to certain domains sees only the
+connections of warehouses holding assets in those domains, and every BI and ETL
+connection.
 
-Connections that belong to an ETL integration are not listed here.
+Filtering by an ETL container also returns a warehouse or BI connection that collects ETL
+jobs through it, such as a Snowflake Tasks or Power BI dataflows connection.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListConnectionsRequest
@@ -642,6 +657,9 @@ func (a *ConnectionsAPIService) ListConnectionsExecute(r ApiListConnectionsReque
 	}
 	if r.biContainerId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "bi_container_id", r.biContainerId, "form", "")
+	}
+	if r.etlContainerId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "etl_container_id", r.etlContainerId, "form", "")
 	}
 	if r.cursor != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "cursor", r.cursor, "form", "")
@@ -778,10 +796,10 @@ UpdateConnection Update a connection
 
 Rename a connection.
 
-The name is the only thing you can change. The type, the warehouse or BI container and the
-credentials are fixed when the connection is created. Two connections on one warehouse or
-BI container cannot share a name. Sending an empty body leaves the connection as it is and
-returns it.
+The name is the only thing you can change. The type, the warehouse, BI container or ETL
+container and the credentials are fixed when the connection is created. Two connections on
+one warehouse or BI container cannot share a name. Sending an empty body leaves the
+connection as it is and returns it.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param connectionId Id of the connection, as returned when it is created or listed.
@@ -974,7 +992,8 @@ changed, and you send no credentials.
 The response is the run as it starts, and `Location` names where to read it. Poll that
 until the run's status is `completed`; each validation carries its own verdict.
 
-An id that does not exist or belongs to another account returns 404.
+An id that does not exist or belongs to another account returns 404. A connection that
+runs on no deployment, as an Airflow one does, returns 409.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param connectionId Id of the connection, as returned when it is created or listed.

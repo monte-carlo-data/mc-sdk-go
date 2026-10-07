@@ -21,12 +21,14 @@ var _ MappedNullable = &ConnectionIn{}
 
 // ConnectionIn What to create a connection with.
 type ConnectionIn struct {
-	// Display name for the connection. Unique among the connections of its warehouse or BI container.
+	// Display name for the connection. Unique among the connections of its warehouse or BI container. An ETL container holds one connection.
 	Name string `json:"name"`
-	// The warehouse to add the connection to. Its type has to match what the credentials are for. Send this or `bi_container_id`, not both.
+	// The warehouse to add the connection to. Its type has to match what the credentials are for. Send exactly one of this, `bi_container_id` and `etl_container_id`.
 	WarehouseId NullableString `json:"warehouse_id,omitempty"`
-	// The BI container to add the connection to, for Tableau, Looker or Power BI credentials. Its type has to match what the credentials are for: a `looker` container takes both `looker` and `looker-git-clone` credentials. Send this or `warehouse_id`, not both.
+	// The BI container to add the connection to, for Tableau, Looker or Power BI credentials. Its type has to match what the credentials are for: a `looker` container takes both `looker` and `looker-git-clone` credentials. Send exactly one of this, `warehouse_id` and `etl_container_id`.
 	BiContainerId NullableString `json:"bi_container_id,omitempty"`
+	// The ETL container to add the connection to, for ETL tool credentials such as Fivetran or Airflow. The container's type has to equal the credentials' type, and the container must not have a connection yet. Send exactly one of this, `warehouse_id` and `bi_container_id`.
+	EtlContainerId NullableString `json:"etl_container_id,omitempty"`
 	// The credentials the connection reads with. They also decide the connection's type. Create them first, through one of the credentials endpoints.
 	CredentialsId string `json:"credentials_id"`
 	// The jobs to run on this connection. Omit it to run what the connection type runs by default, which is what the app does. Which values are accepted depends on the connection type. An empty list is not accepted; omit the field to take the defaults.
@@ -164,6 +166,49 @@ func (o *ConnectionIn) UnsetBiContainerId() {
 	o.BiContainerId.Unset()
 }
 
+// GetEtlContainerId returns the EtlContainerId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ConnectionIn) GetEtlContainerId() string {
+	if o == nil || IsNil(o.EtlContainerId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.EtlContainerId.Get()
+}
+
+// GetEtlContainerIdOk returns a tuple with the EtlContainerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectionIn) GetEtlContainerIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.EtlContainerId.Get(), o.EtlContainerId.IsSet()
+}
+
+// HasEtlContainerId returns a boolean if a field has been set.
+func (o *ConnectionIn) HasEtlContainerId() bool {
+	if o != nil && o.EtlContainerId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEtlContainerId gets a reference to the given NullableString and assigns it to the EtlContainerId field.
+func (o *ConnectionIn) SetEtlContainerId(v string) {
+	o.EtlContainerId.Set(&v)
+}
+
+// SetEtlContainerIdNil sets the value for EtlContainerId to be an explicit nil
+func (o *ConnectionIn) SetEtlContainerIdNil() {
+	o.EtlContainerId.Set(nil)
+}
+
+// UnsetEtlContainerId ensures that no value is present for EtlContainerId, not even an explicit nil
+func (o *ConnectionIn) UnsetEtlContainerId() {
+	o.EtlContainerId.Unset()
+}
+
 // GetCredentialsId returns the CredentialsId field value
 func (o *ConnectionIn) GetCredentialsId() string {
 	if o == nil {
@@ -237,6 +282,9 @@ func (o ConnectionIn) ToMap() (map[string]interface{}, error) {
 	}
 	if o.BiContainerId.IsSet() {
 		toSerialize["bi_container_id"] = o.BiContainerId.Get()
+	}
+	if o.EtlContainerId.IsSet() {
+		toSerialize["etl_container_id"] = o.EtlContainerId.Get()
 	}
 	toSerialize["credentials_id"] = o.CredentialsId
 	if o.JobTypes != nil {
