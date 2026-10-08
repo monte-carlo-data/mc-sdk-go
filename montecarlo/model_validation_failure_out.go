@@ -25,6 +25,8 @@ type ValidationFailureOut struct {
 	FriendlyMessage NullableString `json:"friendly_message"`
 	// What to change to fix it. Null when there is no specific step to suggest.
 	Resolution NullableString `json:"resolution"`
+	// The underlying error the check ran into, as the system reported it. Values that look like passwords or tokens are masked, and long text is shortened. Null when none was reported.
+	Cause NullableString `json:"cause"`
 }
 
 type _ValidationFailureOut ValidationFailureOut
@@ -33,10 +35,11 @@ type _ValidationFailureOut ValidationFailureOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewValidationFailureOut(friendlyMessage NullableString, resolution NullableString) *ValidationFailureOut {
+func NewValidationFailureOut(friendlyMessage NullableString, resolution NullableString, cause NullableString) *ValidationFailureOut {
 	this := ValidationFailureOut{}
 	this.FriendlyMessage = friendlyMessage
 	this.Resolution = resolution
+	this.Cause = cause
 	return &this
 }
 
@@ -100,6 +103,32 @@ func (o *ValidationFailureOut) SetResolution(v string) {
 	o.Resolution.Set(&v)
 }
 
+// GetCause returns the Cause field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ValidationFailureOut) GetCause() string {
+	if o == nil || o.Cause.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.Cause.Get()
+}
+
+// GetCauseOk returns a tuple with the Cause field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ValidationFailureOut) GetCauseOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Cause.Get(), o.Cause.IsSet()
+}
+
+// SetCause sets field value
+func (o *ValidationFailureOut) SetCause(v string) {
+	o.Cause.Set(&v)
+}
+
 func (o ValidationFailureOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -112,6 +141,7 @@ func (o ValidationFailureOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["friendly_message"] = o.FriendlyMessage.Get()
 	toSerialize["resolution"] = o.Resolution.Get()
+	toSerialize["cause"] = o.Cause.Get()
 	return toSerialize, nil
 }
 
@@ -122,6 +152,7 @@ func (o *ValidationFailureOut) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"friendly_message",
 		"resolution",
+		"cause",
 	}
 
 	allProperties := make(map[string]interface{})
