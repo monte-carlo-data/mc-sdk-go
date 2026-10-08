@@ -31,7 +31,7 @@ type ConnectionIn struct {
 	EtlContainerId NullableString `json:"etl_container_id,omitempty"`
 	// The credentials the connection reads with. They also decide the connection's type. Create them first, through one of the credentials endpoints.
 	CredentialsId string `json:"credentials_id"`
-	// The jobs to run on this connection. Omit it to run what the connection type runs by default, which is what the app does. Which values are accepted depends on the connection type. An empty list is not accepted; omit the field to take the defaults.
+	// The jobs to run on this connection. Omit it to run what the connection type runs by default, which is what the app does. Which values are accepted depends on the connection type. `etl` on a Snowflake, Power BI or Salesforce Data Cloud connection also creates its ETL container. An empty list is not accepted; omit the field to take the defaults.
 	JobTypes []string `json:"job_types,omitempty"`
 }
 

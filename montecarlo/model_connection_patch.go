@@ -17,10 +17,12 @@ import (
 // checks if the ConnectionPatch type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ConnectionPatch{}
 
-// ConnectionPatch A change to an existing connection. Sent when renaming one.
+// ConnectionPatch A change to an existing connection: a new name, or ETL turned on or off.
 type ConnectionPatch struct {
 	// New display name for the connection. Omit it to leave the name unchanged. An explicit null is ignored, the same as omitting the field.
 	Name NullableString `json:"name,omitempty"`
+	// The connection's job types with `etl` added or removed. Adding `etl` turns on ETL collection for a Snowflake (Snowflake Tasks), Power BI (dataflows) or Salesforce Data Cloud connection, and creates the ETL container that `etl_container_id` then names. Removing it deletes that container. No other job can be added or removed. Omit it to leave the job types unchanged.
+	JobTypes []string `json:"job_types,omitempty"`
 }
 
 // NewConnectionPatch instantiates a new ConnectionPatch object
@@ -83,6 +85,39 @@ func (o *ConnectionPatch) UnsetName() {
 	o.Name.Unset()
 }
 
+// GetJobTypes returns the JobTypes field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ConnectionPatch) GetJobTypes() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.JobTypes
+}
+
+// GetJobTypesOk returns a tuple with the JobTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectionPatch) GetJobTypesOk() ([]string, bool) {
+	if o == nil || IsNil(o.JobTypes) {
+		return nil, false
+	}
+	return o.JobTypes, true
+}
+
+// HasJobTypes returns a boolean if a field has been set.
+func (o *ConnectionPatch) HasJobTypes() bool {
+	if o != nil && !IsNil(o.JobTypes) {
+		return true
+	}
+
+	return false
+}
+
+// SetJobTypes gets a reference to the given []string and assigns it to the JobTypes field.
+func (o *ConnectionPatch) SetJobTypes(v []string) {
+	o.JobTypes = v
+}
+
 func (o ConnectionPatch) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -95,6 +130,9 @@ func (o ConnectionPatch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
+	}
+	if o.JobTypes != nil {
+		toSerialize["job_types"] = o.JobTypes
 	}
 	return toSerialize, nil
 }

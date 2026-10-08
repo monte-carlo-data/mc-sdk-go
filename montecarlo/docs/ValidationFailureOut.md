@@ -6,12 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **FriendlyMessage** | **NullableString** | What went wrong, in terms a reader can act on. Null when none was given. | 
 **Resolution** | **NullableString** | What to change to fix it. Null when there is no specific step to suggest. | 
+**Cause** | **NullableString** | The underlying error the check ran into, as the system reported it. Values that look like passwords or tokens are masked, and long text is shortened. Null when none was reported. | 
 
 ## Methods
 
 ### NewValidationFailureOut
 
-`func NewValidationFailureOut(friendlyMessage NullableString, resolution NullableString, ) *ValidationFailureOut`
+`func NewValidationFailureOut(friendlyMessage NullableString, resolution NullableString, cause NullableString, ) *ValidationFailureOut`
 
 NewValidationFailureOut instantiates a new ValidationFailureOut object
 This constructor will assign default values to properties that have it defined,
@@ -86,6 +87,36 @@ SetResolution sets Resolution field to given value.
 `func (o *ValidationFailureOut) UnsetResolution()`
 
 UnsetResolution ensures that no value is present for Resolution, not even an explicit nil
+### GetCause
+
+`func (o *ValidationFailureOut) GetCause() string`
+
+GetCause returns the Cause field if non-nil, zero value otherwise.
+
+### GetCauseOk
+
+`func (o *ValidationFailureOut) GetCauseOk() (*string, bool)`
+
+GetCauseOk returns a tuple with the Cause field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCause
+
+`func (o *ValidationFailureOut) SetCause(v string)`
+
+SetCause sets Cause field to given value.
+
+
+### SetCauseNil
+
+`func (o *ValidationFailureOut) SetCauseNil(b bool)`
+
+ SetCauseNil sets the value for Cause to be an explicit nil
+
+### UnsetCause
+`func (o *ValidationFailureOut) UnsetCause()`
+
+UnsetCause ensures that no value is present for Cause, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
