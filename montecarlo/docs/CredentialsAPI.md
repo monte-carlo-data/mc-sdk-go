@@ -32,6 +32,7 @@ Method | HTTP request | Description
 [**CreateRedshiftCredentials**](CredentialsAPI.md#CreateRedshiftCredentials) | **Post** /api/v2/credentials/redshift | Create Redshift credentials
 [**CreateSapHanaCredentials**](CredentialsAPI.md#CreateSapHanaCredentials) | **Post** /api/v2/credentials/sap-hana | Create SAP HANA credentials
 [**CreateSnowflakeCredentials**](CredentialsAPI.md#CreateSnowflakeCredentials) | **Post** /api/v2/credentials/snowflake | Create Snowflake credentials
+[**CreateSqlServerCredentials**](CredentialsAPI.md#CreateSqlServerCredentials) | **Post** /api/v2/credentials/sql-server | Create SQL Server credentials
 [**CreateStarburstEnterpriseCredentials**](CredentialsAPI.md#CreateStarburstEnterpriseCredentials) | **Post** /api/v2/credentials/starburst-enterprise | Create Starburst Enterprise credentials
 [**CreateStarburstGalaxyCredentials**](CredentialsAPI.md#CreateStarburstGalaxyCredentials) | **Post** /api/v2/credentials/starburst-galaxy | Create Starburst Galaxy credentials
 [**CreateTableauCredentials**](CredentialsAPI.md#CreateTableauCredentials) | **Post** /api/v2/credentials/tableau | Create Tableau credentials
@@ -65,6 +66,7 @@ Method | HTTP request | Description
 [**DeleteRedshiftCredentials**](CredentialsAPI.md#DeleteRedshiftCredentials) | **Delete** /api/v2/credentials/redshift/{credentials_id} | Delete Redshift credentials
 [**DeleteSapHanaCredentials**](CredentialsAPI.md#DeleteSapHanaCredentials) | **Delete** /api/v2/credentials/sap-hana/{credentials_id} | Delete SAP HANA credentials
 [**DeleteSnowflakeCredentials**](CredentialsAPI.md#DeleteSnowflakeCredentials) | **Delete** /api/v2/credentials/snowflake/{credentials_id} | Delete Snowflake credentials
+[**DeleteSqlServerCredentials**](CredentialsAPI.md#DeleteSqlServerCredentials) | **Delete** /api/v2/credentials/sql-server/{credentials_id} | Delete SQL Server credentials
 [**DeleteStarburstEnterpriseCredentials**](CredentialsAPI.md#DeleteStarburstEnterpriseCredentials) | **Delete** /api/v2/credentials/starburst-enterprise/{credentials_id} | Delete Starburst Enterprise credentials
 [**DeleteStarburstGalaxyCredentials**](CredentialsAPI.md#DeleteStarburstGalaxyCredentials) | **Delete** /api/v2/credentials/starburst-galaxy/{credentials_id} | Delete Starburst Galaxy credentials
 [**DeleteTableauCredentials**](CredentialsAPI.md#DeleteTableauCredentials) | **Delete** /api/v2/credentials/tableau/{credentials_id} | Delete Tableau credentials
@@ -97,6 +99,7 @@ Method | HTTP request | Description
 [**GetRedshiftCredentials**](CredentialsAPI.md#GetRedshiftCredentials) | **Get** /api/v2/credentials/redshift/{credentials_id} | Get Redshift credentials
 [**GetSapHanaCredentials**](CredentialsAPI.md#GetSapHanaCredentials) | **Get** /api/v2/credentials/sap-hana/{credentials_id} | Get SAP HANA credentials
 [**GetSnowflakeCredentials**](CredentialsAPI.md#GetSnowflakeCredentials) | **Get** /api/v2/credentials/snowflake/{credentials_id} | Get Snowflake credentials
+[**GetSqlServerCredentials**](CredentialsAPI.md#GetSqlServerCredentials) | **Get** /api/v2/credentials/sql-server/{credentials_id} | Get SQL Server credentials
 [**GetStarburstEnterpriseCredentials**](CredentialsAPI.md#GetStarburstEnterpriseCredentials) | **Get** /api/v2/credentials/starburst-enterprise/{credentials_id} | Get Starburst Enterprise credentials
 [**GetStarburstGalaxyCredentials**](CredentialsAPI.md#GetStarburstGalaxyCredentials) | **Get** /api/v2/credentials/starburst-galaxy/{credentials_id} | Get Starburst Galaxy credentials
 [**GetTableauCredentials**](CredentialsAPI.md#GetTableauCredentials) | **Get** /api/v2/credentials/tableau/{credentials_id} | Get Tableau credentials
@@ -130,6 +133,7 @@ Method | HTTP request | Description
 [**UpdateRedshiftCredentials**](CredentialsAPI.md#UpdateRedshiftCredentials) | **Patch** /api/v2/credentials/redshift/{credentials_id} | Update Redshift credentials
 [**UpdateSapHanaCredentials**](CredentialsAPI.md#UpdateSapHanaCredentials) | **Patch** /api/v2/credentials/sap-hana/{credentials_id} | Update SAP HANA credentials
 [**UpdateSnowflakeCredentials**](CredentialsAPI.md#UpdateSnowflakeCredentials) | **Patch** /api/v2/credentials/snowflake/{credentials_id} | Update Snowflake credentials
+[**UpdateSqlServerCredentials**](CredentialsAPI.md#UpdateSqlServerCredentials) | **Patch** /api/v2/credentials/sql-server/{credentials_id} | Update SQL Server credentials
 [**UpdateStarburstEnterpriseCredentials**](CredentialsAPI.md#UpdateStarburstEnterpriseCredentials) | **Patch** /api/v2/credentials/starburst-enterprise/{credentials_id} | Update Starburst Enterprise credentials
 [**UpdateStarburstGalaxyCredentials**](CredentialsAPI.md#UpdateStarburstGalaxyCredentials) | **Patch** /api/v2/credentials/starburst-galaxy/{credentials_id} | Update Starburst Galaxy credentials
 [**UpdateTableauCredentials**](CredentialsAPI.md#UpdateTableauCredentials) | **Patch** /api/v2/credentials/tableau/{credentials_id} | Update Tableau credentials
@@ -161,6 +165,7 @@ Method | HTTP request | Description
 [**ValidateRedshiftCredentials**](CredentialsAPI.md#ValidateRedshiftCredentials) | **Post** /api/v2/credentials/redshift/validate | Validate Redshift credentials
 [**ValidateSapHanaCredentials**](CredentialsAPI.md#ValidateSapHanaCredentials) | **Post** /api/v2/credentials/sap-hana/validate | Validate SAP HANA credentials
 [**ValidateSnowflakeCredentials**](CredentialsAPI.md#ValidateSnowflakeCredentials) | **Post** /api/v2/credentials/snowflake/validate | Validate Snowflake credentials
+[**ValidateSqlServerCredentials**](CredentialsAPI.md#ValidateSqlServerCredentials) | **Post** /api/v2/credentials/sql-server/validate | Validate SQL Server credentials
 [**ValidateStarburstEnterpriseCredentials**](CredentialsAPI.md#ValidateStarburstEnterpriseCredentials) | **Post** /api/v2/credentials/starburst-enterprise/validate | Validate Starburst Enterprise credentials
 [**ValidateStarburstGalaxyCredentials**](CredentialsAPI.md#ValidateStarburstGalaxyCredentials) | **Post** /api/v2/credentials/starburst-galaxy/validate | Validate Starburst Galaxy credentials
 [**ValidateTableauCredentials**](CredentialsAPI.md#ValidateTableauCredentials) | **Post** /api/v2/credentials/tableau/validate | Validate Tableau credentials
@@ -2001,6 +2006,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SnowflakeCredentialsOut**](SnowflakeCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateSqlServerCredentials
+
+> SqlServerCredentialsOut CreateSqlServerCredentials(ctx).SqlServerCredentialsIn(sqlServerCredentialsIn).Execute()
+
+Create SQL Server credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	sqlServerCredentialsIn := *openapiclient.NewSqlServerCredentialsIn("Host_example", int32(123)) // SqlServerCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateSqlServerCredentials(context.Background()).SqlServerCredentialsIn(sqlServerCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateSqlServerCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateSqlServerCredentials`: SqlServerCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateSqlServerCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateSqlServerCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sqlServerCredentialsIn** | [**SqlServerCredentialsIn**](SqlServerCredentialsIn.md) |  | 
+
+### Return type
+
+[**SqlServerCredentialsOut**](SqlServerCredentialsOut.md)
 
 ### Authorization
 
@@ -4252,6 +4323,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteSqlServerCredentials
+
+> DeleteSqlServerCredentials(ctx, credentialsId).Execute()
+
+Delete SQL Server credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteSqlServerCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteSqlServerCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteSqlServerCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteStarburstEnterpriseCredentials
 
 > DeleteStarburstEnterpriseCredentials(ctx, credentialsId).Execute()
@@ -6469,6 +6608,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SnowflakeCredentialsOut**](SnowflakeCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSqlServerCredentials
+
+> SqlServerCredentialsOut GetSqlServerCredentials(ctx, credentialsId).Execute()
+
+Get SQL Server credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetSqlServerCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetSqlServerCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSqlServerCredentials`: SqlServerCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetSqlServerCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSqlServerCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**SqlServerCredentialsOut**](SqlServerCredentialsOut.md)
 
 ### Authorization
 
@@ -8850,6 +9059,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateSqlServerCredentials
+
+> SqlServerCredentialsOut UpdateSqlServerCredentials(ctx, credentialsId).SqlServerCredentialsPatch(sqlServerCredentialsPatch).Execute()
+
+Update SQL Server credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	sqlServerCredentialsPatch := *openapiclient.NewSqlServerCredentialsPatch() // SqlServerCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateSqlServerCredentials(context.Background(), credentialsId).SqlServerCredentialsPatch(sqlServerCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateSqlServerCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateSqlServerCredentials`: SqlServerCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateSqlServerCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateSqlServerCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **sqlServerCredentialsPatch** | [**SqlServerCredentialsPatch**](SqlServerCredentialsPatch.md) |  | 
+
+### Return type
+
+[**SqlServerCredentialsOut**](SqlServerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateStarburstEnterpriseCredentials
 
 > StarburstEnterpriseCredentialsOut UpdateStarburstEnterpriseCredentials(ctx, credentialsId).StarburstEnterpriseCredentialsPatch(starburstEnterpriseCredentialsPatch).Execute()
@@ -10901,6 +11182,72 @@ Other parameters are passed through a pointer to a apiValidateSnowflakeCredentia
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **snowflakeCredentialsValidateIn** | [**SnowflakeCredentialsValidateIn**](SnowflakeCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateSqlServerCredentials
+
+> ValidationRunOut ValidateSqlServerCredentials(ctx).SqlServerCredentialsValidateIn(sqlServerCredentialsValidateIn).Execute()
+
+Validate SQL Server credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	sqlServerCredentialsValidateIn := *openapiclient.NewSqlServerCredentialsValidateIn("DeploymentId_example", "Host_example", int32(123)) // SqlServerCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateSqlServerCredentials(context.Background()).SqlServerCredentialsValidateIn(sqlServerCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateSqlServerCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateSqlServerCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateSqlServerCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateSqlServerCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sqlServerCredentialsValidateIn** | [**SqlServerCredentialsValidateIn**](SqlServerCredentialsValidateIn.md) |  | 
 
 ### Return type
 
