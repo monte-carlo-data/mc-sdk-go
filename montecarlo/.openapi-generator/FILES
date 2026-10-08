@@ -200,6 +200,11 @@ docs/SnowflakeCredentialsIn.md
 docs/SnowflakeCredentialsOut.md
 docs/SnowflakeCredentialsPatch.md
 docs/SnowflakeCredentialsValidateIn.md
+docs/SqlServerAuthMode.md
+docs/SqlServerCredentialsIn.md
+docs/SqlServerCredentialsOut.md
+docs/SqlServerCredentialsPatch.md
+docs/SqlServerCredentialsValidateIn.md
 docs/StarburstEnterpriseCredentialsIn.md
 docs/StarburstEnterpriseCredentialsOut.md
 docs/StarburstEnterpriseCredentialsPatch.md
@@ -416,6 +421,11 @@ model_snowflake_credentials_in.go
 model_snowflake_credentials_out.go
 model_snowflake_credentials_patch.go
 model_snowflake_credentials_validate_in.go
+model_sql_server_auth_mode.go
+model_sql_server_credentials_in.go
+model_sql_server_credentials_out.go
+model_sql_server_credentials_patch.go
+model_sql_server_credentials_validate_in.go
 model_starburst_enterprise_credentials_in.go
 model_starburst_enterprise_credentials_out.go
 model_starburst_enterprise_credentials_patch.go

@@ -27,6 +27,8 @@ type ValidationFailureOut struct {
 	Resolution NullableString `json:"resolution"`
 	// The underlying error the check ran into, as the system reported it. Values that look like passwords or tokens are masked, and long text is shortened. Null when none was reported.
 	Cause NullableString `json:"cause"`
+	// The call stack the system reported with the error, ending at the most recent call. Values that look like passwords or tokens are masked, and a long trace keeps only its end. Null when none was reported.
+	StackTrace NullableString `json:"stack_trace"`
 }
 
 type _ValidationFailureOut ValidationFailureOut
@@ -35,11 +37,12 @@ type _ValidationFailureOut ValidationFailureOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewValidationFailureOut(friendlyMessage NullableString, resolution NullableString, cause NullableString) *ValidationFailureOut {
+func NewValidationFailureOut(friendlyMessage NullableString, resolution NullableString, cause NullableString, stackTrace NullableString) *ValidationFailureOut {
 	this := ValidationFailureOut{}
 	this.FriendlyMessage = friendlyMessage
 	this.Resolution = resolution
 	this.Cause = cause
+	this.StackTrace = stackTrace
 	return &this
 }
 
@@ -129,6 +132,32 @@ func (o *ValidationFailureOut) SetCause(v string) {
 	o.Cause.Set(&v)
 }
 
+// GetStackTrace returns the StackTrace field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *ValidationFailureOut) GetStackTrace() string {
+	if o == nil || o.StackTrace.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.StackTrace.Get()
+}
+
+// GetStackTraceOk returns a tuple with the StackTrace field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ValidationFailureOut) GetStackTraceOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.StackTrace.Get(), o.StackTrace.IsSet()
+}
+
+// SetStackTrace sets field value
+func (o *ValidationFailureOut) SetStackTrace(v string) {
+	o.StackTrace.Set(&v)
+}
+
 func (o ValidationFailureOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -142,6 +171,7 @@ func (o ValidationFailureOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["friendly_message"] = o.FriendlyMessage.Get()
 	toSerialize["resolution"] = o.Resolution.Get()
 	toSerialize["cause"] = o.Cause.Get()
+	toSerialize["stack_trace"] = o.StackTrace.Get()
 	return toSerialize, nil
 }
 
@@ -153,6 +183,7 @@ func (o *ValidationFailureOut) UnmarshalJSON(data []byte) (err error) {
 		"friendly_message",
 		"resolution",
 		"cause",
+		"stack_trace",
 	}
 
 	allProperties := make(map[string]interface{})

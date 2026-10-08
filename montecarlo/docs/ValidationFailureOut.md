@@ -7,12 +7,13 @@ Name | Type | Description | Notes
 **FriendlyMessage** | **NullableString** | What went wrong, in terms a reader can act on. Null when none was given. | 
 **Resolution** | **NullableString** | What to change to fix it. Null when there is no specific step to suggest. | 
 **Cause** | **NullableString** | The underlying error the check ran into, as the system reported it. Values that look like passwords or tokens are masked, and long text is shortened. Null when none was reported. | 
+**StackTrace** | **NullableString** | The call stack the system reported with the error, ending at the most recent call. Values that look like passwords or tokens are masked, and a long trace keeps only its end. Null when none was reported. | 
 
 ## Methods
 
 ### NewValidationFailureOut
 
-`func NewValidationFailureOut(friendlyMessage NullableString, resolution NullableString, cause NullableString, ) *ValidationFailureOut`
+`func NewValidationFailureOut(friendlyMessage NullableString, resolution NullableString, cause NullableString, stackTrace NullableString, ) *ValidationFailureOut`
 
 NewValidationFailureOut instantiates a new ValidationFailureOut object
 This constructor will assign default values to properties that have it defined,
@@ -117,6 +118,36 @@ SetCause sets Cause field to given value.
 `func (o *ValidationFailureOut) UnsetCause()`
 
 UnsetCause ensures that no value is present for Cause, not even an explicit nil
+### GetStackTrace
+
+`func (o *ValidationFailureOut) GetStackTrace() string`
+
+GetStackTrace returns the StackTrace field if non-nil, zero value otherwise.
+
+### GetStackTraceOk
+
+`func (o *ValidationFailureOut) GetStackTraceOk() (*string, bool)`
+
+GetStackTraceOk returns a tuple with the StackTrace field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStackTrace
+
+`func (o *ValidationFailureOut) SetStackTrace(v string)`
+
+SetStackTrace sets StackTrace field to given value.
+
+
+### SetStackTraceNil
+
+`func (o *ValidationFailureOut) SetStackTraceNil(b bool)`
+
+ SetStackTraceNil sets the value for StackTrace to be an explicit nil
+
+### UnsetStackTrace
+`func (o *ValidationFailureOut) UnsetStackTrace()`
+
+UnsetStackTrace ensures that no value is present for StackTrace, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
