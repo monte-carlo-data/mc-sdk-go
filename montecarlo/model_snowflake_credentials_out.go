@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -35,7 +34,8 @@ type SnowflakeCredentialsOut struct {
 	// Snowflake user the key pair belongs to.
 	User string `json:"user"`
 	// Snowflake virtual warehouse queries run in. Null when none is set.
-	Warehouse NullableString `json:"warehouse"`
+	Warehouse            NullableString `json:"warehouse"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SnowflakeCredentialsOut SnowflakeCredentialsOut
@@ -251,6 +251,11 @@ func (o SnowflakeCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["account"] = o.Account
 	toSerialize["user"] = o.User
 	toSerialize["warehouse"] = o.Warehouse.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -284,15 +289,26 @@ func (o *SnowflakeCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varSnowflakeCredentialsOut := _SnowflakeCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSnowflakeCredentialsOut)
+	err = json.Unmarshal(data, &varSnowflakeCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SnowflakeCredentialsOut(varSnowflakeCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "account")
+		delete(additionalProperties, "user")
+		delete(additionalProperties, "warehouse")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -43,7 +42,8 @@ type ValidationRunOut struct {
 	// When the run stops being readable. Measured from the start, not the finish, and never extended, so a slow run is readable for less time after it ends.
 	ExpiresAt time.Time `json:"expires_at"`
 	// The run's validations, in the order they are declared. A validation stays `pending` until it starts. It can wait on a prerequisite, or for earlier validations to finish. A read with `since` lists only the validations that changed after that revision, and may list none.
-	Validations []ValidationOut `json:"validations"`
+	Validations          []ValidationOut `json:"validations"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ValidationRunOut ValidationRunOut
@@ -365,6 +365,11 @@ func (o ValidationRunOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["finished_at"] = o.FinishedAt.Get()
 	toSerialize["expires_at"] = o.ExpiresAt
 	toSerialize["validations"] = o.Validations
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -402,15 +407,30 @@ func (o *ValidationRunOut) UnmarshalJSON(data []byte) (err error) {
 
 	varValidationRunOut := _ValidationRunOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varValidationRunOut)
+	err = json.Unmarshal(data, &varValidationRunOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ValidationRunOut(varValidationRunOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "revision")
+		delete(additionalProperties, "target_type")
+		delete(additionalProperties, "target_id")
+		delete(additionalProperties, "validations_passed")
+		delete(additionalProperties, "validations_total")
+		delete(additionalProperties, "started_at")
+		delete(additionalProperties, "finished_at")
+		delete(additionalProperties, "expires_at")
+		delete(additionalProperties, "validations")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

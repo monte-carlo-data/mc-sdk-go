@@ -52,7 +52,8 @@ func (v *TeradataLogonMechanism) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid TeradataLogonMechanism", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewTeradataLogonMechanismFromValue returns a pointer to a valid TeradataLogonMechanism

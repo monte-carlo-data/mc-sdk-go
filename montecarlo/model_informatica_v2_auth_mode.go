@@ -44,7 +44,8 @@ func (v *InformaticaV2AuthMode) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid InformaticaV2AuthMode", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewInformaticaV2AuthModeFromValue returns a pointer to a valid InformaticaV2AuthMode

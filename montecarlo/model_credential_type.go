@@ -44,7 +44,8 @@ func (v *CredentialType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid CredentialType", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewCredentialTypeFromValue returns a pointer to a valid CredentialType

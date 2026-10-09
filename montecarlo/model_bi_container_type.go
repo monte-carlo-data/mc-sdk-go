@@ -48,7 +48,8 @@ func (v *BiContainerType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid BiContainerType", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewBiContainerTypeFromValue returns a pointer to a valid BiContainerType

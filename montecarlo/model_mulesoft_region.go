@@ -46,7 +46,8 @@ func (v *MulesoftRegion) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid MulesoftRegion", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewMulesoftRegionFromValue returns a pointer to a valid MulesoftRegion

@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -42,6 +41,7 @@ type DatabricksSqlWarehouseCredentialsOut struct {
 	AzureTenantId NullableString `json:"azure_tenant_id"`
 	// Azure resource ID of the workspace. Null unless set.
 	AzureWorkspaceResourceId NullableString `json:"azure_workspace_resource_id"`
+	AdditionalProperties     map[string]interface{}
 }
 
 type _DatabricksSqlWarehouseCredentialsOut DatabricksSqlWarehouseCredentialsOut
@@ -341,6 +341,11 @@ func (o DatabricksSqlWarehouseCredentialsOut) ToMap() (map[string]interface{}, e
 	toSerialize["oauth_client_id"] = o.OauthClientId.Get()
 	toSerialize["azure_tenant_id"] = o.AzureTenantId.Get()
 	toSerialize["azure_workspace_resource_id"] = o.AzureWorkspaceResourceId.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -377,15 +382,29 @@ func (o *DatabricksSqlWarehouseCredentialsOut) UnmarshalJSON(data []byte) (err e
 
 	varDatabricksSqlWarehouseCredentialsOut := _DatabricksSqlWarehouseCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDatabricksSqlWarehouseCredentialsOut)
+	err = json.Unmarshal(data, &varDatabricksSqlWarehouseCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DatabricksSqlWarehouseCredentialsOut(varDatabricksSqlWarehouseCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "workspace_url")
+		delete(additionalProperties, "sql_warehouse_id")
+		delete(additionalProperties, "workspace_id")
+		delete(additionalProperties, "oauth_client_id")
+		delete(additionalProperties, "azure_tenant_id")
+		delete(additionalProperties, "azure_workspace_resource_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

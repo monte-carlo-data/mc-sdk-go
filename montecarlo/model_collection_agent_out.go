@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -45,7 +44,8 @@ type CollectionAgentOut struct {
 	// Where the collection agent runs. Use it to build the platform-specific path for any other operation on this agent. Null for an agent whose platform Monte Carlo has not recorded, and no platform-specific path can address one of those.
 	Platform NullableRuntimePlatform `json:"platform,omitempty"`
 	// Address Monte Carlo reaches the collection agent at, in whatever form its platform uses. On AWS that is the ARN of a Lambda function, on Azure the URL of a function app, and on GCP the URL of a Cloud Run service. Empty until the agent has been registered. Null for a generic or Snowflake agent, which connect to Monte Carlo rather than being reached.
-	Endpoint NullableString `json:"endpoint"`
+	Endpoint             NullableString `json:"endpoint"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CollectionAgentOut CollectionAgentOut
@@ -513,6 +513,11 @@ func (o CollectionAgentOut) ToMap() (map[string]interface{}, error) {
 		toSerialize["platform"] = o.Platform.Get()
 	}
 	toSerialize["endpoint"] = o.Endpoint.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -545,15 +550,31 @@ func (o *CollectionAgentOut) UnmarshalJSON(data []byte) (err error) {
 
 	varCollectionAgentOut := _CollectionAgentOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCollectionAgentOut)
+	err = json.Unmarshal(data, &varCollectionAgentOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CollectionAgentOut(varCollectionAgentOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "authentication_type")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "last_updated_time")
+		delete(additionalProperties, "image_build")
+		delete(additionalProperties, "image_version")
+		delete(additionalProperties, "is_remote_upgradeable")
+		delete(additionalProperties, "platform")
+		delete(additionalProperties, "endpoint")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

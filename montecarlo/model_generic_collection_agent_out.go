@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -41,7 +40,8 @@ type GenericCollectionAgentOut struct {
 	// Version of the image the collection agent is running. Null until Monte Carlo has contacted the agent.
 	ImageVersion NullableString `json:"image_version,omitempty"`
 	// Whether Monte Carlo can update the collection agent's image for you.
-	IsRemoteUpgradeable bool `json:"is_remote_upgradeable"`
+	IsRemoteUpgradeable  bool `json:"is_remote_upgradeable"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GenericCollectionAgentOut GenericCollectionAgentOut
@@ -435,6 +435,11 @@ func (o GenericCollectionAgentOut) ToMap() (map[string]interface{}, error) {
 		toSerialize["image_version"] = o.ImageVersion.Get()
 	}
 	toSerialize["is_remote_upgradeable"] = o.IsRemoteUpgradeable
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -466,15 +471,29 @@ func (o *GenericCollectionAgentOut) UnmarshalJSON(data []byte) (err error) {
 
 	varGenericCollectionAgentOut := _GenericCollectionAgentOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGenericCollectionAgentOut)
+	err = json.Unmarshal(data, &varGenericCollectionAgentOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GenericCollectionAgentOut(varGenericCollectionAgentOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "authentication_type")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "last_updated_time")
+		delete(additionalProperties, "image_build")
+		delete(additionalProperties, "image_version")
+		delete(additionalProperties, "is_remote_upgradeable")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

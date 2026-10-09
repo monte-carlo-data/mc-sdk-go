@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -35,7 +34,8 @@ type GenericCollectionAgentTokenCreatedOut struct {
 	// Key id the agent presents, as `mcd_id` in its configuration. The same value as `id`.
 	McdId string `json:"mcd_id"`
 	// Secret the agent presents, as `mcd_token` in its configuration. Returned once, by this call. It is not retrievable afterwards, and Terraform holds it in state like any generated credential. To rotate, create a new credential and delete this one.
-	McdToken string `json:"mcd_token"`
+	McdToken             string `json:"mcd_token"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GenericCollectionAgentTokenCreatedOut GenericCollectionAgentTokenCreatedOut
@@ -249,6 +249,11 @@ func (o GenericCollectionAgentTokenCreatedOut) ToMap() (map[string]interface{}, 
 	toSerialize["created_time"] = o.CreatedTime
 	toSerialize["mcd_id"] = o.McdId
 	toSerialize["mcd_token"] = o.McdToken
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -282,15 +287,26 @@ func (o *GenericCollectionAgentTokenCreatedOut) UnmarshalJSON(data []byte) (err 
 
 	varGenericCollectionAgentTokenCreatedOut := _GenericCollectionAgentTokenCreatedOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGenericCollectionAgentTokenCreatedOut)
+	err = json.Unmarshal(data, &varGenericCollectionAgentTokenCreatedOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GenericCollectionAgentTokenCreatedOut(varGenericCollectionAgentTokenCreatedOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "mcd_id")
+		delete(additionalProperties, "mcd_token")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

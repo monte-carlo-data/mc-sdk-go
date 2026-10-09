@@ -24,8 +24,11 @@ type Input struct {
 	// Maximum number of items to return, between 1 and 100.
 	Limit *int32 `json:"limit,omitempty"`
 	// Whether to also return the total number of items across every page, in `count`. Off by default: counting costs an extra query.
-	WithCount *bool `json:"with_count,omitempty"`
+	WithCount            *bool `json:"with_count,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Input Input
 
 // NewInput instantiates a new Input object
 // This constructor will assign default values to properties that have it defined,
@@ -178,7 +181,35 @@ func (o Input) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.WithCount) {
 		toSerialize["with_count"] = o.WithCount
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
+}
+
+func (o *Input) UnmarshalJSON(data []byte) (err error) {
+	varInput := _Input{}
+
+	err = json.Unmarshal(data, &varInput)
+
+	if err != nil {
+		return err
+	}
+
+	*o = Input(varInput)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "cursor")
+		delete(additionalProperties, "limit")
+		delete(additionalProperties, "with_count")
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
 }
 
 type NullableInput struct {

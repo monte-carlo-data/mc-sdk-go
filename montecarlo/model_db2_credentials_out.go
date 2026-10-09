@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -41,7 +40,8 @@ type Db2CredentialsOut struct {
 	// PEM text of the CA certificate the server's certificate is checked against. Null when none is set.
 	SslCaData NullableString `json:"ssl_ca_data"`
 	// Connect without TLS. Null when unset.
-	SslDisabled NullableBool `json:"ssl_disabled"`
+	SslDisabled          NullableBool `json:"ssl_disabled"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _Db2CredentialsOut Db2CredentialsOut
@@ -339,6 +339,11 @@ func (o Db2CredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["user"] = o.User
 	toSerialize["ssl_ca_data"] = o.SslCaData.Get()
 	toSerialize["ssl_disabled"] = o.SslDisabled.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -375,15 +380,29 @@ func (o *Db2CredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varDb2CredentialsOut := _Db2CredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDb2CredentialsOut)
+	err = json.Unmarshal(data, &varDb2CredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = Db2CredentialsOut(varDb2CredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "db_name")
+		delete(additionalProperties, "user")
+		delete(additionalProperties, "ssl_ca_data")
+		delete(additionalProperties, "ssl_disabled")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

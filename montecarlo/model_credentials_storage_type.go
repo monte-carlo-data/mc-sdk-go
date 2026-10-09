@@ -52,7 +52,8 @@ func (v *CredentialsStorageType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid CredentialsStorageType", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewCredentialsStorageTypeFromValue returns a pointer to a valid CredentialsStorageType

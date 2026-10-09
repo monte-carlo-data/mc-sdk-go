@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -45,7 +44,8 @@ type TeradataCredentialsOut struct {
 	// How the connection to Teradata uses TLS. Null when unset.
 	TdSslmode NullableTeradataSslMode `json:"td_sslmode"`
 	// How Teradata authenticates the user. Null when unset.
-	TdLogmech NullableTeradataLogonMechanism `json:"td_logmech"`
+	TdLogmech            NullableTeradataLogonMechanism `json:"td_logmech"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TeradataCredentialsOut TeradataCredentialsOut
@@ -399,6 +399,11 @@ func (o TeradataCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["ssl_disabled"] = o.SslDisabled.Get()
 	toSerialize["td_sslmode"] = o.TdSslmode.Get()
 	toSerialize["td_logmech"] = o.TdLogmech.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -437,15 +442,31 @@ func (o *TeradataCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varTeradataCredentialsOut := _TeradataCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTeradataCredentialsOut)
+	err = json.Unmarshal(data, &varTeradataCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TeradataCredentialsOut(varTeradataCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "db_name")
+		delete(additionalProperties, "user")
+		delete(additionalProperties, "ssl_ca_data")
+		delete(additionalProperties, "ssl_disabled")
+		delete(additionalProperties, "td_sslmode")
+		delete(additionalProperties, "td_logmech")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

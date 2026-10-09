@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -31,7 +30,8 @@ type AirflowCredentialsOut struct {
 	// When the credentials were created.
 	CreatedTime time.Time `json:"created_time"`
 	// Host name of the Airflow web server, as Airflow reports it to Monte Carlo.
-	HostName string `json:"host_name"`
+	HostName             string `json:"host_name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AirflowCredentialsOut AirflowCredentialsOut
@@ -193,6 +193,11 @@ func (o AirflowCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["storage_type"] = o.StorageType
 	toSerialize["created_time"] = o.CreatedTime
 	toSerialize["host_name"] = o.HostName
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -224,15 +229,24 @@ func (o *AirflowCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varAirflowCredentialsOut := _AirflowCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAirflowCredentialsOut)
+	err = json.Unmarshal(data, &varAirflowCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AirflowCredentialsOut(varAirflowCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "host_name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

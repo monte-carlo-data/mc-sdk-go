@@ -52,7 +52,8 @@ func (v *ValidationStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid ValidationStatus", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewValidationStatusFromValue returns a pointer to a valid ValidationStatus

@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -39,7 +38,8 @@ type CollectionAgentCredentialOut struct {
 	// OAuth scopes the client is granted. Set for an `OAUTH_CLIENT`, null otherwise.
 	Scopes []string `json:"scopes,omitempty"`
 	// When an `OAUTH_CLIENT` stops being accepted. Null for one that does not expire, and for a `TOKEN`.
-	ExpirationTime NullableTime `json:"expiration_time,omitempty"`
+	ExpirationTime       NullableTime `json:"expiration_time,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CollectionAgentCredentialOut CollectionAgentCredentialOut
@@ -375,6 +375,11 @@ func (o CollectionAgentCredentialOut) ToMap() (map[string]interface{}, error) {
 	if o.ExpirationTime.IsSet() {
 		toSerialize["expiration_time"] = o.ExpirationTime.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -406,15 +411,28 @@ func (o *CollectionAgentCredentialOut) UnmarshalJSON(data []byte) (err error) {
 
 	varCollectionAgentCredentialOut := _CollectionAgentCredentialOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCollectionAgentCredentialOut)
+	err = json.Unmarshal(data, &varCollectionAgentCredentialOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CollectionAgentCredentialOut(varCollectionAgentCredentialOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "mcd_id")
+		delete(additionalProperties, "client_id")
+		delete(additionalProperties, "scopes")
+		delete(additionalProperties, "expiration_time")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

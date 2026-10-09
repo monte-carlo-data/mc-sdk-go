@@ -50,7 +50,8 @@ func (v *StorageType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid StorageType", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewStorageTypeFromValue returns a pointer to a valid StorageType

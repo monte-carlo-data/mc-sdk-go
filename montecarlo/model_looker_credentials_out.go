@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -35,7 +34,8 @@ type LookerCredentialsOut struct {
 	// Client ID of the Looker API key.
 	ApiClientId string `json:"api_client_id"`
 	// Whether to verify Looker's TLS certificate. Verified when left out. Null unless set.
-	VerifySsl NullableBool `json:"verify_ssl"`
+	VerifySsl            NullableBool `json:"verify_ssl"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LookerCredentialsOut LookerCredentialsOut
@@ -251,6 +251,11 @@ func (o LookerCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["base_url"] = o.BaseUrl
 	toSerialize["api_client_id"] = o.ApiClientId
 	toSerialize["verify_ssl"] = o.VerifySsl.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -284,15 +289,26 @@ func (o *LookerCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varLookerCredentialsOut := _LookerCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLookerCredentialsOut)
+	err = json.Unmarshal(data, &varLookerCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LookerCredentialsOut(varLookerCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "base_url")
+		delete(additionalProperties, "api_client_id")
+		delete(additionalProperties, "verify_ssl")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

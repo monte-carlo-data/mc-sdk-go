@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -39,7 +38,8 @@ type GcpCollectionDataStoreOut struct {
 	// When the data store was last registered, renamed, or given different storage or credentials. Null until one of those has happened.
 	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
 	// Name of the Cloud Storage bucket Monte Carlo uses. Empty until it has been registered.
-	BucketName string `json:"bucket_name"`
+	BucketName           string `json:"bucket_name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GcpCollectionDataStoreOut GcpCollectionDataStoreOut
@@ -365,6 +365,11 @@ func (o GcpCollectionDataStoreOut) ToMap() (map[string]interface{}, error) {
 		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
 	}
 	toSerialize["bucket_name"] = o.BucketName
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -397,15 +402,28 @@ func (o *GcpCollectionDataStoreOut) UnmarshalJSON(data []byte) (err error) {
 
 	varGcpCollectionDataStoreOut := _GcpCollectionDataStoreOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGcpCollectionDataStoreOut)
+	err = json.Unmarshal(data, &varGcpCollectionDataStoreOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GcpCollectionDataStoreOut(varGcpCollectionDataStoreOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "authentication_type")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "last_updated_time")
+		delete(additionalProperties, "bucket_name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

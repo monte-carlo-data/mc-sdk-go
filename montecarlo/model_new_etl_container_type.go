@@ -52,7 +52,8 @@ func (v *NewEtlContainerType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid NewEtlContainerType", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewNewEtlContainerTypeFromValue returns a pointer to a valid NewEtlContainerType

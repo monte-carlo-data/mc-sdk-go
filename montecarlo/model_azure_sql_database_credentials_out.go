@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -37,7 +36,8 @@ type AzureSqlDatabaseCredentialsOut struct {
 	// Database to connect to.
 	DbName string `json:"db_name"`
 	// Database user Monte Carlo logs in as.
-	User string `json:"user"`
+	User                 string `json:"user"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AzureSqlDatabaseCredentialsOut AzureSqlDatabaseCredentialsOut
@@ -277,6 +277,11 @@ func (o AzureSqlDatabaseCredentialsOut) ToMap() (map[string]interface{}, error) 
 	toSerialize["port"] = o.Port
 	toSerialize["db_name"] = o.DbName
 	toSerialize["user"] = o.User
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -311,15 +316,27 @@ func (o *AzureSqlDatabaseCredentialsOut) UnmarshalJSON(data []byte) (err error) 
 
 	varAzureSqlDatabaseCredentialsOut := _AzureSqlDatabaseCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAzureSqlDatabaseCredentialsOut)
+	err = json.Unmarshal(data, &varAzureSqlDatabaseCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AzureSqlDatabaseCredentialsOut(varAzureSqlDatabaseCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "db_name")
+		delete(additionalProperties, "user")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -37,7 +36,8 @@ type EnvVarCredentialsOut struct {
 	// Name of the environment variable on the deployment that holds the connection's credentials. Must start with `MCD_`.
 	EnvVarName string `json:"env_var_name"`
 	// AWS KMS key the value is encrypted with. Null for a value in the clear.
-	KmsKeyId NullableString `json:"kms_key_id"`
+	KmsKeyId             NullableString `json:"kms_key_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EnvVarCredentialsOut EnvVarCredentialsOut
@@ -283,6 +283,11 @@ func (o EnvVarCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["sql_warehouse_id"] = o.SqlWarehouseId.Get()
 	toSerialize["env_var_name"] = o.EnvVarName
 	toSerialize["kms_key_id"] = o.KmsKeyId.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -317,15 +322,27 @@ func (o *EnvVarCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varEnvVarCredentialsOut := _EnvVarCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEnvVarCredentialsOut)
+	err = json.Unmarshal(data, &varEnvVarCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EnvVarCredentialsOut(varEnvVarCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "bq_project_id")
+		delete(additionalProperties, "sql_warehouse_id")
+		delete(additionalProperties, "env_var_name")
+		delete(additionalProperties, "kms_key_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

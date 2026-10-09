@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -41,7 +40,8 @@ type GenericCollectionAgentOAuthClientCreatedOut struct {
 	// Secret the agent presents, as `client_secret` in its configuration. Returned once, by this call. It is not retrievable afterwards, and Terraform holds it in state like any generated credential. To rotate, create a new credential and delete this one.
 	ClientSecret string `json:"client_secret"`
 	// Identifier of the secret this call created, as the client's secrets are listed. Keep it with the secret.
-	SecretId string `json:"secret_id"`
+	SecretId             string `json:"secret_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GenericCollectionAgentOAuthClientCreatedOut GenericCollectionAgentOAuthClientCreatedOut
@@ -353,6 +353,11 @@ func (o GenericCollectionAgentOAuthClientCreatedOut) ToMap() (map[string]interfa
 	}
 	toSerialize["client_secret"] = o.ClientSecret
 	toSerialize["secret_id"] = o.SecretId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -388,15 +393,29 @@ func (o *GenericCollectionAgentOAuthClientCreatedOut) UnmarshalJSON(data []byte)
 
 	varGenericCollectionAgentOAuthClientCreatedOut := _GenericCollectionAgentOAuthClientCreatedOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGenericCollectionAgentOAuthClientCreatedOut)
+	err = json.Unmarshal(data, &varGenericCollectionAgentOAuthClientCreatedOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GenericCollectionAgentOAuthClientCreatedOut(varGenericCollectionAgentOAuthClientCreatedOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "client_id")
+		delete(additionalProperties, "scopes")
+		delete(additionalProperties, "expiration_time")
+		delete(additionalProperties, "client_secret")
+		delete(additionalProperties, "secret_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

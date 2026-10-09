@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -35,7 +34,8 @@ type FileCredentialsOut struct {
 	// Databricks SQL warehouse the connection runs queries on. Null unless set.
 	SqlWarehouseId NullableString `json:"sql_warehouse_id"`
 	// Path of the file on the deployment that holds the connection's credentials.
-	FilePath string `json:"file_path"`
+	FilePath             string `json:"file_path"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FileCredentialsOut FileCredentialsOut
@@ -253,6 +253,11 @@ func (o FileCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["bq_project_id"] = o.BqProjectId.Get()
 	toSerialize["sql_warehouse_id"] = o.SqlWarehouseId.Get()
 	toSerialize["file_path"] = o.FilePath
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -286,15 +291,26 @@ func (o *FileCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varFileCredentialsOut := _FileCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFileCredentialsOut)
+	err = json.Unmarshal(data, &varFileCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FileCredentialsOut(varFileCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "bq_project_id")
+		delete(additionalProperties, "sql_warehouse_id")
+		delete(additionalProperties, "file_path")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,7 +27,8 @@ type PagedConnectionOut struct {
 	// Whether there are more items after this page.
 	HasMore bool `json:"has_more"`
 	// Total number of items across every page. Only returned when the request set `with_count=true`; null otherwise.
-	Count NullableInt32 `json:"count"`
+	Count                NullableInt32 `json:"count"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PagedConnectionOut PagedConnectionOut
@@ -168,6 +168,11 @@ func (o PagedConnectionOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["next_cursor"] = o.NextCursor.Get()
 	toSerialize["has_more"] = o.HasMore
 	toSerialize["count"] = o.Count.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -198,15 +203,23 @@ func (o *PagedConnectionOut) UnmarshalJSON(data []byte) (err error) {
 
 	varPagedConnectionOut := _PagedConnectionOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPagedConnectionOut)
+	err = json.Unmarshal(data, &varPagedConnectionOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PagedConnectionOut(varPagedConnectionOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "items")
+		delete(additionalProperties, "next_cursor")
+		delete(additionalProperties, "has_more")
+		delete(additionalProperties, "count")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

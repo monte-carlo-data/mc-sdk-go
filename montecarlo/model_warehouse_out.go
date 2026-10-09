@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -31,7 +30,8 @@ type WarehouseOut struct {
 	// The deployment the warehouse's connections run through. Null for a warehouse that has no deployment. The id may name a deployment on Monte Carlo's older collection platform. The deployments endpoints do not list those.
 	DeploymentId NullableString `json:"deployment_id"`
 	// When the warehouse was created.
-	CreatedTime time.Time `json:"created_time"`
+	CreatedTime          time.Time `json:"created_time"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _WarehouseOut WarehouseOut
@@ -197,6 +197,11 @@ func (o WarehouseOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["type"] = o.Type
 	toSerialize["deployment_id"] = o.DeploymentId.Get()
 	toSerialize["created_time"] = o.CreatedTime
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -228,15 +233,24 @@ func (o *WarehouseOut) UnmarshalJSON(data []byte) (err error) {
 
 	varWarehouseOut := _WarehouseOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varWarehouseOut)
+	err = json.Unmarshal(data, &varWarehouseOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = WarehouseOut(varWarehouseOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "created_time")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

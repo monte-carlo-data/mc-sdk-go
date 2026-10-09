@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -39,7 +38,8 @@ type AzureKeyVaultCredentialsOut struct {
 	// Name of the key vault. Null when unset.
 	AkvVaultName NullableString `json:"akv_vault_name"`
 	// URL of the key vault. Null when unset.
-	AkvVaultUrl NullableString `json:"akv_vault_url"`
+	AkvVaultUrl          NullableString `json:"akv_vault_url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AzureKeyVaultCredentialsOut AzureKeyVaultCredentialsOut
@@ -313,6 +313,11 @@ func (o AzureKeyVaultCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["akv_secret"] = o.AkvSecret
 	toSerialize["akv_vault_name"] = o.AkvVaultName.Get()
 	toSerialize["akv_vault_url"] = o.AkvVaultUrl.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -348,15 +353,28 @@ func (o *AzureKeyVaultCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varAzureKeyVaultCredentialsOut := _AzureKeyVaultCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAzureKeyVaultCredentialsOut)
+	err = json.Unmarshal(data, &varAzureKeyVaultCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AzureKeyVaultCredentialsOut(varAzureKeyVaultCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "bq_project_id")
+		delete(additionalProperties, "sql_warehouse_id")
+		delete(additionalProperties, "akv_secret")
+		delete(additionalProperties, "akv_vault_name")
+		delete(additionalProperties, "akv_vault_url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

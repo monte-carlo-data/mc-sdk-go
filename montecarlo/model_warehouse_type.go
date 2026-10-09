@@ -82,7 +82,8 @@ func (v *WarehouseType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid WarehouseType", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewWarehouseTypeFromValue returns a pointer to a valid WarehouseType

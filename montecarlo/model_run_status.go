@@ -44,7 +44,8 @@ func (v *RunStatus) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid RunStatus", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewRunStatusFromValue returns a pointer to a valid RunStatus

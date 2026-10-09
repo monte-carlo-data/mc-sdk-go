@@ -52,7 +52,8 @@ func (v *TeradataSslMode) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid TeradataSslMode", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewTeradataSslModeFromValue returns a pointer to a valid TeradataSslMode
