@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -33,7 +32,8 @@ type BigQueryCredentialsOut struct {
 	// Google Cloud project the service account belongs to.
 	ProjectId string `json:"project_id"`
 	// Email address of the service account.
-	ClientEmail string `json:"client_email"`
+	ClientEmail          string `json:"client_email"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BigQueryCredentialsOut BigQueryCredentialsOut
@@ -221,6 +221,11 @@ func (o BigQueryCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["created_time"] = o.CreatedTime
 	toSerialize["project_id"] = o.ProjectId
 	toSerialize["client_email"] = o.ClientEmail
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -253,15 +258,25 @@ func (o *BigQueryCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varBigQueryCredentialsOut := _BigQueryCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBigQueryCredentialsOut)
+	err = json.Unmarshal(data, &varBigQueryCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BigQueryCredentialsOut(varBigQueryCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "project_id")
+		delete(additionalProperties, "client_email")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

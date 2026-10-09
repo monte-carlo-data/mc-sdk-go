@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -37,7 +36,8 @@ type ClickHouseCredentialsOut struct {
 	// Database to connect to. Null when none is set.
 	DbName NullableString `json:"db_name"`
 	// Database user Monte Carlo logs in as.
-	User string `json:"user"`
+	User                 string `json:"user"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ClickHouseCredentialsOut ClickHouseCredentialsOut
@@ -279,6 +279,11 @@ func (o ClickHouseCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["port"] = o.Port
 	toSerialize["db_name"] = o.DbName.Get()
 	toSerialize["user"] = o.User
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -313,15 +318,27 @@ func (o *ClickHouseCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varClickHouseCredentialsOut := _ClickHouseCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varClickHouseCredentialsOut)
+	err = json.Unmarshal(data, &varClickHouseCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ClickHouseCredentialsOut(varClickHouseCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "db_name")
+		delete(additionalProperties, "user")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -51,7 +50,8 @@ type ConnectionOut struct {
 	// The jobs Monte Carlo runs on this connection, such as `metadata`.
 	JobTypes []string `json:"job_types"`
 	// When the connection was created.
-	CreatedTime time.Time `json:"created_time"`
+	CreatedTime          time.Time `json:"created_time"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ConnectionOut ConnectionOut
@@ -495,6 +495,11 @@ func (o ConnectionOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["credentials_storage_type"] = o.CredentialsStorageType.Get()
 	toSerialize["job_types"] = o.JobTypes
 	toSerialize["created_time"] = o.CreatedTime
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -536,15 +541,34 @@ func (o *ConnectionOut) UnmarshalJSON(data []byte) (err error) {
 
 	varConnectionOut := _ConnectionOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varConnectionOut)
+	err = json.Unmarshal(data, &varConnectionOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ConnectionOut(varConnectionOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "warehouse_id")
+		delete(additionalProperties, "warehouse_name")
+		delete(additionalProperties, "bi_container_id")
+		delete(additionalProperties, "bi_container_name")
+		delete(additionalProperties, "etl_container_id")
+		delete(additionalProperties, "etl_container_name")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "deployment_name")
+		delete(additionalProperties, "credentials_id")
+		delete(additionalProperties, "credentials_storage_type")
+		delete(additionalProperties, "job_types")
+		delete(additionalProperties, "created_time")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

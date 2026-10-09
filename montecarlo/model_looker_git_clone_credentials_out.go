@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -38,6 +37,7 @@ type LookerGitCloneCredentialsOut struct {
 	SslCaData NullableString `json:"ssl_ca_data"`
 	// Skip verifying the git server's TLS certificate. Null unless set.
 	SslSkipCertVerification NullableBool `json:"ssl_skip_cert_verification"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _LookerGitCloneCredentialsOut LookerGitCloneCredentialsOut
@@ -283,6 +283,11 @@ func (o LookerGitCloneCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["username"] = o.Username.Get()
 	toSerialize["ssl_ca_data"] = o.SslCaData.Get()
 	toSerialize["ssl_skip_cert_verification"] = o.SslSkipCertVerification.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -317,15 +322,27 @@ func (o *LookerGitCloneCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varLookerGitCloneCredentialsOut := _LookerGitCloneCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLookerGitCloneCredentialsOut)
+	err = json.Unmarshal(data, &varLookerGitCloneCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LookerGitCloneCredentialsOut(varLookerGitCloneCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "repo_url")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "ssl_ca_data")
+		delete(additionalProperties, "ssl_skip_cert_verification")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

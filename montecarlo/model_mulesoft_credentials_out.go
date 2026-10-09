@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -35,7 +34,8 @@ type MulesoftCredentialsOut struct {
 	// Anypoint Platform instance the organization lives on.
 	Region MulesoftRegion `json:"region"`
 	// Anypoint organization or business group to collect from. Set it when your Mule applications are deployed in a business group. Leave it out to collect the organization that owns the connected app. Null unless set.
-	OrgId NullableString `json:"org_id"`
+	OrgId                NullableString `json:"org_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MulesoftCredentialsOut MulesoftCredentialsOut
@@ -251,6 +251,11 @@ func (o MulesoftCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["app_client_id"] = o.AppClientId
 	toSerialize["region"] = o.Region
 	toSerialize["org_id"] = o.OrgId.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -284,15 +289,26 @@ func (o *MulesoftCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varMulesoftCredentialsOut := _MulesoftCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMulesoftCredentialsOut)
+	err = json.Unmarshal(data, &varMulesoftCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MulesoftCredentialsOut(varMulesoftCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "app_client_id")
+		delete(additionalProperties, "region")
+		delete(additionalProperties, "org_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

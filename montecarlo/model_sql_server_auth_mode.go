@@ -44,7 +44,8 @@ func (v *SqlServerAuthMode) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid SqlServerAuthMode", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewSqlServerAuthModeFromValue returns a pointer to a valid SqlServerAuthMode

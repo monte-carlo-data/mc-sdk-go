@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -45,7 +44,8 @@ type AwsCollectionAgentOut struct {
 	// ARN of the Lambda function Monte Carlo invokes. Empty until the agent has been registered.
 	LambdaFunctionArn string `json:"lambda_function_arn"`
 	// Value to supply in the trust policy of the role Monte Carlo assumes to invoke the function. Null until Monte Carlo has generated one, for a caller who is not permitted to register an agent, and if the value could not be read just now. Retry the request in that last case.
-	ExternalId NullableString `json:"external_id,omitempty"`
+	ExternalId           NullableString `json:"external_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AwsCollectionAgentOut AwsCollectionAgentOut
@@ -511,6 +511,11 @@ func (o AwsCollectionAgentOut) ToMap() (map[string]interface{}, error) {
 	if o.ExternalId.IsSet() {
 		toSerialize["external_id"] = o.ExternalId.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -543,15 +548,31 @@ func (o *AwsCollectionAgentOut) UnmarshalJSON(data []byte) (err error) {
 
 	varAwsCollectionAgentOut := _AwsCollectionAgentOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAwsCollectionAgentOut)
+	err = json.Unmarshal(data, &varAwsCollectionAgentOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AwsCollectionAgentOut(varAwsCollectionAgentOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "authentication_type")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "last_updated_time")
+		delete(additionalProperties, "image_build")
+		delete(additionalProperties, "image_version")
+		delete(additionalProperties, "is_remote_upgradeable")
+		delete(additionalProperties, "lambda_function_arn")
+		delete(additionalProperties, "external_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

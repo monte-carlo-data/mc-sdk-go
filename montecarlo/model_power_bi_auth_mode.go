@@ -44,7 +44,8 @@ func (v *PowerBiAuthMode) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid PowerBiAuthMode", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewPowerBiAuthModeFromValue returns a pointer to a valid PowerBiAuthMode

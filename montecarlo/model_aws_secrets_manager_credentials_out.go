@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -41,7 +40,8 @@ type AwsSecretsManagerCredentialsOut struct {
 	// ARN of the role the deployment assumes to read the secret. Null when unset.
 	AssumableRole NullableString `json:"assumable_role"`
 	// External id presented when assuming the role. Null when unset.
-	ExternalId NullableString `json:"external_id"`
+	ExternalId           NullableString `json:"external_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AwsSecretsManagerCredentialsOut AwsSecretsManagerCredentialsOut
@@ -343,6 +343,11 @@ func (o AwsSecretsManagerCredentialsOut) ToMap() (map[string]interface{}, error)
 	toSerialize["aws_region"] = o.AwsRegion.Get()
 	toSerialize["assumable_role"] = o.AssumableRole.Get()
 	toSerialize["external_id"] = o.ExternalId.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -379,15 +384,29 @@ func (o *AwsSecretsManagerCredentialsOut) UnmarshalJSON(data []byte) (err error)
 
 	varAwsSecretsManagerCredentialsOut := _AwsSecretsManagerCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAwsSecretsManagerCredentialsOut)
+	err = json.Unmarshal(data, &varAwsSecretsManagerCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AwsSecretsManagerCredentialsOut(varAwsSecretsManagerCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "bq_project_id")
+		delete(additionalProperties, "sql_warehouse_id")
+		delete(additionalProperties, "aws_secret")
+		delete(additionalProperties, "aws_region")
+		delete(additionalProperties, "assumable_role")
+		delete(additionalProperties, "external_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

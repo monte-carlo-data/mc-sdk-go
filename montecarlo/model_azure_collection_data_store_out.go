@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -39,7 +38,8 @@ type AzureCollectionDataStoreOut struct {
 	// When the data store was last registered, renamed, or given different storage or credentials. Null until one of those has happened.
 	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
 	// Name of the blob container Monte Carlo uses. Empty until it has been registered. The storage account holding it is part of the credentials, so it is not returned.
-	ContainerName string `json:"container_name"`
+	ContainerName        string `json:"container_name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AzureCollectionDataStoreOut AzureCollectionDataStoreOut
@@ -365,6 +365,11 @@ func (o AzureCollectionDataStoreOut) ToMap() (map[string]interface{}, error) {
 		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
 	}
 	toSerialize["container_name"] = o.ContainerName
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -397,15 +402,28 @@ func (o *AzureCollectionDataStoreOut) UnmarshalJSON(data []byte) (err error) {
 
 	varAzureCollectionDataStoreOut := _AzureCollectionDataStoreOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAzureCollectionDataStoreOut)
+	err = json.Unmarshal(data, &varAzureCollectionDataStoreOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AzureCollectionDataStoreOut(varAzureCollectionDataStoreOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "authentication_type")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "last_updated_time")
+		delete(additionalProperties, "container_name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

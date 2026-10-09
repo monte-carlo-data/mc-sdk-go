@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -43,7 +42,8 @@ type GcpCollectionAgentOut struct {
 	// Whether Monte Carlo can update the collection agent's image for you.
 	IsRemoteUpgradeable bool `json:"is_remote_upgradeable"`
 	// URL of the Cloud Run service Monte Carlo calls. Empty until the agent has been registered.
-	CloudRunUrl string `json:"cloud_run_url"`
+	CloudRunUrl          string `json:"cloud_run_url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GcpCollectionAgentOut GcpCollectionAgentOut
@@ -463,6 +463,11 @@ func (o GcpCollectionAgentOut) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["is_remote_upgradeable"] = o.IsRemoteUpgradeable
 	toSerialize["cloud_run_url"] = o.CloudRunUrl
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -495,15 +500,30 @@ func (o *GcpCollectionAgentOut) UnmarshalJSON(data []byte) (err error) {
 
 	varGcpCollectionAgentOut := _GcpCollectionAgentOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGcpCollectionAgentOut)
+	err = json.Unmarshal(data, &varGcpCollectionAgentOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GcpCollectionAgentOut(varGcpCollectionAgentOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "authentication_type")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "last_updated_time")
+		delete(additionalProperties, "image_build")
+		delete(additionalProperties, "image_version")
+		delete(additionalProperties, "is_remote_upgradeable")
+		delete(additionalProperties, "cloud_run_url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

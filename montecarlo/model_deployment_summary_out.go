@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -35,7 +34,8 @@ type DeploymentSummaryOut struct {
 	// When the deployment was assigned to your account. Null when Monte Carlo has no record of that.
 	CreatedTime NullableTime `json:"created_time,omitempty"`
 	// When Monte Carlo last updated the infrastructure behind the deployment. Null when Monte Carlo has no record of an update.
-	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
+	LastUpdatedTime      NullableTime `json:"last_updated_time,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DeploymentSummaryOut DeploymentSummaryOut
@@ -329,6 +329,11 @@ func (o DeploymentSummaryOut) ToMap() (map[string]interface{}, error) {
 	if o.LastUpdatedTime.IsSet() {
 		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -358,15 +363,26 @@ func (o *DeploymentSummaryOut) UnmarshalJSON(data []byte) (err error) {
 
 	varDeploymentSummaryOut := _DeploymentSummaryOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDeploymentSummaryOut)
+	err = json.Unmarshal(data, &varDeploymentSummaryOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DeploymentSummaryOut(varDeploymentSummaryOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "runtime_platform")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "last_updated_time")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

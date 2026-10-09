@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -37,7 +36,8 @@ type PowerBiCredentialsOut struct {
 	// How Monte Carlo signs in. `service_principal` takes `app_client_secret`. `primary_user` takes `username` and `password`.
 	AuthMode PowerBiAuthMode `json:"auth_mode"`
 	// User Monte Carlo signs in as. Null unless set.
-	Username NullableString `json:"username"`
+	Username             NullableString `json:"username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PowerBiCredentialsOut PowerBiCredentialsOut
@@ -279,6 +279,11 @@ func (o PowerBiCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["app_client_id"] = o.AppClientId
 	toSerialize["auth_mode"] = o.AuthMode
 	toSerialize["username"] = o.Username.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -313,15 +318,27 @@ func (o *PowerBiCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varPowerBiCredentialsOut := _PowerBiCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPowerBiCredentialsOut)
+	err = json.Unmarshal(data, &varPowerBiCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PowerBiCredentialsOut(varPowerBiCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "tenant_id")
+		delete(additionalProperties, "app_client_id")
+		delete(additionalProperties, "auth_mode")
+		delete(additionalProperties, "username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

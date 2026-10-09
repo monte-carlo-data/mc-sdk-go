@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -47,7 +46,8 @@ type InformaticaV2CredentialsOut struct {
 	// Scope the token is requested with. Null unless set.
 	OauthScope NullableString `json:"oauth_scope"`
 	// Identity provider user. Null unless the grant is password.
-	OauthUsername NullableString `json:"oauth_username"`
+	OauthUsername        NullableString `json:"oauth_username"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _InformaticaV2CredentialsOut InformaticaV2CredentialsOut
@@ -433,6 +433,11 @@ func (o InformaticaV2CredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["oauth_access_token_endpoint"] = o.OauthAccessTokenEndpoint.Get()
 	toSerialize["oauth_scope"] = o.OauthScope.Get()
 	toSerialize["oauth_username"] = o.OauthUsername.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -472,15 +477,32 @@ func (o *InformaticaV2CredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varInformaticaV2CredentialsOut := _InformaticaV2CredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varInformaticaV2CredentialsOut)
+	err = json.Unmarshal(data, &varInformaticaV2CredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = InformaticaV2CredentialsOut(varInformaticaV2CredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "auth_mode")
+		delete(additionalProperties, "base_url")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "org_id")
+		delete(additionalProperties, "oauth_client_id")
+		delete(additionalProperties, "oauth_grant_type")
+		delete(additionalProperties, "oauth_access_token_endpoint")
+		delete(additionalProperties, "oauth_scope")
+		delete(additionalProperties, "oauth_username")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

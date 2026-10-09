@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -39,7 +38,8 @@ type AzureDataFactoryCredentialsOut struct {
 	// Resource group that holds the data factory.
 	ResourceGroupName string `json:"resource_group_name"`
 	// Name of the data factory.
-	FactoryName string `json:"factory_name"`
+	FactoryName          string `json:"factory_name"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AzureDataFactoryCredentialsOut AzureDataFactoryCredentialsOut
@@ -305,6 +305,11 @@ func (o AzureDataFactoryCredentialsOut) ToMap() (map[string]interface{}, error) 
 	toSerialize["subscription_id"] = o.SubscriptionId
 	toSerialize["resource_group_name"] = o.ResourceGroupName
 	toSerialize["factory_name"] = o.FactoryName
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -340,15 +345,28 @@ func (o *AzureDataFactoryCredentialsOut) UnmarshalJSON(data []byte) (err error) 
 
 	varAzureDataFactoryCredentialsOut := _AzureDataFactoryCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAzureDataFactoryCredentialsOut)
+	err = json.Unmarshal(data, &varAzureDataFactoryCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AzureDataFactoryCredentialsOut(varAzureDataFactoryCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "tenant_id")
+		delete(additionalProperties, "app_client_id")
+		delete(additionalProperties, "subscription_id")
+		delete(additionalProperties, "resource_group_name")
+		delete(additionalProperties, "factory_name")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -41,7 +40,8 @@ type AwsCollectionDataStoreOut struct {
 	// Name of the S3 bucket Monte Carlo uses. Empty until it has been registered.
 	BucketName string `json:"bucket_name"`
 	// Value to put in the trust policy of the role Monte Carlo assumes to access the bucket. Null before Monte Carlo has generated one, and for a caller who cannot register a data store. Also null if the value could not be read just now, so retry once before treating it as absent.
-	ExternalId NullableString `json:"external_id,omitempty"`
+	ExternalId           NullableString `json:"external_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _AwsCollectionDataStoreOut AwsCollectionDataStoreOut
@@ -413,6 +413,11 @@ func (o AwsCollectionDataStoreOut) ToMap() (map[string]interface{}, error) {
 	if o.ExternalId.IsSet() {
 		toSerialize["external_id"] = o.ExternalId.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -445,15 +450,29 @@ func (o *AwsCollectionDataStoreOut) UnmarshalJSON(data []byte) (err error) {
 
 	varAwsCollectionDataStoreOut := _AwsCollectionDataStoreOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAwsCollectionDataStoreOut)
+	err = json.Unmarshal(data, &varAwsCollectionDataStoreOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AwsCollectionDataStoreOut(varAwsCollectionDataStoreOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "authentication_type")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "last_updated_time")
+		delete(additionalProperties, "bucket_name")
+		delete(additionalProperties, "external_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

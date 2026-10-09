@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -29,7 +28,8 @@ type CredentialsSummaryOut struct {
 	// Where the secret lives. Fixed once created.
 	StorageType CredentialsStorageType `json:"storage_type"`
 	// When the credentials were created.
-	CreatedTime time.Time `json:"created_time"`
+	CreatedTime          time.Time `json:"created_time"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CredentialsSummaryOut CredentialsSummaryOut
@@ -165,6 +165,11 @@ func (o CredentialsSummaryOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["connection_type"] = o.ConnectionType
 	toSerialize["storage_type"] = o.StorageType
 	toSerialize["created_time"] = o.CreatedTime
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -195,15 +200,23 @@ func (o *CredentialsSummaryOut) UnmarshalJSON(data []byte) (err error) {
 
 	varCredentialsSummaryOut := _CredentialsSummaryOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCredentialsSummaryOut)
+	err = json.Unmarshal(data, &varCredentialsSummaryOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CredentialsSummaryOut(varCredentialsSummaryOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

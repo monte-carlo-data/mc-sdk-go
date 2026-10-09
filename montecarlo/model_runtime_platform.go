@@ -54,7 +54,8 @@ func (v *RuntimePlatform) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid RuntimePlatform", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewRuntimePlatformFromValue returns a pointer to a valid RuntimePlatform

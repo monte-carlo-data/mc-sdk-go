@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -35,7 +34,8 @@ type GcpSecretManagerCredentialsOut struct {
 	// Databricks SQL warehouse the connection runs queries on. Null unless set.
 	SqlWarehouseId NullableString `json:"sql_warehouse_id"`
 	// Name of the GCP Secret Manager secret holding the connection's credentials.
-	GcpSecret string `json:"gcp_secret"`
+	GcpSecret            string `json:"gcp_secret"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GcpSecretManagerCredentialsOut GcpSecretManagerCredentialsOut
@@ -253,6 +253,11 @@ func (o GcpSecretManagerCredentialsOut) ToMap() (map[string]interface{}, error) 
 	toSerialize["bq_project_id"] = o.BqProjectId.Get()
 	toSerialize["sql_warehouse_id"] = o.SqlWarehouseId.Get()
 	toSerialize["gcp_secret"] = o.GcpSecret
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -286,15 +291,26 @@ func (o *GcpSecretManagerCredentialsOut) UnmarshalJSON(data []byte) (err error) 
 
 	varGcpSecretManagerCredentialsOut := _GcpSecretManagerCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGcpSecretManagerCredentialsOut)
+	err = json.Unmarshal(data, &varGcpSecretManagerCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GcpSecretManagerCredentialsOut(varGcpSecretManagerCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "bq_project_id")
+		delete(additionalProperties, "sql_warehouse_id")
+		delete(additionalProperties, "gcp_secret")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

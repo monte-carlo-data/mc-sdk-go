@@ -44,7 +44,8 @@ func (v *AzureDataStoreAuthenticationType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid AzureDataStoreAuthenticationType", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewAzureDataStoreAuthenticationTypeFromValue returns a pointer to a valid AzureDataStoreAuthenticationType

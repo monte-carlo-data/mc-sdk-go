@@ -44,7 +44,8 @@ func (v *TargetType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid TargetType", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewTargetTypeFromValue returns a pointer to a valid TargetType

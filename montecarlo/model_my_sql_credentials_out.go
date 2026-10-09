@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -48,6 +47,7 @@ type MySqlCredentialsOut struct {
 	SslVerifyIdentity NullableBool `json:"ssl_verify_identity"`
 	// Encrypt the connection without checking the server's certificate. Null when unset.
 	SslSkipCertVerification NullableBool `json:"ssl_skip_cert_verification"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _MySqlCredentialsOut MySqlCredentialsOut
@@ -429,6 +429,11 @@ func (o MySqlCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["ssl_verify_cert"] = o.SslVerifyCert.Get()
 	toSerialize["ssl_verify_identity"] = o.SslVerifyIdentity.Get()
 	toSerialize["ssl_skip_cert_verification"] = o.SslSkipCertVerification.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -468,15 +473,32 @@ func (o *MySqlCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varMySqlCredentialsOut := _MySqlCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMySqlCredentialsOut)
+	err = json.Unmarshal(data, &varMySqlCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MySqlCredentialsOut(varMySqlCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "db_name")
+		delete(additionalProperties, "user")
+		delete(additionalProperties, "ssl_ca_data")
+		delete(additionalProperties, "ssl_disabled")
+		delete(additionalProperties, "ssl_verify_cert")
+		delete(additionalProperties, "ssl_verify_identity")
+		delete(additionalProperties, "ssl_skip_cert_verification")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

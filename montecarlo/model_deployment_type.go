@@ -46,7 +46,8 @@ func (v *DeploymentType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid DeploymentType", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewDeploymentTypeFromValue returns a pointer to a valid DeploymentType

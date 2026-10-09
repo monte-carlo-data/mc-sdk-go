@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -45,7 +44,8 @@ type SqlServerCredentialsOut struct {
 	// Hostname of the key distribution center, optionally with `:port`, for `kerberos`. Null for `sql`.
 	Kdc NullableString `json:"kdc"`
 	// Active Directory principal Monte Carlo signs in as, for `kerberos`. Null for `sql`.
-	Principal NullableString `json:"principal"`
+	Principal            NullableString `json:"principal"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _SqlServerCredentialsOut SqlServerCredentialsOut
@@ -399,6 +399,11 @@ func (o SqlServerCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["realm"] = o.Realm.Get()
 	toSerialize["kdc"] = o.Kdc.Get()
 	toSerialize["principal"] = o.Principal.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -437,15 +442,31 @@ func (o *SqlServerCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varSqlServerCredentialsOut := _SqlServerCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSqlServerCredentialsOut)
+	err = json.Unmarshal(data, &varSqlServerCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SqlServerCredentialsOut(varSqlServerCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "db_name")
+		delete(additionalProperties, "auth_mode")
+		delete(additionalProperties, "user")
+		delete(additionalProperties, "realm")
+		delete(additionalProperties, "kdc")
+		delete(additionalProperties, "principal")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

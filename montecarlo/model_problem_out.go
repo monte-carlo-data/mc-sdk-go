@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -36,7 +35,8 @@ type ProblemOut struct {
 	// The fields that failed validation. Empty unless this is a validation error.
 	Errors []FieldErrorOut `json:"errors,omitempty"`
 	// Values that parameterize `message`, for a client that renders its own text instead of showing `message` directly. Absent when there is nothing to report.
-	Extra map[string]string `json:"extra,omitempty"`
+	Extra                map[string]string `json:"extra,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ProblemOut ProblemOut
@@ -295,6 +295,11 @@ func (o ProblemOut) ToMap() (map[string]interface{}, error) {
 	if o.Extra != nil {
 		toSerialize["extra"] = o.Extra
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -327,15 +332,27 @@ func (o *ProblemOut) UnmarshalJSON(data []byte) (err error) {
 
 	varProblemOut := _ProblemOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varProblemOut)
+	err = json.Unmarshal(data, &varProblemOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ProblemOut(varProblemOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "detail")
+		delete(additionalProperties, "request_id")
+		delete(additionalProperties, "errors")
+		delete(additionalProperties, "extra")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

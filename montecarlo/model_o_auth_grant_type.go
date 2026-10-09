@@ -44,7 +44,8 @@ func (v *OAuthGrantType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid OAuthGrantType", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewOAuthGrantTypeFromValue returns a pointer to a valid OAuthGrantType

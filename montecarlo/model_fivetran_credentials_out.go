@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -31,7 +30,8 @@ type FivetranCredentialsOut struct {
 	// When the credentials were created.
 	CreatedTime time.Time `json:"created_time"`
 	// URL of the Fivetran REST API. Leave it out for https://api.fivetran.com/v1/. Null unless set.
-	BaseUrl NullableString `json:"base_url"`
+	BaseUrl              NullableString `json:"base_url"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FivetranCredentialsOut FivetranCredentialsOut
@@ -195,6 +195,11 @@ func (o FivetranCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["storage_type"] = o.StorageType
 	toSerialize["created_time"] = o.CreatedTime
 	toSerialize["base_url"] = o.BaseUrl.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -226,15 +231,24 @@ func (o *FivetranCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varFivetranCredentialsOut := _FivetranCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFivetranCredentialsOut)
+	err = json.Unmarshal(data, &varFivetranCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FivetranCredentialsOut(varFivetranCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "base_url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -28,7 +27,8 @@ type ValidationFailureOut struct {
 	// The underlying error the check ran into, as the system reported it. Values that look like passwords or tokens are masked, and long text is shortened. Null when none was reported.
 	Cause NullableString `json:"cause"`
 	// The call stack the system reported with the error, ending at the most recent call. Values that look like passwords or tokens are masked, and a long trace keeps only its end. Null when none was reported.
-	StackTrace NullableString `json:"stack_trace"`
+	StackTrace           NullableString `json:"stack_trace"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ValidationFailureOut ValidationFailureOut
@@ -172,6 +172,11 @@ func (o ValidationFailureOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["resolution"] = o.Resolution.Get()
 	toSerialize["cause"] = o.Cause.Get()
 	toSerialize["stack_trace"] = o.StackTrace.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -202,15 +207,23 @@ func (o *ValidationFailureOut) UnmarshalJSON(data []byte) (err error) {
 
 	varValidationFailureOut := _ValidationFailureOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varValidationFailureOut)
+	err = json.Unmarshal(data, &varValidationFailureOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ValidationFailureOut(varValidationFailureOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "friendly_message")
+		delete(additionalProperties, "resolution")
+		delete(additionalProperties, "cause")
+		delete(additionalProperties, "stack_trace")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

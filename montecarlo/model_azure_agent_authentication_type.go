@@ -44,7 +44,8 @@ func (v *AzureAgentAuthenticationType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid AzureAgentAuthenticationType", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewAzureAgentAuthenticationTypeFromValue returns a pointer to a valid AzureAgentAuthenticationType

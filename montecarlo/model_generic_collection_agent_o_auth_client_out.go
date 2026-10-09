@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -37,7 +36,8 @@ type GenericCollectionAgentOAuthClientOut struct {
 	// OAuth scopes the client is granted.
 	Scopes []string `json:"scopes"`
 	// When the client stops being accepted. Null for a client that does not expire.
-	ExpirationTime NullableTime `json:"expiration_time,omitempty"`
+	ExpirationTime       NullableTime `json:"expiration_time,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GenericCollectionAgentOAuthClientOut GenericCollectionAgentOAuthClientOut
@@ -297,6 +297,11 @@ func (o GenericCollectionAgentOAuthClientOut) ToMap() (map[string]interface{}, e
 	if o.ExpirationTime.IsSet() {
 		toSerialize["expiration_time"] = o.ExpirationTime.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -330,15 +335,27 @@ func (o *GenericCollectionAgentOAuthClientOut) UnmarshalJSON(data []byte) (err e
 
 	varGenericCollectionAgentOAuthClientOut := _GenericCollectionAgentOAuthClientOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGenericCollectionAgentOAuthClientOut)
+	err = json.Unmarshal(data, &varGenericCollectionAgentOAuthClientOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GenericCollectionAgentOAuthClientOut(varGenericCollectionAgentOAuthClientOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "client_id")
+		delete(additionalProperties, "scopes")
+		delete(additionalProperties, "expiration_time")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -48,7 +48,8 @@ func (v *IdentityType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid IdentityType", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewIdentityTypeFromValue returns a pointer to a valid IdentityType

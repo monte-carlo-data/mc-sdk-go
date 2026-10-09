@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -33,7 +32,8 @@ type BiContainerOut struct {
 	// Display name of the deployment. Null exactly when `deployment_id` is.
 	DeploymentName NullableString `json:"deployment_name"`
 	// When the BI container was created.
-	CreatedTime time.Time `json:"created_time"`
+	CreatedTime          time.Time `json:"created_time"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _BiContainerOut BiContainerOut
@@ -227,6 +227,11 @@ func (o BiContainerOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["deployment_id"] = o.DeploymentId.Get()
 	toSerialize["deployment_name"] = o.DeploymentName.Get()
 	toSerialize["created_time"] = o.CreatedTime
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -259,15 +264,25 @@ func (o *BiContainerOut) UnmarshalJSON(data []byte) (err error) {
 
 	varBiContainerOut := _BiContainerOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varBiContainerOut)
+	err = json.Unmarshal(data, &varBiContainerOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = BiContainerOut(varBiContainerOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "deployment_name")
+		delete(additionalProperties, "created_time")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

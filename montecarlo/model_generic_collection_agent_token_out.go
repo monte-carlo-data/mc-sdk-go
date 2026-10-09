@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -33,7 +32,8 @@ type GenericCollectionAgentTokenOut struct {
 	// When the credential was created.
 	CreatedTime time.Time `json:"created_time"`
 	// Key id the agent presents, as `mcd_id` in its configuration. The same value as `id`.
-	McdId string `json:"mcd_id"`
+	McdId                string `json:"mcd_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GenericCollectionAgentTokenOut GenericCollectionAgentTokenOut
@@ -221,6 +221,11 @@ func (o GenericCollectionAgentTokenOut) ToMap() (map[string]interface{}, error) 
 	toSerialize["description"] = o.Description
 	toSerialize["created_time"] = o.CreatedTime
 	toSerialize["mcd_id"] = o.McdId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -253,15 +258,25 @@ func (o *GenericCollectionAgentTokenOut) UnmarshalJSON(data []byte) (err error) 
 
 	varGenericCollectionAgentTokenOut := _GenericCollectionAgentTokenOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGenericCollectionAgentTokenOut)
+	err = json.Unmarshal(data, &varGenericCollectionAgentTokenOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GenericCollectionAgentTokenOut(varGenericCollectionAgentTokenOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "mcd_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -49,7 +48,8 @@ type PostgresCredentialsOut struct {
 	// Encrypt the connection without checking the server's certificate. Null when unset.
 	SslSkipCertVerification NullableBool `json:"ssl_skip_cert_verification"`
 	// Whether `host` is an Amazon RDS Proxy endpoint. Null when unset.
-	RdsProxy NullableBool `json:"rds_proxy"`
+	RdsProxy             NullableBool `json:"rds_proxy"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _PostgresCredentialsOut PostgresCredentialsOut
@@ -457,6 +457,11 @@ func (o PostgresCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["ssl_verify_identity"] = o.SslVerifyIdentity.Get()
 	toSerialize["ssl_skip_cert_verification"] = o.SslSkipCertVerification.Get()
 	toSerialize["rds_proxy"] = o.RdsProxy.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -497,15 +502,33 @@ func (o *PostgresCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varPostgresCredentialsOut := _PostgresCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varPostgresCredentialsOut)
+	err = json.Unmarshal(data, &varPostgresCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = PostgresCredentialsOut(varPostgresCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "host")
+		delete(additionalProperties, "port")
+		delete(additionalProperties, "db_name")
+		delete(additionalProperties, "user")
+		delete(additionalProperties, "ssl_ca_data")
+		delete(additionalProperties, "ssl_disabled")
+		delete(additionalProperties, "ssl_verify_cert")
+		delete(additionalProperties, "ssl_verify_identity")
+		delete(additionalProperties, "ssl_skip_cert_verification")
+		delete(additionalProperties, "rds_proxy")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

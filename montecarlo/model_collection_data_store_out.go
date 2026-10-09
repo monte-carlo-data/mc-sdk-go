@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -41,7 +40,8 @@ type CollectionDataStoreOut struct {
 	// Where the data store runs. Build the platform-specific path for any other operation on it from this. Null when Monte Carlo has not recorded a platform, and no platform-specific path addresses those.
 	Platform NullableRuntimePlatform `json:"platform,omitempty"`
 	// Address of the data store, in the form its platform uses. On AWS that is an S3 bucket name, on Azure the name of a blob container, and on GCP a Cloud Storage bucket name. Empty until it has been registered.
-	Endpoint string `json:"endpoint"`
+	Endpoint             string `json:"endpoint"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CollectionDataStoreOut CollectionDataStoreOut
@@ -413,6 +413,11 @@ func (o CollectionDataStoreOut) ToMap() (map[string]interface{}, error) {
 		toSerialize["platform"] = o.Platform.Get()
 	}
 	toSerialize["endpoint"] = o.Endpoint
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -445,15 +450,29 @@ func (o *CollectionDataStoreOut) UnmarshalJSON(data []byte) (err error) {
 
 	varCollectionDataStoreOut := _CollectionDataStoreOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCollectionDataStoreOut)
+	err = json.Unmarshal(data, &varCollectionDataStoreOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CollectionDataStoreOut(varCollectionDataStoreOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "deployment_id")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "authentication_type")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "last_updated_time")
+		delete(additionalProperties, "platform")
+		delete(additionalProperties, "endpoint")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

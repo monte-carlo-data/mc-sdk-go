@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -44,6 +43,7 @@ type TableauCredentialsOut struct {
 	ConnectedAppClientId NullableString `json:"connected_app_client_id"`
 	// ID of the connected app's secret. Null unless the credentials use one.
 	ConnectedAppSecretId NullableString `json:"connected_app_secret_id"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TableauCredentialsOut TableauCredentialsOut
@@ -373,6 +373,11 @@ func (o TableauCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["token_name"] = o.TokenName.Get()
 	toSerialize["connected_app_client_id"] = o.ConnectedAppClientId.Get()
 	toSerialize["connected_app_secret_id"] = o.ConnectedAppSecretId.Get()
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -410,15 +415,30 @@ func (o *TableauCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 
 	varTableauCredentialsOut := _TableauCredentialsOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTableauCredentialsOut)
+	err = json.Unmarshal(data, &varTableauCredentialsOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TableauCredentialsOut(varTableauCredentialsOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "connection_type")
+		delete(additionalProperties, "storage_type")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "server_name")
+		delete(additionalProperties, "site_name")
+		delete(additionalProperties, "verify_ssl")
+		delete(additionalProperties, "username")
+		delete(additionalProperties, "token_name")
+		delete(additionalProperties, "connected_app_client_id")
+		delete(additionalProperties, "connected_app_secret_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 	"time"
@@ -37,7 +36,8 @@ type DeploymentOut struct {
 	// When Monte Carlo last updated the infrastructure behind the deployment. Null when Monte Carlo has no record of an update.
 	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
 	// Value to supply when you register an AWS collection agent or data store on this deployment. It goes in the trust policy of the role Monte Carlo assumes. Null until Monte Carlo has generated one, for a deployment on another platform, for a caller who is not permitted to register one, and if the value could not be read just now. Retry the request in that last case.
-	AwsExternalId NullableString `json:"aws_external_id,omitempty"`
+	AwsExternalId        NullableString `json:"aws_external_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DeploymentOut DeploymentOut
@@ -377,6 +377,11 @@ func (o DeploymentOut) ToMap() (map[string]interface{}, error) {
 	if o.AwsExternalId.IsSet() {
 		toSerialize["aws_external_id"] = o.AwsExternalId.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -406,15 +411,27 @@ func (o *DeploymentOut) UnmarshalJSON(data []byte) (err error) {
 
 	varDeploymentOut := _DeploymentOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDeploymentOut)
+	err = json.Unmarshal(data, &varDeploymentOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DeploymentOut(varDeploymentOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "runtime_platform")
+		delete(additionalProperties, "enabled")
+		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "last_updated_time")
+		delete(additionalProperties, "aws_external_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

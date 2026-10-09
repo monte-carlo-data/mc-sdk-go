@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -38,7 +37,8 @@ type CurrentUserOut struct {
 	// Whether the account is paused. While it is, this endpoint still answers but every other one returns 403 with the code `account_frozen`.
 	AccountFrozen bool `json:"account_frozen"`
 	// Names of the authorization groups this user belongs to. They determine what the user is permitted to do.
-	AuthGroups []string `json:"auth_groups,omitempty"`
+	AuthGroups           []string `json:"auth_groups,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CurrentUserOut CurrentUserOut
@@ -373,6 +373,11 @@ func (o CurrentUserOut) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AuthGroups) {
 		toSerialize["auth_groups"] = o.AuthGroups
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -404,15 +409,28 @@ func (o *CurrentUserOut) UnmarshalJSON(data []byte) (err error) {
 
 	varCurrentUserOut := _CurrentUserOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCurrentUserOut)
+	err = json.Unmarshal(data, &varCurrentUserOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CurrentUserOut(varCurrentUserOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "email")
+		delete(additionalProperties, "first_name")
+		delete(additionalProperties, "last_name")
+		delete(additionalProperties, "identity_type")
+		delete(additionalProperties, "account_id")
+		delete(additionalProperties, "account_name")
+		delete(additionalProperties, "account_frozen")
+		delete(additionalProperties, "auth_groups")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

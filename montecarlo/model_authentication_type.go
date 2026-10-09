@@ -66,7 +66,8 @@ func (v *AuthenticationType) UnmarshalJSON(src []byte) error {
 		}
 	}
 
-	return fmt.Errorf("%+v is not a valid AuthenticationType", value)
+	*v = enumTypeValue
+	return nil
 }
 
 // NewAuthenticationTypeFromValue returns a pointer to a valid AuthenticationType

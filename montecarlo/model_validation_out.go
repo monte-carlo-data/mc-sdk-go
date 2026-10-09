@@ -11,7 +11,6 @@ API version: 2.0.0
 package montecarlo
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -38,7 +37,8 @@ type ValidationOut struct {
 	// Extra detail the validation reported, if it reported any.
 	AdditionalData map[string]interface{} `json:"additional_data"`
 	// Whether some detail was too large to return and was clipped. The problems that are here are still accurate; there may have been more of them.
-	Truncated bool `json:"truncated"`
+	Truncated            bool `json:"truncated"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ValidationOut ValidationOut
@@ -312,6 +312,11 @@ func (o ValidationOut) ToMap() (map[string]interface{}, error) {
 		toSerialize["additional_data"] = o.AdditionalData
 	}
 	toSerialize["truncated"] = o.Truncated
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -347,15 +352,28 @@ func (o *ValidationOut) UnmarshalJSON(data []byte) (err error) {
 
 	varValidationOut := _ValidationOut{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varValidationOut)
+	err = json.Unmarshal(data, &varValidationOut)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ValidationOut(varValidationOut)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "is_prerequisite")
+		delete(additionalProperties, "passed")
+		delete(additionalProperties, "errors")
+		delete(additionalProperties, "warnings")
+		delete(additionalProperties, "additional_data")
+		delete(additionalProperties, "truncated")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }
