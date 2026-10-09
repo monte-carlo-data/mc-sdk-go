@@ -7,6 +7,8 @@
 
 * `AZURE_DATA_FACTORY` (value: `"azure-data-factory"`)
 
+* `CUSTOM_ETL_CONNECTOR` (value: `"custom-etl-connector"`)
+
 * `FIVETRAN` (value: `"fivetran"`)
 
 * `GCP_DATAFORM` (value: `"gcp-dataform"`)

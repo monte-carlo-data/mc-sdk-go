@@ -25,7 +25,7 @@ type EtlContainerIn struct {
 	Type NewEtlContainerType `json:"type"`
 	// Display name for the ETL container. No two containers of the same type can share a name.
 	Name string `json:"name"`
-	// The deployment the container's connection will run through. Pick one from the deployments list. Only a deployment on Monte Carlo's current collection platform is accepted. Required for every type except `airflow`, which takes none.
+	// The deployment the container's connection will run through. Pick one from the deployments list. Only a deployment on Monte Carlo's current collection platform is accepted. `airflow` takes none. `custom-etl-connector` takes the deployment of the agent that registered the connector, or none for a push-only connector. Every other type requires one.
 	DeploymentId NullableString `json:"deployment_id,omitempty"`
 }
 

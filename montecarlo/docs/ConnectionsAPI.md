@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	connectionIn := *openapiclient.NewConnectionIn("Name_example", "CredentialsId_example") // ConnectionIn | 
+	connectionIn := *openapiclient.NewConnectionIn("Name_example") // ConnectionIn | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

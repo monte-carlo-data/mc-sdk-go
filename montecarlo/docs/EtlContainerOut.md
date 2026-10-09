@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Id** | **string** | Unique identifier of the ETL container. | 
 **Type** | [**EtlContainerType**](EtlContainerType.md) | The ETL tool the container represents. Fixed once created. | 
 **Name** | **string** | Display name of the ETL container. | 
-**IsSynthetic** | **bool** | True for a container this API does not create or delete. Most belong to another connection, such as a warehouse or BI connection, and go away with it. | 
+**IsSynthetic** | **bool** | True for a container that belongs to a warehouse or BI connection and goes away with it. This API does not create or delete one. Fixed by the type. | 
 **DeploymentId** | **NullableString** | The deployment the container&#39;s connection runs through. Null for a type that runs on none, such as &#x60;airflow&#x60;. The id may name a deployment on Monte Carlo&#39;s older collection platform. The deployments endpoints do not list those. | 
 **DeploymentName** | **NullableString** | Display name of the deployment. Null exactly when &#x60;deployment_id&#x60; is. | 
 **CreatedTime** | **time.Time** | When the ETL container was created. | 
