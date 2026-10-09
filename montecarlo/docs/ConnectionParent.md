@@ -1,15 +1,13 @@
-# NewBiContainerType
+# ConnectionParent
 
 ## Enum
 
 
-* `LOOKER` (value: `"looker"`)
+* `WAREHOUSE` (value: `"warehouse"`)
 
-* `TABLEAU` (value: `"tableau"`)
+* `BI_CONTAINER` (value: `"bi_container"`)
 
-* `POWER_BI` (value: `"power-bi"`)
-
-* `CUSTOM_BI_CONNECTOR` (value: `"custom-bi-connector"`)
+* `ETL_CONTAINER` (value: `"etl_container"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

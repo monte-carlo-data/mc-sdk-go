@@ -33,7 +33,7 @@ import (
 )
 
 func main() {
-	biContainerIn := *openapiclient.NewBiContainerIn(openapiclient.NewBiContainerType("looker"), "Name_example", "DeploymentId_example") // BiContainerIn | 
+	biContainerIn := *openapiclient.NewBiContainerIn(openapiclient.NewBiContainerType("looker"), "Name_example") // BiContainerIn | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

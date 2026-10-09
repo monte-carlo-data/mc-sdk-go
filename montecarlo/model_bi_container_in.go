@@ -25,8 +25,8 @@ type BiContainerIn struct {
 	Type NewBiContainerType `json:"type"`
 	// Display name for the BI container.
 	Name string `json:"name"`
-	// The deployment the container's connections will run through. Pick one from the deployments list. Only a deployment on Monte Carlo's current collection platform is accepted.
-	DeploymentId string `json:"deployment_id"`
+	// The deployment the container's connections will run through. Pick one from the deployments list. Only a deployment on Monte Carlo's current collection platform is accepted. `custom-bi-connector` takes the deployment of the agent that registered the connector, or none for a push-only connector. Every other type requires one.
+	DeploymentId NullableString `json:"deployment_id,omitempty"`
 }
 
 type _BiContainerIn BiContainerIn
@@ -35,11 +35,10 @@ type _BiContainerIn BiContainerIn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewBiContainerIn(type_ NewBiContainerType, name string, deploymentId string) *BiContainerIn {
+func NewBiContainerIn(type_ NewBiContainerType, name string) *BiContainerIn {
 	this := BiContainerIn{}
 	this.Type = type_
 	this.Name = name
-	this.DeploymentId = deploymentId
 	return &this
 }
 
@@ -99,28 +98,47 @@ func (o *BiContainerIn) SetName(v string) {
 	o.Name = v
 }
 
-// GetDeploymentId returns the DeploymentId field value
+// GetDeploymentId returns the DeploymentId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *BiContainerIn) GetDeploymentId() string {
-	if o == nil {
+	if o == nil || IsNil(o.DeploymentId.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.DeploymentId
+	return *o.DeploymentId.Get()
 }
 
-// GetDeploymentIdOk returns a tuple with the DeploymentId field value
+// GetDeploymentIdOk returns a tuple with the DeploymentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *BiContainerIn) GetDeploymentIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DeploymentId, true
+	return o.DeploymentId.Get(), o.DeploymentId.IsSet()
 }
 
-// SetDeploymentId sets field value
+// HasDeploymentId returns a boolean if a field has been set.
+func (o *BiContainerIn) HasDeploymentId() bool {
+	if o != nil && o.DeploymentId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeploymentId gets a reference to the given NullableString and assigns it to the DeploymentId field.
 func (o *BiContainerIn) SetDeploymentId(v string) {
-	o.DeploymentId = v
+	o.DeploymentId.Set(&v)
+}
+
+// SetDeploymentIdNil sets the value for DeploymentId to be an explicit nil
+func (o *BiContainerIn) SetDeploymentIdNil() {
+	o.DeploymentId.Set(nil)
+}
+
+// UnsetDeploymentId ensures that no value is present for DeploymentId, not even an explicit nil
+func (o *BiContainerIn) UnsetDeploymentId() {
+	o.DeploymentId.Unset()
 }
 
 func (o BiContainerIn) MarshalJSON() ([]byte, error) {
@@ -135,7 +153,9 @@ func (o BiContainerIn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
 	toSerialize["name"] = o.Name
-	toSerialize["deployment_id"] = o.DeploymentId
+	if o.DeploymentId.IsSet() {
+		toSerialize["deployment_id"] = o.DeploymentId.Get()
+	}
 	return toSerialize, nil
 }
 
@@ -146,7 +166,6 @@ func (o *BiContainerIn) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"type",
 		"name",
-		"deployment_id",
 	}
 
 	allProperties := make(map[string]interface{})

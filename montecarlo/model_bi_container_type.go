@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// BiContainerType The BI tool a BI container represents.  `custom-bi-connector` holds a custom BI connector's connection. It is read here but is not created through this API.
+// BiContainerType The BI tool a BI container represents.  `custom-bi-connector` holds a custom BI connector's connection.
 type BiContainerType string
 
 // List of BiContainerType
