@@ -3,6 +3,7 @@ api_collection_agents.go
 api_collection_data_stores.go
 api_connections.go
 api_credentials.go
+api_custom_connector_types.go
 api_deployments.go
 api_etl_containers.go
 api_users.go
@@ -76,6 +77,11 @@ docs/CredentialsAPI.md
 docs/CredentialsStorageType.md
 docs/CredentialsSummaryOut.md
 docs/CurrentUserOut.md
+docs/CustomConnectorAssetClass.md
+docs/CustomConnectorCapabilities.md
+docs/CustomConnectorTerminology.md
+docs/CustomConnectorTypeOut.md
+docs/CustomConnectorTypesAPI.md
 docs/DatabricksMetastoreSqlWarehouseCredentialsIn.md
 docs/DatabricksMetastoreSqlWarehouseCredentialsOut.md
 docs/DatabricksMetastoreSqlWarehouseCredentialsPatch.md
@@ -299,6 +305,10 @@ model_credential_type.go
 model_credentials_storage_type.go
 model_credentials_summary_out.go
 model_current_user_out.go
+model_custom_connector_asset_class.go
+model_custom_connector_capabilities.go
+model_custom_connector_terminology.go
+model_custom_connector_type_out.go
 model_databricks_metastore_sql_warehouse_credentials_in.go
 model_databricks_metastore_sql_warehouse_credentials_out.go
 model_databricks_metastore_sql_warehouse_credentials_patch.go
