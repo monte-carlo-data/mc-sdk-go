@@ -27,7 +27,7 @@ type EtlContainerOut struct {
 	Type EtlContainerType `json:"type"`
 	// Display name of the ETL container.
 	Name string `json:"name"`
-	// True for a container this API does not create or delete. Most belong to another connection, such as a warehouse or BI connection, and go away with it.
+	// True for a container that belongs to a warehouse or BI connection and goes away with it. This API does not create or delete one. Fixed by the type.
 	IsSynthetic bool `json:"is_synthetic"`
 	// The deployment the container's connection runs through. Null for a type that runs on none, such as `airflow`. The id may name a deployment on Monte Carlo's older collection platform. The deployments endpoints do not list those.
 	DeploymentId NullableString `json:"deployment_id"`

@@ -15,23 +15,25 @@ import (
 	"fmt"
 )
 
-// NewEtlContainerType The ETL tool to create an ETL container for.  An `airflow` container takes no deployment. Every other type runs through one.
+// NewEtlContainerType The ETL tool to create an ETL container for.  An `airflow` container takes no deployment. A `custom-etl-connector` container takes the deployment of the agent that registered its connector type, or none for a push-only connector. Every other type runs through one.
 type NewEtlContainerType string
 
 // List of NewEtlContainerType
 const (
-	NEWETLCONTAINERTYPE_AIRFLOW            NewEtlContainerType = "airflow"
-	NEWETLCONTAINERTYPE_AZURE_DATA_FACTORY NewEtlContainerType = "azure-data-factory"
-	NEWETLCONTAINERTYPE_FIVETRAN           NewEtlContainerType = "fivetran"
-	NEWETLCONTAINERTYPE_GCP_DATAFORM       NewEtlContainerType = "gcp-dataform"
-	NEWETLCONTAINERTYPE_INFORMATICA_V2     NewEtlContainerType = "informatica-v2"
-	NEWETLCONTAINERTYPE_MULESOFT           NewEtlContainerType = "mulesoft"
+	NEWETLCONTAINERTYPE_AIRFLOW              NewEtlContainerType = "airflow"
+	NEWETLCONTAINERTYPE_AZURE_DATA_FACTORY   NewEtlContainerType = "azure-data-factory"
+	NEWETLCONTAINERTYPE_CUSTOM_ETL_CONNECTOR NewEtlContainerType = "custom-etl-connector"
+	NEWETLCONTAINERTYPE_FIVETRAN             NewEtlContainerType = "fivetran"
+	NEWETLCONTAINERTYPE_GCP_DATAFORM         NewEtlContainerType = "gcp-dataform"
+	NEWETLCONTAINERTYPE_INFORMATICA_V2       NewEtlContainerType = "informatica-v2"
+	NEWETLCONTAINERTYPE_MULESOFT             NewEtlContainerType = "mulesoft"
 )
 
 // All allowed values of NewEtlContainerType enum
 var AllowedNewEtlContainerTypeEnumValues = []NewEtlContainerType{
 	"airflow",
 	"azure-data-factory",
+	"custom-etl-connector",
 	"fivetran",
 	"gcp-dataform",
 	"informatica-v2",

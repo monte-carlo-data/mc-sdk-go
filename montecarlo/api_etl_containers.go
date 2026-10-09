@@ -233,7 +233,8 @@ Delete an ETL container.
 
 Only an empty container can be deleted. A connection is managed as its own resource and
 is never deleted with its container, so remove it first. A synthetic container cannot be
-deleted here. Both refusals return 409.
+deleted here. Both refusals return 409. Deleting a container revokes the integration keys
+scoped to it.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param etlContainerId
