@@ -1,6 +1,7 @@
 api_bi_containers.go
 api_collection_agents.go
 api_collection_data_stores.go
+api_connection_types.go
 api_connections.go
 api_credentials.go
 api_custom_connector_types.go
@@ -70,7 +71,10 @@ docs/CollectionDataStoreOut.md
 docs/CollectionDataStoresAPI.md
 docs/ConnectionIn.md
 docs/ConnectionOut.md
+docs/ConnectionParent.md
 docs/ConnectionPatch.md
+docs/ConnectionTypeOut.md
+docs/ConnectionTypesAPI.md
 docs/ConnectionsAPI.md
 docs/CredentialType.md
 docs/CredentialsAPI.md
@@ -300,7 +304,9 @@ model_collection_agent_out.go
 model_collection_data_store_out.go
 model_connection_in.go
 model_connection_out.go
+model_connection_parent.go
 model_connection_patch.go
+model_connection_type_out.go
 model_credential_type.go
 model_credentials_storage_type.go
 model_credentials_summary_out.go

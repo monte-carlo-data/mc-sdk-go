@@ -15,14 +15,15 @@ import (
 	"fmt"
 )
 
-// NewBiContainerType The BI tool to create a BI container for.  A `looker` container holds both the Looker API connection and the LookML git connection.
+// NewBiContainerType The BI tool to create a BI container for.  A `looker` container holds both the Looker API connection and the LookML git connection. A `custom-bi-connector` container takes the deployment of the agent that registered its connector type, or none for a push-only connector. Every other type runs through one.
 type NewBiContainerType string
 
 // List of NewBiContainerType
 const (
-	NEWBICONTAINERTYPE_LOOKER   NewBiContainerType = "looker"
-	NEWBICONTAINERTYPE_TABLEAU  NewBiContainerType = "tableau"
-	NEWBICONTAINERTYPE_POWER_BI NewBiContainerType = "power-bi"
+	NEWBICONTAINERTYPE_LOOKER              NewBiContainerType = "looker"
+	NEWBICONTAINERTYPE_TABLEAU             NewBiContainerType = "tableau"
+	NEWBICONTAINERTYPE_POWER_BI            NewBiContainerType = "power-bi"
+	NEWBICONTAINERTYPE_CUSTOM_BI_CONNECTOR NewBiContainerType = "custom-bi-connector"
 )
 
 // All allowed values of NewBiContainerType enum
@@ -30,6 +31,7 @@ var AllowedNewBiContainerTypeEnumValues = []NewBiContainerType{
 	"looker",
 	"tableau",
 	"power-bi",
+	"custom-bi-connector",
 }
 
 func (v *NewBiContainerType) UnmarshalJSON(src []byte) error {
