@@ -208,7 +208,18 @@ func parseINI(path string) (map[string]map[string]string, error) {
 // named explicitly has to exist; otherwise the file is simply absent, and whatever the caller
 // supplied — or nothing — stands on its own. MCD_DEFAULT_PROFILE, if set, still selects which
 // section a consulted profile reads from; it does not by itself make a missing file an error.
+//
+// An endpoint neither o nor a profile supplies is DefaultEndpoint.
 func (o Options) Resolve() (Options, error) {
+	out, err := o.resolve()
+	if err != nil {
+		return Options{}, err
+	}
+	out.Endpoint = firstNonEmpty(out.Endpoint, DefaultEndpoint)
+	return out, nil
+}
+
+func (o Options) resolve() (Options, error) {
 	if err := o.checkPairs(); err != nil {
 		return Options{}, err
 	}

@@ -201,6 +201,47 @@ func TestResolveFallsBackToTheProfile(t *testing.T) {
 	}
 }
 
+// The Monte Carlo CLI leaves mcd_api_endpoint out when it is the default, so its profiles
+// carry credentials alone.
+func TestResolveDefaultsTheEndpointForACLIProfile(t *testing.T) {
+	dir := isolate(t)
+	writeProfiles(t, dir, "[default]\nmcd_id = id\nmcd_token = secret\n")
+
+	resolved, err := Options{ConfigDir: dir}.Resolve()
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if resolved.Endpoint != DefaultEndpoint || resolved.TokenID != "id" {
+		t.Fatalf("expected the profile's token on the default endpoint, got %+v", resolved)
+	}
+}
+
+func TestResolveDefaultsTheEndpointWithNoProfile(t *testing.T) {
+	dir := isolate(t)
+
+	resolved, err := Options{TokenID: "id", TokenSecret: "secret", ConfigDir: dir}.Resolve()
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if resolved.Endpoint != DefaultEndpoint {
+		t.Fatalf("expected the default endpoint, got %q", resolved.Endpoint)
+	}
+}
+
+// Explicit credentials without an endpoint still take the profile's endpoint over the default.
+func TestResolvePrefersTheProfilesEndpointOverTheDefault(t *testing.T) {
+	dir := isolate(t)
+	writeProfiles(t, dir, sampleProfiles)
+
+	resolved, err := Options{TokenID: "id", TokenSecret: "secret", ConfigDir: dir}.Resolve()
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if resolved.Endpoint != "https://api.example.com" || resolved.TokenID != "id" {
+		t.Fatalf("expected explicit credentials on the profile's endpoint, got %+v", resolved)
+	}
+}
+
 // A caller passing its own credentials should not need a credentials file to exist.
 func TestResolveToleratesAMissingFile(t *testing.T) {
 	dir := isolate(t)
