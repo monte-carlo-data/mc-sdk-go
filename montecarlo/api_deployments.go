@@ -124,13 +124,12 @@ func (a *DeploymentsAPIService) CreateDeploymentExecute(r ApiCreateDeploymentReq
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -140,8 +139,7 @@ func (a *DeploymentsAPIService) CreateDeploymentExecute(r ApiCreateDeploymentReq
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -151,8 +149,7 @@ func (a *DeploymentsAPIService) CreateDeploymentExecute(r ApiCreateDeploymentReq
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -162,8 +159,7 @@ func (a *DeploymentsAPIService) CreateDeploymentExecute(r ApiCreateDeploymentReq
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -173,8 +169,7 @@ func (a *DeploymentsAPIService) CreateDeploymentExecute(r ApiCreateDeploymentReq
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -184,8 +179,7 @@ func (a *DeploymentsAPIService) CreateDeploymentExecute(r ApiCreateDeploymentReq
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -195,8 +189,7 @@ func (a *DeploymentsAPIService) CreateDeploymentExecute(r ApiCreateDeploymentReq
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -309,13 +302,12 @@ func (a *DeploymentsAPIService) DeleteDeploymentExecute(r ApiDeleteDeploymentReq
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -325,8 +317,7 @@ func (a *DeploymentsAPIService) DeleteDeploymentExecute(r ApiDeleteDeploymentReq
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -336,8 +327,7 @@ func (a *DeploymentsAPIService) DeleteDeploymentExecute(r ApiDeleteDeploymentReq
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -347,8 +337,7 @@ func (a *DeploymentsAPIService) DeleteDeploymentExecute(r ApiDeleteDeploymentReq
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -358,8 +347,7 @@ func (a *DeploymentsAPIService) DeleteDeploymentExecute(r ApiDeleteDeploymentReq
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -369,8 +357,7 @@ func (a *DeploymentsAPIService) DeleteDeploymentExecute(r ApiDeleteDeploymentReq
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -472,13 +459,12 @@ func (a *DeploymentsAPIService) GetDeploymentExecute(r ApiGetDeploymentRequest) 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -488,8 +474,7 @@ func (a *DeploymentsAPIService) GetDeploymentExecute(r ApiGetDeploymentRequest) 
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -499,8 +484,7 @@ func (a *DeploymentsAPIService) GetDeploymentExecute(r ApiGetDeploymentRequest) 
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -510,8 +494,7 @@ func (a *DeploymentsAPIService) GetDeploymentExecute(r ApiGetDeploymentRequest) 
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -625,13 +608,12 @@ func (a *DeploymentsAPIService) ListDeploymentsExecute(r ApiListDeploymentsReque
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -641,8 +623,7 @@ func (a *DeploymentsAPIService) ListDeploymentsExecute(r ApiListDeploymentsReque
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -652,8 +633,7 @@ func (a *DeploymentsAPIService) ListDeploymentsExecute(r ApiListDeploymentsReque
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -782,13 +762,12 @@ func (a *DeploymentsAPIService) ReprovisionDeploymentExecute(r ApiReprovisionDep
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -798,8 +777,7 @@ func (a *DeploymentsAPIService) ReprovisionDeploymentExecute(r ApiReprovisionDep
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -809,8 +787,7 @@ func (a *DeploymentsAPIService) ReprovisionDeploymentExecute(r ApiReprovisionDep
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -820,8 +797,7 @@ func (a *DeploymentsAPIService) ReprovisionDeploymentExecute(r ApiReprovisionDep
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -831,8 +807,7 @@ func (a *DeploymentsAPIService) ReprovisionDeploymentExecute(r ApiReprovisionDep
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -842,8 +817,7 @@ func (a *DeploymentsAPIService) ReprovisionDeploymentExecute(r ApiReprovisionDep
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -853,8 +827,7 @@ func (a *DeploymentsAPIService) ReprovisionDeploymentExecute(r ApiReprovisionDep
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -980,13 +953,12 @@ func (a *DeploymentsAPIService) UpdateDeploymentExecute(r ApiUpdateDeploymentReq
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -996,8 +968,7 @@ func (a *DeploymentsAPIService) UpdateDeploymentExecute(r ApiUpdateDeploymentReq
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1007,8 +978,7 @@ func (a *DeploymentsAPIService) UpdateDeploymentExecute(r ApiUpdateDeploymentReq
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1018,8 +988,7 @@ func (a *DeploymentsAPIService) UpdateDeploymentExecute(r ApiUpdateDeploymentReq
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1029,8 +998,7 @@ func (a *DeploymentsAPIService) UpdateDeploymentExecute(r ApiUpdateDeploymentReq
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1040,8 +1008,7 @@ func (a *DeploymentsAPIService) UpdateDeploymentExecute(r ApiUpdateDeploymentReq
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)

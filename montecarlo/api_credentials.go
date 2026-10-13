@@ -119,13 +119,12 @@ func (a *CredentialsAPIService) CreateAirflowCredentialsExecute(r ApiCreateAirfl
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -135,8 +134,7 @@ func (a *CredentialsAPIService) CreateAirflowCredentialsExecute(r ApiCreateAirfl
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -146,8 +144,7 @@ func (a *CredentialsAPIService) CreateAirflowCredentialsExecute(r ApiCreateAirfl
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -157,8 +154,7 @@ func (a *CredentialsAPIService) CreateAirflowCredentialsExecute(r ApiCreateAirfl
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -168,8 +164,7 @@ func (a *CredentialsAPIService) CreateAirflowCredentialsExecute(r ApiCreateAirfl
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -179,8 +174,7 @@ func (a *CredentialsAPIService) CreateAirflowCredentialsExecute(r ApiCreateAirfl
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -190,8 +184,7 @@ func (a *CredentialsAPIService) CreateAirflowCredentialsExecute(r ApiCreateAirfl
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -313,13 +306,12 @@ func (a *CredentialsAPIService) CreateAwsSecretsManagerCredentialsExecute(r ApiC
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -329,8 +321,7 @@ func (a *CredentialsAPIService) CreateAwsSecretsManagerCredentialsExecute(r ApiC
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -340,8 +331,7 @@ func (a *CredentialsAPIService) CreateAwsSecretsManagerCredentialsExecute(r ApiC
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -351,8 +341,7 @@ func (a *CredentialsAPIService) CreateAwsSecretsManagerCredentialsExecute(r ApiC
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -362,8 +351,7 @@ func (a *CredentialsAPIService) CreateAwsSecretsManagerCredentialsExecute(r ApiC
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -373,8 +361,7 @@ func (a *CredentialsAPIService) CreateAwsSecretsManagerCredentialsExecute(r ApiC
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -384,8 +371,7 @@ func (a *CredentialsAPIService) CreateAwsSecretsManagerCredentialsExecute(r ApiC
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -504,13 +490,12 @@ func (a *CredentialsAPIService) CreateAzureDataFactoryCredentialsExecute(r ApiCr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -520,8 +505,7 @@ func (a *CredentialsAPIService) CreateAzureDataFactoryCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -531,8 +515,7 @@ func (a *CredentialsAPIService) CreateAzureDataFactoryCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -542,8 +525,7 @@ func (a *CredentialsAPIService) CreateAzureDataFactoryCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -553,8 +535,7 @@ func (a *CredentialsAPIService) CreateAzureDataFactoryCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -564,8 +545,7 @@ func (a *CredentialsAPIService) CreateAzureDataFactoryCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -575,8 +555,7 @@ func (a *CredentialsAPIService) CreateAzureDataFactoryCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -697,13 +676,12 @@ func (a *CredentialsAPIService) CreateAzureDedicatedSqlPoolCredentialsExecute(r 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -713,8 +691,7 @@ func (a *CredentialsAPIService) CreateAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -724,8 +701,7 @@ func (a *CredentialsAPIService) CreateAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -735,8 +711,7 @@ func (a *CredentialsAPIService) CreateAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -746,8 +721,7 @@ func (a *CredentialsAPIService) CreateAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -757,8 +731,7 @@ func (a *CredentialsAPIService) CreateAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -768,8 +741,7 @@ func (a *CredentialsAPIService) CreateAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -892,13 +864,12 @@ func (a *CredentialsAPIService) CreateAzureKeyVaultCredentialsExecute(r ApiCreat
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -908,8 +879,7 @@ func (a *CredentialsAPIService) CreateAzureKeyVaultCredentialsExecute(r ApiCreat
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -919,8 +889,7 @@ func (a *CredentialsAPIService) CreateAzureKeyVaultCredentialsExecute(r ApiCreat
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -930,8 +899,7 @@ func (a *CredentialsAPIService) CreateAzureKeyVaultCredentialsExecute(r ApiCreat
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -941,8 +909,7 @@ func (a *CredentialsAPIService) CreateAzureKeyVaultCredentialsExecute(r ApiCreat
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -952,8 +919,7 @@ func (a *CredentialsAPIService) CreateAzureKeyVaultCredentialsExecute(r ApiCreat
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -963,8 +929,7 @@ func (a *CredentialsAPIService) CreateAzureKeyVaultCredentialsExecute(r ApiCreat
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1084,13 +1049,12 @@ func (a *CredentialsAPIService) CreateAzureSqlDatabaseCredentialsExecute(r ApiCr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1100,8 +1064,7 @@ func (a *CredentialsAPIService) CreateAzureSqlDatabaseCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1111,8 +1074,7 @@ func (a *CredentialsAPIService) CreateAzureSqlDatabaseCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1122,8 +1084,7 @@ func (a *CredentialsAPIService) CreateAzureSqlDatabaseCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1133,8 +1094,7 @@ func (a *CredentialsAPIService) CreateAzureSqlDatabaseCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1144,8 +1104,7 @@ func (a *CredentialsAPIService) CreateAzureSqlDatabaseCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1155,8 +1114,7 @@ func (a *CredentialsAPIService) CreateAzureSqlDatabaseCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1278,13 +1236,12 @@ func (a *CredentialsAPIService) CreateBigqueryCredentialsExecute(r ApiCreateBigq
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1294,8 +1251,7 @@ func (a *CredentialsAPIService) CreateBigqueryCredentialsExecute(r ApiCreateBigq
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1305,8 +1261,7 @@ func (a *CredentialsAPIService) CreateBigqueryCredentialsExecute(r ApiCreateBigq
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1316,8 +1271,7 @@ func (a *CredentialsAPIService) CreateBigqueryCredentialsExecute(r ApiCreateBigq
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1327,8 +1281,7 @@ func (a *CredentialsAPIService) CreateBigqueryCredentialsExecute(r ApiCreateBigq
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1338,8 +1291,7 @@ func (a *CredentialsAPIService) CreateBigqueryCredentialsExecute(r ApiCreateBigq
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1349,8 +1301,7 @@ func (a *CredentialsAPIService) CreateBigqueryCredentialsExecute(r ApiCreateBigq
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1470,13 +1421,12 @@ func (a *CredentialsAPIService) CreateClickhouseCredentialsExecute(r ApiCreateCl
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1486,8 +1436,7 @@ func (a *CredentialsAPIService) CreateClickhouseCredentialsExecute(r ApiCreateCl
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1497,8 +1446,7 @@ func (a *CredentialsAPIService) CreateClickhouseCredentialsExecute(r ApiCreateCl
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1508,8 +1456,7 @@ func (a *CredentialsAPIService) CreateClickhouseCredentialsExecute(r ApiCreateCl
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1519,8 +1466,7 @@ func (a *CredentialsAPIService) CreateClickhouseCredentialsExecute(r ApiCreateCl
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1530,8 +1476,7 @@ func (a *CredentialsAPIService) CreateClickhouseCredentialsExecute(r ApiCreateCl
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1541,8 +1486,7 @@ func (a *CredentialsAPIService) CreateClickhouseCredentialsExecute(r ApiCreateCl
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1666,13 +1610,12 @@ func (a *CredentialsAPIService) CreateDatabricksMetastoreSqlWarehouseCredentials
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1682,8 +1625,7 @@ func (a *CredentialsAPIService) CreateDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1693,8 +1635,7 @@ func (a *CredentialsAPIService) CreateDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1704,8 +1645,7 @@ func (a *CredentialsAPIService) CreateDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1715,8 +1655,7 @@ func (a *CredentialsAPIService) CreateDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1726,8 +1665,7 @@ func (a *CredentialsAPIService) CreateDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1737,8 +1675,7 @@ func (a *CredentialsAPIService) CreateDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1865,13 +1802,12 @@ func (a *CredentialsAPIService) CreateDatabricksSqlWarehouseCredentialsExecute(r
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1881,8 +1817,7 @@ func (a *CredentialsAPIService) CreateDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1892,8 +1827,7 @@ func (a *CredentialsAPIService) CreateDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1903,8 +1837,7 @@ func (a *CredentialsAPIService) CreateDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1914,8 +1847,7 @@ func (a *CredentialsAPIService) CreateDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1925,8 +1857,7 @@ func (a *CredentialsAPIService) CreateDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1936,8 +1867,7 @@ func (a *CredentialsAPIService) CreateDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2059,13 +1989,12 @@ func (a *CredentialsAPIService) CreateDb2CredentialsExecute(r ApiCreateDb2Creden
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2075,8 +2004,7 @@ func (a *CredentialsAPIService) CreateDb2CredentialsExecute(r ApiCreateDb2Creden
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2086,8 +2014,7 @@ func (a *CredentialsAPIService) CreateDb2CredentialsExecute(r ApiCreateDb2Creden
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2097,8 +2024,7 @@ func (a *CredentialsAPIService) CreateDb2CredentialsExecute(r ApiCreateDb2Creden
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2108,8 +2034,7 @@ func (a *CredentialsAPIService) CreateDb2CredentialsExecute(r ApiCreateDb2Creden
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2119,8 +2044,7 @@ func (a *CredentialsAPIService) CreateDb2CredentialsExecute(r ApiCreateDb2Creden
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2130,8 +2054,7 @@ func (a *CredentialsAPIService) CreateDb2CredentialsExecute(r ApiCreateDb2Creden
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2254,13 +2177,12 @@ func (a *CredentialsAPIService) CreateEnvVarCredentialsExecute(r ApiCreateEnvVar
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2270,8 +2192,7 @@ func (a *CredentialsAPIService) CreateEnvVarCredentialsExecute(r ApiCreateEnvVar
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2281,8 +2202,7 @@ func (a *CredentialsAPIService) CreateEnvVarCredentialsExecute(r ApiCreateEnvVar
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2292,8 +2212,7 @@ func (a *CredentialsAPIService) CreateEnvVarCredentialsExecute(r ApiCreateEnvVar
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2303,8 +2222,7 @@ func (a *CredentialsAPIService) CreateEnvVarCredentialsExecute(r ApiCreateEnvVar
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2314,8 +2232,7 @@ func (a *CredentialsAPIService) CreateEnvVarCredentialsExecute(r ApiCreateEnvVar
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2325,8 +2242,7 @@ func (a *CredentialsAPIService) CreateEnvVarCredentialsExecute(r ApiCreateEnvVar
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2448,13 +2364,12 @@ func (a *CredentialsAPIService) CreateFileCredentialsExecute(r ApiCreateFileCred
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2464,8 +2379,7 @@ func (a *CredentialsAPIService) CreateFileCredentialsExecute(r ApiCreateFileCred
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2475,8 +2389,7 @@ func (a *CredentialsAPIService) CreateFileCredentialsExecute(r ApiCreateFileCred
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2486,8 +2399,7 @@ func (a *CredentialsAPIService) CreateFileCredentialsExecute(r ApiCreateFileCred
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2497,8 +2409,7 @@ func (a *CredentialsAPIService) CreateFileCredentialsExecute(r ApiCreateFileCred
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2508,8 +2419,7 @@ func (a *CredentialsAPIService) CreateFileCredentialsExecute(r ApiCreateFileCred
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2519,8 +2429,7 @@ func (a *CredentialsAPIService) CreateFileCredentialsExecute(r ApiCreateFileCred
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2639,13 +2548,12 @@ func (a *CredentialsAPIService) CreateFivetranCredentialsExecute(r ApiCreateFive
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2655,8 +2563,7 @@ func (a *CredentialsAPIService) CreateFivetranCredentialsExecute(r ApiCreateFive
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2666,8 +2573,7 @@ func (a *CredentialsAPIService) CreateFivetranCredentialsExecute(r ApiCreateFive
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2677,8 +2583,7 @@ func (a *CredentialsAPIService) CreateFivetranCredentialsExecute(r ApiCreateFive
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2688,8 +2593,7 @@ func (a *CredentialsAPIService) CreateFivetranCredentialsExecute(r ApiCreateFive
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2699,8 +2603,7 @@ func (a *CredentialsAPIService) CreateFivetranCredentialsExecute(r ApiCreateFive
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2710,8 +2613,7 @@ func (a *CredentialsAPIService) CreateFivetranCredentialsExecute(r ApiCreateFive
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2830,13 +2732,12 @@ func (a *CredentialsAPIService) CreateGcpDataformCredentialsExecute(r ApiCreateG
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2846,8 +2747,7 @@ func (a *CredentialsAPIService) CreateGcpDataformCredentialsExecute(r ApiCreateG
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2857,8 +2757,7 @@ func (a *CredentialsAPIService) CreateGcpDataformCredentialsExecute(r ApiCreateG
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2868,8 +2767,7 @@ func (a *CredentialsAPIService) CreateGcpDataformCredentialsExecute(r ApiCreateG
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2879,8 +2777,7 @@ func (a *CredentialsAPIService) CreateGcpDataformCredentialsExecute(r ApiCreateG
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2890,8 +2787,7 @@ func (a *CredentialsAPIService) CreateGcpDataformCredentialsExecute(r ApiCreateG
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2901,8 +2797,7 @@ func (a *CredentialsAPIService) CreateGcpDataformCredentialsExecute(r ApiCreateG
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3024,13 +2919,12 @@ func (a *CredentialsAPIService) CreateGcpSecretManagerCredentialsExecute(r ApiCr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3040,8 +2934,7 @@ func (a *CredentialsAPIService) CreateGcpSecretManagerCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3051,8 +2944,7 @@ func (a *CredentialsAPIService) CreateGcpSecretManagerCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3062,8 +2954,7 @@ func (a *CredentialsAPIService) CreateGcpSecretManagerCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3073,8 +2964,7 @@ func (a *CredentialsAPIService) CreateGcpSecretManagerCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3084,8 +2974,7 @@ func (a *CredentialsAPIService) CreateGcpSecretManagerCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3095,8 +2984,7 @@ func (a *CredentialsAPIService) CreateGcpSecretManagerCredentialsExecute(r ApiCr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3218,13 +3106,12 @@ func (a *CredentialsAPIService) CreateInformaticaV2CredentialsExecute(r ApiCreat
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3234,8 +3121,7 @@ func (a *CredentialsAPIService) CreateInformaticaV2CredentialsExecute(r ApiCreat
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3245,8 +3131,7 @@ func (a *CredentialsAPIService) CreateInformaticaV2CredentialsExecute(r ApiCreat
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3256,8 +3141,7 @@ func (a *CredentialsAPIService) CreateInformaticaV2CredentialsExecute(r ApiCreat
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3267,8 +3151,7 @@ func (a *CredentialsAPIService) CreateInformaticaV2CredentialsExecute(r ApiCreat
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3278,8 +3161,7 @@ func (a *CredentialsAPIService) CreateInformaticaV2CredentialsExecute(r ApiCreat
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3289,8 +3171,7 @@ func (a *CredentialsAPIService) CreateInformaticaV2CredentialsExecute(r ApiCreat
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3410,13 +3291,12 @@ func (a *CredentialsAPIService) CreateLookerCredentialsExecute(r ApiCreateLooker
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3426,8 +3306,7 @@ func (a *CredentialsAPIService) CreateLookerCredentialsExecute(r ApiCreateLooker
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3437,8 +3316,7 @@ func (a *CredentialsAPIService) CreateLookerCredentialsExecute(r ApiCreateLooker
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3448,8 +3326,7 @@ func (a *CredentialsAPIService) CreateLookerCredentialsExecute(r ApiCreateLooker
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3459,8 +3336,7 @@ func (a *CredentialsAPIService) CreateLookerCredentialsExecute(r ApiCreateLooker
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3470,8 +3346,7 @@ func (a *CredentialsAPIService) CreateLookerCredentialsExecute(r ApiCreateLooker
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3481,8 +3356,7 @@ func (a *CredentialsAPIService) CreateLookerCredentialsExecute(r ApiCreateLooker
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3605,13 +3479,12 @@ func (a *CredentialsAPIService) CreateLookerGitCloneCredentialsExecute(r ApiCrea
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3621,8 +3494,7 @@ func (a *CredentialsAPIService) CreateLookerGitCloneCredentialsExecute(r ApiCrea
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3632,8 +3504,7 @@ func (a *CredentialsAPIService) CreateLookerGitCloneCredentialsExecute(r ApiCrea
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3643,8 +3514,7 @@ func (a *CredentialsAPIService) CreateLookerGitCloneCredentialsExecute(r ApiCrea
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3654,8 +3524,7 @@ func (a *CredentialsAPIService) CreateLookerGitCloneCredentialsExecute(r ApiCrea
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3665,8 +3534,7 @@ func (a *CredentialsAPIService) CreateLookerGitCloneCredentialsExecute(r ApiCrea
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3676,8 +3544,7 @@ func (a *CredentialsAPIService) CreateLookerGitCloneCredentialsExecute(r ApiCrea
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3797,13 +3664,12 @@ func (a *CredentialsAPIService) CreateMariadbCredentialsExecute(r ApiCreateMaria
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3813,8 +3679,7 @@ func (a *CredentialsAPIService) CreateMariadbCredentialsExecute(r ApiCreateMaria
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3824,8 +3689,7 @@ func (a *CredentialsAPIService) CreateMariadbCredentialsExecute(r ApiCreateMaria
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3835,8 +3699,7 @@ func (a *CredentialsAPIService) CreateMariadbCredentialsExecute(r ApiCreateMaria
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3846,8 +3709,7 @@ func (a *CredentialsAPIService) CreateMariadbCredentialsExecute(r ApiCreateMaria
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3857,8 +3719,7 @@ func (a *CredentialsAPIService) CreateMariadbCredentialsExecute(r ApiCreateMaria
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3868,8 +3729,7 @@ func (a *CredentialsAPIService) CreateMariadbCredentialsExecute(r ApiCreateMaria
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3988,13 +3848,12 @@ func (a *CredentialsAPIService) CreateMulesoftCredentialsExecute(r ApiCreateMule
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4004,8 +3863,7 @@ func (a *CredentialsAPIService) CreateMulesoftCredentialsExecute(r ApiCreateMule
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4015,8 +3873,7 @@ func (a *CredentialsAPIService) CreateMulesoftCredentialsExecute(r ApiCreateMule
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4026,8 +3883,7 @@ func (a *CredentialsAPIService) CreateMulesoftCredentialsExecute(r ApiCreateMule
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4037,8 +3893,7 @@ func (a *CredentialsAPIService) CreateMulesoftCredentialsExecute(r ApiCreateMule
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4048,8 +3903,7 @@ func (a *CredentialsAPIService) CreateMulesoftCredentialsExecute(r ApiCreateMule
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4059,8 +3913,7 @@ func (a *CredentialsAPIService) CreateMulesoftCredentialsExecute(r ApiCreateMule
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4182,13 +4035,12 @@ func (a *CredentialsAPIService) CreateMysqlCredentialsExecute(r ApiCreateMysqlCr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4198,8 +4050,7 @@ func (a *CredentialsAPIService) CreateMysqlCredentialsExecute(r ApiCreateMysqlCr
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4209,8 +4060,7 @@ func (a *CredentialsAPIService) CreateMysqlCredentialsExecute(r ApiCreateMysqlCr
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4220,8 +4070,7 @@ func (a *CredentialsAPIService) CreateMysqlCredentialsExecute(r ApiCreateMysqlCr
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4231,8 +4080,7 @@ func (a *CredentialsAPIService) CreateMysqlCredentialsExecute(r ApiCreateMysqlCr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4242,8 +4090,7 @@ func (a *CredentialsAPIService) CreateMysqlCredentialsExecute(r ApiCreateMysqlCr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4253,8 +4100,7 @@ func (a *CredentialsAPIService) CreateMysqlCredentialsExecute(r ApiCreateMysqlCr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4376,13 +4222,12 @@ func (a *CredentialsAPIService) CreateOracleCredentialsExecute(r ApiCreateOracle
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4392,8 +4237,7 @@ func (a *CredentialsAPIService) CreateOracleCredentialsExecute(r ApiCreateOracle
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4403,8 +4247,7 @@ func (a *CredentialsAPIService) CreateOracleCredentialsExecute(r ApiCreateOracle
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4414,8 +4257,7 @@ func (a *CredentialsAPIService) CreateOracleCredentialsExecute(r ApiCreateOracle
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4425,8 +4267,7 @@ func (a *CredentialsAPIService) CreateOracleCredentialsExecute(r ApiCreateOracle
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4436,8 +4277,7 @@ func (a *CredentialsAPIService) CreateOracleCredentialsExecute(r ApiCreateOracle
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4447,8 +4287,7 @@ func (a *CredentialsAPIService) CreateOracleCredentialsExecute(r ApiCreateOracle
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4570,13 +4409,12 @@ func (a *CredentialsAPIService) CreatePostgresCredentialsExecute(r ApiCreatePost
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4586,8 +4424,7 @@ func (a *CredentialsAPIService) CreatePostgresCredentialsExecute(r ApiCreatePost
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4597,8 +4434,7 @@ func (a *CredentialsAPIService) CreatePostgresCredentialsExecute(r ApiCreatePost
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4608,8 +4444,7 @@ func (a *CredentialsAPIService) CreatePostgresCredentialsExecute(r ApiCreatePost
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4619,8 +4454,7 @@ func (a *CredentialsAPIService) CreatePostgresCredentialsExecute(r ApiCreatePost
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4630,8 +4464,7 @@ func (a *CredentialsAPIService) CreatePostgresCredentialsExecute(r ApiCreatePost
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4641,8 +4474,7 @@ func (a *CredentialsAPIService) CreatePostgresCredentialsExecute(r ApiCreatePost
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4765,13 +4597,12 @@ func (a *CredentialsAPIService) CreatePowerBiCredentialsExecute(r ApiCreatePower
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4781,8 +4612,7 @@ func (a *CredentialsAPIService) CreatePowerBiCredentialsExecute(r ApiCreatePower
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4792,8 +4622,7 @@ func (a *CredentialsAPIService) CreatePowerBiCredentialsExecute(r ApiCreatePower
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4803,8 +4632,7 @@ func (a *CredentialsAPIService) CreatePowerBiCredentialsExecute(r ApiCreatePower
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4814,8 +4642,7 @@ func (a *CredentialsAPIService) CreatePowerBiCredentialsExecute(r ApiCreatePower
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4825,8 +4652,7 @@ func (a *CredentialsAPIService) CreatePowerBiCredentialsExecute(r ApiCreatePower
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4836,8 +4662,7 @@ func (a *CredentialsAPIService) CreatePowerBiCredentialsExecute(r ApiCreatePower
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4959,13 +4784,12 @@ func (a *CredentialsAPIService) CreateRedshiftCredentialsExecute(r ApiCreateReds
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4975,8 +4799,7 @@ func (a *CredentialsAPIService) CreateRedshiftCredentialsExecute(r ApiCreateReds
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4986,8 +4809,7 @@ func (a *CredentialsAPIService) CreateRedshiftCredentialsExecute(r ApiCreateReds
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4997,8 +4819,7 @@ func (a *CredentialsAPIService) CreateRedshiftCredentialsExecute(r ApiCreateReds
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5008,8 +4829,7 @@ func (a *CredentialsAPIService) CreateRedshiftCredentialsExecute(r ApiCreateReds
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5019,8 +4839,7 @@ func (a *CredentialsAPIService) CreateRedshiftCredentialsExecute(r ApiCreateReds
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5030,8 +4849,7 @@ func (a *CredentialsAPIService) CreateRedshiftCredentialsExecute(r ApiCreateReds
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5151,13 +4969,12 @@ func (a *CredentialsAPIService) CreateSapHanaCredentialsExecute(r ApiCreateSapHa
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5167,8 +4984,7 @@ func (a *CredentialsAPIService) CreateSapHanaCredentialsExecute(r ApiCreateSapHa
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5178,8 +4994,7 @@ func (a *CredentialsAPIService) CreateSapHanaCredentialsExecute(r ApiCreateSapHa
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5189,8 +5004,7 @@ func (a *CredentialsAPIService) CreateSapHanaCredentialsExecute(r ApiCreateSapHa
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5200,8 +5014,7 @@ func (a *CredentialsAPIService) CreateSapHanaCredentialsExecute(r ApiCreateSapHa
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5211,8 +5024,7 @@ func (a *CredentialsAPIService) CreateSapHanaCredentialsExecute(r ApiCreateSapHa
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5222,8 +5034,7 @@ func (a *CredentialsAPIService) CreateSapHanaCredentialsExecute(r ApiCreateSapHa
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5344,13 +5155,12 @@ func (a *CredentialsAPIService) CreateSnowflakeCredentialsExecute(r ApiCreateSno
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5360,8 +5170,7 @@ func (a *CredentialsAPIService) CreateSnowflakeCredentialsExecute(r ApiCreateSno
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5371,8 +5180,7 @@ func (a *CredentialsAPIService) CreateSnowflakeCredentialsExecute(r ApiCreateSno
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5382,8 +5190,7 @@ func (a *CredentialsAPIService) CreateSnowflakeCredentialsExecute(r ApiCreateSno
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5393,8 +5200,7 @@ func (a *CredentialsAPIService) CreateSnowflakeCredentialsExecute(r ApiCreateSno
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5404,8 +5210,7 @@ func (a *CredentialsAPIService) CreateSnowflakeCredentialsExecute(r ApiCreateSno
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5415,8 +5220,7 @@ func (a *CredentialsAPIService) CreateSnowflakeCredentialsExecute(r ApiCreateSno
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5539,13 +5343,12 @@ func (a *CredentialsAPIService) CreateSqlServerCredentialsExecute(r ApiCreateSql
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5555,8 +5358,7 @@ func (a *CredentialsAPIService) CreateSqlServerCredentialsExecute(r ApiCreateSql
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5566,8 +5368,7 @@ func (a *CredentialsAPIService) CreateSqlServerCredentialsExecute(r ApiCreateSql
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5577,8 +5378,7 @@ func (a *CredentialsAPIService) CreateSqlServerCredentialsExecute(r ApiCreateSql
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5588,8 +5388,7 @@ func (a *CredentialsAPIService) CreateSqlServerCredentialsExecute(r ApiCreateSql
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5599,8 +5398,7 @@ func (a *CredentialsAPIService) CreateSqlServerCredentialsExecute(r ApiCreateSql
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5610,8 +5408,7 @@ func (a *CredentialsAPIService) CreateSqlServerCredentialsExecute(r ApiCreateSql
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5733,13 +5530,12 @@ func (a *CredentialsAPIService) CreateStarburstEnterpriseCredentialsExecute(r Ap
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5749,8 +5545,7 @@ func (a *CredentialsAPIService) CreateStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5760,8 +5555,7 @@ func (a *CredentialsAPIService) CreateStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5771,8 +5565,7 @@ func (a *CredentialsAPIService) CreateStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5782,8 +5575,7 @@ func (a *CredentialsAPIService) CreateStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5793,8 +5585,7 @@ func (a *CredentialsAPIService) CreateStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5804,8 +5595,7 @@ func (a *CredentialsAPIService) CreateStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5925,13 +5715,12 @@ func (a *CredentialsAPIService) CreateStarburstGalaxyCredentialsExecute(r ApiCre
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5941,8 +5730,7 @@ func (a *CredentialsAPIService) CreateStarburstGalaxyCredentialsExecute(r ApiCre
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5952,8 +5740,7 @@ func (a *CredentialsAPIService) CreateStarburstGalaxyCredentialsExecute(r ApiCre
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5963,8 +5750,7 @@ func (a *CredentialsAPIService) CreateStarburstGalaxyCredentialsExecute(r ApiCre
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5974,8 +5760,7 @@ func (a *CredentialsAPIService) CreateStarburstGalaxyCredentialsExecute(r ApiCre
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5985,8 +5770,7 @@ func (a *CredentialsAPIService) CreateStarburstGalaxyCredentialsExecute(r ApiCre
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -5996,8 +5780,7 @@ func (a *CredentialsAPIService) CreateStarburstGalaxyCredentialsExecute(r ApiCre
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6121,13 +5904,12 @@ func (a *CredentialsAPIService) CreateTableauCredentialsExecute(r ApiCreateTable
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6137,8 +5919,7 @@ func (a *CredentialsAPIService) CreateTableauCredentialsExecute(r ApiCreateTable
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6148,8 +5929,7 @@ func (a *CredentialsAPIService) CreateTableauCredentialsExecute(r ApiCreateTable
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6159,8 +5939,7 @@ func (a *CredentialsAPIService) CreateTableauCredentialsExecute(r ApiCreateTable
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6170,8 +5949,7 @@ func (a *CredentialsAPIService) CreateTableauCredentialsExecute(r ApiCreateTable
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6181,8 +5959,7 @@ func (a *CredentialsAPIService) CreateTableauCredentialsExecute(r ApiCreateTable
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6192,8 +5969,7 @@ func (a *CredentialsAPIService) CreateTableauCredentialsExecute(r ApiCreateTable
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6315,13 +6091,12 @@ func (a *CredentialsAPIService) CreateTeradataCredentialsExecute(r ApiCreateTera
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6331,8 +6106,7 @@ func (a *CredentialsAPIService) CreateTeradataCredentialsExecute(r ApiCreateTera
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6342,8 +6116,7 @@ func (a *CredentialsAPIService) CreateTeradataCredentialsExecute(r ApiCreateTera
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6353,8 +6126,7 @@ func (a *CredentialsAPIService) CreateTeradataCredentialsExecute(r ApiCreateTera
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6364,8 +6136,7 @@ func (a *CredentialsAPIService) CreateTeradataCredentialsExecute(r ApiCreateTera
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6375,8 +6146,7 @@ func (a *CredentialsAPIService) CreateTeradataCredentialsExecute(r ApiCreateTera
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6386,8 +6156,7 @@ func (a *CredentialsAPIService) CreateTeradataCredentialsExecute(r ApiCreateTera
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6494,13 +6263,12 @@ func (a *CredentialsAPIService) DeleteAirflowCredentialsExecute(r ApiDeleteAirfl
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6510,8 +6278,7 @@ func (a *CredentialsAPIService) DeleteAirflowCredentialsExecute(r ApiDeleteAirfl
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6521,8 +6288,7 @@ func (a *CredentialsAPIService) DeleteAirflowCredentialsExecute(r ApiDeleteAirfl
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6532,8 +6298,7 @@ func (a *CredentialsAPIService) DeleteAirflowCredentialsExecute(r ApiDeleteAirfl
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6543,8 +6308,7 @@ func (a *CredentialsAPIService) DeleteAirflowCredentialsExecute(r ApiDeleteAirfl
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6554,8 +6318,7 @@ func (a *CredentialsAPIService) DeleteAirflowCredentialsExecute(r ApiDeleteAirfl
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6654,13 +6417,12 @@ func (a *CredentialsAPIService) DeleteAwsSecretsManagerCredentialsExecute(r ApiD
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6670,8 +6432,7 @@ func (a *CredentialsAPIService) DeleteAwsSecretsManagerCredentialsExecute(r ApiD
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6681,8 +6442,7 @@ func (a *CredentialsAPIService) DeleteAwsSecretsManagerCredentialsExecute(r ApiD
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6692,8 +6452,7 @@ func (a *CredentialsAPIService) DeleteAwsSecretsManagerCredentialsExecute(r ApiD
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6703,8 +6462,7 @@ func (a *CredentialsAPIService) DeleteAwsSecretsManagerCredentialsExecute(r ApiD
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6714,8 +6472,7 @@ func (a *CredentialsAPIService) DeleteAwsSecretsManagerCredentialsExecute(r ApiD
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6814,13 +6571,12 @@ func (a *CredentialsAPIService) DeleteAzureDataFactoryCredentialsExecute(r ApiDe
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6830,8 +6586,7 @@ func (a *CredentialsAPIService) DeleteAzureDataFactoryCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6841,8 +6596,7 @@ func (a *CredentialsAPIService) DeleteAzureDataFactoryCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6852,8 +6606,7 @@ func (a *CredentialsAPIService) DeleteAzureDataFactoryCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6863,8 +6616,7 @@ func (a *CredentialsAPIService) DeleteAzureDataFactoryCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6874,8 +6626,7 @@ func (a *CredentialsAPIService) DeleteAzureDataFactoryCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6975,13 +6726,12 @@ func (a *CredentialsAPIService) DeleteAzureDedicatedSqlPoolCredentialsExecute(r 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -6991,8 +6741,7 @@ func (a *CredentialsAPIService) DeleteAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7002,8 +6751,7 @@ func (a *CredentialsAPIService) DeleteAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7013,8 +6761,7 @@ func (a *CredentialsAPIService) DeleteAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7024,8 +6771,7 @@ func (a *CredentialsAPIService) DeleteAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7035,8 +6781,7 @@ func (a *CredentialsAPIService) DeleteAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7135,13 +6880,12 @@ func (a *CredentialsAPIService) DeleteAzureKeyVaultCredentialsExecute(r ApiDelet
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7151,8 +6895,7 @@ func (a *CredentialsAPIService) DeleteAzureKeyVaultCredentialsExecute(r ApiDelet
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7162,8 +6905,7 @@ func (a *CredentialsAPIService) DeleteAzureKeyVaultCredentialsExecute(r ApiDelet
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7173,8 +6915,7 @@ func (a *CredentialsAPIService) DeleteAzureKeyVaultCredentialsExecute(r ApiDelet
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7184,8 +6925,7 @@ func (a *CredentialsAPIService) DeleteAzureKeyVaultCredentialsExecute(r ApiDelet
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7195,8 +6935,7 @@ func (a *CredentialsAPIService) DeleteAzureKeyVaultCredentialsExecute(r ApiDelet
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7295,13 +7034,12 @@ func (a *CredentialsAPIService) DeleteAzureSqlDatabaseCredentialsExecute(r ApiDe
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7311,8 +7049,7 @@ func (a *CredentialsAPIService) DeleteAzureSqlDatabaseCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7322,8 +7059,7 @@ func (a *CredentialsAPIService) DeleteAzureSqlDatabaseCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7333,8 +7069,7 @@ func (a *CredentialsAPIService) DeleteAzureSqlDatabaseCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7344,8 +7079,7 @@ func (a *CredentialsAPIService) DeleteAzureSqlDatabaseCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7355,8 +7089,7 @@ func (a *CredentialsAPIService) DeleteAzureSqlDatabaseCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7455,13 +7188,12 @@ func (a *CredentialsAPIService) DeleteBigqueryCredentialsExecute(r ApiDeleteBigq
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7471,8 +7203,7 @@ func (a *CredentialsAPIService) DeleteBigqueryCredentialsExecute(r ApiDeleteBigq
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7482,8 +7213,7 @@ func (a *CredentialsAPIService) DeleteBigqueryCredentialsExecute(r ApiDeleteBigq
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7493,8 +7223,7 @@ func (a *CredentialsAPIService) DeleteBigqueryCredentialsExecute(r ApiDeleteBigq
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7504,8 +7233,7 @@ func (a *CredentialsAPIService) DeleteBigqueryCredentialsExecute(r ApiDeleteBigq
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7515,8 +7243,7 @@ func (a *CredentialsAPIService) DeleteBigqueryCredentialsExecute(r ApiDeleteBigq
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7615,13 +7342,12 @@ func (a *CredentialsAPIService) DeleteClickhouseCredentialsExecute(r ApiDeleteCl
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7631,8 +7357,7 @@ func (a *CredentialsAPIService) DeleteClickhouseCredentialsExecute(r ApiDeleteCl
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7642,8 +7367,7 @@ func (a *CredentialsAPIService) DeleteClickhouseCredentialsExecute(r ApiDeleteCl
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7653,8 +7377,7 @@ func (a *CredentialsAPIService) DeleteClickhouseCredentialsExecute(r ApiDeleteCl
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7664,8 +7387,7 @@ func (a *CredentialsAPIService) DeleteClickhouseCredentialsExecute(r ApiDeleteCl
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7675,8 +7397,7 @@ func (a *CredentialsAPIService) DeleteClickhouseCredentialsExecute(r ApiDeleteCl
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7776,13 +7497,12 @@ func (a *CredentialsAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsR
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7792,8 +7512,7 @@ func (a *CredentialsAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsR
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7803,8 +7522,7 @@ func (a *CredentialsAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsR
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7814,8 +7532,7 @@ func (a *CredentialsAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsR
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7825,8 +7542,7 @@ func (a *CredentialsAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsR
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7836,8 +7552,7 @@ func (a *CredentialsAPIService) DeleteCredentialsExecute(r ApiDeleteCredentialsR
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7937,13 +7652,12 @@ func (a *CredentialsAPIService) DeleteDatabricksMetastoreSqlWarehouseCredentials
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7953,8 +7667,7 @@ func (a *CredentialsAPIService) DeleteDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7964,8 +7677,7 @@ func (a *CredentialsAPIService) DeleteDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7975,8 +7687,7 @@ func (a *CredentialsAPIService) DeleteDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7986,8 +7697,7 @@ func (a *CredentialsAPIService) DeleteDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -7997,8 +7707,7 @@ func (a *CredentialsAPIService) DeleteDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8098,13 +7807,12 @@ func (a *CredentialsAPIService) DeleteDatabricksSqlWarehouseCredentialsExecute(r
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8114,8 +7822,7 @@ func (a *CredentialsAPIService) DeleteDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8125,8 +7832,7 @@ func (a *CredentialsAPIService) DeleteDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8136,8 +7842,7 @@ func (a *CredentialsAPIService) DeleteDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8147,8 +7852,7 @@ func (a *CredentialsAPIService) DeleteDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8158,8 +7862,7 @@ func (a *CredentialsAPIService) DeleteDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8258,13 +7961,12 @@ func (a *CredentialsAPIService) DeleteDb2CredentialsExecute(r ApiDeleteDb2Creden
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8274,8 +7976,7 @@ func (a *CredentialsAPIService) DeleteDb2CredentialsExecute(r ApiDeleteDb2Creden
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8285,8 +7986,7 @@ func (a *CredentialsAPIService) DeleteDb2CredentialsExecute(r ApiDeleteDb2Creden
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8296,8 +7996,7 @@ func (a *CredentialsAPIService) DeleteDb2CredentialsExecute(r ApiDeleteDb2Creden
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8307,8 +8006,7 @@ func (a *CredentialsAPIService) DeleteDb2CredentialsExecute(r ApiDeleteDb2Creden
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8318,8 +8016,7 @@ func (a *CredentialsAPIService) DeleteDb2CredentialsExecute(r ApiDeleteDb2Creden
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8418,13 +8115,12 @@ func (a *CredentialsAPIService) DeleteEnvVarCredentialsExecute(r ApiDeleteEnvVar
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8434,8 +8130,7 @@ func (a *CredentialsAPIService) DeleteEnvVarCredentialsExecute(r ApiDeleteEnvVar
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8445,8 +8140,7 @@ func (a *CredentialsAPIService) DeleteEnvVarCredentialsExecute(r ApiDeleteEnvVar
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8456,8 +8150,7 @@ func (a *CredentialsAPIService) DeleteEnvVarCredentialsExecute(r ApiDeleteEnvVar
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8467,8 +8160,7 @@ func (a *CredentialsAPIService) DeleteEnvVarCredentialsExecute(r ApiDeleteEnvVar
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8478,8 +8170,7 @@ func (a *CredentialsAPIService) DeleteEnvVarCredentialsExecute(r ApiDeleteEnvVar
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8578,13 +8269,12 @@ func (a *CredentialsAPIService) DeleteFileCredentialsExecute(r ApiDeleteFileCred
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8594,8 +8284,7 @@ func (a *CredentialsAPIService) DeleteFileCredentialsExecute(r ApiDeleteFileCred
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8605,8 +8294,7 @@ func (a *CredentialsAPIService) DeleteFileCredentialsExecute(r ApiDeleteFileCred
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8616,8 +8304,7 @@ func (a *CredentialsAPIService) DeleteFileCredentialsExecute(r ApiDeleteFileCred
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8627,8 +8314,7 @@ func (a *CredentialsAPIService) DeleteFileCredentialsExecute(r ApiDeleteFileCred
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8638,8 +8324,7 @@ func (a *CredentialsAPIService) DeleteFileCredentialsExecute(r ApiDeleteFileCred
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8738,13 +8423,12 @@ func (a *CredentialsAPIService) DeleteFivetranCredentialsExecute(r ApiDeleteFive
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8754,8 +8438,7 @@ func (a *CredentialsAPIService) DeleteFivetranCredentialsExecute(r ApiDeleteFive
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8765,8 +8448,7 @@ func (a *CredentialsAPIService) DeleteFivetranCredentialsExecute(r ApiDeleteFive
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8776,8 +8458,7 @@ func (a *CredentialsAPIService) DeleteFivetranCredentialsExecute(r ApiDeleteFive
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8787,8 +8468,7 @@ func (a *CredentialsAPIService) DeleteFivetranCredentialsExecute(r ApiDeleteFive
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8798,8 +8478,7 @@ func (a *CredentialsAPIService) DeleteFivetranCredentialsExecute(r ApiDeleteFive
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8898,13 +8577,12 @@ func (a *CredentialsAPIService) DeleteGcpDataformCredentialsExecute(r ApiDeleteG
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8914,8 +8592,7 @@ func (a *CredentialsAPIService) DeleteGcpDataformCredentialsExecute(r ApiDeleteG
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8925,8 +8602,7 @@ func (a *CredentialsAPIService) DeleteGcpDataformCredentialsExecute(r ApiDeleteG
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8936,8 +8612,7 @@ func (a *CredentialsAPIService) DeleteGcpDataformCredentialsExecute(r ApiDeleteG
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8947,8 +8622,7 @@ func (a *CredentialsAPIService) DeleteGcpDataformCredentialsExecute(r ApiDeleteG
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -8958,8 +8632,7 @@ func (a *CredentialsAPIService) DeleteGcpDataformCredentialsExecute(r ApiDeleteG
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9058,13 +8731,12 @@ func (a *CredentialsAPIService) DeleteGcpSecretManagerCredentialsExecute(r ApiDe
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9074,8 +8746,7 @@ func (a *CredentialsAPIService) DeleteGcpSecretManagerCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9085,8 +8756,7 @@ func (a *CredentialsAPIService) DeleteGcpSecretManagerCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9096,8 +8766,7 @@ func (a *CredentialsAPIService) DeleteGcpSecretManagerCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9107,8 +8776,7 @@ func (a *CredentialsAPIService) DeleteGcpSecretManagerCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9118,8 +8786,7 @@ func (a *CredentialsAPIService) DeleteGcpSecretManagerCredentialsExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9219,13 +8886,12 @@ func (a *CredentialsAPIService) DeleteInformaticaV2CredentialsExecute(r ApiDelet
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9235,8 +8901,7 @@ func (a *CredentialsAPIService) DeleteInformaticaV2CredentialsExecute(r ApiDelet
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9246,8 +8911,7 @@ func (a *CredentialsAPIService) DeleteInformaticaV2CredentialsExecute(r ApiDelet
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9257,8 +8921,7 @@ func (a *CredentialsAPIService) DeleteInformaticaV2CredentialsExecute(r ApiDelet
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9268,8 +8931,7 @@ func (a *CredentialsAPIService) DeleteInformaticaV2CredentialsExecute(r ApiDelet
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9279,8 +8941,7 @@ func (a *CredentialsAPIService) DeleteInformaticaV2CredentialsExecute(r ApiDelet
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9380,13 +9041,12 @@ func (a *CredentialsAPIService) DeleteLookerCredentialsExecute(r ApiDeleteLooker
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9396,8 +9056,7 @@ func (a *CredentialsAPIService) DeleteLookerCredentialsExecute(r ApiDeleteLooker
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9407,8 +9066,7 @@ func (a *CredentialsAPIService) DeleteLookerCredentialsExecute(r ApiDeleteLooker
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9418,8 +9076,7 @@ func (a *CredentialsAPIService) DeleteLookerCredentialsExecute(r ApiDeleteLooker
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9429,8 +9086,7 @@ func (a *CredentialsAPIService) DeleteLookerCredentialsExecute(r ApiDeleteLooker
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9440,8 +9096,7 @@ func (a *CredentialsAPIService) DeleteLookerCredentialsExecute(r ApiDeleteLooker
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9540,13 +9195,12 @@ func (a *CredentialsAPIService) DeleteLookerGitCloneCredentialsExecute(r ApiDele
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9556,8 +9210,7 @@ func (a *CredentialsAPIService) DeleteLookerGitCloneCredentialsExecute(r ApiDele
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9567,8 +9220,7 @@ func (a *CredentialsAPIService) DeleteLookerGitCloneCredentialsExecute(r ApiDele
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9578,8 +9230,7 @@ func (a *CredentialsAPIService) DeleteLookerGitCloneCredentialsExecute(r ApiDele
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9589,8 +9240,7 @@ func (a *CredentialsAPIService) DeleteLookerGitCloneCredentialsExecute(r ApiDele
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9600,8 +9250,7 @@ func (a *CredentialsAPIService) DeleteLookerGitCloneCredentialsExecute(r ApiDele
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9700,13 +9349,12 @@ func (a *CredentialsAPIService) DeleteMariadbCredentialsExecute(r ApiDeleteMaria
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9716,8 +9364,7 @@ func (a *CredentialsAPIService) DeleteMariadbCredentialsExecute(r ApiDeleteMaria
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9727,8 +9374,7 @@ func (a *CredentialsAPIService) DeleteMariadbCredentialsExecute(r ApiDeleteMaria
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9738,8 +9384,7 @@ func (a *CredentialsAPIService) DeleteMariadbCredentialsExecute(r ApiDeleteMaria
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9749,8 +9394,7 @@ func (a *CredentialsAPIService) DeleteMariadbCredentialsExecute(r ApiDeleteMaria
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9760,8 +9404,7 @@ func (a *CredentialsAPIService) DeleteMariadbCredentialsExecute(r ApiDeleteMaria
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9860,13 +9503,12 @@ func (a *CredentialsAPIService) DeleteMulesoftCredentialsExecute(r ApiDeleteMule
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9876,8 +9518,7 @@ func (a *CredentialsAPIService) DeleteMulesoftCredentialsExecute(r ApiDeleteMule
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9887,8 +9528,7 @@ func (a *CredentialsAPIService) DeleteMulesoftCredentialsExecute(r ApiDeleteMule
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9898,8 +9538,7 @@ func (a *CredentialsAPIService) DeleteMulesoftCredentialsExecute(r ApiDeleteMule
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9909,8 +9548,7 @@ func (a *CredentialsAPIService) DeleteMulesoftCredentialsExecute(r ApiDeleteMule
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -9920,8 +9558,7 @@ func (a *CredentialsAPIService) DeleteMulesoftCredentialsExecute(r ApiDeleteMule
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10020,13 +9657,12 @@ func (a *CredentialsAPIService) DeleteMysqlCredentialsExecute(r ApiDeleteMysqlCr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10036,8 +9672,7 @@ func (a *CredentialsAPIService) DeleteMysqlCredentialsExecute(r ApiDeleteMysqlCr
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10047,8 +9682,7 @@ func (a *CredentialsAPIService) DeleteMysqlCredentialsExecute(r ApiDeleteMysqlCr
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10058,8 +9692,7 @@ func (a *CredentialsAPIService) DeleteMysqlCredentialsExecute(r ApiDeleteMysqlCr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10069,8 +9702,7 @@ func (a *CredentialsAPIService) DeleteMysqlCredentialsExecute(r ApiDeleteMysqlCr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10080,8 +9712,7 @@ func (a *CredentialsAPIService) DeleteMysqlCredentialsExecute(r ApiDeleteMysqlCr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10180,13 +9811,12 @@ func (a *CredentialsAPIService) DeleteOracleCredentialsExecute(r ApiDeleteOracle
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10196,8 +9826,7 @@ func (a *CredentialsAPIService) DeleteOracleCredentialsExecute(r ApiDeleteOracle
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10207,8 +9836,7 @@ func (a *CredentialsAPIService) DeleteOracleCredentialsExecute(r ApiDeleteOracle
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10218,8 +9846,7 @@ func (a *CredentialsAPIService) DeleteOracleCredentialsExecute(r ApiDeleteOracle
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10229,8 +9856,7 @@ func (a *CredentialsAPIService) DeleteOracleCredentialsExecute(r ApiDeleteOracle
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10240,8 +9866,7 @@ func (a *CredentialsAPIService) DeleteOracleCredentialsExecute(r ApiDeleteOracle
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10340,13 +9965,12 @@ func (a *CredentialsAPIService) DeletePostgresCredentialsExecute(r ApiDeletePost
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10356,8 +9980,7 @@ func (a *CredentialsAPIService) DeletePostgresCredentialsExecute(r ApiDeletePost
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10367,8 +9990,7 @@ func (a *CredentialsAPIService) DeletePostgresCredentialsExecute(r ApiDeletePost
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10378,8 +10000,7 @@ func (a *CredentialsAPIService) DeletePostgresCredentialsExecute(r ApiDeletePost
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10389,8 +10010,7 @@ func (a *CredentialsAPIService) DeletePostgresCredentialsExecute(r ApiDeletePost
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10400,8 +10020,7 @@ func (a *CredentialsAPIService) DeletePostgresCredentialsExecute(r ApiDeletePost
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10501,13 +10120,12 @@ func (a *CredentialsAPIService) DeletePowerBiCredentialsExecute(r ApiDeletePower
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10517,8 +10135,7 @@ func (a *CredentialsAPIService) DeletePowerBiCredentialsExecute(r ApiDeletePower
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10528,8 +10145,7 @@ func (a *CredentialsAPIService) DeletePowerBiCredentialsExecute(r ApiDeletePower
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10539,8 +10155,7 @@ func (a *CredentialsAPIService) DeletePowerBiCredentialsExecute(r ApiDeletePower
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10550,8 +10165,7 @@ func (a *CredentialsAPIService) DeletePowerBiCredentialsExecute(r ApiDeletePower
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10561,8 +10175,7 @@ func (a *CredentialsAPIService) DeletePowerBiCredentialsExecute(r ApiDeletePower
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10661,13 +10274,12 @@ func (a *CredentialsAPIService) DeleteRedshiftCredentialsExecute(r ApiDeleteReds
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10677,8 +10289,7 @@ func (a *CredentialsAPIService) DeleteRedshiftCredentialsExecute(r ApiDeleteReds
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10688,8 +10299,7 @@ func (a *CredentialsAPIService) DeleteRedshiftCredentialsExecute(r ApiDeleteReds
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10699,8 +10309,7 @@ func (a *CredentialsAPIService) DeleteRedshiftCredentialsExecute(r ApiDeleteReds
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10710,8 +10319,7 @@ func (a *CredentialsAPIService) DeleteRedshiftCredentialsExecute(r ApiDeleteReds
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10721,8 +10329,7 @@ func (a *CredentialsAPIService) DeleteRedshiftCredentialsExecute(r ApiDeleteReds
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10821,13 +10428,12 @@ func (a *CredentialsAPIService) DeleteSapHanaCredentialsExecute(r ApiDeleteSapHa
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10837,8 +10443,7 @@ func (a *CredentialsAPIService) DeleteSapHanaCredentialsExecute(r ApiDeleteSapHa
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10848,8 +10453,7 @@ func (a *CredentialsAPIService) DeleteSapHanaCredentialsExecute(r ApiDeleteSapHa
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10859,8 +10463,7 @@ func (a *CredentialsAPIService) DeleteSapHanaCredentialsExecute(r ApiDeleteSapHa
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10870,8 +10473,7 @@ func (a *CredentialsAPIService) DeleteSapHanaCredentialsExecute(r ApiDeleteSapHa
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10881,8 +10483,7 @@ func (a *CredentialsAPIService) DeleteSapHanaCredentialsExecute(r ApiDeleteSapHa
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10982,13 +10583,12 @@ func (a *CredentialsAPIService) DeleteSnowflakeCredentialsExecute(r ApiDeleteSno
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -10998,8 +10598,7 @@ func (a *CredentialsAPIService) DeleteSnowflakeCredentialsExecute(r ApiDeleteSno
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11009,8 +10608,7 @@ func (a *CredentialsAPIService) DeleteSnowflakeCredentialsExecute(r ApiDeleteSno
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11020,8 +10618,7 @@ func (a *CredentialsAPIService) DeleteSnowflakeCredentialsExecute(r ApiDeleteSno
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11031,8 +10628,7 @@ func (a *CredentialsAPIService) DeleteSnowflakeCredentialsExecute(r ApiDeleteSno
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11042,8 +10638,7 @@ func (a *CredentialsAPIService) DeleteSnowflakeCredentialsExecute(r ApiDeleteSno
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11143,13 +10738,12 @@ func (a *CredentialsAPIService) DeleteSqlServerCredentialsExecute(r ApiDeleteSql
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11159,8 +10753,7 @@ func (a *CredentialsAPIService) DeleteSqlServerCredentialsExecute(r ApiDeleteSql
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11170,8 +10763,7 @@ func (a *CredentialsAPIService) DeleteSqlServerCredentialsExecute(r ApiDeleteSql
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11181,8 +10773,7 @@ func (a *CredentialsAPIService) DeleteSqlServerCredentialsExecute(r ApiDeleteSql
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11192,8 +10783,7 @@ func (a *CredentialsAPIService) DeleteSqlServerCredentialsExecute(r ApiDeleteSql
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11203,8 +10793,7 @@ func (a *CredentialsAPIService) DeleteSqlServerCredentialsExecute(r ApiDeleteSql
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11303,13 +10892,12 @@ func (a *CredentialsAPIService) DeleteStarburstEnterpriseCredentialsExecute(r Ap
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11319,8 +10907,7 @@ func (a *CredentialsAPIService) DeleteStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11330,8 +10917,7 @@ func (a *CredentialsAPIService) DeleteStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11341,8 +10927,7 @@ func (a *CredentialsAPIService) DeleteStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11352,8 +10937,7 @@ func (a *CredentialsAPIService) DeleteStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11363,8 +10947,7 @@ func (a *CredentialsAPIService) DeleteStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11463,13 +11046,12 @@ func (a *CredentialsAPIService) DeleteStarburstGalaxyCredentialsExecute(r ApiDel
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11479,8 +11061,7 @@ func (a *CredentialsAPIService) DeleteStarburstGalaxyCredentialsExecute(r ApiDel
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11490,8 +11071,7 @@ func (a *CredentialsAPIService) DeleteStarburstGalaxyCredentialsExecute(r ApiDel
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11501,8 +11081,7 @@ func (a *CredentialsAPIService) DeleteStarburstGalaxyCredentialsExecute(r ApiDel
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11512,8 +11091,7 @@ func (a *CredentialsAPIService) DeleteStarburstGalaxyCredentialsExecute(r ApiDel
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11523,8 +11101,7 @@ func (a *CredentialsAPIService) DeleteStarburstGalaxyCredentialsExecute(r ApiDel
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11624,13 +11201,12 @@ func (a *CredentialsAPIService) DeleteTableauCredentialsExecute(r ApiDeleteTable
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11640,8 +11216,7 @@ func (a *CredentialsAPIService) DeleteTableauCredentialsExecute(r ApiDeleteTable
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11651,8 +11226,7 @@ func (a *CredentialsAPIService) DeleteTableauCredentialsExecute(r ApiDeleteTable
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11662,8 +11236,7 @@ func (a *CredentialsAPIService) DeleteTableauCredentialsExecute(r ApiDeleteTable
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11673,8 +11246,7 @@ func (a *CredentialsAPIService) DeleteTableauCredentialsExecute(r ApiDeleteTable
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11684,8 +11256,7 @@ func (a *CredentialsAPIService) DeleteTableauCredentialsExecute(r ApiDeleteTable
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11785,13 +11356,12 @@ func (a *CredentialsAPIService) DeleteTeradataCredentialsExecute(r ApiDeleteTera
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11801,8 +11371,7 @@ func (a *CredentialsAPIService) DeleteTeradataCredentialsExecute(r ApiDeleteTera
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11812,8 +11381,7 @@ func (a *CredentialsAPIService) DeleteTeradataCredentialsExecute(r ApiDeleteTera
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11823,8 +11391,7 @@ func (a *CredentialsAPIService) DeleteTeradataCredentialsExecute(r ApiDeleteTera
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11834,8 +11401,7 @@ func (a *CredentialsAPIService) DeleteTeradataCredentialsExecute(r ApiDeleteTera
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11845,8 +11411,7 @@ func (a *CredentialsAPIService) DeleteTeradataCredentialsExecute(r ApiDeleteTera
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11948,13 +11513,12 @@ func (a *CredentialsAPIService) GetAirflowCredentialsExecute(r ApiGetAirflowCred
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11964,8 +11528,7 @@ func (a *CredentialsAPIService) GetAirflowCredentialsExecute(r ApiGetAirflowCred
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11975,8 +11538,7 @@ func (a *CredentialsAPIService) GetAirflowCredentialsExecute(r ApiGetAirflowCred
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11986,8 +11548,7 @@ func (a *CredentialsAPIService) GetAirflowCredentialsExecute(r ApiGetAirflowCred
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -11997,8 +11558,7 @@ func (a *CredentialsAPIService) GetAirflowCredentialsExecute(r ApiGetAirflowCred
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12109,13 +11669,12 @@ func (a *CredentialsAPIService) GetAwsSecretsManagerCredentialsExecute(r ApiGetA
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12125,8 +11684,7 @@ func (a *CredentialsAPIService) GetAwsSecretsManagerCredentialsExecute(r ApiGetA
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12136,8 +11694,7 @@ func (a *CredentialsAPIService) GetAwsSecretsManagerCredentialsExecute(r ApiGetA
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12147,8 +11704,7 @@ func (a *CredentialsAPIService) GetAwsSecretsManagerCredentialsExecute(r ApiGetA
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12158,8 +11714,7 @@ func (a *CredentialsAPIService) GetAwsSecretsManagerCredentialsExecute(r ApiGetA
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12270,13 +11825,12 @@ func (a *CredentialsAPIService) GetAzureDataFactoryCredentialsExecute(r ApiGetAz
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12286,8 +11840,7 @@ func (a *CredentialsAPIService) GetAzureDataFactoryCredentialsExecute(r ApiGetAz
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12297,8 +11850,7 @@ func (a *CredentialsAPIService) GetAzureDataFactoryCredentialsExecute(r ApiGetAz
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12308,8 +11860,7 @@ func (a *CredentialsAPIService) GetAzureDataFactoryCredentialsExecute(r ApiGetAz
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12319,8 +11870,7 @@ func (a *CredentialsAPIService) GetAzureDataFactoryCredentialsExecute(r ApiGetAz
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12431,13 +11981,12 @@ func (a *CredentialsAPIService) GetAzureDedicatedSqlPoolCredentialsExecute(r Api
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12447,8 +11996,7 @@ func (a *CredentialsAPIService) GetAzureDedicatedSqlPoolCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12458,8 +12006,7 @@ func (a *CredentialsAPIService) GetAzureDedicatedSqlPoolCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12469,8 +12016,7 @@ func (a *CredentialsAPIService) GetAzureDedicatedSqlPoolCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12480,8 +12026,7 @@ func (a *CredentialsAPIService) GetAzureDedicatedSqlPoolCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12592,13 +12137,12 @@ func (a *CredentialsAPIService) GetAzureKeyVaultCredentialsExecute(r ApiGetAzure
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12608,8 +12152,7 @@ func (a *CredentialsAPIService) GetAzureKeyVaultCredentialsExecute(r ApiGetAzure
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12619,8 +12162,7 @@ func (a *CredentialsAPIService) GetAzureKeyVaultCredentialsExecute(r ApiGetAzure
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12630,8 +12172,7 @@ func (a *CredentialsAPIService) GetAzureKeyVaultCredentialsExecute(r ApiGetAzure
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12641,8 +12182,7 @@ func (a *CredentialsAPIService) GetAzureKeyVaultCredentialsExecute(r ApiGetAzure
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12753,13 +12293,12 @@ func (a *CredentialsAPIService) GetAzureSqlDatabaseCredentialsExecute(r ApiGetAz
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12769,8 +12308,7 @@ func (a *CredentialsAPIService) GetAzureSqlDatabaseCredentialsExecute(r ApiGetAz
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12780,8 +12318,7 @@ func (a *CredentialsAPIService) GetAzureSqlDatabaseCredentialsExecute(r ApiGetAz
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12791,8 +12328,7 @@ func (a *CredentialsAPIService) GetAzureSqlDatabaseCredentialsExecute(r ApiGetAz
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12802,8 +12338,7 @@ func (a *CredentialsAPIService) GetAzureSqlDatabaseCredentialsExecute(r ApiGetAz
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12914,13 +12449,12 @@ func (a *CredentialsAPIService) GetBigqueryCredentialsExecute(r ApiGetBigqueryCr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12930,8 +12464,7 @@ func (a *CredentialsAPIService) GetBigqueryCredentialsExecute(r ApiGetBigqueryCr
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12941,8 +12474,7 @@ func (a *CredentialsAPIService) GetBigqueryCredentialsExecute(r ApiGetBigqueryCr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12952,8 +12484,7 @@ func (a *CredentialsAPIService) GetBigqueryCredentialsExecute(r ApiGetBigqueryCr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -12963,8 +12494,7 @@ func (a *CredentialsAPIService) GetBigqueryCredentialsExecute(r ApiGetBigqueryCr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13075,13 +12605,12 @@ func (a *CredentialsAPIService) GetClickhouseCredentialsExecute(r ApiGetClickhou
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13091,8 +12620,7 @@ func (a *CredentialsAPIService) GetClickhouseCredentialsExecute(r ApiGetClickhou
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13102,8 +12630,7 @@ func (a *CredentialsAPIService) GetClickhouseCredentialsExecute(r ApiGetClickhou
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13113,8 +12640,7 @@ func (a *CredentialsAPIService) GetClickhouseCredentialsExecute(r ApiGetClickhou
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13124,8 +12650,7 @@ func (a *CredentialsAPIService) GetClickhouseCredentialsExecute(r ApiGetClickhou
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13236,13 +12761,12 @@ func (a *CredentialsAPIService) GetDatabricksMetastoreSqlWarehouseCredentialsExe
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13252,8 +12776,7 @@ func (a *CredentialsAPIService) GetDatabricksMetastoreSqlWarehouseCredentialsExe
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13263,8 +12786,7 @@ func (a *CredentialsAPIService) GetDatabricksMetastoreSqlWarehouseCredentialsExe
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13274,8 +12796,7 @@ func (a *CredentialsAPIService) GetDatabricksMetastoreSqlWarehouseCredentialsExe
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13285,8 +12806,7 @@ func (a *CredentialsAPIService) GetDatabricksMetastoreSqlWarehouseCredentialsExe
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13397,13 +12917,12 @@ func (a *CredentialsAPIService) GetDatabricksSqlWarehouseCredentialsExecute(r Ap
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13413,8 +12932,7 @@ func (a *CredentialsAPIService) GetDatabricksSqlWarehouseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13424,8 +12942,7 @@ func (a *CredentialsAPIService) GetDatabricksSqlWarehouseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13435,8 +12952,7 @@ func (a *CredentialsAPIService) GetDatabricksSqlWarehouseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13446,8 +12962,7 @@ func (a *CredentialsAPIService) GetDatabricksSqlWarehouseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13558,13 +13073,12 @@ func (a *CredentialsAPIService) GetDb2CredentialsExecute(r ApiGetDb2CredentialsR
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13574,8 +13088,7 @@ func (a *CredentialsAPIService) GetDb2CredentialsExecute(r ApiGetDb2CredentialsR
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13585,8 +13098,7 @@ func (a *CredentialsAPIService) GetDb2CredentialsExecute(r ApiGetDb2CredentialsR
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13596,8 +13108,7 @@ func (a *CredentialsAPIService) GetDb2CredentialsExecute(r ApiGetDb2CredentialsR
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13607,8 +13118,7 @@ func (a *CredentialsAPIService) GetDb2CredentialsExecute(r ApiGetDb2CredentialsR
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13719,13 +13229,12 @@ func (a *CredentialsAPIService) GetEnvVarCredentialsExecute(r ApiGetEnvVarCreden
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13735,8 +13244,7 @@ func (a *CredentialsAPIService) GetEnvVarCredentialsExecute(r ApiGetEnvVarCreden
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13746,8 +13254,7 @@ func (a *CredentialsAPIService) GetEnvVarCredentialsExecute(r ApiGetEnvVarCreden
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13757,8 +13264,7 @@ func (a *CredentialsAPIService) GetEnvVarCredentialsExecute(r ApiGetEnvVarCreden
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13768,8 +13274,7 @@ func (a *CredentialsAPIService) GetEnvVarCredentialsExecute(r ApiGetEnvVarCreden
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13880,13 +13385,12 @@ func (a *CredentialsAPIService) GetFileCredentialsExecute(r ApiGetFileCredential
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13896,8 +13400,7 @@ func (a *CredentialsAPIService) GetFileCredentialsExecute(r ApiGetFileCredential
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13907,8 +13410,7 @@ func (a *CredentialsAPIService) GetFileCredentialsExecute(r ApiGetFileCredential
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13918,8 +13420,7 @@ func (a *CredentialsAPIService) GetFileCredentialsExecute(r ApiGetFileCredential
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -13929,8 +13430,7 @@ func (a *CredentialsAPIService) GetFileCredentialsExecute(r ApiGetFileCredential
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14041,13 +13541,12 @@ func (a *CredentialsAPIService) GetFivetranCredentialsExecute(r ApiGetFivetranCr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14057,8 +13556,7 @@ func (a *CredentialsAPIService) GetFivetranCredentialsExecute(r ApiGetFivetranCr
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14068,8 +13566,7 @@ func (a *CredentialsAPIService) GetFivetranCredentialsExecute(r ApiGetFivetranCr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14079,8 +13576,7 @@ func (a *CredentialsAPIService) GetFivetranCredentialsExecute(r ApiGetFivetranCr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14090,8 +13586,7 @@ func (a *CredentialsAPIService) GetFivetranCredentialsExecute(r ApiGetFivetranCr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14202,13 +13697,12 @@ func (a *CredentialsAPIService) GetGcpDataformCredentialsExecute(r ApiGetGcpData
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14218,8 +13712,7 @@ func (a *CredentialsAPIService) GetGcpDataformCredentialsExecute(r ApiGetGcpData
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14229,8 +13722,7 @@ func (a *CredentialsAPIService) GetGcpDataformCredentialsExecute(r ApiGetGcpData
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14240,8 +13732,7 @@ func (a *CredentialsAPIService) GetGcpDataformCredentialsExecute(r ApiGetGcpData
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14251,8 +13742,7 @@ func (a *CredentialsAPIService) GetGcpDataformCredentialsExecute(r ApiGetGcpData
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14363,13 +13853,12 @@ func (a *CredentialsAPIService) GetGcpSecretManagerCredentialsExecute(r ApiGetGc
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14379,8 +13868,7 @@ func (a *CredentialsAPIService) GetGcpSecretManagerCredentialsExecute(r ApiGetGc
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14390,8 +13878,7 @@ func (a *CredentialsAPIService) GetGcpSecretManagerCredentialsExecute(r ApiGetGc
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14401,8 +13888,7 @@ func (a *CredentialsAPIService) GetGcpSecretManagerCredentialsExecute(r ApiGetGc
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14412,8 +13898,7 @@ func (a *CredentialsAPIService) GetGcpSecretManagerCredentialsExecute(r ApiGetGc
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14524,13 +14009,12 @@ func (a *CredentialsAPIService) GetInformaticaV2CredentialsExecute(r ApiGetInfor
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14540,8 +14024,7 @@ func (a *CredentialsAPIService) GetInformaticaV2CredentialsExecute(r ApiGetInfor
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14551,8 +14034,7 @@ func (a *CredentialsAPIService) GetInformaticaV2CredentialsExecute(r ApiGetInfor
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14562,8 +14044,7 @@ func (a *CredentialsAPIService) GetInformaticaV2CredentialsExecute(r ApiGetInfor
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14573,8 +14054,7 @@ func (a *CredentialsAPIService) GetInformaticaV2CredentialsExecute(r ApiGetInfor
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14685,13 +14165,12 @@ func (a *CredentialsAPIService) GetLookerCredentialsExecute(r ApiGetLookerCreden
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14701,8 +14180,7 @@ func (a *CredentialsAPIService) GetLookerCredentialsExecute(r ApiGetLookerCreden
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14712,8 +14190,7 @@ func (a *CredentialsAPIService) GetLookerCredentialsExecute(r ApiGetLookerCreden
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14723,8 +14200,7 @@ func (a *CredentialsAPIService) GetLookerCredentialsExecute(r ApiGetLookerCreden
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14734,8 +14210,7 @@ func (a *CredentialsAPIService) GetLookerCredentialsExecute(r ApiGetLookerCreden
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14846,13 +14321,12 @@ func (a *CredentialsAPIService) GetLookerGitCloneCredentialsExecute(r ApiGetLook
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14862,8 +14336,7 @@ func (a *CredentialsAPIService) GetLookerGitCloneCredentialsExecute(r ApiGetLook
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14873,8 +14346,7 @@ func (a *CredentialsAPIService) GetLookerGitCloneCredentialsExecute(r ApiGetLook
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14884,8 +14356,7 @@ func (a *CredentialsAPIService) GetLookerGitCloneCredentialsExecute(r ApiGetLook
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -14895,8 +14366,7 @@ func (a *CredentialsAPIService) GetLookerGitCloneCredentialsExecute(r ApiGetLook
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15007,13 +14477,12 @@ func (a *CredentialsAPIService) GetMariadbCredentialsExecute(r ApiGetMariadbCred
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15023,8 +14492,7 @@ func (a *CredentialsAPIService) GetMariadbCredentialsExecute(r ApiGetMariadbCred
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15034,8 +14502,7 @@ func (a *CredentialsAPIService) GetMariadbCredentialsExecute(r ApiGetMariadbCred
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15045,8 +14512,7 @@ func (a *CredentialsAPIService) GetMariadbCredentialsExecute(r ApiGetMariadbCred
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15056,8 +14522,7 @@ func (a *CredentialsAPIService) GetMariadbCredentialsExecute(r ApiGetMariadbCred
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15168,13 +14633,12 @@ func (a *CredentialsAPIService) GetMulesoftCredentialsExecute(r ApiGetMulesoftCr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15184,8 +14648,7 @@ func (a *CredentialsAPIService) GetMulesoftCredentialsExecute(r ApiGetMulesoftCr
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15195,8 +14658,7 @@ func (a *CredentialsAPIService) GetMulesoftCredentialsExecute(r ApiGetMulesoftCr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15206,8 +14668,7 @@ func (a *CredentialsAPIService) GetMulesoftCredentialsExecute(r ApiGetMulesoftCr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15217,8 +14678,7 @@ func (a *CredentialsAPIService) GetMulesoftCredentialsExecute(r ApiGetMulesoftCr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15329,13 +14789,12 @@ func (a *CredentialsAPIService) GetMysqlCredentialsExecute(r ApiGetMysqlCredenti
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15345,8 +14804,7 @@ func (a *CredentialsAPIService) GetMysqlCredentialsExecute(r ApiGetMysqlCredenti
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15356,8 +14814,7 @@ func (a *CredentialsAPIService) GetMysqlCredentialsExecute(r ApiGetMysqlCredenti
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15367,8 +14824,7 @@ func (a *CredentialsAPIService) GetMysqlCredentialsExecute(r ApiGetMysqlCredenti
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15378,8 +14834,7 @@ func (a *CredentialsAPIService) GetMysqlCredentialsExecute(r ApiGetMysqlCredenti
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15490,13 +14945,12 @@ func (a *CredentialsAPIService) GetOracleCredentialsExecute(r ApiGetOracleCreden
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15506,8 +14960,7 @@ func (a *CredentialsAPIService) GetOracleCredentialsExecute(r ApiGetOracleCreden
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15517,8 +14970,7 @@ func (a *CredentialsAPIService) GetOracleCredentialsExecute(r ApiGetOracleCreden
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15528,8 +14980,7 @@ func (a *CredentialsAPIService) GetOracleCredentialsExecute(r ApiGetOracleCreden
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15539,8 +14990,7 @@ func (a *CredentialsAPIService) GetOracleCredentialsExecute(r ApiGetOracleCreden
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15651,13 +15101,12 @@ func (a *CredentialsAPIService) GetPostgresCredentialsExecute(r ApiGetPostgresCr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15667,8 +15116,7 @@ func (a *CredentialsAPIService) GetPostgresCredentialsExecute(r ApiGetPostgresCr
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15678,8 +15126,7 @@ func (a *CredentialsAPIService) GetPostgresCredentialsExecute(r ApiGetPostgresCr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15689,8 +15136,7 @@ func (a *CredentialsAPIService) GetPostgresCredentialsExecute(r ApiGetPostgresCr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15700,8 +15146,7 @@ func (a *CredentialsAPIService) GetPostgresCredentialsExecute(r ApiGetPostgresCr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15812,13 +15257,12 @@ func (a *CredentialsAPIService) GetPowerBiCredentialsExecute(r ApiGetPowerBiCred
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15828,8 +15272,7 @@ func (a *CredentialsAPIService) GetPowerBiCredentialsExecute(r ApiGetPowerBiCred
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15839,8 +15282,7 @@ func (a *CredentialsAPIService) GetPowerBiCredentialsExecute(r ApiGetPowerBiCred
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15850,8 +15292,7 @@ func (a *CredentialsAPIService) GetPowerBiCredentialsExecute(r ApiGetPowerBiCred
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15861,8 +15302,7 @@ func (a *CredentialsAPIService) GetPowerBiCredentialsExecute(r ApiGetPowerBiCred
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15973,13 +15413,12 @@ func (a *CredentialsAPIService) GetRedshiftCredentialsExecute(r ApiGetRedshiftCr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -15989,8 +15428,7 @@ func (a *CredentialsAPIService) GetRedshiftCredentialsExecute(r ApiGetRedshiftCr
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16000,8 +15438,7 @@ func (a *CredentialsAPIService) GetRedshiftCredentialsExecute(r ApiGetRedshiftCr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16011,8 +15448,7 @@ func (a *CredentialsAPIService) GetRedshiftCredentialsExecute(r ApiGetRedshiftCr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16022,8 +15458,7 @@ func (a *CredentialsAPIService) GetRedshiftCredentialsExecute(r ApiGetRedshiftCr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16134,13 +15569,12 @@ func (a *CredentialsAPIService) GetSapHanaCredentialsExecute(r ApiGetSapHanaCred
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16150,8 +15584,7 @@ func (a *CredentialsAPIService) GetSapHanaCredentialsExecute(r ApiGetSapHanaCred
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16161,8 +15594,7 @@ func (a *CredentialsAPIService) GetSapHanaCredentialsExecute(r ApiGetSapHanaCred
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16172,8 +15604,7 @@ func (a *CredentialsAPIService) GetSapHanaCredentialsExecute(r ApiGetSapHanaCred
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16183,8 +15614,7 @@ func (a *CredentialsAPIService) GetSapHanaCredentialsExecute(r ApiGetSapHanaCred
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16295,13 +15725,12 @@ func (a *CredentialsAPIService) GetSnowflakeCredentialsExecute(r ApiGetSnowflake
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16311,8 +15740,7 @@ func (a *CredentialsAPIService) GetSnowflakeCredentialsExecute(r ApiGetSnowflake
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16322,8 +15750,7 @@ func (a *CredentialsAPIService) GetSnowflakeCredentialsExecute(r ApiGetSnowflake
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16333,8 +15760,7 @@ func (a *CredentialsAPIService) GetSnowflakeCredentialsExecute(r ApiGetSnowflake
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16344,8 +15770,7 @@ func (a *CredentialsAPIService) GetSnowflakeCredentialsExecute(r ApiGetSnowflake
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16456,13 +15881,12 @@ func (a *CredentialsAPIService) GetSqlServerCredentialsExecute(r ApiGetSqlServer
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16472,8 +15896,7 @@ func (a *CredentialsAPIService) GetSqlServerCredentialsExecute(r ApiGetSqlServer
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16483,8 +15906,7 @@ func (a *CredentialsAPIService) GetSqlServerCredentialsExecute(r ApiGetSqlServer
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16494,8 +15916,7 @@ func (a *CredentialsAPIService) GetSqlServerCredentialsExecute(r ApiGetSqlServer
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16505,8 +15926,7 @@ func (a *CredentialsAPIService) GetSqlServerCredentialsExecute(r ApiGetSqlServer
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16617,13 +16037,12 @@ func (a *CredentialsAPIService) GetStarburstEnterpriseCredentialsExecute(r ApiGe
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16633,8 +16052,7 @@ func (a *CredentialsAPIService) GetStarburstEnterpriseCredentialsExecute(r ApiGe
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16644,8 +16062,7 @@ func (a *CredentialsAPIService) GetStarburstEnterpriseCredentialsExecute(r ApiGe
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16655,8 +16072,7 @@ func (a *CredentialsAPIService) GetStarburstEnterpriseCredentialsExecute(r ApiGe
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16666,8 +16082,7 @@ func (a *CredentialsAPIService) GetStarburstEnterpriseCredentialsExecute(r ApiGe
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16778,13 +16193,12 @@ func (a *CredentialsAPIService) GetStarburstGalaxyCredentialsExecute(r ApiGetSta
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16794,8 +16208,7 @@ func (a *CredentialsAPIService) GetStarburstGalaxyCredentialsExecute(r ApiGetSta
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16805,8 +16218,7 @@ func (a *CredentialsAPIService) GetStarburstGalaxyCredentialsExecute(r ApiGetSta
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16816,8 +16228,7 @@ func (a *CredentialsAPIService) GetStarburstGalaxyCredentialsExecute(r ApiGetSta
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16827,8 +16238,7 @@ func (a *CredentialsAPIService) GetStarburstGalaxyCredentialsExecute(r ApiGetSta
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16939,13 +16349,12 @@ func (a *CredentialsAPIService) GetTableauCredentialsExecute(r ApiGetTableauCred
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16955,8 +16364,7 @@ func (a *CredentialsAPIService) GetTableauCredentialsExecute(r ApiGetTableauCred
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16966,8 +16374,7 @@ func (a *CredentialsAPIService) GetTableauCredentialsExecute(r ApiGetTableauCred
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16977,8 +16384,7 @@ func (a *CredentialsAPIService) GetTableauCredentialsExecute(r ApiGetTableauCred
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -16988,8 +16394,7 @@ func (a *CredentialsAPIService) GetTableauCredentialsExecute(r ApiGetTableauCred
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17100,13 +16505,12 @@ func (a *CredentialsAPIService) GetTeradataCredentialsExecute(r ApiGetTeradataCr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17116,8 +16520,7 @@ func (a *CredentialsAPIService) GetTeradataCredentialsExecute(r ApiGetTeradataCr
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17127,8 +16530,7 @@ func (a *CredentialsAPIService) GetTeradataCredentialsExecute(r ApiGetTeradataCr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17138,8 +16540,7 @@ func (a *CredentialsAPIService) GetTeradataCredentialsExecute(r ApiGetTeradataCr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17149,8 +16550,7 @@ func (a *CredentialsAPIService) GetTeradataCredentialsExecute(r ApiGetTeradataCr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17295,13 +16695,12 @@ func (a *CredentialsAPIService) ListCredentialsExecute(r ApiListCredentialsReque
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17311,8 +16710,7 @@ func (a *CredentialsAPIService) ListCredentialsExecute(r ApiListCredentialsReque
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17322,8 +16720,7 @@ func (a *CredentialsAPIService) ListCredentialsExecute(r ApiListCredentialsReque
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17333,8 +16730,7 @@ func (a *CredentialsAPIService) ListCredentialsExecute(r ApiListCredentialsReque
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17456,13 +16852,12 @@ func (a *CredentialsAPIService) UpdateAirflowCredentialsExecute(r ApiUpdateAirfl
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17472,8 +16867,7 @@ func (a *CredentialsAPIService) UpdateAirflowCredentialsExecute(r ApiUpdateAirfl
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17483,8 +16877,7 @@ func (a *CredentialsAPIService) UpdateAirflowCredentialsExecute(r ApiUpdateAirfl
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17494,8 +16887,7 @@ func (a *CredentialsAPIService) UpdateAirflowCredentialsExecute(r ApiUpdateAirfl
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17505,8 +16897,7 @@ func (a *CredentialsAPIService) UpdateAirflowCredentialsExecute(r ApiUpdateAirfl
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17516,8 +16907,7 @@ func (a *CredentialsAPIService) UpdateAirflowCredentialsExecute(r ApiUpdateAirfl
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17527,8 +16917,7 @@ func (a *CredentialsAPIService) UpdateAirflowCredentialsExecute(r ApiUpdateAirfl
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17651,13 +17040,12 @@ func (a *CredentialsAPIService) UpdateAwsSecretsManagerCredentialsExecute(r ApiU
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17667,8 +17055,7 @@ func (a *CredentialsAPIService) UpdateAwsSecretsManagerCredentialsExecute(r ApiU
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17678,8 +17065,7 @@ func (a *CredentialsAPIService) UpdateAwsSecretsManagerCredentialsExecute(r ApiU
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17689,8 +17075,7 @@ func (a *CredentialsAPIService) UpdateAwsSecretsManagerCredentialsExecute(r ApiU
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17700,8 +17085,7 @@ func (a *CredentialsAPIService) UpdateAwsSecretsManagerCredentialsExecute(r ApiU
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17711,8 +17095,7 @@ func (a *CredentialsAPIService) UpdateAwsSecretsManagerCredentialsExecute(r ApiU
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17722,8 +17105,7 @@ func (a *CredentialsAPIService) UpdateAwsSecretsManagerCredentialsExecute(r ApiU
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17845,13 +17227,12 @@ func (a *CredentialsAPIService) UpdateAzureDataFactoryCredentialsExecute(r ApiUp
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17861,8 +17242,7 @@ func (a *CredentialsAPIService) UpdateAzureDataFactoryCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17872,8 +17252,7 @@ func (a *CredentialsAPIService) UpdateAzureDataFactoryCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17883,8 +17262,7 @@ func (a *CredentialsAPIService) UpdateAzureDataFactoryCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17894,8 +17272,7 @@ func (a *CredentialsAPIService) UpdateAzureDataFactoryCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17905,8 +17282,7 @@ func (a *CredentialsAPIService) UpdateAzureDataFactoryCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -17916,8 +17292,7 @@ func (a *CredentialsAPIService) UpdateAzureDataFactoryCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18040,13 +17415,12 @@ func (a *CredentialsAPIService) UpdateAzureDedicatedSqlPoolCredentialsExecute(r 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18056,8 +17430,7 @@ func (a *CredentialsAPIService) UpdateAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18067,8 +17440,7 @@ func (a *CredentialsAPIService) UpdateAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18078,8 +17450,7 @@ func (a *CredentialsAPIService) UpdateAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18089,8 +17460,7 @@ func (a *CredentialsAPIService) UpdateAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18100,8 +17470,7 @@ func (a *CredentialsAPIService) UpdateAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18111,8 +17480,7 @@ func (a *CredentialsAPIService) UpdateAzureDedicatedSqlPoolCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18236,13 +17604,12 @@ func (a *CredentialsAPIService) UpdateAzureKeyVaultCredentialsExecute(r ApiUpdat
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18252,8 +17619,7 @@ func (a *CredentialsAPIService) UpdateAzureKeyVaultCredentialsExecute(r ApiUpdat
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18263,8 +17629,7 @@ func (a *CredentialsAPIService) UpdateAzureKeyVaultCredentialsExecute(r ApiUpdat
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18274,8 +17639,7 @@ func (a *CredentialsAPIService) UpdateAzureKeyVaultCredentialsExecute(r ApiUpdat
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18285,8 +17649,7 @@ func (a *CredentialsAPIService) UpdateAzureKeyVaultCredentialsExecute(r ApiUpdat
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18296,8 +17659,7 @@ func (a *CredentialsAPIService) UpdateAzureKeyVaultCredentialsExecute(r ApiUpdat
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18307,8 +17669,7 @@ func (a *CredentialsAPIService) UpdateAzureKeyVaultCredentialsExecute(r ApiUpdat
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18431,13 +17792,12 @@ func (a *CredentialsAPIService) UpdateAzureSqlDatabaseCredentialsExecute(r ApiUp
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18447,8 +17807,7 @@ func (a *CredentialsAPIService) UpdateAzureSqlDatabaseCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18458,8 +17817,7 @@ func (a *CredentialsAPIService) UpdateAzureSqlDatabaseCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18469,8 +17827,7 @@ func (a *CredentialsAPIService) UpdateAzureSqlDatabaseCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18480,8 +17837,7 @@ func (a *CredentialsAPIService) UpdateAzureSqlDatabaseCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18491,8 +17847,7 @@ func (a *CredentialsAPIService) UpdateAzureSqlDatabaseCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18502,8 +17857,7 @@ func (a *CredentialsAPIService) UpdateAzureSqlDatabaseCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18625,13 +17979,12 @@ func (a *CredentialsAPIService) UpdateBigqueryCredentialsExecute(r ApiUpdateBigq
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18641,8 +17994,7 @@ func (a *CredentialsAPIService) UpdateBigqueryCredentialsExecute(r ApiUpdateBigq
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18652,8 +18004,7 @@ func (a *CredentialsAPIService) UpdateBigqueryCredentialsExecute(r ApiUpdateBigq
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18663,8 +18014,7 @@ func (a *CredentialsAPIService) UpdateBigqueryCredentialsExecute(r ApiUpdateBigq
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18674,8 +18024,7 @@ func (a *CredentialsAPIService) UpdateBigqueryCredentialsExecute(r ApiUpdateBigq
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18685,8 +18034,7 @@ func (a *CredentialsAPIService) UpdateBigqueryCredentialsExecute(r ApiUpdateBigq
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18696,8 +18044,7 @@ func (a *CredentialsAPIService) UpdateBigqueryCredentialsExecute(r ApiUpdateBigq
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18820,13 +18167,12 @@ func (a *CredentialsAPIService) UpdateClickhouseCredentialsExecute(r ApiUpdateCl
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18836,8 +18182,7 @@ func (a *CredentialsAPIService) UpdateClickhouseCredentialsExecute(r ApiUpdateCl
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18847,8 +18192,7 @@ func (a *CredentialsAPIService) UpdateClickhouseCredentialsExecute(r ApiUpdateCl
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18858,8 +18202,7 @@ func (a *CredentialsAPIService) UpdateClickhouseCredentialsExecute(r ApiUpdateCl
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18869,8 +18212,7 @@ func (a *CredentialsAPIService) UpdateClickhouseCredentialsExecute(r ApiUpdateCl
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18880,8 +18222,7 @@ func (a *CredentialsAPIService) UpdateClickhouseCredentialsExecute(r ApiUpdateCl
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -18891,8 +18232,7 @@ func (a *CredentialsAPIService) UpdateClickhouseCredentialsExecute(r ApiUpdateCl
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19016,13 +18356,12 @@ func (a *CredentialsAPIService) UpdateDatabricksMetastoreSqlWarehouseCredentials
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19032,8 +18371,7 @@ func (a *CredentialsAPIService) UpdateDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19043,8 +18381,7 @@ func (a *CredentialsAPIService) UpdateDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19054,8 +18391,7 @@ func (a *CredentialsAPIService) UpdateDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19065,8 +18401,7 @@ func (a *CredentialsAPIService) UpdateDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19076,8 +18411,7 @@ func (a *CredentialsAPIService) UpdateDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19087,8 +18421,7 @@ func (a *CredentialsAPIService) UpdateDatabricksMetastoreSqlWarehouseCredentials
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19212,13 +18545,12 @@ func (a *CredentialsAPIService) UpdateDatabricksSqlWarehouseCredentialsExecute(r
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19228,8 +18560,7 @@ func (a *CredentialsAPIService) UpdateDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19239,8 +18570,7 @@ func (a *CredentialsAPIService) UpdateDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19250,8 +18580,7 @@ func (a *CredentialsAPIService) UpdateDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19261,8 +18590,7 @@ func (a *CredentialsAPIService) UpdateDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19272,8 +18600,7 @@ func (a *CredentialsAPIService) UpdateDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19283,8 +18610,7 @@ func (a *CredentialsAPIService) UpdateDatabricksSqlWarehouseCredentialsExecute(r
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19408,13 +18734,12 @@ func (a *CredentialsAPIService) UpdateDb2CredentialsExecute(r ApiUpdateDb2Creden
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19424,8 +18749,7 @@ func (a *CredentialsAPIService) UpdateDb2CredentialsExecute(r ApiUpdateDb2Creden
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19435,8 +18759,7 @@ func (a *CredentialsAPIService) UpdateDb2CredentialsExecute(r ApiUpdateDb2Creden
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19446,8 +18769,7 @@ func (a *CredentialsAPIService) UpdateDb2CredentialsExecute(r ApiUpdateDb2Creden
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19457,8 +18779,7 @@ func (a *CredentialsAPIService) UpdateDb2CredentialsExecute(r ApiUpdateDb2Creden
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19468,8 +18789,7 @@ func (a *CredentialsAPIService) UpdateDb2CredentialsExecute(r ApiUpdateDb2Creden
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19479,8 +18799,7 @@ func (a *CredentialsAPIService) UpdateDb2CredentialsExecute(r ApiUpdateDb2Creden
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19603,13 +18922,12 @@ func (a *CredentialsAPIService) UpdateEnvVarCredentialsExecute(r ApiUpdateEnvVar
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19619,8 +18937,7 @@ func (a *CredentialsAPIService) UpdateEnvVarCredentialsExecute(r ApiUpdateEnvVar
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19630,8 +18947,7 @@ func (a *CredentialsAPIService) UpdateEnvVarCredentialsExecute(r ApiUpdateEnvVar
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19641,8 +18957,7 @@ func (a *CredentialsAPIService) UpdateEnvVarCredentialsExecute(r ApiUpdateEnvVar
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19652,8 +18967,7 @@ func (a *CredentialsAPIService) UpdateEnvVarCredentialsExecute(r ApiUpdateEnvVar
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19663,8 +18977,7 @@ func (a *CredentialsAPIService) UpdateEnvVarCredentialsExecute(r ApiUpdateEnvVar
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19674,8 +18987,7 @@ func (a *CredentialsAPIService) UpdateEnvVarCredentialsExecute(r ApiUpdateEnvVar
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19798,13 +19110,12 @@ func (a *CredentialsAPIService) UpdateFileCredentialsExecute(r ApiUpdateFileCred
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19814,8 +19125,7 @@ func (a *CredentialsAPIService) UpdateFileCredentialsExecute(r ApiUpdateFileCred
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19825,8 +19135,7 @@ func (a *CredentialsAPIService) UpdateFileCredentialsExecute(r ApiUpdateFileCred
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19836,8 +19145,7 @@ func (a *CredentialsAPIService) UpdateFileCredentialsExecute(r ApiUpdateFileCred
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19847,8 +19155,7 @@ func (a *CredentialsAPIService) UpdateFileCredentialsExecute(r ApiUpdateFileCred
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19858,8 +19165,7 @@ func (a *CredentialsAPIService) UpdateFileCredentialsExecute(r ApiUpdateFileCred
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19869,8 +19175,7 @@ func (a *CredentialsAPIService) UpdateFileCredentialsExecute(r ApiUpdateFileCred
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -19992,13 +19297,12 @@ func (a *CredentialsAPIService) UpdateFivetranCredentialsExecute(r ApiUpdateFive
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20008,8 +19312,7 @@ func (a *CredentialsAPIService) UpdateFivetranCredentialsExecute(r ApiUpdateFive
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20019,8 +19322,7 @@ func (a *CredentialsAPIService) UpdateFivetranCredentialsExecute(r ApiUpdateFive
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20030,8 +19332,7 @@ func (a *CredentialsAPIService) UpdateFivetranCredentialsExecute(r ApiUpdateFive
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20041,8 +19342,7 @@ func (a *CredentialsAPIService) UpdateFivetranCredentialsExecute(r ApiUpdateFive
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20052,8 +19352,7 @@ func (a *CredentialsAPIService) UpdateFivetranCredentialsExecute(r ApiUpdateFive
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20063,8 +19362,7 @@ func (a *CredentialsAPIService) UpdateFivetranCredentialsExecute(r ApiUpdateFive
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20186,13 +19484,12 @@ func (a *CredentialsAPIService) UpdateGcpDataformCredentialsExecute(r ApiUpdateG
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20202,8 +19499,7 @@ func (a *CredentialsAPIService) UpdateGcpDataformCredentialsExecute(r ApiUpdateG
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20213,8 +19509,7 @@ func (a *CredentialsAPIService) UpdateGcpDataformCredentialsExecute(r ApiUpdateG
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20224,8 +19519,7 @@ func (a *CredentialsAPIService) UpdateGcpDataformCredentialsExecute(r ApiUpdateG
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20235,8 +19529,7 @@ func (a *CredentialsAPIService) UpdateGcpDataformCredentialsExecute(r ApiUpdateG
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20246,8 +19539,7 @@ func (a *CredentialsAPIService) UpdateGcpDataformCredentialsExecute(r ApiUpdateG
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20257,8 +19549,7 @@ func (a *CredentialsAPIService) UpdateGcpDataformCredentialsExecute(r ApiUpdateG
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20381,13 +19672,12 @@ func (a *CredentialsAPIService) UpdateGcpSecretManagerCredentialsExecute(r ApiUp
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20397,8 +19687,7 @@ func (a *CredentialsAPIService) UpdateGcpSecretManagerCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20408,8 +19697,7 @@ func (a *CredentialsAPIService) UpdateGcpSecretManagerCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20419,8 +19707,7 @@ func (a *CredentialsAPIService) UpdateGcpSecretManagerCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20430,8 +19717,7 @@ func (a *CredentialsAPIService) UpdateGcpSecretManagerCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20441,8 +19727,7 @@ func (a *CredentialsAPIService) UpdateGcpSecretManagerCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20452,8 +19737,7 @@ func (a *CredentialsAPIService) UpdateGcpSecretManagerCredentialsExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20575,13 +19859,12 @@ func (a *CredentialsAPIService) UpdateInformaticaV2CredentialsExecute(r ApiUpdat
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20591,8 +19874,7 @@ func (a *CredentialsAPIService) UpdateInformaticaV2CredentialsExecute(r ApiUpdat
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20602,8 +19884,7 @@ func (a *CredentialsAPIService) UpdateInformaticaV2CredentialsExecute(r ApiUpdat
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20613,8 +19894,7 @@ func (a *CredentialsAPIService) UpdateInformaticaV2CredentialsExecute(r ApiUpdat
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20624,8 +19904,7 @@ func (a *CredentialsAPIService) UpdateInformaticaV2CredentialsExecute(r ApiUpdat
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20635,8 +19914,7 @@ func (a *CredentialsAPIService) UpdateInformaticaV2CredentialsExecute(r ApiUpdat
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20646,8 +19924,7 @@ func (a *CredentialsAPIService) UpdateInformaticaV2CredentialsExecute(r ApiUpdat
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20769,13 +20046,12 @@ func (a *CredentialsAPIService) UpdateLookerCredentialsExecute(r ApiUpdateLooker
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20785,8 +20061,7 @@ func (a *CredentialsAPIService) UpdateLookerCredentialsExecute(r ApiUpdateLooker
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20796,8 +20071,7 @@ func (a *CredentialsAPIService) UpdateLookerCredentialsExecute(r ApiUpdateLooker
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20807,8 +20081,7 @@ func (a *CredentialsAPIService) UpdateLookerCredentialsExecute(r ApiUpdateLooker
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20818,8 +20091,7 @@ func (a *CredentialsAPIService) UpdateLookerCredentialsExecute(r ApiUpdateLooker
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20829,8 +20101,7 @@ func (a *CredentialsAPIService) UpdateLookerCredentialsExecute(r ApiUpdateLooker
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20840,8 +20111,7 @@ func (a *CredentialsAPIService) UpdateLookerCredentialsExecute(r ApiUpdateLooker
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20964,13 +20234,12 @@ func (a *CredentialsAPIService) UpdateLookerGitCloneCredentialsExecute(r ApiUpda
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20980,8 +20249,7 @@ func (a *CredentialsAPIService) UpdateLookerGitCloneCredentialsExecute(r ApiUpda
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -20991,8 +20259,7 @@ func (a *CredentialsAPIService) UpdateLookerGitCloneCredentialsExecute(r ApiUpda
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21002,8 +20269,7 @@ func (a *CredentialsAPIService) UpdateLookerGitCloneCredentialsExecute(r ApiUpda
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21013,8 +20279,7 @@ func (a *CredentialsAPIService) UpdateLookerGitCloneCredentialsExecute(r ApiUpda
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21024,8 +20289,7 @@ func (a *CredentialsAPIService) UpdateLookerGitCloneCredentialsExecute(r ApiUpda
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21035,8 +20299,7 @@ func (a *CredentialsAPIService) UpdateLookerGitCloneCredentialsExecute(r ApiUpda
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21159,13 +20422,12 @@ func (a *CredentialsAPIService) UpdateMariadbCredentialsExecute(r ApiUpdateMaria
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21175,8 +20437,7 @@ func (a *CredentialsAPIService) UpdateMariadbCredentialsExecute(r ApiUpdateMaria
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21186,8 +20447,7 @@ func (a *CredentialsAPIService) UpdateMariadbCredentialsExecute(r ApiUpdateMaria
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21197,8 +20457,7 @@ func (a *CredentialsAPIService) UpdateMariadbCredentialsExecute(r ApiUpdateMaria
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21208,8 +20467,7 @@ func (a *CredentialsAPIService) UpdateMariadbCredentialsExecute(r ApiUpdateMaria
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21219,8 +20477,7 @@ func (a *CredentialsAPIService) UpdateMariadbCredentialsExecute(r ApiUpdateMaria
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21230,8 +20487,7 @@ func (a *CredentialsAPIService) UpdateMariadbCredentialsExecute(r ApiUpdateMaria
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21353,13 +20609,12 @@ func (a *CredentialsAPIService) UpdateMulesoftCredentialsExecute(r ApiUpdateMule
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21369,8 +20624,7 @@ func (a *CredentialsAPIService) UpdateMulesoftCredentialsExecute(r ApiUpdateMule
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21380,8 +20634,7 @@ func (a *CredentialsAPIService) UpdateMulesoftCredentialsExecute(r ApiUpdateMule
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21391,8 +20644,7 @@ func (a *CredentialsAPIService) UpdateMulesoftCredentialsExecute(r ApiUpdateMule
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21402,8 +20654,7 @@ func (a *CredentialsAPIService) UpdateMulesoftCredentialsExecute(r ApiUpdateMule
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21413,8 +20664,7 @@ func (a *CredentialsAPIService) UpdateMulesoftCredentialsExecute(r ApiUpdateMule
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21424,8 +20674,7 @@ func (a *CredentialsAPIService) UpdateMulesoftCredentialsExecute(r ApiUpdateMule
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21549,13 +20798,12 @@ func (a *CredentialsAPIService) UpdateMysqlCredentialsExecute(r ApiUpdateMysqlCr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21565,8 +20813,7 @@ func (a *CredentialsAPIService) UpdateMysqlCredentialsExecute(r ApiUpdateMysqlCr
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21576,8 +20823,7 @@ func (a *CredentialsAPIService) UpdateMysqlCredentialsExecute(r ApiUpdateMysqlCr
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21587,8 +20833,7 @@ func (a *CredentialsAPIService) UpdateMysqlCredentialsExecute(r ApiUpdateMysqlCr
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21598,8 +20843,7 @@ func (a *CredentialsAPIService) UpdateMysqlCredentialsExecute(r ApiUpdateMysqlCr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21609,8 +20853,7 @@ func (a *CredentialsAPIService) UpdateMysqlCredentialsExecute(r ApiUpdateMysqlCr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21620,8 +20863,7 @@ func (a *CredentialsAPIService) UpdateMysqlCredentialsExecute(r ApiUpdateMysqlCr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21744,13 +20986,12 @@ func (a *CredentialsAPIService) UpdateOracleCredentialsExecute(r ApiUpdateOracle
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21760,8 +21001,7 @@ func (a *CredentialsAPIService) UpdateOracleCredentialsExecute(r ApiUpdateOracle
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21771,8 +21011,7 @@ func (a *CredentialsAPIService) UpdateOracleCredentialsExecute(r ApiUpdateOracle
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21782,8 +21021,7 @@ func (a *CredentialsAPIService) UpdateOracleCredentialsExecute(r ApiUpdateOracle
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21793,8 +21031,7 @@ func (a *CredentialsAPIService) UpdateOracleCredentialsExecute(r ApiUpdateOracle
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21804,8 +21041,7 @@ func (a *CredentialsAPIService) UpdateOracleCredentialsExecute(r ApiUpdateOracle
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21815,8 +21051,7 @@ func (a *CredentialsAPIService) UpdateOracleCredentialsExecute(r ApiUpdateOracle
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21939,13 +21174,12 @@ func (a *CredentialsAPIService) UpdatePostgresCredentialsExecute(r ApiUpdatePost
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21955,8 +21189,7 @@ func (a *CredentialsAPIService) UpdatePostgresCredentialsExecute(r ApiUpdatePost
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21966,8 +21199,7 @@ func (a *CredentialsAPIService) UpdatePostgresCredentialsExecute(r ApiUpdatePost
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21977,8 +21209,7 @@ func (a *CredentialsAPIService) UpdatePostgresCredentialsExecute(r ApiUpdatePost
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21988,8 +21219,7 @@ func (a *CredentialsAPIService) UpdatePostgresCredentialsExecute(r ApiUpdatePost
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -21999,8 +21229,7 @@ func (a *CredentialsAPIService) UpdatePostgresCredentialsExecute(r ApiUpdatePost
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22010,8 +21239,7 @@ func (a *CredentialsAPIService) UpdatePostgresCredentialsExecute(r ApiUpdatePost
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22134,13 +21362,12 @@ func (a *CredentialsAPIService) UpdatePowerBiCredentialsExecute(r ApiUpdatePower
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22150,8 +21377,7 @@ func (a *CredentialsAPIService) UpdatePowerBiCredentialsExecute(r ApiUpdatePower
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22161,8 +21387,7 @@ func (a *CredentialsAPIService) UpdatePowerBiCredentialsExecute(r ApiUpdatePower
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22172,8 +21397,7 @@ func (a *CredentialsAPIService) UpdatePowerBiCredentialsExecute(r ApiUpdatePower
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22183,8 +21407,7 @@ func (a *CredentialsAPIService) UpdatePowerBiCredentialsExecute(r ApiUpdatePower
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22194,8 +21417,7 @@ func (a *CredentialsAPIService) UpdatePowerBiCredentialsExecute(r ApiUpdatePower
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22205,8 +21427,7 @@ func (a *CredentialsAPIService) UpdatePowerBiCredentialsExecute(r ApiUpdatePower
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22330,13 +21551,12 @@ func (a *CredentialsAPIService) UpdateRedshiftCredentialsExecute(r ApiUpdateReds
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22346,8 +21566,7 @@ func (a *CredentialsAPIService) UpdateRedshiftCredentialsExecute(r ApiUpdateReds
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22357,8 +21576,7 @@ func (a *CredentialsAPIService) UpdateRedshiftCredentialsExecute(r ApiUpdateReds
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22368,8 +21586,7 @@ func (a *CredentialsAPIService) UpdateRedshiftCredentialsExecute(r ApiUpdateReds
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22379,8 +21596,7 @@ func (a *CredentialsAPIService) UpdateRedshiftCredentialsExecute(r ApiUpdateReds
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22390,8 +21606,7 @@ func (a *CredentialsAPIService) UpdateRedshiftCredentialsExecute(r ApiUpdateReds
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22401,8 +21616,7 @@ func (a *CredentialsAPIService) UpdateRedshiftCredentialsExecute(r ApiUpdateReds
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22525,13 +21739,12 @@ func (a *CredentialsAPIService) UpdateSapHanaCredentialsExecute(r ApiUpdateSapHa
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22541,8 +21754,7 @@ func (a *CredentialsAPIService) UpdateSapHanaCredentialsExecute(r ApiUpdateSapHa
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22552,8 +21764,7 @@ func (a *CredentialsAPIService) UpdateSapHanaCredentialsExecute(r ApiUpdateSapHa
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22563,8 +21774,7 @@ func (a *CredentialsAPIService) UpdateSapHanaCredentialsExecute(r ApiUpdateSapHa
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22574,8 +21784,7 @@ func (a *CredentialsAPIService) UpdateSapHanaCredentialsExecute(r ApiUpdateSapHa
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22585,8 +21794,7 @@ func (a *CredentialsAPIService) UpdateSapHanaCredentialsExecute(r ApiUpdateSapHa
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22596,8 +21804,7 @@ func (a *CredentialsAPIService) UpdateSapHanaCredentialsExecute(r ApiUpdateSapHa
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22721,13 +21928,12 @@ func (a *CredentialsAPIService) UpdateSnowflakeCredentialsExecute(r ApiUpdateSno
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22737,8 +21943,7 @@ func (a *CredentialsAPIService) UpdateSnowflakeCredentialsExecute(r ApiUpdateSno
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22748,8 +21953,7 @@ func (a *CredentialsAPIService) UpdateSnowflakeCredentialsExecute(r ApiUpdateSno
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22759,8 +21963,7 @@ func (a *CredentialsAPIService) UpdateSnowflakeCredentialsExecute(r ApiUpdateSno
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22770,8 +21973,7 @@ func (a *CredentialsAPIService) UpdateSnowflakeCredentialsExecute(r ApiUpdateSno
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22781,8 +21983,7 @@ func (a *CredentialsAPIService) UpdateSnowflakeCredentialsExecute(r ApiUpdateSno
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22792,8 +21993,7 @@ func (a *CredentialsAPIService) UpdateSnowflakeCredentialsExecute(r ApiUpdateSno
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22916,13 +22116,12 @@ func (a *CredentialsAPIService) UpdateSqlServerCredentialsExecute(r ApiUpdateSql
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22932,8 +22131,7 @@ func (a *CredentialsAPIService) UpdateSqlServerCredentialsExecute(r ApiUpdateSql
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22943,8 +22141,7 @@ func (a *CredentialsAPIService) UpdateSqlServerCredentialsExecute(r ApiUpdateSql
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22954,8 +22151,7 @@ func (a *CredentialsAPIService) UpdateSqlServerCredentialsExecute(r ApiUpdateSql
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22965,8 +22161,7 @@ func (a *CredentialsAPIService) UpdateSqlServerCredentialsExecute(r ApiUpdateSql
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22976,8 +22171,7 @@ func (a *CredentialsAPIService) UpdateSqlServerCredentialsExecute(r ApiUpdateSql
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -22987,8 +22181,7 @@ func (a *CredentialsAPIService) UpdateSqlServerCredentialsExecute(r ApiUpdateSql
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23112,13 +22305,12 @@ func (a *CredentialsAPIService) UpdateStarburstEnterpriseCredentialsExecute(r Ap
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23128,8 +22320,7 @@ func (a *CredentialsAPIService) UpdateStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23139,8 +22330,7 @@ func (a *CredentialsAPIService) UpdateStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23150,8 +22340,7 @@ func (a *CredentialsAPIService) UpdateStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23161,8 +22350,7 @@ func (a *CredentialsAPIService) UpdateStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23172,8 +22360,7 @@ func (a *CredentialsAPIService) UpdateStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23183,8 +22370,7 @@ func (a *CredentialsAPIService) UpdateStarburstEnterpriseCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23307,13 +22493,12 @@ func (a *CredentialsAPIService) UpdateStarburstGalaxyCredentialsExecute(r ApiUpd
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23323,8 +22508,7 @@ func (a *CredentialsAPIService) UpdateStarburstGalaxyCredentialsExecute(r ApiUpd
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23334,8 +22518,7 @@ func (a *CredentialsAPIService) UpdateStarburstGalaxyCredentialsExecute(r ApiUpd
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23345,8 +22528,7 @@ func (a *CredentialsAPIService) UpdateStarburstGalaxyCredentialsExecute(r ApiUpd
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23356,8 +22538,7 @@ func (a *CredentialsAPIService) UpdateStarburstGalaxyCredentialsExecute(r ApiUpd
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23367,8 +22548,7 @@ func (a *CredentialsAPIService) UpdateStarburstGalaxyCredentialsExecute(r ApiUpd
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23378,8 +22558,7 @@ func (a *CredentialsAPIService) UpdateStarburstGalaxyCredentialsExecute(r ApiUpd
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23503,13 +22682,12 @@ func (a *CredentialsAPIService) UpdateTableauCredentialsExecute(r ApiUpdateTable
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23519,8 +22697,7 @@ func (a *CredentialsAPIService) UpdateTableauCredentialsExecute(r ApiUpdateTable
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23530,8 +22707,7 @@ func (a *CredentialsAPIService) UpdateTableauCredentialsExecute(r ApiUpdateTable
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23541,8 +22717,7 @@ func (a *CredentialsAPIService) UpdateTableauCredentialsExecute(r ApiUpdateTable
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23552,8 +22727,7 @@ func (a *CredentialsAPIService) UpdateTableauCredentialsExecute(r ApiUpdateTable
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23563,8 +22737,7 @@ func (a *CredentialsAPIService) UpdateTableauCredentialsExecute(r ApiUpdateTable
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23574,8 +22747,7 @@ func (a *CredentialsAPIService) UpdateTableauCredentialsExecute(r ApiUpdateTable
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23585,8 +22757,7 @@ func (a *CredentialsAPIService) UpdateTableauCredentialsExecute(r ApiUpdateTable
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23710,13 +22881,12 @@ func (a *CredentialsAPIService) UpdateTeradataCredentialsExecute(r ApiUpdateTera
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23726,8 +22896,7 @@ func (a *CredentialsAPIService) UpdateTeradataCredentialsExecute(r ApiUpdateTera
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23737,8 +22906,7 @@ func (a *CredentialsAPIService) UpdateTeradataCredentialsExecute(r ApiUpdateTera
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23748,8 +22916,7 @@ func (a *CredentialsAPIService) UpdateTeradataCredentialsExecute(r ApiUpdateTera
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23759,8 +22926,7 @@ func (a *CredentialsAPIService) UpdateTeradataCredentialsExecute(r ApiUpdateTera
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23770,8 +22936,7 @@ func (a *CredentialsAPIService) UpdateTeradataCredentialsExecute(r ApiUpdateTera
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23781,8 +22946,7 @@ func (a *CredentialsAPIService) UpdateTeradataCredentialsExecute(r ApiUpdateTera
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23903,13 +23067,12 @@ func (a *CredentialsAPIService) ValidateAwsSecretsManagerCredentialsExecute(r Ap
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23919,8 +23082,7 @@ func (a *CredentialsAPIService) ValidateAwsSecretsManagerCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23930,8 +23092,7 @@ func (a *CredentialsAPIService) ValidateAwsSecretsManagerCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23941,8 +23102,7 @@ func (a *CredentialsAPIService) ValidateAwsSecretsManagerCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23952,8 +23112,7 @@ func (a *CredentialsAPIService) ValidateAwsSecretsManagerCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23963,8 +23122,7 @@ func (a *CredentialsAPIService) ValidateAwsSecretsManagerCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23974,8 +23132,7 @@ func (a *CredentialsAPIService) ValidateAwsSecretsManagerCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -23985,8 +23142,7 @@ func (a *CredentialsAPIService) ValidateAwsSecretsManagerCredentialsExecute(r Ap
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24107,13 +23263,12 @@ func (a *CredentialsAPIService) ValidateAzureDataFactoryCredentialsExecute(r Api
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24123,8 +23278,7 @@ func (a *CredentialsAPIService) ValidateAzureDataFactoryCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24134,8 +23288,7 @@ func (a *CredentialsAPIService) ValidateAzureDataFactoryCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24145,8 +23298,7 @@ func (a *CredentialsAPIService) ValidateAzureDataFactoryCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24156,8 +23308,7 @@ func (a *CredentialsAPIService) ValidateAzureDataFactoryCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24167,8 +23318,7 @@ func (a *CredentialsAPIService) ValidateAzureDataFactoryCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24178,8 +23328,7 @@ func (a *CredentialsAPIService) ValidateAzureDataFactoryCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24189,8 +23338,7 @@ func (a *CredentialsAPIService) ValidateAzureDataFactoryCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24311,13 +23459,12 @@ func (a *CredentialsAPIService) ValidateAzureDedicatedSqlPoolCredentialsExecute(
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24327,8 +23474,7 @@ func (a *CredentialsAPIService) ValidateAzureDedicatedSqlPoolCredentialsExecute(
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24338,8 +23484,7 @@ func (a *CredentialsAPIService) ValidateAzureDedicatedSqlPoolCredentialsExecute(
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24349,8 +23494,7 @@ func (a *CredentialsAPIService) ValidateAzureDedicatedSqlPoolCredentialsExecute(
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24360,8 +23504,7 @@ func (a *CredentialsAPIService) ValidateAzureDedicatedSqlPoolCredentialsExecute(
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24371,8 +23514,7 @@ func (a *CredentialsAPIService) ValidateAzureDedicatedSqlPoolCredentialsExecute(
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24382,8 +23524,7 @@ func (a *CredentialsAPIService) ValidateAzureDedicatedSqlPoolCredentialsExecute(
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24393,8 +23534,7 @@ func (a *CredentialsAPIService) ValidateAzureDedicatedSqlPoolCredentialsExecute(
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24515,13 +23655,12 @@ func (a *CredentialsAPIService) ValidateAzureKeyVaultCredentialsExecute(r ApiVal
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24531,8 +23670,7 @@ func (a *CredentialsAPIService) ValidateAzureKeyVaultCredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24542,8 +23680,7 @@ func (a *CredentialsAPIService) ValidateAzureKeyVaultCredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24553,8 +23690,7 @@ func (a *CredentialsAPIService) ValidateAzureKeyVaultCredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24564,8 +23700,7 @@ func (a *CredentialsAPIService) ValidateAzureKeyVaultCredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24575,8 +23710,7 @@ func (a *CredentialsAPIService) ValidateAzureKeyVaultCredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24586,8 +23720,7 @@ func (a *CredentialsAPIService) ValidateAzureKeyVaultCredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24597,8 +23730,7 @@ func (a *CredentialsAPIService) ValidateAzureKeyVaultCredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24719,13 +23851,12 @@ func (a *CredentialsAPIService) ValidateAzureSqlDatabaseCredentialsExecute(r Api
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24735,8 +23866,7 @@ func (a *CredentialsAPIService) ValidateAzureSqlDatabaseCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24746,8 +23876,7 @@ func (a *CredentialsAPIService) ValidateAzureSqlDatabaseCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24757,8 +23886,7 @@ func (a *CredentialsAPIService) ValidateAzureSqlDatabaseCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24768,8 +23896,7 @@ func (a *CredentialsAPIService) ValidateAzureSqlDatabaseCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24779,8 +23906,7 @@ func (a *CredentialsAPIService) ValidateAzureSqlDatabaseCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24790,8 +23916,7 @@ func (a *CredentialsAPIService) ValidateAzureSqlDatabaseCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24801,8 +23926,7 @@ func (a *CredentialsAPIService) ValidateAzureSqlDatabaseCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24923,13 +24047,12 @@ func (a *CredentialsAPIService) ValidateBigqueryCredentialsExecute(r ApiValidate
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24939,8 +24062,7 @@ func (a *CredentialsAPIService) ValidateBigqueryCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24950,8 +24072,7 @@ func (a *CredentialsAPIService) ValidateBigqueryCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24961,8 +24082,7 @@ func (a *CredentialsAPIService) ValidateBigqueryCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24972,8 +24092,7 @@ func (a *CredentialsAPIService) ValidateBigqueryCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24983,8 +24102,7 @@ func (a *CredentialsAPIService) ValidateBigqueryCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -24994,8 +24112,7 @@ func (a *CredentialsAPIService) ValidateBigqueryCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25005,8 +24122,7 @@ func (a *CredentialsAPIService) ValidateBigqueryCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25127,13 +24243,12 @@ func (a *CredentialsAPIService) ValidateClickhouseCredentialsExecute(r ApiValida
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25143,8 +24258,7 @@ func (a *CredentialsAPIService) ValidateClickhouseCredentialsExecute(r ApiValida
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25154,8 +24268,7 @@ func (a *CredentialsAPIService) ValidateClickhouseCredentialsExecute(r ApiValida
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25165,8 +24278,7 @@ func (a *CredentialsAPIService) ValidateClickhouseCredentialsExecute(r ApiValida
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25176,8 +24288,7 @@ func (a *CredentialsAPIService) ValidateClickhouseCredentialsExecute(r ApiValida
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25187,8 +24298,7 @@ func (a *CredentialsAPIService) ValidateClickhouseCredentialsExecute(r ApiValida
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25198,8 +24308,7 @@ func (a *CredentialsAPIService) ValidateClickhouseCredentialsExecute(r ApiValida
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25209,8 +24318,7 @@ func (a *CredentialsAPIService) ValidateClickhouseCredentialsExecute(r ApiValida
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25331,13 +24439,12 @@ func (a *CredentialsAPIService) ValidateDatabricksMetastoreSqlWarehouseCredentia
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25347,8 +24454,7 @@ func (a *CredentialsAPIService) ValidateDatabricksMetastoreSqlWarehouseCredentia
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25358,8 +24464,7 @@ func (a *CredentialsAPIService) ValidateDatabricksMetastoreSqlWarehouseCredentia
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25369,8 +24474,7 @@ func (a *CredentialsAPIService) ValidateDatabricksMetastoreSqlWarehouseCredentia
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25380,8 +24484,7 @@ func (a *CredentialsAPIService) ValidateDatabricksMetastoreSqlWarehouseCredentia
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25391,8 +24494,7 @@ func (a *CredentialsAPIService) ValidateDatabricksMetastoreSqlWarehouseCredentia
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25402,8 +24504,7 @@ func (a *CredentialsAPIService) ValidateDatabricksMetastoreSqlWarehouseCredentia
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25413,8 +24514,7 @@ func (a *CredentialsAPIService) ValidateDatabricksMetastoreSqlWarehouseCredentia
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25535,13 +24635,12 @@ func (a *CredentialsAPIService) ValidateDatabricksSqlWarehouseCredentialsExecute
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25551,8 +24650,7 @@ func (a *CredentialsAPIService) ValidateDatabricksSqlWarehouseCredentialsExecute
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25562,8 +24660,7 @@ func (a *CredentialsAPIService) ValidateDatabricksSqlWarehouseCredentialsExecute
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25573,8 +24670,7 @@ func (a *CredentialsAPIService) ValidateDatabricksSqlWarehouseCredentialsExecute
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25584,8 +24680,7 @@ func (a *CredentialsAPIService) ValidateDatabricksSqlWarehouseCredentialsExecute
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25595,8 +24690,7 @@ func (a *CredentialsAPIService) ValidateDatabricksSqlWarehouseCredentialsExecute
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25606,8 +24700,7 @@ func (a *CredentialsAPIService) ValidateDatabricksSqlWarehouseCredentialsExecute
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25617,8 +24710,7 @@ func (a *CredentialsAPIService) ValidateDatabricksSqlWarehouseCredentialsExecute
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25739,13 +24831,12 @@ func (a *CredentialsAPIService) ValidateDb2CredentialsExecute(r ApiValidateDb2Cr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25755,8 +24846,7 @@ func (a *CredentialsAPIService) ValidateDb2CredentialsExecute(r ApiValidateDb2Cr
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25766,8 +24856,7 @@ func (a *CredentialsAPIService) ValidateDb2CredentialsExecute(r ApiValidateDb2Cr
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25777,8 +24866,7 @@ func (a *CredentialsAPIService) ValidateDb2CredentialsExecute(r ApiValidateDb2Cr
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25788,8 +24876,7 @@ func (a *CredentialsAPIService) ValidateDb2CredentialsExecute(r ApiValidateDb2Cr
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25799,8 +24886,7 @@ func (a *CredentialsAPIService) ValidateDb2CredentialsExecute(r ApiValidateDb2Cr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25810,8 +24896,7 @@ func (a *CredentialsAPIService) ValidateDb2CredentialsExecute(r ApiValidateDb2Cr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25821,8 +24906,7 @@ func (a *CredentialsAPIService) ValidateDb2CredentialsExecute(r ApiValidateDb2Cr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25943,13 +25027,12 @@ func (a *CredentialsAPIService) ValidateEnvVarCredentialsExecute(r ApiValidateEn
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25959,8 +25042,7 @@ func (a *CredentialsAPIService) ValidateEnvVarCredentialsExecute(r ApiValidateEn
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25970,8 +25052,7 @@ func (a *CredentialsAPIService) ValidateEnvVarCredentialsExecute(r ApiValidateEn
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25981,8 +25062,7 @@ func (a *CredentialsAPIService) ValidateEnvVarCredentialsExecute(r ApiValidateEn
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -25992,8 +25072,7 @@ func (a *CredentialsAPIService) ValidateEnvVarCredentialsExecute(r ApiValidateEn
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26003,8 +25082,7 @@ func (a *CredentialsAPIService) ValidateEnvVarCredentialsExecute(r ApiValidateEn
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26014,8 +25092,7 @@ func (a *CredentialsAPIService) ValidateEnvVarCredentialsExecute(r ApiValidateEn
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26025,8 +25102,7 @@ func (a *CredentialsAPIService) ValidateEnvVarCredentialsExecute(r ApiValidateEn
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26147,13 +25223,12 @@ func (a *CredentialsAPIService) ValidateFileCredentialsExecute(r ApiValidateFile
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26163,8 +25238,7 @@ func (a *CredentialsAPIService) ValidateFileCredentialsExecute(r ApiValidateFile
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26174,8 +25248,7 @@ func (a *CredentialsAPIService) ValidateFileCredentialsExecute(r ApiValidateFile
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26185,8 +25258,7 @@ func (a *CredentialsAPIService) ValidateFileCredentialsExecute(r ApiValidateFile
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26196,8 +25268,7 @@ func (a *CredentialsAPIService) ValidateFileCredentialsExecute(r ApiValidateFile
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26207,8 +25278,7 @@ func (a *CredentialsAPIService) ValidateFileCredentialsExecute(r ApiValidateFile
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26218,8 +25288,7 @@ func (a *CredentialsAPIService) ValidateFileCredentialsExecute(r ApiValidateFile
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26229,8 +25298,7 @@ func (a *CredentialsAPIService) ValidateFileCredentialsExecute(r ApiValidateFile
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26351,13 +25419,12 @@ func (a *CredentialsAPIService) ValidateFivetranCredentialsExecute(r ApiValidate
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26367,8 +25434,7 @@ func (a *CredentialsAPIService) ValidateFivetranCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26378,8 +25444,7 @@ func (a *CredentialsAPIService) ValidateFivetranCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26389,8 +25454,7 @@ func (a *CredentialsAPIService) ValidateFivetranCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26400,8 +25464,7 @@ func (a *CredentialsAPIService) ValidateFivetranCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26411,8 +25474,7 @@ func (a *CredentialsAPIService) ValidateFivetranCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26422,8 +25484,7 @@ func (a *CredentialsAPIService) ValidateFivetranCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26433,8 +25494,7 @@ func (a *CredentialsAPIService) ValidateFivetranCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26555,13 +25615,12 @@ func (a *CredentialsAPIService) ValidateGcpDataformCredentialsExecute(r ApiValid
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26571,8 +25630,7 @@ func (a *CredentialsAPIService) ValidateGcpDataformCredentialsExecute(r ApiValid
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26582,8 +25640,7 @@ func (a *CredentialsAPIService) ValidateGcpDataformCredentialsExecute(r ApiValid
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26593,8 +25650,7 @@ func (a *CredentialsAPIService) ValidateGcpDataformCredentialsExecute(r ApiValid
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26604,8 +25660,7 @@ func (a *CredentialsAPIService) ValidateGcpDataformCredentialsExecute(r ApiValid
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26615,8 +25670,7 @@ func (a *CredentialsAPIService) ValidateGcpDataformCredentialsExecute(r ApiValid
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26626,8 +25680,7 @@ func (a *CredentialsAPIService) ValidateGcpDataformCredentialsExecute(r ApiValid
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26637,8 +25690,7 @@ func (a *CredentialsAPIService) ValidateGcpDataformCredentialsExecute(r ApiValid
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26759,13 +25811,12 @@ func (a *CredentialsAPIService) ValidateGcpSecretManagerCredentialsExecute(r Api
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26775,8 +25826,7 @@ func (a *CredentialsAPIService) ValidateGcpSecretManagerCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26786,8 +25836,7 @@ func (a *CredentialsAPIService) ValidateGcpSecretManagerCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26797,8 +25846,7 @@ func (a *CredentialsAPIService) ValidateGcpSecretManagerCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26808,8 +25856,7 @@ func (a *CredentialsAPIService) ValidateGcpSecretManagerCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26819,8 +25866,7 @@ func (a *CredentialsAPIService) ValidateGcpSecretManagerCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26830,8 +25876,7 @@ func (a *CredentialsAPIService) ValidateGcpSecretManagerCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26841,8 +25886,7 @@ func (a *CredentialsAPIService) ValidateGcpSecretManagerCredentialsExecute(r Api
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26963,13 +26007,12 @@ func (a *CredentialsAPIService) ValidateInformaticaV2CredentialsExecute(r ApiVal
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26979,8 +26022,7 @@ func (a *CredentialsAPIService) ValidateInformaticaV2CredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -26990,8 +26032,7 @@ func (a *CredentialsAPIService) ValidateInformaticaV2CredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27001,8 +26042,7 @@ func (a *CredentialsAPIService) ValidateInformaticaV2CredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27012,8 +26052,7 @@ func (a *CredentialsAPIService) ValidateInformaticaV2CredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27023,8 +26062,7 @@ func (a *CredentialsAPIService) ValidateInformaticaV2CredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27034,8 +26072,7 @@ func (a *CredentialsAPIService) ValidateInformaticaV2CredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27045,8 +26082,7 @@ func (a *CredentialsAPIService) ValidateInformaticaV2CredentialsExecute(r ApiVal
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27167,13 +26203,12 @@ func (a *CredentialsAPIService) ValidateLookerCredentialsExecute(r ApiValidateLo
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27183,8 +26218,7 @@ func (a *CredentialsAPIService) ValidateLookerCredentialsExecute(r ApiValidateLo
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27194,8 +26228,7 @@ func (a *CredentialsAPIService) ValidateLookerCredentialsExecute(r ApiValidateLo
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27205,8 +26238,7 @@ func (a *CredentialsAPIService) ValidateLookerCredentialsExecute(r ApiValidateLo
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27216,8 +26248,7 @@ func (a *CredentialsAPIService) ValidateLookerCredentialsExecute(r ApiValidateLo
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27227,8 +26258,7 @@ func (a *CredentialsAPIService) ValidateLookerCredentialsExecute(r ApiValidateLo
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27238,8 +26268,7 @@ func (a *CredentialsAPIService) ValidateLookerCredentialsExecute(r ApiValidateLo
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27249,8 +26278,7 @@ func (a *CredentialsAPIService) ValidateLookerCredentialsExecute(r ApiValidateLo
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27371,13 +26399,12 @@ func (a *CredentialsAPIService) ValidateLookerGitCloneCredentialsExecute(r ApiVa
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27387,8 +26414,7 @@ func (a *CredentialsAPIService) ValidateLookerGitCloneCredentialsExecute(r ApiVa
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27398,8 +26424,7 @@ func (a *CredentialsAPIService) ValidateLookerGitCloneCredentialsExecute(r ApiVa
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27409,8 +26434,7 @@ func (a *CredentialsAPIService) ValidateLookerGitCloneCredentialsExecute(r ApiVa
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27420,8 +26444,7 @@ func (a *CredentialsAPIService) ValidateLookerGitCloneCredentialsExecute(r ApiVa
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27431,8 +26454,7 @@ func (a *CredentialsAPIService) ValidateLookerGitCloneCredentialsExecute(r ApiVa
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27442,8 +26464,7 @@ func (a *CredentialsAPIService) ValidateLookerGitCloneCredentialsExecute(r ApiVa
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27453,8 +26474,7 @@ func (a *CredentialsAPIService) ValidateLookerGitCloneCredentialsExecute(r ApiVa
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27575,13 +26595,12 @@ func (a *CredentialsAPIService) ValidateMariadbCredentialsExecute(r ApiValidateM
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27591,8 +26610,7 @@ func (a *CredentialsAPIService) ValidateMariadbCredentialsExecute(r ApiValidateM
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27602,8 +26620,7 @@ func (a *CredentialsAPIService) ValidateMariadbCredentialsExecute(r ApiValidateM
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27613,8 +26630,7 @@ func (a *CredentialsAPIService) ValidateMariadbCredentialsExecute(r ApiValidateM
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27624,8 +26640,7 @@ func (a *CredentialsAPIService) ValidateMariadbCredentialsExecute(r ApiValidateM
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27635,8 +26650,7 @@ func (a *CredentialsAPIService) ValidateMariadbCredentialsExecute(r ApiValidateM
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27646,8 +26660,7 @@ func (a *CredentialsAPIService) ValidateMariadbCredentialsExecute(r ApiValidateM
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27657,8 +26670,7 @@ func (a *CredentialsAPIService) ValidateMariadbCredentialsExecute(r ApiValidateM
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27779,13 +26791,12 @@ func (a *CredentialsAPIService) ValidateMulesoftCredentialsExecute(r ApiValidate
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27795,8 +26806,7 @@ func (a *CredentialsAPIService) ValidateMulesoftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27806,8 +26816,7 @@ func (a *CredentialsAPIService) ValidateMulesoftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27817,8 +26826,7 @@ func (a *CredentialsAPIService) ValidateMulesoftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27828,8 +26836,7 @@ func (a *CredentialsAPIService) ValidateMulesoftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27839,8 +26846,7 @@ func (a *CredentialsAPIService) ValidateMulesoftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27850,8 +26856,7 @@ func (a *CredentialsAPIService) ValidateMulesoftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27861,8 +26866,7 @@ func (a *CredentialsAPIService) ValidateMulesoftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27983,13 +26987,12 @@ func (a *CredentialsAPIService) ValidateMysqlCredentialsExecute(r ApiValidateMys
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -27999,8 +27002,7 @@ func (a *CredentialsAPIService) ValidateMysqlCredentialsExecute(r ApiValidateMys
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28010,8 +27012,7 @@ func (a *CredentialsAPIService) ValidateMysqlCredentialsExecute(r ApiValidateMys
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28021,8 +27022,7 @@ func (a *CredentialsAPIService) ValidateMysqlCredentialsExecute(r ApiValidateMys
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28032,8 +27032,7 @@ func (a *CredentialsAPIService) ValidateMysqlCredentialsExecute(r ApiValidateMys
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28043,8 +27042,7 @@ func (a *CredentialsAPIService) ValidateMysqlCredentialsExecute(r ApiValidateMys
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28054,8 +27052,7 @@ func (a *CredentialsAPIService) ValidateMysqlCredentialsExecute(r ApiValidateMys
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28065,8 +27062,7 @@ func (a *CredentialsAPIService) ValidateMysqlCredentialsExecute(r ApiValidateMys
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28187,13 +27183,12 @@ func (a *CredentialsAPIService) ValidateOracleCredentialsExecute(r ApiValidateOr
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28203,8 +27198,7 @@ func (a *CredentialsAPIService) ValidateOracleCredentialsExecute(r ApiValidateOr
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28214,8 +27208,7 @@ func (a *CredentialsAPIService) ValidateOracleCredentialsExecute(r ApiValidateOr
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28225,8 +27218,7 @@ func (a *CredentialsAPIService) ValidateOracleCredentialsExecute(r ApiValidateOr
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28236,8 +27228,7 @@ func (a *CredentialsAPIService) ValidateOracleCredentialsExecute(r ApiValidateOr
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28247,8 +27238,7 @@ func (a *CredentialsAPIService) ValidateOracleCredentialsExecute(r ApiValidateOr
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28258,8 +27248,7 @@ func (a *CredentialsAPIService) ValidateOracleCredentialsExecute(r ApiValidateOr
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28269,8 +27258,7 @@ func (a *CredentialsAPIService) ValidateOracleCredentialsExecute(r ApiValidateOr
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28391,13 +27379,12 @@ func (a *CredentialsAPIService) ValidatePostgresCredentialsExecute(r ApiValidate
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28407,8 +27394,7 @@ func (a *CredentialsAPIService) ValidatePostgresCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28418,8 +27404,7 @@ func (a *CredentialsAPIService) ValidatePostgresCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28429,8 +27414,7 @@ func (a *CredentialsAPIService) ValidatePostgresCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28440,8 +27424,7 @@ func (a *CredentialsAPIService) ValidatePostgresCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28451,8 +27434,7 @@ func (a *CredentialsAPIService) ValidatePostgresCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28462,8 +27444,7 @@ func (a *CredentialsAPIService) ValidatePostgresCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28473,8 +27454,7 @@ func (a *CredentialsAPIService) ValidatePostgresCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28595,13 +27575,12 @@ func (a *CredentialsAPIService) ValidatePowerBiCredentialsExecute(r ApiValidateP
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28611,8 +27590,7 @@ func (a *CredentialsAPIService) ValidatePowerBiCredentialsExecute(r ApiValidateP
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28622,8 +27600,7 @@ func (a *CredentialsAPIService) ValidatePowerBiCredentialsExecute(r ApiValidateP
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28633,8 +27610,7 @@ func (a *CredentialsAPIService) ValidatePowerBiCredentialsExecute(r ApiValidateP
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28644,8 +27620,7 @@ func (a *CredentialsAPIService) ValidatePowerBiCredentialsExecute(r ApiValidateP
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28655,8 +27630,7 @@ func (a *CredentialsAPIService) ValidatePowerBiCredentialsExecute(r ApiValidateP
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28666,8 +27640,7 @@ func (a *CredentialsAPIService) ValidatePowerBiCredentialsExecute(r ApiValidateP
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28677,8 +27650,7 @@ func (a *CredentialsAPIService) ValidatePowerBiCredentialsExecute(r ApiValidateP
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28799,13 +27771,12 @@ func (a *CredentialsAPIService) ValidateRedshiftCredentialsExecute(r ApiValidate
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28815,8 +27786,7 @@ func (a *CredentialsAPIService) ValidateRedshiftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28826,8 +27796,7 @@ func (a *CredentialsAPIService) ValidateRedshiftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28837,8 +27806,7 @@ func (a *CredentialsAPIService) ValidateRedshiftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28848,8 +27816,7 @@ func (a *CredentialsAPIService) ValidateRedshiftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28859,8 +27826,7 @@ func (a *CredentialsAPIService) ValidateRedshiftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28870,8 +27836,7 @@ func (a *CredentialsAPIService) ValidateRedshiftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -28881,8 +27846,7 @@ func (a *CredentialsAPIService) ValidateRedshiftCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29003,13 +27967,12 @@ func (a *CredentialsAPIService) ValidateSapHanaCredentialsExecute(r ApiValidateS
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29019,8 +27982,7 @@ func (a *CredentialsAPIService) ValidateSapHanaCredentialsExecute(r ApiValidateS
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29030,8 +27992,7 @@ func (a *CredentialsAPIService) ValidateSapHanaCredentialsExecute(r ApiValidateS
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29041,8 +28002,7 @@ func (a *CredentialsAPIService) ValidateSapHanaCredentialsExecute(r ApiValidateS
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29052,8 +28012,7 @@ func (a *CredentialsAPIService) ValidateSapHanaCredentialsExecute(r ApiValidateS
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29063,8 +28022,7 @@ func (a *CredentialsAPIService) ValidateSapHanaCredentialsExecute(r ApiValidateS
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29074,8 +28032,7 @@ func (a *CredentialsAPIService) ValidateSapHanaCredentialsExecute(r ApiValidateS
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29085,8 +28042,7 @@ func (a *CredentialsAPIService) ValidateSapHanaCredentialsExecute(r ApiValidateS
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29207,13 +28163,12 @@ func (a *CredentialsAPIService) ValidateSnowflakeCredentialsExecute(r ApiValidat
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29223,8 +28178,7 @@ func (a *CredentialsAPIService) ValidateSnowflakeCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29234,8 +28188,7 @@ func (a *CredentialsAPIService) ValidateSnowflakeCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29245,8 +28198,7 @@ func (a *CredentialsAPIService) ValidateSnowflakeCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29256,8 +28208,7 @@ func (a *CredentialsAPIService) ValidateSnowflakeCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29267,8 +28218,7 @@ func (a *CredentialsAPIService) ValidateSnowflakeCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29278,8 +28228,7 @@ func (a *CredentialsAPIService) ValidateSnowflakeCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29289,8 +28238,7 @@ func (a *CredentialsAPIService) ValidateSnowflakeCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29412,13 +28360,12 @@ func (a *CredentialsAPIService) ValidateSqlServerCredentialsExecute(r ApiValidat
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29428,8 +28375,7 @@ func (a *CredentialsAPIService) ValidateSqlServerCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29439,8 +28385,7 @@ func (a *CredentialsAPIService) ValidateSqlServerCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29450,8 +28395,7 @@ func (a *CredentialsAPIService) ValidateSqlServerCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29461,8 +28405,7 @@ func (a *CredentialsAPIService) ValidateSqlServerCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29472,8 +28415,7 @@ func (a *CredentialsAPIService) ValidateSqlServerCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29483,8 +28425,7 @@ func (a *CredentialsAPIService) ValidateSqlServerCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29494,8 +28435,7 @@ func (a *CredentialsAPIService) ValidateSqlServerCredentialsExecute(r ApiValidat
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29616,13 +28556,12 @@ func (a *CredentialsAPIService) ValidateStarburstEnterpriseCredentialsExecute(r 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29632,8 +28571,7 @@ func (a *CredentialsAPIService) ValidateStarburstEnterpriseCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29643,8 +28581,7 @@ func (a *CredentialsAPIService) ValidateStarburstEnterpriseCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29654,8 +28591,7 @@ func (a *CredentialsAPIService) ValidateStarburstEnterpriseCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29665,8 +28601,7 @@ func (a *CredentialsAPIService) ValidateStarburstEnterpriseCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29676,8 +28611,7 @@ func (a *CredentialsAPIService) ValidateStarburstEnterpriseCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29687,8 +28621,7 @@ func (a *CredentialsAPIService) ValidateStarburstEnterpriseCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29698,8 +28631,7 @@ func (a *CredentialsAPIService) ValidateStarburstEnterpriseCredentialsExecute(r 
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29820,13 +28752,12 @@ func (a *CredentialsAPIService) ValidateStarburstGalaxyCredentialsExecute(r ApiV
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29836,8 +28767,7 @@ func (a *CredentialsAPIService) ValidateStarburstGalaxyCredentialsExecute(r ApiV
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29847,8 +28777,7 @@ func (a *CredentialsAPIService) ValidateStarburstGalaxyCredentialsExecute(r ApiV
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29858,8 +28787,7 @@ func (a *CredentialsAPIService) ValidateStarburstGalaxyCredentialsExecute(r ApiV
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29869,8 +28797,7 @@ func (a *CredentialsAPIService) ValidateStarburstGalaxyCredentialsExecute(r ApiV
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29880,8 +28807,7 @@ func (a *CredentialsAPIService) ValidateStarburstGalaxyCredentialsExecute(r ApiV
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29891,8 +28817,7 @@ func (a *CredentialsAPIService) ValidateStarburstGalaxyCredentialsExecute(r ApiV
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -29902,8 +28827,7 @@ func (a *CredentialsAPIService) ValidateStarburstGalaxyCredentialsExecute(r ApiV
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30024,13 +28948,12 @@ func (a *CredentialsAPIService) ValidateTableauCredentialsExecute(r ApiValidateT
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30040,8 +28963,7 @@ func (a *CredentialsAPIService) ValidateTableauCredentialsExecute(r ApiValidateT
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30051,8 +28973,7 @@ func (a *CredentialsAPIService) ValidateTableauCredentialsExecute(r ApiValidateT
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30062,8 +28983,7 @@ func (a *CredentialsAPIService) ValidateTableauCredentialsExecute(r ApiValidateT
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30073,8 +28993,7 @@ func (a *CredentialsAPIService) ValidateTableauCredentialsExecute(r ApiValidateT
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30084,8 +29003,7 @@ func (a *CredentialsAPIService) ValidateTableauCredentialsExecute(r ApiValidateT
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30095,8 +29013,7 @@ func (a *CredentialsAPIService) ValidateTableauCredentialsExecute(r ApiValidateT
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30106,8 +29023,7 @@ func (a *CredentialsAPIService) ValidateTableauCredentialsExecute(r ApiValidateT
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30228,13 +29144,12 @@ func (a *CredentialsAPIService) ValidateTeradataCredentialsExecute(r ApiValidate
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30244,8 +29159,7 @@ func (a *CredentialsAPIService) ValidateTeradataCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30255,8 +29169,7 @@ func (a *CredentialsAPIService) ValidateTeradataCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30266,8 +29179,7 @@ func (a *CredentialsAPIService) ValidateTeradataCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30277,8 +29189,7 @@ func (a *CredentialsAPIService) ValidateTeradataCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30288,8 +29199,7 @@ func (a *CredentialsAPIService) ValidateTeradataCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30299,8 +29209,7 @@ func (a *CredentialsAPIService) ValidateTeradataCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -30310,8 +29219,7 @@ func (a *CredentialsAPIService) ValidateTeradataCredentialsExecute(r ApiValidate
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)

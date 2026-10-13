@@ -677,6 +677,26 @@ func (e GenericOpenAPIError) Model() interface{} {
 	return e.model
 }
 
+// formatErrorBody formats an error response no model was decoded from: the status, then the
+// body's message or detail member when it has one. A gateway's rejection carries a message.
+func formatErrorBody(status string, body []byte) string {
+	// Member names match case-insensitively, so this reads "message" and "Message".
+	var b struct {
+		Message string
+		Detail  string
+	}
+	if json.Unmarshal(body, &b) != nil {
+		return status
+	}
+	if b.Message != "" {
+		return status + ": " + b.Message
+	}
+	if b.Detail != "" {
+		return status + ": " + b.Detail
+	}
+	return status
+}
+
 // format error message using title and detail when model implements rfc7807
 func formatErrorMessage(status string, v interface{}) string {
 	str := ""
