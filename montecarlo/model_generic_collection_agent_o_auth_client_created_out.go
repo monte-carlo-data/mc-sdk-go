@@ -37,7 +37,7 @@ type GenericCollectionAgentOAuthClientCreatedOut struct {
 	Scopes []string `json:"scopes"`
 	// When the client stops being accepted. Null for a client that does not expire.
 	ExpirationTime NullableTime `json:"expiration_time,omitempty"`
-	// Secret the agent presents, as `client_secret` in its configuration. Returned once, by this call. It is not retrievable afterwards, and Terraform holds it in state like any generated credential. To rotate, create a new credential and delete this one.
+	// Secret the agent presents, as `client_secret` in its configuration. Returned once, by this call, and not retrievable afterwards. Terraform keeps it in state, so anyone who can read the state can read the secret: `sensitive` only hides it from CLI output. Keep state in a backend that encrypts it and limits who can read it. Hand the secret on through a write-only argument, such as `aws_secretsmanager_secret_version.secret_string_wo`, not through an output, because a `sensitive` output is stored in state too. To rotate, create a new credential and delete this one.
 	ClientSecret string `json:"client_secret"`
 	// Identifier of the secret this call created, as the client's secrets are listed. Keep it with the secret.
 	SecretId             string `json:"secret_id"`

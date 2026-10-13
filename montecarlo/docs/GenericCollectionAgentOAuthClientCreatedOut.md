@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **ClientId** | **string** | Client id the agent presents, as &#x60;client_id&#x60; in its configuration. The same value as &#x60;id&#x60;. | 
 **Scopes** | **[]string** | OAuth scopes the client is granted. | 
 **ExpirationTime** | Pointer to **NullableTime** | When the client stops being accepted. Null for a client that does not expire. | [optional] 
-**ClientSecret** | **string** | Secret the agent presents, as &#x60;client_secret&#x60; in its configuration. Returned once, by this call. It is not retrievable afterwards, and Terraform holds it in state like any generated credential. To rotate, create a new credential and delete this one. | [readonly] 
+**ClientSecret** | **string** | Secret the agent presents, as &#x60;client_secret&#x60; in its configuration. Returned once, by this call, and not retrievable afterwards. Terraform keeps it in state, so anyone who can read the state can read the secret: &#x60;sensitive&#x60; only hides it from CLI output. Keep state in a backend that encrypts it and limits who can read it. Hand the secret on through a write-only argument, such as &#x60;aws_secretsmanager_secret_version.secret_string_wo&#x60;, not through an output, because a &#x60;sensitive&#x60; output is stored in state too. To rotate, create a new credential and delete this one. | [readonly] 
 **SecretId** | **string** | Identifier of the secret this call created, as the client&#39;s secrets are listed. Keep it with the secret. | 
 
 ## Methods

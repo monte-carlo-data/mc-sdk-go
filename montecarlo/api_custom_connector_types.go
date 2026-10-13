@@ -37,7 +37,8 @@ GetCustomConnectorType Get a custom connector type
 
 Get one custom connector type.
 
-An id that does not exist or belongs to another account returns 404.
+An id that does not exist, belongs to another account, or whose collection agent was
+removed returns 404.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param customConnectorTypeId Id of the custom connector type, as returned when it is listed.
@@ -199,7 +200,7 @@ ListCustomConnectorTypes List custom connector types
 
 List the custom connector types your collection agents registered, oldest first.
 
-A type whose collection agent was removed outright is not listed.
+A type whose collection agent was removed is not listed.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListCustomConnectorTypesRequest
