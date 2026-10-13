@@ -124,13 +124,12 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentOauthClientExec
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -140,8 +139,7 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentOauthClientExec
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -151,8 +149,7 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentOauthClientExec
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -162,8 +159,7 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentOauthClientExec
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -173,8 +169,7 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentOauthClientExec
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -184,8 +179,7 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentOauthClientExec
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -195,8 +189,7 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentOauthClientExec
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -318,13 +311,12 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentTokenExecute(r 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -334,8 +326,7 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentTokenExecute(r 
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -345,8 +336,7 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentTokenExecute(r 
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -356,8 +346,7 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentTokenExecute(r 
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -367,8 +356,7 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentTokenExecute(r 
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -378,8 +366,7 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentTokenExecute(r 
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -389,8 +376,7 @@ func (a *CollectionAgentsAPIService) CreateGenericCollectionAgentTokenExecute(r 
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -503,13 +489,12 @@ func (a *CollectionAgentsAPIService) DeleteAwsCollectionAgentExecute(r ApiDelete
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -519,8 +504,7 @@ func (a *CollectionAgentsAPIService) DeleteAwsCollectionAgentExecute(r ApiDelete
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -530,8 +514,7 @@ func (a *CollectionAgentsAPIService) DeleteAwsCollectionAgentExecute(r ApiDelete
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -541,8 +524,7 @@ func (a *CollectionAgentsAPIService) DeleteAwsCollectionAgentExecute(r ApiDelete
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -552,8 +534,7 @@ func (a *CollectionAgentsAPIService) DeleteAwsCollectionAgentExecute(r ApiDelete
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -563,8 +544,7 @@ func (a *CollectionAgentsAPIService) DeleteAwsCollectionAgentExecute(r ApiDelete
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -668,13 +648,12 @@ func (a *CollectionAgentsAPIService) DeleteAzureCollectionAgentExecute(r ApiDele
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -684,8 +663,7 @@ func (a *CollectionAgentsAPIService) DeleteAzureCollectionAgentExecute(r ApiDele
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -695,8 +673,7 @@ func (a *CollectionAgentsAPIService) DeleteAzureCollectionAgentExecute(r ApiDele
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -706,8 +683,7 @@ func (a *CollectionAgentsAPIService) DeleteAzureCollectionAgentExecute(r ApiDele
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -717,8 +693,7 @@ func (a *CollectionAgentsAPIService) DeleteAzureCollectionAgentExecute(r ApiDele
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -728,8 +703,7 @@ func (a *CollectionAgentsAPIService) DeleteAzureCollectionAgentExecute(r ApiDele
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -833,13 +807,12 @@ func (a *CollectionAgentsAPIService) DeleteGcpCollectionAgentExecute(r ApiDelete
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -849,8 +822,7 @@ func (a *CollectionAgentsAPIService) DeleteGcpCollectionAgentExecute(r ApiDelete
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -860,8 +832,7 @@ func (a *CollectionAgentsAPIService) DeleteGcpCollectionAgentExecute(r ApiDelete
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -871,8 +842,7 @@ func (a *CollectionAgentsAPIService) DeleteGcpCollectionAgentExecute(r ApiDelete
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -882,8 +852,7 @@ func (a *CollectionAgentsAPIService) DeleteGcpCollectionAgentExecute(r ApiDelete
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -893,8 +862,7 @@ func (a *CollectionAgentsAPIService) DeleteGcpCollectionAgentExecute(r ApiDelete
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -999,13 +967,12 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentExecute(r ApiDe
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1015,8 +982,7 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1026,8 +992,7 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1037,8 +1002,7 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1048,8 +1012,7 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1059,8 +1022,7 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentExecute(r ApiDe
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1161,13 +1123,12 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentOauthClientExec
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1177,8 +1138,7 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentOauthClientExec
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1188,8 +1148,7 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentOauthClientExec
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1199,8 +1158,7 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentOauthClientExec
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1298,13 +1256,12 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentTokenExecute(r 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1314,8 +1271,7 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentTokenExecute(r 
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1325,8 +1281,7 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentTokenExecute(r 
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1336,8 +1291,7 @@ func (a *CollectionAgentsAPIService) DeleteGenericCollectionAgentTokenExecute(r 
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1438,13 +1392,12 @@ func (a *CollectionAgentsAPIService) GetAwsCollectionAgentExecute(r ApiGetAwsCol
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1454,8 +1407,7 @@ func (a *CollectionAgentsAPIService) GetAwsCollectionAgentExecute(r ApiGetAwsCol
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1465,8 +1417,7 @@ func (a *CollectionAgentsAPIService) GetAwsCollectionAgentExecute(r ApiGetAwsCol
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1476,8 +1427,7 @@ func (a *CollectionAgentsAPIService) GetAwsCollectionAgentExecute(r ApiGetAwsCol
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1587,13 +1537,12 @@ func (a *CollectionAgentsAPIService) GetAzureCollectionAgentExecute(r ApiGetAzur
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1603,8 +1552,7 @@ func (a *CollectionAgentsAPIService) GetAzureCollectionAgentExecute(r ApiGetAzur
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1614,8 +1562,7 @@ func (a *CollectionAgentsAPIService) GetAzureCollectionAgentExecute(r ApiGetAzur
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1625,8 +1572,7 @@ func (a *CollectionAgentsAPIService) GetAzureCollectionAgentExecute(r ApiGetAzur
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1736,13 +1682,12 @@ func (a *CollectionAgentsAPIService) GetGcpCollectionAgentExecute(r ApiGetGcpCol
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1752,8 +1697,7 @@ func (a *CollectionAgentsAPIService) GetGcpCollectionAgentExecute(r ApiGetGcpCol
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1763,8 +1707,7 @@ func (a *CollectionAgentsAPIService) GetGcpCollectionAgentExecute(r ApiGetGcpCol
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1774,8 +1717,7 @@ func (a *CollectionAgentsAPIService) GetGcpCollectionAgentExecute(r ApiGetGcpCol
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1885,13 +1827,12 @@ func (a *CollectionAgentsAPIService) GetGenericCollectionAgentExecute(r ApiGetGe
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1901,8 +1842,7 @@ func (a *CollectionAgentsAPIService) GetGenericCollectionAgentExecute(r ApiGetGe
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1912,8 +1852,7 @@ func (a *CollectionAgentsAPIService) GetGenericCollectionAgentExecute(r ApiGetGe
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -1923,8 +1862,7 @@ func (a *CollectionAgentsAPIService) GetGenericCollectionAgentExecute(r ApiGetGe
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2034,13 +1972,12 @@ func (a *CollectionAgentsAPIService) GetGenericCollectionAgentOauthClientExecute
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2050,8 +1987,7 @@ func (a *CollectionAgentsAPIService) GetGenericCollectionAgentOauthClientExecute
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2061,8 +1997,7 @@ func (a *CollectionAgentsAPIService) GetGenericCollectionAgentOauthClientExecute
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2072,8 +2007,7 @@ func (a *CollectionAgentsAPIService) GetGenericCollectionAgentOauthClientExecute
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2183,13 +2117,12 @@ func (a *CollectionAgentsAPIService) GetGenericCollectionAgentTokenExecute(r Api
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2199,8 +2132,7 @@ func (a *CollectionAgentsAPIService) GetGenericCollectionAgentTokenExecute(r Api
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2210,8 +2142,7 @@ func (a *CollectionAgentsAPIService) GetGenericCollectionAgentTokenExecute(r Api
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2221,8 +2152,7 @@ func (a *CollectionAgentsAPIService) GetGenericCollectionAgentTokenExecute(r Api
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2331,13 +2261,12 @@ func (a *CollectionAgentsAPIService) ListCollectionAgentsExecute(r ApiListCollec
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2347,8 +2276,7 @@ func (a *CollectionAgentsAPIService) ListCollectionAgentsExecute(r ApiListCollec
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2358,8 +2286,7 @@ func (a *CollectionAgentsAPIService) ListCollectionAgentsExecute(r ApiListCollec
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2478,13 +2405,12 @@ func (a *CollectionAgentsAPIService) ListGenericCollectionAgentCredentialsExecut
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2494,8 +2420,7 @@ func (a *CollectionAgentsAPIService) ListGenericCollectionAgentCredentialsExecut
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2505,8 +2430,7 @@ func (a *CollectionAgentsAPIService) ListGenericCollectionAgentCredentialsExecut
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2634,13 +2558,12 @@ func (a *CollectionAgentsAPIService) RegisterAwsCollectionAgentExecute(r ApiRegi
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2650,8 +2573,7 @@ func (a *CollectionAgentsAPIService) RegisterAwsCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2661,8 +2583,7 @@ func (a *CollectionAgentsAPIService) RegisterAwsCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2672,8 +2593,7 @@ func (a *CollectionAgentsAPIService) RegisterAwsCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2683,8 +2603,7 @@ func (a *CollectionAgentsAPIService) RegisterAwsCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2694,8 +2613,7 @@ func (a *CollectionAgentsAPIService) RegisterAwsCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2705,8 +2623,7 @@ func (a *CollectionAgentsAPIService) RegisterAwsCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2716,8 +2633,7 @@ func (a *CollectionAgentsAPIService) RegisterAwsCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2844,13 +2760,12 @@ func (a *CollectionAgentsAPIService) RegisterAzureCollectionAgentExecute(r ApiRe
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2860,8 +2775,7 @@ func (a *CollectionAgentsAPIService) RegisterAzureCollectionAgentExecute(r ApiRe
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2871,8 +2785,7 @@ func (a *CollectionAgentsAPIService) RegisterAzureCollectionAgentExecute(r ApiRe
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2882,8 +2795,7 @@ func (a *CollectionAgentsAPIService) RegisterAzureCollectionAgentExecute(r ApiRe
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2893,8 +2805,7 @@ func (a *CollectionAgentsAPIService) RegisterAzureCollectionAgentExecute(r ApiRe
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2904,8 +2815,7 @@ func (a *CollectionAgentsAPIService) RegisterAzureCollectionAgentExecute(r ApiRe
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2915,8 +2825,7 @@ func (a *CollectionAgentsAPIService) RegisterAzureCollectionAgentExecute(r ApiRe
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -2926,8 +2835,7 @@ func (a *CollectionAgentsAPIService) RegisterAzureCollectionAgentExecute(r ApiRe
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3054,13 +2962,12 @@ func (a *CollectionAgentsAPIService) RegisterGcpCollectionAgentExecute(r ApiRegi
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3070,8 +2977,7 @@ func (a *CollectionAgentsAPIService) RegisterGcpCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3081,8 +2987,7 @@ func (a *CollectionAgentsAPIService) RegisterGcpCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3092,8 +2997,7 @@ func (a *CollectionAgentsAPIService) RegisterGcpCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3103,8 +3007,7 @@ func (a *CollectionAgentsAPIService) RegisterGcpCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3114,8 +3017,7 @@ func (a *CollectionAgentsAPIService) RegisterGcpCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3125,8 +3027,7 @@ func (a *CollectionAgentsAPIService) RegisterGcpCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3136,8 +3037,7 @@ func (a *CollectionAgentsAPIService) RegisterGcpCollectionAgentExecute(r ApiRegi
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3261,13 +3161,12 @@ func (a *CollectionAgentsAPIService) RegisterGenericCollectionAgentExecute(r Api
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3277,8 +3176,7 @@ func (a *CollectionAgentsAPIService) RegisterGenericCollectionAgentExecute(r Api
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3288,8 +3186,7 @@ func (a *CollectionAgentsAPIService) RegisterGenericCollectionAgentExecute(r Api
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3299,8 +3196,7 @@ func (a *CollectionAgentsAPIService) RegisterGenericCollectionAgentExecute(r Api
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3310,8 +3206,7 @@ func (a *CollectionAgentsAPIService) RegisterGenericCollectionAgentExecute(r Api
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3321,8 +3216,7 @@ func (a *CollectionAgentsAPIService) RegisterGenericCollectionAgentExecute(r Api
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3332,8 +3226,7 @@ func (a *CollectionAgentsAPIService) RegisterGenericCollectionAgentExecute(r Api
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3343,8 +3236,7 @@ func (a *CollectionAgentsAPIService) RegisterGenericCollectionAgentExecute(r Api
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3474,13 +3366,12 @@ func (a *CollectionAgentsAPIService) UpdateAwsCollectionAgentExecute(r ApiUpdate
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3490,8 +3381,7 @@ func (a *CollectionAgentsAPIService) UpdateAwsCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3501,8 +3391,7 @@ func (a *CollectionAgentsAPIService) UpdateAwsCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3512,8 +3401,7 @@ func (a *CollectionAgentsAPIService) UpdateAwsCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3523,8 +3411,7 @@ func (a *CollectionAgentsAPIService) UpdateAwsCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3534,8 +3421,7 @@ func (a *CollectionAgentsAPIService) UpdateAwsCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3545,8 +3431,7 @@ func (a *CollectionAgentsAPIService) UpdateAwsCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3556,8 +3441,7 @@ func (a *CollectionAgentsAPIService) UpdateAwsCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3691,13 +3575,12 @@ func (a *CollectionAgentsAPIService) UpdateAzureCollectionAgentExecute(r ApiUpda
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3707,8 +3590,7 @@ func (a *CollectionAgentsAPIService) UpdateAzureCollectionAgentExecute(r ApiUpda
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3718,8 +3600,7 @@ func (a *CollectionAgentsAPIService) UpdateAzureCollectionAgentExecute(r ApiUpda
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3729,8 +3610,7 @@ func (a *CollectionAgentsAPIService) UpdateAzureCollectionAgentExecute(r ApiUpda
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3740,8 +3620,7 @@ func (a *CollectionAgentsAPIService) UpdateAzureCollectionAgentExecute(r ApiUpda
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3751,8 +3630,7 @@ func (a *CollectionAgentsAPIService) UpdateAzureCollectionAgentExecute(r ApiUpda
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3762,8 +3640,7 @@ func (a *CollectionAgentsAPIService) UpdateAzureCollectionAgentExecute(r ApiUpda
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3773,8 +3650,7 @@ func (a *CollectionAgentsAPIService) UpdateAzureCollectionAgentExecute(r ApiUpda
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3907,13 +3783,12 @@ func (a *CollectionAgentsAPIService) UpdateGcpCollectionAgentExecute(r ApiUpdate
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3923,8 +3798,7 @@ func (a *CollectionAgentsAPIService) UpdateGcpCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3934,8 +3808,7 @@ func (a *CollectionAgentsAPIService) UpdateGcpCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3945,8 +3818,7 @@ func (a *CollectionAgentsAPIService) UpdateGcpCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3956,8 +3828,7 @@ func (a *CollectionAgentsAPIService) UpdateGcpCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3967,8 +3838,7 @@ func (a *CollectionAgentsAPIService) UpdateGcpCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3978,8 +3848,7 @@ func (a *CollectionAgentsAPIService) UpdateGcpCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -3989,8 +3858,7 @@ func (a *CollectionAgentsAPIService) UpdateGcpCollectionAgentExecute(r ApiUpdate
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4115,13 +3983,12 @@ func (a *CollectionAgentsAPIService) UpdateGenericCollectionAgentExecute(r ApiUp
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4131,8 +3998,7 @@ func (a *CollectionAgentsAPIService) UpdateGenericCollectionAgentExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4142,8 +4008,7 @@ func (a *CollectionAgentsAPIService) UpdateGenericCollectionAgentExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4153,8 +4018,7 @@ func (a *CollectionAgentsAPIService) UpdateGenericCollectionAgentExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4164,8 +4028,7 @@ func (a *CollectionAgentsAPIService) UpdateGenericCollectionAgentExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
@@ -4175,8 +4038,7 @@ func (a *CollectionAgentsAPIService) UpdateGenericCollectionAgentExecute(r ApiUp
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
+			if err != nil || len(localVarBody) == 0 {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
