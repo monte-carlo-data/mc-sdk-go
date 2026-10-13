@@ -155,9 +155,11 @@ OAuth credentials are wired through an `http.Client` that refreshes tokens as ne
 than reading one token into the configuration. A long-lived caller would otherwise hold a
 credential that expires mid-run.
 
-**`Endpoint` is always required**, though it can come from a profile rather than the caller.
-The generated client has no default server URL, because the API is reached at a different
-host per deployment, so a client built without one sends every request nowhere.
+**`Endpoint` defaults to `DefaultEndpoint`**, the global API that serves every instance, once
+the caller and a profile have both left it empty. `Resolve` applies it, so `validate`'s
+"endpoint is required" is reached only by options that skip `Resolve`. The generated client
+has no default server URL of its own, so a client built without `NewClient` sends every request
+nowhere.
 
 Neither client follows a redirect. The API client returns a 3xx as the response, since the API
 has one host and both transports attach the credential on every hop. The token exchange fails
@@ -172,10 +174,10 @@ same file and the same section names. Most keys are shared verbatim — `mcd_id`
 `mcd_oauth_client_id`, `mcd_oauth_client_secret` mean the same thing here as in the CLI and
 pycarlo. `mcd_api_endpoint` is shared but reinterpreted: the CLI and pycarlo write the
 GraphQL endpoint there, and this SDK strips a trailing `/graphql` before treating it as the
-REST base URL. The CLI's `configure` command never writes `mcd_api_endpoint` at all, so a
-CLI-only setup still needs `Endpoint` passed explicitly. A customer who has already run the
-CLI does not need a separate credential store, which is the point — the endpoint key just
-needs that translation to mean the right thing here.
+REST base URL. The CLI's `configure` command leaves `mcd_api_endpoint` out when it is the
+default, so a CLI-only setup gets `DefaultEndpoint`, the same endpoint the CLI uses. A customer
+who has already run the CLI does not need a separate credential store, which is the point —
+the endpoint key just needs that translation to mean the right thing here.
 
 Precedence follows the same three-tier ordering as the Python SDK: values passed in, then
 environment variables, then the profile. Half of a credential pair passed in is an error before

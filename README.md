@@ -20,8 +20,8 @@ constructor's parameters, so recompile and recheck positional calls after any up
 
 ## Usage
 
-Every client needs an endpoint. There is no default: the API is reached at a different host
-per instance.
+The endpoint defaults to `montecarlo.DefaultEndpoint`, `https://api.getmontecarlo.com`, which
+serves every instance. Pass `Endpoint` only to reach a different one.
 
 With a Monte Carlo API token — supply the two halves separately, and the SDK forms the
 credential:
@@ -109,11 +109,10 @@ instead when you want one page, the cursor, or a total.
 ### Using credentials you have already configured
 
 If you have configured the Monte Carlo CLI, the SDK reads the same `mcd_id` and `mcd_token`
-from `~/.mcd/profiles.ini` — but you still need to pass `Endpoint` yourself, since the CLI's
-`configure` command never writes one:
+from `~/.mcd/profiles.ini`, so a client needs no options at all:
 
 ```go
-api, err := montecarlo.NewClient(ctx, montecarlo.Options{Endpoint: "https://api.getmontecarlo.com"})
+api, err := montecarlo.NewClient(ctx, montecarlo.Options{})
 ```
 
 If your profile also has an `mcd_api_endpoint` key — set when the CLI or pycarlo point at a
@@ -128,6 +127,7 @@ Anything you leave unset is filled in, in this order:
 2. `MCD_DEFAULT_API_ID` and `MCD_DEFAULT_API_TOKEN`, or `MCD_DEFAULT_OAUTH_CLIENT_ID` and
    `MCD_DEFAULT_OAUTH_CLIENT_SECRET`, and `MCD_DEFAULT_INSTANCE_ID`.
 3. A profile from `~/.mcd/profiles.ini`, which the CLI writes.
+4. For the endpoint only, `DefaultEndpoint`.
 
 A pair is all or nothing. If you pass one half of an API token or of OAuth client
 credentials, that is an error; the other half is never filled in from the environment or a

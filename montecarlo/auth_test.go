@@ -244,6 +244,21 @@ func TestNewClientSetsTheEndpoint(t *testing.T) {
 	}
 }
 
+func TestNewClientDefaultsTheEndpoint(t *testing.T) {
+	dir := isolate(t)
+	api, err := NewClient(context.Background(), Options{TokenID: "id", TokenSecret: "secret", ConfigDir: dir})
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	url, err := api.GetConfig().ServerURLWithContext(context.Background(), "")
+	if err != nil {
+		t.Fatalf("unexpected error resolving the server URL: %v", err)
+	}
+	if url != DefaultEndpoint {
+		t.Fatalf("expected the default endpoint, got %q", url)
+	}
+}
+
 func TestNewClientRejectsMissingCredentials(t *testing.T) {
 	dir := isolate(t)
 	o := Options{Endpoint: "https://api.example.com", ConfigDir: dir}

@@ -22,18 +22,19 @@ import (
 // overrides it.
 var defaultUserAgent = fmt.Sprintf("mc-sdk-go/dev (go/%s)", runtime.Version())
 
+// DefaultEndpoint is Monte Carlo's global API, which serves every instance. Resolve falls back
+// to it when neither the caller nor a profile names an endpoint, as the Monte Carlo CLI does.
+const DefaultEndpoint = "https://api.getmontecarlo.com"
+
 // Options are the inputs for building an authenticated client.
 //
-// Endpoint is always required, though it can come from a profile rather than the caller — see
-// Resolve. The generated client has no default server URL, because the API is reachable at a
-// different host per instance.
+// Endpoint defaults to DefaultEndpoint, after the caller and a profile; see Resolve.
 //
 // Exactly one credential mechanism is expected. Precedence, when o supplies more than one
 // directly, is OAuth client credentials, then an API token, then a pre-obtained bearer; see
 // Resolve for how a mechanism supplied through the environment or a profile is chosen instead.
 type Options struct {
-	// Endpoint is the API base URL, e.g. https://api.getmontecarlo.com. Required, though it
-	// can come from a profile rather than the caller.
+	// Endpoint is the API base URL. Empty means the profile's, then DefaultEndpoint.
 	Endpoint string
 
 	// TokenID and TokenSecret are the two halves of a Monte Carlo API token. They are
