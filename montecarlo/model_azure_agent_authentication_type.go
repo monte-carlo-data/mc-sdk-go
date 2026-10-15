@@ -1,7 +1,7 @@
 /*
 Monte Carlo AI API
 
-Programmatic access to the Monte Carlo AI platform.  Every response with a status of 400 or higher is `application/problem+json`, and carries a `code` naming the failure. That includes failures no single operation declares, such as calling a path with a method it does not support, which returns 405.  Every response carries an `X-Request-Id` header, and an error body repeats it as `request_id`. Quote it when reporting a problem. To choose the value yourself, send an `x-correlation-id` header; a value we cannot accept is replaced by a generated one.
+Programmatic access to the Monte Carlo AI platform.  Authenticate every request with an `Authorization` header. For an API key, send `Bearer <mcd_id>:<mcd_token>`. For an OAuth client, request a client-credentials token from `https://api.getmontecarlo.com/oauth2/token` with the scopes shown when the client was created, then send `Bearer <access_token>`. This API does not accept the `x-mcd-id` and `x-mcd-token` headers.  Every response with a status of 400 or higher is `application/problem+json`, and carries a `code` naming the failure. That includes failures no single operation declares, such as calling a path with a method it does not support, which returns 405.  Every response carries an `X-Request-Id` header, and an error body repeats it as `request_id`. Quote it when reporting a problem. To choose the value yourself, send an `x-correlation-id` header; a value we cannot accept is replaced by a generated one.
 
 API version: 2.0.0
 */
@@ -22,12 +22,14 @@ type AzureAgentAuthenticationType string
 const (
 	AZUREAGENTAUTHENTICATIONTYPE_AZURE_FUNCTION_APP_KEY           AzureAgentAuthenticationType = "AZURE_FUNCTION_APP_KEY"
 	AZUREAGENTAUTHENTICATIONTYPE_AZURE_FUNCTION_SERVICE_PRINCIPAL AzureAgentAuthenticationType = "AZURE_FUNCTION_SERVICE_PRINCIPAL"
+	AZUREAGENTAUTHENTICATIONTYPE_CUSTOM_AUTH_HEADERS              AzureAgentAuthenticationType = "CUSTOM_AUTH_HEADERS"
 )
 
 // All allowed values of AzureAgentAuthenticationType enum
 var AllowedAzureAgentAuthenticationTypeEnumValues = []AzureAgentAuthenticationType{
 	"AZURE_FUNCTION_APP_KEY",
 	"AZURE_FUNCTION_SERVICE_PRINCIPAL",
+	"CUSTOM_AUTH_HEADERS",
 }
 
 func (v *AzureAgentAuthenticationType) UnmarshalJSON(src []byte) error {

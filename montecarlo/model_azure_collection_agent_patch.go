@@ -1,7 +1,7 @@
 /*
 Monte Carlo AI API
 
-Programmatic access to the Monte Carlo AI platform.  Every response with a status of 400 or higher is `application/problem+json`, and carries a `code` naming the failure. That includes failures no single operation declares, such as calling a path with a method it does not support, which returns 405.  Every response carries an `X-Request-Id` header, and an error body repeats it as `request_id`. Quote it when reporting a problem. To choose the value yourself, send an `x-correlation-id` header; a value we cannot accept is replaced by a generated one.
+Programmatic access to the Monte Carlo AI platform.  Authenticate every request with an `Authorization` header. For an API key, send `Bearer <mcd_id>:<mcd_token>`. For an OAuth client, request a client-credentials token from `https://api.getmontecarlo.com/oauth2/token` with the scopes shown when the client was created, then send `Bearer <access_token>`. This API does not accept the `x-mcd-id` and `x-mcd-token` headers.  Every response with a status of 400 or higher is `application/problem+json`, and carries a `code` naming the failure. That includes failures no single operation declares, such as calling a path with a method it does not support, which returns 405.  Every response carries an `X-Request-Id` header, and an error body repeats it as `request_id`. Quote it when reporting a problem. To choose the value yourself, send an `x-correlation-id` header; a value we cannot accept is replaced by a generated one.
 
 API version: 2.0.0
 */
@@ -19,10 +19,12 @@ var _ MappedNullable = &AzureCollectionAgentPatch{}
 
 // AzureCollectionAgentPatch Details to change on an Azure collection agent. Only what you send is changed.  A credentials object is the exception: it replaces the stored credentials instead of merging into them, so send every field of the object you send, along with the matching `authentication_type`. Sending only `name` skips the checks against your function app, since a name is not validated against it.
 type AzureCollectionAgentPatch struct {
-	// Credentials for `AZURE_FUNCTION_APP_KEY`. Send this or `service_principal`, never both.
+	// Credentials for `AZURE_FUNCTION_APP_KEY`. Send only the object matching `authentication_type`.
 	FunctionAppKey NullableFunctionAppKeyCredentialsIn `json:"function_app_key,omitempty"`
-	// Credentials for `AZURE_FUNCTION_SERVICE_PRINCIPAL`. Send this or `function_app_key`, never both.
+	// Credentials for `AZURE_FUNCTION_SERVICE_PRINCIPAL`. Send only the object matching `authentication_type`.
 	ServicePrincipal NullableServicePrincipalCredentialsIn `json:"service_principal,omitempty"`
+	// Credentials for `CUSTOM_AUTH_HEADERS`. Send only the object matching `authentication_type`.
+	AuthHeaders NullableAuthHeadersCredentialsIn `json:"auth_headers,omitempty"`
 	// URL of the function app Monte Carlo should call.
 	FunctionAppUrl NullableString `json:"function_app_url,omitempty" validate:"regexp=^https:\\/\\/[^\\\\s\\/?#]+\\\\S*$"`
 	// Display name for the collection agent. Replaces the name it currently has.
@@ -132,6 +134,49 @@ func (o *AzureCollectionAgentPatch) SetServicePrincipalNil() {
 // UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
 func (o *AzureCollectionAgentPatch) UnsetServicePrincipal() {
 	o.ServicePrincipal.Unset()
+}
+
+// GetAuthHeaders returns the AuthHeaders field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AzureCollectionAgentPatch) GetAuthHeaders() AuthHeadersCredentialsIn {
+	if o == nil || IsNil(o.AuthHeaders.Get()) {
+		var ret AuthHeadersCredentialsIn
+		return ret
+	}
+	return *o.AuthHeaders.Get()
+}
+
+// GetAuthHeadersOk returns a tuple with the AuthHeaders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *AzureCollectionAgentPatch) GetAuthHeadersOk() (*AuthHeadersCredentialsIn, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AuthHeaders.Get(), o.AuthHeaders.IsSet()
+}
+
+// HasAuthHeaders returns a boolean if a field has been set.
+func (o *AzureCollectionAgentPatch) HasAuthHeaders() bool {
+	if o != nil && o.AuthHeaders.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetAuthHeaders gets a reference to the given NullableAuthHeadersCredentialsIn and assigns it to the AuthHeaders field.
+func (o *AzureCollectionAgentPatch) SetAuthHeaders(v AuthHeadersCredentialsIn) {
+	o.AuthHeaders.Set(&v)
+}
+
+// SetAuthHeadersNil sets the value for AuthHeaders to be an explicit nil
+func (o *AzureCollectionAgentPatch) SetAuthHeadersNil() {
+	o.AuthHeaders.Set(nil)
+}
+
+// UnsetAuthHeaders ensures that no value is present for AuthHeaders, not even an explicit nil
+func (o *AzureCollectionAgentPatch) UnsetAuthHeaders() {
+	o.AuthHeaders.Unset()
 }
 
 // GetFunctionAppUrl returns the FunctionAppUrl field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -278,6 +323,9 @@ func (o AzureCollectionAgentPatch) ToMap() (map[string]interface{}, error) {
 	}
 	if o.ServicePrincipal.IsSet() {
 		toSerialize["service_principal"] = o.ServicePrincipal.Get()
+	}
+	if o.AuthHeaders.IsSet() {
+		toSerialize["auth_headers"] = o.AuthHeaders.Get()
 	}
 	if o.FunctionAppUrl.IsSet() {
 		toSerialize["function_app_url"] = o.FunctionAppUrl.Get()

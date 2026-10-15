@@ -139,37 +139,69 @@ Method | HTTP request | Description
 [**UpdateTableauCredentials**](CredentialsAPI.md#UpdateTableauCredentials) | **Patch** /api/v2/credentials/tableau/{credentials_id} | Update Tableau credentials
 [**UpdateTeradataCredentials**](CredentialsAPI.md#UpdateTeradataCredentials) | **Patch** /api/v2/credentials/teradata/{credentials_id} | Update Teradata credentials
 [**ValidateAwsSecretsManagerCredentials**](CredentialsAPI.md#ValidateAwsSecretsManagerCredentials) | **Post** /api/v2/credentials/self-hosted/aws/validate | Validate AWS Secrets Manager credentials
+[**ValidateAwsSecretsManagerCredentialsChange**](CredentialsAPI.md#ValidateAwsSecretsManagerCredentialsChange) | **Post** /api/v2/credentials/self-hosted/aws/{credentials_id}/validate | Validate a change to AWS Secrets Manager credentials
 [**ValidateAzureDataFactoryCredentials**](CredentialsAPI.md#ValidateAzureDataFactoryCredentials) | **Post** /api/v2/credentials/azure-data-factory/validate | Validate Azure Data Factory credentials
+[**ValidateAzureDataFactoryCredentialsChange**](CredentialsAPI.md#ValidateAzureDataFactoryCredentialsChange) | **Post** /api/v2/credentials/azure-data-factory/{credentials_id}/validate | Validate a change to Azure Data Factory credentials
 [**ValidateAzureDedicatedSqlPoolCredentials**](CredentialsAPI.md#ValidateAzureDedicatedSqlPoolCredentials) | **Post** /api/v2/credentials/azure-dedicated-sql-pool/validate | Validate Azure Dedicated SQL Pool credentials
+[**ValidateAzureDedicatedSqlPoolCredentialsChange**](CredentialsAPI.md#ValidateAzureDedicatedSqlPoolCredentialsChange) | **Post** /api/v2/credentials/azure-dedicated-sql-pool/{credentials_id}/validate | Validate a change to Azure Dedicated SQL Pool credentials
 [**ValidateAzureKeyVaultCredentials**](CredentialsAPI.md#ValidateAzureKeyVaultCredentials) | **Post** /api/v2/credentials/self-hosted/azure/validate | Validate Azure Key Vault credentials
+[**ValidateAzureKeyVaultCredentialsChange**](CredentialsAPI.md#ValidateAzureKeyVaultCredentialsChange) | **Post** /api/v2/credentials/self-hosted/azure/{credentials_id}/validate | Validate a change to Azure Key Vault credentials
 [**ValidateAzureSqlDatabaseCredentials**](CredentialsAPI.md#ValidateAzureSqlDatabaseCredentials) | **Post** /api/v2/credentials/azure-sql-database/validate | Validate Azure SQL Database credentials
+[**ValidateAzureSqlDatabaseCredentialsChange**](CredentialsAPI.md#ValidateAzureSqlDatabaseCredentialsChange) | **Post** /api/v2/credentials/azure-sql-database/{credentials_id}/validate | Validate a change to Azure SQL Database credentials
 [**ValidateBigqueryCredentials**](CredentialsAPI.md#ValidateBigqueryCredentials) | **Post** /api/v2/credentials/bigquery/validate | Validate BigQuery credentials
+[**ValidateBigqueryCredentialsChange**](CredentialsAPI.md#ValidateBigqueryCredentialsChange) | **Post** /api/v2/credentials/bigquery/{credentials_id}/validate | Validate a change to BigQuery credentials
 [**ValidateClickhouseCredentials**](CredentialsAPI.md#ValidateClickhouseCredentials) | **Post** /api/v2/credentials/clickhouse/validate | Validate ClickHouse credentials
+[**ValidateClickhouseCredentialsChange**](CredentialsAPI.md#ValidateClickhouseCredentialsChange) | **Post** /api/v2/credentials/clickhouse/{credentials_id}/validate | Validate a change to ClickHouse credentials
 [**ValidateDatabricksMetastoreSqlWarehouseCredentials**](CredentialsAPI.md#ValidateDatabricksMetastoreSqlWarehouseCredentials) | **Post** /api/v2/credentials/databricks-metastore-sql-warehouse/validate | Validate Databricks metadata collection credentials
+[**ValidateDatabricksMetastoreSqlWarehouseCredentialsChange**](CredentialsAPI.md#ValidateDatabricksMetastoreSqlWarehouseCredentialsChange) | **Post** /api/v2/credentials/databricks-metastore-sql-warehouse/{credentials_id}/validate | Validate a change to Databricks metadata collection credentials
 [**ValidateDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#ValidateDatabricksSqlWarehouseCredentials) | **Post** /api/v2/credentials/databricks-sql-warehouse/validate | Validate Databricks query credentials
+[**ValidateDatabricksSqlWarehouseCredentialsChange**](CredentialsAPI.md#ValidateDatabricksSqlWarehouseCredentialsChange) | **Post** /api/v2/credentials/databricks-sql-warehouse/{credentials_id}/validate | Validate a change to Databricks query credentials
 [**ValidateDb2Credentials**](CredentialsAPI.md#ValidateDb2Credentials) | **Post** /api/v2/credentials/db2/validate | Validate Db2 credentials
+[**ValidateDb2CredentialsChange**](CredentialsAPI.md#ValidateDb2CredentialsChange) | **Post** /api/v2/credentials/db2/{credentials_id}/validate | Validate a change to Db2 credentials
 [**ValidateEnvVarCredentials**](CredentialsAPI.md#ValidateEnvVarCredentials) | **Post** /api/v2/credentials/self-hosted/env-var/validate | Validate environment variable credentials
+[**ValidateEnvVarCredentialsChange**](CredentialsAPI.md#ValidateEnvVarCredentialsChange) | **Post** /api/v2/credentials/self-hosted/env-var/{credentials_id}/validate | Validate a change to environment variable credentials
 [**ValidateFileCredentials**](CredentialsAPI.md#ValidateFileCredentials) | **Post** /api/v2/credentials/self-hosted/file/validate | Validate file credentials
+[**ValidateFileCredentialsChange**](CredentialsAPI.md#ValidateFileCredentialsChange) | **Post** /api/v2/credentials/self-hosted/file/{credentials_id}/validate | Validate a change to file credentials
 [**ValidateFivetranCredentials**](CredentialsAPI.md#ValidateFivetranCredentials) | **Post** /api/v2/credentials/fivetran/validate | Validate Fivetran credentials
+[**ValidateFivetranCredentialsChange**](CredentialsAPI.md#ValidateFivetranCredentialsChange) | **Post** /api/v2/credentials/fivetran/{credentials_id}/validate | Validate a change to Fivetran credentials
 [**ValidateGcpDataformCredentials**](CredentialsAPI.md#ValidateGcpDataformCredentials) | **Post** /api/v2/credentials/gcp-dataform/validate | Validate GCP Dataform credentials
+[**ValidateGcpDataformCredentialsChange**](CredentialsAPI.md#ValidateGcpDataformCredentialsChange) | **Post** /api/v2/credentials/gcp-dataform/{credentials_id}/validate | Validate a change to GCP Dataform credentials
 [**ValidateGcpSecretManagerCredentials**](CredentialsAPI.md#ValidateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp/validate | Validate GCP Secret Manager credentials
+[**ValidateGcpSecretManagerCredentialsChange**](CredentialsAPI.md#ValidateGcpSecretManagerCredentialsChange) | **Post** /api/v2/credentials/self-hosted/gcp/{credentials_id}/validate | Validate a change to GCP Secret Manager credentials
 [**ValidateInformaticaV2Credentials**](CredentialsAPI.md#ValidateInformaticaV2Credentials) | **Post** /api/v2/credentials/informatica-v2/validate | Validate Informatica credentials
+[**ValidateInformaticaV2CredentialsChange**](CredentialsAPI.md#ValidateInformaticaV2CredentialsChange) | **Post** /api/v2/credentials/informatica-v2/{credentials_id}/validate | Validate a change to Informatica credentials
 [**ValidateLookerCredentials**](CredentialsAPI.md#ValidateLookerCredentials) | **Post** /api/v2/credentials/looker/validate | Validate Looker credentials
+[**ValidateLookerCredentialsChange**](CredentialsAPI.md#ValidateLookerCredentialsChange) | **Post** /api/v2/credentials/looker/{credentials_id}/validate | Validate a change to Looker credentials
 [**ValidateLookerGitCloneCredentials**](CredentialsAPI.md#ValidateLookerGitCloneCredentials) | **Post** /api/v2/credentials/looker-git-clone/validate | Validate LookML repository credentials
+[**ValidateLookerGitCloneCredentialsChange**](CredentialsAPI.md#ValidateLookerGitCloneCredentialsChange) | **Post** /api/v2/credentials/looker-git-clone/{credentials_id}/validate | Validate a change to LookML repository credentials
 [**ValidateMariadbCredentials**](CredentialsAPI.md#ValidateMariadbCredentials) | **Post** /api/v2/credentials/mariadb/validate | Validate MariaDB credentials
+[**ValidateMariadbCredentialsChange**](CredentialsAPI.md#ValidateMariadbCredentialsChange) | **Post** /api/v2/credentials/mariadb/{credentials_id}/validate | Validate a change to MariaDB credentials
 [**ValidateMulesoftCredentials**](CredentialsAPI.md#ValidateMulesoftCredentials) | **Post** /api/v2/credentials/mulesoft/validate | Validate MuleSoft credentials
+[**ValidateMulesoftCredentialsChange**](CredentialsAPI.md#ValidateMulesoftCredentialsChange) | **Post** /api/v2/credentials/mulesoft/{credentials_id}/validate | Validate a change to MuleSoft credentials
 [**ValidateMysqlCredentials**](CredentialsAPI.md#ValidateMysqlCredentials) | **Post** /api/v2/credentials/mysql/validate | Validate MySQL credentials
+[**ValidateMysqlCredentialsChange**](CredentialsAPI.md#ValidateMysqlCredentialsChange) | **Post** /api/v2/credentials/mysql/{credentials_id}/validate | Validate a change to MySQL credentials
 [**ValidateOracleCredentials**](CredentialsAPI.md#ValidateOracleCredentials) | **Post** /api/v2/credentials/oracle/validate | Validate Oracle credentials
+[**ValidateOracleCredentialsChange**](CredentialsAPI.md#ValidateOracleCredentialsChange) | **Post** /api/v2/credentials/oracle/{credentials_id}/validate | Validate a change to Oracle credentials
 [**ValidatePostgresCredentials**](CredentialsAPI.md#ValidatePostgresCredentials) | **Post** /api/v2/credentials/postgres/validate | Validate PostgreSQL credentials
+[**ValidatePostgresCredentialsChange**](CredentialsAPI.md#ValidatePostgresCredentialsChange) | **Post** /api/v2/credentials/postgres/{credentials_id}/validate | Validate a change to PostgreSQL credentials
 [**ValidatePowerBiCredentials**](CredentialsAPI.md#ValidatePowerBiCredentials) | **Post** /api/v2/credentials/power-bi/validate | Validate Power BI credentials
+[**ValidatePowerBiCredentialsChange**](CredentialsAPI.md#ValidatePowerBiCredentialsChange) | **Post** /api/v2/credentials/power-bi/{credentials_id}/validate | Validate a change to Power BI credentials
 [**ValidateRedshiftCredentials**](CredentialsAPI.md#ValidateRedshiftCredentials) | **Post** /api/v2/credentials/redshift/validate | Validate Redshift credentials
+[**ValidateRedshiftCredentialsChange**](CredentialsAPI.md#ValidateRedshiftCredentialsChange) | **Post** /api/v2/credentials/redshift/{credentials_id}/validate | Validate a change to Redshift credentials
 [**ValidateSapHanaCredentials**](CredentialsAPI.md#ValidateSapHanaCredentials) | **Post** /api/v2/credentials/sap-hana/validate | Validate SAP HANA credentials
+[**ValidateSapHanaCredentialsChange**](CredentialsAPI.md#ValidateSapHanaCredentialsChange) | **Post** /api/v2/credentials/sap-hana/{credentials_id}/validate | Validate a change to SAP HANA credentials
 [**ValidateSnowflakeCredentials**](CredentialsAPI.md#ValidateSnowflakeCredentials) | **Post** /api/v2/credentials/snowflake/validate | Validate Snowflake credentials
+[**ValidateSnowflakeCredentialsChange**](CredentialsAPI.md#ValidateSnowflakeCredentialsChange) | **Post** /api/v2/credentials/snowflake/{credentials_id}/validate | Validate a change to Snowflake credentials
 [**ValidateSqlServerCredentials**](CredentialsAPI.md#ValidateSqlServerCredentials) | **Post** /api/v2/credentials/sql-server/validate | Validate SQL Server credentials
+[**ValidateSqlServerCredentialsChange**](CredentialsAPI.md#ValidateSqlServerCredentialsChange) | **Post** /api/v2/credentials/sql-server/{credentials_id}/validate | Validate a change to SQL Server credentials
 [**ValidateStarburstEnterpriseCredentials**](CredentialsAPI.md#ValidateStarburstEnterpriseCredentials) | **Post** /api/v2/credentials/starburst-enterprise/validate | Validate Starburst Enterprise credentials
+[**ValidateStarburstEnterpriseCredentialsChange**](CredentialsAPI.md#ValidateStarburstEnterpriseCredentialsChange) | **Post** /api/v2/credentials/starburst-enterprise/{credentials_id}/validate | Validate a change to Starburst Enterprise credentials
 [**ValidateStarburstGalaxyCredentials**](CredentialsAPI.md#ValidateStarburstGalaxyCredentials) | **Post** /api/v2/credentials/starburst-galaxy/validate | Validate Starburst Galaxy credentials
+[**ValidateStarburstGalaxyCredentialsChange**](CredentialsAPI.md#ValidateStarburstGalaxyCredentialsChange) | **Post** /api/v2/credentials/starburst-galaxy/{credentials_id}/validate | Validate a change to Starburst Galaxy credentials
 [**ValidateTableauCredentials**](CredentialsAPI.md#ValidateTableauCredentials) | **Post** /api/v2/credentials/tableau/validate | Validate Tableau credentials
+[**ValidateTableauCredentialsChange**](CredentialsAPI.md#ValidateTableauCredentialsChange) | **Post** /api/v2/credentials/tableau/{credentials_id}/validate | Validate a change to Tableau credentials
 [**ValidateTeradataCredentials**](CredentialsAPI.md#ValidateTeradataCredentials) | **Post** /api/v2/credentials/teradata/validate | Validate Teradata credentials
+[**ValidateTeradataCredentialsChange**](CredentialsAPI.md#ValidateTeradataCredentialsChange) | **Post** /api/v2/credentials/teradata/{credentials_id}/validate | Validate a change to Teradata credentials
 
 
 
@@ -9485,6 +9517,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateAwsSecretsManagerCredentialsChange
+
+> ValidationRunOut ValidateAwsSecretsManagerCredentialsChange(ctx, credentialsId).AwsSecretsManagerCredentialsChangeValidateIn(awsSecretsManagerCredentialsChangeValidateIn).Execute()
+
+Validate a change to AWS Secrets Manager credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	awsSecretsManagerCredentialsChangeValidateIn := *openapiclient.NewAwsSecretsManagerCredentialsChangeValidateIn("DeploymentId_example") // AwsSecretsManagerCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateAwsSecretsManagerCredentialsChange(context.Background(), credentialsId).AwsSecretsManagerCredentialsChangeValidateIn(awsSecretsManagerCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateAwsSecretsManagerCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateAwsSecretsManagerCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateAwsSecretsManagerCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateAwsSecretsManagerCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **awsSecretsManagerCredentialsChangeValidateIn** | [**AwsSecretsManagerCredentialsChangeValidateIn**](AwsSecretsManagerCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateAzureDataFactoryCredentials
 
 > ValidationRunOut ValidateAzureDataFactoryCredentials(ctx).AzureDataFactoryCredentialsValidateIn(azureDataFactoryCredentialsValidateIn).Execute()
@@ -9532,6 +9636,78 @@ Other parameters are passed through a pointer to a apiValidateAzureDataFactoryCr
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **azureDataFactoryCredentialsValidateIn** | [**AzureDataFactoryCredentialsValidateIn**](AzureDataFactoryCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateAzureDataFactoryCredentialsChange
+
+> ValidationRunOut ValidateAzureDataFactoryCredentialsChange(ctx, credentialsId).AzureDataFactoryCredentialsChangeValidateIn(azureDataFactoryCredentialsChangeValidateIn).Execute()
+
+Validate a change to Azure Data Factory credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	azureDataFactoryCredentialsChangeValidateIn := *openapiclient.NewAzureDataFactoryCredentialsChangeValidateIn("DeploymentId_example") // AzureDataFactoryCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateAzureDataFactoryCredentialsChange(context.Background(), credentialsId).AzureDataFactoryCredentialsChangeValidateIn(azureDataFactoryCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateAzureDataFactoryCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateAzureDataFactoryCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateAzureDataFactoryCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateAzureDataFactoryCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **azureDataFactoryCredentialsChangeValidateIn** | [**AzureDataFactoryCredentialsChangeValidateIn**](AzureDataFactoryCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -9617,6 +9793,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateAzureDedicatedSqlPoolCredentialsChange
+
+> ValidationRunOut ValidateAzureDedicatedSqlPoolCredentialsChange(ctx, credentialsId).AzureDedicatedSqlPoolCredentialsChangeValidateIn(azureDedicatedSqlPoolCredentialsChangeValidateIn).Execute()
+
+Validate a change to Azure Dedicated SQL Pool credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	azureDedicatedSqlPoolCredentialsChangeValidateIn := *openapiclient.NewAzureDedicatedSqlPoolCredentialsChangeValidateIn("DeploymentId_example") // AzureDedicatedSqlPoolCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateAzureDedicatedSqlPoolCredentialsChange(context.Background(), credentialsId).AzureDedicatedSqlPoolCredentialsChangeValidateIn(azureDedicatedSqlPoolCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateAzureDedicatedSqlPoolCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateAzureDedicatedSqlPoolCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateAzureDedicatedSqlPoolCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateAzureDedicatedSqlPoolCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **azureDedicatedSqlPoolCredentialsChangeValidateIn** | [**AzureDedicatedSqlPoolCredentialsChangeValidateIn**](AzureDedicatedSqlPoolCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateAzureKeyVaultCredentials
 
 > ValidationRunOut ValidateAzureKeyVaultCredentials(ctx).AzureKeyVaultCredentialsValidateIn(azureKeyVaultCredentialsValidateIn).Execute()
@@ -9664,6 +9912,78 @@ Other parameters are passed through a pointer to a apiValidateAzureKeyVaultCrede
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **azureKeyVaultCredentialsValidateIn** | [**AzureKeyVaultCredentialsValidateIn**](AzureKeyVaultCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateAzureKeyVaultCredentialsChange
+
+> ValidationRunOut ValidateAzureKeyVaultCredentialsChange(ctx, credentialsId).AzureKeyVaultCredentialsChangeValidateIn(azureKeyVaultCredentialsChangeValidateIn).Execute()
+
+Validate a change to Azure Key Vault credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	azureKeyVaultCredentialsChangeValidateIn := *openapiclient.NewAzureKeyVaultCredentialsChangeValidateIn("DeploymentId_example") // AzureKeyVaultCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateAzureKeyVaultCredentialsChange(context.Background(), credentialsId).AzureKeyVaultCredentialsChangeValidateIn(azureKeyVaultCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateAzureKeyVaultCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateAzureKeyVaultCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateAzureKeyVaultCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateAzureKeyVaultCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **azureKeyVaultCredentialsChangeValidateIn** | [**AzureKeyVaultCredentialsChangeValidateIn**](AzureKeyVaultCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -9749,6 +10069,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateAzureSqlDatabaseCredentialsChange
+
+> ValidationRunOut ValidateAzureSqlDatabaseCredentialsChange(ctx, credentialsId).AzureSqlDatabaseCredentialsChangeValidateIn(azureSqlDatabaseCredentialsChangeValidateIn).Execute()
+
+Validate a change to Azure SQL Database credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	azureSqlDatabaseCredentialsChangeValidateIn := *openapiclient.NewAzureSqlDatabaseCredentialsChangeValidateIn("DeploymentId_example") // AzureSqlDatabaseCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateAzureSqlDatabaseCredentialsChange(context.Background(), credentialsId).AzureSqlDatabaseCredentialsChangeValidateIn(azureSqlDatabaseCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateAzureSqlDatabaseCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateAzureSqlDatabaseCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateAzureSqlDatabaseCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateAzureSqlDatabaseCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **azureSqlDatabaseCredentialsChangeValidateIn** | [**AzureSqlDatabaseCredentialsChangeValidateIn**](AzureSqlDatabaseCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateBigqueryCredentials
 
 > ValidationRunOut ValidateBigqueryCredentials(ctx).BigQueryCredentialsValidateIn(bigQueryCredentialsValidateIn).Execute()
@@ -9796,6 +10188,78 @@ Other parameters are passed through a pointer to a apiValidateBigqueryCredential
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **bigQueryCredentialsValidateIn** | [**BigQueryCredentialsValidateIn**](BigQueryCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateBigqueryCredentialsChange
+
+> ValidationRunOut ValidateBigqueryCredentialsChange(ctx, credentialsId).BigQueryCredentialsChangeValidateIn(bigQueryCredentialsChangeValidateIn).Execute()
+
+Validate a change to BigQuery credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	bigQueryCredentialsChangeValidateIn := *openapiclient.NewBigQueryCredentialsChangeValidateIn("DeploymentId_example") // BigQueryCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateBigqueryCredentialsChange(context.Background(), credentialsId).BigQueryCredentialsChangeValidateIn(bigQueryCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateBigqueryCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateBigqueryCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateBigqueryCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateBigqueryCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **bigQueryCredentialsChangeValidateIn** | [**BigQueryCredentialsChangeValidateIn**](BigQueryCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -9881,6 +10345,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateClickhouseCredentialsChange
+
+> ValidationRunOut ValidateClickhouseCredentialsChange(ctx, credentialsId).ClickHouseCredentialsChangeValidateIn(clickHouseCredentialsChangeValidateIn).Execute()
+
+Validate a change to ClickHouse credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	clickHouseCredentialsChangeValidateIn := *openapiclient.NewClickHouseCredentialsChangeValidateIn("DeploymentId_example") // ClickHouseCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateClickhouseCredentialsChange(context.Background(), credentialsId).ClickHouseCredentialsChangeValidateIn(clickHouseCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateClickhouseCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateClickhouseCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateClickhouseCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateClickhouseCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **clickHouseCredentialsChangeValidateIn** | [**ClickHouseCredentialsChangeValidateIn**](ClickHouseCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateDatabricksMetastoreSqlWarehouseCredentials
 
 > ValidationRunOut ValidateDatabricksMetastoreSqlWarehouseCredentials(ctx).DatabricksMetastoreSqlWarehouseCredentialsValidateIn(databricksMetastoreSqlWarehouseCredentialsValidateIn).Execute()
@@ -9928,6 +10464,78 @@ Other parameters are passed through a pointer to a apiValidateDatabricksMetastor
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **databricksMetastoreSqlWarehouseCredentialsValidateIn** | [**DatabricksMetastoreSqlWarehouseCredentialsValidateIn**](DatabricksMetastoreSqlWarehouseCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateDatabricksMetastoreSqlWarehouseCredentialsChange
+
+> ValidationRunOut ValidateDatabricksMetastoreSqlWarehouseCredentialsChange(ctx, credentialsId).DatabricksMetastoreSqlWarehouseCredentialsChangeValidateIn(databricksMetastoreSqlWarehouseCredentialsChangeValidateIn).Execute()
+
+Validate a change to Databricks metadata collection credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	databricksMetastoreSqlWarehouseCredentialsChangeValidateIn := *openapiclient.NewDatabricksMetastoreSqlWarehouseCredentialsChangeValidateIn("DeploymentId_example") // DatabricksMetastoreSqlWarehouseCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateDatabricksMetastoreSqlWarehouseCredentialsChange(context.Background(), credentialsId).DatabricksMetastoreSqlWarehouseCredentialsChangeValidateIn(databricksMetastoreSqlWarehouseCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateDatabricksMetastoreSqlWarehouseCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateDatabricksMetastoreSqlWarehouseCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateDatabricksMetastoreSqlWarehouseCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateDatabricksMetastoreSqlWarehouseCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **databricksMetastoreSqlWarehouseCredentialsChangeValidateIn** | [**DatabricksMetastoreSqlWarehouseCredentialsChangeValidateIn**](DatabricksMetastoreSqlWarehouseCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -10013,6 +10621,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateDatabricksSqlWarehouseCredentialsChange
+
+> ValidationRunOut ValidateDatabricksSqlWarehouseCredentialsChange(ctx, credentialsId).DatabricksSqlWarehouseCredentialsChangeValidateIn(databricksSqlWarehouseCredentialsChangeValidateIn).Execute()
+
+Validate a change to Databricks query credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	databricksSqlWarehouseCredentialsChangeValidateIn := *openapiclient.NewDatabricksSqlWarehouseCredentialsChangeValidateIn("DeploymentId_example") // DatabricksSqlWarehouseCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateDatabricksSqlWarehouseCredentialsChange(context.Background(), credentialsId).DatabricksSqlWarehouseCredentialsChangeValidateIn(databricksSqlWarehouseCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateDatabricksSqlWarehouseCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateDatabricksSqlWarehouseCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateDatabricksSqlWarehouseCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateDatabricksSqlWarehouseCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **databricksSqlWarehouseCredentialsChangeValidateIn** | [**DatabricksSqlWarehouseCredentialsChangeValidateIn**](DatabricksSqlWarehouseCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateDb2Credentials
 
 > ValidationRunOut ValidateDb2Credentials(ctx).Db2CredentialsValidateIn(db2CredentialsValidateIn).Execute()
@@ -10060,6 +10740,78 @@ Other parameters are passed through a pointer to a apiValidateDb2CredentialsRequ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **db2CredentialsValidateIn** | [**Db2CredentialsValidateIn**](Db2CredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateDb2CredentialsChange
+
+> ValidationRunOut ValidateDb2CredentialsChange(ctx, credentialsId).Db2CredentialsChangeValidateIn(db2CredentialsChangeValidateIn).Execute()
+
+Validate a change to Db2 credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	db2CredentialsChangeValidateIn := *openapiclient.NewDb2CredentialsChangeValidateIn("DeploymentId_example") // Db2CredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateDb2CredentialsChange(context.Background(), credentialsId).Db2CredentialsChangeValidateIn(db2CredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateDb2CredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateDb2CredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateDb2CredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateDb2CredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **db2CredentialsChangeValidateIn** | [**Db2CredentialsChangeValidateIn**](Db2CredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -10145,6 +10897,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateEnvVarCredentialsChange
+
+> ValidationRunOut ValidateEnvVarCredentialsChange(ctx, credentialsId).EnvVarCredentialsChangeValidateIn(envVarCredentialsChangeValidateIn).Execute()
+
+Validate a change to environment variable credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	envVarCredentialsChangeValidateIn := *openapiclient.NewEnvVarCredentialsChangeValidateIn("DeploymentId_example") // EnvVarCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateEnvVarCredentialsChange(context.Background(), credentialsId).EnvVarCredentialsChangeValidateIn(envVarCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateEnvVarCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateEnvVarCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateEnvVarCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateEnvVarCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **envVarCredentialsChangeValidateIn** | [**EnvVarCredentialsChangeValidateIn**](EnvVarCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateFileCredentials
 
 > ValidationRunOut ValidateFileCredentials(ctx).FileCredentialsValidateIn(fileCredentialsValidateIn).Execute()
@@ -10192,6 +11016,78 @@ Other parameters are passed through a pointer to a apiValidateFileCredentialsReq
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **fileCredentialsValidateIn** | [**FileCredentialsValidateIn**](FileCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateFileCredentialsChange
+
+> ValidationRunOut ValidateFileCredentialsChange(ctx, credentialsId).FileCredentialsChangeValidateIn(fileCredentialsChangeValidateIn).Execute()
+
+Validate a change to file credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	fileCredentialsChangeValidateIn := *openapiclient.NewFileCredentialsChangeValidateIn("DeploymentId_example") // FileCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateFileCredentialsChange(context.Background(), credentialsId).FileCredentialsChangeValidateIn(fileCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateFileCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateFileCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateFileCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateFileCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fileCredentialsChangeValidateIn** | [**FileCredentialsChangeValidateIn**](FileCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -10277,6 +11173,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateFivetranCredentialsChange
+
+> ValidationRunOut ValidateFivetranCredentialsChange(ctx, credentialsId).FivetranCredentialsChangeValidateIn(fivetranCredentialsChangeValidateIn).Execute()
+
+Validate a change to Fivetran credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	fivetranCredentialsChangeValidateIn := *openapiclient.NewFivetranCredentialsChangeValidateIn("DeploymentId_example") // FivetranCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateFivetranCredentialsChange(context.Background(), credentialsId).FivetranCredentialsChangeValidateIn(fivetranCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateFivetranCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateFivetranCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateFivetranCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateFivetranCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **fivetranCredentialsChangeValidateIn** | [**FivetranCredentialsChangeValidateIn**](FivetranCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateGcpDataformCredentials
 
 > ValidationRunOut ValidateGcpDataformCredentials(ctx).GcpDataformCredentialsValidateIn(gcpDataformCredentialsValidateIn).Execute()
@@ -10324,6 +11292,78 @@ Other parameters are passed through a pointer to a apiValidateGcpDataformCredent
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **gcpDataformCredentialsValidateIn** | [**GcpDataformCredentialsValidateIn**](GcpDataformCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateGcpDataformCredentialsChange
+
+> ValidationRunOut ValidateGcpDataformCredentialsChange(ctx, credentialsId).GcpDataformCredentialsChangeValidateIn(gcpDataformCredentialsChangeValidateIn).Execute()
+
+Validate a change to GCP Dataform credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	gcpDataformCredentialsChangeValidateIn := *openapiclient.NewGcpDataformCredentialsChangeValidateIn("DeploymentId_example") // GcpDataformCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateGcpDataformCredentialsChange(context.Background(), credentialsId).GcpDataformCredentialsChangeValidateIn(gcpDataformCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateGcpDataformCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateGcpDataformCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateGcpDataformCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateGcpDataformCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **gcpDataformCredentialsChangeValidateIn** | [**GcpDataformCredentialsChangeValidateIn**](GcpDataformCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -10409,6 +11449,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateGcpSecretManagerCredentialsChange
+
+> ValidationRunOut ValidateGcpSecretManagerCredentialsChange(ctx, credentialsId).GcpSecretManagerCredentialsChangeValidateIn(gcpSecretManagerCredentialsChangeValidateIn).Execute()
+
+Validate a change to GCP Secret Manager credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	gcpSecretManagerCredentialsChangeValidateIn := *openapiclient.NewGcpSecretManagerCredentialsChangeValidateIn("DeploymentId_example") // GcpSecretManagerCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateGcpSecretManagerCredentialsChange(context.Background(), credentialsId).GcpSecretManagerCredentialsChangeValidateIn(gcpSecretManagerCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateGcpSecretManagerCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateGcpSecretManagerCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateGcpSecretManagerCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateGcpSecretManagerCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **gcpSecretManagerCredentialsChangeValidateIn** | [**GcpSecretManagerCredentialsChangeValidateIn**](GcpSecretManagerCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateInformaticaV2Credentials
 
 > ValidationRunOut ValidateInformaticaV2Credentials(ctx).InformaticaV2CredentialsValidateIn(informaticaV2CredentialsValidateIn).Execute()
@@ -10456,6 +11568,78 @@ Other parameters are passed through a pointer to a apiValidateInformaticaV2Crede
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **informaticaV2CredentialsValidateIn** | [**InformaticaV2CredentialsValidateIn**](InformaticaV2CredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateInformaticaV2CredentialsChange
+
+> ValidationRunOut ValidateInformaticaV2CredentialsChange(ctx, credentialsId).InformaticaV2CredentialsChangeValidateIn(informaticaV2CredentialsChangeValidateIn).Execute()
+
+Validate a change to Informatica credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	informaticaV2CredentialsChangeValidateIn := *openapiclient.NewInformaticaV2CredentialsChangeValidateIn("DeploymentId_example") // InformaticaV2CredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateInformaticaV2CredentialsChange(context.Background(), credentialsId).InformaticaV2CredentialsChangeValidateIn(informaticaV2CredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateInformaticaV2CredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateInformaticaV2CredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateInformaticaV2CredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateInformaticaV2CredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **informaticaV2CredentialsChangeValidateIn** | [**InformaticaV2CredentialsChangeValidateIn**](InformaticaV2CredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -10541,6 +11725,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateLookerCredentialsChange
+
+> ValidationRunOut ValidateLookerCredentialsChange(ctx, credentialsId).LookerCredentialsChangeValidateIn(lookerCredentialsChangeValidateIn).Execute()
+
+Validate a change to Looker credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	lookerCredentialsChangeValidateIn := *openapiclient.NewLookerCredentialsChangeValidateIn("DeploymentId_example") // LookerCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateLookerCredentialsChange(context.Background(), credentialsId).LookerCredentialsChangeValidateIn(lookerCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateLookerCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateLookerCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateLookerCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateLookerCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **lookerCredentialsChangeValidateIn** | [**LookerCredentialsChangeValidateIn**](LookerCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateLookerGitCloneCredentials
 
 > ValidationRunOut ValidateLookerGitCloneCredentials(ctx).LookerGitCloneCredentialsValidateIn(lookerGitCloneCredentialsValidateIn).Execute()
@@ -10588,6 +11844,78 @@ Other parameters are passed through a pointer to a apiValidateLookerGitCloneCred
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **lookerGitCloneCredentialsValidateIn** | [**LookerGitCloneCredentialsValidateIn**](LookerGitCloneCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateLookerGitCloneCredentialsChange
+
+> ValidationRunOut ValidateLookerGitCloneCredentialsChange(ctx, credentialsId).LookerGitCloneCredentialsChangeValidateIn(lookerGitCloneCredentialsChangeValidateIn).Execute()
+
+Validate a change to LookML repository credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	lookerGitCloneCredentialsChangeValidateIn := *openapiclient.NewLookerGitCloneCredentialsChangeValidateIn("DeploymentId_example") // LookerGitCloneCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateLookerGitCloneCredentialsChange(context.Background(), credentialsId).LookerGitCloneCredentialsChangeValidateIn(lookerGitCloneCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateLookerGitCloneCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateLookerGitCloneCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateLookerGitCloneCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateLookerGitCloneCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **lookerGitCloneCredentialsChangeValidateIn** | [**LookerGitCloneCredentialsChangeValidateIn**](LookerGitCloneCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -10673,6 +12001,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateMariadbCredentialsChange
+
+> ValidationRunOut ValidateMariadbCredentialsChange(ctx, credentialsId).MariaDbCredentialsChangeValidateIn(mariaDbCredentialsChangeValidateIn).Execute()
+
+Validate a change to MariaDB credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	mariaDbCredentialsChangeValidateIn := *openapiclient.NewMariaDbCredentialsChangeValidateIn("DeploymentId_example") // MariaDbCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateMariadbCredentialsChange(context.Background(), credentialsId).MariaDbCredentialsChangeValidateIn(mariaDbCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateMariadbCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateMariadbCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateMariadbCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateMariadbCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **mariaDbCredentialsChangeValidateIn** | [**MariaDbCredentialsChangeValidateIn**](MariaDbCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateMulesoftCredentials
 
 > ValidationRunOut ValidateMulesoftCredentials(ctx).MulesoftCredentialsValidateIn(mulesoftCredentialsValidateIn).Execute()
@@ -10720,6 +12120,78 @@ Other parameters are passed through a pointer to a apiValidateMulesoftCredential
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **mulesoftCredentialsValidateIn** | [**MulesoftCredentialsValidateIn**](MulesoftCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateMulesoftCredentialsChange
+
+> ValidationRunOut ValidateMulesoftCredentialsChange(ctx, credentialsId).MulesoftCredentialsChangeValidateIn(mulesoftCredentialsChangeValidateIn).Execute()
+
+Validate a change to MuleSoft credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	mulesoftCredentialsChangeValidateIn := *openapiclient.NewMulesoftCredentialsChangeValidateIn("DeploymentId_example") // MulesoftCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateMulesoftCredentialsChange(context.Background(), credentialsId).MulesoftCredentialsChangeValidateIn(mulesoftCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateMulesoftCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateMulesoftCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateMulesoftCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateMulesoftCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **mulesoftCredentialsChangeValidateIn** | [**MulesoftCredentialsChangeValidateIn**](MulesoftCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -10805,6 +12277,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateMysqlCredentialsChange
+
+> ValidationRunOut ValidateMysqlCredentialsChange(ctx, credentialsId).MySqlCredentialsChangeValidateIn(mySqlCredentialsChangeValidateIn).Execute()
+
+Validate a change to MySQL credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	mySqlCredentialsChangeValidateIn := *openapiclient.NewMySqlCredentialsChangeValidateIn("DeploymentId_example") // MySqlCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateMysqlCredentialsChange(context.Background(), credentialsId).MySqlCredentialsChangeValidateIn(mySqlCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateMysqlCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateMysqlCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateMysqlCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateMysqlCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **mySqlCredentialsChangeValidateIn** | [**MySqlCredentialsChangeValidateIn**](MySqlCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateOracleCredentials
 
 > ValidationRunOut ValidateOracleCredentials(ctx).OracleCredentialsValidateIn(oracleCredentialsValidateIn).Execute()
@@ -10852,6 +12396,78 @@ Other parameters are passed through a pointer to a apiValidateOracleCredentialsR
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **oracleCredentialsValidateIn** | [**OracleCredentialsValidateIn**](OracleCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateOracleCredentialsChange
+
+> ValidationRunOut ValidateOracleCredentialsChange(ctx, credentialsId).OracleCredentialsChangeValidateIn(oracleCredentialsChangeValidateIn).Execute()
+
+Validate a change to Oracle credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	oracleCredentialsChangeValidateIn := *openapiclient.NewOracleCredentialsChangeValidateIn("DeploymentId_example") // OracleCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateOracleCredentialsChange(context.Background(), credentialsId).OracleCredentialsChangeValidateIn(oracleCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateOracleCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateOracleCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateOracleCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateOracleCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **oracleCredentialsChangeValidateIn** | [**OracleCredentialsChangeValidateIn**](OracleCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -10937,6 +12553,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidatePostgresCredentialsChange
+
+> ValidationRunOut ValidatePostgresCredentialsChange(ctx, credentialsId).PostgresCredentialsChangeValidateIn(postgresCredentialsChangeValidateIn).Execute()
+
+Validate a change to PostgreSQL credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	postgresCredentialsChangeValidateIn := *openapiclient.NewPostgresCredentialsChangeValidateIn("DeploymentId_example") // PostgresCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidatePostgresCredentialsChange(context.Background(), credentialsId).PostgresCredentialsChangeValidateIn(postgresCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidatePostgresCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidatePostgresCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidatePostgresCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidatePostgresCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **postgresCredentialsChangeValidateIn** | [**PostgresCredentialsChangeValidateIn**](PostgresCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidatePowerBiCredentials
 
 > ValidationRunOut ValidatePowerBiCredentials(ctx).PowerBiCredentialsValidateIn(powerBiCredentialsValidateIn).Execute()
@@ -10984,6 +12672,78 @@ Other parameters are passed through a pointer to a apiValidatePowerBiCredentials
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **powerBiCredentialsValidateIn** | [**PowerBiCredentialsValidateIn**](PowerBiCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidatePowerBiCredentialsChange
+
+> ValidationRunOut ValidatePowerBiCredentialsChange(ctx, credentialsId).PowerBiCredentialsChangeValidateIn(powerBiCredentialsChangeValidateIn).Execute()
+
+Validate a change to Power BI credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	powerBiCredentialsChangeValidateIn := *openapiclient.NewPowerBiCredentialsChangeValidateIn("DeploymentId_example") // PowerBiCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidatePowerBiCredentialsChange(context.Background(), credentialsId).PowerBiCredentialsChangeValidateIn(powerBiCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidatePowerBiCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidatePowerBiCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidatePowerBiCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidatePowerBiCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **powerBiCredentialsChangeValidateIn** | [**PowerBiCredentialsChangeValidateIn**](PowerBiCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -11069,6 +12829,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateRedshiftCredentialsChange
+
+> ValidationRunOut ValidateRedshiftCredentialsChange(ctx, credentialsId).RedshiftCredentialsChangeValidateIn(redshiftCredentialsChangeValidateIn).Execute()
+
+Validate a change to Redshift credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	redshiftCredentialsChangeValidateIn := *openapiclient.NewRedshiftCredentialsChangeValidateIn("DeploymentId_example") // RedshiftCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateRedshiftCredentialsChange(context.Background(), credentialsId).RedshiftCredentialsChangeValidateIn(redshiftCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateRedshiftCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateRedshiftCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateRedshiftCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateRedshiftCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **redshiftCredentialsChangeValidateIn** | [**RedshiftCredentialsChangeValidateIn**](RedshiftCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateSapHanaCredentials
 
 > ValidationRunOut ValidateSapHanaCredentials(ctx).SapHanaCredentialsValidateIn(sapHanaCredentialsValidateIn).Execute()
@@ -11116,6 +12948,78 @@ Other parameters are passed through a pointer to a apiValidateSapHanaCredentials
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **sapHanaCredentialsValidateIn** | [**SapHanaCredentialsValidateIn**](SapHanaCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateSapHanaCredentialsChange
+
+> ValidationRunOut ValidateSapHanaCredentialsChange(ctx, credentialsId).SapHanaCredentialsChangeValidateIn(sapHanaCredentialsChangeValidateIn).Execute()
+
+Validate a change to SAP HANA credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	sapHanaCredentialsChangeValidateIn := *openapiclient.NewSapHanaCredentialsChangeValidateIn("DeploymentId_example") // SapHanaCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateSapHanaCredentialsChange(context.Background(), credentialsId).SapHanaCredentialsChangeValidateIn(sapHanaCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateSapHanaCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateSapHanaCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateSapHanaCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateSapHanaCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **sapHanaCredentialsChangeValidateIn** | [**SapHanaCredentialsChangeValidateIn**](SapHanaCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -11201,6 +13105,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateSnowflakeCredentialsChange
+
+> ValidationRunOut ValidateSnowflakeCredentialsChange(ctx, credentialsId).SnowflakeCredentialsChangeValidateIn(snowflakeCredentialsChangeValidateIn).Execute()
+
+Validate a change to Snowflake credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	snowflakeCredentialsChangeValidateIn := *openapiclient.NewSnowflakeCredentialsChangeValidateIn("DeploymentId_example") // SnowflakeCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateSnowflakeCredentialsChange(context.Background(), credentialsId).SnowflakeCredentialsChangeValidateIn(snowflakeCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateSnowflakeCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateSnowflakeCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateSnowflakeCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateSnowflakeCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **snowflakeCredentialsChangeValidateIn** | [**SnowflakeCredentialsChangeValidateIn**](SnowflakeCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateSqlServerCredentials
 
 > ValidationRunOut ValidateSqlServerCredentials(ctx).SqlServerCredentialsValidateIn(sqlServerCredentialsValidateIn).Execute()
@@ -11248,6 +13224,78 @@ Other parameters are passed through a pointer to a apiValidateSqlServerCredentia
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **sqlServerCredentialsValidateIn** | [**SqlServerCredentialsValidateIn**](SqlServerCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateSqlServerCredentialsChange
+
+> ValidationRunOut ValidateSqlServerCredentialsChange(ctx, credentialsId).SqlServerCredentialsChangeValidateIn(sqlServerCredentialsChangeValidateIn).Execute()
+
+Validate a change to SQL Server credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	sqlServerCredentialsChangeValidateIn := *openapiclient.NewSqlServerCredentialsChangeValidateIn("DeploymentId_example") // SqlServerCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateSqlServerCredentialsChange(context.Background(), credentialsId).SqlServerCredentialsChangeValidateIn(sqlServerCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateSqlServerCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateSqlServerCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateSqlServerCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateSqlServerCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **sqlServerCredentialsChangeValidateIn** | [**SqlServerCredentialsChangeValidateIn**](SqlServerCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -11333,6 +13381,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateStarburstEnterpriseCredentialsChange
+
+> ValidationRunOut ValidateStarburstEnterpriseCredentialsChange(ctx, credentialsId).StarburstEnterpriseCredentialsChangeValidateIn(starburstEnterpriseCredentialsChangeValidateIn).Execute()
+
+Validate a change to Starburst Enterprise credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	starburstEnterpriseCredentialsChangeValidateIn := *openapiclient.NewStarburstEnterpriseCredentialsChangeValidateIn("DeploymentId_example") // StarburstEnterpriseCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateStarburstEnterpriseCredentialsChange(context.Background(), credentialsId).StarburstEnterpriseCredentialsChangeValidateIn(starburstEnterpriseCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateStarburstEnterpriseCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateStarburstEnterpriseCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateStarburstEnterpriseCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateStarburstEnterpriseCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **starburstEnterpriseCredentialsChangeValidateIn** | [**StarburstEnterpriseCredentialsChangeValidateIn**](StarburstEnterpriseCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateStarburstGalaxyCredentials
 
 > ValidationRunOut ValidateStarburstGalaxyCredentials(ctx).StarburstGalaxyCredentialsValidateIn(starburstGalaxyCredentialsValidateIn).Execute()
@@ -11380,6 +13500,78 @@ Other parameters are passed through a pointer to a apiValidateStarburstGalaxyCre
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **starburstGalaxyCredentialsValidateIn** | [**StarburstGalaxyCredentialsValidateIn**](StarburstGalaxyCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateStarburstGalaxyCredentialsChange
+
+> ValidationRunOut ValidateStarburstGalaxyCredentialsChange(ctx, credentialsId).StarburstGalaxyCredentialsChangeValidateIn(starburstGalaxyCredentialsChangeValidateIn).Execute()
+
+Validate a change to Starburst Galaxy credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	starburstGalaxyCredentialsChangeValidateIn := *openapiclient.NewStarburstGalaxyCredentialsChangeValidateIn("DeploymentId_example") // StarburstGalaxyCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateStarburstGalaxyCredentialsChange(context.Background(), credentialsId).StarburstGalaxyCredentialsChangeValidateIn(starburstGalaxyCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateStarburstGalaxyCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateStarburstGalaxyCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateStarburstGalaxyCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateStarburstGalaxyCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **starburstGalaxyCredentialsChangeValidateIn** | [**StarburstGalaxyCredentialsChangeValidateIn**](StarburstGalaxyCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
@@ -11465,6 +13657,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateTableauCredentialsChange
+
+> ValidationRunOut ValidateTableauCredentialsChange(ctx, credentialsId).TableauCredentialsChangeValidateIn(tableauCredentialsChangeValidateIn).Execute()
+
+Validate a change to Tableau credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	tableauCredentialsChangeValidateIn := *openapiclient.NewTableauCredentialsChangeValidateIn("DeploymentId_example") // TableauCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateTableauCredentialsChange(context.Background(), credentialsId).TableauCredentialsChangeValidateIn(tableauCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateTableauCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateTableauCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateTableauCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateTableauCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **tableauCredentialsChangeValidateIn** | [**TableauCredentialsChangeValidateIn**](TableauCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateTeradataCredentials
 
 > ValidationRunOut ValidateTeradataCredentials(ctx).TeradataCredentialsValidateIn(teradataCredentialsValidateIn).Execute()
@@ -11512,6 +13776,78 @@ Other parameters are passed through a pointer to a apiValidateTeradataCredential
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **teradataCredentialsValidateIn** | [**TeradataCredentialsValidateIn**](TeradataCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateTeradataCredentialsChange
+
+> ValidationRunOut ValidateTeradataCredentialsChange(ctx, credentialsId).TeradataCredentialsChangeValidateIn(teradataCredentialsChangeValidateIn).Execute()
+
+Validate a change to Teradata credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	teradataCredentialsChangeValidateIn := *openapiclient.NewTeradataCredentialsChangeValidateIn("DeploymentId_example") // TeradataCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateTeradataCredentialsChange(context.Background(), credentialsId).TeradataCredentialsChangeValidateIn(teradataCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateTeradataCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateTeradataCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateTeradataCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateTeradataCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **teradataCredentialsChangeValidateIn** | [**TeradataCredentialsChangeValidateIn**](TeradataCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 

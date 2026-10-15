@@ -1,7 +1,7 @@
 /*
 Monte Carlo AI API
 
-Programmatic access to the Monte Carlo AI platform.  Every response with a status of 400 or higher is `application/problem+json`, and carries a `code` naming the failure. That includes failures no single operation declares, such as calling a path with a method it does not support, which returns 405.  Every response carries an `X-Request-Id` header, and an error body repeats it as `request_id`. Quote it when reporting a problem. To choose the value yourself, send an `x-correlation-id` header; a value we cannot accept is replaced by a generated one.
+Programmatic access to the Monte Carlo AI platform.  Authenticate every request with an `Authorization` header. For an API key, send `Bearer <mcd_id>:<mcd_token>`. For an OAuth client, request a client-credentials token from `https://api.getmontecarlo.com/oauth2/token` with the scopes shown when the client was created, then send `Bearer <access_token>`. This API does not accept the `x-mcd-id` and `x-mcd-token` headers.  Every response with a status of 400 or higher is `application/problem+json`, and carries a `code` naming the failure. That includes failures no single operation declares, such as calling a path with a method it does not support, which returns 405.  Every response carries an `X-Request-Id` header, and an error body repeats it as `request_id`. Quote it when reporting a problem. To choose the value yourself, send an `x-correlation-id` header; a value we cannot accept is replaced by a generated one.
 
 API version: 2.0.0
 */
@@ -23163,6 +23163,210 @@ func (a *CredentialsAPIService) ValidateAwsSecretsManagerCredentialsExecute(r Ap
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateAwsSecretsManagerCredentialsChangeRequest struct {
+	ctx                                          context.Context
+	ApiService                                   *CredentialsAPIService
+	credentialsId                                string
+	awsSecretsManagerCredentialsChangeValidateIn *AwsSecretsManagerCredentialsChangeValidateIn
+}
+
+func (r ApiValidateAwsSecretsManagerCredentialsChangeRequest) AwsSecretsManagerCredentialsChangeValidateIn(awsSecretsManagerCredentialsChangeValidateIn AwsSecretsManagerCredentialsChangeValidateIn) ApiValidateAwsSecretsManagerCredentialsChangeRequest {
+	r.awsSecretsManagerCredentialsChangeValidateIn = &awsSecretsManagerCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateAwsSecretsManagerCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateAwsSecretsManagerCredentialsChangeExecute(r)
+}
+
+/*
+ValidateAwsSecretsManagerCredentialsChange Validate a change to AWS Secrets Manager credentials
+
+Check a change to AWS Secrets Manager credentials against the system they are for.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+storage returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateAwsSecretsManagerCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateAwsSecretsManagerCredentialsChange(ctx context.Context, credentialsId string) ApiValidateAwsSecretsManagerCredentialsChangeRequest {
+	return ApiValidateAwsSecretsManagerCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateAwsSecretsManagerCredentialsChangeExecute(r ApiValidateAwsSecretsManagerCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateAwsSecretsManagerCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/self-hosted/aws/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.awsSecretsManagerCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("awsSecretsManagerCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.awsSecretsManagerCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateAzureDataFactoryCredentialsRequest struct {
 	ctx                                   context.Context
 	ApiService                            *CredentialsAPIService
@@ -23243,6 +23447,210 @@ func (a *CredentialsAPIService) ValidateAzureDataFactoryCredentialsExecute(r Api
 	}
 	// body params
 	localVarPostBody = r.azureDataFactoryCredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateAzureDataFactoryCredentialsChangeRequest struct {
+	ctx                                         context.Context
+	ApiService                                  *CredentialsAPIService
+	credentialsId                               string
+	azureDataFactoryCredentialsChangeValidateIn *AzureDataFactoryCredentialsChangeValidateIn
+}
+
+func (r ApiValidateAzureDataFactoryCredentialsChangeRequest) AzureDataFactoryCredentialsChangeValidateIn(azureDataFactoryCredentialsChangeValidateIn AzureDataFactoryCredentialsChangeValidateIn) ApiValidateAzureDataFactoryCredentialsChangeRequest {
+	r.azureDataFactoryCredentialsChangeValidateIn = &azureDataFactoryCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateAzureDataFactoryCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateAzureDataFactoryCredentialsChangeExecute(r)
+}
+
+/*
+ValidateAzureDataFactoryCredentialsChange Validate a change to Azure Data Factory credentials
+
+Check a change to Azure Data Factory credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateAzureDataFactoryCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateAzureDataFactoryCredentialsChange(ctx context.Context, credentialsId string) ApiValidateAzureDataFactoryCredentialsChangeRequest {
+	return ApiValidateAzureDataFactoryCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateAzureDataFactoryCredentialsChangeExecute(r ApiValidateAzureDataFactoryCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateAzureDataFactoryCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/azure-data-factory/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.azureDataFactoryCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("azureDataFactoryCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.azureDataFactoryCredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -23555,6 +23963,210 @@ func (a *CredentialsAPIService) ValidateAzureDedicatedSqlPoolCredentialsExecute(
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateAzureDedicatedSqlPoolCredentialsChangeRequest struct {
+	ctx                                              context.Context
+	ApiService                                       *CredentialsAPIService
+	credentialsId                                    string
+	azureDedicatedSqlPoolCredentialsChangeValidateIn *AzureDedicatedSqlPoolCredentialsChangeValidateIn
+}
+
+func (r ApiValidateAzureDedicatedSqlPoolCredentialsChangeRequest) AzureDedicatedSqlPoolCredentialsChangeValidateIn(azureDedicatedSqlPoolCredentialsChangeValidateIn AzureDedicatedSqlPoolCredentialsChangeValidateIn) ApiValidateAzureDedicatedSqlPoolCredentialsChangeRequest {
+	r.azureDedicatedSqlPoolCredentialsChangeValidateIn = &azureDedicatedSqlPoolCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateAzureDedicatedSqlPoolCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateAzureDedicatedSqlPoolCredentialsChangeExecute(r)
+}
+
+/*
+ValidateAzureDedicatedSqlPoolCredentialsChange Validate a change to Azure Dedicated SQL Pool credentials
+
+Check a change to Azure Dedicated SQL Pool credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateAzureDedicatedSqlPoolCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateAzureDedicatedSqlPoolCredentialsChange(ctx context.Context, credentialsId string) ApiValidateAzureDedicatedSqlPoolCredentialsChangeRequest {
+	return ApiValidateAzureDedicatedSqlPoolCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateAzureDedicatedSqlPoolCredentialsChangeExecute(r ApiValidateAzureDedicatedSqlPoolCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateAzureDedicatedSqlPoolCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/azure-dedicated-sql-pool/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.azureDedicatedSqlPoolCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("azureDedicatedSqlPoolCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.azureDedicatedSqlPoolCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateAzureKeyVaultCredentialsRequest struct {
 	ctx                                context.Context
 	ApiService                         *CredentialsAPIService
@@ -23635,6 +24247,210 @@ func (a *CredentialsAPIService) ValidateAzureKeyVaultCredentialsExecute(r ApiVal
 	}
 	// body params
 	localVarPostBody = r.azureKeyVaultCredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateAzureKeyVaultCredentialsChangeRequest struct {
+	ctx                                      context.Context
+	ApiService                               *CredentialsAPIService
+	credentialsId                            string
+	azureKeyVaultCredentialsChangeValidateIn *AzureKeyVaultCredentialsChangeValidateIn
+}
+
+func (r ApiValidateAzureKeyVaultCredentialsChangeRequest) AzureKeyVaultCredentialsChangeValidateIn(azureKeyVaultCredentialsChangeValidateIn AzureKeyVaultCredentialsChangeValidateIn) ApiValidateAzureKeyVaultCredentialsChangeRequest {
+	r.azureKeyVaultCredentialsChangeValidateIn = &azureKeyVaultCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateAzureKeyVaultCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateAzureKeyVaultCredentialsChangeExecute(r)
+}
+
+/*
+ValidateAzureKeyVaultCredentialsChange Validate a change to Azure Key Vault credentials
+
+Check a change to Azure Key Vault credentials against the system they are for.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+storage returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateAzureKeyVaultCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateAzureKeyVaultCredentialsChange(ctx context.Context, credentialsId string) ApiValidateAzureKeyVaultCredentialsChangeRequest {
+	return ApiValidateAzureKeyVaultCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateAzureKeyVaultCredentialsChangeExecute(r ApiValidateAzureKeyVaultCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateAzureKeyVaultCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/self-hosted/azure/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.azureKeyVaultCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("azureKeyVaultCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.azureKeyVaultCredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -23947,6 +24763,210 @@ func (a *CredentialsAPIService) ValidateAzureSqlDatabaseCredentialsExecute(r Api
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateAzureSqlDatabaseCredentialsChangeRequest struct {
+	ctx                                         context.Context
+	ApiService                                  *CredentialsAPIService
+	credentialsId                               string
+	azureSqlDatabaseCredentialsChangeValidateIn *AzureSqlDatabaseCredentialsChangeValidateIn
+}
+
+func (r ApiValidateAzureSqlDatabaseCredentialsChangeRequest) AzureSqlDatabaseCredentialsChangeValidateIn(azureSqlDatabaseCredentialsChangeValidateIn AzureSqlDatabaseCredentialsChangeValidateIn) ApiValidateAzureSqlDatabaseCredentialsChangeRequest {
+	r.azureSqlDatabaseCredentialsChangeValidateIn = &azureSqlDatabaseCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateAzureSqlDatabaseCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateAzureSqlDatabaseCredentialsChangeExecute(r)
+}
+
+/*
+ValidateAzureSqlDatabaseCredentialsChange Validate a change to Azure SQL Database credentials
+
+Check a change to Azure SQL Database credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateAzureSqlDatabaseCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateAzureSqlDatabaseCredentialsChange(ctx context.Context, credentialsId string) ApiValidateAzureSqlDatabaseCredentialsChangeRequest {
+	return ApiValidateAzureSqlDatabaseCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateAzureSqlDatabaseCredentialsChangeExecute(r ApiValidateAzureSqlDatabaseCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateAzureSqlDatabaseCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/azure-sql-database/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.azureSqlDatabaseCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("azureSqlDatabaseCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.azureSqlDatabaseCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateBigqueryCredentialsRequest struct {
 	ctx                           context.Context
 	ApiService                    *CredentialsAPIService
@@ -24027,6 +25047,210 @@ func (a *CredentialsAPIService) ValidateBigqueryCredentialsExecute(r ApiValidate
 	}
 	// body params
 	localVarPostBody = r.bigQueryCredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateBigqueryCredentialsChangeRequest struct {
+	ctx                                 context.Context
+	ApiService                          *CredentialsAPIService
+	credentialsId                       string
+	bigQueryCredentialsChangeValidateIn *BigQueryCredentialsChangeValidateIn
+}
+
+func (r ApiValidateBigqueryCredentialsChangeRequest) BigQueryCredentialsChangeValidateIn(bigQueryCredentialsChangeValidateIn BigQueryCredentialsChangeValidateIn) ApiValidateBigqueryCredentialsChangeRequest {
+	r.bigQueryCredentialsChangeValidateIn = &bigQueryCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateBigqueryCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateBigqueryCredentialsChangeExecute(r)
+}
+
+/*
+ValidateBigqueryCredentialsChange Validate a change to BigQuery credentials
+
+Check a change to BigQuery credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateBigqueryCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateBigqueryCredentialsChange(ctx context.Context, credentialsId string) ApiValidateBigqueryCredentialsChangeRequest {
+	return ApiValidateBigqueryCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateBigqueryCredentialsChangeExecute(r ApiValidateBigqueryCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateBigqueryCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/bigquery/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.bigQueryCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("bigQueryCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.bigQueryCredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -24339,6 +25563,210 @@ func (a *CredentialsAPIService) ValidateClickhouseCredentialsExecute(r ApiValida
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateClickhouseCredentialsChangeRequest struct {
+	ctx                                   context.Context
+	ApiService                            *CredentialsAPIService
+	credentialsId                         string
+	clickHouseCredentialsChangeValidateIn *ClickHouseCredentialsChangeValidateIn
+}
+
+func (r ApiValidateClickhouseCredentialsChangeRequest) ClickHouseCredentialsChangeValidateIn(clickHouseCredentialsChangeValidateIn ClickHouseCredentialsChangeValidateIn) ApiValidateClickhouseCredentialsChangeRequest {
+	r.clickHouseCredentialsChangeValidateIn = &clickHouseCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateClickhouseCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateClickhouseCredentialsChangeExecute(r)
+}
+
+/*
+ValidateClickhouseCredentialsChange Validate a change to ClickHouse credentials
+
+Check a change to ClickHouse credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateClickhouseCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateClickhouseCredentialsChange(ctx context.Context, credentialsId string) ApiValidateClickhouseCredentialsChangeRequest {
+	return ApiValidateClickhouseCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateClickhouseCredentialsChangeExecute(r ApiValidateClickhouseCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateClickhouseCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/clickhouse/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.clickHouseCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("clickHouseCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.clickHouseCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateDatabricksMetastoreSqlWarehouseCredentialsRequest struct {
 	ctx                                                  context.Context
 	ApiService                                           *CredentialsAPIService
@@ -24419,6 +25847,210 @@ func (a *CredentialsAPIService) ValidateDatabricksMetastoreSqlWarehouseCredentia
 	}
 	// body params
 	localVarPostBody = r.databricksMetastoreSqlWarehouseCredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateDatabricksMetastoreSqlWarehouseCredentialsChangeRequest struct {
+	ctx                                                        context.Context
+	ApiService                                                 *CredentialsAPIService
+	credentialsId                                              string
+	databricksMetastoreSqlWarehouseCredentialsChangeValidateIn *DatabricksMetastoreSqlWarehouseCredentialsChangeValidateIn
+}
+
+func (r ApiValidateDatabricksMetastoreSqlWarehouseCredentialsChangeRequest) DatabricksMetastoreSqlWarehouseCredentialsChangeValidateIn(databricksMetastoreSqlWarehouseCredentialsChangeValidateIn DatabricksMetastoreSqlWarehouseCredentialsChangeValidateIn) ApiValidateDatabricksMetastoreSqlWarehouseCredentialsChangeRequest {
+	r.databricksMetastoreSqlWarehouseCredentialsChangeValidateIn = &databricksMetastoreSqlWarehouseCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateDatabricksMetastoreSqlWarehouseCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateDatabricksMetastoreSqlWarehouseCredentialsChangeExecute(r)
+}
+
+/*
+ValidateDatabricksMetastoreSqlWarehouseCredentialsChange Validate a change to Databricks metadata collection credentials
+
+Check a change to Databricks metadata collection credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateDatabricksMetastoreSqlWarehouseCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateDatabricksMetastoreSqlWarehouseCredentialsChange(ctx context.Context, credentialsId string) ApiValidateDatabricksMetastoreSqlWarehouseCredentialsChangeRequest {
+	return ApiValidateDatabricksMetastoreSqlWarehouseCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateDatabricksMetastoreSqlWarehouseCredentialsChangeExecute(r ApiValidateDatabricksMetastoreSqlWarehouseCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateDatabricksMetastoreSqlWarehouseCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/databricks-metastore-sql-warehouse/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.databricksMetastoreSqlWarehouseCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("databricksMetastoreSqlWarehouseCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.databricksMetastoreSqlWarehouseCredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -24731,6 +26363,210 @@ func (a *CredentialsAPIService) ValidateDatabricksSqlWarehouseCredentialsExecute
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateDatabricksSqlWarehouseCredentialsChangeRequest struct {
+	ctx                                               context.Context
+	ApiService                                        *CredentialsAPIService
+	credentialsId                                     string
+	databricksSqlWarehouseCredentialsChangeValidateIn *DatabricksSqlWarehouseCredentialsChangeValidateIn
+}
+
+func (r ApiValidateDatabricksSqlWarehouseCredentialsChangeRequest) DatabricksSqlWarehouseCredentialsChangeValidateIn(databricksSqlWarehouseCredentialsChangeValidateIn DatabricksSqlWarehouseCredentialsChangeValidateIn) ApiValidateDatabricksSqlWarehouseCredentialsChangeRequest {
+	r.databricksSqlWarehouseCredentialsChangeValidateIn = &databricksSqlWarehouseCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateDatabricksSqlWarehouseCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateDatabricksSqlWarehouseCredentialsChangeExecute(r)
+}
+
+/*
+ValidateDatabricksSqlWarehouseCredentialsChange Validate a change to Databricks query credentials
+
+Check a change to Databricks query credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateDatabricksSqlWarehouseCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateDatabricksSqlWarehouseCredentialsChange(ctx context.Context, credentialsId string) ApiValidateDatabricksSqlWarehouseCredentialsChangeRequest {
+	return ApiValidateDatabricksSqlWarehouseCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateDatabricksSqlWarehouseCredentialsChangeExecute(r ApiValidateDatabricksSqlWarehouseCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateDatabricksSqlWarehouseCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/databricks-sql-warehouse/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.databricksSqlWarehouseCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("databricksSqlWarehouseCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.databricksSqlWarehouseCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateDb2CredentialsRequest struct {
 	ctx                      context.Context
 	ApiService               *CredentialsAPIService
@@ -24811,6 +26647,210 @@ func (a *CredentialsAPIService) ValidateDb2CredentialsExecute(r ApiValidateDb2Cr
 	}
 	// body params
 	localVarPostBody = r.db2CredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateDb2CredentialsChangeRequest struct {
+	ctx                            context.Context
+	ApiService                     *CredentialsAPIService
+	credentialsId                  string
+	db2CredentialsChangeValidateIn *Db2CredentialsChangeValidateIn
+}
+
+func (r ApiValidateDb2CredentialsChangeRequest) Db2CredentialsChangeValidateIn(db2CredentialsChangeValidateIn Db2CredentialsChangeValidateIn) ApiValidateDb2CredentialsChangeRequest {
+	r.db2CredentialsChangeValidateIn = &db2CredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateDb2CredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateDb2CredentialsChangeExecute(r)
+}
+
+/*
+ValidateDb2CredentialsChange Validate a change to Db2 credentials
+
+Check a change to Db2 credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateDb2CredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateDb2CredentialsChange(ctx context.Context, credentialsId string) ApiValidateDb2CredentialsChangeRequest {
+	return ApiValidateDb2CredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateDb2CredentialsChangeExecute(r ApiValidateDb2CredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateDb2CredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/db2/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.db2CredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("db2CredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.db2CredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -25123,6 +27163,210 @@ func (a *CredentialsAPIService) ValidateEnvVarCredentialsExecute(r ApiValidateEn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateEnvVarCredentialsChangeRequest struct {
+	ctx                               context.Context
+	ApiService                        *CredentialsAPIService
+	credentialsId                     string
+	envVarCredentialsChangeValidateIn *EnvVarCredentialsChangeValidateIn
+}
+
+func (r ApiValidateEnvVarCredentialsChangeRequest) EnvVarCredentialsChangeValidateIn(envVarCredentialsChangeValidateIn EnvVarCredentialsChangeValidateIn) ApiValidateEnvVarCredentialsChangeRequest {
+	r.envVarCredentialsChangeValidateIn = &envVarCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateEnvVarCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateEnvVarCredentialsChangeExecute(r)
+}
+
+/*
+ValidateEnvVarCredentialsChange Validate a change to environment variable credentials
+
+Check a change to environment variable credentials against the system they are for.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+storage returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateEnvVarCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateEnvVarCredentialsChange(ctx context.Context, credentialsId string) ApiValidateEnvVarCredentialsChangeRequest {
+	return ApiValidateEnvVarCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateEnvVarCredentialsChangeExecute(r ApiValidateEnvVarCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateEnvVarCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/self-hosted/env-var/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.envVarCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("envVarCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.envVarCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateFileCredentialsRequest struct {
 	ctx                       context.Context
 	ApiService                *CredentialsAPIService
@@ -25203,6 +27447,210 @@ func (a *CredentialsAPIService) ValidateFileCredentialsExecute(r ApiValidateFile
 	}
 	// body params
 	localVarPostBody = r.fileCredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateFileCredentialsChangeRequest struct {
+	ctx                             context.Context
+	ApiService                      *CredentialsAPIService
+	credentialsId                   string
+	fileCredentialsChangeValidateIn *FileCredentialsChangeValidateIn
+}
+
+func (r ApiValidateFileCredentialsChangeRequest) FileCredentialsChangeValidateIn(fileCredentialsChangeValidateIn FileCredentialsChangeValidateIn) ApiValidateFileCredentialsChangeRequest {
+	r.fileCredentialsChangeValidateIn = &fileCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateFileCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateFileCredentialsChangeExecute(r)
+}
+
+/*
+ValidateFileCredentialsChange Validate a change to file credentials
+
+Check a change to file credentials against the system they are for.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+storage returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateFileCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateFileCredentialsChange(ctx context.Context, credentialsId string) ApiValidateFileCredentialsChangeRequest {
+	return ApiValidateFileCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateFileCredentialsChangeExecute(r ApiValidateFileCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateFileCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/self-hosted/file/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.fileCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("fileCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.fileCredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -25515,6 +27963,210 @@ func (a *CredentialsAPIService) ValidateFivetranCredentialsExecute(r ApiValidate
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateFivetranCredentialsChangeRequest struct {
+	ctx                                 context.Context
+	ApiService                          *CredentialsAPIService
+	credentialsId                       string
+	fivetranCredentialsChangeValidateIn *FivetranCredentialsChangeValidateIn
+}
+
+func (r ApiValidateFivetranCredentialsChangeRequest) FivetranCredentialsChangeValidateIn(fivetranCredentialsChangeValidateIn FivetranCredentialsChangeValidateIn) ApiValidateFivetranCredentialsChangeRequest {
+	r.fivetranCredentialsChangeValidateIn = &fivetranCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateFivetranCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateFivetranCredentialsChangeExecute(r)
+}
+
+/*
+ValidateFivetranCredentialsChange Validate a change to Fivetran credentials
+
+Check a change to Fivetran credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateFivetranCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateFivetranCredentialsChange(ctx context.Context, credentialsId string) ApiValidateFivetranCredentialsChangeRequest {
+	return ApiValidateFivetranCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateFivetranCredentialsChangeExecute(r ApiValidateFivetranCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateFivetranCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/fivetran/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.fivetranCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("fivetranCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.fivetranCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateGcpDataformCredentialsRequest struct {
 	ctx                              context.Context
 	ApiService                       *CredentialsAPIService
@@ -25595,6 +28247,210 @@ func (a *CredentialsAPIService) ValidateGcpDataformCredentialsExecute(r ApiValid
 	}
 	// body params
 	localVarPostBody = r.gcpDataformCredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateGcpDataformCredentialsChangeRequest struct {
+	ctx                                    context.Context
+	ApiService                             *CredentialsAPIService
+	credentialsId                          string
+	gcpDataformCredentialsChangeValidateIn *GcpDataformCredentialsChangeValidateIn
+}
+
+func (r ApiValidateGcpDataformCredentialsChangeRequest) GcpDataformCredentialsChangeValidateIn(gcpDataformCredentialsChangeValidateIn GcpDataformCredentialsChangeValidateIn) ApiValidateGcpDataformCredentialsChangeRequest {
+	r.gcpDataformCredentialsChangeValidateIn = &gcpDataformCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateGcpDataformCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateGcpDataformCredentialsChangeExecute(r)
+}
+
+/*
+ValidateGcpDataformCredentialsChange Validate a change to GCP Dataform credentials
+
+Check a change to GCP Dataform credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateGcpDataformCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateGcpDataformCredentialsChange(ctx context.Context, credentialsId string) ApiValidateGcpDataformCredentialsChangeRequest {
+	return ApiValidateGcpDataformCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateGcpDataformCredentialsChangeExecute(r ApiValidateGcpDataformCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateGcpDataformCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/gcp-dataform/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.gcpDataformCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("gcpDataformCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.gcpDataformCredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -25907,6 +28763,210 @@ func (a *CredentialsAPIService) ValidateGcpSecretManagerCredentialsExecute(r Api
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateGcpSecretManagerCredentialsChangeRequest struct {
+	ctx                                         context.Context
+	ApiService                                  *CredentialsAPIService
+	credentialsId                               string
+	gcpSecretManagerCredentialsChangeValidateIn *GcpSecretManagerCredentialsChangeValidateIn
+}
+
+func (r ApiValidateGcpSecretManagerCredentialsChangeRequest) GcpSecretManagerCredentialsChangeValidateIn(gcpSecretManagerCredentialsChangeValidateIn GcpSecretManagerCredentialsChangeValidateIn) ApiValidateGcpSecretManagerCredentialsChangeRequest {
+	r.gcpSecretManagerCredentialsChangeValidateIn = &gcpSecretManagerCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateGcpSecretManagerCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateGcpSecretManagerCredentialsChangeExecute(r)
+}
+
+/*
+ValidateGcpSecretManagerCredentialsChange Validate a change to GCP Secret Manager credentials
+
+Check a change to GCP Secret Manager credentials against the system they are for.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+storage returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateGcpSecretManagerCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateGcpSecretManagerCredentialsChange(ctx context.Context, credentialsId string) ApiValidateGcpSecretManagerCredentialsChangeRequest {
+	return ApiValidateGcpSecretManagerCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateGcpSecretManagerCredentialsChangeExecute(r ApiValidateGcpSecretManagerCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateGcpSecretManagerCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/self-hosted/gcp/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.gcpSecretManagerCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("gcpSecretManagerCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.gcpSecretManagerCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateInformaticaV2CredentialsRequest struct {
 	ctx                                context.Context
 	ApiService                         *CredentialsAPIService
@@ -25987,6 +29047,210 @@ func (a *CredentialsAPIService) ValidateInformaticaV2CredentialsExecute(r ApiVal
 	}
 	// body params
 	localVarPostBody = r.informaticaV2CredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateInformaticaV2CredentialsChangeRequest struct {
+	ctx                                      context.Context
+	ApiService                               *CredentialsAPIService
+	credentialsId                            string
+	informaticaV2CredentialsChangeValidateIn *InformaticaV2CredentialsChangeValidateIn
+}
+
+func (r ApiValidateInformaticaV2CredentialsChangeRequest) InformaticaV2CredentialsChangeValidateIn(informaticaV2CredentialsChangeValidateIn InformaticaV2CredentialsChangeValidateIn) ApiValidateInformaticaV2CredentialsChangeRequest {
+	r.informaticaV2CredentialsChangeValidateIn = &informaticaV2CredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateInformaticaV2CredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateInformaticaV2CredentialsChangeExecute(r)
+}
+
+/*
+ValidateInformaticaV2CredentialsChange Validate a change to Informatica credentials
+
+Check a change to Informatica credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateInformaticaV2CredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateInformaticaV2CredentialsChange(ctx context.Context, credentialsId string) ApiValidateInformaticaV2CredentialsChangeRequest {
+	return ApiValidateInformaticaV2CredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateInformaticaV2CredentialsChangeExecute(r ApiValidateInformaticaV2CredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateInformaticaV2CredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/informatica-v2/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.informaticaV2CredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("informaticaV2CredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.informaticaV2CredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -26299,6 +29563,210 @@ func (a *CredentialsAPIService) ValidateLookerCredentialsExecute(r ApiValidateLo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateLookerCredentialsChangeRequest struct {
+	ctx                               context.Context
+	ApiService                        *CredentialsAPIService
+	credentialsId                     string
+	lookerCredentialsChangeValidateIn *LookerCredentialsChangeValidateIn
+}
+
+func (r ApiValidateLookerCredentialsChangeRequest) LookerCredentialsChangeValidateIn(lookerCredentialsChangeValidateIn LookerCredentialsChangeValidateIn) ApiValidateLookerCredentialsChangeRequest {
+	r.lookerCredentialsChangeValidateIn = &lookerCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateLookerCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateLookerCredentialsChangeExecute(r)
+}
+
+/*
+ValidateLookerCredentialsChange Validate a change to Looker credentials
+
+Check a change to Looker credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateLookerCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateLookerCredentialsChange(ctx context.Context, credentialsId string) ApiValidateLookerCredentialsChangeRequest {
+	return ApiValidateLookerCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateLookerCredentialsChangeExecute(r ApiValidateLookerCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateLookerCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/looker/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.lookerCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("lookerCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.lookerCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateLookerGitCloneCredentialsRequest struct {
 	ctx                                 context.Context
 	ApiService                          *CredentialsAPIService
@@ -26379,6 +29847,210 @@ func (a *CredentialsAPIService) ValidateLookerGitCloneCredentialsExecute(r ApiVa
 	}
 	// body params
 	localVarPostBody = r.lookerGitCloneCredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateLookerGitCloneCredentialsChangeRequest struct {
+	ctx                                       context.Context
+	ApiService                                *CredentialsAPIService
+	credentialsId                             string
+	lookerGitCloneCredentialsChangeValidateIn *LookerGitCloneCredentialsChangeValidateIn
+}
+
+func (r ApiValidateLookerGitCloneCredentialsChangeRequest) LookerGitCloneCredentialsChangeValidateIn(lookerGitCloneCredentialsChangeValidateIn LookerGitCloneCredentialsChangeValidateIn) ApiValidateLookerGitCloneCredentialsChangeRequest {
+	r.lookerGitCloneCredentialsChangeValidateIn = &lookerGitCloneCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateLookerGitCloneCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateLookerGitCloneCredentialsChangeExecute(r)
+}
+
+/*
+ValidateLookerGitCloneCredentialsChange Validate a change to LookML repository credentials
+
+Check a change to LookML repository credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateLookerGitCloneCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateLookerGitCloneCredentialsChange(ctx context.Context, credentialsId string) ApiValidateLookerGitCloneCredentialsChangeRequest {
+	return ApiValidateLookerGitCloneCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateLookerGitCloneCredentialsChangeExecute(r ApiValidateLookerGitCloneCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateLookerGitCloneCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/looker-git-clone/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.lookerGitCloneCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("lookerGitCloneCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.lookerGitCloneCredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -26691,6 +30363,210 @@ func (a *CredentialsAPIService) ValidateMariadbCredentialsExecute(r ApiValidateM
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateMariadbCredentialsChangeRequest struct {
+	ctx                                context.Context
+	ApiService                         *CredentialsAPIService
+	credentialsId                      string
+	mariaDbCredentialsChangeValidateIn *MariaDbCredentialsChangeValidateIn
+}
+
+func (r ApiValidateMariadbCredentialsChangeRequest) MariaDbCredentialsChangeValidateIn(mariaDbCredentialsChangeValidateIn MariaDbCredentialsChangeValidateIn) ApiValidateMariadbCredentialsChangeRequest {
+	r.mariaDbCredentialsChangeValidateIn = &mariaDbCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateMariadbCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateMariadbCredentialsChangeExecute(r)
+}
+
+/*
+ValidateMariadbCredentialsChange Validate a change to MariaDB credentials
+
+Check a change to MariaDB credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateMariadbCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateMariadbCredentialsChange(ctx context.Context, credentialsId string) ApiValidateMariadbCredentialsChangeRequest {
+	return ApiValidateMariadbCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateMariadbCredentialsChangeExecute(r ApiValidateMariadbCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateMariadbCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/mariadb/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.mariaDbCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("mariaDbCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.mariaDbCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateMulesoftCredentialsRequest struct {
 	ctx                           context.Context
 	ApiService                    *CredentialsAPIService
@@ -26771,6 +30647,210 @@ func (a *CredentialsAPIService) ValidateMulesoftCredentialsExecute(r ApiValidate
 	}
 	// body params
 	localVarPostBody = r.mulesoftCredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateMulesoftCredentialsChangeRequest struct {
+	ctx                                 context.Context
+	ApiService                          *CredentialsAPIService
+	credentialsId                       string
+	mulesoftCredentialsChangeValidateIn *MulesoftCredentialsChangeValidateIn
+}
+
+func (r ApiValidateMulesoftCredentialsChangeRequest) MulesoftCredentialsChangeValidateIn(mulesoftCredentialsChangeValidateIn MulesoftCredentialsChangeValidateIn) ApiValidateMulesoftCredentialsChangeRequest {
+	r.mulesoftCredentialsChangeValidateIn = &mulesoftCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateMulesoftCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateMulesoftCredentialsChangeExecute(r)
+}
+
+/*
+ValidateMulesoftCredentialsChange Validate a change to MuleSoft credentials
+
+Check a change to MuleSoft credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateMulesoftCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateMulesoftCredentialsChange(ctx context.Context, credentialsId string) ApiValidateMulesoftCredentialsChangeRequest {
+	return ApiValidateMulesoftCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateMulesoftCredentialsChangeExecute(r ApiValidateMulesoftCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateMulesoftCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/mulesoft/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.mulesoftCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("mulesoftCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.mulesoftCredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -27083,6 +31163,210 @@ func (a *CredentialsAPIService) ValidateMysqlCredentialsExecute(r ApiValidateMys
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateMysqlCredentialsChangeRequest struct {
+	ctx                              context.Context
+	ApiService                       *CredentialsAPIService
+	credentialsId                    string
+	mySqlCredentialsChangeValidateIn *MySqlCredentialsChangeValidateIn
+}
+
+func (r ApiValidateMysqlCredentialsChangeRequest) MySqlCredentialsChangeValidateIn(mySqlCredentialsChangeValidateIn MySqlCredentialsChangeValidateIn) ApiValidateMysqlCredentialsChangeRequest {
+	r.mySqlCredentialsChangeValidateIn = &mySqlCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateMysqlCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateMysqlCredentialsChangeExecute(r)
+}
+
+/*
+ValidateMysqlCredentialsChange Validate a change to MySQL credentials
+
+Check a change to MySQL credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateMysqlCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateMysqlCredentialsChange(ctx context.Context, credentialsId string) ApiValidateMysqlCredentialsChangeRequest {
+	return ApiValidateMysqlCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateMysqlCredentialsChangeExecute(r ApiValidateMysqlCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateMysqlCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/mysql/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.mySqlCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("mySqlCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.mySqlCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateOracleCredentialsRequest struct {
 	ctx                         context.Context
 	ApiService                  *CredentialsAPIService
@@ -27163,6 +31447,210 @@ func (a *CredentialsAPIService) ValidateOracleCredentialsExecute(r ApiValidateOr
 	}
 	// body params
 	localVarPostBody = r.oracleCredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateOracleCredentialsChangeRequest struct {
+	ctx                               context.Context
+	ApiService                        *CredentialsAPIService
+	credentialsId                     string
+	oracleCredentialsChangeValidateIn *OracleCredentialsChangeValidateIn
+}
+
+func (r ApiValidateOracleCredentialsChangeRequest) OracleCredentialsChangeValidateIn(oracleCredentialsChangeValidateIn OracleCredentialsChangeValidateIn) ApiValidateOracleCredentialsChangeRequest {
+	r.oracleCredentialsChangeValidateIn = &oracleCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateOracleCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateOracleCredentialsChangeExecute(r)
+}
+
+/*
+ValidateOracleCredentialsChange Validate a change to Oracle credentials
+
+Check a change to Oracle credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateOracleCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateOracleCredentialsChange(ctx context.Context, credentialsId string) ApiValidateOracleCredentialsChangeRequest {
+	return ApiValidateOracleCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateOracleCredentialsChangeExecute(r ApiValidateOracleCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateOracleCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/oracle/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.oracleCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("oracleCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.oracleCredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -27475,6 +31963,210 @@ func (a *CredentialsAPIService) ValidatePostgresCredentialsExecute(r ApiValidate
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidatePostgresCredentialsChangeRequest struct {
+	ctx                                 context.Context
+	ApiService                          *CredentialsAPIService
+	credentialsId                       string
+	postgresCredentialsChangeValidateIn *PostgresCredentialsChangeValidateIn
+}
+
+func (r ApiValidatePostgresCredentialsChangeRequest) PostgresCredentialsChangeValidateIn(postgresCredentialsChangeValidateIn PostgresCredentialsChangeValidateIn) ApiValidatePostgresCredentialsChangeRequest {
+	r.postgresCredentialsChangeValidateIn = &postgresCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidatePostgresCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidatePostgresCredentialsChangeExecute(r)
+}
+
+/*
+ValidatePostgresCredentialsChange Validate a change to PostgreSQL credentials
+
+Check a change to PostgreSQL credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidatePostgresCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidatePostgresCredentialsChange(ctx context.Context, credentialsId string) ApiValidatePostgresCredentialsChangeRequest {
+	return ApiValidatePostgresCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidatePostgresCredentialsChangeExecute(r ApiValidatePostgresCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidatePostgresCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/postgres/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.postgresCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("postgresCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.postgresCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidatePowerBiCredentialsRequest struct {
 	ctx                          context.Context
 	ApiService                   *CredentialsAPIService
@@ -27555,6 +32247,210 @@ func (a *CredentialsAPIService) ValidatePowerBiCredentialsExecute(r ApiValidateP
 	}
 	// body params
 	localVarPostBody = r.powerBiCredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidatePowerBiCredentialsChangeRequest struct {
+	ctx                                context.Context
+	ApiService                         *CredentialsAPIService
+	credentialsId                      string
+	powerBiCredentialsChangeValidateIn *PowerBiCredentialsChangeValidateIn
+}
+
+func (r ApiValidatePowerBiCredentialsChangeRequest) PowerBiCredentialsChangeValidateIn(powerBiCredentialsChangeValidateIn PowerBiCredentialsChangeValidateIn) ApiValidatePowerBiCredentialsChangeRequest {
+	r.powerBiCredentialsChangeValidateIn = &powerBiCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidatePowerBiCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidatePowerBiCredentialsChangeExecute(r)
+}
+
+/*
+ValidatePowerBiCredentialsChange Validate a change to Power BI credentials
+
+Check a change to Power BI credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidatePowerBiCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidatePowerBiCredentialsChange(ctx context.Context, credentialsId string) ApiValidatePowerBiCredentialsChangeRequest {
+	return ApiValidatePowerBiCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidatePowerBiCredentialsChangeExecute(r ApiValidatePowerBiCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidatePowerBiCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/power-bi/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.powerBiCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("powerBiCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.powerBiCredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -27867,6 +32763,210 @@ func (a *CredentialsAPIService) ValidateRedshiftCredentialsExecute(r ApiValidate
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateRedshiftCredentialsChangeRequest struct {
+	ctx                                 context.Context
+	ApiService                          *CredentialsAPIService
+	credentialsId                       string
+	redshiftCredentialsChangeValidateIn *RedshiftCredentialsChangeValidateIn
+}
+
+func (r ApiValidateRedshiftCredentialsChangeRequest) RedshiftCredentialsChangeValidateIn(redshiftCredentialsChangeValidateIn RedshiftCredentialsChangeValidateIn) ApiValidateRedshiftCredentialsChangeRequest {
+	r.redshiftCredentialsChangeValidateIn = &redshiftCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateRedshiftCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateRedshiftCredentialsChangeExecute(r)
+}
+
+/*
+ValidateRedshiftCredentialsChange Validate a change to Redshift credentials
+
+Check a change to Redshift credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateRedshiftCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateRedshiftCredentialsChange(ctx context.Context, credentialsId string) ApiValidateRedshiftCredentialsChangeRequest {
+	return ApiValidateRedshiftCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateRedshiftCredentialsChangeExecute(r ApiValidateRedshiftCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateRedshiftCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/redshift/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.redshiftCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("redshiftCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.redshiftCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateSapHanaCredentialsRequest struct {
 	ctx                          context.Context
 	ApiService                   *CredentialsAPIService
@@ -28063,6 +33163,210 @@ func (a *CredentialsAPIService) ValidateSapHanaCredentialsExecute(r ApiValidateS
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateSapHanaCredentialsChangeRequest struct {
+	ctx                                context.Context
+	ApiService                         *CredentialsAPIService
+	credentialsId                      string
+	sapHanaCredentialsChangeValidateIn *SapHanaCredentialsChangeValidateIn
+}
+
+func (r ApiValidateSapHanaCredentialsChangeRequest) SapHanaCredentialsChangeValidateIn(sapHanaCredentialsChangeValidateIn SapHanaCredentialsChangeValidateIn) ApiValidateSapHanaCredentialsChangeRequest {
+	r.sapHanaCredentialsChangeValidateIn = &sapHanaCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateSapHanaCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateSapHanaCredentialsChangeExecute(r)
+}
+
+/*
+ValidateSapHanaCredentialsChange Validate a change to SAP HANA credentials
+
+Check a change to SAP HANA credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateSapHanaCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateSapHanaCredentialsChange(ctx context.Context, credentialsId string) ApiValidateSapHanaCredentialsChangeRequest {
+	return ApiValidateSapHanaCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateSapHanaCredentialsChangeExecute(r ApiValidateSapHanaCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateSapHanaCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/sap-hana/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.sapHanaCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("sapHanaCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.sapHanaCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateSnowflakeCredentialsRequest struct {
 	ctx                            context.Context
 	ApiService                     *CredentialsAPIService
@@ -28143,6 +33447,210 @@ func (a *CredentialsAPIService) ValidateSnowflakeCredentialsExecute(r ApiValidat
 	}
 	// body params
 	localVarPostBody = r.snowflakeCredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateSnowflakeCredentialsChangeRequest struct {
+	ctx                                  context.Context
+	ApiService                           *CredentialsAPIService
+	credentialsId                        string
+	snowflakeCredentialsChangeValidateIn *SnowflakeCredentialsChangeValidateIn
+}
+
+func (r ApiValidateSnowflakeCredentialsChangeRequest) SnowflakeCredentialsChangeValidateIn(snowflakeCredentialsChangeValidateIn SnowflakeCredentialsChangeValidateIn) ApiValidateSnowflakeCredentialsChangeRequest {
+	r.snowflakeCredentialsChangeValidateIn = &snowflakeCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateSnowflakeCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateSnowflakeCredentialsChangeExecute(r)
+}
+
+/*
+ValidateSnowflakeCredentialsChange Validate a change to Snowflake credentials
+
+Check a change to Snowflake credentials against Snowflake before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateSnowflakeCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateSnowflakeCredentialsChange(ctx context.Context, credentialsId string) ApiValidateSnowflakeCredentialsChangeRequest {
+	return ApiValidateSnowflakeCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateSnowflakeCredentialsChangeExecute(r ApiValidateSnowflakeCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateSnowflakeCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/snowflake/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.snowflakeCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("snowflakeCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.snowflakeCredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -28456,6 +33964,210 @@ func (a *CredentialsAPIService) ValidateSqlServerCredentialsExecute(r ApiValidat
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateSqlServerCredentialsChangeRequest struct {
+	ctx                                  context.Context
+	ApiService                           *CredentialsAPIService
+	credentialsId                        string
+	sqlServerCredentialsChangeValidateIn *SqlServerCredentialsChangeValidateIn
+}
+
+func (r ApiValidateSqlServerCredentialsChangeRequest) SqlServerCredentialsChangeValidateIn(sqlServerCredentialsChangeValidateIn SqlServerCredentialsChangeValidateIn) ApiValidateSqlServerCredentialsChangeRequest {
+	r.sqlServerCredentialsChangeValidateIn = &sqlServerCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateSqlServerCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateSqlServerCredentialsChangeExecute(r)
+}
+
+/*
+ValidateSqlServerCredentialsChange Validate a change to SQL Server credentials
+
+Check a change to SQL Server credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateSqlServerCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateSqlServerCredentialsChange(ctx context.Context, credentialsId string) ApiValidateSqlServerCredentialsChangeRequest {
+	return ApiValidateSqlServerCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateSqlServerCredentialsChangeExecute(r ApiValidateSqlServerCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateSqlServerCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/sql-server/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.sqlServerCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("sqlServerCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.sqlServerCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateStarburstEnterpriseCredentialsRequest struct {
 	ctx                                      context.Context
 	ApiService                               *CredentialsAPIService
@@ -28536,6 +34248,210 @@ func (a *CredentialsAPIService) ValidateStarburstEnterpriseCredentialsExecute(r 
 	}
 	// body params
 	localVarPostBody = r.starburstEnterpriseCredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateStarburstEnterpriseCredentialsChangeRequest struct {
+	ctx                                            context.Context
+	ApiService                                     *CredentialsAPIService
+	credentialsId                                  string
+	starburstEnterpriseCredentialsChangeValidateIn *StarburstEnterpriseCredentialsChangeValidateIn
+}
+
+func (r ApiValidateStarburstEnterpriseCredentialsChangeRequest) StarburstEnterpriseCredentialsChangeValidateIn(starburstEnterpriseCredentialsChangeValidateIn StarburstEnterpriseCredentialsChangeValidateIn) ApiValidateStarburstEnterpriseCredentialsChangeRequest {
+	r.starburstEnterpriseCredentialsChangeValidateIn = &starburstEnterpriseCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateStarburstEnterpriseCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateStarburstEnterpriseCredentialsChangeExecute(r)
+}
+
+/*
+ValidateStarburstEnterpriseCredentialsChange Validate a change to Starburst Enterprise credentials
+
+Check a change to Starburst Enterprise credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateStarburstEnterpriseCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateStarburstEnterpriseCredentialsChange(ctx context.Context, credentialsId string) ApiValidateStarburstEnterpriseCredentialsChangeRequest {
+	return ApiValidateStarburstEnterpriseCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateStarburstEnterpriseCredentialsChangeExecute(r ApiValidateStarburstEnterpriseCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateStarburstEnterpriseCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/starburst-enterprise/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.starburstEnterpriseCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("starburstEnterpriseCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.starburstEnterpriseCredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -28848,6 +34764,210 @@ func (a *CredentialsAPIService) ValidateStarburstGalaxyCredentialsExecute(r ApiV
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateStarburstGalaxyCredentialsChangeRequest struct {
+	ctx                                        context.Context
+	ApiService                                 *CredentialsAPIService
+	credentialsId                              string
+	starburstGalaxyCredentialsChangeValidateIn *StarburstGalaxyCredentialsChangeValidateIn
+}
+
+func (r ApiValidateStarburstGalaxyCredentialsChangeRequest) StarburstGalaxyCredentialsChangeValidateIn(starburstGalaxyCredentialsChangeValidateIn StarburstGalaxyCredentialsChangeValidateIn) ApiValidateStarburstGalaxyCredentialsChangeRequest {
+	r.starburstGalaxyCredentialsChangeValidateIn = &starburstGalaxyCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateStarburstGalaxyCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateStarburstGalaxyCredentialsChangeExecute(r)
+}
+
+/*
+ValidateStarburstGalaxyCredentialsChange Validate a change to Starburst Galaxy credentials
+
+Check a change to Starburst Galaxy credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateStarburstGalaxyCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateStarburstGalaxyCredentialsChange(ctx context.Context, credentialsId string) ApiValidateStarburstGalaxyCredentialsChangeRequest {
+	return ApiValidateStarburstGalaxyCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateStarburstGalaxyCredentialsChangeExecute(r ApiValidateStarburstGalaxyCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateStarburstGalaxyCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/starburst-galaxy/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.starburstGalaxyCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("starburstGalaxyCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.starburstGalaxyCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateTableauCredentialsRequest struct {
 	ctx                          context.Context
 	ApiService                   *CredentialsAPIService
@@ -29044,6 +35164,210 @@ func (a *CredentialsAPIService) ValidateTableauCredentialsExecute(r ApiValidateT
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiValidateTableauCredentialsChangeRequest struct {
+	ctx                                context.Context
+	ApiService                         *CredentialsAPIService
+	credentialsId                      string
+	tableauCredentialsChangeValidateIn *TableauCredentialsChangeValidateIn
+}
+
+func (r ApiValidateTableauCredentialsChangeRequest) TableauCredentialsChangeValidateIn(tableauCredentialsChangeValidateIn TableauCredentialsChangeValidateIn) ApiValidateTableauCredentialsChangeRequest {
+	r.tableauCredentialsChangeValidateIn = &tableauCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateTableauCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateTableauCredentialsChangeExecute(r)
+}
+
+/*
+ValidateTableauCredentialsChange Validate a change to Tableau credentials
+
+Check a change to Tableau credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateTableauCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateTableauCredentialsChange(ctx context.Context, credentialsId string) ApiValidateTableauCredentialsChangeRequest {
+	return ApiValidateTableauCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateTableauCredentialsChangeExecute(r ApiValidateTableauCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateTableauCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/tableau/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.tableauCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("tableauCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.tableauCredentialsChangeValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiValidateTeradataCredentialsRequest struct {
 	ctx                           context.Context
 	ApiService                    *CredentialsAPIService
@@ -29124,6 +35448,210 @@ func (a *CredentialsAPIService) ValidateTeradataCredentialsExecute(r ApiValidate
 	}
 	// body params
 	localVarPostBody = r.teradataCredentialsValidateIn
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiValidateTeradataCredentialsChangeRequest struct {
+	ctx                                 context.Context
+	ApiService                          *CredentialsAPIService
+	credentialsId                       string
+	teradataCredentialsChangeValidateIn *TeradataCredentialsChangeValidateIn
+}
+
+func (r ApiValidateTeradataCredentialsChangeRequest) TeradataCredentialsChangeValidateIn(teradataCredentialsChangeValidateIn TeradataCredentialsChangeValidateIn) ApiValidateTeradataCredentialsChangeRequest {
+	r.teradataCredentialsChangeValidateIn = &teradataCredentialsChangeValidateIn
+	return r
+}
+
+func (r ApiValidateTeradataCredentialsChangeRequest) Execute() (*ValidationRunOut, *http.Response, error) {
+	return r.ApiService.ValidateTeradataCredentialsChangeExecute(r)
+}
+
+/*
+ValidateTeradataCredentialsChange Validate a change to Teradata credentials
+
+Check a change to Teradata credentials before making it.
+
+Send the fields you would update the credentials with, and a deployment to run them from.
+The change is applied to a copy of the stored credentials, and the checks run against
+that copy. The credentials and the connections using them are left as they are.
+
+An id that does not exist, belongs to another account, or names credentials of another
+kind returns 404.
+
+The response is the run as it starts, and `Location` names where to read it. Poll that
+until the run's status is `completed`; each validation carries its own verdict.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param credentialsId Id of the credentials, as returned when they are created or listed.
+	@return ApiValidateTeradataCredentialsChangeRequest
+*/
+func (a *CredentialsAPIService) ValidateTeradataCredentialsChange(ctx context.Context, credentialsId string) ApiValidateTeradataCredentialsChangeRequest {
+	return ApiValidateTeradataCredentialsChangeRequest{
+		ApiService:    a,
+		ctx:           ctx,
+		credentialsId: credentialsId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return ValidationRunOut
+func (a *CredentialsAPIService) ValidateTeradataCredentialsChangeExecute(r ApiValidateTeradataCredentialsChangeRequest) (*ValidationRunOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ValidationRunOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CredentialsAPIService.ValidateTeradataCredentialsChange")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/credentials/teradata/{credentials_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"credentials_id"+"}", url.PathEscape(parameterValueToString(r.credentialsId, "credentialsId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.teradataCredentialsChangeValidateIn == nil {
+		return localVarReturnValue, nil, reportError("teradataCredentialsChangeValidateIn is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.teradataCredentialsChangeValidateIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
