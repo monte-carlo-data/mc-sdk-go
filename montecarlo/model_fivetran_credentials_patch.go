@@ -23,7 +23,7 @@ type FivetranCredentialsPatch struct {
 	ApiKey NullableString `json:"api_key,omitempty"`
 	// Secret of the Fivetran API key. Stored by Monte Carlo and never returned.
 	ApiPassword NullableString `json:"api_password,omitempty"`
-	// URL of the Fivetran REST API. Leave it out for https://api.fivetran.com/v1/.
+	// URL of the Fivetran REST API. Leave it out for https://api.fivetran.com/v1/. Changing it requires sending the credentials' secrets again.
 	BaseUrl NullableString `json:"base_url,omitempty"`
 }
 

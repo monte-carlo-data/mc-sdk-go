@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Account** | Pointer to **NullableString** | New Snowflake account identifier, without the &#x60;.snowflakecomputing.com&#x60; suffix. | [optional] 
+**Account** | Pointer to **NullableString** | New Snowflake account identifier, without the &#x60;.snowflakecomputing.com&#x60; suffix. Letters, digits, &#x60;_&#x60;, &#x60;.&#x60; and &#x60;-&#x60; only. | [optional] 
 **User** | Pointer to **NullableString** | New Snowflake user. | [optional] 
 **PrivateKey** | Pointer to **NullableString** | New private key, as PEM text. Replaces the stored key and its passphrase; send &#x60;private_key_passphrase&#x60; in the same request if the new key has one. | [optional] 
 **PrivateKeyPassphrase** | Pointer to **NullableString** | Passphrase of the new private key. Only accepted together with &#x60;private_key&#x60;. | [optional] 

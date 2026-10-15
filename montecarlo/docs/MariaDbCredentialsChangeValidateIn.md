@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DeploymentId** | **string** | Deployment that runs the validations. It has to be one &#x60;GET /deployments&#x60; lists, and it has to be able to reach the system the credentials are for. | 
-**Host** | Pointer to **NullableString** | Hostname of the database endpoint. | [optional] 
+**Host** | Pointer to **NullableString** | Hostname of the database endpoint. Changing it requires sending the credentials&#39; secrets again. | [optional] 
 **Port** | Pointer to **NullableInt32** | Port the database listens on. | [optional] 
 **DbName** | Pointer to **NullableString** | Database to connect to. | [optional] 
 **User** | Pointer to **NullableString** | Database user Monte Carlo logs in as. | [optional] 

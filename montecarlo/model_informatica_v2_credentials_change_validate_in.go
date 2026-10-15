@@ -23,7 +23,7 @@ var _ MappedNullable = &InformaticaV2CredentialsChangeValidateIn{}
 type InformaticaV2CredentialsChangeValidateIn struct {
 	// Deployment that runs the validations. It has to be one `GET /deployments` lists, and it has to be able to reach the system the credentials are for.
 	DeploymentId string `json:"deployment_id"`
-	// Informatica login URL for your POD. Leave it out for https://dm-us.informaticacloud.com.
+	// Informatica login URL for your POD. Leave it out for https://dm-us.informaticacloud.com. Changing it requires sending the credentials' secrets again.
 	BaseUrl NullableString `json:"base_url,omitempty"`
 	// Informatica user, for `password`.
 	Username NullableString `json:"username,omitempty"`
@@ -33,7 +33,7 @@ type InformaticaV2CredentialsChangeValidateIn struct {
 	OauthClientId NullableString `json:"oauth_client_id,omitempty"`
 	// Grant Monte Carlo requests the token with, for `oauth`. `password` also takes `oauth_username` and `oauth_password`.
 	OauthGrantType NullableOAuthGrantType `json:"oauth_grant_type,omitempty"`
-	// Identity provider URL Monte Carlo requests tokens from.
+	// Identity provider URL Monte Carlo requests tokens from. Changing it requires sending the credentials' secrets again.
 	OauthAccessTokenEndpoint NullableString `json:"oauth_access_token_endpoint,omitempty"`
 	// Scope to request the token with. Leave it out to request none.
 	OauthScope NullableString `json:"oauth_scope,omitempty"`

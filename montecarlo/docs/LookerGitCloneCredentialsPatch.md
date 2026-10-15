@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **SslSkipCertVerification** | Pointer to **NullableBool** | Skip verifying the git server&#39;s TLS certificate. | [optional] 
 **Token** | Pointer to **NullableString** | Access token of &#x60;username&#x60;, for an HTTPS clone. Send this or &#x60;ssh_key&#x60;. Stored by Monte Carlo and never returned. | [optional] 
 **SshKey** | Pointer to **NullableString** | Private key for an SSH clone, as PEM text including its BEGIN and END lines. Send this or &#x60;username&#x60; and &#x60;token&#x60;. Stored by Monte Carlo and never returned. | [optional] 
-**RepoUrl** | Pointer to **NullableString** | Clone URL of the LookML repository, over HTTPS or SSH. | [optional] 
+**RepoUrl** | Pointer to **NullableString** | Clone URL of the LookML repository, over HTTPS or SSH. Changing it requires sending the credentials&#39; secrets again. | [optional] 
 
 ## Methods
 

@@ -23,7 +23,7 @@ var _ MappedNullable = &MySqlCredentialsChangeValidateIn{}
 type MySqlCredentialsChangeValidateIn struct {
 	// Deployment that runs the validations. It has to be one `GET /deployments` lists, and it has to be able to reach the system the credentials are for.
 	DeploymentId string `json:"deployment_id"`
-	// Hostname of the database endpoint.
+	// Hostname of the database endpoint. Changing it requires sending the credentials' secrets again.
 	Host NullableString `json:"host,omitempty"`
 	// Port the database listens on.
 	Port NullableInt32 `json:"port,omitempty"`

@@ -23,7 +23,7 @@ var _ MappedNullable = &DatabricksMetastoreSqlWarehouseCredentialsChangeValidate
 type DatabricksMetastoreSqlWarehouseCredentialsChangeValidateIn struct {
 	// Deployment that runs the validations. It has to be one `GET /deployments` lists, and it has to be able to reach the system the credentials are for.
 	DeploymentId string `json:"deployment_id"`
-	// URL of the Databricks workspace, or its host name.
+	// URL of the Databricks workspace, or its host name. Changing it requires sending the credentials' secrets again.
 	WorkspaceUrl NullableString `json:"workspace_url,omitempty"`
 	// ID of the Databricks SQL warehouse the connection runs on.
 	SqlWarehouseId NullableString `json:"sql_warehouse_id,omitempty"`

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**WorkspaceUrl** | Pointer to **NullableString** | URL of the Databricks workspace, or its host name. | [optional] 
+**WorkspaceUrl** | Pointer to **NullableString** | URL of the Databricks workspace, or its host name. Changing it requires sending the credentials&#39; secrets again. | [optional] 
 **SqlWarehouseId** | Pointer to **NullableString** | ID of the Databricks SQL warehouse the connection runs on. | [optional] 
 **WorkspaceId** | Pointer to **NullableString** | ID of the Databricks workspace. | [optional] 
 **Token** | Pointer to **NullableString** | Personal access token or service principal token. Send this, or &#x60;oauth_client_id&#x60; and &#x60;oauth_client_secret&#x60;. Stored by Monte Carlo and never returned. | [optional] 

@@ -23,7 +23,7 @@ var _ MappedNullable = &SnowflakeCredentialsValidateIn{}
 type SnowflakeCredentialsValidateIn struct {
 	// Deployment that runs the validations. It has to be one `GET /deployments` lists, and it has to be able to reach the system the credentials are for.
 	DeploymentId string `json:"deployment_id"`
-	// Snowflake account identifier, such as `xy12345.us-east-1`. Without the `.snowflakecomputing.com` suffix.
+	// Snowflake account identifier, such as `xy12345.us-east-1`. Without the `.snowflakecomputing.com` suffix. Letters, digits, `_`, `.` and `-` only.
 	Account string `json:"account"`
 	// Snowflake user the key pair belongs to.
 	User string `json:"user"`

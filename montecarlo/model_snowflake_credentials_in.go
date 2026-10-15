@@ -21,7 +21,7 @@ var _ MappedNullable = &SnowflakeCredentialsIn{}
 
 // SnowflakeCredentialsIn What to create Snowflake key pair credentials with.
 type SnowflakeCredentialsIn struct {
-	// Snowflake account identifier, such as `xy12345.us-east-1`. Without the `.snowflakecomputing.com` suffix.
+	// Snowflake account identifier, such as `xy12345.us-east-1`. Without the `.snowflakecomputing.com` suffix. Letters, digits, `_`, `.` and `-` only.
 	Account string `json:"account"`
 	// Snowflake user the key pair belongs to.
 	User string `json:"user"`

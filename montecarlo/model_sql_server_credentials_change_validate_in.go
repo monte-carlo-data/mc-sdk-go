@@ -23,7 +23,7 @@ var _ MappedNullable = &SqlServerCredentialsChangeValidateIn{}
 type SqlServerCredentialsChangeValidateIn struct {
 	// Deployment that runs the validations. It has to be one `GET /deployments` lists, and it has to be able to reach the system the credentials are for.
 	DeploymentId string `json:"deployment_id"`
-	// Hostname of the database endpoint. For `kerberos`, the fully qualified name the server's service principal is registered under.
+	// Hostname of the database endpoint. For `kerberos`, the fully qualified name the server's service principal is registered under. Changing it requires sending the credentials' secrets again.
 	Host NullableString `json:"host,omitempty"`
 	// Port the database listens on.
 	Port NullableInt32 `json:"port,omitempty"`
@@ -35,7 +35,7 @@ type SqlServerCredentialsChangeValidateIn struct {
 	User NullableString `json:"user,omitempty"`
 	// Kerberos realm, normally the Active Directory domain in capitals, for `kerberos`.
 	Realm NullableString `json:"realm,omitempty"`
-	// Hostname of the key distribution center, optionally with `:port`, for `kerberos`.
+	// Hostname of the key distribution center, optionally with `:port`, for `kerberos`. Changing it requires sending the credentials' secrets again.
 	Kdc NullableString `json:"kdc,omitempty"`
 	// Active Directory principal Monte Carlo signs in as, for `kerberos`.
 	Principal NullableString `json:"principal,omitempty"`

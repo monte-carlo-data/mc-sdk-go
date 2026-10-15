@@ -19,7 +19,7 @@ var _ MappedNullable = &PostgresCredentialsPatch{}
 
 // PostgresCredentialsPatch A change to existing PostgreSQL credentials.  A field left out is unchanged. A setting or an `ssl_*` field set to null is cleared. `password` set to null is unchanged. `host`, `port`, `db_name` and `user` cannot be cleared. Sending an empty body returns the credentials as they are.
 type PostgresCredentialsPatch struct {
-	// Hostname of the database endpoint.
+	// Hostname of the database endpoint. Changing it requires sending the credentials' secrets again.
 	Host NullableString `json:"host,omitempty"`
 	// Port the database listens on.
 	Port NullableInt32 `json:"port,omitempty"`

@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DeploymentId** | **string** | Deployment that runs the validations. It has to be one &#x60;GET /deployments&#x60; lists, and it has to be able to reach the system the credentials are for. | 
-**BaseUrl** | Pointer to **NullableString** | URL of the Looker API, such as https://acme.cloud.looker.com. | [optional] 
+**BaseUrl** | Pointer to **NullableString** | URL of the Looker API, such as https://acme.cloud.looker.com. Changing it requires sending the credentials&#39; secrets again. | [optional] 
 **ApiClientId** | Pointer to **NullableString** | Client ID of the Looker API key. | [optional] 
 **ApiClientSecret** | Pointer to **NullableString** | Client secret of the Looker API key. Stored by Monte Carlo and never returned. | [optional] 
 **VerifySsl** | Pointer to **NullableBool** | Whether to verify Looker&#39;s TLS certificate. Verified when left out. | [optional] 

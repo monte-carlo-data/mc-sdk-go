@@ -37,7 +37,7 @@ type TableauCredentialsPatch struct {
 	TokenValue NullableString `json:"token_value,omitempty"`
 	// Value of the connected app's secret in `connected_app_secret_id`. Stored by Monte Carlo and never returned.
 	ConnectedAppSecretValue NullableString `json:"connected_app_secret_value,omitempty"`
-	// URL of the Tableau server, starting with https:// or http://.
+	// URL of the Tableau server, starting with https:// or http://. Changing it requires sending the credentials' secrets again.
 	ServerName NullableString `json:"server_name,omitempty"`
 }
 

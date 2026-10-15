@@ -19,7 +19,7 @@ var _ MappedNullable = &DatabricksSqlWarehouseCredentialsPatch{}
 
 // DatabricksSqlWarehouseCredentialsPatch A change to existing Databricks query credentials.  A field left out is unchanged. `workspace_id` and the Azure fields set to null are cleared. `token` and `oauth_client_secret` set to null are unchanged. `workspace_url` and `sql_warehouse_id` cannot be cleared. Sending `token` drops a stored OAuth client and its Azure fields. Sending the OAuth client drops a stored token. Sending an empty body returns the credentials as they are.
 type DatabricksSqlWarehouseCredentialsPatch struct {
-	// URL of the Databricks workspace, or its host name.
+	// URL of the Databricks workspace, or its host name. Changing it requires sending the credentials' secrets again.
 	WorkspaceUrl NullableString `json:"workspace_url,omitempty"`
 	// ID of the Databricks SQL warehouse the connection runs on.
 	SqlWarehouseId NullableString `json:"sql_warehouse_id,omitempty"`

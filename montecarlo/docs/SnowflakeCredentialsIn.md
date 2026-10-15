@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Account** | **string** | Snowflake account identifier, such as &#x60;xy12345.us-east-1&#x60;. Without the &#x60;.snowflakecomputing.com&#x60; suffix. | 
+**Account** | **string** | Snowflake account identifier, such as &#x60;xy12345.us-east-1&#x60;. Without the &#x60;.snowflakecomputing.com&#x60; suffix. Letters, digits, &#x60;_&#x60;, &#x60;.&#x60; and &#x60;-&#x60; only. | 
 **User** | **string** | Snowflake user the key pair belongs to. | 
 **PrivateKey** | **string** | The private key of the pair, as PEM text including its BEGIN and END lines. Stored by Monte Carlo and never returned. | 
 **PrivateKeyPassphrase** | Pointer to **NullableString** | Passphrase the private key is encrypted with. Omit it for an unencrypted key. Never returned. | [optional] 

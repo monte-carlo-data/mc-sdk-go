@@ -23,7 +23,7 @@ var _ MappedNullable = &SnowflakeCredentialsChangeValidateIn{}
 type SnowflakeCredentialsChangeValidateIn struct {
 	// Deployment that runs the validations. It has to be one `GET /deployments` lists, and it has to be able to reach the system the credentials are for.
 	DeploymentId string `json:"deployment_id"`
-	// New Snowflake account identifier, without the `.snowflakecomputing.com` suffix.
+	// New Snowflake account identifier, without the `.snowflakecomputing.com` suffix. Letters, digits, `_`, `.` and `-` only.
 	Account NullableString `json:"account,omitempty"`
 	// New Snowflake user.
 	User NullableString `json:"user,omitempty"`
