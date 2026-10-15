@@ -19,7 +19,7 @@ var _ MappedNullable = &MariaDbCredentialsPatch{}
 
 // MariaDbCredentialsPatch A change to existing MariaDB credentials.  A field left out is unchanged. `password` set to null is unchanged. `db_name` set to null is cleared. `host`, `port` and `user` cannot be cleared. Sending an empty body returns the credentials as they are.
 type MariaDbCredentialsPatch struct {
-	// Hostname of the database endpoint.
+	// Hostname of the database endpoint. Changing it requires sending the credentials' secrets again.
 	Host NullableString `json:"host,omitempty"`
 	// Port the database listens on.
 	Port NullableInt32 `json:"port,omitempty"`

@@ -23,7 +23,7 @@ var _ MappedNullable = &LookerCredentialsChangeValidateIn{}
 type LookerCredentialsChangeValidateIn struct {
 	// Deployment that runs the validations. It has to be one `GET /deployments` lists, and it has to be able to reach the system the credentials are for.
 	DeploymentId string `json:"deployment_id"`
-	// URL of the Looker API, such as https://acme.cloud.looker.com.
+	// URL of the Looker API, such as https://acme.cloud.looker.com. Changing it requires sending the credentials' secrets again.
 	BaseUrl NullableString `json:"base_url,omitempty"`
 	// Client ID of the Looker API key.
 	ApiClientId NullableString `json:"api_client_id,omitempty"`

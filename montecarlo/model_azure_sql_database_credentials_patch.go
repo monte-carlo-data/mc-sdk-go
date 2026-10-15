@@ -19,7 +19,7 @@ var _ MappedNullable = &AzureSqlDatabaseCredentialsPatch{}
 
 // AzureSqlDatabaseCredentialsPatch A change to existing Azure SQL Database credentials.  A field left out is unchanged. `password` set to null is unchanged. `host`, `port`, `db_name` and `user` cannot be cleared. Sending an empty body returns the credentials as they are.
 type AzureSqlDatabaseCredentialsPatch struct {
-	// Hostname of the database endpoint.
+	// Hostname of the database endpoint. Changing it requires sending the credentials' secrets again.
 	Host NullableString `json:"host,omitempty"`
 	// Port the database listens on.
 	Port NullableInt32 `json:"port,omitempty"`

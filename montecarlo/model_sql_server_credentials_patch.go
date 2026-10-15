@@ -19,7 +19,7 @@ var _ MappedNullable = &SqlServerCredentialsPatch{}
 
 // SqlServerCredentialsPatch A change to existing SQL Server credentials.  A field left out is unchanged. A secret set to null is unchanged. `db_name` set to null is cleared. `host`, `port` and `auth_mode` cannot be cleared. A new `auth_mode` drops the fields and the secret of the old one, so send the new mode's fields with it. A new `keytab_base64` drops a stored `password`, and a new `password` drops a stored keytab. Sending an empty body returns the credentials as they are.
 type SqlServerCredentialsPatch struct {
-	// Hostname of the database endpoint. For `kerberos`, the fully qualified name the server's service principal is registered under.
+	// Hostname of the database endpoint. For `kerberos`, the fully qualified name the server's service principal is registered under. Changing it requires sending the credentials' secrets again.
 	Host NullableString `json:"host,omitempty"`
 	// Port the database listens on.
 	Port NullableInt32 `json:"port,omitempty"`
@@ -31,7 +31,7 @@ type SqlServerCredentialsPatch struct {
 	User NullableString `json:"user,omitempty"`
 	// Kerberos realm, normally the Active Directory domain in capitals, for `kerberos`.
 	Realm NullableString `json:"realm,omitempty"`
-	// Hostname of the key distribution center, optionally with `:port`, for `kerberos`.
+	// Hostname of the key distribution center, optionally with `:port`, for `kerberos`. Changing it requires sending the credentials' secrets again.
 	Kdc NullableString `json:"kdc,omitempty"`
 	// Active Directory principal Monte Carlo signs in as, for `kerberos`.
 	Principal NullableString `json:"principal,omitempty"`

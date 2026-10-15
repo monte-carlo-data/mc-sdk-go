@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **Password** | Pointer to **NullableString** | Password of &#x60;username&#x60;. Send this, a personal access token, or a connected app. Stored by Monte Carlo and never returned. | [optional] 
 **TokenValue** | Pointer to **NullableString** | Secret of the personal access token in &#x60;token_name&#x60;. Stored by Monte Carlo and never returned. | [optional] 
 **ConnectedAppSecretValue** | Pointer to **NullableString** | Value of the connected app&#39;s secret in &#x60;connected_app_secret_id&#x60;. Stored by Monte Carlo and never returned. | [optional] 
-**ServerName** | Pointer to **NullableString** | URL of the Tableau server, starting with https:// or http://. | [optional] 
+**ServerName** | Pointer to **NullableString** | URL of the Tableau server, starting with https:// or http://. Changing it requires sending the credentials&#39; secrets again. | [optional] 
 
 ## Methods
 

@@ -19,7 +19,7 @@ var _ MappedNullable = &LookerCredentialsPatch{}
 
 // LookerCredentialsPatch A change to existing Looker API credentials.  A field left out is unchanged. `verify_ssl` set to null is cleared. `api_client_secret` set to null is unchanged. `base_url` and `api_client_id` cannot be cleared. Sending an empty body returns the credentials as they are.
 type LookerCredentialsPatch struct {
-	// URL of the Looker API, such as https://acme.cloud.looker.com.
+	// URL of the Looker API, such as https://acme.cloud.looker.com. Changing it requires sending the credentials' secrets again.
 	BaseUrl NullableString `json:"base_url,omitempty"`
 	// Client ID of the Looker API key.
 	ApiClientId NullableString `json:"api_client_id,omitempty"`

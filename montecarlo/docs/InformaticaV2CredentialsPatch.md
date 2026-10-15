@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseUrl** | Pointer to **NullableString** | Informatica login URL for your POD. Leave it out for https://dm-us.informaticacloud.com. | [optional] 
+**BaseUrl** | Pointer to **NullableString** | Informatica login URL for your POD. Leave it out for https://dm-us.informaticacloud.com. Changing it requires sending the credentials&#39; secrets again. | [optional] 
 **Username** | Pointer to **NullableString** | Informatica user, for &#x60;password&#x60;. | [optional] 
 **OrgId** | Pointer to **NullableString** | Informatica organization ID, for &#x60;oauth&#x60;. | [optional] 
 **OauthClientId** | Pointer to **NullableString** | Client ID of the app registered with your identity provider, for &#x60;oauth&#x60;. | [optional] 
 **OauthGrantType** | Pointer to [**NullableOAuthGrantType**](OAuthGrantType.md) | Grant Monte Carlo requests the token with, for &#x60;oauth&#x60;. &#x60;password&#x60; also takes &#x60;oauth_username&#x60; and &#x60;oauth_password&#x60;. | [optional] 
-**OauthAccessTokenEndpoint** | Pointer to **NullableString** | Identity provider URL Monte Carlo requests tokens from. | [optional] 
+**OauthAccessTokenEndpoint** | Pointer to **NullableString** | Identity provider URL Monte Carlo requests tokens from. Changing it requires sending the credentials&#39; secrets again. | [optional] 
 **OauthScope** | Pointer to **NullableString** | Scope to request the token with. Leave it out to request none. | [optional] 
 **OauthUsername** | Pointer to **NullableString** | Identity provider user, for the &#x60;password&#x60; grant. | [optional] 
 **Password** | Pointer to **NullableString** | Password of &#x60;username&#x60;, for &#x60;password&#x60;. Stored by Monte Carlo and never returned. | [optional] 

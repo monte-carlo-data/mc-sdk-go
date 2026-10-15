@@ -33,7 +33,7 @@ type LookerGitCloneCredentialsChangeValidateIn struct {
 	Token NullableString `json:"token,omitempty"`
 	// Private key for an SSH clone, as PEM text including its BEGIN and END lines. Send this or `username` and `token`. Stored by Monte Carlo and never returned.
 	SshKey NullableString `json:"ssh_key,omitempty"`
-	// Clone URL of the LookML repository, over HTTPS or SSH.
+	// Clone URL of the LookML repository, over HTTPS or SSH. Changing it requires sending the credentials' secrets again.
 	RepoUrl NullableString `json:"repo_url,omitempty"`
 }
 

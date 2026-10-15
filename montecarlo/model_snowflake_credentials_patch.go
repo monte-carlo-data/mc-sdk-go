@@ -19,7 +19,7 @@ var _ MappedNullable = &SnowflakeCredentialsPatch{}
 
 // SnowflakeCredentialsPatch A change to existing Snowflake credentials.  A field left out is unchanged. `warehouse` set to null is cleared. `private_key` replaces the whole key pair: the passphrase is kept only when the same request sends one, and a passphrase is only accepted alongside `private_key`, null included. `private_key` set to null is unchanged.
 type SnowflakeCredentialsPatch struct {
-	// New Snowflake account identifier, without the `.snowflakecomputing.com` suffix.
+	// New Snowflake account identifier, without the `.snowflakecomputing.com` suffix. Letters, digits, `_`, `.` and `-` only.
 	Account NullableString `json:"account,omitempty"`
 	// New Snowflake user.
 	User NullableString `json:"user,omitempty"`

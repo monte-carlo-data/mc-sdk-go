@@ -19,7 +19,7 @@ var _ MappedNullable = &InformaticaV2CredentialsPatch{}
 
 // InformaticaV2CredentialsPatch A change to existing Informatica credentials.  A field left out is unchanged. A non-secret field set to null is cleared, and a secret set to null is unchanged. `auth_mode` cannot be cleared. A new `auth_mode` drops the fields of the old one, so send the new mode's fields with it. A grant other than `password` drops `oauth_username` and `oauth_password`. Sending an empty body returns the credentials as they are.
 type InformaticaV2CredentialsPatch struct {
-	// Informatica login URL for your POD. Leave it out for https://dm-us.informaticacloud.com.
+	// Informatica login URL for your POD. Leave it out for https://dm-us.informaticacloud.com. Changing it requires sending the credentials' secrets again.
 	BaseUrl NullableString `json:"base_url,omitempty"`
 	// Informatica user, for `password`.
 	Username NullableString `json:"username,omitempty"`
@@ -29,7 +29,7 @@ type InformaticaV2CredentialsPatch struct {
 	OauthClientId NullableString `json:"oauth_client_id,omitempty"`
 	// Grant Monte Carlo requests the token with, for `oauth`. `password` also takes `oauth_username` and `oauth_password`.
 	OauthGrantType NullableOAuthGrantType `json:"oauth_grant_type,omitempty"`
-	// Identity provider URL Monte Carlo requests tokens from.
+	// Identity provider URL Monte Carlo requests tokens from. Changing it requires sending the credentials' secrets again.
 	OauthAccessTokenEndpoint NullableString `json:"oauth_access_token_endpoint,omitempty"`
 	// Scope to request the token with. Leave it out to request none.
 	OauthScope NullableString `json:"oauth_scope,omitempty"`

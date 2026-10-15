@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ApiKey** | Pointer to **NullableString** | Key of the Fivetran API key. Stored by Monte Carlo and never returned. | [optional] 
 **ApiPassword** | Pointer to **NullableString** | Secret of the Fivetran API key. Stored by Monte Carlo and never returned. | [optional] 
-**BaseUrl** | Pointer to **NullableString** | URL of the Fivetran REST API. Leave it out for https://api.fivetran.com/v1/. | [optional] 
+**BaseUrl** | Pointer to **NullableString** | URL of the Fivetran REST API. Leave it out for https://api.fivetran.com/v1/. Changing it requires sending the credentials&#39; secrets again. | [optional] 
 
 ## Methods
 
