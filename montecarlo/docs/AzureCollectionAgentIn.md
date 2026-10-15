@@ -4,8 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FunctionAppKey** | Pointer to [**NullableFunctionAppKeyCredentialsIn**](FunctionAppKeyCredentialsIn.md) | Credentials for &#x60;AZURE_FUNCTION_APP_KEY&#x60;. Send this or &#x60;service_principal&#x60;, never both. | [optional] 
-**ServicePrincipal** | Pointer to [**NullableServicePrincipalCredentialsIn**](ServicePrincipalCredentialsIn.md) | Credentials for &#x60;AZURE_FUNCTION_SERVICE_PRINCIPAL&#x60;. Send this or &#x60;function_app_key&#x60;, never both. | [optional] 
+**FunctionAppKey** | Pointer to [**NullableFunctionAppKeyCredentialsIn**](FunctionAppKeyCredentialsIn.md) | Credentials for &#x60;AZURE_FUNCTION_APP_KEY&#x60;. Send only the object matching &#x60;authentication_type&#x60;. | [optional] 
+**ServicePrincipal** | Pointer to [**NullableServicePrincipalCredentialsIn**](ServicePrincipalCredentialsIn.md) | Credentials for &#x60;AZURE_FUNCTION_SERVICE_PRINCIPAL&#x60;. Send only the object matching &#x60;authentication_type&#x60;. | [optional] 
+**AuthHeaders** | Pointer to [**NullableAuthHeadersCredentialsIn**](AuthHeadersCredentialsIn.md) | Credentials for &#x60;CUSTOM_AUTH_HEADERS&#x60;. Send only the object matching &#x60;authentication_type&#x60;. | [optional] 
 **AuthenticationType** | [**AzureAgentAuthenticationType**](AzureAgentAuthenticationType.md) | How Monte Carlo authenticates when it calls the agent. Send it together with the matching credentials object. | 
 **DeploymentId** | **string** | Deployment to register the collection agent on. It must already hold an unregistered Azure collection agent. | 
 **FunctionAppUrl** | **string** | URL of the function app Monte Carlo should call. | 
@@ -100,6 +101,41 @@ HasServicePrincipal returns a boolean if a field has been set.
 `func (o *AzureCollectionAgentIn) UnsetServicePrincipal()`
 
 UnsetServicePrincipal ensures that no value is present for ServicePrincipal, not even an explicit nil
+### GetAuthHeaders
+
+`func (o *AzureCollectionAgentIn) GetAuthHeaders() AuthHeadersCredentialsIn`
+
+GetAuthHeaders returns the AuthHeaders field if non-nil, zero value otherwise.
+
+### GetAuthHeadersOk
+
+`func (o *AzureCollectionAgentIn) GetAuthHeadersOk() (*AuthHeadersCredentialsIn, bool)`
+
+GetAuthHeadersOk returns a tuple with the AuthHeaders field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAuthHeaders
+
+`func (o *AzureCollectionAgentIn) SetAuthHeaders(v AuthHeadersCredentialsIn)`
+
+SetAuthHeaders sets AuthHeaders field to given value.
+
+### HasAuthHeaders
+
+`func (o *AzureCollectionAgentIn) HasAuthHeaders() bool`
+
+HasAuthHeaders returns a boolean if a field has been set.
+
+### SetAuthHeadersNil
+
+`func (o *AzureCollectionAgentIn) SetAuthHeadersNil(b bool)`
+
+ SetAuthHeadersNil sets the value for AuthHeaders to be an explicit nil
+
+### UnsetAuthHeaders
+`func (o *AzureCollectionAgentIn) UnsetAuthHeaders()`
+
+UnsetAuthHeaders ensures that no value is present for AuthHeaders, not even an explicit nil
 ### GetAuthenticationType
 
 `func (o *AzureCollectionAgentIn) GetAuthenticationType() AzureAgentAuthenticationType`

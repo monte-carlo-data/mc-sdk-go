@@ -1,7 +1,7 @@
 /*
 Monte Carlo AI API
 
-Programmatic access to the Monte Carlo AI platform.  Every response with a status of 400 or higher is `application/problem+json`, and carries a `code` naming the failure. That includes failures no single operation declares, such as calling a path with a method it does not support, which returns 405.  Every response carries an `X-Request-Id` header, and an error body repeats it as `request_id`. Quote it when reporting a problem. To choose the value yourself, send an `x-correlation-id` header; a value we cannot accept is replaced by a generated one.
+Programmatic access to the Monte Carlo AI platform.  Authenticate every request with an `Authorization` header. For an API key, send `Bearer <mcd_id>:<mcd_token>`. For an OAuth client, request a client-credentials token from `https://api.getmontecarlo.com/oauth2/token` with the scopes shown when the client was created, then send `Bearer <access_token>`. This API does not accept the `x-mcd-id` and `x-mcd-token` headers.  Every response with a status of 400 or higher is `application/problem+json`, and carries a `code` naming the failure. That includes failures no single operation declares, such as calling a path with a method it does not support, which returns 405.  Every response carries an `X-Request-Id` header, and an error body repeats it as `request_id`. Quote it when reporting a problem. To choose the value yourself, send an `x-correlation-id` header; a value we cannot accept is replaced by a generated one.
 
 API version: 2.0.0
 */
@@ -3487,9 +3487,9 @@ Send any of the fields, in any combination. An agent that has no function app UR
 one supplied here, since there would otherwise be nothing for Monte Carlo to reach. Sending
 credentials replaces the stored ones, so send every field of the object you send, along with
 the matching `authentication_type`. Sending both is also how you move an agent from one
-authentication type to the other. An agent that authenticates some other way refuses a
-credentials or authentication type change, since this endpoint only manages the two Azure
-function authentication types.
+authentication type to another. An agent that authenticates some other way refuses a
+credentials or authentication type change, since this endpoint manages only the types
+`authentication_type` accepts.
 
 Monte Carlo reaches the agent and checks it again before saving the change, and re-enables
 the agent if it was disabled. A successful response therefore always describes a working

@@ -1,7 +1,7 @@
 /*
 Monte Carlo AI API
 
-Programmatic access to the Monte Carlo AI platform.  Every response with a status of 400 or higher is `application/problem+json`, and carries a `code` naming the failure. That includes failures no single operation declares, such as calling a path with a method it does not support, which returns 405.  Every response carries an `X-Request-Id` header, and an error body repeats it as `request_id`. Quote it when reporting a problem. To choose the value yourself, send an `x-correlation-id` header; a value we cannot accept is replaced by a generated one.
+Programmatic access to the Monte Carlo AI platform.  Authenticate every request with an `Authorization` header. For an API key, send `Bearer <mcd_id>:<mcd_token>`. For an OAuth client, request a client-credentials token from `https://api.getmontecarlo.com/oauth2/token` with the scopes shown when the client was created, then send `Bearer <access_token>`. This API does not accept the `x-mcd-id` and `x-mcd-token` headers.  Every response with a status of 400 or higher is `application/problem+json`, and carries a `code` naming the failure. That includes failures no single operation declares, such as calling a path with a method it does not support, which returns 405.  Every response carries an `X-Request-Id` header, and an error body repeats it as `request_id`. Quote it when reporting a problem. To choose the value yourself, send an `x-correlation-id` header; a value we cannot accept is replaced by a generated one.
 
 API version: 2.0.0
 */
@@ -29,7 +29,7 @@ type ValidationRunOut struct {
 	Revision int32 `json:"revision"`
 	// What the run validates.
 	TargetType TargetType `json:"target_type"`
-	// Identifier of what is being validated. Null for candidate values, which are not stored anywhere.
+	// Identifier of what is being validated: the connection, or the credentials a change applies to. Null for candidate values, which are not stored anywhere.
 	TargetId NullableString `json:"target_id"`
 	// How many validations reached a passing verdict. One that was skipped or never reached a verdict is not counted here, but is still in `validations_total`.
 	ValidationsPassed int32 `json:"validations_passed"`

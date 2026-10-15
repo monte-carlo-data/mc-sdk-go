@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Status** | [**RunStatus**](RunStatus.md) | Whether the run is still going. Every validation is final once it is not. | 
 **Revision** | **int32** | Moves forward every time a validation changes. Pass it as &#x60;since&#x60; on the next poll to get only the validations that changed after this response. | 
 **TargetType** | [**TargetType**](TargetType.md) | What the run validates. | 
-**TargetId** | **NullableString** | Identifier of what is being validated. Null for candidate values, which are not stored anywhere. | 
+**TargetId** | **NullableString** | Identifier of what is being validated: the connection, or the credentials a change applies to. Null for candidate values, which are not stored anywhere. | 
 **ValidationsPassed** | **int32** | How many validations reached a passing verdict. One that was skipped or never reached a verdict is not counted here, but is still in &#x60;validations_total&#x60;. | 
 **ValidationsTotal** | **int32** | How many validations the run covers. | 
 **StartedAt** | **time.Time** | When the run started. | 
