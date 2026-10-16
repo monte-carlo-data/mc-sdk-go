@@ -66,6 +66,8 @@ type APIClient struct {
 
 	EtlContainersAPI *EtlContainersAPIService
 
+	HostingAPI *HostingAPIService
+
 	IntegrationKeysAPI *IntegrationKeysAPIService
 
 	UsersAPI *UsersAPIService
@@ -100,6 +102,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CustomConnectorTypesAPI = (*CustomConnectorTypesAPIService)(&c.common)
 	c.DeploymentsAPI = (*DeploymentsAPIService)(&c.common)
 	c.EtlContainersAPI = (*EtlContainersAPIService)(&c.common)
+	c.HostingAPI = (*HostingAPIService)(&c.common)
 	c.IntegrationKeysAPI = (*IntegrationKeysAPIService)(&c.common)
 	c.UsersAPI = (*UsersAPIService)(&c.common)
 	c.ValidationsAPI = (*ValidationsAPIService)(&c.common)

@@ -7,6 +7,7 @@ api_credentials.go
 api_custom_connector_types.go
 api_deployments.go
 api_etl_containers.go
+api_hosting.go
 api_integration_keys.go
 api_users.go
 api_validations.go
@@ -166,6 +167,8 @@ docs/GenericCollectionAgentPatch.md
 docs/GenericCollectionAgentTokenCreatedOut.md
 docs/GenericCollectionAgentTokenIn.md
 docs/GenericCollectionAgentTokenOut.md
+docs/HostingAPI.md
+docs/HostingDomainsOut.md
 docs/IdentityType.md
 docs/InformaticaV2AuthMode.md
 docs/InformaticaV2CredentialsChangeValidateIn.md
@@ -434,6 +437,7 @@ model_generic_collection_agent_patch.go
 model_generic_collection_agent_token_created_out.go
 model_generic_collection_agent_token_in.go
 model_generic_collection_agent_token_out.go
+model_hosting_domains_out.go
 model_identity_type.go
 model_informatica_v2_auth_mode.go
 model_informatica_v2_credentials_change_validate_in.go
