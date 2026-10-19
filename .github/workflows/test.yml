@@ -5,8 +5,8 @@ on:
   push:
     branches: [main]
 
-# Read-only: GITHUB_TOKEN never writes. The tag job writes only through App tokens, each
-# scoped to the one repository it writes to.
+# Read-only by default. The tag job writes only through App tokens, each scoped to the one
+# repository it writes to; github-release alone gets a GITHUB_TOKEN that can write.
 permissions:
   contents: read
 
@@ -35,6 +35,7 @@ jobs:
         run: |
           .github/scripts/next-tag.sh > /dev/null
           .github/scripts/next-tag_test.sh
+          .github/scripts/github-release_test.sh
 
       - name: Test
         run: go test -race ./...
@@ -137,3 +138,35 @@ jobs:
           gh api -X POST repos/monte-carlo-data/api-codegen/dispatches \
             -f event_type=sdk-merged
           echo "Asked api-codegen to check whether its targets are behind this SDK."
+
+  # Creates a GitHub release on the tag the tag job pushed. It reads the tag from the commit, not
+  # from the tag job, so it still finds it when a rerun of that job tags nothing. Only the highest
+  # version is marked latest, since back-to-back merges can finish out of order. Releases are
+  # immutable, so a rerun leaves a published one alone.
+  github-release:
+    name: Create the GitHub release
+    needs: tag
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # creates the release with GITHUB_TOKEN
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5.1.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # A commit older than an already-tagged one is never tagged, so it gets no release.
+      - name: Find the commit's tag
+        id: tag
+        run: |
+          tag=$(git tag --points-at HEAD | { grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' || true; } |
+            sort -V | tail -1)
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+      - name: Create ${{ steps.tag.outputs.tag }}
+        if: steps.tag.outputs.tag != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: .github/scripts/github-release.sh "$TAG"

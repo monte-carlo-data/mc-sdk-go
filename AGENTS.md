@@ -33,6 +33,7 @@ go test ./...
 go vet ./...
 gofmt -l .        # must be empty; generated output is formatted when it is produced
 .github/scripts/next-tag_test.sh   # the release-tag logic
+.github/scripts/github-release_test.sh   # the GitHub release step
 ```
 
 ## Key Directories
@@ -50,7 +51,7 @@ gofmt -l .        # must be empty; generated output is formatted when it is prod
 | `montecarlo/.openapi-generator/` | Generator bookkeeping |
 | `montecarlo/docs/` | Generated API reference |
 | `VERSION` | The major.minor release base |
-| `.github/scripts/` | The release-tag script and its test |
+| `.github/scripts/` | The release-tag and GitHub release scripts and their tests |
 
 ## What is generated
 
@@ -204,6 +205,14 @@ org App, which with the `apollo` team is the only actor allowed to create tags, 
 immutable. The job then tells api-codegen, which moves the Terraform provider and the CLI to
 this SDK's latest version. If a run fails after tagging, use "Re-run failed jobs"; a commit
 older than an already-tagged one is never tagged (the script skips it).
+
+The `github-release` job then runs `.github/scripts/github-release.sh`, which creates a GitHub
+release on the commit's tag, with the `go get` command and a pkg.go.dev link as its notes. Only
+the highest version is marked latest, since back-to-back merges can finish out of order. It reads
+the tag from the commit rather than from the `tag` job, so a rerun of that job, which tags
+nothing, still leads to a release. Releases are immutable once published, as tags are, so a
+rerun leaves a published release alone, and a draft on the tag fails the run rather than gain a
+second release beside it.
 
 The same `next-tag.sh`, its test and the tag job also live in terraform-provider-montecarlo
 and mc-cli; change them together.
