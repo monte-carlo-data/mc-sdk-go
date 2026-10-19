@@ -17,12 +17,14 @@ import (
 // checks if the ConnectionPatch type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ConnectionPatch{}
 
-// ConnectionPatch A change to an existing connection: a new name, or ETL turned on or off.
+// ConnectionPatch A change to an existing connection: a new name, ETL turned on or off, or new dbt Cloud settings.
 type ConnectionPatch struct {
 	// New display name for the connection. Omit it to leave the name unchanged. An explicit null is ignored, the same as omitting the field.
 	Name NullableString `json:"name,omitempty"`
 	// The connection's job types with `etl` added or removed. Adding `etl` turns on ETL collection for a Snowflake (Snowflake Tasks), Power BI (dataflows) or Salesforce Data Cloud connection, and creates the ETL container that `etl_container_id` then names. Removing it deletes that container. No other job can be added or removed. Omit it to leave the job types unchanged.
 	JobTypes []string `json:"job_types,omitempty"`
+	// Which dbt Cloud runs a dbt Cloud webhook connection processes. A dbt Cloud webhook reports runs from every environment in the dbt account. These settings decide which of them Monte Carlo processes for the connection's warehouse. Only a dbt Cloud webhook connection takes it. An object replaces the settings whole. Null resets them to the defaults. Omit it to leave them unchanged.
+	DbtCloud NullableDbtCloudSettingsIn `json:"dbt_cloud,omitempty"`
 }
 
 // NewConnectionPatch instantiates a new ConnectionPatch object
@@ -118,6 +120,49 @@ func (o *ConnectionPatch) SetJobTypes(v []string) {
 	o.JobTypes = v
 }
 
+// GetDbtCloud returns the DbtCloud field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ConnectionPatch) GetDbtCloud() DbtCloudSettingsIn {
+	if o == nil || IsNil(o.DbtCloud.Get()) {
+		var ret DbtCloudSettingsIn
+		return ret
+	}
+	return *o.DbtCloud.Get()
+}
+
+// GetDbtCloudOk returns a tuple with the DbtCloud field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectionPatch) GetDbtCloudOk() (*DbtCloudSettingsIn, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DbtCloud.Get(), o.DbtCloud.IsSet()
+}
+
+// HasDbtCloud returns a boolean if a field has been set.
+func (o *ConnectionPatch) HasDbtCloud() bool {
+	if o != nil && o.DbtCloud.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDbtCloud gets a reference to the given NullableDbtCloudSettingsIn and assigns it to the DbtCloud field.
+func (o *ConnectionPatch) SetDbtCloud(v DbtCloudSettingsIn) {
+	o.DbtCloud.Set(&v)
+}
+
+// SetDbtCloudNil sets the value for DbtCloud to be an explicit nil
+func (o *ConnectionPatch) SetDbtCloudNil() {
+	o.DbtCloud.Set(nil)
+}
+
+// UnsetDbtCloud ensures that no value is present for DbtCloud, not even an explicit nil
+func (o *ConnectionPatch) UnsetDbtCloud() {
+	o.DbtCloud.Unset()
+}
+
 func (o ConnectionPatch) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -133,6 +178,9 @@ func (o ConnectionPatch) ToMap() (map[string]interface{}, error) {
 	}
 	if o.JobTypes != nil {
 		toSerialize["job_types"] = o.JobTypes
+	}
+	if o.DbtCloud.IsSet() {
+		toSerialize["dbt_cloud"] = o.DbtCloud.Get()
 	}
 	return toSerialize, nil
 }

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | Pointer to **NullableString** | New display name for the connection. Omit it to leave the name unchanged. An explicit null is ignored, the same as omitting the field. | [optional] 
 **JobTypes** | Pointer to **[]string** | The connection&#39;s job types with &#x60;etl&#x60; added or removed. Adding &#x60;etl&#x60; turns on ETL collection for a Snowflake (Snowflake Tasks), Power BI (dataflows) or Salesforce Data Cloud connection, and creates the ETL container that &#x60;etl_container_id&#x60; then names. Removing it deletes that container. No other job can be added or removed. Omit it to leave the job types unchanged. | [optional] 
+**DbtCloud** | Pointer to [**NullableDbtCloudSettingsIn**](DbtCloudSettingsIn.md) | Which dbt Cloud runs a dbt Cloud webhook connection processes. A dbt Cloud webhook reports runs from every environment in the dbt account. These settings decide which of them Monte Carlo processes for the connection&#39;s warehouse. Only a dbt Cloud webhook connection takes it. An object replaces the settings whole. Null resets them to the defaults. Omit it to leave them unchanged. | [optional] 
 
 ## Methods
 
@@ -96,6 +97,41 @@ HasJobTypes returns a boolean if a field has been set.
 `func (o *ConnectionPatch) UnsetJobTypes()`
 
 UnsetJobTypes ensures that no value is present for JobTypes, not even an explicit nil
+### GetDbtCloud
+
+`func (o *ConnectionPatch) GetDbtCloud() DbtCloudSettingsIn`
+
+GetDbtCloud returns the DbtCloud field if non-nil, zero value otherwise.
+
+### GetDbtCloudOk
+
+`func (o *ConnectionPatch) GetDbtCloudOk() (*DbtCloudSettingsIn, bool)`
+
+GetDbtCloudOk returns a tuple with the DbtCloud field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDbtCloud
+
+`func (o *ConnectionPatch) SetDbtCloud(v DbtCloudSettingsIn)`
+
+SetDbtCloud sets DbtCloud field to given value.
+
+### HasDbtCloud
+
+`func (o *ConnectionPatch) HasDbtCloud() bool`
+
+HasDbtCloud returns a boolean if a field has been set.
+
+### SetDbtCloudNil
+
+`func (o *ConnectionPatch) SetDbtCloudNil(b bool)`
+
+ SetDbtCloudNil sets the value for DbtCloud to be an explicit nil
+
+### UnsetDbtCloud
+`func (o *ConnectionPatch) UnsetDbtCloud()`
+
+UnsetDbtCloud ensures that no value is present for DbtCloud, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -33,6 +33,8 @@ type ConnectionIn struct {
 	CredentialsId NullableString `json:"credentials_id,omitempty"`
 	// The jobs to run on this connection. Omit it to run what the connection type runs by default, which is what the app does. Which values are accepted depends on the connection type. `etl` on a Snowflake, Power BI or Salesforce Data Cloud connection also creates its ETL container. An empty list is not accepted; omit the field to take the defaults.
 	JobTypes []string `json:"job_types,omitempty"`
+	// Which dbt Cloud runs a dbt Cloud webhook connection processes. A dbt Cloud webhook reports runs from every environment in the dbt account. These settings decide which of them Monte Carlo processes for the connection's warehouse. Only a dbt Cloud webhook connection takes it. Omit it to process every run.
+	DbtCloud NullableDbtCloudSettingsIn `json:"dbt_cloud,omitempty"`
 }
 
 type _ConnectionIn ConnectionIn
@@ -284,6 +286,49 @@ func (o *ConnectionIn) SetJobTypes(v []string) {
 	o.JobTypes = v
 }
 
+// GetDbtCloud returns the DbtCloud field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ConnectionIn) GetDbtCloud() DbtCloudSettingsIn {
+	if o == nil || IsNil(o.DbtCloud.Get()) {
+		var ret DbtCloudSettingsIn
+		return ret
+	}
+	return *o.DbtCloud.Get()
+}
+
+// GetDbtCloudOk returns a tuple with the DbtCloud field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectionIn) GetDbtCloudOk() (*DbtCloudSettingsIn, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DbtCloud.Get(), o.DbtCloud.IsSet()
+}
+
+// HasDbtCloud returns a boolean if a field has been set.
+func (o *ConnectionIn) HasDbtCloud() bool {
+	if o != nil && o.DbtCloud.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDbtCloud gets a reference to the given NullableDbtCloudSettingsIn and assigns it to the DbtCloud field.
+func (o *ConnectionIn) SetDbtCloud(v DbtCloudSettingsIn) {
+	o.DbtCloud.Set(&v)
+}
+
+// SetDbtCloudNil sets the value for DbtCloud to be an explicit nil
+func (o *ConnectionIn) SetDbtCloudNil() {
+	o.DbtCloud.Set(nil)
+}
+
+// UnsetDbtCloud ensures that no value is present for DbtCloud, not even an explicit nil
+func (o *ConnectionIn) UnsetDbtCloud() {
+	o.DbtCloud.Unset()
+}
+
 func (o ConnectionIn) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -309,6 +354,9 @@ func (o ConnectionIn) ToMap() (map[string]interface{}, error) {
 	}
 	if o.JobTypes != nil {
 		toSerialize["job_types"] = o.JobTypes
+	}
+	if o.DbtCloud.IsSet() {
+		toSerialize["dbt_cloud"] = o.DbtCloud.Get()
 	}
 	return toSerialize, nil
 }

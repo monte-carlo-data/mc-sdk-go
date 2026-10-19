@@ -50,7 +50,9 @@ type ConnectionOut struct {
 	// The jobs Monte Carlo runs on this connection, such as `metadata`.
 	JobTypes []string `json:"job_types"`
 	// When the connection was created.
-	CreatedTime          time.Time `json:"created_time"`
+	CreatedTime time.Time `json:"created_time"`
+	// Which dbt Cloud runs a dbt Cloud webhook connection processes. A dbt Cloud webhook reports runs from every environment in the dbt account. These settings decide which of them Monte Carlo processes for the connection's warehouse. Null for every other connection type.
+	DbtCloud             NullableDbtCloudSettingsOut `json:"dbt_cloud"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -60,7 +62,7 @@ type _ConnectionOut ConnectionOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewConnectionOut(id string, connectionType string, name NullableString, warehouseId NullableString, warehouseName NullableString, biContainerId NullableString, biContainerName NullableString, etlContainerId NullableString, etlContainerName NullableString, deploymentId NullableString, deploymentName NullableString, credentialsId NullableString, credentialsStorageType NullableCredentialsStorageType, jobTypes []string, createdTime time.Time) *ConnectionOut {
+func NewConnectionOut(id string, connectionType string, name NullableString, warehouseId NullableString, warehouseName NullableString, biContainerId NullableString, biContainerName NullableString, etlContainerId NullableString, etlContainerName NullableString, deploymentId NullableString, deploymentName NullableString, credentialsId NullableString, credentialsStorageType NullableCredentialsStorageType, jobTypes []string, createdTime time.Time, dbtCloud NullableDbtCloudSettingsOut) *ConnectionOut {
 	this := ConnectionOut{}
 	this.Id = id
 	this.ConnectionType = connectionType
@@ -77,6 +79,7 @@ func NewConnectionOut(id string, connectionType string, name NullableString, war
 	this.CredentialsStorageType = credentialsStorageType
 	this.JobTypes = jobTypes
 	this.CreatedTime = createdTime
+	this.DbtCloud = dbtCloud
 	return &this
 }
 
@@ -470,6 +473,32 @@ func (o *ConnectionOut) SetCreatedTime(v time.Time) {
 	o.CreatedTime = v
 }
 
+// GetDbtCloud returns the DbtCloud field value
+// If the value is explicit nil, the zero value for DbtCloudSettingsOut will be returned
+func (o *ConnectionOut) GetDbtCloud() DbtCloudSettingsOut {
+	if o == nil || o.DbtCloud.Get() == nil {
+		var ret DbtCloudSettingsOut
+		return ret
+	}
+
+	return *o.DbtCloud.Get()
+}
+
+// GetDbtCloudOk returns a tuple with the DbtCloud field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectionOut) GetDbtCloudOk() (*DbtCloudSettingsOut, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DbtCloud.Get(), o.DbtCloud.IsSet()
+}
+
+// SetDbtCloud sets field value
+func (o *ConnectionOut) SetDbtCloud(v DbtCloudSettingsOut) {
+	o.DbtCloud.Set(&v)
+}
+
 func (o ConnectionOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -495,6 +524,7 @@ func (o ConnectionOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["credentials_storage_type"] = o.CredentialsStorageType.Get()
 	toSerialize["job_types"] = o.JobTypes
 	toSerialize["created_time"] = o.CreatedTime
+	toSerialize["dbt_cloud"] = o.DbtCloud.Get()
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -523,6 +553,7 @@ func (o *ConnectionOut) UnmarshalJSON(data []byte) (err error) {
 		"credentials_storage_type",
 		"job_types",
 		"created_time",
+		"dbt_cloud",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -567,6 +598,7 @@ func (o *ConnectionOut) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "credentials_storage_type")
 		delete(additionalProperties, "job_types")
 		delete(additionalProperties, "created_time")
+		delete(additionalProperties, "dbt_cloud")
 		o.AdditionalProperties = additionalProperties
 	}
 

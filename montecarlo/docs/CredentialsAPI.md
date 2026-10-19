@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**CreateDatabricksMetastoreSqlWarehouseCredentials**](CredentialsAPI.md#CreateDatabricksMetastoreSqlWarehouseCredentials) | **Post** /api/v2/credentials/databricks-metastore-sql-warehouse | Create Databricks metadata collection credentials
 [**CreateDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#CreateDatabricksSqlWarehouseCredentials) | **Post** /api/v2/credentials/databricks-sql-warehouse | Create Databricks query credentials
 [**CreateDb2Credentials**](CredentialsAPI.md#CreateDb2Credentials) | **Post** /api/v2/credentials/db2 | Create Db2 credentials
+[**CreateDbtCloudWebhookCredentials**](CredentialsAPI.md#CreateDbtCloudWebhookCredentials) | **Post** /api/v2/credentials/dbt-cloud-webhook | Create dbt Cloud webhook credentials
 [**CreateEnvVarCredentials**](CredentialsAPI.md#CreateEnvVarCredentials) | **Post** /api/v2/credentials/self-hosted/env-var | Create environment variable credentials
 [**CreateFileCredentials**](CredentialsAPI.md#CreateFileCredentials) | **Post** /api/v2/credentials/self-hosted/file | Create file credentials
 [**CreateFivetranCredentials**](CredentialsAPI.md#CreateFivetranCredentials) | **Post** /api/v2/credentials/fivetran | Create Fivetran credentials
@@ -49,6 +50,7 @@ Method | HTTP request | Description
 [**DeleteDatabricksMetastoreSqlWarehouseCredentials**](CredentialsAPI.md#DeleteDatabricksMetastoreSqlWarehouseCredentials) | **Delete** /api/v2/credentials/databricks-metastore-sql-warehouse/{credentials_id} | Delete Databricks metadata collection credentials
 [**DeleteDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#DeleteDatabricksSqlWarehouseCredentials) | **Delete** /api/v2/credentials/databricks-sql-warehouse/{credentials_id} | Delete Databricks query credentials
 [**DeleteDb2Credentials**](CredentialsAPI.md#DeleteDb2Credentials) | **Delete** /api/v2/credentials/db2/{credentials_id} | Delete Db2 credentials
+[**DeleteDbtCloudWebhookCredentials**](CredentialsAPI.md#DeleteDbtCloudWebhookCredentials) | **Delete** /api/v2/credentials/dbt-cloud-webhook/{credentials_id} | Delete dbt Cloud webhook credentials
 [**DeleteEnvVarCredentials**](CredentialsAPI.md#DeleteEnvVarCredentials) | **Delete** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Delete environment variable credentials
 [**DeleteFileCredentials**](CredentialsAPI.md#DeleteFileCredentials) | **Delete** /api/v2/credentials/self-hosted/file/{credentials_id} | Delete file credentials
 [**DeleteFivetranCredentials**](CredentialsAPI.md#DeleteFivetranCredentials) | **Delete** /api/v2/credentials/fivetran/{credentials_id} | Delete Fivetran credentials
@@ -82,6 +84,7 @@ Method | HTTP request | Description
 [**GetDatabricksMetastoreSqlWarehouseCredentials**](CredentialsAPI.md#GetDatabricksMetastoreSqlWarehouseCredentials) | **Get** /api/v2/credentials/databricks-metastore-sql-warehouse/{credentials_id} | Get Databricks metadata collection credentials
 [**GetDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#GetDatabricksSqlWarehouseCredentials) | **Get** /api/v2/credentials/databricks-sql-warehouse/{credentials_id} | Get Databricks query credentials
 [**GetDb2Credentials**](CredentialsAPI.md#GetDb2Credentials) | **Get** /api/v2/credentials/db2/{credentials_id} | Get Db2 credentials
+[**GetDbtCloudWebhookCredentials**](CredentialsAPI.md#GetDbtCloudWebhookCredentials) | **Get** /api/v2/credentials/dbt-cloud-webhook/{credentials_id} | Get dbt Cloud webhook credentials
 [**GetEnvVarCredentials**](CredentialsAPI.md#GetEnvVarCredentials) | **Get** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Get environment variable credentials
 [**GetFileCredentials**](CredentialsAPI.md#GetFileCredentials) | **Get** /api/v2/credentials/self-hosted/file/{credentials_id} | Get file credentials
 [**GetFivetranCredentials**](CredentialsAPI.md#GetFivetranCredentials) | **Get** /api/v2/credentials/fivetran/{credentials_id} | Get Fivetran credentials
@@ -116,6 +119,7 @@ Method | HTTP request | Description
 [**UpdateDatabricksMetastoreSqlWarehouseCredentials**](CredentialsAPI.md#UpdateDatabricksMetastoreSqlWarehouseCredentials) | **Patch** /api/v2/credentials/databricks-metastore-sql-warehouse/{credentials_id} | Update Databricks metadata collection credentials
 [**UpdateDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#UpdateDatabricksSqlWarehouseCredentials) | **Patch** /api/v2/credentials/databricks-sql-warehouse/{credentials_id} | Update Databricks query credentials
 [**UpdateDb2Credentials**](CredentialsAPI.md#UpdateDb2Credentials) | **Patch** /api/v2/credentials/db2/{credentials_id} | Update Db2 credentials
+[**UpdateDbtCloudWebhookCredentials**](CredentialsAPI.md#UpdateDbtCloudWebhookCredentials) | **Patch** /api/v2/credentials/dbt-cloud-webhook/{credentials_id} | Update dbt Cloud webhook credentials
 [**UpdateEnvVarCredentials**](CredentialsAPI.md#UpdateEnvVarCredentials) | **Patch** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Update environment variable credentials
 [**UpdateFileCredentials**](CredentialsAPI.md#UpdateFileCredentials) | **Patch** /api/v2/credentials/self-hosted/file/{credentials_id} | Update file credentials
 [**UpdateFivetranCredentials**](CredentialsAPI.md#UpdateFivetranCredentials) | **Patch** /api/v2/credentials/fivetran/{credentials_id} | Update Fivetran credentials
@@ -158,6 +162,8 @@ Method | HTTP request | Description
 [**ValidateDatabricksSqlWarehouseCredentialsChange**](CredentialsAPI.md#ValidateDatabricksSqlWarehouseCredentialsChange) | **Post** /api/v2/credentials/databricks-sql-warehouse/{credentials_id}/validate | Validate a change to Databricks query credentials
 [**ValidateDb2Credentials**](CredentialsAPI.md#ValidateDb2Credentials) | **Post** /api/v2/credentials/db2/validate | Validate Db2 credentials
 [**ValidateDb2CredentialsChange**](CredentialsAPI.md#ValidateDb2CredentialsChange) | **Post** /api/v2/credentials/db2/{credentials_id}/validate | Validate a change to Db2 credentials
+[**ValidateDbtCloudWebhookCredentials**](CredentialsAPI.md#ValidateDbtCloudWebhookCredentials) | **Post** /api/v2/credentials/dbt-cloud-webhook/validate | Validate dbt Cloud webhook credentials
+[**ValidateDbtCloudWebhookCredentialsChange**](CredentialsAPI.md#ValidateDbtCloudWebhookCredentialsChange) | **Post** /api/v2/credentials/dbt-cloud-webhook/{credentials_id}/validate | Validate a change to dbt Cloud webhook credentials
 [**ValidateEnvVarCredentials**](CredentialsAPI.md#ValidateEnvVarCredentials) | **Post** /api/v2/credentials/self-hosted/env-var/validate | Validate environment variable credentials
 [**ValidateEnvVarCredentialsChange**](CredentialsAPI.md#ValidateEnvVarCredentialsChange) | **Post** /api/v2/credentials/self-hosted/env-var/{credentials_id}/validate | Validate a change to environment variable credentials
 [**ValidateFileCredentials**](CredentialsAPI.md#ValidateFileCredentials) | **Post** /api/v2/credentials/self-hosted/file/validate | Validate file credentials
@@ -916,6 +922,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Db2CredentialsOut**](Db2CredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateDbtCloudWebhookCredentials
+
+> DbtCloudWebhookCredentialsOut CreateDbtCloudWebhookCredentials(ctx).DbtCloudWebhookCredentialsIn(dbtCloudWebhookCredentialsIn).Execute()
+
+Create dbt Cloud webhook credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	dbtCloudWebhookCredentialsIn := *openapiclient.NewDbtCloudWebhookCredentialsIn("ServiceToken_example", "HmacSecret_example", "AccountId_example", "WebhookId_example") // DbtCloudWebhookCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateDbtCloudWebhookCredentials(context.Background()).DbtCloudWebhookCredentialsIn(dbtCloudWebhookCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateDbtCloudWebhookCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateDbtCloudWebhookCredentials`: DbtCloudWebhookCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateDbtCloudWebhookCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateDbtCloudWebhookCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **dbtCloudWebhookCredentialsIn** | [**DbtCloudWebhookCredentialsIn**](DbtCloudWebhookCredentialsIn.md) |  | 
+
+### Return type
+
+[**DbtCloudWebhookCredentialsOut**](DbtCloudWebhookCredentialsOut.md)
 
 ### Authorization
 
@@ -3199,6 +3271,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteDbtCloudWebhookCredentials
+
+> DeleteDbtCloudWebhookCredentials(ctx, credentialsId).Execute()
+
+Delete dbt Cloud webhook credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteDbtCloudWebhookCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteDbtCloudWebhookCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteDbtCloudWebhookCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteEnvVarCredentials
 
 > DeleteEnvVarCredentials(ctx, credentialsId).Execute()
@@ -5450,6 +5590,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Db2CredentialsOut**](Db2CredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetDbtCloudWebhookCredentials
+
+> DbtCloudWebhookCredentialsOut GetDbtCloudWebhookCredentials(ctx, credentialsId).Execute()
+
+Get dbt Cloud webhook credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetDbtCloudWebhookCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetDbtCloudWebhookCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetDbtCloudWebhookCredentials`: DbtCloudWebhookCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetDbtCloudWebhookCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDbtCloudWebhookCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DbtCloudWebhookCredentialsOut**](DbtCloudWebhookCredentialsOut.md)
 
 ### Authorization
 
@@ -7852,6 +8062,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Db2CredentialsOut**](Db2CredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateDbtCloudWebhookCredentials
+
+> DbtCloudWebhookCredentialsOut UpdateDbtCloudWebhookCredentials(ctx, credentialsId).DbtCloudWebhookCredentialsPatch(dbtCloudWebhookCredentialsPatch).Execute()
+
+Update dbt Cloud webhook credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	dbtCloudWebhookCredentialsPatch := *openapiclient.NewDbtCloudWebhookCredentialsPatch() // DbtCloudWebhookCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateDbtCloudWebhookCredentials(context.Background(), credentialsId).DbtCloudWebhookCredentialsPatch(dbtCloudWebhookCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateDbtCloudWebhookCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateDbtCloudWebhookCredentials`: DbtCloudWebhookCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateDbtCloudWebhookCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateDbtCloudWebhookCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **dbtCloudWebhookCredentialsPatch** | [**DbtCloudWebhookCredentialsPatch**](DbtCloudWebhookCredentialsPatch.md) |  | 
+
+### Return type
+
+[**DbtCloudWebhookCredentialsOut**](DbtCloudWebhookCredentialsOut.md)
 
 ### Authorization
 
@@ -10812,6 +11094,144 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **db2CredentialsChangeValidateIn** | [**Db2CredentialsChangeValidateIn**](Db2CredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateDbtCloudWebhookCredentials
+
+> ValidationRunOut ValidateDbtCloudWebhookCredentials(ctx).DbtCloudWebhookCredentialsValidateIn(dbtCloudWebhookCredentialsValidateIn).Execute()
+
+Validate dbt Cloud webhook credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	dbtCloudWebhookCredentialsValidateIn := *openapiclient.NewDbtCloudWebhookCredentialsValidateIn("DeploymentId_example", "ServiceToken_example", "HmacSecret_example", "AccountId_example", "WebhookId_example") // DbtCloudWebhookCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateDbtCloudWebhookCredentials(context.Background()).DbtCloudWebhookCredentialsValidateIn(dbtCloudWebhookCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateDbtCloudWebhookCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateDbtCloudWebhookCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateDbtCloudWebhookCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateDbtCloudWebhookCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **dbtCloudWebhookCredentialsValidateIn** | [**DbtCloudWebhookCredentialsValidateIn**](DbtCloudWebhookCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateDbtCloudWebhookCredentialsChange
+
+> ValidationRunOut ValidateDbtCloudWebhookCredentialsChange(ctx, credentialsId).DbtCloudWebhookCredentialsChangeValidateIn(dbtCloudWebhookCredentialsChangeValidateIn).Execute()
+
+Validate a change to dbt Cloud webhook credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	dbtCloudWebhookCredentialsChangeValidateIn := *openapiclient.NewDbtCloudWebhookCredentialsChangeValidateIn("DeploymentId_example") // DbtCloudWebhookCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateDbtCloudWebhookCredentialsChange(context.Background(), credentialsId).DbtCloudWebhookCredentialsChangeValidateIn(dbtCloudWebhookCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateDbtCloudWebhookCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateDbtCloudWebhookCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateDbtCloudWebhookCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateDbtCloudWebhookCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **dbtCloudWebhookCredentialsChangeValidateIn** | [**DbtCloudWebhookCredentialsChangeValidateIn**](DbtCloudWebhookCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 

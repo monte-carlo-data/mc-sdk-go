@@ -26,7 +26,7 @@ type ConnectionTypeOut struct {
 	Name string `json:"name"`
 	// What a connection of this type is added to. Create or reuse one first.
 	Parent ConnectionParent `json:"parent"`
-	// The type of warehouse the connection goes on. Null unless `parent` is `warehouse`.
+	// The type of warehouse the connection goes on. Null unless `parent` is `warehouse`. Null too for a type any existing warehouse takes, such as `dbt-cloud-webhook`.
 	WarehouseType NullableWarehouseType `json:"warehouse_type"`
 	// The type of BI container the connection goes on. Null unless `parent` is `bi_container`.
 	BiContainerType NullableNewBiContainerType `json:"bi_container_type"`
