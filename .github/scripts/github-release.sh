@@ -1,11 +1,19 @@
 #!/usr/bin/env bash
-# Creates the GitHub release for <tag>, unless one is published. Marks it latest only when it is
-# the highest plain version tag. Fails on a draft rather than create a second release beside it.
+# Creates the GitHub release for the version tag on HEAD, read from the local clone, unless one
+# is published. Marks it latest only when it is the highest plain version tag. Fails on a draft
+# rather than create a second release beside it.
 #
-#   GITHUB_REPOSITORY=owner/repo .github/scripts/github-release.sh v0.1.4
+#   GITHUB_REPOSITORY=owner/repo .github/scripts/github-release.sh
 set -euo pipefail
 
-tag=$1
+# A commit older than an already-tagged one is never tagged, so it gets no release.
+tag=$(git tag --points-at HEAD | { grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' || true; } |
+  sort -V | tail -1)
+if [ -z "$tag" ]; then
+  echo "HEAD carries no version tag; nothing to release."
+  exit 0
+fi
+
 repo=$GITHUB_REPOSITORY
 module=github.com/$repo
 
@@ -13,7 +21,8 @@ module=github.com/$repo
 releases=$(gh api "repos/$repo/releases" --paginate \
   --jq ".[] | select(.tag_name == \"$tag\") | \"\(.draft) \(.author.login)\"")
 
-# With no files to upload, gh publishes in one call, so this job never leaves a draft.
+# gh publishes in one call when there are no files, so a draft here is not this job's: fail
+# rather than delete it.
 while read -r draft author; do
   [ -n "$draft" ] || continue
   if [ "$draft" = false ]; then
@@ -32,7 +41,7 @@ if [ "$highest" = "$tag" ]; then latest=true; fi
 
 notes="Reference: [pkg.go.dev](https://pkg.go.dev/$module@$tag/montecarlo)"
 # shellcheck disable=SC2016 # the backticks are a Markdown code fence
-notes=$(printf '```bash\ngo get %s@%s\n```\n\n%s\n' "$module" "$tag" "$notes")
+notes=$(printf '```bash\ngo get %s/montecarlo@%s\n```\n\n%s\n' "$module" "$tag" "$notes")
 
 gh release create "$tag" --repo "$repo" --verify-tag \
   --title "$tag" --notes "$notes" --latest="$latest"

@@ -208,11 +208,11 @@ older than an already-tagged one is never tagged (the script skips it).
 
 The `github-release` job then runs `.github/scripts/github-release.sh`, which creates a GitHub
 release on the commit's tag, with the `go get` command and a pkg.go.dev link as its notes. Only
-the highest version is marked latest, since back-to-back merges can finish out of order. It reads
-the tag from the commit rather than from the `tag` job, so a rerun of that job, which tags
-nothing, still leads to a release. Releases are immutable once published, as tags are, so a
-rerun leaves a published release alone, and a draft on the tag fails the run rather than gain a
-second release beside it.
+the highest version is marked latest, since back-to-back merges can finish out of order. The
+script reads the tag on the commit rather than taking it from the `tag` job, so a rerun of that
+job, which tags nothing, still leads to a release, and a commit that carries no tag gets none.
+Releases are immutable once published, as tags are, so a rerun leaves a published release alone,
+and a draft on the tag fails the run rather than gain a second release beside it.
 
 The same `next-tag.sh`, its test and the tag job also live in terraform-provider-montecarlo
 and mc-cli; change them together.

@@ -139,10 +139,9 @@ jobs:
             -f event_type=sdk-merged
           echo "Asked api-codegen to check whether its targets are behind this SDK."
 
-  # Creates a GitHub release on the tag the tag job pushed. It reads the tag from the commit, not
-  # from the tag job, so it still finds it when a rerun of that job tags nothing. Only the highest
-  # version is marked latest, since back-to-back merges can finish out of order. Releases are
-  # immutable, so a rerun leaves a published one alone.
+  # Creates a GitHub release for the tag the tag job pushed; see github-release.sh. The script
+  # reads the tag from the commit, not from the tag job, which outputs none when a rerun finds
+  # the commit already tagged.
   github-release:
     name: Create the GitHub release
     needs: tag
@@ -156,17 +155,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      # A commit older than an already-tagged one is never tagged, so it gets no release.
-      - name: Find the commit's tag
-        id: tag
-        run: |
-          tag=$(git tag --points-at HEAD | { grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' || true; } |
-            sort -V | tail -1)
-          echo "tag=$tag" >> "$GITHUB_OUTPUT"
-
-      - name: Create ${{ steps.tag.outputs.tag }}
-        if: steps.tag.outputs.tag != ''
+      - name: Create the release for this commit's tag
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ steps.tag.outputs.tag }}
-        run: .github/scripts/github-release.sh "$TAG"
+        run: .github/scripts/github-release.sh
