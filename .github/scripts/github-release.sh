@@ -7,8 +7,7 @@
 set -euo pipefail
 
 # A commit older than an already-tagged one is never tagged, so it gets no release.
-tag=$(git tag --points-at HEAD | { grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' || true; } |
-  sort -V | tail -1)
+tag=$("$(dirname "$0")/release-tag.sh")
 if [ -z "$tag" ]; then
   echo "HEAD carries no version tag; nothing to release."
   exit 0

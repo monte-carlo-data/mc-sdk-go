@@ -33,6 +33,7 @@ go test ./...
 go vet ./...
 gofmt -l .        # must be empty; generated output is formatted when it is produced
 .github/scripts/next-tag_test.sh   # the release-tag logic
+.github/scripts/release-tag_test.sh   # the lookup of the tag the release publishes
 .github/scripts/github-release_test.sh   # the GitHub release step
 ```
 
@@ -215,7 +216,8 @@ Releases are immutable once published, as tags are, so a rerun leaves a publishe
 and a draft on the tag fails the run rather than gain a second release beside it.
 
 The same `next-tag.sh`, its test and the tag job also live in terraform-provider-montecarlo
-and mc-cli; change them together.
+and mc-cli, as does `release-tag.sh`, which `github-release.sh` calls to read the commit's tag,
+with its test; change them together.
 
 Only the patch is bumped automatically. To start a new minor, change `VERSION` (`0.1` to
 `0.2`) in a pull request; its merge is tagged `v0.2.0`. While the major is 0, a minor bump is

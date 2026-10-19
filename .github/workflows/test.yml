@@ -35,6 +35,7 @@ jobs:
         run: |
           .github/scripts/next-tag.sh > /dev/null
           .github/scripts/next-tag_test.sh
+          .github/scripts/release-tag_test.sh
           .github/scripts/github-release_test.sh
 
       - name: Test
