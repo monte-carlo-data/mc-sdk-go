@@ -142,11 +142,12 @@ jobs:
 
   # Creates a GitHub release for the tag the tag job pushed; see github-release.sh. The script
   # reads the tag from the commit, not from the tag job, which outputs none when a rerun finds
-  # the commit already tagged.
+  # the commit already tagged. It runs even when the tag job fails, since that job's api-codegen
+  # dispatch comes after the tag push; an untagged commit makes the script a no-op.
   github-release:
     name: Create the GitHub release
     needs: tag
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: ${{ !cancelled() && github.event_name == 'push' && github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     permissions:
       contents: write # creates the release with GITHUB_TOKEN
