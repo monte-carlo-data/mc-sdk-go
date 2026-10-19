@@ -66,6 +66,11 @@ A custom warehouse connector's credentials, of type `custom-connector-<id>`, go 
 warehouse on the deployment of the agent that registered the connector, usually a
 `custom-integration` one. Its job types are the ones its capabilities allow.
 
+dbt Cloud webhook credentials go on the existing warehouse the dbt project builds into,
+of any type. A webhook takes one connection. Its `dbt_cloud` object sets which dbt Cloud
+runs Monte Carlo processes. Left out, every run is processed. No other type takes
+`dbt_cloud`.
+
 Omit `job_types` to run what the type runs by default. `etl` on a Snowflake, Power BI or
 Salesforce Data Cloud connection also turns on its ETL, as adding it later through the
 update does. Snowflake takes `etl` alone, the other two only beside their other jobs.
@@ -359,6 +364,16 @@ func (a *ConnectionsAPIService) DeleteConnectionExecute(r ApiDeleteConnectionReq
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil || len(localVarBody) == 0 {
@@ -784,7 +799,7 @@ func (r ApiUpdateConnectionRequest) Execute() (*ConnectionOut, *http.Response, e
 /*
 UpdateConnection Update a connection
 
-Rename a connection, or turn its ETL on or off.
+Rename a connection, turn its ETL on or off, or change its dbt Cloud settings.
 
 The type, the warehouse, BI container or ETL container and the credentials are fixed when
 the connection is created. Two connections on one warehouse or BI container cannot share a
@@ -795,6 +810,10 @@ or Salesforce Data Cloud connection turns on Snowflake Tasks, Power BI dataflows
 Cloud ETL. That creates an ETL container, returned in `etl_container_id`. Removing `etl`
 deletes the container, and `etl_container_id` goes back to null. Sending the current job
 types, or an empty body, leaves the connection as it is and returns it.
+
+`dbt_cloud` applies to a dbt Cloud webhook connection only. An object replaces its settings
+whole. Null resets them to the defaults. Another type that sends an object gets 422.
+Changing the settings needs settings edit access as well as integrations edit access.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param connectionId Id of the connection, as returned when it is created or listed.

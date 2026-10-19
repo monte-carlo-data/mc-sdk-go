@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **EtlContainerId** | Pointer to **NullableString** | The ETL container to add the connection to, for ETL tool credentials such as Fivetran or Airflow. The container&#39;s type has to equal the credentials&#39; type, and the container must not have a connection yet. A &#x60;custom-etl-connector&#x60; container takes a custom ETL connector&#39;s credentials, or none when it has no deployment. Send exactly one of this, &#x60;warehouse_id&#x60; and &#x60;bi_container_id&#x60;. | [optional] 
 **CredentialsId** | Pointer to **NullableString** | The credentials the connection reads with. They also decide the connection&#39;s type. Create them first, through one of the credentials endpoints. Required, except on a push-only container: a &#x60;custom-etl-connector&#x60; or &#x60;custom-bi-connector&#x60; container with no deployment. Its connection takes no credentials, and has the container&#39;s type. | [optional] 
 **JobTypes** | Pointer to **[]string** | The jobs to run on this connection. Omit it to run what the connection type runs by default, which is what the app does. Which values are accepted depends on the connection type. &#x60;etl&#x60; on a Snowflake, Power BI or Salesforce Data Cloud connection also creates its ETL container. An empty list is not accepted; omit the field to take the defaults. | [optional] 
+**DbtCloud** | Pointer to [**NullableDbtCloudSettingsIn**](DbtCloudSettingsIn.md) | Which dbt Cloud runs a dbt Cloud webhook connection processes. A dbt Cloud webhook reports runs from every environment in the dbt account. These settings decide which of them Monte Carlo processes for the connection&#39;s warehouse. Only a dbt Cloud webhook connection takes it. Omit it to process every run. | [optional] 
 
 ## Methods
 
@@ -225,6 +226,41 @@ HasJobTypes returns a boolean if a field has been set.
 `func (o *ConnectionIn) UnsetJobTypes()`
 
 UnsetJobTypes ensures that no value is present for JobTypes, not even an explicit nil
+### GetDbtCloud
+
+`func (o *ConnectionIn) GetDbtCloud() DbtCloudSettingsIn`
+
+GetDbtCloud returns the DbtCloud field if non-nil, zero value otherwise.
+
+### GetDbtCloudOk
+
+`func (o *ConnectionIn) GetDbtCloudOk() (*DbtCloudSettingsIn, bool)`
+
+GetDbtCloudOk returns a tuple with the DbtCloud field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDbtCloud
+
+`func (o *ConnectionIn) SetDbtCloud(v DbtCloudSettingsIn)`
+
+SetDbtCloud sets DbtCloud field to given value.
+
+### HasDbtCloud
+
+`func (o *ConnectionIn) HasDbtCloud() bool`
+
+HasDbtCloud returns a boolean if a field has been set.
+
+### SetDbtCloudNil
+
+`func (o *ConnectionIn) SetDbtCloudNil(b bool)`
+
+ SetDbtCloudNil sets the value for DbtCloud to be an explicit nil
+
+### UnsetDbtCloud
+`func (o *ConnectionIn) UnsetDbtCloud()`
+
+UnsetDbtCloud ensures that no value is present for DbtCloud, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

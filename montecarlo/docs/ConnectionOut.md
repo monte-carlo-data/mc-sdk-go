@@ -19,12 +19,13 @@ Name | Type | Description | Notes
 **CredentialsStorageType** | [**NullableCredentialsStorageType**](CredentialsStorageType.md) | Where that secret lives. Null when there are no credentials to describe. | 
 **JobTypes** | **[]string** | The jobs Monte Carlo runs on this connection, such as &#x60;metadata&#x60;. | 
 **CreatedTime** | **time.Time** | When the connection was created. | 
+**DbtCloud** | [**NullableDbtCloudSettingsOut**](DbtCloudSettingsOut.md) | Which dbt Cloud runs a dbt Cloud webhook connection processes. A dbt Cloud webhook reports runs from every environment in the dbt account. These settings decide which of them Monte Carlo processes for the connection&#39;s warehouse. Null for every other connection type. | 
 
 ## Methods
 
 ### NewConnectionOut
 
-`func NewConnectionOut(id string, connectionType string, name NullableString, warehouseId NullableString, warehouseName NullableString, biContainerId NullableString, biContainerName NullableString, etlContainerId NullableString, etlContainerName NullableString, deploymentId NullableString, deploymentName NullableString, credentialsId NullableString, credentialsStorageType NullableCredentialsStorageType, jobTypes []string, createdTime time.Time, ) *ConnectionOut`
+`func NewConnectionOut(id string, connectionType string, name NullableString, warehouseId NullableString, warehouseName NullableString, biContainerId NullableString, biContainerName NullableString, etlContainerId NullableString, etlContainerName NullableString, deploymentId NullableString, deploymentName NullableString, credentialsId NullableString, credentialsStorageType NullableCredentialsStorageType, jobTypes []string, createdTime time.Time, dbtCloud NullableDbtCloudSettingsOut, ) *ConnectionOut`
 
 NewConnectionOut instantiates a new ConnectionOut object
 This constructor will assign default values to properties that have it defined,
@@ -449,6 +450,36 @@ and a boolean to check if the value has been set.
 SetCreatedTime sets CreatedTime field to given value.
 
 
+### GetDbtCloud
+
+`func (o *ConnectionOut) GetDbtCloud() DbtCloudSettingsOut`
+
+GetDbtCloud returns the DbtCloud field if non-nil, zero value otherwise.
+
+### GetDbtCloudOk
+
+`func (o *ConnectionOut) GetDbtCloudOk() (*DbtCloudSettingsOut, bool)`
+
+GetDbtCloudOk returns a tuple with the DbtCloud field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDbtCloud
+
+`func (o *ConnectionOut) SetDbtCloud(v DbtCloudSettingsOut)`
+
+SetDbtCloud sets DbtCloud field to given value.
+
+
+### SetDbtCloudNil
+
+`func (o *ConnectionOut) SetDbtCloudNil(b bool)`
+
+ SetDbtCloudNil sets the value for DbtCloud to be an explicit nil
+
+### UnsetDbtCloud
+`func (o *ConnectionOut) UnsetDbtCloud()`
+
+UnsetDbtCloud ensures that no value is present for DbtCloud, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
