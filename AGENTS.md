@@ -33,6 +33,8 @@ go test ./...
 go vet ./...
 gofmt -l .        # must be empty; generated output is formatted when it is produced
 .github/scripts/next-tag_test.sh   # the release-tag logic
+.github/scripts/release-tag_test.sh   # the lookup of the tag the release publishes
+.github/scripts/github-release_test.sh   # the GitHub release step
 ```
 
 ## Key Directories
@@ -50,7 +52,7 @@ gofmt -l .        # must be empty; generated output is formatted when it is prod
 | `montecarlo/.openapi-generator/` | Generator bookkeeping |
 | `montecarlo/docs/` | Generated API reference |
 | `VERSION` | The major.minor release base |
-| `.github/scripts/` | The release-tag script and its test |
+| `.github/scripts/` | The release-tag and GitHub release scripts and their tests |
 
 ## What is generated
 
@@ -205,8 +207,17 @@ immutable. The job then tells api-codegen, which moves the Terraform provider an
 this SDK's latest version. If a run fails after tagging, use "Re-run failed jobs"; a commit
 older than an already-tagged one is never tagged (the script skips it).
 
+The `github-release` job then runs `.github/scripts/github-release.sh`, which creates a GitHub
+release on the commit's tag, with the `go get` command and a pkg.go.dev link as its notes. Only
+the highest version is marked latest, since back-to-back merges can finish out of order. The
+script reads the tag on the commit rather than taking it from the `tag` job, so a rerun of that
+job, which tags nothing, still leads to a release, and a commit that carries no tag gets none.
+Releases are immutable once published, as tags are, so a rerun leaves a published release alone,
+and a draft on the tag fails the run rather than gain a second release beside it.
+
 The same `next-tag.sh`, its test and the tag job also live in terraform-provider-montecarlo
-and mc-cli; change them together.
+and mc-cli, as does `release-tag.sh`, which `github-release.sh` calls to read the commit's tag,
+with its test; change them together.
 
 Only the patch is bumped automatically. To start a new minor, change `VERSION` (`0.1` to
 `0.2`) in a pull request; its merge is tagged `v0.2.0`. While the major is 0, a minor bump is
