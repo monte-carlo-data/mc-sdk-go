@@ -18,7 +18,7 @@ import (
 // checks if the HostingDomainsOut type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &HostingDomainsOut{}
 
-// HostingDomainsOut The URLs your Monte Carlo deployment serves.
+// HostingDomainsOut The URLs your Monte Carlo instance serves.
 type HostingDomainsOut struct {
 	// URL of the Monte Carlo web app.
 	UiUrl string `json:"ui_url"`
@@ -28,9 +28,9 @@ type HostingDomainsOut struct {
 	GraphqlApiUrl string `json:"graphql_api_url"`
 	// URL of the GraphQL API, for OAuth clients.
 	GraphqlOauthApiUrl string `json:"graphql_oauth_api_url"`
-	// URL an OAuth client requests an access token from, with the client-credentials grant. Null when the deployment does not support OAuth clients.
+	// URL an OAuth client requests an access token from, with the client-credentials grant. Null when the instance does not support OAuth clients.
 	M2mTokenUrl NullableString `json:"m2m_token_url"`
-	// Scope an OAuth client requests for its token to reach this deployment. Null when the deployment does not support OAuth clients.
+	// Scope an OAuth client requests for its token to reach this instance. Null when the instance does not support OAuth clients.
 	M2mInstanceScope NullableString `json:"m2m_instance_scope"`
 	// URL to give dbt Cloud when you create the webhook that reports job runs to Monte Carlo.
 	DbtCloudWebhookUrl   string `json:"dbt_cloud_webhook_url"`

@@ -33,12 +33,12 @@ func (r ApiGetHostingDomainsRequest) Execute() (*HostingDomainsOut, *http.Respon
 /*
 GetHostingDomains Get the hosting domains
 
-Get the URLs your Monte Carlo deployment serves.
+Get the URLs your Monte Carlo instance serves.
 
 Some integrations need one of these URLs before they can be set up. dbt Cloud, for
 example, issues a webhook secret only after you give it `dbt_cloud_webhook_url`.
 
-Every caller in a deployment gets the same values.
+Every caller in an instance gets the same values.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiGetHostingDomainsRequest
@@ -110,6 +110,311 @@ func (a *HostingAPIService) GetHostingDomainsExecute(r ApiGetHostingDomainsReque
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetHostingNetworkRequest struct {
+	ctx            context.Context
+	ApiService     *HostingAPIService
+	instanceRegion *InstanceRegion
+}
+
+// The region of your Monte Carlo instance to read. &#x60;primary&#x60;, the default, is the region serving your instance, which is the recovery region during a failover. &#x60;secondary&#x60; is the disaster recovery region, and only an instance with disaster recovery has one. With disaster recovery, read both and allow both, so access keeps working after a failover. During a failover both read the recovery region, so applying your policies then drops the original primary region until you apply them again after failing back.
+func (r ApiGetHostingNetworkRequest) InstanceRegion(instanceRegion InstanceRegion) ApiGetHostingNetworkRequest {
+	r.instanceRegion = &instanceRegion
+	return r
+}
+
+func (r ApiGetHostingNetworkRequest) Execute() (*HostingNetworkOut, *http.Response, error) {
+	return r.ApiService.GetHostingNetworkExecute(r)
+}
+
+/*
+GetHostingNetwork Get the hosting network
+
+Get the public IP addresses one region of your Monte Carlo instance connects from.
+
+Allowlist them where Monte Carlo reaches your resources over the internet. Asking for the
+secondary region of an instance without disaster recovery returns 404.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetHostingNetworkRequest
+*/
+func (a *HostingAPIService) GetHostingNetwork(ctx context.Context) ApiGetHostingNetworkRequest {
+	return ApiGetHostingNetworkRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return HostingNetworkOut
+func (a *HostingAPIService) GetHostingNetworkExecute(r ApiGetHostingNetworkRequest) (*HostingNetworkOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *HostingNetworkOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HostingAPIService.GetHostingNetwork")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/hosting/network"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.instanceRegion != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "instance_region", r.instanceRegion, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetHostingPrivateLinkRequest struct {
+	ctx            context.Context
+	ApiService     *HostingAPIService
+	instanceRegion *InstanceRegion
+}
+
+// The region of your Monte Carlo instance to read. &#x60;primary&#x60;, the default, is the region serving your instance, which is the recovery region during a failover. &#x60;secondary&#x60; is the disaster recovery region, and only an instance with disaster recovery has one. With disaster recovery, read both and allow both, so access keeps working after a failover. During a failover both read the recovery region, so applying your policies then drops the original primary region until you apply them again after failing back.
+func (r ApiGetHostingPrivateLinkRequest) InstanceRegion(instanceRegion InstanceRegion) ApiGetHostingPrivateLinkRequest {
+	r.instanceRegion = &instanceRegion
+	return r
+}
+
+func (r ApiGetHostingPrivateLinkRequest) Execute() (*HostingPrivateLinkOut, *http.Response, error) {
+	return r.ApiService.GetHostingPrivateLinkExecute(r)
+}
+
+/*
+GetHostingPrivateLink Get the hosting private link details
+
+Get how one region of your Monte Carlo instance reaches your AWS resources privately.
+
+Use the VPC endpoint of the region you deploy to in an `aws:SourceVpce` condition, and the
+private subnet CIDRs in an allowlist. Asking for the secondary region of an instance
+without disaster recovery returns 404.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiGetHostingPrivateLinkRequest
+*/
+func (a *HostingAPIService) GetHostingPrivateLink(ctx context.Context) ApiGetHostingPrivateLinkRequest {
+	return ApiGetHostingPrivateLinkRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+}
+
+// Execute executes the request
+//
+//	@return HostingPrivateLinkOut
+func (a *HostingAPIService) GetHostingPrivateLinkExecute(r ApiGetHostingPrivateLinkRequest) (*HostingPrivateLinkOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *HostingPrivateLinkOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HostingAPIService.GetHostingPrivateLink")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/hosting/private-link"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.instanceRegion != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "instance_region", r.instanceRegion, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ProblemOut

@@ -28,6 +28,8 @@ docs/AwsCollectionAgentPatch.md
 docs/AwsCollectionDataStoreIn.md
 docs/AwsCollectionDataStoreOut.md
 docs/AwsCollectionDataStorePatch.md
+docs/AwsPrivateLinkOut.md
+docs/AwsPrivateLinkRegionOut.md
 docs/AwsSecretsManagerCredentialsChangeValidateIn.md
 docs/AwsSecretsManagerCredentialsIn.md
 docs/AwsSecretsManagerCredentialsOut.md
@@ -177,6 +179,8 @@ docs/GenericCollectionAgentTokenIn.md
 docs/GenericCollectionAgentTokenOut.md
 docs/HostingAPI.md
 docs/HostingDomainsOut.md
+docs/HostingNetworkOut.md
+docs/HostingPrivateLinkOut.md
 docs/IdentityType.md
 docs/InformaticaV2AuthMode.md
 docs/InformaticaV2CredentialsChangeValidateIn.md
@@ -188,6 +192,7 @@ docs/IngestionKeyCreatedOut.md
 docs/IngestionKeyIn.md
 docs/IngestionKeyOut.md
 docs/Input.md
+docs/InstanceRegion.md
 docs/IntegrationKeyOut.md
 docs/IntegrationKeyScope.md
 docs/IntegrationKeysAPI.md
@@ -315,6 +320,8 @@ model_aws_collection_agent_patch.go
 model_aws_collection_data_store_in.go
 model_aws_collection_data_store_out.go
 model_aws_collection_data_store_patch.go
+model_aws_private_link_out.go
+model_aws_private_link_region_out.go
 model_aws_secrets_manager_credentials_change_validate_in.go
 model_aws_secrets_manager_credentials_in.go
 model_aws_secrets_manager_credentials_out.go
@@ -454,6 +461,8 @@ model_generic_collection_agent_token_created_out.go
 model_generic_collection_agent_token_in.go
 model_generic_collection_agent_token_out.go
 model_hosting_domains_out.go
+model_hosting_network_out.go
+model_hosting_private_link_out.go
 model_identity_type.go
 model_informatica_v2_auth_mode.go
 model_informatica_v2_credentials_change_validate_in.go
@@ -465,6 +474,7 @@ model_ingestion_key_created_out.go
 model_ingestion_key_in.go
 model_ingestion_key_out.go
 model_input.go
+model_instance_region.go
 model_integration_key_out.go
 model_integration_key_scope.go
 model_looker_credentials_change_validate_in.go
