@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **IntegrationsUrl** | **string** | Base URL of the integrations gateway, which receives webhooks and other inbound requests from the tools you connect. | 
 **GraphqlApiUrl** | **string** | URL of the GraphQL API, for API keys. | 
 **GraphqlOauthApiUrl** | **string** | URL of the GraphQL API, for OAuth clients. | 
-**M2mTokenUrl** | **NullableString** | URL an OAuth client requests an access token from, with the client-credentials grant. Null when the deployment does not support OAuth clients. | 
-**M2mInstanceScope** | **NullableString** | Scope an OAuth client requests for its token to reach this deployment. Null when the deployment does not support OAuth clients. | 
+**M2mTokenUrl** | **NullableString** | URL an OAuth client requests an access token from, with the client-credentials grant. Null when the instance does not support OAuth clients. | 
+**M2mInstanceScope** | **NullableString** | Scope an OAuth client requests for its token to reach this instance. Null when the instance does not support OAuth clients. | 
 **DbtCloudWebhookUrl** | **string** | URL to give dbt Cloud when you create the webhook that reports job runs to Monte Carlo. | 
 
 ## Methods
