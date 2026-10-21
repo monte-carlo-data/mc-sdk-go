@@ -20,6 +20,11 @@ docs/AirflowCallbacksKeyOut.md
 docs/AirflowCredentialsIn.md
 docs/AirflowCredentialsOut.md
 docs/AirflowCredentialsPatch.md
+docs/AthenaCredentialsChangeValidateIn.md
+docs/AthenaCredentialsIn.md
+docs/AthenaCredentialsOut.md
+docs/AthenaCredentialsPatch.md
+docs/AthenaCredentialsValidateIn.md
 docs/AuthHeadersCredentialsIn.md
 docs/AuthenticationType.md
 docs/AwsCollectionAgentIn.md
@@ -177,6 +182,11 @@ docs/GenericCollectionAgentPatch.md
 docs/GenericCollectionAgentTokenCreatedOut.md
 docs/GenericCollectionAgentTokenIn.md
 docs/GenericCollectionAgentTokenOut.md
+docs/GlueCredentialsChangeValidateIn.md
+docs/GlueCredentialsIn.md
+docs/GlueCredentialsOut.md
+docs/GlueCredentialsPatch.md
+docs/GlueCredentialsValidateIn.md
 docs/HostingAPI.md
 docs/HostingDomainsOut.md
 docs/HostingNetworkOut.md
@@ -312,6 +322,11 @@ model_airflow_callbacks_key_out.go
 model_airflow_credentials_in.go
 model_airflow_credentials_out.go
 model_airflow_credentials_patch.go
+model_athena_credentials_change_validate_in.go
+model_athena_credentials_in.go
+model_athena_credentials_out.go
+model_athena_credentials_patch.go
+model_athena_credentials_validate_in.go
 model_auth_headers_credentials_in.go
 model_authentication_type.go
 model_aws_collection_agent_in.go
@@ -460,6 +475,11 @@ model_generic_collection_agent_patch.go
 model_generic_collection_agent_token_created_out.go
 model_generic_collection_agent_token_in.go
 model_generic_collection_agent_token_out.go
+model_glue_credentials_change_validate_in.go
+model_glue_credentials_in.go
+model_glue_credentials_out.go
+model_glue_credentials_patch.go
+model_glue_credentials_validate_in.go
 model_hosting_domains_out.go
 model_hosting_network_out.go
 model_hosting_private_link_out.go

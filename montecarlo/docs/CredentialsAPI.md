@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateAirflowCredentials**](CredentialsAPI.md#CreateAirflowCredentials) | **Post** /api/v2/credentials/airflow | Create Airflow credentials
+[**CreateAthenaCredentials**](CredentialsAPI.md#CreateAthenaCredentials) | **Post** /api/v2/credentials/athena | Create Athena credentials
 [**CreateAwsSecretsManagerCredentials**](CredentialsAPI.md#CreateAwsSecretsManagerCredentials) | **Post** /api/v2/credentials/self-hosted/aws | Create AWS Secrets Manager credentials
 [**CreateAzureDataFactoryCredentials**](CredentialsAPI.md#CreateAzureDataFactoryCredentials) | **Post** /api/v2/credentials/azure-data-factory | Create Azure Data Factory credentials
 [**CreateAzureDedicatedSqlPoolCredentials**](CredentialsAPI.md#CreateAzureDedicatedSqlPoolCredentials) | **Post** /api/v2/credentials/azure-dedicated-sql-pool | Create Azure Dedicated SQL Pool credentials
@@ -21,6 +22,7 @@ Method | HTTP request | Description
 [**CreateFivetranCredentials**](CredentialsAPI.md#CreateFivetranCredentials) | **Post** /api/v2/credentials/fivetran | Create Fivetran credentials
 [**CreateGcpDataformCredentials**](CredentialsAPI.md#CreateGcpDataformCredentials) | **Post** /api/v2/credentials/gcp-dataform | Create GCP Dataform credentials
 [**CreateGcpSecretManagerCredentials**](CredentialsAPI.md#CreateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp | Create GCP Secret Manager credentials
+[**CreateGlueCredentials**](CredentialsAPI.md#CreateGlueCredentials) | **Post** /api/v2/credentials/glue | Create Glue credentials
 [**CreateInformaticaV2Credentials**](CredentialsAPI.md#CreateInformaticaV2Credentials) | **Post** /api/v2/credentials/informatica-v2 | Create Informatica credentials
 [**CreateLookerCredentials**](CredentialsAPI.md#CreateLookerCredentials) | **Post** /api/v2/credentials/looker | Create Looker credentials
 [**CreateLookerGitCloneCredentials**](CredentialsAPI.md#CreateLookerGitCloneCredentials) | **Post** /api/v2/credentials/looker-git-clone | Create LookML repository credentials
@@ -39,6 +41,7 @@ Method | HTTP request | Description
 [**CreateTableauCredentials**](CredentialsAPI.md#CreateTableauCredentials) | **Post** /api/v2/credentials/tableau | Create Tableau credentials
 [**CreateTeradataCredentials**](CredentialsAPI.md#CreateTeradataCredentials) | **Post** /api/v2/credentials/teradata | Create Teradata credentials
 [**DeleteAirflowCredentials**](CredentialsAPI.md#DeleteAirflowCredentials) | **Delete** /api/v2/credentials/airflow/{credentials_id} | Delete Airflow credentials
+[**DeleteAthenaCredentials**](CredentialsAPI.md#DeleteAthenaCredentials) | **Delete** /api/v2/credentials/athena/{credentials_id} | Delete Athena credentials
 [**DeleteAwsSecretsManagerCredentials**](CredentialsAPI.md#DeleteAwsSecretsManagerCredentials) | **Delete** /api/v2/credentials/self-hosted/aws/{credentials_id} | Delete AWS Secrets Manager credentials
 [**DeleteAzureDataFactoryCredentials**](CredentialsAPI.md#DeleteAzureDataFactoryCredentials) | **Delete** /api/v2/credentials/azure-data-factory/{credentials_id} | Delete Azure Data Factory credentials
 [**DeleteAzureDedicatedSqlPoolCredentials**](CredentialsAPI.md#DeleteAzureDedicatedSqlPoolCredentials) | **Delete** /api/v2/credentials/azure-dedicated-sql-pool/{credentials_id} | Delete Azure Dedicated SQL Pool credentials
@@ -56,6 +59,7 @@ Method | HTTP request | Description
 [**DeleteFivetranCredentials**](CredentialsAPI.md#DeleteFivetranCredentials) | **Delete** /api/v2/credentials/fivetran/{credentials_id} | Delete Fivetran credentials
 [**DeleteGcpDataformCredentials**](CredentialsAPI.md#DeleteGcpDataformCredentials) | **Delete** /api/v2/credentials/gcp-dataform/{credentials_id} | Delete GCP Dataform credentials
 [**DeleteGcpSecretManagerCredentials**](CredentialsAPI.md#DeleteGcpSecretManagerCredentials) | **Delete** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Delete GCP Secret Manager credentials
+[**DeleteGlueCredentials**](CredentialsAPI.md#DeleteGlueCredentials) | **Delete** /api/v2/credentials/glue/{credentials_id} | Delete Glue credentials
 [**DeleteInformaticaV2Credentials**](CredentialsAPI.md#DeleteInformaticaV2Credentials) | **Delete** /api/v2/credentials/informatica-v2/{credentials_id} | Delete Informatica credentials
 [**DeleteLookerCredentials**](CredentialsAPI.md#DeleteLookerCredentials) | **Delete** /api/v2/credentials/looker/{credentials_id} | Delete Looker credentials
 [**DeleteLookerGitCloneCredentials**](CredentialsAPI.md#DeleteLookerGitCloneCredentials) | **Delete** /api/v2/credentials/looker-git-clone/{credentials_id} | Delete LookML repository credentials
@@ -74,6 +78,7 @@ Method | HTTP request | Description
 [**DeleteTableauCredentials**](CredentialsAPI.md#DeleteTableauCredentials) | **Delete** /api/v2/credentials/tableau/{credentials_id} | Delete Tableau credentials
 [**DeleteTeradataCredentials**](CredentialsAPI.md#DeleteTeradataCredentials) | **Delete** /api/v2/credentials/teradata/{credentials_id} | Delete Teradata credentials
 [**GetAirflowCredentials**](CredentialsAPI.md#GetAirflowCredentials) | **Get** /api/v2/credentials/airflow/{credentials_id} | Get Airflow credentials
+[**GetAthenaCredentials**](CredentialsAPI.md#GetAthenaCredentials) | **Get** /api/v2/credentials/athena/{credentials_id} | Get Athena credentials
 [**GetAwsSecretsManagerCredentials**](CredentialsAPI.md#GetAwsSecretsManagerCredentials) | **Get** /api/v2/credentials/self-hosted/aws/{credentials_id} | Get AWS Secrets Manager credentials
 [**GetAzureDataFactoryCredentials**](CredentialsAPI.md#GetAzureDataFactoryCredentials) | **Get** /api/v2/credentials/azure-data-factory/{credentials_id} | Get Azure Data Factory credentials
 [**GetAzureDedicatedSqlPoolCredentials**](CredentialsAPI.md#GetAzureDedicatedSqlPoolCredentials) | **Get** /api/v2/credentials/azure-dedicated-sql-pool/{credentials_id} | Get Azure Dedicated SQL Pool credentials
@@ -90,6 +95,7 @@ Method | HTTP request | Description
 [**GetFivetranCredentials**](CredentialsAPI.md#GetFivetranCredentials) | **Get** /api/v2/credentials/fivetran/{credentials_id} | Get Fivetran credentials
 [**GetGcpDataformCredentials**](CredentialsAPI.md#GetGcpDataformCredentials) | **Get** /api/v2/credentials/gcp-dataform/{credentials_id} | Get GCP Dataform credentials
 [**GetGcpSecretManagerCredentials**](CredentialsAPI.md#GetGcpSecretManagerCredentials) | **Get** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Get GCP Secret Manager credentials
+[**GetGlueCredentials**](CredentialsAPI.md#GetGlueCredentials) | **Get** /api/v2/credentials/glue/{credentials_id} | Get Glue credentials
 [**GetInformaticaV2Credentials**](CredentialsAPI.md#GetInformaticaV2Credentials) | **Get** /api/v2/credentials/informatica-v2/{credentials_id} | Get Informatica credentials
 [**GetLookerCredentials**](CredentialsAPI.md#GetLookerCredentials) | **Get** /api/v2/credentials/looker/{credentials_id} | Get Looker credentials
 [**GetLookerGitCloneCredentials**](CredentialsAPI.md#GetLookerGitCloneCredentials) | **Get** /api/v2/credentials/looker-git-clone/{credentials_id} | Get LookML repository credentials
@@ -109,6 +115,7 @@ Method | HTTP request | Description
 [**GetTeradataCredentials**](CredentialsAPI.md#GetTeradataCredentials) | **Get** /api/v2/credentials/teradata/{credentials_id} | Get Teradata credentials
 [**ListCredentials**](CredentialsAPI.md#ListCredentials) | **Get** /api/v2/credentials | List credentials
 [**UpdateAirflowCredentials**](CredentialsAPI.md#UpdateAirflowCredentials) | **Patch** /api/v2/credentials/airflow/{credentials_id} | Update Airflow credentials
+[**UpdateAthenaCredentials**](CredentialsAPI.md#UpdateAthenaCredentials) | **Patch** /api/v2/credentials/athena/{credentials_id} | Update Athena credentials
 [**UpdateAwsSecretsManagerCredentials**](CredentialsAPI.md#UpdateAwsSecretsManagerCredentials) | **Patch** /api/v2/credentials/self-hosted/aws/{credentials_id} | Update AWS Secrets Manager credentials
 [**UpdateAzureDataFactoryCredentials**](CredentialsAPI.md#UpdateAzureDataFactoryCredentials) | **Patch** /api/v2/credentials/azure-data-factory/{credentials_id} | Update Azure Data Factory credentials
 [**UpdateAzureDedicatedSqlPoolCredentials**](CredentialsAPI.md#UpdateAzureDedicatedSqlPoolCredentials) | **Patch** /api/v2/credentials/azure-dedicated-sql-pool/{credentials_id} | Update Azure Dedicated SQL Pool credentials
@@ -125,6 +132,7 @@ Method | HTTP request | Description
 [**UpdateFivetranCredentials**](CredentialsAPI.md#UpdateFivetranCredentials) | **Patch** /api/v2/credentials/fivetran/{credentials_id} | Update Fivetran credentials
 [**UpdateGcpDataformCredentials**](CredentialsAPI.md#UpdateGcpDataformCredentials) | **Patch** /api/v2/credentials/gcp-dataform/{credentials_id} | Update GCP Dataform credentials
 [**UpdateGcpSecretManagerCredentials**](CredentialsAPI.md#UpdateGcpSecretManagerCredentials) | **Patch** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Update GCP Secret Manager credentials
+[**UpdateGlueCredentials**](CredentialsAPI.md#UpdateGlueCredentials) | **Patch** /api/v2/credentials/glue/{credentials_id} | Update Glue credentials
 [**UpdateInformaticaV2Credentials**](CredentialsAPI.md#UpdateInformaticaV2Credentials) | **Patch** /api/v2/credentials/informatica-v2/{credentials_id} | Update Informatica credentials
 [**UpdateLookerCredentials**](CredentialsAPI.md#UpdateLookerCredentials) | **Patch** /api/v2/credentials/looker/{credentials_id} | Update Looker credentials
 [**UpdateLookerGitCloneCredentials**](CredentialsAPI.md#UpdateLookerGitCloneCredentials) | **Patch** /api/v2/credentials/looker-git-clone/{credentials_id} | Update LookML repository credentials
@@ -142,6 +150,8 @@ Method | HTTP request | Description
 [**UpdateStarburstGalaxyCredentials**](CredentialsAPI.md#UpdateStarburstGalaxyCredentials) | **Patch** /api/v2/credentials/starburst-galaxy/{credentials_id} | Update Starburst Galaxy credentials
 [**UpdateTableauCredentials**](CredentialsAPI.md#UpdateTableauCredentials) | **Patch** /api/v2/credentials/tableau/{credentials_id} | Update Tableau credentials
 [**UpdateTeradataCredentials**](CredentialsAPI.md#UpdateTeradataCredentials) | **Patch** /api/v2/credentials/teradata/{credentials_id} | Update Teradata credentials
+[**ValidateAthenaCredentials**](CredentialsAPI.md#ValidateAthenaCredentials) | **Post** /api/v2/credentials/athena/validate | Validate Athena credentials
+[**ValidateAthenaCredentialsChange**](CredentialsAPI.md#ValidateAthenaCredentialsChange) | **Post** /api/v2/credentials/athena/{credentials_id}/validate | Validate a change to Athena credentials
 [**ValidateAwsSecretsManagerCredentials**](CredentialsAPI.md#ValidateAwsSecretsManagerCredentials) | **Post** /api/v2/credentials/self-hosted/aws/validate | Validate AWS Secrets Manager credentials
 [**ValidateAwsSecretsManagerCredentialsChange**](CredentialsAPI.md#ValidateAwsSecretsManagerCredentialsChange) | **Post** /api/v2/credentials/self-hosted/aws/{credentials_id}/validate | Validate a change to AWS Secrets Manager credentials
 [**ValidateAzureDataFactoryCredentials**](CredentialsAPI.md#ValidateAzureDataFactoryCredentials) | **Post** /api/v2/credentials/azure-data-factory/validate | Validate Azure Data Factory credentials
@@ -174,6 +184,8 @@ Method | HTTP request | Description
 [**ValidateGcpDataformCredentialsChange**](CredentialsAPI.md#ValidateGcpDataformCredentialsChange) | **Post** /api/v2/credentials/gcp-dataform/{credentials_id}/validate | Validate a change to GCP Dataform credentials
 [**ValidateGcpSecretManagerCredentials**](CredentialsAPI.md#ValidateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp/validate | Validate GCP Secret Manager credentials
 [**ValidateGcpSecretManagerCredentialsChange**](CredentialsAPI.md#ValidateGcpSecretManagerCredentialsChange) | **Post** /api/v2/credentials/self-hosted/gcp/{credentials_id}/validate | Validate a change to GCP Secret Manager credentials
+[**ValidateGlueCredentials**](CredentialsAPI.md#ValidateGlueCredentials) | **Post** /api/v2/credentials/glue/validate | Validate Glue credentials
+[**ValidateGlueCredentialsChange**](CredentialsAPI.md#ValidateGlueCredentialsChange) | **Post** /api/v2/credentials/glue/{credentials_id}/validate | Validate a change to Glue credentials
 [**ValidateInformaticaV2Credentials**](CredentialsAPI.md#ValidateInformaticaV2Credentials) | **Post** /api/v2/credentials/informatica-v2/validate | Validate Informatica credentials
 [**ValidateInformaticaV2CredentialsChange**](CredentialsAPI.md#ValidateInformaticaV2CredentialsChange) | **Post** /api/v2/credentials/informatica-v2/{credentials_id}/validate | Validate a change to Informatica credentials
 [**ValidateLookerCredentials**](CredentialsAPI.md#ValidateLookerCredentials) | **Post** /api/v2/credentials/looker/validate | Validate Looker credentials
@@ -262,6 +274,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AirflowCredentialsOut**](AirflowCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateAthenaCredentials
+
+> AthenaCredentialsOut CreateAthenaCredentials(ctx).AthenaCredentialsIn(athenaCredentialsIn).Execute()
+
+Create Athena credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	athenaCredentialsIn := *openapiclient.NewAthenaCredentialsIn("AssumableRole_example") // AthenaCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateAthenaCredentials(context.Background()).AthenaCredentialsIn(athenaCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateAthenaCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateAthenaCredentials`: AthenaCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateAthenaCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateAthenaCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **athenaCredentialsIn** | [**AthenaCredentialsIn**](AthenaCredentialsIn.md) |  | 
+
+### Return type
+
+[**AthenaCredentialsOut**](AthenaCredentialsOut.md)
 
 ### Authorization
 
@@ -1318,6 +1396,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GcpSecretManagerCredentialsOut**](GcpSecretManagerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateGlueCredentials
+
+> GlueCredentialsOut CreateGlueCredentials(ctx).GlueCredentialsIn(glueCredentialsIn).Execute()
+
+Create Glue credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	glueCredentialsIn := *openapiclient.NewGlueCredentialsIn("AssumableRole_example") // GlueCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateGlueCredentials(context.Background()).GlueCredentialsIn(glueCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateGlueCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateGlueCredentials`: GlueCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateGlueCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateGlueCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **glueCredentialsIn** | [**GlueCredentialsIn**](GlueCredentialsIn.md) |  | 
+
+### Return type
+
+[**GlueCredentialsOut**](GlueCredentialsOut.md)
 
 ### Authorization
 
@@ -2523,6 +2667,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteAthenaCredentials
+
+> DeleteAthenaCredentials(ctx, credentialsId).Execute()
+
+Delete Athena credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteAthenaCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteAthenaCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteAthenaCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteAwsSecretsManagerCredentials
 
 > DeleteAwsSecretsManagerCredentials(ctx, credentialsId).Execute()
@@ -3655,6 +3867,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteGcpSecretManagerCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteGlueCredentials
+
+> DeleteGlueCredentials(ctx, credentialsId).Execute()
+
+Delete Glue credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteGlueCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteGlueCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteGlueCredentialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -4905,6 +5185,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetAthenaCredentials
+
+> AthenaCredentialsOut GetAthenaCredentials(ctx, credentialsId).Execute()
+
+Get Athena credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetAthenaCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetAthenaCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAthenaCredentials`: AthenaCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetAthenaCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAthenaCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**AthenaCredentialsOut**](AthenaCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetAwsSecretsManagerCredentials
 
 > AwsSecretsManagerCredentialsOut GetAwsSecretsManagerCredentials(ctx, credentialsId).Execute()
@@ -6010,6 +6360,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GcpSecretManagerCredentialsOut**](GcpSecretManagerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetGlueCredentials
+
+> GlueCredentialsOut GetGlueCredentials(ctx, credentialsId).Execute()
+
+Get Glue credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetGlueCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetGlueCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetGlueCredentials`: GlueCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetGlueCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetGlueCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**GlueCredentialsOut**](GlueCredentialsOut.md)
 
 ### Authorization
 
@@ -7357,6 +7777,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateAthenaCredentials
+
+> AthenaCredentialsOut UpdateAthenaCredentials(ctx, credentialsId).AthenaCredentialsPatch(athenaCredentialsPatch).Execute()
+
+Update Athena credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	athenaCredentialsPatch := *openapiclient.NewAthenaCredentialsPatch() // AthenaCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateAthenaCredentials(context.Background(), credentialsId).AthenaCredentialsPatch(athenaCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateAthenaCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateAthenaCredentials`: AthenaCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateAthenaCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateAthenaCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **athenaCredentialsPatch** | [**AthenaCredentialsPatch**](AthenaCredentialsPatch.md) |  | 
+
+### Return type
+
+[**AthenaCredentialsOut**](AthenaCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateAwsSecretsManagerCredentials
 
 > AwsSecretsManagerCredentialsOut UpdateAwsSecretsManagerCredentials(ctx, credentialsId).AwsSecretsManagerCredentialsPatch(awsSecretsManagerCredentialsPatch).Execute()
@@ -8494,6 +8986,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**GcpSecretManagerCredentialsOut**](GcpSecretManagerCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateGlueCredentials
+
+> GlueCredentialsOut UpdateGlueCredentials(ctx, credentialsId).GlueCredentialsPatch(glueCredentialsPatch).Execute()
+
+Update Glue credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	glueCredentialsPatch := *openapiclient.NewGlueCredentialsPatch() // GlueCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateGlueCredentials(context.Background(), credentialsId).GlueCredentialsPatch(glueCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateGlueCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateGlueCredentials`: GlueCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateGlueCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateGlueCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **glueCredentialsPatch** | [**GlueCredentialsPatch**](GlueCredentialsPatch.md) |  | 
+
+### Return type
+
+[**GlueCredentialsOut**](GlueCredentialsOut.md)
 
 ### Authorization
 
@@ -9718,6 +10282,144 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TeradataCredentialsOut**](TeradataCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateAthenaCredentials
+
+> ValidationRunOut ValidateAthenaCredentials(ctx).AthenaCredentialsValidateIn(athenaCredentialsValidateIn).Execute()
+
+Validate Athena credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	athenaCredentialsValidateIn := *openapiclient.NewAthenaCredentialsValidateIn("DeploymentId_example", "AssumableRole_example") // AthenaCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateAthenaCredentials(context.Background()).AthenaCredentialsValidateIn(athenaCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateAthenaCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateAthenaCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateAthenaCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateAthenaCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **athenaCredentialsValidateIn** | [**AthenaCredentialsValidateIn**](AthenaCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateAthenaCredentialsChange
+
+> ValidationRunOut ValidateAthenaCredentialsChange(ctx, credentialsId).AthenaCredentialsChangeValidateIn(athenaCredentialsChangeValidateIn).Execute()
+
+Validate a change to Athena credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	athenaCredentialsChangeValidateIn := *openapiclient.NewAthenaCredentialsChangeValidateIn("DeploymentId_example") // AthenaCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateAthenaCredentialsChange(context.Background(), credentialsId).AthenaCredentialsChangeValidateIn(athenaCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateAthenaCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateAthenaCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateAthenaCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateAthenaCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **athenaCredentialsChangeValidateIn** | [**AthenaCredentialsChangeValidateIn**](AthenaCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
 
 ### Authorization
 
@@ -11922,6 +12624,144 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **gcpSecretManagerCredentialsChangeValidateIn** | [**GcpSecretManagerCredentialsChangeValidateIn**](GcpSecretManagerCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateGlueCredentials
+
+> ValidationRunOut ValidateGlueCredentials(ctx).GlueCredentialsValidateIn(glueCredentialsValidateIn).Execute()
+
+Validate Glue credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	glueCredentialsValidateIn := *openapiclient.NewGlueCredentialsValidateIn("DeploymentId_example", "AssumableRole_example") // GlueCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateGlueCredentials(context.Background()).GlueCredentialsValidateIn(glueCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateGlueCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateGlueCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateGlueCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateGlueCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **glueCredentialsValidateIn** | [**GlueCredentialsValidateIn**](GlueCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateGlueCredentialsChange
+
+> ValidationRunOut ValidateGlueCredentialsChange(ctx, credentialsId).GlueCredentialsChangeValidateIn(glueCredentialsChangeValidateIn).Execute()
+
+Validate a change to Glue credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	glueCredentialsChangeValidateIn := *openapiclient.NewGlueCredentialsChangeValidateIn("DeploymentId_example") // GlueCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateGlueCredentialsChange(context.Background(), credentialsId).GlueCredentialsChangeValidateIn(glueCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateGlueCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateGlueCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateGlueCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateGlueCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **glueCredentialsChangeValidateIn** | [**GlueCredentialsChangeValidateIn**](GlueCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
