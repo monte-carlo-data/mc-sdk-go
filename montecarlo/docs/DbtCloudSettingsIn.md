@@ -5,14 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ConnectionMatch** | [**ConnectionMatch**](ConnectionMatch.md) | How a run is matched to the connection&#39;s warehouse. &#x60;off&#x60;, the default, drops no run for its dbt connection. | 
-**AllowedConnections** | **[]string** | The dbt connections, by id or name, whose runs are kept. At least one for &#x60;allow_list&#x60;. Empty otherwise. | 
+**AllowedConnectionFields** | **[]string** | The dbt connection fields to compare, such as &#x60;account&#x60; for Snowflake. &#x60;name&#x60; and &#x60;id&#x60; match a dbt connection by its own name or id. At least one for &#x60;allow_list&#x60;. Empty otherwise. | 
+**AllowedConnectionValues** | **[]string** | The values to match, exactly as they appear in dbt Cloud. A run is kept when one of &#x60;allowed_connection_fields&#x60; on its dbt connection equals one of them. At least one for &#x60;allow_list&#x60;. Empty otherwise. | 
 **AllowedEnvironments** | **[]string** | The dbt environments, by name and ignoring case, whose runs are kept. Empty keeps runs from every environment. | 
 
 ## Methods
 
 ### NewDbtCloudSettingsIn
 
-`func NewDbtCloudSettingsIn(connectionMatch ConnectionMatch, allowedConnections []string, allowedEnvironments []string, ) *DbtCloudSettingsIn`
+`func NewDbtCloudSettingsIn(connectionMatch ConnectionMatch, allowedConnectionFields []string, allowedConnectionValues []string, allowedEnvironments []string, ) *DbtCloudSettingsIn`
 
 NewDbtCloudSettingsIn instantiates a new DbtCloudSettingsIn object
 This constructor will assign default values to properties that have it defined,
@@ -47,24 +48,44 @@ and a boolean to check if the value has been set.
 SetConnectionMatch sets ConnectionMatch field to given value.
 
 
-### GetAllowedConnections
+### GetAllowedConnectionFields
 
-`func (o *DbtCloudSettingsIn) GetAllowedConnections() []string`
+`func (o *DbtCloudSettingsIn) GetAllowedConnectionFields() []string`
 
-GetAllowedConnections returns the AllowedConnections field if non-nil, zero value otherwise.
+GetAllowedConnectionFields returns the AllowedConnectionFields field if non-nil, zero value otherwise.
 
-### GetAllowedConnectionsOk
+### GetAllowedConnectionFieldsOk
 
-`func (o *DbtCloudSettingsIn) GetAllowedConnectionsOk() (*[]string, bool)`
+`func (o *DbtCloudSettingsIn) GetAllowedConnectionFieldsOk() (*[]string, bool)`
 
-GetAllowedConnectionsOk returns a tuple with the AllowedConnections field if it's non-nil, zero value otherwise
+GetAllowedConnectionFieldsOk returns a tuple with the AllowedConnectionFields field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAllowedConnections
+### SetAllowedConnectionFields
 
-`func (o *DbtCloudSettingsIn) SetAllowedConnections(v []string)`
+`func (o *DbtCloudSettingsIn) SetAllowedConnectionFields(v []string)`
 
-SetAllowedConnections sets AllowedConnections field to given value.
+SetAllowedConnectionFields sets AllowedConnectionFields field to given value.
+
+
+### GetAllowedConnectionValues
+
+`func (o *DbtCloudSettingsIn) GetAllowedConnectionValues() []string`
+
+GetAllowedConnectionValues returns the AllowedConnectionValues field if non-nil, zero value otherwise.
+
+### GetAllowedConnectionValuesOk
+
+`func (o *DbtCloudSettingsIn) GetAllowedConnectionValuesOk() (*[]string, bool)`
+
+GetAllowedConnectionValuesOk returns a tuple with the AllowedConnectionValues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAllowedConnectionValues
+
+`func (o *DbtCloudSettingsIn) SetAllowedConnectionValues(v []string)`
+
+SetAllowedConnectionValues sets AllowedConnectionValues field to given value.
 
 
 ### GetAllowedEnvironments

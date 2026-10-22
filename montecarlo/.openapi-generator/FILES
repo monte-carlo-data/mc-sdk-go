@@ -262,6 +262,12 @@ docs/RedshiftCredentialsPatch.md
 docs/RedshiftCredentialsValidateIn.md
 docs/RunStatus.md
 docs/RuntimePlatform.md
+docs/SalesforceCrmAuthMode.md
+docs/SalesforceCrmCredentialsChangeValidateIn.md
+docs/SalesforceCrmCredentialsIn.md
+docs/SalesforceCrmCredentialsOut.md
+docs/SalesforceCrmCredentialsPatch.md
+docs/SalesforceCrmCredentialsValidateIn.md
 docs/SapHanaCredentialsChangeValidateIn.md
 docs/SapHanaCredentialsIn.md
 docs/SapHanaCredentialsOut.md
@@ -553,6 +559,12 @@ model_redshift_credentials_patch.go
 model_redshift_credentials_validate_in.go
 model_run_status.go
 model_runtime_platform.go
+model_salesforce_crm_auth_mode.go
+model_salesforce_crm_credentials_change_validate_in.go
+model_salesforce_crm_credentials_in.go
+model_salesforce_crm_credentials_out.go
+model_salesforce_crm_credentials_patch.go
+model_salesforce_crm_credentials_validate_in.go
 model_sap_hana_credentials_change_validate_in.go
 model_sap_hana_credentials_in.go
 model_sap_hana_credentials_out.go

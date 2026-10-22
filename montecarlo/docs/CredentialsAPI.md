@@ -33,6 +33,7 @@ Method | HTTP request | Description
 [**CreatePostgresCredentials**](CredentialsAPI.md#CreatePostgresCredentials) | **Post** /api/v2/credentials/postgres | Create PostgreSQL credentials
 [**CreatePowerBiCredentials**](CredentialsAPI.md#CreatePowerBiCredentials) | **Post** /api/v2/credentials/power-bi | Create Power BI credentials
 [**CreateRedshiftCredentials**](CredentialsAPI.md#CreateRedshiftCredentials) | **Post** /api/v2/credentials/redshift | Create Redshift credentials
+[**CreateSalesforceCrmCredentials**](CredentialsAPI.md#CreateSalesforceCrmCredentials) | **Post** /api/v2/credentials/salesforce-crm | Create Salesforce CRM credentials
 [**CreateSapHanaCredentials**](CredentialsAPI.md#CreateSapHanaCredentials) | **Post** /api/v2/credentials/sap-hana | Create SAP HANA credentials
 [**CreateSnowflakeCredentials**](CredentialsAPI.md#CreateSnowflakeCredentials) | **Post** /api/v2/credentials/snowflake | Create Snowflake credentials
 [**CreateSqlServerCredentials**](CredentialsAPI.md#CreateSqlServerCredentials) | **Post** /api/v2/credentials/sql-server | Create SQL Server credentials
@@ -70,6 +71,7 @@ Method | HTTP request | Description
 [**DeletePostgresCredentials**](CredentialsAPI.md#DeletePostgresCredentials) | **Delete** /api/v2/credentials/postgres/{credentials_id} | Delete PostgreSQL credentials
 [**DeletePowerBiCredentials**](CredentialsAPI.md#DeletePowerBiCredentials) | **Delete** /api/v2/credentials/power-bi/{credentials_id} | Delete Power BI credentials
 [**DeleteRedshiftCredentials**](CredentialsAPI.md#DeleteRedshiftCredentials) | **Delete** /api/v2/credentials/redshift/{credentials_id} | Delete Redshift credentials
+[**DeleteSalesforceCrmCredentials**](CredentialsAPI.md#DeleteSalesforceCrmCredentials) | **Delete** /api/v2/credentials/salesforce-crm/{credentials_id} | Delete Salesforce CRM credentials
 [**DeleteSapHanaCredentials**](CredentialsAPI.md#DeleteSapHanaCredentials) | **Delete** /api/v2/credentials/sap-hana/{credentials_id} | Delete SAP HANA credentials
 [**DeleteSnowflakeCredentials**](CredentialsAPI.md#DeleteSnowflakeCredentials) | **Delete** /api/v2/credentials/snowflake/{credentials_id} | Delete Snowflake credentials
 [**DeleteSqlServerCredentials**](CredentialsAPI.md#DeleteSqlServerCredentials) | **Delete** /api/v2/credentials/sql-server/{credentials_id} | Delete SQL Server credentials
@@ -106,6 +108,7 @@ Method | HTTP request | Description
 [**GetPostgresCredentials**](CredentialsAPI.md#GetPostgresCredentials) | **Get** /api/v2/credentials/postgres/{credentials_id} | Get PostgreSQL credentials
 [**GetPowerBiCredentials**](CredentialsAPI.md#GetPowerBiCredentials) | **Get** /api/v2/credentials/power-bi/{credentials_id} | Get Power BI credentials
 [**GetRedshiftCredentials**](CredentialsAPI.md#GetRedshiftCredentials) | **Get** /api/v2/credentials/redshift/{credentials_id} | Get Redshift credentials
+[**GetSalesforceCrmCredentials**](CredentialsAPI.md#GetSalesforceCrmCredentials) | **Get** /api/v2/credentials/salesforce-crm/{credentials_id} | Get Salesforce CRM credentials
 [**GetSapHanaCredentials**](CredentialsAPI.md#GetSapHanaCredentials) | **Get** /api/v2/credentials/sap-hana/{credentials_id} | Get SAP HANA credentials
 [**GetSnowflakeCredentials**](CredentialsAPI.md#GetSnowflakeCredentials) | **Get** /api/v2/credentials/snowflake/{credentials_id} | Get Snowflake credentials
 [**GetSqlServerCredentials**](CredentialsAPI.md#GetSqlServerCredentials) | **Get** /api/v2/credentials/sql-server/{credentials_id} | Get SQL Server credentials
@@ -143,6 +146,7 @@ Method | HTTP request | Description
 [**UpdatePostgresCredentials**](CredentialsAPI.md#UpdatePostgresCredentials) | **Patch** /api/v2/credentials/postgres/{credentials_id} | Update PostgreSQL credentials
 [**UpdatePowerBiCredentials**](CredentialsAPI.md#UpdatePowerBiCredentials) | **Patch** /api/v2/credentials/power-bi/{credentials_id} | Update Power BI credentials
 [**UpdateRedshiftCredentials**](CredentialsAPI.md#UpdateRedshiftCredentials) | **Patch** /api/v2/credentials/redshift/{credentials_id} | Update Redshift credentials
+[**UpdateSalesforceCrmCredentials**](CredentialsAPI.md#UpdateSalesforceCrmCredentials) | **Patch** /api/v2/credentials/salesforce-crm/{credentials_id} | Update Salesforce CRM credentials
 [**UpdateSapHanaCredentials**](CredentialsAPI.md#UpdateSapHanaCredentials) | **Patch** /api/v2/credentials/sap-hana/{credentials_id} | Update SAP HANA credentials
 [**UpdateSnowflakeCredentials**](CredentialsAPI.md#UpdateSnowflakeCredentials) | **Patch** /api/v2/credentials/snowflake/{credentials_id} | Update Snowflake credentials
 [**UpdateSqlServerCredentials**](CredentialsAPI.md#UpdateSqlServerCredentials) | **Patch** /api/v2/credentials/sql-server/{credentials_id} | Update SQL Server credentials
@@ -206,6 +210,8 @@ Method | HTTP request | Description
 [**ValidatePowerBiCredentialsChange**](CredentialsAPI.md#ValidatePowerBiCredentialsChange) | **Post** /api/v2/credentials/power-bi/{credentials_id}/validate | Validate a change to Power BI credentials
 [**ValidateRedshiftCredentials**](CredentialsAPI.md#ValidateRedshiftCredentials) | **Post** /api/v2/credentials/redshift/validate | Validate Redshift credentials
 [**ValidateRedshiftCredentialsChange**](CredentialsAPI.md#ValidateRedshiftCredentialsChange) | **Post** /api/v2/credentials/redshift/{credentials_id}/validate | Validate a change to Redshift credentials
+[**ValidateSalesforceCrmCredentials**](CredentialsAPI.md#ValidateSalesforceCrmCredentials) | **Post** /api/v2/credentials/salesforce-crm/validate | Validate Salesforce CRM credentials
+[**ValidateSalesforceCrmCredentialsChange**](CredentialsAPI.md#ValidateSalesforceCrmCredentialsChange) | **Post** /api/v2/credentials/salesforce-crm/{credentials_id}/validate | Validate a change to Salesforce CRM credentials
 [**ValidateSapHanaCredentials**](CredentialsAPI.md#ValidateSapHanaCredentials) | **Post** /api/v2/credentials/sap-hana/validate | Validate SAP HANA credentials
 [**ValidateSapHanaCredentialsChange**](CredentialsAPI.md#ValidateSapHanaCredentialsChange) | **Post** /api/v2/credentials/sap-hana/{credentials_id}/validate | Validate a change to SAP HANA credentials
 [**ValidateSnowflakeCredentials**](CredentialsAPI.md#ValidateSnowflakeCredentials) | **Post** /api/v2/credentials/snowflake/validate | Validate Snowflake credentials
@@ -2122,6 +2128,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RedshiftCredentialsOut**](RedshiftCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateSalesforceCrmCredentials
+
+> SalesforceCrmCredentialsOut CreateSalesforceCrmCredentials(ctx).SalesforceCrmCredentialsIn(salesforceCrmCredentialsIn).Execute()
+
+Create Salesforce CRM credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	salesforceCrmCredentialsIn := *openapiclient.NewSalesforceCrmCredentialsIn(openapiclient.SalesforceCrmAuthMode("password")) // SalesforceCrmCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateSalesforceCrmCredentials(context.Background()).SalesforceCrmCredentialsIn(salesforceCrmCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateSalesforceCrmCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateSalesforceCrmCredentials`: SalesforceCrmCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateSalesforceCrmCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateSalesforceCrmCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **salesforceCrmCredentialsIn** | [**SalesforceCrmCredentialsIn**](SalesforceCrmCredentialsIn.md) |  | 
+
+### Return type
+
+[**SalesforceCrmCredentialsOut**](SalesforceCrmCredentialsOut.md)
 
 ### Authorization
 
@@ -4639,6 +4711,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteSalesforceCrmCredentials
+
+> DeleteSalesforceCrmCredentials(ctx, credentialsId).Execute()
+
+Delete Salesforce CRM credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteSalesforceCrmCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteSalesforceCrmCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteSalesforceCrmCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteSapHanaCredentials
 
 > DeleteSapHanaCredentials(ctx, credentialsId).Execute()
@@ -7130,6 +7270,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RedshiftCredentialsOut**](RedshiftCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSalesforceCrmCredentials
+
+> SalesforceCrmCredentialsOut GetSalesforceCrmCredentials(ctx, credentialsId).Execute()
+
+Get Salesforce CRM credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetSalesforceCrmCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetSalesforceCrmCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSalesforceCrmCredentials`: SalesforceCrmCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetSalesforceCrmCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSalesforceCrmCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**SalesforceCrmCredentialsOut**](SalesforceCrmCredentialsOut.md)
 
 ### Authorization
 
@@ -9778,6 +9988,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RedshiftCredentialsOut**](RedshiftCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateSalesforceCrmCredentials
+
+> SalesforceCrmCredentialsOut UpdateSalesforceCrmCredentials(ctx, credentialsId).SalesforceCrmCredentialsPatch(salesforceCrmCredentialsPatch).Execute()
+
+Update Salesforce CRM credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	salesforceCrmCredentialsPatch := *openapiclient.NewSalesforceCrmCredentialsPatch() // SalesforceCrmCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateSalesforceCrmCredentials(context.Background(), credentialsId).SalesforceCrmCredentialsPatch(salesforceCrmCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateSalesforceCrmCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateSalesforceCrmCredentials`: SalesforceCrmCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateSalesforceCrmCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateSalesforceCrmCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **salesforceCrmCredentialsPatch** | [**SalesforceCrmCredentialsPatch**](SalesforceCrmCredentialsPatch.md) |  | 
+
+### Return type
+
+[**SalesforceCrmCredentialsOut**](SalesforceCrmCredentialsOut.md)
 
 ### Authorization
 
@@ -14142,6 +14424,144 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **redshiftCredentialsChangeValidateIn** | [**RedshiftCredentialsChangeValidateIn**](RedshiftCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateSalesforceCrmCredentials
+
+> ValidationRunOut ValidateSalesforceCrmCredentials(ctx).SalesforceCrmCredentialsValidateIn(salesforceCrmCredentialsValidateIn).Execute()
+
+Validate Salesforce CRM credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	salesforceCrmCredentialsValidateIn := *openapiclient.NewSalesforceCrmCredentialsValidateIn("DeploymentId_example", openapiclient.SalesforceCrmAuthMode("password")) // SalesforceCrmCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateSalesforceCrmCredentials(context.Background()).SalesforceCrmCredentialsValidateIn(salesforceCrmCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateSalesforceCrmCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateSalesforceCrmCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateSalesforceCrmCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateSalesforceCrmCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **salesforceCrmCredentialsValidateIn** | [**SalesforceCrmCredentialsValidateIn**](SalesforceCrmCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateSalesforceCrmCredentialsChange
+
+> ValidationRunOut ValidateSalesforceCrmCredentialsChange(ctx, credentialsId).SalesforceCrmCredentialsChangeValidateIn(salesforceCrmCredentialsChangeValidateIn).Execute()
+
+Validate a change to Salesforce CRM credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	salesforceCrmCredentialsChangeValidateIn := *openapiclient.NewSalesforceCrmCredentialsChangeValidateIn("DeploymentId_example") // SalesforceCrmCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateSalesforceCrmCredentialsChange(context.Background(), credentialsId).SalesforceCrmCredentialsChangeValidateIn(salesforceCrmCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateSalesforceCrmCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateSalesforceCrmCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateSalesforceCrmCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateSalesforceCrmCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **salesforceCrmCredentialsChangeValidateIn** | [**SalesforceCrmCredentialsChangeValidateIn**](SalesforceCrmCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 

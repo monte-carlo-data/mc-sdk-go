@@ -22,8 +22,10 @@ var _ MappedNullable = &DbtCloudSettingsOut{}
 type DbtCloudSettingsOut struct {
 	// How a run is matched to the connection's warehouse. `off`, the default, drops no run for its dbt connection.
 	ConnectionMatch ConnectionMatch `json:"connection_match"`
-	// The dbt connections, by id or name, whose runs are kept. At least one for `allow_list`. Empty otherwise.
-	AllowedConnections []string `json:"allowed_connections"`
+	// The dbt connection fields to compare, such as `account` for Snowflake. `name` and `id` match a dbt connection by its own name or id. At least one for `allow_list`. Empty otherwise.
+	AllowedConnectionFields []string `json:"allowed_connection_fields"`
+	// The values to match, exactly as they appear in dbt Cloud. A run is kept when one of `allowed_connection_fields` on its dbt connection equals one of them. At least one for `allow_list`. Empty otherwise.
+	AllowedConnectionValues []string `json:"allowed_connection_values"`
 	// The dbt environments, by name and ignoring case, whose runs are kept. Empty keeps runs from every environment.
 	AllowedEnvironments  []string `json:"allowed_environments"`
 	AdditionalProperties map[string]interface{}
@@ -35,10 +37,11 @@ type _DbtCloudSettingsOut DbtCloudSettingsOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDbtCloudSettingsOut(connectionMatch ConnectionMatch, allowedConnections []string, allowedEnvironments []string) *DbtCloudSettingsOut {
+func NewDbtCloudSettingsOut(connectionMatch ConnectionMatch, allowedConnectionFields []string, allowedConnectionValues []string, allowedEnvironments []string) *DbtCloudSettingsOut {
 	this := DbtCloudSettingsOut{}
 	this.ConnectionMatch = connectionMatch
-	this.AllowedConnections = allowedConnections
+	this.AllowedConnectionFields = allowedConnectionFields
+	this.AllowedConnectionValues = allowedConnectionValues
 	this.AllowedEnvironments = allowedEnvironments
 	return &this
 }
@@ -75,28 +78,52 @@ func (o *DbtCloudSettingsOut) SetConnectionMatch(v ConnectionMatch) {
 	o.ConnectionMatch = v
 }
 
-// GetAllowedConnections returns the AllowedConnections field value
-func (o *DbtCloudSettingsOut) GetAllowedConnections() []string {
+// GetAllowedConnectionFields returns the AllowedConnectionFields field value
+func (o *DbtCloudSettingsOut) GetAllowedConnectionFields() []string {
 	if o == nil {
 		var ret []string
 		return ret
 	}
 
-	return o.AllowedConnections
+	return o.AllowedConnectionFields
 }
 
-// GetAllowedConnectionsOk returns a tuple with the AllowedConnections field value
+// GetAllowedConnectionFieldsOk returns a tuple with the AllowedConnectionFields field value
 // and a boolean to check if the value has been set.
-func (o *DbtCloudSettingsOut) GetAllowedConnectionsOk() ([]string, bool) {
+func (o *DbtCloudSettingsOut) GetAllowedConnectionFieldsOk() ([]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return o.AllowedConnections, true
+	return o.AllowedConnectionFields, true
 }
 
-// SetAllowedConnections sets field value
-func (o *DbtCloudSettingsOut) SetAllowedConnections(v []string) {
-	o.AllowedConnections = v
+// SetAllowedConnectionFields sets field value
+func (o *DbtCloudSettingsOut) SetAllowedConnectionFields(v []string) {
+	o.AllowedConnectionFields = v
+}
+
+// GetAllowedConnectionValues returns the AllowedConnectionValues field value
+func (o *DbtCloudSettingsOut) GetAllowedConnectionValues() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+
+	return o.AllowedConnectionValues
+}
+
+// GetAllowedConnectionValuesOk returns a tuple with the AllowedConnectionValues field value
+// and a boolean to check if the value has been set.
+func (o *DbtCloudSettingsOut) GetAllowedConnectionValuesOk() ([]string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.AllowedConnectionValues, true
+}
+
+// SetAllowedConnectionValues sets field value
+func (o *DbtCloudSettingsOut) SetAllowedConnectionValues(v []string) {
+	o.AllowedConnectionValues = v
 }
 
 // GetAllowedEnvironments returns the AllowedEnvironments field value
@@ -134,7 +161,8 @@ func (o DbtCloudSettingsOut) MarshalJSON() ([]byte, error) {
 func (o DbtCloudSettingsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["connection_match"] = o.ConnectionMatch
-	toSerialize["allowed_connections"] = o.AllowedConnections
+	toSerialize["allowed_connection_fields"] = o.AllowedConnectionFields
+	toSerialize["allowed_connection_values"] = o.AllowedConnectionValues
 	toSerialize["allowed_environments"] = o.AllowedEnvironments
 
 	for key, value := range o.AdditionalProperties {
@@ -150,7 +178,8 @@ func (o *DbtCloudSettingsOut) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"connection_match",
-		"allowed_connections",
+		"allowed_connection_fields",
+		"allowed_connection_values",
 		"allowed_environments",
 	}
 
@@ -182,7 +211,8 @@ func (o *DbtCloudSettingsOut) UnmarshalJSON(data []byte) (err error) {
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
 		delete(additionalProperties, "connection_match")
-		delete(additionalProperties, "allowed_connections")
+		delete(additionalProperties, "allowed_connection_fields")
+		delete(additionalProperties, "allowed_connection_values")
 		delete(additionalProperties, "allowed_environments")
 		o.AdditionalProperties = additionalProperties
 	}
