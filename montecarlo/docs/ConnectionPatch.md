@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **NullableString** | New display name for the connection. Omit it to leave the name unchanged. An explicit null is ignored, the same as omitting the field. | [optional] 
 **JobTypes** | Pointer to **[]string** | The connection&#39;s job types with &#x60;etl&#x60; added or removed. Adding &#x60;etl&#x60; turns on ETL collection for a Snowflake (Snowflake Tasks), Power BI (dataflows) or Salesforce Data Cloud connection, and creates the ETL container that &#x60;etl_container_id&#x60; then names. Removing it deletes that container. No other job can be added or removed. Omit it to leave the job types unchanged. | [optional] 
 **DbtCloud** | Pointer to [**NullableDbtCloudSettingsIn**](DbtCloudSettingsIn.md) | Which dbt Cloud runs a dbt Cloud webhook connection processes. A dbt Cloud webhook reports runs from every environment in the dbt account. These settings decide which of them Monte Carlo processes for the connection&#39;s warehouse. Only a dbt Cloud webhook connection takes it. An object replaces the settings whole. Null resets them to the defaults. Omit it to leave them unchanged. | [optional] 
+**CredentialsId** | Pointer to **NullableString** | Credentials for the connection to read with from now on. They must be for the connection&#39;s own type, and may be stored by Monte Carlo or self-hosted. The previous credentials are kept, and can be deleted once nothing uses them. Omit it to keep the current credentials. An explicit null is ignored, the same as omitting the field. | [optional] 
 
 ## Methods
 
@@ -132,6 +133,41 @@ HasDbtCloud returns a boolean if a field has been set.
 `func (o *ConnectionPatch) UnsetDbtCloud()`
 
 UnsetDbtCloud ensures that no value is present for DbtCloud, not even an explicit nil
+### GetCredentialsId
+
+`func (o *ConnectionPatch) GetCredentialsId() string`
+
+GetCredentialsId returns the CredentialsId field if non-nil, zero value otherwise.
+
+### GetCredentialsIdOk
+
+`func (o *ConnectionPatch) GetCredentialsIdOk() (*string, bool)`
+
+GetCredentialsIdOk returns a tuple with the CredentialsId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCredentialsId
+
+`func (o *ConnectionPatch) SetCredentialsId(v string)`
+
+SetCredentialsId sets CredentialsId field to given value.
+
+### HasCredentialsId
+
+`func (o *ConnectionPatch) HasCredentialsId() bool`
+
+HasCredentialsId returns a boolean if a field has been set.
+
+### SetCredentialsIdNil
+
+`func (o *ConnectionPatch) SetCredentialsIdNil(b bool)`
+
+ SetCredentialsIdNil sets the value for CredentialsId to be an explicit nil
+
+### UnsetCredentialsId
+`func (o *ConnectionPatch) UnsetCredentialsId()`
+
+UnsetCredentialsId ensures that no value is present for CredentialsId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

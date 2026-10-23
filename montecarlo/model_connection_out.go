@@ -43,7 +43,7 @@ type ConnectionOut struct {
 	DeploymentId NullableString `json:"deployment_id"`
 	// Display name of that deployment. Null when there is no deployment to name.
 	DeploymentName NullableString `json:"deployment_name"`
-	// The credentials the connection reads with. Null for a connection created before credentials became their own resource, and for one created outside this API.
+	// The credentials the connection reads with. Null for a connection created before credentials became their own resource, and for one created outside this API until an update sets `credentials_id`.
 	CredentialsId NullableString `json:"credentials_id"`
 	// Where that secret lives. Null when there are no credentials to describe.
 	CredentialsStorageType NullableCredentialsStorageType `json:"credentials_storage_type"`
