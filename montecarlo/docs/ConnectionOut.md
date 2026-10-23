@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **EtlContainerName** | **NullableString** | Display name of that ETL container. Null when there is no ETL container. | 
 **DeploymentId** | **NullableString** | The deployment the connection runs through, taken from its warehouse, BI container or ETL container. Null when that has no deployment, as an Airflow ETL container has none. The id may name a deployment on Monte Carlo&#39;s older collection platform, which the deployments endpoints do not list. | 
 **DeploymentName** | **NullableString** | Display name of that deployment. Null when there is no deployment to name. | 
-**CredentialsId** | **NullableString** | The credentials the connection reads with. Null for a connection created before credentials became their own resource, and for one created outside this API. | 
+**CredentialsId** | **NullableString** | The credentials the connection reads with. Null for a connection created before credentials became their own resource, and for one created outside this API until an update sets &#x60;credentials_id&#x60;. | 
 **CredentialsStorageType** | [**NullableCredentialsStorageType**](CredentialsStorageType.md) | Where that secret lives. Null when there are no credentials to describe. | 
 **JobTypes** | **[]string** | The jobs Monte Carlo runs on this connection, such as &#x60;metadata&#x60;. | 
 **CreatedTime** | **time.Time** | When the connection was created. | 

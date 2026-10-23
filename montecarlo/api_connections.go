@@ -799,11 +799,19 @@ func (r ApiUpdateConnectionRequest) Execute() (*ConnectionOut, *http.Response, e
 /*
 UpdateConnection Update a connection
 
-Rename a connection, turn its ETL on or off, or change its dbt Cloud settings.
+Rename a connection, turn its ETL on or off, change its dbt Cloud settings, or point it
+at other credentials.
 
-The type, the warehouse, BI container or ETL container and the credentials are fixed when
-the connection is created. Two connections on one warehouse or BI container cannot share a
-name.
+The type and the warehouse, BI container or ETL container are fixed when the connection is
+created. Two connections on one warehouse or BI container cannot share a name.
+
+`credentials_id` points the connection at other credentials of its own type, in place. This
+is how a connection created in the Monte Carlo app gets credentials this API manages, and
+how a connection moves between credentials Monte Carlo stores and self-hosted ones.
+Self-hosted credentials need a collection agent on the connection's deployment. The
+credentials of a dbt Cloud webhook connection, or of one that runs through the Snowflake
+agent, cannot be changed. The previous credentials are kept. Once a connection has
+credentials, change its secret through those credentials, not in the app.
 
 `job_types` takes one change: `etl` added or removed. Adding it to a Snowflake, Power BI
 or Salesforce Data Cloud connection turns on Snowflake Tasks, Power BI dataflows or Data
@@ -925,6 +933,16 @@ func (a *ConnectionsAPIService) UpdateConnectionExecute(r ApiUpdateConnectionReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil || len(localVarBody) == 0 {

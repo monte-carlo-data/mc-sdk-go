@@ -17,7 +17,7 @@ import (
 // checks if the ConnectionPatch type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ConnectionPatch{}
 
-// ConnectionPatch A change to an existing connection: a new name, ETL turned on or off, or new dbt Cloud settings.
+// ConnectionPatch A change to an existing connection: a new name, ETL turned on or off, new dbt Cloud settings, or other credentials.
 type ConnectionPatch struct {
 	// New display name for the connection. Omit it to leave the name unchanged. An explicit null is ignored, the same as omitting the field.
 	Name NullableString `json:"name,omitempty"`
@@ -25,6 +25,8 @@ type ConnectionPatch struct {
 	JobTypes []string `json:"job_types,omitempty"`
 	// Which dbt Cloud runs a dbt Cloud webhook connection processes. A dbt Cloud webhook reports runs from every environment in the dbt account. These settings decide which of them Monte Carlo processes for the connection's warehouse. Only a dbt Cloud webhook connection takes it. An object replaces the settings whole. Null resets them to the defaults. Omit it to leave them unchanged.
 	DbtCloud NullableDbtCloudSettingsIn `json:"dbt_cloud,omitempty"`
+	// Credentials for the connection to read with from now on. They must be for the connection's own type, and may be stored by Monte Carlo or self-hosted. The previous credentials are kept, and can be deleted once nothing uses them. Omit it to keep the current credentials. An explicit null is ignored, the same as omitting the field.
+	CredentialsId NullableString `json:"credentials_id,omitempty"`
 }
 
 // NewConnectionPatch instantiates a new ConnectionPatch object
@@ -163,6 +165,49 @@ func (o *ConnectionPatch) UnsetDbtCloud() {
 	o.DbtCloud.Unset()
 }
 
+// GetCredentialsId returns the CredentialsId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ConnectionPatch) GetCredentialsId() string {
+	if o == nil || IsNil(o.CredentialsId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.CredentialsId.Get()
+}
+
+// GetCredentialsIdOk returns a tuple with the CredentialsId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ConnectionPatch) GetCredentialsIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.CredentialsId.Get(), o.CredentialsId.IsSet()
+}
+
+// HasCredentialsId returns a boolean if a field has been set.
+func (o *ConnectionPatch) HasCredentialsId() bool {
+	if o != nil && o.CredentialsId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetCredentialsId gets a reference to the given NullableString and assigns it to the CredentialsId field.
+func (o *ConnectionPatch) SetCredentialsId(v string) {
+	o.CredentialsId.Set(&v)
+}
+
+// SetCredentialsIdNil sets the value for CredentialsId to be an explicit nil
+func (o *ConnectionPatch) SetCredentialsIdNil() {
+	o.CredentialsId.Set(nil)
+}
+
+// UnsetCredentialsId ensures that no value is present for CredentialsId, not even an explicit nil
+func (o *ConnectionPatch) UnsetCredentialsId() {
+	o.CredentialsId.Unset()
+}
+
 func (o ConnectionPatch) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -181,6 +226,9 @@ func (o ConnectionPatch) ToMap() (map[string]interface{}, error) {
 	}
 	if o.DbtCloud.IsSet() {
 		toSerialize["dbt_cloud"] = o.DbtCloud.Get()
+	}
+	if o.CredentialsId.IsSet() {
+		toSerialize["credentials_id"] = o.CredentialsId.Get()
 	}
 	return toSerialize, nil
 }
