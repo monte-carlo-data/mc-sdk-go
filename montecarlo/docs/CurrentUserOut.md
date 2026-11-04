@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **AccountName** | Pointer to **NullableString** | Display name of the account. Null when the account has no name. | [optional] 
 **AccountFrozen** | **bool** | Whether the account is paused. While it is, this endpoint still answers but every other one returns 403 with the code &#x60;account_frozen&#x60;. | 
 **AuthGroups** | Pointer to **[]string** | Names of the authorization groups this user belongs to. They determine what the user is permitted to do. | [optional] 
+**Features** | Pointer to **[]string** | Features in early access that are on for the account. Every operation of a resource in early access answers 404 until its feature is on. | [optional] 
 
 ## Methods
 
@@ -262,6 +263,31 @@ SetAuthGroups sets AuthGroups field to given value.
 `func (o *CurrentUserOut) HasAuthGroups() bool`
 
 HasAuthGroups returns a boolean if a field has been set.
+
+### GetFeatures
+
+`func (o *CurrentUserOut) GetFeatures() []string`
+
+GetFeatures returns the Features field if non-nil, zero value otherwise.
+
+### GetFeaturesOk
+
+`func (o *CurrentUserOut) GetFeaturesOk() (*[]string, bool)`
+
+GetFeaturesOk returns a tuple with the Features field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFeatures
+
+`func (o *CurrentUserOut) SetFeatures(v []string)`
+
+SetFeatures sets Features field to given value.
+
+### HasFeatures
+
+`func (o *CurrentUserOut) HasFeatures() bool`
+
+HasFeatures returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
