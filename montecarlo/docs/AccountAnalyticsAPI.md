@@ -31,7 +31,7 @@ import (
 
 func main() {
 	metrics := "metrics_example" // string | Comma-separated metric names, such as `coverage_rate,covered_assets`. With them, the answer lists the dimensions all of them can be grouped and filtered by. Without them, it lists every metric. Send the names in one parameter: only the last of a repeated parameter is read. (optional)
-	search := "search_example" // string | Keeps the metrics, or the dimensions, whose name contains this text, ignoring case, such as `incident`. (optional)
+	search := "search_example" // string | Keeps the metrics, or the dimensions, whose name, label or description contains this text, ignoring case, such as `incident`. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiGetAccountAnalyticsCatalog
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **metrics** | **string** | Comma-separated metric names, such as &#x60;coverage_rate,covered_assets&#x60;. With them, the answer lists the dimensions all of them can be grouped and filtered by. Without them, it lists every metric. Send the names in one parameter: only the last of a repeated parameter is read. | 
- **search** | **string** | Keeps the metrics, or the dimensions, whose name contains this text, ignoring case, such as &#x60;incident&#x60;. | 
+ **search** | **string** | Keeps the metrics, or the dimensions, whose name, label or description contains this text, ignoring case, such as &#x60;incident&#x60;. | 
 
 ### Return type
 
