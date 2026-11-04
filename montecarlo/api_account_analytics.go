@@ -34,7 +34,7 @@ func (r ApiGetAccountAnalyticsCatalogRequest) Metrics(metrics string) ApiGetAcco
 	return r
 }
 
-// Keeps the metrics, or the dimensions, whose name contains this text, ignoring case, such as &#x60;incident&#x60;.
+// Keeps the metrics, or the dimensions, whose name, label or description contains this text, ignoring case, such as &#x60;incident&#x60;.
 func (r ApiGetAccountAnalyticsCatalogRequest) Search(search string) ApiGetAccountAnalyticsCatalogRequest {
 	r.search = &search
 	return r
@@ -59,8 +59,9 @@ A time dimension lists its grains: `metric_time` with `week` is queried as
 once in each domain it belongs to, so the domains do not add up to the account total.
 Metrics can be grouped only by dimensions they share: ask with `metrics` first.
 
-`search` keeps only the names that contain a text, ignoring case. The unfiltered list of
-metrics is long. Fields without a value, such as `type` for a metric, are left out.
+`search` keeps only the items whose name, label or description contains a text, ignoring
+case. The unfiltered list of metrics is long. Fields without a value, such as `type` for a
+metric, are left out.
 
 An unknown metric is refused with a 422 that says why. Requires dashboard access.
 
