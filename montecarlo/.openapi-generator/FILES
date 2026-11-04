@@ -1,3 +1,4 @@
+api_account_analytics.go
 api_bi_containers.go
 api_collection_agents.go
 api_collection_data_stores.go
@@ -14,6 +15,7 @@ api_validations.go
 api_warehouses.go
 client.go
 configuration.go
+docs/AccountAnalyticsAPI.md
 docs/AirflowCallbacksKeyCreatedOut.md
 docs/AirflowCallbacksKeyIn.md
 docs/AirflowCallbacksKeyOut.md
@@ -78,6 +80,9 @@ docs/BigQueryCredentialsIn.md
 docs/BigQueryCredentialsOut.md
 docs/BigQueryCredentialsPatch.md
 docs/BigQueryCredentialsValidateIn.md
+docs/CatalogDimensionType.md
+docs/CatalogItemOut.md
+docs/CatalogOut.md
 docs/ClickHouseCredentialsChangeValidateIn.md
 docs/ClickHouseCredentialsIn.md
 docs/ClickHouseCredentialsOut.md
@@ -221,6 +226,11 @@ docs/MariaDbCredentialsIn.md
 docs/MariaDbCredentialsOut.md
 docs/MariaDbCredentialsPatch.md
 docs/MariaDbCredentialsValidateIn.md
+docs/MetricsFilter.md
+docs/MetricsFilterOperator.md
+docs/MetricsOrderBy.md
+docs/MetricsQuery.md
+docs/MetricsQueryOut.md
 docs/MulesoftCredentialsChangeValidateIn.md
 docs/MulesoftCredentialsIn.md
 docs/MulesoftCredentialsOut.md
@@ -391,6 +401,9 @@ model_big_query_credentials_in.go
 model_big_query_credentials_out.go
 model_big_query_credentials_patch.go
 model_big_query_credentials_validate_in.go
+model_catalog_dimension_type.go
+model_catalog_item_out.go
+model_catalog_out.go
 model_click_house_credentials_change_validate_in.go
 model_click_house_credentials_in.go
 model_click_house_credentials_out.go
@@ -524,6 +537,11 @@ model_maria_db_credentials_in.go
 model_maria_db_credentials_out.go
 model_maria_db_credentials_patch.go
 model_maria_db_credentials_validate_in.go
+model_metrics_filter.go
+model_metrics_filter_operator.go
+model_metrics_order_by.go
+model_metrics_query.go
+model_metrics_query_out.go
 model_mulesoft_credentials_change_validate_in.go
 model_mulesoft_credentials_in.go
 model_mulesoft_credentials_out.go
