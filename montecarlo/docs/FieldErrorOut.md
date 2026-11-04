@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **Code** | **string** | Machine-readable code identifying the kind of validation failure. | 
 **Message** | **string** | Human-readable explanation of why this field failed validation. | 
 **Extra** | Pointer to **map[string]string** | Values that parameterize &#x60;message&#x60;, for a client that renders its own text instead of showing &#x60;message&#x60; directly. Absent when there is nothing to report. | [optional] 
+**UserMessage** | Pointer to **NullableString** | Position to continue from, as returned in &#x60;next_cursor&#x60; by the previous page. Omit it to start from the first page. The value is opaque; do not build or modify one. | [optional] 
 
 ## Methods
 
@@ -123,6 +124,41 @@ HasExtra returns a boolean if a field has been set.
 `func (o *FieldErrorOut) UnsetExtra()`
 
 UnsetExtra ensures that no value is present for Extra, not even an explicit nil
+### GetUserMessage
+
+`func (o *FieldErrorOut) GetUserMessage() string`
+
+GetUserMessage returns the UserMessage field if non-nil, zero value otherwise.
+
+### GetUserMessageOk
+
+`func (o *FieldErrorOut) GetUserMessageOk() (*string, bool)`
+
+GetUserMessageOk returns a tuple with the UserMessage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUserMessage
+
+`func (o *FieldErrorOut) SetUserMessage(v string)`
+
+SetUserMessage sets UserMessage field to given value.
+
+### HasUserMessage
+
+`func (o *FieldErrorOut) HasUserMessage() bool`
+
+HasUserMessage returns a boolean if a field has been set.
+
+### SetUserMessageNil
+
+`func (o *FieldErrorOut) SetUserMessageNil(b bool)`
+
+ SetUserMessageNil sets the value for UserMessage to be an explicit nil
+
+### UnsetUserMessage
+`func (o *FieldErrorOut) UnsetUserMessage()`
+
+UnsetUserMessage ensures that no value is present for UserMessage, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

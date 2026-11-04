@@ -27,7 +27,9 @@ type FieldErrorOut struct {
 	// Human-readable explanation of why this field failed validation.
 	Message string `json:"message"`
 	// Values that parameterize `message`, for a client that renders its own text instead of showing `message` directly. Absent when there is nothing to report.
-	Extra                map[string]string `json:"extra,omitempty"`
+	Extra map[string]string `json:"extra,omitempty"`
+	// Position to continue from, as returned in `next_cursor` by the previous page. Omit it to start from the first page. The value is opaque; do not build or modify one.
+	UserMessage          NullableString `json:"user_message,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -158,6 +160,49 @@ func (o *FieldErrorOut) SetExtra(v map[string]string) {
 	o.Extra = v
 }
 
+// GetUserMessage returns the UserMessage field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FieldErrorOut) GetUserMessage() string {
+	if o == nil || IsNil(o.UserMessage.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.UserMessage.Get()
+}
+
+// GetUserMessageOk returns a tuple with the UserMessage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *FieldErrorOut) GetUserMessageOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UserMessage.Get(), o.UserMessage.IsSet()
+}
+
+// HasUserMessage returns a boolean if a field has been set.
+func (o *FieldErrorOut) HasUserMessage() bool {
+	if o != nil && o.UserMessage.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUserMessage gets a reference to the given NullableString and assigns it to the UserMessage field.
+func (o *FieldErrorOut) SetUserMessage(v string) {
+	o.UserMessage.Set(&v)
+}
+
+// SetUserMessageNil sets the value for UserMessage to be an explicit nil
+func (o *FieldErrorOut) SetUserMessageNil() {
+	o.UserMessage.Set(nil)
+}
+
+// UnsetUserMessage ensures that no value is present for UserMessage, not even an explicit nil
+func (o *FieldErrorOut) UnsetUserMessage() {
+	o.UserMessage.Unset()
+}
+
 func (o FieldErrorOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -173,6 +218,9 @@ func (o FieldErrorOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["message"] = o.Message
 	if o.Extra != nil {
 		toSerialize["extra"] = o.Extra
+	}
+	if o.UserMessage.IsSet() {
+		toSerialize["user_message"] = o.UserMessage.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -223,6 +271,7 @@ func (o *FieldErrorOut) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "code")
 		delete(additionalProperties, "message")
 		delete(additionalProperties, "extra")
+		delete(additionalProperties, "user_message")
 		o.AdditionalProperties = additionalProperties
 	}
 

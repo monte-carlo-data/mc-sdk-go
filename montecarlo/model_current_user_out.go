@@ -37,7 +37,9 @@ type CurrentUserOut struct {
 	// Whether the account is paused. While it is, this endpoint still answers but every other one returns 403 with the code `account_frozen`.
 	AccountFrozen bool `json:"account_frozen"`
 	// Names of the authorization groups this user belongs to. They determine what the user is permitted to do.
-	AuthGroups           []string `json:"auth_groups,omitempty"`
+	AuthGroups []string `json:"auth_groups,omitempty"`
+	// Features in early access that are on for the account. Every operation of a resource in early access answers 404 until its feature is on.
+	Features             []string `json:"features,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -346,6 +348,38 @@ func (o *CurrentUserOut) SetAuthGroups(v []string) {
 	o.AuthGroups = v
 }
 
+// GetFeatures returns the Features field value if set, zero value otherwise.
+func (o *CurrentUserOut) GetFeatures() []string {
+	if o == nil || IsNil(o.Features) {
+		var ret []string
+		return ret
+	}
+	return o.Features
+}
+
+// GetFeaturesOk returns a tuple with the Features field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CurrentUserOut) GetFeaturesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Features) {
+		return nil, false
+	}
+	return o.Features, true
+}
+
+// HasFeatures returns a boolean if a field has been set.
+func (o *CurrentUserOut) HasFeatures() bool {
+	if o != nil && !IsNil(o.Features) {
+		return true
+	}
+
+	return false
+}
+
+// SetFeatures gets a reference to the given []string and assigns it to the Features field.
+func (o *CurrentUserOut) SetFeatures(v []string) {
+	o.Features = v
+}
+
 func (o CurrentUserOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -372,6 +406,9 @@ func (o CurrentUserOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["account_frozen"] = o.AccountFrozen
 	if !IsNil(o.AuthGroups) {
 		toSerialize["auth_groups"] = o.AuthGroups
+	}
+	if !IsNil(o.Features) {
+		toSerialize["features"] = o.Features
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -429,6 +466,7 @@ func (o *CurrentUserOut) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "account_name")
 		delete(additionalProperties, "account_frozen")
 		delete(additionalProperties, "auth_groups")
+		delete(additionalProperties, "features")
 		o.AdditionalProperties = additionalProperties
 	}
 
