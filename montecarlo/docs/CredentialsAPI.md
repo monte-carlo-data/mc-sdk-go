@@ -90,6 +90,7 @@ Method | HTTP request | Description
 [**GetAzureSqlDatabaseCredentials**](CredentialsAPI.md#GetAzureSqlDatabaseCredentials) | **Get** /api/v2/credentials/azure-sql-database/{credentials_id} | Get Azure SQL Database credentials
 [**GetBigqueryCredentials**](CredentialsAPI.md#GetBigqueryCredentials) | **Get** /api/v2/credentials/bigquery/{credentials_id} | Get BigQuery credentials
 [**GetClickhouseCredentials**](CredentialsAPI.md#GetClickhouseCredentials) | **Get** /api/v2/credentials/clickhouse/{credentials_id} | Get ClickHouse credentials
+[**GetCredentials**](CredentialsAPI.md#GetCredentials) | **Get** /api/v2/credentials/{credentials_id} | Get credentials
 [**GetDatabricksMetastoreSqlWarehouseCredentials**](CredentialsAPI.md#GetDatabricksMetastoreSqlWarehouseCredentials) | **Get** /api/v2/credentials/databricks-metastore-sql-warehouse/{credentials_id} | Get Databricks metadata collection credentials
 [**GetDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#GetDatabricksSqlWarehouseCredentials) | **Get** /api/v2/credentials/databricks-sql-warehouse/{credentials_id} | Get Databricks query credentials
 [**GetDb2Credentials**](CredentialsAPI.md#GetDb2Credentials) | **Get** /api/v2/credentials/db2/{credentials_id} | Get Db2 credentials
@@ -6010,6 +6011,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**ClickHouseCredentialsOut**](ClickHouseCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetCredentials
+
+> CredentialsDetailOut GetCredentials(ctx, credentialsId).Execute()
+
+Get credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetCredentials`: CredentialsDetailOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**CredentialsDetailOut**](CredentialsDetailOut.md)
 
 ### Authorization
 

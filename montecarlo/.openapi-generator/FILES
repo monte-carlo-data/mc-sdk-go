@@ -103,6 +103,7 @@ docs/ConnectionTypesAPI.md
 docs/ConnectionsAPI.md
 docs/CredentialType.md
 docs/CredentialsAPI.md
+docs/CredentialsDetailOut.md
 docs/CredentialsStorageType.md
 docs/CredentialsSummaryOut.md
 docs/CurrentUserOut.md
@@ -421,6 +422,7 @@ model_connection_parent.go
 model_connection_patch.go
 model_connection_type_out.go
 model_credential_type.go
+model_credentials_detail_out.go
 model_credentials_storage_type.go
 model_credentials_summary_out.go
 model_current_user_out.go
