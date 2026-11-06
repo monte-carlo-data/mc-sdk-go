@@ -28,6 +28,10 @@ type CatalogItemOut struct {
 	Description NullableString `json:"description,omitempty"`
 	// Metrics only. True when the metric answers only grouped by `metric_time`, for example a month-to-date total. Left out for a dimension.
 	RequiresMetricTime NullableBool `json:"requires_metric_time,omitempty"`
+	// Metrics only. The first date the metric keeps. A query that filters `metric_time` before it is refused, so start a window on or after it. Left out for a metric that keeps all its history.
+	HistoryStart NullableString `json:"history_start,omitempty"`
+	// Metrics only. A metric that keeps dates before `history_start`. Left out when there is none.
+	LongerHistory NullableString `json:"longer_history,omitempty"`
 	// Dimensions only. Left out for a metric.
 	Type NullableCatalogDimensionType `json:"type,omitempty"`
 	// Time dimensions only. The grains a query can append to the name, such as `metric_time__week` for `week`. Left out otherwise.
@@ -208,6 +212,92 @@ func (o *CatalogItemOut) UnsetRequiresMetricTime() {
 	o.RequiresMetricTime.Unset()
 }
 
+// GetHistoryStart returns the HistoryStart field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CatalogItemOut) GetHistoryStart() string {
+	if o == nil || IsNil(o.HistoryStart.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.HistoryStart.Get()
+}
+
+// GetHistoryStartOk returns a tuple with the HistoryStart field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CatalogItemOut) GetHistoryStartOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.HistoryStart.Get(), o.HistoryStart.IsSet()
+}
+
+// HasHistoryStart returns a boolean if a field has been set.
+func (o *CatalogItemOut) HasHistoryStart() bool {
+	if o != nil && o.HistoryStart.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetHistoryStart gets a reference to the given NullableString and assigns it to the HistoryStart field.
+func (o *CatalogItemOut) SetHistoryStart(v string) {
+	o.HistoryStart.Set(&v)
+}
+
+// SetHistoryStartNil sets the value for HistoryStart to be an explicit nil
+func (o *CatalogItemOut) SetHistoryStartNil() {
+	o.HistoryStart.Set(nil)
+}
+
+// UnsetHistoryStart ensures that no value is present for HistoryStart, not even an explicit nil
+func (o *CatalogItemOut) UnsetHistoryStart() {
+	o.HistoryStart.Unset()
+}
+
+// GetLongerHistory returns the LongerHistory field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CatalogItemOut) GetLongerHistory() string {
+	if o == nil || IsNil(o.LongerHistory.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.LongerHistory.Get()
+}
+
+// GetLongerHistoryOk returns a tuple with the LongerHistory field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CatalogItemOut) GetLongerHistoryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.LongerHistory.Get(), o.LongerHistory.IsSet()
+}
+
+// HasLongerHistory returns a boolean if a field has been set.
+func (o *CatalogItemOut) HasLongerHistory() bool {
+	if o != nil && o.LongerHistory.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetLongerHistory gets a reference to the given NullableString and assigns it to the LongerHistory field.
+func (o *CatalogItemOut) SetLongerHistory(v string) {
+	o.LongerHistory.Set(&v)
+}
+
+// SetLongerHistoryNil sets the value for LongerHistory to be an explicit nil
+func (o *CatalogItemOut) SetLongerHistoryNil() {
+	o.LongerHistory.Set(nil)
+}
+
+// UnsetLongerHistory ensures that no value is present for LongerHistory, not even an explicit nil
+func (o *CatalogItemOut) UnsetLongerHistory() {
+	o.LongerHistory.Unset()
+}
+
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CatalogItemOut) GetType() CatalogDimensionType {
 	if o == nil || IsNil(o.Type.Get()) {
@@ -304,6 +394,12 @@ func (o CatalogItemOut) ToMap() (map[string]interface{}, error) {
 	if o.RequiresMetricTime.IsSet() {
 		toSerialize["requires_metric_time"] = o.RequiresMetricTime.Get()
 	}
+	if o.HistoryStart.IsSet() {
+		toSerialize["history_start"] = o.HistoryStart.Get()
+	}
+	if o.LongerHistory.IsSet() {
+		toSerialize["longer_history"] = o.LongerHistory.Get()
+	}
 	if o.Type.IsSet() {
 		toSerialize["type"] = o.Type.Get()
 	}
@@ -357,6 +453,8 @@ func (o *CatalogItemOut) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "label")
 		delete(additionalProperties, "description")
 		delete(additionalProperties, "requires_metric_time")
+		delete(additionalProperties, "history_start")
+		delete(additionalProperties, "longer_history")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "time_grains")
 		o.AdditionalProperties = additionalProperties
