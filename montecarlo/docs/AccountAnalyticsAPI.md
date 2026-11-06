@@ -5,6 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetAccountAnalyticsCatalog**](AccountAnalyticsAPI.md#GetAccountAnalyticsCatalog) | **Get** /api/v2/account-analytics/catalog | List metrics, or the dimensions that work with chosen metrics
+[**GetAccountAnalyticsDocs**](AccountAnalyticsAPI.md#GetAccountAnalyticsDocs) | **Get** /api/v2/account-analytics/docs | List the Analytics API docs, or read one page
 [**QueryAccountAnalytics**](AccountAnalyticsAPI.md#QueryAccountAnalytics) | **Post** /api/v2/account-analytics/query | Query metrics
 
 
@@ -62,6 +63,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**CatalogOut**](CatalogOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetAccountAnalyticsDocs
+
+> DocsOut GetAccountAnalyticsDocs(ctx).Slug(slug).Execute()
+
+List the Analytics API docs, or read one page
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	slug := "slug_example" // string | The page to read, such as `analytics-api-dashboard-style`. Without it, the answer lists every page without its body. (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.AccountAnalyticsAPI.GetAccountAnalyticsDocs(context.Background()).Slug(slug).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `AccountAnalyticsAPI.GetAccountAnalyticsDocs``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetAccountAnalyticsDocs`: DocsOut
+	fmt.Fprintf(os.Stdout, "Response from `AccountAnalyticsAPI.GetAccountAnalyticsDocs`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetAccountAnalyticsDocsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **slug** | **string** | The page to read, such as &#x60;analytics-api-dashboard-style&#x60;. Without it, the answer lists every page without its body. | 
+
+### Return type
+
+[**DocsOut**](DocsOut.md)
 
 ### Authorization
 
