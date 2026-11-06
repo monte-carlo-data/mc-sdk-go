@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **Label** | Pointer to **NullableString** | A short display name. | [optional] 
 **Description** | Pointer to **NullableString** | What it counts or describes. | [optional] 
 **RequiresMetricTime** | Pointer to **NullableBool** | Metrics only. True when the metric answers only grouped by &#x60;metric_time&#x60;, for example a month-to-date total. Left out for a dimension. | [optional] 
+**HistoryStart** | Pointer to **NullableString** | Metrics only. The first date the metric keeps. A query that filters &#x60;metric_time&#x60; before it is refused, so start a window on or after it. Left out for a metric that keeps all its history. | [optional] 
+**LongerHistory** | Pointer to **NullableString** | Metrics only. A metric that keeps dates before &#x60;history_start&#x60;. Left out when there is none. | [optional] 
 **Type** | Pointer to [**NullableCatalogDimensionType**](CatalogDimensionType.md) | Dimensions only. Left out for a metric. | [optional] 
 **TimeGrains** | Pointer to **[]string** | Time dimensions only. The grains a query can append to the name, such as &#x60;metric_time__week&#x60; for &#x60;week&#x60;. Left out otherwise. | [optional] 
 
@@ -155,6 +157,76 @@ HasRequiresMetricTime returns a boolean if a field has been set.
 `func (o *CatalogItemOut) UnsetRequiresMetricTime()`
 
 UnsetRequiresMetricTime ensures that no value is present for RequiresMetricTime, not even an explicit nil
+### GetHistoryStart
+
+`func (o *CatalogItemOut) GetHistoryStart() string`
+
+GetHistoryStart returns the HistoryStart field if non-nil, zero value otherwise.
+
+### GetHistoryStartOk
+
+`func (o *CatalogItemOut) GetHistoryStartOk() (*string, bool)`
+
+GetHistoryStartOk returns a tuple with the HistoryStart field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHistoryStart
+
+`func (o *CatalogItemOut) SetHistoryStart(v string)`
+
+SetHistoryStart sets HistoryStart field to given value.
+
+### HasHistoryStart
+
+`func (o *CatalogItemOut) HasHistoryStart() bool`
+
+HasHistoryStart returns a boolean if a field has been set.
+
+### SetHistoryStartNil
+
+`func (o *CatalogItemOut) SetHistoryStartNil(b bool)`
+
+ SetHistoryStartNil sets the value for HistoryStart to be an explicit nil
+
+### UnsetHistoryStart
+`func (o *CatalogItemOut) UnsetHistoryStart()`
+
+UnsetHistoryStart ensures that no value is present for HistoryStart, not even an explicit nil
+### GetLongerHistory
+
+`func (o *CatalogItemOut) GetLongerHistory() string`
+
+GetLongerHistory returns the LongerHistory field if non-nil, zero value otherwise.
+
+### GetLongerHistoryOk
+
+`func (o *CatalogItemOut) GetLongerHistoryOk() (*string, bool)`
+
+GetLongerHistoryOk returns a tuple with the LongerHistory field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLongerHistory
+
+`func (o *CatalogItemOut) SetLongerHistory(v string)`
+
+SetLongerHistory sets LongerHistory field to given value.
+
+### HasLongerHistory
+
+`func (o *CatalogItemOut) HasLongerHistory() bool`
+
+HasLongerHistory returns a boolean if a field has been set.
+
+### SetLongerHistoryNil
+
+`func (o *CatalogItemOut) SetLongerHistoryNil(b bool)`
+
+ SetLongerHistoryNil sets the value for LongerHistory to be an explicit nil
+
+### UnsetLongerHistory
+`func (o *CatalogItemOut) UnsetLongerHistory()`
+
+UnsetLongerHistory ensures that no value is present for LongerHistory, not even an explicit nil
 ### GetType
 
 `func (o *CatalogItemOut) GetType() CatalogDimensionType`
