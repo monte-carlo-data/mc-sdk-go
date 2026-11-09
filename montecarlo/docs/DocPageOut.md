@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Summary** | Pointer to **NullableString** | One line on what the page covers. | [optional] 
 **Parent** | Pointer to **NullableString** | The slug of the page it sits under. | [optional] 
 **Body** | Pointer to **NullableString** | The page as Markdown. Set only when one page was asked for. &#x60;doc:&lt;slug&gt;&#x60; links name other pages. | [optional] 
+**Prompt** | Pointer to **NullableString** | A dashboard example&#39;s prompt: send it to an agent to build that dashboard. | [optional] 
 
 ## Methods
 
@@ -174,6 +175,41 @@ HasBody returns a boolean if a field has been set.
 `func (o *DocPageOut) UnsetBody()`
 
 UnsetBody ensures that no value is present for Body, not even an explicit nil
+### GetPrompt
+
+`func (o *DocPageOut) GetPrompt() string`
+
+GetPrompt returns the Prompt field if non-nil, zero value otherwise.
+
+### GetPromptOk
+
+`func (o *DocPageOut) GetPromptOk() (*string, bool)`
+
+GetPromptOk returns a tuple with the Prompt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrompt
+
+`func (o *DocPageOut) SetPrompt(v string)`
+
+SetPrompt sets Prompt field to given value.
+
+### HasPrompt
+
+`func (o *DocPageOut) HasPrompt() bool`
+
+HasPrompt returns a boolean if a field has been set.
+
+### SetPromptNil
+
+`func (o *DocPageOut) SetPromptNil(b bool)`
+
+ SetPromptNil sets the value for Prompt to be an explicit nil
+
+### UnsetPrompt
+`func (o *DocPageOut) UnsetPrompt()`
+
+UnsetPrompt ensures that no value is present for Prompt, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
