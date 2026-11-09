@@ -25,6 +25,7 @@ Method | HTTP request | Description
 [**CreateGcpSecretManagerCredentials**](CredentialsAPI.md#CreateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp | Create GCP Secret Manager credentials
 [**CreateGlueCredentials**](CredentialsAPI.md#CreateGlueCredentials) | **Post** /api/v2/credentials/glue | Create Glue credentials
 [**CreateHiveMysqlCredentials**](CredentialsAPI.md#CreateHiveMysqlCredentials) | **Post** /api/v2/credentials/hive-mysql | Create Hive (MySQL) credentials
+[**CreateHiveS3Credentials**](CredentialsAPI.md#CreateHiveS3Credentials) | **Post** /api/v2/credentials/hive-s3 | Create Hive (S3) credentials
 [**CreateInformaticaV2Credentials**](CredentialsAPI.md#CreateInformaticaV2Credentials) | **Post** /api/v2/credentials/informatica-v2 | Create Informatica credentials
 [**CreateLookerCredentials**](CredentialsAPI.md#CreateLookerCredentials) | **Post** /api/v2/credentials/looker | Create Looker credentials
 [**CreateLookerGitCloneCredentials**](CredentialsAPI.md#CreateLookerGitCloneCredentials) | **Post** /api/v2/credentials/looker-git-clone | Create LookML repository credentials
@@ -37,6 +38,7 @@ Method | HTTP request | Description
 [**CreatePostgresCredentials**](CredentialsAPI.md#CreatePostgresCredentials) | **Post** /api/v2/credentials/postgres | Create PostgreSQL credentials
 [**CreatePowerBiCredentials**](CredentialsAPI.md#CreatePowerBiCredentials) | **Post** /api/v2/credentials/power-bi | Create Power BI credentials
 [**CreateRedshiftCredentials**](CredentialsAPI.md#CreateRedshiftCredentials) | **Post** /api/v2/credentials/redshift | Create Redshift credentials
+[**CreateS3Credentials**](CredentialsAPI.md#CreateS3Credentials) | **Post** /api/v2/credentials/s3 | Create S3 credentials
 [**CreateSalesforceCrmCredentials**](CredentialsAPI.md#CreateSalesforceCrmCredentials) | **Post** /api/v2/credentials/salesforce-crm | Create Salesforce CRM credentials
 [**CreateSalesforceDataCloudCredentials**](CredentialsAPI.md#CreateSalesforceDataCloudCredentials) | **Post** /api/v2/credentials/salesforce-data-cloud | Create Salesforce Data Cloud credentials
 [**CreateSapHanaCredentials**](CredentialsAPI.md#CreateSapHanaCredentials) | **Post** /api/v2/credentials/sap-hana | Create SAP HANA credentials
@@ -68,6 +70,7 @@ Method | HTTP request | Description
 [**DeleteGcpSecretManagerCredentials**](CredentialsAPI.md#DeleteGcpSecretManagerCredentials) | **Delete** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Delete GCP Secret Manager credentials
 [**DeleteGlueCredentials**](CredentialsAPI.md#DeleteGlueCredentials) | **Delete** /api/v2/credentials/glue/{credentials_id} | Delete Glue credentials
 [**DeleteHiveMysqlCredentials**](CredentialsAPI.md#DeleteHiveMysqlCredentials) | **Delete** /api/v2/credentials/hive-mysql/{credentials_id} | Delete Hive (MySQL) credentials
+[**DeleteHiveS3Credentials**](CredentialsAPI.md#DeleteHiveS3Credentials) | **Delete** /api/v2/credentials/hive-s3/{credentials_id} | Delete Hive (S3) credentials
 [**DeleteInformaticaV2Credentials**](CredentialsAPI.md#DeleteInformaticaV2Credentials) | **Delete** /api/v2/credentials/informatica-v2/{credentials_id} | Delete Informatica credentials
 [**DeleteLookerCredentials**](CredentialsAPI.md#DeleteLookerCredentials) | **Delete** /api/v2/credentials/looker/{credentials_id} | Delete Looker credentials
 [**DeleteLookerGitCloneCredentials**](CredentialsAPI.md#DeleteLookerGitCloneCredentials) | **Delete** /api/v2/credentials/looker-git-clone/{credentials_id} | Delete LookML repository credentials
@@ -80,6 +83,7 @@ Method | HTTP request | Description
 [**DeletePostgresCredentials**](CredentialsAPI.md#DeletePostgresCredentials) | **Delete** /api/v2/credentials/postgres/{credentials_id} | Delete PostgreSQL credentials
 [**DeletePowerBiCredentials**](CredentialsAPI.md#DeletePowerBiCredentials) | **Delete** /api/v2/credentials/power-bi/{credentials_id} | Delete Power BI credentials
 [**DeleteRedshiftCredentials**](CredentialsAPI.md#DeleteRedshiftCredentials) | **Delete** /api/v2/credentials/redshift/{credentials_id} | Delete Redshift credentials
+[**DeleteS3Credentials**](CredentialsAPI.md#DeleteS3Credentials) | **Delete** /api/v2/credentials/s3/{credentials_id} | Delete S3 credentials
 [**DeleteSalesforceCrmCredentials**](CredentialsAPI.md#DeleteSalesforceCrmCredentials) | **Delete** /api/v2/credentials/salesforce-crm/{credentials_id} | Delete Salesforce CRM credentials
 [**DeleteSalesforceDataCloudCredentials**](CredentialsAPI.md#DeleteSalesforceDataCloudCredentials) | **Delete** /api/v2/credentials/salesforce-data-cloud/{credentials_id} | Delete Salesforce Data Cloud credentials
 [**DeleteSapHanaCredentials**](CredentialsAPI.md#DeleteSapHanaCredentials) | **Delete** /api/v2/credentials/sap-hana/{credentials_id} | Delete SAP HANA credentials
@@ -111,6 +115,7 @@ Method | HTTP request | Description
 [**GetGcpSecretManagerCredentials**](CredentialsAPI.md#GetGcpSecretManagerCredentials) | **Get** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Get GCP Secret Manager credentials
 [**GetGlueCredentials**](CredentialsAPI.md#GetGlueCredentials) | **Get** /api/v2/credentials/glue/{credentials_id} | Get Glue credentials
 [**GetHiveMysqlCredentials**](CredentialsAPI.md#GetHiveMysqlCredentials) | **Get** /api/v2/credentials/hive-mysql/{credentials_id} | Get Hive (MySQL) credentials
+[**GetHiveS3Credentials**](CredentialsAPI.md#GetHiveS3Credentials) | **Get** /api/v2/credentials/hive-s3/{credentials_id} | Get Hive (S3) credentials
 [**GetInformaticaV2Credentials**](CredentialsAPI.md#GetInformaticaV2Credentials) | **Get** /api/v2/credentials/informatica-v2/{credentials_id} | Get Informatica credentials
 [**GetLookerCredentials**](CredentialsAPI.md#GetLookerCredentials) | **Get** /api/v2/credentials/looker/{credentials_id} | Get Looker credentials
 [**GetLookerGitCloneCredentials**](CredentialsAPI.md#GetLookerGitCloneCredentials) | **Get** /api/v2/credentials/looker-git-clone/{credentials_id} | Get LookML repository credentials
@@ -123,6 +128,7 @@ Method | HTTP request | Description
 [**GetPostgresCredentials**](CredentialsAPI.md#GetPostgresCredentials) | **Get** /api/v2/credentials/postgres/{credentials_id} | Get PostgreSQL credentials
 [**GetPowerBiCredentials**](CredentialsAPI.md#GetPowerBiCredentials) | **Get** /api/v2/credentials/power-bi/{credentials_id} | Get Power BI credentials
 [**GetRedshiftCredentials**](CredentialsAPI.md#GetRedshiftCredentials) | **Get** /api/v2/credentials/redshift/{credentials_id} | Get Redshift credentials
+[**GetS3Credentials**](CredentialsAPI.md#GetS3Credentials) | **Get** /api/v2/credentials/s3/{credentials_id} | Get S3 credentials
 [**GetSalesforceCrmCredentials**](CredentialsAPI.md#GetSalesforceCrmCredentials) | **Get** /api/v2/credentials/salesforce-crm/{credentials_id} | Get Salesforce CRM credentials
 [**GetSalesforceDataCloudCredentials**](CredentialsAPI.md#GetSalesforceDataCloudCredentials) | **Get** /api/v2/credentials/salesforce-data-cloud/{credentials_id} | Get Salesforce Data Cloud credentials
 [**GetSapHanaCredentials**](CredentialsAPI.md#GetSapHanaCredentials) | **Get** /api/v2/credentials/sap-hana/{credentials_id} | Get SAP HANA credentials
@@ -154,6 +160,7 @@ Method | HTTP request | Description
 [**UpdateGcpSecretManagerCredentials**](CredentialsAPI.md#UpdateGcpSecretManagerCredentials) | **Patch** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Update GCP Secret Manager credentials
 [**UpdateGlueCredentials**](CredentialsAPI.md#UpdateGlueCredentials) | **Patch** /api/v2/credentials/glue/{credentials_id} | Update Glue credentials
 [**UpdateHiveMysqlCredentials**](CredentialsAPI.md#UpdateHiveMysqlCredentials) | **Patch** /api/v2/credentials/hive-mysql/{credentials_id} | Update Hive (MySQL) credentials
+[**UpdateHiveS3Credentials**](CredentialsAPI.md#UpdateHiveS3Credentials) | **Patch** /api/v2/credentials/hive-s3/{credentials_id} | Update Hive (S3) credentials
 [**UpdateInformaticaV2Credentials**](CredentialsAPI.md#UpdateInformaticaV2Credentials) | **Patch** /api/v2/credentials/informatica-v2/{credentials_id} | Update Informatica credentials
 [**UpdateLookerCredentials**](CredentialsAPI.md#UpdateLookerCredentials) | **Patch** /api/v2/credentials/looker/{credentials_id} | Update Looker credentials
 [**UpdateLookerGitCloneCredentials**](CredentialsAPI.md#UpdateLookerGitCloneCredentials) | **Patch** /api/v2/credentials/looker-git-clone/{credentials_id} | Update LookML repository credentials
@@ -166,6 +173,7 @@ Method | HTTP request | Description
 [**UpdatePostgresCredentials**](CredentialsAPI.md#UpdatePostgresCredentials) | **Patch** /api/v2/credentials/postgres/{credentials_id} | Update PostgreSQL credentials
 [**UpdatePowerBiCredentials**](CredentialsAPI.md#UpdatePowerBiCredentials) | **Patch** /api/v2/credentials/power-bi/{credentials_id} | Update Power BI credentials
 [**UpdateRedshiftCredentials**](CredentialsAPI.md#UpdateRedshiftCredentials) | **Patch** /api/v2/credentials/redshift/{credentials_id} | Update Redshift credentials
+[**UpdateS3Credentials**](CredentialsAPI.md#UpdateS3Credentials) | **Patch** /api/v2/credentials/s3/{credentials_id} | Update S3 credentials
 [**UpdateSalesforceCrmCredentials**](CredentialsAPI.md#UpdateSalesforceCrmCredentials) | **Patch** /api/v2/credentials/salesforce-crm/{credentials_id} | Update Salesforce CRM credentials
 [**UpdateSalesforceDataCloudCredentials**](CredentialsAPI.md#UpdateSalesforceDataCloudCredentials) | **Patch** /api/v2/credentials/salesforce-data-cloud/{credentials_id} | Update Salesforce Data Cloud credentials
 [**UpdateSapHanaCredentials**](CredentialsAPI.md#UpdateSapHanaCredentials) | **Patch** /api/v2/credentials/sap-hana/{credentials_id} | Update SAP HANA credentials
@@ -1644,6 +1652,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateHiveS3Credentials
+
+> HiveS3CredentialsOut CreateHiveS3Credentials(ctx).HiveS3CredentialsIn(hiveS3CredentialsIn).Execute()
+
+Create Hive (S3) credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	hiveS3CredentialsIn := *openapiclient.NewHiveS3CredentialsIn("AssumableRole_example", "Bucket_example", "Prefix_example") // HiveS3CredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateHiveS3Credentials(context.Background()).HiveS3CredentialsIn(hiveS3CredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateHiveS3Credentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateHiveS3Credentials`: HiveS3CredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateHiveS3Credentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateHiveS3CredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **hiveS3CredentialsIn** | [**HiveS3CredentialsIn**](HiveS3CredentialsIn.md) |  | 
+
+### Return type
+
+[**HiveS3CredentialsOut**](HiveS3CredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateInformaticaV2Credentials
 
 > InformaticaV2CredentialsOut CreateInformaticaV2Credentials(ctx).InformaticaV2CredentialsIn(informaticaV2CredentialsIn).Execute()
@@ -2421,6 +2495,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RedshiftCredentialsOut**](RedshiftCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateS3Credentials
+
+> S3CredentialsOut CreateS3Credentials(ctx).S3CredentialsIn(s3CredentialsIn).Execute()
+
+Create S3 credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	s3CredentialsIn := *openapiclient.NewS3CredentialsIn("AssumableRole_example", "Bucket_example", "Prefix_example") // S3CredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateS3Credentials(context.Background()).S3CredentialsIn(s3CredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateS3Credentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateS3Credentials`: S3CredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateS3Credentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateS3CredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **s3CredentialsIn** | [**S3CredentialsIn**](S3CredentialsIn.md) |  | 
+
+### Return type
+
+[**S3CredentialsOut**](S3CredentialsOut.md)
 
 ### Authorization
 
@@ -4526,6 +4666,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteHiveS3Credentials
+
+> DeleteHiveS3Credentials(ctx, credentialsId).Execute()
+
+Delete Hive (S3) credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteHiveS3Credentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteHiveS3Credentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteHiveS3CredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteInformaticaV2Credentials
 
 > DeleteInformaticaV2Credentials(ctx, credentialsId).Execute()
@@ -5318,6 +5526,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteRedshiftCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteS3Credentials
+
+> DeleteS3Credentials(ctx, credentialsId).Execute()
+
+Delete S3 credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteS3Credentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteS3Credentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteS3CredentialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -7494,6 +7770,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetHiveS3Credentials
+
+> HiveS3CredentialsOut GetHiveS3Credentials(ctx, credentialsId).Execute()
+
+Get Hive (S3) credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetHiveS3Credentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetHiveS3Credentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetHiveS3Credentials`: HiveS3CredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetHiveS3Credentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetHiveS3CredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**HiveS3CredentialsOut**](HiveS3CredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetInformaticaV2Credentials
 
 > InformaticaV2CredentialsOut GetInformaticaV2Credentials(ctx, credentialsId).Execute()
@@ -8319,6 +8665,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RedshiftCredentialsOut**](RedshiftCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetS3Credentials
+
+> S3CredentialsOut GetS3Credentials(ctx, credentialsId).Execute()
+
+Get S3 credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetS3Credentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetS3Credentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetS3Credentials`: S3CredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetS3Credentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetS3CredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**S3CredentialsOut**](S3CredentialsOut.md)
 
 ### Authorization
 
@@ -10546,6 +10962,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateHiveS3Credentials
+
+> HiveS3CredentialsOut UpdateHiveS3Credentials(ctx, credentialsId).HiveS3CredentialsPatch(hiveS3CredentialsPatch).Execute()
+
+Update Hive (S3) credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	hiveS3CredentialsPatch := *openapiclient.NewHiveS3CredentialsPatch() // HiveS3CredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateHiveS3Credentials(context.Background(), credentialsId).HiveS3CredentialsPatch(hiveS3CredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateHiveS3Credentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateHiveS3Credentials`: HiveS3CredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateHiveS3Credentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateHiveS3CredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **hiveS3CredentialsPatch** | [**HiveS3CredentialsPatch**](HiveS3CredentialsPatch.md) |  | 
+
+### Return type
+
+[**HiveS3CredentialsOut**](HiveS3CredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateInformaticaV2Credentials
 
 > InformaticaV2CredentialsOut UpdateInformaticaV2Credentials(ctx, credentialsId).InformaticaV2CredentialsPatch(informaticaV2CredentialsPatch).Execute()
@@ -11395,6 +11883,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RedshiftCredentialsOut**](RedshiftCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateS3Credentials
+
+> S3CredentialsOut UpdateS3Credentials(ctx, credentialsId).S3CredentialsPatch(s3CredentialsPatch).Execute()
+
+Update S3 credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	s3CredentialsPatch := *openapiclient.NewS3CredentialsPatch() // S3CredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateS3Credentials(context.Background(), credentialsId).S3CredentialsPatch(s3CredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateS3Credentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateS3Credentials`: S3CredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateS3Credentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateS3CredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **s3CredentialsPatch** | [**S3CredentialsPatch**](S3CredentialsPatch.md) |  | 
+
+### Return type
+
+[**S3CredentialsOut**](S3CredentialsOut.md)
 
 ### Authorization
 
