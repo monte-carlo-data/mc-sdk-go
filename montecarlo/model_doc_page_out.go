@@ -29,7 +29,9 @@ type DocPageOut struct {
 	// The slug of the page it sits under.
 	Parent NullableString `json:"parent,omitempty"`
 	// The page as Markdown. Set only when one page was asked for. `doc:<slug>` links name other pages.
-	Body                 NullableString `json:"body,omitempty"`
+	Body NullableString `json:"body,omitempty"`
+	// A dashboard example's prompt: send it to an agent to build that dashboard.
+	Prompt               NullableString `json:"prompt,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -231,6 +233,49 @@ func (o *DocPageOut) UnsetBody() {
 	o.Body.Unset()
 }
 
+// GetPrompt returns the Prompt field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DocPageOut) GetPrompt() string {
+	if o == nil || IsNil(o.Prompt.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.Prompt.Get()
+}
+
+// GetPromptOk returns a tuple with the Prompt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DocPageOut) GetPromptOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Prompt.Get(), o.Prompt.IsSet()
+}
+
+// HasPrompt returns a boolean if a field has been set.
+func (o *DocPageOut) HasPrompt() bool {
+	if o != nil && o.Prompt.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetPrompt gets a reference to the given NullableString and assigns it to the Prompt field.
+func (o *DocPageOut) SetPrompt(v string) {
+	o.Prompt.Set(&v)
+}
+
+// SetPromptNil sets the value for Prompt to be an explicit nil
+func (o *DocPageOut) SetPromptNil() {
+	o.Prompt.Set(nil)
+}
+
+// UnsetPrompt ensures that no value is present for Prompt, not even an explicit nil
+func (o *DocPageOut) UnsetPrompt() {
+	o.Prompt.Unset()
+}
+
 func (o DocPageOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -251,6 +296,9 @@ func (o DocPageOut) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Body.IsSet() {
 		toSerialize["body"] = o.Body.Get()
+	}
+	if o.Prompt.IsSet() {
+		toSerialize["prompt"] = o.Prompt.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -301,6 +349,7 @@ func (o *DocPageOut) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "summary")
 		delete(additionalProperties, "parent")
 		delete(additionalProperties, "body")
+		delete(additionalProperties, "prompt")
 		o.AdditionalProperties = additionalProperties
 	}
 
