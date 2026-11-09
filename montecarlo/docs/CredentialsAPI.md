@@ -17,19 +17,23 @@ Method | HTTP request | Description
 [**CreateDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#CreateDatabricksSqlWarehouseCredentials) | **Post** /api/v2/credentials/databricks-sql-warehouse | Create Databricks query credentials
 [**CreateDb2Credentials**](CredentialsAPI.md#CreateDb2Credentials) | **Post** /api/v2/credentials/db2 | Create Db2 credentials
 [**CreateDbtCloudWebhookCredentials**](CredentialsAPI.md#CreateDbtCloudWebhookCredentials) | **Post** /api/v2/credentials/dbt-cloud-webhook | Create dbt Cloud webhook credentials
+[**CreateDremioCredentials**](CredentialsAPI.md#CreateDremioCredentials) | **Post** /api/v2/credentials/dremio | Create Dremio credentials
 [**CreateEnvVarCredentials**](CredentialsAPI.md#CreateEnvVarCredentials) | **Post** /api/v2/credentials/self-hosted/env-var | Create environment variable credentials
 [**CreateFileCredentials**](CredentialsAPI.md#CreateFileCredentials) | **Post** /api/v2/credentials/self-hosted/file | Create file credentials
 [**CreateFivetranCredentials**](CredentialsAPI.md#CreateFivetranCredentials) | **Post** /api/v2/credentials/fivetran | Create Fivetran credentials
 [**CreateGcpDataformCredentials**](CredentialsAPI.md#CreateGcpDataformCredentials) | **Post** /api/v2/credentials/gcp-dataform | Create GCP Dataform credentials
 [**CreateGcpSecretManagerCredentials**](CredentialsAPI.md#CreateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp | Create GCP Secret Manager credentials
 [**CreateGlueCredentials**](CredentialsAPI.md#CreateGlueCredentials) | **Post** /api/v2/credentials/glue | Create Glue credentials
+[**CreateHiveMysqlCredentials**](CredentialsAPI.md#CreateHiveMysqlCredentials) | **Post** /api/v2/credentials/hive-mysql | Create Hive (MySQL) credentials
 [**CreateInformaticaV2Credentials**](CredentialsAPI.md#CreateInformaticaV2Credentials) | **Post** /api/v2/credentials/informatica-v2 | Create Informatica credentials
 [**CreateLookerCredentials**](CredentialsAPI.md#CreateLookerCredentials) | **Post** /api/v2/credentials/looker | Create Looker credentials
 [**CreateLookerGitCloneCredentials**](CredentialsAPI.md#CreateLookerGitCloneCredentials) | **Post** /api/v2/credentials/looker-git-clone | Create LookML repository credentials
 [**CreateMariadbCredentials**](CredentialsAPI.md#CreateMariadbCredentials) | **Post** /api/v2/credentials/mariadb | Create MariaDB credentials
+[**CreateMotherduckCredentials**](CredentialsAPI.md#CreateMotherduckCredentials) | **Post** /api/v2/credentials/motherduck | Create MotherDuck credentials
 [**CreateMulesoftCredentials**](CredentialsAPI.md#CreateMulesoftCredentials) | **Post** /api/v2/credentials/mulesoft | Create MuleSoft credentials
 [**CreateMysqlCredentials**](CredentialsAPI.md#CreateMysqlCredentials) | **Post** /api/v2/credentials/mysql | Create MySQL credentials
 [**CreateOracleCredentials**](CredentialsAPI.md#CreateOracleCredentials) | **Post** /api/v2/credentials/oracle | Create Oracle credentials
+[**CreatePineconeCredentials**](CredentialsAPI.md#CreatePineconeCredentials) | **Post** /api/v2/credentials/pinecone | Create Pinecone credentials
 [**CreatePostgresCredentials**](CredentialsAPI.md#CreatePostgresCredentials) | **Post** /api/v2/credentials/postgres | Create PostgreSQL credentials
 [**CreatePowerBiCredentials**](CredentialsAPI.md#CreatePowerBiCredentials) | **Post** /api/v2/credentials/power-bi | Create Power BI credentials
 [**CreateRedshiftCredentials**](CredentialsAPI.md#CreateRedshiftCredentials) | **Post** /api/v2/credentials/redshift | Create Redshift credentials
@@ -56,19 +60,23 @@ Method | HTTP request | Description
 [**DeleteDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#DeleteDatabricksSqlWarehouseCredentials) | **Delete** /api/v2/credentials/databricks-sql-warehouse/{credentials_id} | Delete Databricks query credentials
 [**DeleteDb2Credentials**](CredentialsAPI.md#DeleteDb2Credentials) | **Delete** /api/v2/credentials/db2/{credentials_id} | Delete Db2 credentials
 [**DeleteDbtCloudWebhookCredentials**](CredentialsAPI.md#DeleteDbtCloudWebhookCredentials) | **Delete** /api/v2/credentials/dbt-cloud-webhook/{credentials_id} | Delete dbt Cloud webhook credentials
+[**DeleteDremioCredentials**](CredentialsAPI.md#DeleteDremioCredentials) | **Delete** /api/v2/credentials/dremio/{credentials_id} | Delete Dremio credentials
 [**DeleteEnvVarCredentials**](CredentialsAPI.md#DeleteEnvVarCredentials) | **Delete** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Delete environment variable credentials
 [**DeleteFileCredentials**](CredentialsAPI.md#DeleteFileCredentials) | **Delete** /api/v2/credentials/self-hosted/file/{credentials_id} | Delete file credentials
 [**DeleteFivetranCredentials**](CredentialsAPI.md#DeleteFivetranCredentials) | **Delete** /api/v2/credentials/fivetran/{credentials_id} | Delete Fivetran credentials
 [**DeleteGcpDataformCredentials**](CredentialsAPI.md#DeleteGcpDataformCredentials) | **Delete** /api/v2/credentials/gcp-dataform/{credentials_id} | Delete GCP Dataform credentials
 [**DeleteGcpSecretManagerCredentials**](CredentialsAPI.md#DeleteGcpSecretManagerCredentials) | **Delete** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Delete GCP Secret Manager credentials
 [**DeleteGlueCredentials**](CredentialsAPI.md#DeleteGlueCredentials) | **Delete** /api/v2/credentials/glue/{credentials_id} | Delete Glue credentials
+[**DeleteHiveMysqlCredentials**](CredentialsAPI.md#DeleteHiveMysqlCredentials) | **Delete** /api/v2/credentials/hive-mysql/{credentials_id} | Delete Hive (MySQL) credentials
 [**DeleteInformaticaV2Credentials**](CredentialsAPI.md#DeleteInformaticaV2Credentials) | **Delete** /api/v2/credentials/informatica-v2/{credentials_id} | Delete Informatica credentials
 [**DeleteLookerCredentials**](CredentialsAPI.md#DeleteLookerCredentials) | **Delete** /api/v2/credentials/looker/{credentials_id} | Delete Looker credentials
 [**DeleteLookerGitCloneCredentials**](CredentialsAPI.md#DeleteLookerGitCloneCredentials) | **Delete** /api/v2/credentials/looker-git-clone/{credentials_id} | Delete LookML repository credentials
 [**DeleteMariadbCredentials**](CredentialsAPI.md#DeleteMariadbCredentials) | **Delete** /api/v2/credentials/mariadb/{credentials_id} | Delete MariaDB credentials
+[**DeleteMotherduckCredentials**](CredentialsAPI.md#DeleteMotherduckCredentials) | **Delete** /api/v2/credentials/motherduck/{credentials_id} | Delete MotherDuck credentials
 [**DeleteMulesoftCredentials**](CredentialsAPI.md#DeleteMulesoftCredentials) | **Delete** /api/v2/credentials/mulesoft/{credentials_id} | Delete MuleSoft credentials
 [**DeleteMysqlCredentials**](CredentialsAPI.md#DeleteMysqlCredentials) | **Delete** /api/v2/credentials/mysql/{credentials_id} | Delete MySQL credentials
 [**DeleteOracleCredentials**](CredentialsAPI.md#DeleteOracleCredentials) | **Delete** /api/v2/credentials/oracle/{credentials_id} | Delete Oracle credentials
+[**DeletePineconeCredentials**](CredentialsAPI.md#DeletePineconeCredentials) | **Delete** /api/v2/credentials/pinecone/{credentials_id} | Delete Pinecone credentials
 [**DeletePostgresCredentials**](CredentialsAPI.md#DeletePostgresCredentials) | **Delete** /api/v2/credentials/postgres/{credentials_id} | Delete PostgreSQL credentials
 [**DeletePowerBiCredentials**](CredentialsAPI.md#DeletePowerBiCredentials) | **Delete** /api/v2/credentials/power-bi/{credentials_id} | Delete Power BI credentials
 [**DeleteRedshiftCredentials**](CredentialsAPI.md#DeleteRedshiftCredentials) | **Delete** /api/v2/credentials/redshift/{credentials_id} | Delete Redshift credentials
@@ -95,19 +103,23 @@ Method | HTTP request | Description
 [**GetDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#GetDatabricksSqlWarehouseCredentials) | **Get** /api/v2/credentials/databricks-sql-warehouse/{credentials_id} | Get Databricks query credentials
 [**GetDb2Credentials**](CredentialsAPI.md#GetDb2Credentials) | **Get** /api/v2/credentials/db2/{credentials_id} | Get Db2 credentials
 [**GetDbtCloudWebhookCredentials**](CredentialsAPI.md#GetDbtCloudWebhookCredentials) | **Get** /api/v2/credentials/dbt-cloud-webhook/{credentials_id} | Get dbt Cloud webhook credentials
+[**GetDremioCredentials**](CredentialsAPI.md#GetDremioCredentials) | **Get** /api/v2/credentials/dremio/{credentials_id} | Get Dremio credentials
 [**GetEnvVarCredentials**](CredentialsAPI.md#GetEnvVarCredentials) | **Get** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Get environment variable credentials
 [**GetFileCredentials**](CredentialsAPI.md#GetFileCredentials) | **Get** /api/v2/credentials/self-hosted/file/{credentials_id} | Get file credentials
 [**GetFivetranCredentials**](CredentialsAPI.md#GetFivetranCredentials) | **Get** /api/v2/credentials/fivetran/{credentials_id} | Get Fivetran credentials
 [**GetGcpDataformCredentials**](CredentialsAPI.md#GetGcpDataformCredentials) | **Get** /api/v2/credentials/gcp-dataform/{credentials_id} | Get GCP Dataform credentials
 [**GetGcpSecretManagerCredentials**](CredentialsAPI.md#GetGcpSecretManagerCredentials) | **Get** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Get GCP Secret Manager credentials
 [**GetGlueCredentials**](CredentialsAPI.md#GetGlueCredentials) | **Get** /api/v2/credentials/glue/{credentials_id} | Get Glue credentials
+[**GetHiveMysqlCredentials**](CredentialsAPI.md#GetHiveMysqlCredentials) | **Get** /api/v2/credentials/hive-mysql/{credentials_id} | Get Hive (MySQL) credentials
 [**GetInformaticaV2Credentials**](CredentialsAPI.md#GetInformaticaV2Credentials) | **Get** /api/v2/credentials/informatica-v2/{credentials_id} | Get Informatica credentials
 [**GetLookerCredentials**](CredentialsAPI.md#GetLookerCredentials) | **Get** /api/v2/credentials/looker/{credentials_id} | Get Looker credentials
 [**GetLookerGitCloneCredentials**](CredentialsAPI.md#GetLookerGitCloneCredentials) | **Get** /api/v2/credentials/looker-git-clone/{credentials_id} | Get LookML repository credentials
 [**GetMariadbCredentials**](CredentialsAPI.md#GetMariadbCredentials) | **Get** /api/v2/credentials/mariadb/{credentials_id} | Get MariaDB credentials
+[**GetMotherduckCredentials**](CredentialsAPI.md#GetMotherduckCredentials) | **Get** /api/v2/credentials/motherduck/{credentials_id} | Get MotherDuck credentials
 [**GetMulesoftCredentials**](CredentialsAPI.md#GetMulesoftCredentials) | **Get** /api/v2/credentials/mulesoft/{credentials_id} | Get MuleSoft credentials
 [**GetMysqlCredentials**](CredentialsAPI.md#GetMysqlCredentials) | **Get** /api/v2/credentials/mysql/{credentials_id} | Get MySQL credentials
 [**GetOracleCredentials**](CredentialsAPI.md#GetOracleCredentials) | **Get** /api/v2/credentials/oracle/{credentials_id} | Get Oracle credentials
+[**GetPineconeCredentials**](CredentialsAPI.md#GetPineconeCredentials) | **Get** /api/v2/credentials/pinecone/{credentials_id} | Get Pinecone credentials
 [**GetPostgresCredentials**](CredentialsAPI.md#GetPostgresCredentials) | **Get** /api/v2/credentials/postgres/{credentials_id} | Get PostgreSQL credentials
 [**GetPowerBiCredentials**](CredentialsAPI.md#GetPowerBiCredentials) | **Get** /api/v2/credentials/power-bi/{credentials_id} | Get Power BI credentials
 [**GetRedshiftCredentials**](CredentialsAPI.md#GetRedshiftCredentials) | **Get** /api/v2/credentials/redshift/{credentials_id} | Get Redshift credentials
@@ -134,19 +146,23 @@ Method | HTTP request | Description
 [**UpdateDatabricksSqlWarehouseCredentials**](CredentialsAPI.md#UpdateDatabricksSqlWarehouseCredentials) | **Patch** /api/v2/credentials/databricks-sql-warehouse/{credentials_id} | Update Databricks query credentials
 [**UpdateDb2Credentials**](CredentialsAPI.md#UpdateDb2Credentials) | **Patch** /api/v2/credentials/db2/{credentials_id} | Update Db2 credentials
 [**UpdateDbtCloudWebhookCredentials**](CredentialsAPI.md#UpdateDbtCloudWebhookCredentials) | **Patch** /api/v2/credentials/dbt-cloud-webhook/{credentials_id} | Update dbt Cloud webhook credentials
+[**UpdateDremioCredentials**](CredentialsAPI.md#UpdateDremioCredentials) | **Patch** /api/v2/credentials/dremio/{credentials_id} | Update Dremio credentials
 [**UpdateEnvVarCredentials**](CredentialsAPI.md#UpdateEnvVarCredentials) | **Patch** /api/v2/credentials/self-hosted/env-var/{credentials_id} | Update environment variable credentials
 [**UpdateFileCredentials**](CredentialsAPI.md#UpdateFileCredentials) | **Patch** /api/v2/credentials/self-hosted/file/{credentials_id} | Update file credentials
 [**UpdateFivetranCredentials**](CredentialsAPI.md#UpdateFivetranCredentials) | **Patch** /api/v2/credentials/fivetran/{credentials_id} | Update Fivetran credentials
 [**UpdateGcpDataformCredentials**](CredentialsAPI.md#UpdateGcpDataformCredentials) | **Patch** /api/v2/credentials/gcp-dataform/{credentials_id} | Update GCP Dataform credentials
 [**UpdateGcpSecretManagerCredentials**](CredentialsAPI.md#UpdateGcpSecretManagerCredentials) | **Patch** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Update GCP Secret Manager credentials
 [**UpdateGlueCredentials**](CredentialsAPI.md#UpdateGlueCredentials) | **Patch** /api/v2/credentials/glue/{credentials_id} | Update Glue credentials
+[**UpdateHiveMysqlCredentials**](CredentialsAPI.md#UpdateHiveMysqlCredentials) | **Patch** /api/v2/credentials/hive-mysql/{credentials_id} | Update Hive (MySQL) credentials
 [**UpdateInformaticaV2Credentials**](CredentialsAPI.md#UpdateInformaticaV2Credentials) | **Patch** /api/v2/credentials/informatica-v2/{credentials_id} | Update Informatica credentials
 [**UpdateLookerCredentials**](CredentialsAPI.md#UpdateLookerCredentials) | **Patch** /api/v2/credentials/looker/{credentials_id} | Update Looker credentials
 [**UpdateLookerGitCloneCredentials**](CredentialsAPI.md#UpdateLookerGitCloneCredentials) | **Patch** /api/v2/credentials/looker-git-clone/{credentials_id} | Update LookML repository credentials
 [**UpdateMariadbCredentials**](CredentialsAPI.md#UpdateMariadbCredentials) | **Patch** /api/v2/credentials/mariadb/{credentials_id} | Update MariaDB credentials
+[**UpdateMotherduckCredentials**](CredentialsAPI.md#UpdateMotherduckCredentials) | **Patch** /api/v2/credentials/motherduck/{credentials_id} | Update MotherDuck credentials
 [**UpdateMulesoftCredentials**](CredentialsAPI.md#UpdateMulesoftCredentials) | **Patch** /api/v2/credentials/mulesoft/{credentials_id} | Update MuleSoft credentials
 [**UpdateMysqlCredentials**](CredentialsAPI.md#UpdateMysqlCredentials) | **Patch** /api/v2/credentials/mysql/{credentials_id} | Update MySQL credentials
 [**UpdateOracleCredentials**](CredentialsAPI.md#UpdateOracleCredentials) | **Patch** /api/v2/credentials/oracle/{credentials_id} | Update Oracle credentials
+[**UpdatePineconeCredentials**](CredentialsAPI.md#UpdatePineconeCredentials) | **Patch** /api/v2/credentials/pinecone/{credentials_id} | Update Pinecone credentials
 [**UpdatePostgresCredentials**](CredentialsAPI.md#UpdatePostgresCredentials) | **Patch** /api/v2/credentials/postgres/{credentials_id} | Update PostgreSQL credentials
 [**UpdatePowerBiCredentials**](CredentialsAPI.md#UpdatePowerBiCredentials) | **Patch** /api/v2/credentials/power-bi/{credentials_id} | Update Power BI credentials
 [**UpdateRedshiftCredentials**](CredentialsAPI.md#UpdateRedshiftCredentials) | **Patch** /api/v2/credentials/redshift/{credentials_id} | Update Redshift credentials
@@ -183,6 +199,8 @@ Method | HTTP request | Description
 [**ValidateDb2CredentialsChange**](CredentialsAPI.md#ValidateDb2CredentialsChange) | **Post** /api/v2/credentials/db2/{credentials_id}/validate | Validate a change to Db2 credentials
 [**ValidateDbtCloudWebhookCredentials**](CredentialsAPI.md#ValidateDbtCloudWebhookCredentials) | **Post** /api/v2/credentials/dbt-cloud-webhook/validate | Validate dbt Cloud webhook credentials
 [**ValidateDbtCloudWebhookCredentialsChange**](CredentialsAPI.md#ValidateDbtCloudWebhookCredentialsChange) | **Post** /api/v2/credentials/dbt-cloud-webhook/{credentials_id}/validate | Validate a change to dbt Cloud webhook credentials
+[**ValidateDremioCredentials**](CredentialsAPI.md#ValidateDremioCredentials) | **Post** /api/v2/credentials/dremio/validate | Validate Dremio credentials
+[**ValidateDremioCredentialsChange**](CredentialsAPI.md#ValidateDremioCredentialsChange) | **Post** /api/v2/credentials/dremio/{credentials_id}/validate | Validate a change to Dremio credentials
 [**ValidateEnvVarCredentials**](CredentialsAPI.md#ValidateEnvVarCredentials) | **Post** /api/v2/credentials/self-hosted/env-var/validate | Validate environment variable credentials
 [**ValidateEnvVarCredentialsChange**](CredentialsAPI.md#ValidateEnvVarCredentialsChange) | **Post** /api/v2/credentials/self-hosted/env-var/{credentials_id}/validate | Validate a change to environment variable credentials
 [**ValidateFileCredentials**](CredentialsAPI.md#ValidateFileCredentials) | **Post** /api/v2/credentials/self-hosted/file/validate | Validate file credentials
@@ -203,12 +221,16 @@ Method | HTTP request | Description
 [**ValidateLookerGitCloneCredentialsChange**](CredentialsAPI.md#ValidateLookerGitCloneCredentialsChange) | **Post** /api/v2/credentials/looker-git-clone/{credentials_id}/validate | Validate a change to LookML repository credentials
 [**ValidateMariadbCredentials**](CredentialsAPI.md#ValidateMariadbCredentials) | **Post** /api/v2/credentials/mariadb/validate | Validate MariaDB credentials
 [**ValidateMariadbCredentialsChange**](CredentialsAPI.md#ValidateMariadbCredentialsChange) | **Post** /api/v2/credentials/mariadb/{credentials_id}/validate | Validate a change to MariaDB credentials
+[**ValidateMotherduckCredentials**](CredentialsAPI.md#ValidateMotherduckCredentials) | **Post** /api/v2/credentials/motherduck/validate | Validate MotherDuck credentials
+[**ValidateMotherduckCredentialsChange**](CredentialsAPI.md#ValidateMotherduckCredentialsChange) | **Post** /api/v2/credentials/motherduck/{credentials_id}/validate | Validate a change to MotherDuck credentials
 [**ValidateMulesoftCredentials**](CredentialsAPI.md#ValidateMulesoftCredentials) | **Post** /api/v2/credentials/mulesoft/validate | Validate MuleSoft credentials
 [**ValidateMulesoftCredentialsChange**](CredentialsAPI.md#ValidateMulesoftCredentialsChange) | **Post** /api/v2/credentials/mulesoft/{credentials_id}/validate | Validate a change to MuleSoft credentials
 [**ValidateMysqlCredentials**](CredentialsAPI.md#ValidateMysqlCredentials) | **Post** /api/v2/credentials/mysql/validate | Validate MySQL credentials
 [**ValidateMysqlCredentialsChange**](CredentialsAPI.md#ValidateMysqlCredentialsChange) | **Post** /api/v2/credentials/mysql/{credentials_id}/validate | Validate a change to MySQL credentials
 [**ValidateOracleCredentials**](CredentialsAPI.md#ValidateOracleCredentials) | **Post** /api/v2/credentials/oracle/validate | Validate Oracle credentials
 [**ValidateOracleCredentialsChange**](CredentialsAPI.md#ValidateOracleCredentialsChange) | **Post** /api/v2/credentials/oracle/{credentials_id}/validate | Validate a change to Oracle credentials
+[**ValidatePineconeCredentials**](CredentialsAPI.md#ValidatePineconeCredentials) | **Post** /api/v2/credentials/pinecone/validate | Validate Pinecone credentials
+[**ValidatePineconeCredentialsChange**](CredentialsAPI.md#ValidatePineconeCredentialsChange) | **Post** /api/v2/credentials/pinecone/{credentials_id}/validate | Validate a change to Pinecone credentials
 [**ValidatePostgresCredentials**](CredentialsAPI.md#ValidatePostgresCredentials) | **Post** /api/v2/credentials/postgres/validate | Validate PostgreSQL credentials
 [**ValidatePostgresCredentialsChange**](CredentialsAPI.md#ValidatePostgresCredentialsChange) | **Post** /api/v2/credentials/postgres/{credentials_id}/validate | Validate a change to PostgreSQL credentials
 [**ValidatePowerBiCredentials**](CredentialsAPI.md#ValidatePowerBiCredentials) | **Post** /api/v2/credentials/power-bi/validate | Validate Power BI credentials
@@ -1094,6 +1116,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateDremioCredentials
+
+> DremioCredentialsOut CreateDremioCredentials(ctx).DremioCredentialsIn(dremioCredentialsIn).Execute()
+
+Create Dremio credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	dremioCredentialsIn := *openapiclient.NewDremioCredentialsIn("Host_example", int32(123), "Token_example") // DremioCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateDremioCredentials(context.Background()).DremioCredentialsIn(dremioCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateDremioCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateDremioCredentials`: DremioCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateDremioCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateDremioCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **dremioCredentialsIn** | [**DremioCredentialsIn**](DremioCredentialsIn.md) |  | 
+
+### Return type
+
+[**DremioCredentialsOut**](DremioCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateEnvVarCredentials
 
 > EnvVarCredentialsOut CreateEnvVarCredentials(ctx).EnvVarCredentialsIn(envVarCredentialsIn).Execute()
@@ -1490,6 +1578,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateHiveMysqlCredentials
+
+> HiveMySqlCredentialsOut CreateHiveMysqlCredentials(ctx).HiveMySqlCredentialsIn(hiveMySqlCredentialsIn).Execute()
+
+Create Hive (MySQL) credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	hiveMySqlCredentialsIn := *openapiclient.NewHiveMySqlCredentialsIn("Host_example", int32(123), "User_example", "Password_example", "DbName_example") // HiveMySqlCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateHiveMysqlCredentials(context.Background()).HiveMySqlCredentialsIn(hiveMySqlCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateHiveMysqlCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateHiveMysqlCredentials`: HiveMySqlCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateHiveMysqlCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateHiveMysqlCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **hiveMySqlCredentialsIn** | [**HiveMySqlCredentialsIn**](HiveMySqlCredentialsIn.md) |  | 
+
+### Return type
+
+[**HiveMySqlCredentialsOut**](HiveMySqlCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateInformaticaV2Credentials
 
 > InformaticaV2CredentialsOut CreateInformaticaV2Credentials(ctx).InformaticaV2CredentialsIn(informaticaV2CredentialsIn).Execute()
@@ -1754,6 +1908,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateMotherduckCredentials
+
+> MotherDuckCredentialsOut CreateMotherduckCredentials(ctx).MotherDuckCredentialsIn(motherDuckCredentialsIn).Execute()
+
+Create MotherDuck credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	motherDuckCredentialsIn := *openapiclient.NewMotherDuckCredentialsIn("DbName_example", "Token_example") // MotherDuckCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateMotherduckCredentials(context.Background()).MotherDuckCredentialsIn(motherDuckCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateMotherduckCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateMotherduckCredentials`: MotherDuckCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateMotherduckCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateMotherduckCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **motherDuckCredentialsIn** | [**MotherDuckCredentialsIn**](MotherDuckCredentialsIn.md) |  | 
+
+### Return type
+
+[**MotherDuckCredentialsOut**](MotherDuckCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateMulesoftCredentials
 
 > MulesoftCredentialsOut CreateMulesoftCredentials(ctx).MulesoftCredentialsIn(mulesoftCredentialsIn).Execute()
@@ -1937,6 +2157,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**OracleCredentialsOut**](OracleCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreatePineconeCredentials
+
+> PineconeCredentialsOut CreatePineconeCredentials(ctx).PineconeCredentialsIn(pineconeCredentialsIn).Execute()
+
+Create Pinecone credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	pineconeCredentialsIn := *openapiclient.NewPineconeCredentialsIn("Environment_example", "ProjectId_example", "ApiKey_example") // PineconeCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreatePineconeCredentials(context.Background()).PineconeCredentialsIn(pineconeCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreatePineconeCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreatePineconeCredentials`: PineconeCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreatePineconeCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreatePineconeCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pineconeCredentialsIn** | [**PineconeCredentialsIn**](PineconeCredentialsIn.md) |  | 
+
+### Return type
+
+[**PineconeCredentialsOut**](PineconeCredentialsOut.md)
 
 ### Authorization
 
@@ -3696,6 +3982,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteDremioCredentials
+
+> DeleteDremioCredentials(ctx, credentialsId).Execute()
+
+Delete Dremio credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteDremioCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteDremioCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteDremioCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteEnvVarCredentials
 
 > DeleteEnvVarCredentials(ctx, credentialsId).Execute()
@@ -4104,6 +4458,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteHiveMysqlCredentials
+
+> DeleteHiveMysqlCredentials(ctx, credentialsId).Execute()
+
+Delete Hive (MySQL) credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteHiveMysqlCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteHiveMysqlCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteHiveMysqlCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteInformaticaV2Credentials
 
 > DeleteInformaticaV2Credentials(ctx, credentialsId).Execute()
@@ -4376,6 +4798,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteMotherduckCredentials
+
+> DeleteMotherduckCredentials(ctx, credentialsId).Execute()
+
+Delete MotherDuck credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteMotherduckCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteMotherduckCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteMotherduckCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteMulesoftCredentials
 
 > DeleteMulesoftCredentials(ctx, credentialsId).Execute()
@@ -4556,6 +5046,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteOracleCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeletePineconeCredentials
+
+> DeletePineconeCredentials(ctx, credentialsId).Execute()
+
+Delete Pinecone credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeletePineconeCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeletePineconeCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeletePineconeCredentialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -6376,6 +6934,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetDremioCredentials
+
+> DremioCredentialsOut GetDremioCredentials(ctx, credentialsId).Execute()
+
+Get Dremio credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetDremioCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetDremioCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetDremioCredentials`: DremioCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetDremioCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetDremioCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DremioCredentialsOut**](DremioCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetEnvVarCredentials
 
 > EnvVarCredentialsOut GetEnvVarCredentials(ctx, credentialsId).Execute()
@@ -6796,6 +7424,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetHiveMysqlCredentials
+
+> HiveMySqlCredentialsOut GetHiveMysqlCredentials(ctx, credentialsId).Execute()
+
+Get Hive (MySQL) credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetHiveMysqlCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetHiveMysqlCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetHiveMysqlCredentials`: HiveMySqlCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetHiveMysqlCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetHiveMysqlCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**HiveMySqlCredentialsOut**](HiveMySqlCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetInformaticaV2Credentials
 
 > InformaticaV2CredentialsOut GetInformaticaV2Credentials(ctx, credentialsId).Execute()
@@ -7076,6 +7774,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetMotherduckCredentials
+
+> MotherDuckCredentialsOut GetMotherduckCredentials(ctx, credentialsId).Execute()
+
+Get MotherDuck credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetMotherduckCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetMotherduckCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetMotherduckCredentials`: MotherDuckCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetMotherduckCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetMotherduckCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**MotherDuckCredentialsOut**](MotherDuckCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetMulesoftCredentials
 
 > MulesoftCredentialsOut GetMulesoftCredentials(ctx, credentialsId).Execute()
@@ -7271,6 +8039,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**OracleCredentialsOut**](OracleCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPineconeCredentials
+
+> PineconeCredentialsOut GetPineconeCredentials(ctx, credentialsId).Execute()
+
+Get Pinecone credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetPineconeCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetPineconeCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPineconeCredentials`: PineconeCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetPineconeCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPineconeCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**PineconeCredentialsOut**](PineconeCredentialsOut.md)
 
 ### Authorization
 
@@ -9132,6 +9970,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateDremioCredentials
+
+> DremioCredentialsOut UpdateDremioCredentials(ctx, credentialsId).DremioCredentialsPatch(dremioCredentialsPatch).Execute()
+
+Update Dremio credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	dremioCredentialsPatch := *openapiclient.NewDremioCredentialsPatch() // DremioCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateDremioCredentials(context.Background(), credentialsId).DremioCredentialsPatch(dremioCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateDremioCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateDremioCredentials`: DremioCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateDremioCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateDremioCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **dremioCredentialsPatch** | [**DremioCredentialsPatch**](DremioCredentialsPatch.md) |  | 
+
+### Return type
+
+[**DremioCredentialsOut**](DremioCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateEnvVarCredentials
 
 > EnvVarCredentialsOut UpdateEnvVarCredentials(ctx, credentialsId).EnvVarCredentialsPatch(envVarCredentialsPatch).Execute()
@@ -9564,6 +10474,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateHiveMysqlCredentials
+
+> HiveMySqlCredentialsOut UpdateHiveMysqlCredentials(ctx, credentialsId).HiveMySqlCredentialsPatch(hiveMySqlCredentialsPatch).Execute()
+
+Update Hive (MySQL) credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	hiveMySqlCredentialsPatch := *openapiclient.NewHiveMySqlCredentialsPatch() // HiveMySqlCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateHiveMysqlCredentials(context.Background(), credentialsId).HiveMySqlCredentialsPatch(hiveMySqlCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateHiveMysqlCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateHiveMysqlCredentials`: HiveMySqlCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateHiveMysqlCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateHiveMysqlCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **hiveMySqlCredentialsPatch** | [**HiveMySqlCredentialsPatch**](HiveMySqlCredentialsPatch.md) |  | 
+
+### Return type
+
+[**HiveMySqlCredentialsOut**](HiveMySqlCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateInformaticaV2Credentials
 
 > InformaticaV2CredentialsOut UpdateInformaticaV2Credentials(ctx, credentialsId).InformaticaV2CredentialsPatch(informaticaV2CredentialsPatch).Execute()
@@ -9852,6 +10834,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateMotherduckCredentials
+
+> MotherDuckCredentialsOut UpdateMotherduckCredentials(ctx, credentialsId).MotherDuckCredentialsPatch(motherDuckCredentialsPatch).Execute()
+
+Update MotherDuck credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	motherDuckCredentialsPatch := *openapiclient.NewMotherDuckCredentialsPatch() // MotherDuckCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateMotherduckCredentials(context.Background(), credentialsId).MotherDuckCredentialsPatch(motherDuckCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateMotherduckCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateMotherduckCredentials`: MotherDuckCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateMotherduckCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateMotherduckCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **motherDuckCredentialsPatch** | [**MotherDuckCredentialsPatch**](MotherDuckCredentialsPatch.md) |  | 
+
+### Return type
+
+[**MotherDuckCredentialsOut**](MotherDuckCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateMulesoftCredentials
 
 > MulesoftCredentialsOut UpdateMulesoftCredentials(ctx, credentialsId).MulesoftCredentialsPatch(mulesoftCredentialsPatch).Execute()
@@ -10053,6 +11107,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**OracleCredentialsOut**](OracleCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdatePineconeCredentials
+
+> PineconeCredentialsOut UpdatePineconeCredentials(ctx, credentialsId).PineconeCredentialsPatch(pineconeCredentialsPatch).Execute()
+
+Update Pinecone credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	pineconeCredentialsPatch := *openapiclient.NewPineconeCredentialsPatch() // PineconeCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdatePineconeCredentials(context.Background(), credentialsId).PineconeCredentialsPatch(pineconeCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdatePineconeCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdatePineconeCredentials`: PineconeCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdatePineconeCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdatePineconeCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **pineconeCredentialsPatch** | [**PineconeCredentialsPatch**](PineconeCredentialsPatch.md) |  | 
+
+### Return type
+
+[**PineconeCredentialsOut**](PineconeCredentialsOut.md)
 
 ### Authorization
 
@@ -12588,6 +13714,144 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateDremioCredentials
+
+> ValidationRunOut ValidateDremioCredentials(ctx).DremioCredentialsValidateIn(dremioCredentialsValidateIn).Execute()
+
+Validate Dremio credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	dremioCredentialsValidateIn := *openapiclient.NewDremioCredentialsValidateIn("DeploymentId_example", "Host_example", int32(123), "Token_example") // DremioCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateDremioCredentials(context.Background()).DremioCredentialsValidateIn(dremioCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateDremioCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateDremioCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateDremioCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateDremioCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **dremioCredentialsValidateIn** | [**DremioCredentialsValidateIn**](DremioCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateDremioCredentialsChange
+
+> ValidationRunOut ValidateDremioCredentialsChange(ctx, credentialsId).DremioCredentialsChangeValidateIn(dremioCredentialsChangeValidateIn).Execute()
+
+Validate a change to Dremio credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	dremioCredentialsChangeValidateIn := *openapiclient.NewDremioCredentialsChangeValidateIn("DeploymentId_example") // DremioCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateDremioCredentialsChange(context.Background(), credentialsId).DremioCredentialsChangeValidateIn(dremioCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateDremioCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateDremioCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateDremioCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateDremioCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **dremioCredentialsChangeValidateIn** | [**DremioCredentialsChangeValidateIn**](DremioCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateEnvVarCredentials
 
 > ValidationRunOut ValidateEnvVarCredentials(ctx).EnvVarCredentialsValidateIn(envVarCredentialsValidateIn).Execute()
@@ -13968,6 +15232,144 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## ValidateMotherduckCredentials
+
+> ValidationRunOut ValidateMotherduckCredentials(ctx).MotherDuckCredentialsValidateIn(motherDuckCredentialsValidateIn).Execute()
+
+Validate MotherDuck credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	motherDuckCredentialsValidateIn := *openapiclient.NewMotherDuckCredentialsValidateIn("DeploymentId_example", "DbName_example", "Token_example") // MotherDuckCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateMotherduckCredentials(context.Background()).MotherDuckCredentialsValidateIn(motherDuckCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateMotherduckCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateMotherduckCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateMotherduckCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateMotherduckCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **motherDuckCredentialsValidateIn** | [**MotherDuckCredentialsValidateIn**](MotherDuckCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateMotherduckCredentialsChange
+
+> ValidationRunOut ValidateMotherduckCredentialsChange(ctx, credentialsId).MotherDuckCredentialsChangeValidateIn(motherDuckCredentialsChangeValidateIn).Execute()
+
+Validate a change to MotherDuck credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	motherDuckCredentialsChangeValidateIn := *openapiclient.NewMotherDuckCredentialsChangeValidateIn("DeploymentId_example") // MotherDuckCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateMotherduckCredentialsChange(context.Background(), credentialsId).MotherDuckCredentialsChangeValidateIn(motherDuckCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateMotherduckCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateMotherduckCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateMotherduckCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateMotherduckCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **motherDuckCredentialsChangeValidateIn** | [**MotherDuckCredentialsChangeValidateIn**](MotherDuckCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ValidateMulesoftCredentials
 
 > ValidationRunOut ValidateMulesoftCredentials(ctx).MulesoftCredentialsValidateIn(mulesoftCredentialsValidateIn).Execute()
@@ -14363,6 +15765,144 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **oracleCredentialsChangeValidateIn** | [**OracleCredentialsChangeValidateIn**](OracleCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidatePineconeCredentials
+
+> ValidationRunOut ValidatePineconeCredentials(ctx).PineconeCredentialsValidateIn(pineconeCredentialsValidateIn).Execute()
+
+Validate Pinecone credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	pineconeCredentialsValidateIn := *openapiclient.NewPineconeCredentialsValidateIn("DeploymentId_example", "Environment_example", "ProjectId_example", "ApiKey_example") // PineconeCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidatePineconeCredentials(context.Background()).PineconeCredentialsValidateIn(pineconeCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidatePineconeCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidatePineconeCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidatePineconeCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidatePineconeCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pineconeCredentialsValidateIn** | [**PineconeCredentialsValidateIn**](PineconeCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidatePineconeCredentialsChange
+
+> ValidationRunOut ValidatePineconeCredentialsChange(ctx, credentialsId).PineconeCredentialsChangeValidateIn(pineconeCredentialsChangeValidateIn).Execute()
+
+Validate a change to Pinecone credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	pineconeCredentialsChangeValidateIn := *openapiclient.NewPineconeCredentialsChangeValidateIn("DeploymentId_example") // PineconeCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidatePineconeCredentialsChange(context.Background(), credentialsId).PineconeCredentialsChangeValidateIn(pineconeCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidatePineconeCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidatePineconeCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidatePineconeCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidatePineconeCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **pineconeCredentialsChangeValidateIn** | [**PineconeCredentialsChangeValidateIn**](PineconeCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
