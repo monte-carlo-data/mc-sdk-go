@@ -233,7 +233,7 @@ type ApiGetAccountAnalyticsDocsRequest struct {
 	slug       *string
 }
 
-// The page to read, such as &#x60;analytics-api-dashboard-style&#x60;. Without it, the answer lists every page without its body.
+// The pages to read: one slug, or up to 10 comma-separated, such as &#x60;analytics-api-dashboard-style,analytics-api-dimensions&#x60;. The answer has them in that order. Without it, the answer lists every page without its body.
 func (r ApiGetAccountAnalyticsDocsRequest) Slug(slug string) ApiGetAccountAnalyticsDocsRequest {
 	r.slug = &slug
 	return r
@@ -244,13 +244,14 @@ func (r ApiGetAccountAnalyticsDocsRequest) Execute() (*DocsOut, *http.Response, 
 }
 
 /*
-GetAccountAnalyticsDocs List the Analytics API docs, or read one page
+GetAccountAnalyticsDocs List the Analytics API docs, or read pages
 
-List the pages of the Analytics API docs, or read one.
+List the pages of the Analytics API docs, or read some.
 
 Without `slug`, the answer lists every page with its slug, title, summary and parent page,
 and the prompt of each dashboard example.
-With `slug`, it returns that page with its body as Markdown. The pages are the ones
+With `slug`, one slug or several comma-separated, it returns those pages with their bodies
+as Markdown, in that order. The pages are the ones
 published at docs.getmontecarlo.com: how to query, the data catalog, the dashboard examples
 and the dashboard style. `doc:<slug>` links in a body name other pages.
 

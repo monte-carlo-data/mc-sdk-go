@@ -5,7 +5,7 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**GetAccountAnalyticsCatalog**](AccountAnalyticsAPI.md#GetAccountAnalyticsCatalog) | **Get** /api/v2/account-analytics/catalog | List metrics, or the dimensions that work with chosen metrics
-[**GetAccountAnalyticsDocs**](AccountAnalyticsAPI.md#GetAccountAnalyticsDocs) | **Get** /api/v2/account-analytics/docs | List the Analytics API docs, or read one page
+[**GetAccountAnalyticsDocs**](AccountAnalyticsAPI.md#GetAccountAnalyticsDocs) | **Get** /api/v2/account-analytics/docs | List the Analytics API docs, or read pages
 [**QueryAccountAnalytics**](AccountAnalyticsAPI.md#QueryAccountAnalytics) | **Post** /api/v2/account-analytics/query | Query metrics
 
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 > DocsOut GetAccountAnalyticsDocs(ctx).Slug(slug).Execute()
 
-List the Analytics API docs, or read one page
+List the Analytics API docs, or read pages
 
 
 
@@ -99,7 +99,7 @@ import (
 )
 
 func main() {
-	slug := "slug_example" // string | The page to read, such as `analytics-api-dashboard-style`. Without it, the answer lists every page without its body. (optional)
+	slug := "slug_example" // string | The pages to read: one slug, or up to 10 comma-separated, such as `analytics-api-dashboard-style,analytics-api-dimensions`. The answer has them in that order. Without it, the answer lists every page without its body. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -124,7 +124,7 @@ Other parameters are passed through a pointer to a apiGetAccountAnalyticsDocsReq
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **slug** | **string** | The page to read, such as &#x60;analytics-api-dashboard-style&#x60;. Without it, the answer lists every page without its body. | 
+ **slug** | **string** | The pages to read: one slug, or up to 10 comma-separated, such as &#x60;analytics-api-dashboard-style,analytics-api-dimensions&#x60;. The answer has them in that order. Without it, the answer lists every page without its body. | 
 
 ### Return type
 
