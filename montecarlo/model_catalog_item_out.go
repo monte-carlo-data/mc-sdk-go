@@ -32,6 +32,8 @@ type CatalogItemOut struct {
 	HistoryStart NullableString `json:"history_start,omitempty"`
 	// Metrics only. A metric that keeps dates before `history_start`. Left out when there is none.
 	LongerHistory NullableString `json:"longer_history,omitempty"`
+	// Metrics only. How to show the value: `percent` for a share from 0 to 1 (0.16 is 16%), `credits` or `hours`. Left out for a plain number.
+	Format NullableCatalogMetricFormat `json:"format,omitempty"`
 	// Dimensions only. Left out for a metric.
 	Type NullableCatalogDimensionType `json:"type,omitempty"`
 	// Time dimensions only. The grains a query can append to the name, such as `metric_time__week` for `week`. Left out otherwise.
@@ -298,6 +300,49 @@ func (o *CatalogItemOut) UnsetLongerHistory() {
 	o.LongerHistory.Unset()
 }
 
+// GetFormat returns the Format field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CatalogItemOut) GetFormat() CatalogMetricFormat {
+	if o == nil || IsNil(o.Format.Get()) {
+		var ret CatalogMetricFormat
+		return ret
+	}
+	return *o.Format.Get()
+}
+
+// GetFormatOk returns a tuple with the Format field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CatalogItemOut) GetFormatOk() (*CatalogMetricFormat, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.Format.Get(), o.Format.IsSet()
+}
+
+// HasFormat returns a boolean if a field has been set.
+func (o *CatalogItemOut) HasFormat() bool {
+	if o != nil && o.Format.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetFormat gets a reference to the given NullableCatalogMetricFormat and assigns it to the Format field.
+func (o *CatalogItemOut) SetFormat(v CatalogMetricFormat) {
+	o.Format.Set(&v)
+}
+
+// SetFormatNil sets the value for Format to be an explicit nil
+func (o *CatalogItemOut) SetFormatNil() {
+	o.Format.Set(nil)
+}
+
+// UnsetFormat ensures that no value is present for Format, not even an explicit nil
+func (o *CatalogItemOut) UnsetFormat() {
+	o.Format.Unset()
+}
+
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CatalogItemOut) GetType() CatalogDimensionType {
 	if o == nil || IsNil(o.Type.Get()) {
@@ -400,6 +445,9 @@ func (o CatalogItemOut) ToMap() (map[string]interface{}, error) {
 	if o.LongerHistory.IsSet() {
 		toSerialize["longer_history"] = o.LongerHistory.Get()
 	}
+	if o.Format.IsSet() {
+		toSerialize["format"] = o.Format.Get()
+	}
 	if o.Type.IsSet() {
 		toSerialize["type"] = o.Type.Get()
 	}
@@ -455,6 +503,7 @@ func (o *CatalogItemOut) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "requires_metric_time")
 		delete(additionalProperties, "history_start")
 		delete(additionalProperties, "longer_history")
+		delete(additionalProperties, "format")
 		delete(additionalProperties, "type")
 		delete(additionalProperties, "time_grains")
 		o.AdditionalProperties = additionalProperties

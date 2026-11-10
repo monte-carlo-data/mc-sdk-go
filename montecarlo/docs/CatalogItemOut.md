@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **RequiresMetricTime** | Pointer to **NullableBool** | Metrics only. True when the metric answers only grouped by &#x60;metric_time&#x60;, for example a month-to-date total. Left out for a dimension. | [optional] 
 **HistoryStart** | Pointer to **NullableString** | Metrics only. The first date the metric keeps. A query that filters &#x60;metric_time&#x60; before it is refused, so start a window on or after it. Left out for a metric that keeps all its history. | [optional] 
 **LongerHistory** | Pointer to **NullableString** | Metrics only. A metric that keeps dates before &#x60;history_start&#x60;. Left out when there is none. | [optional] 
+**Format** | Pointer to [**NullableCatalogMetricFormat**](CatalogMetricFormat.md) | Metrics only. How to show the value: &#x60;percent&#x60; for a share from 0 to 1 (0.16 is 16%), &#x60;credits&#x60; or &#x60;hours&#x60;. Left out for a plain number. | [optional] 
 **Type** | Pointer to [**NullableCatalogDimensionType**](CatalogDimensionType.md) | Dimensions only. Left out for a metric. | [optional] 
 **TimeGrains** | Pointer to **[]string** | Time dimensions only. The grains a query can append to the name, such as &#x60;metric_time__week&#x60; for &#x60;week&#x60;. Left out otherwise. | [optional] 
 
@@ -227,6 +228,41 @@ HasLongerHistory returns a boolean if a field has been set.
 `func (o *CatalogItemOut) UnsetLongerHistory()`
 
 UnsetLongerHistory ensures that no value is present for LongerHistory, not even an explicit nil
+### GetFormat
+
+`func (o *CatalogItemOut) GetFormat() CatalogMetricFormat`
+
+GetFormat returns the Format field if non-nil, zero value otherwise.
+
+### GetFormatOk
+
+`func (o *CatalogItemOut) GetFormatOk() (*CatalogMetricFormat, bool)`
+
+GetFormatOk returns a tuple with the Format field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFormat
+
+`func (o *CatalogItemOut) SetFormat(v CatalogMetricFormat)`
+
+SetFormat sets Format field to given value.
+
+### HasFormat
+
+`func (o *CatalogItemOut) HasFormat() bool`
+
+HasFormat returns a boolean if a field has been set.
+
+### SetFormatNil
+
+`func (o *CatalogItemOut) SetFormatNil(b bool)`
+
+ SetFormatNil sets the value for Format to be an explicit nil
+
+### UnsetFormat
+`func (o *CatalogItemOut) UnsetFormat()`
+
+UnsetFormat ensures that no value is present for Format, not even an explicit nil
 ### GetType
 
 `func (o *CatalogItemOut) GetType() CatalogDimensionType`

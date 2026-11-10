@@ -82,6 +82,7 @@ docs/BigQueryCredentialsPatch.md
 docs/BigQueryCredentialsValidateIn.md
 docs/CatalogDimensionType.md
 docs/CatalogItemOut.md
+docs/CatalogMetricFormat.md
 docs/CatalogOut.md
 docs/ClickHouseCredentialsChangeValidateIn.md
 docs/ClickHouseCredentialsIn.md
@@ -430,6 +431,7 @@ model_big_query_credentials_patch.go
 model_big_query_credentials_validate_in.go
 model_catalog_dimension_type.go
 model_catalog_item_out.go
+model_catalog_metric_format.go
 model_catalog_out.go
 model_click_house_credentials_change_validate_in.go
 model_click_house_credentials_in.go
