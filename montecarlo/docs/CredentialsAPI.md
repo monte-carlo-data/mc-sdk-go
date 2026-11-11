@@ -43,6 +43,7 @@ Method | HTTP request | Description
 [**CreateSalesforceDataCloudCredentials**](CredentialsAPI.md#CreateSalesforceDataCloudCredentials) | **Post** /api/v2/credentials/salesforce-data-cloud | Create Salesforce Data Cloud credentials
 [**CreateSapHanaCredentials**](CredentialsAPI.md#CreateSapHanaCredentials) | **Post** /api/v2/credentials/sap-hana | Create SAP HANA credentials
 [**CreateSnowflakeCredentials**](CredentialsAPI.md#CreateSnowflakeCredentials) | **Post** /api/v2/credentials/snowflake | Create Snowflake credentials
+[**CreateSparkCredentials**](CredentialsAPI.md#CreateSparkCredentials) | **Post** /api/v2/credentials/spark | Create Spark credentials
 [**CreateSqlServerCredentials**](CredentialsAPI.md#CreateSqlServerCredentials) | **Post** /api/v2/credentials/sql-server | Create SQL Server credentials
 [**CreateStarburstEnterpriseCredentials**](CredentialsAPI.md#CreateStarburstEnterpriseCredentials) | **Post** /api/v2/credentials/starburst-enterprise | Create Starburst Enterprise credentials
 [**CreateStarburstGalaxyCredentials**](CredentialsAPI.md#CreateStarburstGalaxyCredentials) | **Post** /api/v2/credentials/starburst-galaxy | Create Starburst Galaxy credentials
@@ -88,6 +89,7 @@ Method | HTTP request | Description
 [**DeleteSalesforceDataCloudCredentials**](CredentialsAPI.md#DeleteSalesforceDataCloudCredentials) | **Delete** /api/v2/credentials/salesforce-data-cloud/{credentials_id} | Delete Salesforce Data Cloud credentials
 [**DeleteSapHanaCredentials**](CredentialsAPI.md#DeleteSapHanaCredentials) | **Delete** /api/v2/credentials/sap-hana/{credentials_id} | Delete SAP HANA credentials
 [**DeleteSnowflakeCredentials**](CredentialsAPI.md#DeleteSnowflakeCredentials) | **Delete** /api/v2/credentials/snowflake/{credentials_id} | Delete Snowflake credentials
+[**DeleteSparkCredentials**](CredentialsAPI.md#DeleteSparkCredentials) | **Delete** /api/v2/credentials/spark/{credentials_id} | Delete Spark credentials
 [**DeleteSqlServerCredentials**](CredentialsAPI.md#DeleteSqlServerCredentials) | **Delete** /api/v2/credentials/sql-server/{credentials_id} | Delete SQL Server credentials
 [**DeleteStarburstEnterpriseCredentials**](CredentialsAPI.md#DeleteStarburstEnterpriseCredentials) | **Delete** /api/v2/credentials/starburst-enterprise/{credentials_id} | Delete Starburst Enterprise credentials
 [**DeleteStarburstGalaxyCredentials**](CredentialsAPI.md#DeleteStarburstGalaxyCredentials) | **Delete** /api/v2/credentials/starburst-galaxy/{credentials_id} | Delete Starburst Galaxy credentials
@@ -133,6 +135,7 @@ Method | HTTP request | Description
 [**GetSalesforceDataCloudCredentials**](CredentialsAPI.md#GetSalesforceDataCloudCredentials) | **Get** /api/v2/credentials/salesforce-data-cloud/{credentials_id} | Get Salesforce Data Cloud credentials
 [**GetSapHanaCredentials**](CredentialsAPI.md#GetSapHanaCredentials) | **Get** /api/v2/credentials/sap-hana/{credentials_id} | Get SAP HANA credentials
 [**GetSnowflakeCredentials**](CredentialsAPI.md#GetSnowflakeCredentials) | **Get** /api/v2/credentials/snowflake/{credentials_id} | Get Snowflake credentials
+[**GetSparkCredentials**](CredentialsAPI.md#GetSparkCredentials) | **Get** /api/v2/credentials/spark/{credentials_id} | Get Spark credentials
 [**GetSqlServerCredentials**](CredentialsAPI.md#GetSqlServerCredentials) | **Get** /api/v2/credentials/sql-server/{credentials_id} | Get SQL Server credentials
 [**GetStarburstEnterpriseCredentials**](CredentialsAPI.md#GetStarburstEnterpriseCredentials) | **Get** /api/v2/credentials/starburst-enterprise/{credentials_id} | Get Starburst Enterprise credentials
 [**GetStarburstGalaxyCredentials**](CredentialsAPI.md#GetStarburstGalaxyCredentials) | **Get** /api/v2/credentials/starburst-galaxy/{credentials_id} | Get Starburst Galaxy credentials
@@ -178,6 +181,7 @@ Method | HTTP request | Description
 [**UpdateSalesforceDataCloudCredentials**](CredentialsAPI.md#UpdateSalesforceDataCloudCredentials) | **Patch** /api/v2/credentials/salesforce-data-cloud/{credentials_id} | Update Salesforce Data Cloud credentials
 [**UpdateSapHanaCredentials**](CredentialsAPI.md#UpdateSapHanaCredentials) | **Patch** /api/v2/credentials/sap-hana/{credentials_id} | Update SAP HANA credentials
 [**UpdateSnowflakeCredentials**](CredentialsAPI.md#UpdateSnowflakeCredentials) | **Patch** /api/v2/credentials/snowflake/{credentials_id} | Update Snowflake credentials
+[**UpdateSparkCredentials**](CredentialsAPI.md#UpdateSparkCredentials) | **Patch** /api/v2/credentials/spark/{credentials_id} | Update Spark credentials
 [**UpdateSqlServerCredentials**](CredentialsAPI.md#UpdateSqlServerCredentials) | **Patch** /api/v2/credentials/sql-server/{credentials_id} | Update SQL Server credentials
 [**UpdateStarburstEnterpriseCredentials**](CredentialsAPI.md#UpdateStarburstEnterpriseCredentials) | **Patch** /api/v2/credentials/starburst-enterprise/{credentials_id} | Update Starburst Enterprise credentials
 [**UpdateStarburstGalaxyCredentials**](CredentialsAPI.md#UpdateStarburstGalaxyCredentials) | **Patch** /api/v2/credentials/starburst-galaxy/{credentials_id} | Update Starburst Galaxy credentials
@@ -253,6 +257,8 @@ Method | HTTP request | Description
 [**ValidateSapHanaCredentialsChange**](CredentialsAPI.md#ValidateSapHanaCredentialsChange) | **Post** /api/v2/credentials/sap-hana/{credentials_id}/validate | Validate a change to SAP HANA credentials
 [**ValidateSnowflakeCredentials**](CredentialsAPI.md#ValidateSnowflakeCredentials) | **Post** /api/v2/credentials/snowflake/validate | Validate Snowflake credentials
 [**ValidateSnowflakeCredentialsChange**](CredentialsAPI.md#ValidateSnowflakeCredentialsChange) | **Post** /api/v2/credentials/snowflake/{credentials_id}/validate | Validate a change to Snowflake credentials
+[**ValidateSparkCredentials**](CredentialsAPI.md#ValidateSparkCredentials) | **Post** /api/v2/credentials/spark/validate | Validate Spark credentials
+[**ValidateSparkCredentialsChange**](CredentialsAPI.md#ValidateSparkCredentialsChange) | **Post** /api/v2/credentials/spark/{credentials_id}/validate | Validate a change to Spark credentials
 [**ValidateSqlServerCredentials**](CredentialsAPI.md#ValidateSqlServerCredentials) | **Post** /api/v2/credentials/sql-server/validate | Validate SQL Server credentials
 [**ValidateSqlServerCredentialsChange**](CredentialsAPI.md#ValidateSqlServerCredentialsChange) | **Post** /api/v2/credentials/sql-server/{credentials_id}/validate | Validate a change to SQL Server credentials
 [**ValidateStarburstEnterpriseCredentials**](CredentialsAPI.md#ValidateStarburstEnterpriseCredentials) | **Post** /api/v2/credentials/starburst-enterprise/validate | Validate Starburst Enterprise credentials
@@ -2825,6 +2831,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SnowflakeCredentialsOut**](SnowflakeCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateSparkCredentials
+
+> SparkCredentialsOut CreateSparkCredentials(ctx).SparkCredentialsIn(sparkCredentialsIn).Execute()
+
+Create Spark credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	sparkCredentialsIn := *openapiclient.NewSparkCredentialsIn(openapiclient.SparkMode("binary"), "User_example") // SparkCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateSparkCredentials(context.Background()).SparkCredentialsIn(sparkCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateSparkCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateSparkCredentials`: SparkCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateSparkCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateSparkCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sparkCredentialsIn** | [**SparkCredentialsIn**](SparkCredentialsIn.md) |  | 
+
+### Return type
+
+[**SparkCredentialsOut**](SparkCredentialsOut.md)
 
 ### Authorization
 
@@ -5866,6 +5938,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteSnowflakeCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteSparkCredentials
+
+> DeleteSparkCredentials(ctx, credentialsId).Execute()
+
+Delete Spark credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteSparkCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteSparkCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteSparkCredentialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -9015,6 +9155,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SnowflakeCredentialsOut**](SnowflakeCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetSparkCredentials
+
+> SparkCredentialsOut GetSparkCredentials(ctx, credentialsId).Execute()
+
+Get Spark credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetSparkCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetSparkCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetSparkCredentials`: SparkCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetSparkCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetSparkCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**SparkCredentialsOut**](SparkCredentialsOut.md)
 
 ### Authorization
 
@@ -12243,6 +12453,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**SnowflakeCredentialsOut**](SnowflakeCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateSparkCredentials
+
+> SparkCredentialsOut UpdateSparkCredentials(ctx, credentialsId).SparkCredentialsPatch(sparkCredentialsPatch).Execute()
+
+Update Spark credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	sparkCredentialsPatch := *openapiclient.NewSparkCredentialsPatch() // SparkCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateSparkCredentials(context.Background(), credentialsId).SparkCredentialsPatch(sparkCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateSparkCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateSparkCredentials`: SparkCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateSparkCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateSparkCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **sparkCredentialsPatch** | [**SparkCredentialsPatch**](SparkCredentialsPatch.md) |  | 
+
+### Return type
+
+[**SparkCredentialsOut**](SparkCredentialsOut.md)
 
 ### Authorization
 
@@ -17429,6 +17711,144 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **snowflakeCredentialsChangeValidateIn** | [**SnowflakeCredentialsChangeValidateIn**](SnowflakeCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateSparkCredentials
+
+> ValidationRunOut ValidateSparkCredentials(ctx).SparkCredentialsValidateIn(sparkCredentialsValidateIn).Execute()
+
+Validate Spark credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	sparkCredentialsValidateIn := *openapiclient.NewSparkCredentialsValidateIn("DeploymentId_example", openapiclient.SparkMode("binary"), "User_example") // SparkCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateSparkCredentials(context.Background()).SparkCredentialsValidateIn(sparkCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateSparkCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateSparkCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateSparkCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateSparkCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **sparkCredentialsValidateIn** | [**SparkCredentialsValidateIn**](SparkCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateSparkCredentialsChange
+
+> ValidationRunOut ValidateSparkCredentialsChange(ctx, credentialsId).SparkCredentialsChangeValidateIn(sparkCredentialsChangeValidateIn).Execute()
+
+Validate a change to Spark credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	sparkCredentialsChangeValidateIn := *openapiclient.NewSparkCredentialsChangeValidateIn("DeploymentId_example") // SparkCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateSparkCredentialsChange(context.Background(), credentialsId).SparkCredentialsChangeValidateIn(sparkCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateSparkCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateSparkCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateSparkCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateSparkCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **sparkCredentialsChangeValidateIn** | [**SparkCredentialsChangeValidateIn**](SparkCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 
