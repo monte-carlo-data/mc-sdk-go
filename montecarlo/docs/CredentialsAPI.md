@@ -24,12 +24,14 @@ Method | HTTP request | Description
 [**CreateGcpDataformCredentials**](CredentialsAPI.md#CreateGcpDataformCredentials) | **Post** /api/v2/credentials/gcp-dataform | Create GCP Dataform credentials
 [**CreateGcpSecretManagerCredentials**](CredentialsAPI.md#CreateGcpSecretManagerCredentials) | **Post** /api/v2/credentials/self-hosted/gcp | Create GCP Secret Manager credentials
 [**CreateGlueCredentials**](CredentialsAPI.md#CreateGlueCredentials) | **Post** /api/v2/credentials/glue | Create Glue credentials
+[**CreateHiveCredentials**](CredentialsAPI.md#CreateHiveCredentials) | **Post** /api/v2/credentials/hive | Create Hive credentials
 [**CreateHiveMysqlCredentials**](CredentialsAPI.md#CreateHiveMysqlCredentials) | **Post** /api/v2/credentials/hive-mysql | Create Hive (MySQL) credentials
 [**CreateHiveS3Credentials**](CredentialsAPI.md#CreateHiveS3Credentials) | **Post** /api/v2/credentials/hive-s3 | Create Hive (S3) credentials
 [**CreateInformaticaV2Credentials**](CredentialsAPI.md#CreateInformaticaV2Credentials) | **Post** /api/v2/credentials/informatica-v2 | Create Informatica credentials
 [**CreateLookerCredentials**](CredentialsAPI.md#CreateLookerCredentials) | **Post** /api/v2/credentials/looker | Create Looker credentials
 [**CreateLookerGitCloneCredentials**](CredentialsAPI.md#CreateLookerGitCloneCredentials) | **Post** /api/v2/credentials/looker-git-clone | Create LookML repository credentials
 [**CreateMariadbCredentials**](CredentialsAPI.md#CreateMariadbCredentials) | **Post** /api/v2/credentials/mariadb | Create MariaDB credentials
+[**CreateMicrosoftFabricCredentials**](CredentialsAPI.md#CreateMicrosoftFabricCredentials) | **Post** /api/v2/credentials/microsoft-fabric | Create Microsoft Fabric credentials
 [**CreateMotherduckCredentials**](CredentialsAPI.md#CreateMotherduckCredentials) | **Post** /api/v2/credentials/motherduck | Create MotherDuck credentials
 [**CreateMulesoftCredentials**](CredentialsAPI.md#CreateMulesoftCredentials) | **Post** /api/v2/credentials/mulesoft | Create MuleSoft credentials
 [**CreateMysqlCredentials**](CredentialsAPI.md#CreateMysqlCredentials) | **Post** /api/v2/credentials/mysql | Create MySQL credentials
@@ -37,6 +39,7 @@ Method | HTTP request | Description
 [**CreatePineconeCredentials**](CredentialsAPI.md#CreatePineconeCredentials) | **Post** /api/v2/credentials/pinecone | Create Pinecone credentials
 [**CreatePostgresCredentials**](CredentialsAPI.md#CreatePostgresCredentials) | **Post** /api/v2/credentials/postgres | Create PostgreSQL credentials
 [**CreatePowerBiCredentials**](CredentialsAPI.md#CreatePowerBiCredentials) | **Post** /api/v2/credentials/power-bi | Create Power BI credentials
+[**CreatePrestoCredentials**](CredentialsAPI.md#CreatePrestoCredentials) | **Post** /api/v2/credentials/presto | Create Presto credentials
 [**CreateRedshiftCredentials**](CredentialsAPI.md#CreateRedshiftCredentials) | **Post** /api/v2/credentials/redshift | Create Redshift credentials
 [**CreateS3Credentials**](CredentialsAPI.md#CreateS3Credentials) | **Post** /api/v2/credentials/s3 | Create S3 credentials
 [**CreateSalesforceCrmCredentials**](CredentialsAPI.md#CreateSalesforceCrmCredentials) | **Post** /api/v2/credentials/salesforce-crm | Create Salesforce CRM credentials
@@ -70,12 +73,14 @@ Method | HTTP request | Description
 [**DeleteGcpDataformCredentials**](CredentialsAPI.md#DeleteGcpDataformCredentials) | **Delete** /api/v2/credentials/gcp-dataform/{credentials_id} | Delete GCP Dataform credentials
 [**DeleteGcpSecretManagerCredentials**](CredentialsAPI.md#DeleteGcpSecretManagerCredentials) | **Delete** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Delete GCP Secret Manager credentials
 [**DeleteGlueCredentials**](CredentialsAPI.md#DeleteGlueCredentials) | **Delete** /api/v2/credentials/glue/{credentials_id} | Delete Glue credentials
+[**DeleteHiveCredentials**](CredentialsAPI.md#DeleteHiveCredentials) | **Delete** /api/v2/credentials/hive/{credentials_id} | Delete Hive credentials
 [**DeleteHiveMysqlCredentials**](CredentialsAPI.md#DeleteHiveMysqlCredentials) | **Delete** /api/v2/credentials/hive-mysql/{credentials_id} | Delete Hive (MySQL) credentials
 [**DeleteHiveS3Credentials**](CredentialsAPI.md#DeleteHiveS3Credentials) | **Delete** /api/v2/credentials/hive-s3/{credentials_id} | Delete Hive (S3) credentials
 [**DeleteInformaticaV2Credentials**](CredentialsAPI.md#DeleteInformaticaV2Credentials) | **Delete** /api/v2/credentials/informatica-v2/{credentials_id} | Delete Informatica credentials
 [**DeleteLookerCredentials**](CredentialsAPI.md#DeleteLookerCredentials) | **Delete** /api/v2/credentials/looker/{credentials_id} | Delete Looker credentials
 [**DeleteLookerGitCloneCredentials**](CredentialsAPI.md#DeleteLookerGitCloneCredentials) | **Delete** /api/v2/credentials/looker-git-clone/{credentials_id} | Delete LookML repository credentials
 [**DeleteMariadbCredentials**](CredentialsAPI.md#DeleteMariadbCredentials) | **Delete** /api/v2/credentials/mariadb/{credentials_id} | Delete MariaDB credentials
+[**DeleteMicrosoftFabricCredentials**](CredentialsAPI.md#DeleteMicrosoftFabricCredentials) | **Delete** /api/v2/credentials/microsoft-fabric/{credentials_id} | Delete Microsoft Fabric credentials
 [**DeleteMotherduckCredentials**](CredentialsAPI.md#DeleteMotherduckCredentials) | **Delete** /api/v2/credentials/motherduck/{credentials_id} | Delete MotherDuck credentials
 [**DeleteMulesoftCredentials**](CredentialsAPI.md#DeleteMulesoftCredentials) | **Delete** /api/v2/credentials/mulesoft/{credentials_id} | Delete MuleSoft credentials
 [**DeleteMysqlCredentials**](CredentialsAPI.md#DeleteMysqlCredentials) | **Delete** /api/v2/credentials/mysql/{credentials_id} | Delete MySQL credentials
@@ -83,6 +88,7 @@ Method | HTTP request | Description
 [**DeletePineconeCredentials**](CredentialsAPI.md#DeletePineconeCredentials) | **Delete** /api/v2/credentials/pinecone/{credentials_id} | Delete Pinecone credentials
 [**DeletePostgresCredentials**](CredentialsAPI.md#DeletePostgresCredentials) | **Delete** /api/v2/credentials/postgres/{credentials_id} | Delete PostgreSQL credentials
 [**DeletePowerBiCredentials**](CredentialsAPI.md#DeletePowerBiCredentials) | **Delete** /api/v2/credentials/power-bi/{credentials_id} | Delete Power BI credentials
+[**DeletePrestoCredentials**](CredentialsAPI.md#DeletePrestoCredentials) | **Delete** /api/v2/credentials/presto/{credentials_id} | Delete Presto credentials
 [**DeleteRedshiftCredentials**](CredentialsAPI.md#DeleteRedshiftCredentials) | **Delete** /api/v2/credentials/redshift/{credentials_id} | Delete Redshift credentials
 [**DeleteS3Credentials**](CredentialsAPI.md#DeleteS3Credentials) | **Delete** /api/v2/credentials/s3/{credentials_id} | Delete S3 credentials
 [**DeleteSalesforceCrmCredentials**](CredentialsAPI.md#DeleteSalesforceCrmCredentials) | **Delete** /api/v2/credentials/salesforce-crm/{credentials_id} | Delete Salesforce CRM credentials
@@ -116,12 +122,14 @@ Method | HTTP request | Description
 [**GetGcpDataformCredentials**](CredentialsAPI.md#GetGcpDataformCredentials) | **Get** /api/v2/credentials/gcp-dataform/{credentials_id} | Get GCP Dataform credentials
 [**GetGcpSecretManagerCredentials**](CredentialsAPI.md#GetGcpSecretManagerCredentials) | **Get** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Get GCP Secret Manager credentials
 [**GetGlueCredentials**](CredentialsAPI.md#GetGlueCredentials) | **Get** /api/v2/credentials/glue/{credentials_id} | Get Glue credentials
+[**GetHiveCredentials**](CredentialsAPI.md#GetHiveCredentials) | **Get** /api/v2/credentials/hive/{credentials_id} | Get Hive credentials
 [**GetHiveMysqlCredentials**](CredentialsAPI.md#GetHiveMysqlCredentials) | **Get** /api/v2/credentials/hive-mysql/{credentials_id} | Get Hive (MySQL) credentials
 [**GetHiveS3Credentials**](CredentialsAPI.md#GetHiveS3Credentials) | **Get** /api/v2/credentials/hive-s3/{credentials_id} | Get Hive (S3) credentials
 [**GetInformaticaV2Credentials**](CredentialsAPI.md#GetInformaticaV2Credentials) | **Get** /api/v2/credentials/informatica-v2/{credentials_id} | Get Informatica credentials
 [**GetLookerCredentials**](CredentialsAPI.md#GetLookerCredentials) | **Get** /api/v2/credentials/looker/{credentials_id} | Get Looker credentials
 [**GetLookerGitCloneCredentials**](CredentialsAPI.md#GetLookerGitCloneCredentials) | **Get** /api/v2/credentials/looker-git-clone/{credentials_id} | Get LookML repository credentials
 [**GetMariadbCredentials**](CredentialsAPI.md#GetMariadbCredentials) | **Get** /api/v2/credentials/mariadb/{credentials_id} | Get MariaDB credentials
+[**GetMicrosoftFabricCredentials**](CredentialsAPI.md#GetMicrosoftFabricCredentials) | **Get** /api/v2/credentials/microsoft-fabric/{credentials_id} | Get Microsoft Fabric credentials
 [**GetMotherduckCredentials**](CredentialsAPI.md#GetMotherduckCredentials) | **Get** /api/v2/credentials/motherduck/{credentials_id} | Get MotherDuck credentials
 [**GetMulesoftCredentials**](CredentialsAPI.md#GetMulesoftCredentials) | **Get** /api/v2/credentials/mulesoft/{credentials_id} | Get MuleSoft credentials
 [**GetMysqlCredentials**](CredentialsAPI.md#GetMysqlCredentials) | **Get** /api/v2/credentials/mysql/{credentials_id} | Get MySQL credentials
@@ -129,6 +137,7 @@ Method | HTTP request | Description
 [**GetPineconeCredentials**](CredentialsAPI.md#GetPineconeCredentials) | **Get** /api/v2/credentials/pinecone/{credentials_id} | Get Pinecone credentials
 [**GetPostgresCredentials**](CredentialsAPI.md#GetPostgresCredentials) | **Get** /api/v2/credentials/postgres/{credentials_id} | Get PostgreSQL credentials
 [**GetPowerBiCredentials**](CredentialsAPI.md#GetPowerBiCredentials) | **Get** /api/v2/credentials/power-bi/{credentials_id} | Get Power BI credentials
+[**GetPrestoCredentials**](CredentialsAPI.md#GetPrestoCredentials) | **Get** /api/v2/credentials/presto/{credentials_id} | Get Presto credentials
 [**GetRedshiftCredentials**](CredentialsAPI.md#GetRedshiftCredentials) | **Get** /api/v2/credentials/redshift/{credentials_id} | Get Redshift credentials
 [**GetS3Credentials**](CredentialsAPI.md#GetS3Credentials) | **Get** /api/v2/credentials/s3/{credentials_id} | Get S3 credentials
 [**GetSalesforceCrmCredentials**](CredentialsAPI.md#GetSalesforceCrmCredentials) | **Get** /api/v2/credentials/salesforce-crm/{credentials_id} | Get Salesforce CRM credentials
@@ -162,12 +171,14 @@ Method | HTTP request | Description
 [**UpdateGcpDataformCredentials**](CredentialsAPI.md#UpdateGcpDataformCredentials) | **Patch** /api/v2/credentials/gcp-dataform/{credentials_id} | Update GCP Dataform credentials
 [**UpdateGcpSecretManagerCredentials**](CredentialsAPI.md#UpdateGcpSecretManagerCredentials) | **Patch** /api/v2/credentials/self-hosted/gcp/{credentials_id} | Update GCP Secret Manager credentials
 [**UpdateGlueCredentials**](CredentialsAPI.md#UpdateGlueCredentials) | **Patch** /api/v2/credentials/glue/{credentials_id} | Update Glue credentials
+[**UpdateHiveCredentials**](CredentialsAPI.md#UpdateHiveCredentials) | **Patch** /api/v2/credentials/hive/{credentials_id} | Update Hive credentials
 [**UpdateHiveMysqlCredentials**](CredentialsAPI.md#UpdateHiveMysqlCredentials) | **Patch** /api/v2/credentials/hive-mysql/{credentials_id} | Update Hive (MySQL) credentials
 [**UpdateHiveS3Credentials**](CredentialsAPI.md#UpdateHiveS3Credentials) | **Patch** /api/v2/credentials/hive-s3/{credentials_id} | Update Hive (S3) credentials
 [**UpdateInformaticaV2Credentials**](CredentialsAPI.md#UpdateInformaticaV2Credentials) | **Patch** /api/v2/credentials/informatica-v2/{credentials_id} | Update Informatica credentials
 [**UpdateLookerCredentials**](CredentialsAPI.md#UpdateLookerCredentials) | **Patch** /api/v2/credentials/looker/{credentials_id} | Update Looker credentials
 [**UpdateLookerGitCloneCredentials**](CredentialsAPI.md#UpdateLookerGitCloneCredentials) | **Patch** /api/v2/credentials/looker-git-clone/{credentials_id} | Update LookML repository credentials
 [**UpdateMariadbCredentials**](CredentialsAPI.md#UpdateMariadbCredentials) | **Patch** /api/v2/credentials/mariadb/{credentials_id} | Update MariaDB credentials
+[**UpdateMicrosoftFabricCredentials**](CredentialsAPI.md#UpdateMicrosoftFabricCredentials) | **Patch** /api/v2/credentials/microsoft-fabric/{credentials_id} | Update Microsoft Fabric credentials
 [**UpdateMotherduckCredentials**](CredentialsAPI.md#UpdateMotherduckCredentials) | **Patch** /api/v2/credentials/motherduck/{credentials_id} | Update MotherDuck credentials
 [**UpdateMulesoftCredentials**](CredentialsAPI.md#UpdateMulesoftCredentials) | **Patch** /api/v2/credentials/mulesoft/{credentials_id} | Update MuleSoft credentials
 [**UpdateMysqlCredentials**](CredentialsAPI.md#UpdateMysqlCredentials) | **Patch** /api/v2/credentials/mysql/{credentials_id} | Update MySQL credentials
@@ -175,6 +186,7 @@ Method | HTTP request | Description
 [**UpdatePineconeCredentials**](CredentialsAPI.md#UpdatePineconeCredentials) | **Patch** /api/v2/credentials/pinecone/{credentials_id} | Update Pinecone credentials
 [**UpdatePostgresCredentials**](CredentialsAPI.md#UpdatePostgresCredentials) | **Patch** /api/v2/credentials/postgres/{credentials_id} | Update PostgreSQL credentials
 [**UpdatePowerBiCredentials**](CredentialsAPI.md#UpdatePowerBiCredentials) | **Patch** /api/v2/credentials/power-bi/{credentials_id} | Update Power BI credentials
+[**UpdatePrestoCredentials**](CredentialsAPI.md#UpdatePrestoCredentials) | **Patch** /api/v2/credentials/presto/{credentials_id} | Update Presto credentials
 [**UpdateRedshiftCredentials**](CredentialsAPI.md#UpdateRedshiftCredentials) | **Patch** /api/v2/credentials/redshift/{credentials_id} | Update Redshift credentials
 [**UpdateS3Credentials**](CredentialsAPI.md#UpdateS3Credentials) | **Patch** /api/v2/credentials/s3/{credentials_id} | Update S3 credentials
 [**UpdateSalesforceCrmCredentials**](CredentialsAPI.md#UpdateSalesforceCrmCredentials) | **Patch** /api/v2/credentials/salesforce-crm/{credentials_id} | Update Salesforce CRM credentials
@@ -233,6 +245,8 @@ Method | HTTP request | Description
 [**ValidateLookerGitCloneCredentialsChange**](CredentialsAPI.md#ValidateLookerGitCloneCredentialsChange) | **Post** /api/v2/credentials/looker-git-clone/{credentials_id}/validate | Validate a change to LookML repository credentials
 [**ValidateMariadbCredentials**](CredentialsAPI.md#ValidateMariadbCredentials) | **Post** /api/v2/credentials/mariadb/validate | Validate MariaDB credentials
 [**ValidateMariadbCredentialsChange**](CredentialsAPI.md#ValidateMariadbCredentialsChange) | **Post** /api/v2/credentials/mariadb/{credentials_id}/validate | Validate a change to MariaDB credentials
+[**ValidateMicrosoftFabricCredentials**](CredentialsAPI.md#ValidateMicrosoftFabricCredentials) | **Post** /api/v2/credentials/microsoft-fabric/validate | Validate Microsoft Fabric credentials
+[**ValidateMicrosoftFabricCredentialsChange**](CredentialsAPI.md#ValidateMicrosoftFabricCredentialsChange) | **Post** /api/v2/credentials/microsoft-fabric/{credentials_id}/validate | Validate a change to Microsoft Fabric credentials
 [**ValidateMotherduckCredentials**](CredentialsAPI.md#ValidateMotherduckCredentials) | **Post** /api/v2/credentials/motherduck/validate | Validate MotherDuck credentials
 [**ValidateMotherduckCredentialsChange**](CredentialsAPI.md#ValidateMotherduckCredentialsChange) | **Post** /api/v2/credentials/motherduck/{credentials_id}/validate | Validate a change to MotherDuck credentials
 [**ValidateMulesoftCredentials**](CredentialsAPI.md#ValidateMulesoftCredentials) | **Post** /api/v2/credentials/mulesoft/validate | Validate MuleSoft credentials
@@ -1592,6 +1606,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateHiveCredentials
+
+> HiveCredentialsOut CreateHiveCredentials(ctx).HiveCredentialsIn(hiveCredentialsIn).Execute()
+
+Create Hive credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	hiveCredentialsIn := *openapiclient.NewHiveCredentialsIn("Host_example", "User_example") // HiveCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateHiveCredentials(context.Background()).HiveCredentialsIn(hiveCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateHiveCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateHiveCredentials`: HiveCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateHiveCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateHiveCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **hiveCredentialsIn** | [**HiveCredentialsIn**](HiveCredentialsIn.md) |  | 
+
+### Return type
+
+[**HiveCredentialsOut**](HiveCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CreateHiveMysqlCredentials
 
 > HiveMySqlCredentialsOut CreateHiveMysqlCredentials(ctx).HiveMySqlCredentialsIn(hiveMySqlCredentialsIn).Execute()
@@ -1973,6 +2053,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MariaDbCredentialsOut**](MariaDbCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreateMicrosoftFabricCredentials
+
+> MicrosoftFabricCredentialsOut CreateMicrosoftFabricCredentials(ctx).MicrosoftFabricCredentialsIn(microsoftFabricCredentialsIn).Execute()
+
+Create Microsoft Fabric credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	microsoftFabricCredentialsIn := *openapiclient.NewMicrosoftFabricCredentialsIn("Host_example", int32(123), "DbName_example", "TenantId_example", "AppClientId_example", "AppClientSecret_example") // MicrosoftFabricCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreateMicrosoftFabricCredentials(context.Background()).MicrosoftFabricCredentialsIn(microsoftFabricCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreateMicrosoftFabricCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateMicrosoftFabricCredentials`: MicrosoftFabricCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreateMicrosoftFabricCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateMicrosoftFabricCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **microsoftFabricCredentialsIn** | [**MicrosoftFabricCredentialsIn**](MicrosoftFabricCredentialsIn.md) |  | 
+
+### Return type
+
+[**MicrosoftFabricCredentialsOut**](MicrosoftFabricCredentialsOut.md)
 
 ### Authorization
 
@@ -2435,6 +2581,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PowerBiCredentialsOut**](PowerBiCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CreatePrestoCredentials
+
+> PrestoCredentialsOut CreatePrestoCredentials(ctx).PrestoCredentialsIn(prestoCredentialsIn).Execute()
+
+Create Presto credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	prestoCredentialsIn := *openapiclient.NewPrestoCredentialsIn("Host_example", int32(123), "User_example") // PrestoCredentialsIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.CreatePrestoCredentials(context.Background()).PrestoCredentialsIn(prestoCredentialsIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.CreatePrestoCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreatePrestoCredentials`: PrestoCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.CreatePrestoCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreatePrestoCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **prestoCredentialsIn** | [**PrestoCredentialsIn**](PrestoCredentialsIn.md) |  | 
+
+### Return type
+
+[**PrestoCredentialsOut**](PrestoCredentialsOut.md)
 
 ### Authorization
 
@@ -4670,6 +4882,74 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## DeleteHiveCredentials
+
+> DeleteHiveCredentials(ctx, credentialsId).Execute()
+
+Delete Hive credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteHiveCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteHiveCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteHiveCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteHiveMysqlCredentials
 
 > DeleteHiveMysqlCredentials(ctx, credentialsId).Execute()
@@ -5054,6 +5334,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteMariadbCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteMicrosoftFabricCredentials
+
+> DeleteMicrosoftFabricCredentials(ctx, credentialsId).Execute()
+
+Delete Microsoft Fabric credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeleteMicrosoftFabricCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeleteMicrosoftFabricCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteMicrosoftFabricCredentialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -5530,6 +5878,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeletePowerBiCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeletePrestoCredentials
+
+> DeletePrestoCredentials(ctx, credentialsId).Execute()
+
+Delete Presto credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CredentialsAPI.DeletePrestoCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.DeletePrestoCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeletePrestoCredentialsRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -7840,6 +8256,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetHiveCredentials
+
+> HiveCredentialsOut GetHiveCredentials(ctx, credentialsId).Execute()
+
+Get Hive credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetHiveCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetHiveCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetHiveCredentials`: HiveCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetHiveCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetHiveCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**HiveCredentialsOut**](HiveCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## GetHiveMysqlCredentials
 
 > HiveMySqlCredentialsOut GetHiveMysqlCredentials(ctx, credentialsId).Execute()
@@ -8245,6 +8731,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MariaDbCredentialsOut**](MariaDbCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetMicrosoftFabricCredentials
+
+> MicrosoftFabricCredentialsOut GetMicrosoftFabricCredentials(ctx, credentialsId).Execute()
+
+Get Microsoft Fabric credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetMicrosoftFabricCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetMicrosoftFabricCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetMicrosoftFabricCredentials`: MicrosoftFabricCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetMicrosoftFabricCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetMicrosoftFabricCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**MicrosoftFabricCredentialsOut**](MicrosoftFabricCredentialsOut.md)
 
 ### Authorization
 
@@ -8735,6 +9291,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PowerBiCredentialsOut**](PowerBiCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetPrestoCredentials
+
+> PrestoCredentialsOut GetPrestoCredentials(ctx, credentialsId).Execute()
+
+Get Presto credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.GetPrestoCredentials(context.Background(), credentialsId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.GetPrestoCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetPrestoCredentials`: PrestoCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.GetPrestoCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetPrestoCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**PrestoCredentialsOut**](PrestoCredentialsOut.md)
 
 ### Authorization
 
@@ -11100,6 +11726,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## UpdateHiveCredentials
+
+> HiveCredentialsOut UpdateHiveCredentials(ctx, credentialsId).HiveCredentialsPatch(hiveCredentialsPatch).Execute()
+
+Update Hive credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	hiveCredentialsPatch := *openapiclient.NewHiveCredentialsPatch() // HiveCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateHiveCredentials(context.Background(), credentialsId).HiveCredentialsPatch(hiveCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateHiveCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateHiveCredentials`: HiveCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateHiveCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateHiveCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **hiveCredentialsPatch** | [**HiveCredentialsPatch**](HiveCredentialsPatch.md) |  | 
+
+### Return type
+
+[**HiveCredentialsOut**](HiveCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## UpdateHiveMysqlCredentials
 
 > HiveMySqlCredentialsOut UpdateHiveMysqlCredentials(ctx, credentialsId).HiveMySqlCredentialsPatch(hiveMySqlCredentialsPatch).Execute()
@@ -11517,6 +12215,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**MariaDbCredentialsOut**](MariaDbCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdateMicrosoftFabricCredentials
+
+> MicrosoftFabricCredentialsOut UpdateMicrosoftFabricCredentials(ctx, credentialsId).MicrosoftFabricCredentialsPatch(microsoftFabricCredentialsPatch).Execute()
+
+Update Microsoft Fabric credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	microsoftFabricCredentialsPatch := *openapiclient.NewMicrosoftFabricCredentialsPatch() // MicrosoftFabricCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdateMicrosoftFabricCredentials(context.Background(), credentialsId).MicrosoftFabricCredentialsPatch(microsoftFabricCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdateMicrosoftFabricCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdateMicrosoftFabricCredentials`: MicrosoftFabricCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdateMicrosoftFabricCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdateMicrosoftFabricCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **microsoftFabricCredentialsPatch** | [**MicrosoftFabricCredentialsPatch**](MicrosoftFabricCredentialsPatch.md) |  | 
+
+### Return type
+
+[**MicrosoftFabricCredentialsOut**](MicrosoftFabricCredentialsOut.md)
 
 ### Authorization
 
@@ -12021,6 +12791,78 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PowerBiCredentialsOut**](PowerBiCredentialsOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## UpdatePrestoCredentials
+
+> PrestoCredentialsOut UpdatePrestoCredentials(ctx, credentialsId).PrestoCredentialsPatch(prestoCredentialsPatch).Execute()
+
+Update Presto credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	prestoCredentialsPatch := *openapiclient.NewPrestoCredentialsPatch() // PrestoCredentialsPatch | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.UpdatePrestoCredentials(context.Background(), credentialsId).PrestoCredentialsPatch(prestoCredentialsPatch).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.UpdatePrestoCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `UpdatePrestoCredentials`: PrestoCredentialsOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.UpdatePrestoCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiUpdatePrestoCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **prestoCredentialsPatch** | [**PrestoCredentialsPatch**](PrestoCredentialsPatch.md) |  | 
+
+### Return type
+
+[**PrestoCredentialsOut**](PrestoCredentialsOut.md)
 
 ### Authorization
 
@@ -16055,6 +16897,144 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
  **mariaDbCredentialsChangeValidateIn** | [**MariaDbCredentialsChangeValidateIn**](MariaDbCredentialsChangeValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateMicrosoftFabricCredentials
+
+> ValidationRunOut ValidateMicrosoftFabricCredentials(ctx).MicrosoftFabricCredentialsValidateIn(microsoftFabricCredentialsValidateIn).Execute()
+
+Validate Microsoft Fabric credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	microsoftFabricCredentialsValidateIn := *openapiclient.NewMicrosoftFabricCredentialsValidateIn("DeploymentId_example", "Host_example", int32(123), "DbName_example", "TenantId_example", "AppClientId_example", "AppClientSecret_example") // MicrosoftFabricCredentialsValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateMicrosoftFabricCredentials(context.Background()).MicrosoftFabricCredentialsValidateIn(microsoftFabricCredentialsValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateMicrosoftFabricCredentials``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateMicrosoftFabricCredentials`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateMicrosoftFabricCredentials`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateMicrosoftFabricCredentialsRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **microsoftFabricCredentialsValidateIn** | [**MicrosoftFabricCredentialsValidateIn**](MicrosoftFabricCredentialsValidateIn.md) |  | 
+
+### Return type
+
+[**ValidationRunOut**](ValidationRunOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## ValidateMicrosoftFabricCredentialsChange
+
+> ValidationRunOut ValidateMicrosoftFabricCredentialsChange(ctx, credentialsId).MicrosoftFabricCredentialsChangeValidateIn(microsoftFabricCredentialsChangeValidateIn).Execute()
+
+Validate a change to Microsoft Fabric credentials
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	credentialsId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the credentials, as returned when they are created or listed.
+	microsoftFabricCredentialsChangeValidateIn := *openapiclient.NewMicrosoftFabricCredentialsChangeValidateIn("DeploymentId_example") // MicrosoftFabricCredentialsChangeValidateIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CredentialsAPI.ValidateMicrosoftFabricCredentialsChange(context.Background(), credentialsId).MicrosoftFabricCredentialsChangeValidateIn(microsoftFabricCredentialsChangeValidateIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CredentialsAPI.ValidateMicrosoftFabricCredentialsChange``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `ValidateMicrosoftFabricCredentialsChange`: ValidationRunOut
+	fmt.Fprintf(os.Stdout, "Response from `CredentialsAPI.ValidateMicrosoftFabricCredentialsChange`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**credentialsId** | **string** | Id of the credentials, as returned when they are created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiValidateMicrosoftFabricCredentialsChangeRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **microsoftFabricCredentialsChangeValidateIn** | [**MicrosoftFabricCredentialsChangeValidateIn**](MicrosoftFabricCredentialsChangeValidateIn.md) |  | 
 
 ### Return type
 

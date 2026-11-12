@@ -201,6 +201,10 @@ docs/GlueCredentialsIn.md
 docs/GlueCredentialsOut.md
 docs/GlueCredentialsPatch.md
 docs/GlueCredentialsValidateIn.md
+docs/HiveAuthMode.md
+docs/HiveCredentialsIn.md
+docs/HiveCredentialsOut.md
+docs/HiveCredentialsPatch.md
 docs/HiveMySqlCredentialsIn.md
 docs/HiveMySqlCredentialsOut.md
 docs/HiveMySqlCredentialsPatch.md
@@ -246,6 +250,11 @@ docs/MetricsFilterOperator.md
 docs/MetricsOrderBy.md
 docs/MetricsQuery.md
 docs/MetricsQueryOut.md
+docs/MicrosoftFabricCredentialsChangeValidateIn.md
+docs/MicrosoftFabricCredentialsIn.md
+docs/MicrosoftFabricCredentialsOut.md
+docs/MicrosoftFabricCredentialsPatch.md
+docs/MicrosoftFabricCredentialsValidateIn.md
 docs/MotherDuckCredentialsChangeValidateIn.md
 docs/MotherDuckCredentialsIn.md
 docs/MotherDuckCredentialsOut.md
@@ -289,6 +298,9 @@ docs/PowerBiCredentialsIn.md
 docs/PowerBiCredentialsOut.md
 docs/PowerBiCredentialsPatch.md
 docs/PowerBiCredentialsValidateIn.md
+docs/PrestoCredentialsIn.md
+docs/PrestoCredentialsOut.md
+docs/PrestoCredentialsPatch.md
 docs/ProblemOut.md
 docs/RedshiftCredentialsChangeValidateIn.md
 docs/RedshiftCredentialsIn.md
@@ -548,6 +560,10 @@ model_glue_credentials_in.go
 model_glue_credentials_out.go
 model_glue_credentials_patch.go
 model_glue_credentials_validate_in.go
+model_hive_auth_mode.go
+model_hive_credentials_in.go
+model_hive_credentials_out.go
+model_hive_credentials_patch.go
 model_hive_my_sql_credentials_in.go
 model_hive_my_sql_credentials_out.go
 model_hive_my_sql_credentials_patch.go
@@ -591,6 +607,11 @@ model_metrics_filter_operator.go
 model_metrics_order_by.go
 model_metrics_query.go
 model_metrics_query_out.go
+model_microsoft_fabric_credentials_change_validate_in.go
+model_microsoft_fabric_credentials_in.go
+model_microsoft_fabric_credentials_out.go
+model_microsoft_fabric_credentials_patch.go
+model_microsoft_fabric_credentials_validate_in.go
 model_mother_duck_credentials_change_validate_in.go
 model_mother_duck_credentials_in.go
 model_mother_duck_credentials_out.go
@@ -634,6 +655,9 @@ model_power_bi_credentials_in.go
 model_power_bi_credentials_out.go
 model_power_bi_credentials_patch.go
 model_power_bi_credentials_validate_in.go
+model_presto_credentials_in.go
+model_presto_credentials_out.go
+model_presto_credentials_patch.go
 model_problem_out.go
 model_redshift_credentials_change_validate_in.go
 model_redshift_credentials_in.go
