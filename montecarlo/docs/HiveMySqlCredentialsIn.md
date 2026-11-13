@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **User** | **string** | Database user Monte Carlo logs in as. | 
 **Password** | **string** | Password of the database user. Stored by Monte Carlo and never returned. | 
 **DbName** | **string** | MySQL database that holds the Hive metastore. | 
+**SslCaUrl** | Pointer to **NullableString** | https URL of the PEM bundle of certificate authorities the MySQL server&#39;s certificate is checked against. Monte Carlo downloads it at each connection and connects over TLS. For Amazon RDS, use https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem. Leave it out and the server&#39;s certificate is not checked. | [optional] 
 
 ## Methods
 
@@ -129,6 +130,41 @@ and a boolean to check if the value has been set.
 SetDbName sets DbName field to given value.
 
 
+### GetSslCaUrl
+
+`func (o *HiveMySqlCredentialsIn) GetSslCaUrl() string`
+
+GetSslCaUrl returns the SslCaUrl field if non-nil, zero value otherwise.
+
+### GetSslCaUrlOk
+
+`func (o *HiveMySqlCredentialsIn) GetSslCaUrlOk() (*string, bool)`
+
+GetSslCaUrlOk returns a tuple with the SslCaUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSslCaUrl
+
+`func (o *HiveMySqlCredentialsIn) SetSslCaUrl(v string)`
+
+SetSslCaUrl sets SslCaUrl field to given value.
+
+### HasSslCaUrl
+
+`func (o *HiveMySqlCredentialsIn) HasSslCaUrl() bool`
+
+HasSslCaUrl returns a boolean if a field has been set.
+
+### SetSslCaUrlNil
+
+`func (o *HiveMySqlCredentialsIn) SetSslCaUrlNil(b bool)`
+
+ SetSslCaUrlNil sets the value for SslCaUrl to be an explicit nil
+
+### UnsetSslCaUrl
+`func (o *HiveMySqlCredentialsIn) UnsetSslCaUrl()`
+
+UnsetSslCaUrl ensures that no value is present for SslCaUrl, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **DbName** | Pointer to **NullableString** | Database to connect to. | [optional] 
 **User** | Pointer to **NullableString** | Database user Monte Carlo logs in as. | [optional] 
 **Password** | Pointer to **NullableString** | New password of the database user. | [optional] 
+**SslCaUrl** | Pointer to **NullableString** | https URL of the PEM bundle of certificate authorities the MySQL server&#39;s certificate is checked against. Monte Carlo downloads it at each connection and connects over TLS. For Amazon RDS, use https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem. A value replaces any setup that read the CA from Monte Carlo storage or skipped the check. Null removes it. Changing it requires sending the credentials&#39; secrets again. | [optional] 
 
 ## Methods
 
@@ -204,6 +205,41 @@ HasPassword returns a boolean if a field has been set.
 `func (o *HiveMySqlCredentialsPatch) UnsetPassword()`
 
 UnsetPassword ensures that no value is present for Password, not even an explicit nil
+### GetSslCaUrl
+
+`func (o *HiveMySqlCredentialsPatch) GetSslCaUrl() string`
+
+GetSslCaUrl returns the SslCaUrl field if non-nil, zero value otherwise.
+
+### GetSslCaUrlOk
+
+`func (o *HiveMySqlCredentialsPatch) GetSslCaUrlOk() (*string, bool)`
+
+GetSslCaUrlOk returns a tuple with the SslCaUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSslCaUrl
+
+`func (o *HiveMySqlCredentialsPatch) SetSslCaUrl(v string)`
+
+SetSslCaUrl sets SslCaUrl field to given value.
+
+### HasSslCaUrl
+
+`func (o *HiveMySqlCredentialsPatch) HasSslCaUrl() bool`
+
+HasSslCaUrl returns a boolean if a field has been set.
+
+### SetSslCaUrlNil
+
+`func (o *HiveMySqlCredentialsPatch) SetSslCaUrlNil(b bool)`
+
+ SetSslCaUrlNil sets the value for SslCaUrl to be an explicit nil
+
+### UnsetSslCaUrl
+`func (o *HiveMySqlCredentialsPatch) UnsetSslCaUrl()`
+
+UnsetSslCaUrl ensures that no value is present for SslCaUrl, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

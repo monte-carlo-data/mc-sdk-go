@@ -17,7 +17,7 @@ import (
 // checks if the HiveMySqlCredentialsPatch type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &HiveMySqlCredentialsPatch{}
 
-// HiveMySqlCredentialsPatch A change to existing credentials for a Hive metastore on MySQL.  A field left out is unchanged. `password` set to null is unchanged. `host`, `port`, `db_name` and `user` cannot be cleared. Sending an empty body returns the credentials as they are.
+// HiveMySqlCredentialsPatch A change to existing credentials for a Hive metastore on MySQL.  A field left out is unchanged. `password` set to null is unchanged. `host`, `port`, `db_name` and `user` cannot be cleared. `ssl_ca_url` set to null removes the CA and needs `password` sent again. Sending an empty body returns the credentials as they are.
 type HiveMySqlCredentialsPatch struct {
 	// Hostname of the database endpoint. Changing it requires sending the credentials' secrets again.
 	Host NullableString `json:"host,omitempty"`
@@ -29,6 +29,8 @@ type HiveMySqlCredentialsPatch struct {
 	User NullableString `json:"user,omitempty"`
 	// New password of the database user.
 	Password NullableString `json:"password,omitempty"`
+	// https URL of the PEM bundle of certificate authorities the MySQL server's certificate is checked against. Monte Carlo downloads it at each connection and connects over TLS. For Amazon RDS, use https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem. A value replaces any setup that read the CA from Monte Carlo storage or skipped the check. Null removes it. Changing it requires sending the credentials' secrets again.
+	SslCaUrl NullableString `json:"ssl_ca_url,omitempty" validate:"regexp=^https:\\/\\/[^\\\\s\\/?#]+\\\\S*$"`
 }
 
 // NewHiveMySqlCredentialsPatch instantiates a new HiveMySqlCredentialsPatch object
@@ -263,6 +265,49 @@ func (o *HiveMySqlCredentialsPatch) UnsetPassword() {
 	o.Password.Unset()
 }
 
+// GetSslCaUrl returns the SslCaUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HiveMySqlCredentialsPatch) GetSslCaUrl() string {
+	if o == nil || IsNil(o.SslCaUrl.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SslCaUrl.Get()
+}
+
+// GetSslCaUrlOk returns a tuple with the SslCaUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HiveMySqlCredentialsPatch) GetSslCaUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SslCaUrl.Get(), o.SslCaUrl.IsSet()
+}
+
+// HasSslCaUrl returns a boolean if a field has been set.
+func (o *HiveMySqlCredentialsPatch) HasSslCaUrl() bool {
+	if o != nil && o.SslCaUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSslCaUrl gets a reference to the given NullableString and assigns it to the SslCaUrl field.
+func (o *HiveMySqlCredentialsPatch) SetSslCaUrl(v string) {
+	o.SslCaUrl.Set(&v)
+}
+
+// SetSslCaUrlNil sets the value for SslCaUrl to be an explicit nil
+func (o *HiveMySqlCredentialsPatch) SetSslCaUrlNil() {
+	o.SslCaUrl.Set(nil)
+}
+
+// UnsetSslCaUrl ensures that no value is present for SslCaUrl, not even an explicit nil
+func (o *HiveMySqlCredentialsPatch) UnsetSslCaUrl() {
+	o.SslCaUrl.Unset()
+}
+
 func (o HiveMySqlCredentialsPatch) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -287,6 +332,9 @@ func (o HiveMySqlCredentialsPatch) ToMap() (map[string]interface{}, error) {
 	}
 	if o.Password.IsSet() {
 		toSerialize["password"] = o.Password.Get()
+	}
+	if o.SslCaUrl.IsSet() {
+		toSerialize["ssl_ca_url"] = o.SslCaUrl.Get()
 	}
 	return toSerialize, nil
 }
