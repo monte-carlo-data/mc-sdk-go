@@ -12,12 +12,13 @@ Name | Type | Description | Notes
 **Port** | **int32** | Port the database listens on. | 
 **DbName** | **string** | MySQL database that holds the Hive metastore. | 
 **User** | **string** | Database user Monte Carlo logs in as. | 
+**SslCaUrl** | **NullableString** | https URL of the PEM bundle of certificate authorities the MySQL server&#39;s certificate is checked against. Monte Carlo downloads it at each connection and connects over TLS. For Amazon RDS, use https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem. Null when none is set, or when the stored CA is not fetched from a URL and checked, as when it was set up to read from Monte Carlo storage or to skip the check. Setting &#x60;ssl_ca_url&#x60; replaces such a setup. | 
 
 ## Methods
 
 ### NewHiveMySqlCredentialsOut
 
-`func NewHiveMySqlCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, host string, port int32, dbName string, user string, ) *HiveMySqlCredentialsOut`
+`func NewHiveMySqlCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, host string, port int32, dbName string, user string, sslCaUrl NullableString, ) *HiveMySqlCredentialsOut`
 
 NewHiveMySqlCredentialsOut instantiates a new HiveMySqlCredentialsOut object
 This constructor will assign default values to properties that have it defined,
@@ -192,6 +193,36 @@ and a boolean to check if the value has been set.
 SetUser sets User field to given value.
 
 
+### GetSslCaUrl
+
+`func (o *HiveMySqlCredentialsOut) GetSslCaUrl() string`
+
+GetSslCaUrl returns the SslCaUrl field if non-nil, zero value otherwise.
+
+### GetSslCaUrlOk
+
+`func (o *HiveMySqlCredentialsOut) GetSslCaUrlOk() (*string, bool)`
+
+GetSslCaUrlOk returns a tuple with the SslCaUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSslCaUrl
+
+`func (o *HiveMySqlCredentialsOut) SetSslCaUrl(v string)`
+
+SetSslCaUrl sets SslCaUrl field to given value.
+
+
+### SetSslCaUrlNil
+
+`func (o *HiveMySqlCredentialsOut) SetSslCaUrlNil(b bool)`
+
+ SetSslCaUrlNil sets the value for SslCaUrl to be an explicit nil
+
+### UnsetSslCaUrl
+`func (o *HiveMySqlCredentialsOut) UnsetSslCaUrl()`
+
+UnsetSslCaUrl ensures that no value is present for SslCaUrl, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -36,7 +36,9 @@ type HiveMySqlCredentialsOut struct {
 	// MySQL database that holds the Hive metastore.
 	DbName string `json:"db_name"`
 	// Database user Monte Carlo logs in as.
-	User                 string `json:"user"`
+	User string `json:"user"`
+	// https URL of the PEM bundle of certificate authorities the MySQL server's certificate is checked against. Monte Carlo downloads it at each connection and connects over TLS. For Amazon RDS, use https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem. Null when none is set, or when the stored CA is not fetched from a URL and checked, as when it was set up to read from Monte Carlo storage or to skip the check. Setting `ssl_ca_url` replaces such a setup.
+	SslCaUrl             NullableString `json:"ssl_ca_url"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -46,7 +48,7 @@ type _HiveMySqlCredentialsOut HiveMySqlCredentialsOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHiveMySqlCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, host string, port int32, dbName string, user string) *HiveMySqlCredentialsOut {
+func NewHiveMySqlCredentialsOut(id string, connectionType string, storageType CredentialsStorageType, createdTime time.Time, host string, port int32, dbName string, user string, sslCaUrl NullableString) *HiveMySqlCredentialsOut {
 	this := HiveMySqlCredentialsOut{}
 	this.Id = id
 	this.ConnectionType = connectionType
@@ -56,6 +58,7 @@ func NewHiveMySqlCredentialsOut(id string, connectionType string, storageType Cr
 	this.Port = port
 	this.DbName = dbName
 	this.User = user
+	this.SslCaUrl = sslCaUrl
 	return &this
 }
 
@@ -259,6 +262,32 @@ func (o *HiveMySqlCredentialsOut) SetUser(v string) {
 	o.User = v
 }
 
+// GetSslCaUrl returns the SslCaUrl field value
+// If the value is explicit nil, the zero value for string will be returned
+func (o *HiveMySqlCredentialsOut) GetSslCaUrl() string {
+	if o == nil || o.SslCaUrl.Get() == nil {
+		var ret string
+		return ret
+	}
+
+	return *o.SslCaUrl.Get()
+}
+
+// GetSslCaUrlOk returns a tuple with the SslCaUrl field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HiveMySqlCredentialsOut) GetSslCaUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SslCaUrl.Get(), o.SslCaUrl.IsSet()
+}
+
+// SetSslCaUrl sets field value
+func (o *HiveMySqlCredentialsOut) SetSslCaUrl(v string) {
+	o.SslCaUrl.Set(&v)
+}
+
 func (o HiveMySqlCredentialsOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -277,6 +306,7 @@ func (o HiveMySqlCredentialsOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["port"] = o.Port
 	toSerialize["db_name"] = o.DbName
 	toSerialize["user"] = o.User
+	toSerialize["ssl_ca_url"] = o.SslCaUrl.Get()
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -298,6 +328,7 @@ func (o *HiveMySqlCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 		"port",
 		"db_name",
 		"user",
+		"ssl_ca_url",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -335,6 +366,7 @@ func (o *HiveMySqlCredentialsOut) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "port")
 		delete(additionalProperties, "db_name")
 		delete(additionalProperties, "user")
+		delete(additionalProperties, "ssl_ca_url")
 		o.AdditionalProperties = additionalProperties
 	}
 

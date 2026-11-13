@@ -31,6 +31,8 @@ type HiveMySqlCredentialsIn struct {
 	Password string `json:"password"`
 	// MySQL database that holds the Hive metastore.
 	DbName string `json:"db_name"`
+	// https URL of the PEM bundle of certificate authorities the MySQL server's certificate is checked against. Monte Carlo downloads it at each connection and connects over TLS. For Amazon RDS, use https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem. Leave it out and the server's certificate is not checked.
+	SslCaUrl NullableString `json:"ssl_ca_url,omitempty" validate:"regexp=^https:\\/\\/[^\\\\s\\/?#]+\\\\S*$"`
 }
 
 type _HiveMySqlCredentialsIn HiveMySqlCredentialsIn
@@ -177,6 +179,49 @@ func (o *HiveMySqlCredentialsIn) SetDbName(v string) {
 	o.DbName = v
 }
 
+// GetSslCaUrl returns the SslCaUrl field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *HiveMySqlCredentialsIn) GetSslCaUrl() string {
+	if o == nil || IsNil(o.SslCaUrl.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.SslCaUrl.Get()
+}
+
+// GetSslCaUrlOk returns a tuple with the SslCaUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *HiveMySqlCredentialsIn) GetSslCaUrlOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.SslCaUrl.Get(), o.SslCaUrl.IsSet()
+}
+
+// HasSslCaUrl returns a boolean if a field has been set.
+func (o *HiveMySqlCredentialsIn) HasSslCaUrl() bool {
+	if o != nil && o.SslCaUrl.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetSslCaUrl gets a reference to the given NullableString and assigns it to the SslCaUrl field.
+func (o *HiveMySqlCredentialsIn) SetSslCaUrl(v string) {
+	o.SslCaUrl.Set(&v)
+}
+
+// SetSslCaUrlNil sets the value for SslCaUrl to be an explicit nil
+func (o *HiveMySqlCredentialsIn) SetSslCaUrlNil() {
+	o.SslCaUrl.Set(nil)
+}
+
+// UnsetSslCaUrl ensures that no value is present for SslCaUrl, not even an explicit nil
+func (o *HiveMySqlCredentialsIn) UnsetSslCaUrl() {
+	o.SslCaUrl.Unset()
+}
+
 func (o HiveMySqlCredentialsIn) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -192,6 +237,9 @@ func (o HiveMySqlCredentialsIn) ToMap() (map[string]interface{}, error) {
 	toSerialize["user"] = o.User
 	toSerialize["password"] = o.Password
 	toSerialize["db_name"] = o.DbName
+	if o.SslCaUrl.IsSet() {
+		toSerialize["ssl_ca_url"] = o.SslCaUrl.Get()
+	}
 	return toSerialize, nil
 }
 
