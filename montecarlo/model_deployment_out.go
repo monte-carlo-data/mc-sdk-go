@@ -27,14 +27,20 @@ type DeploymentOut struct {
 	Name string `json:"name"`
 	// What the deployment hosts. Null when nothing is provisioned on it, in which case it has to be provisioned before it can be used.
 	Type NullableDeploymentType `json:"type,omitempty"`
-	// Where the deployment's collection agent or data store runs. Null for a Monte Carlo hosted deployment, which runs neither, for one with nothing provisioned on it, and for one whose platform Monte Carlo has not recorded.
+	// Where the deployment's collection agent or data store runs. Null for a Monte Carlo hosted deployment, `AGENT_OBSERVABILITY` included, which runs neither. Also null for one with nothing provisioned on it, and for one whose platform Monte Carlo has not recorded.
 	RuntimePlatform NullableRuntimePlatform `json:"runtime_platform,omitempty"`
-	// Whether the deployment can serve connections. A deployment still waiting for its collection agent or data store to be registered, or with nothing provisioned on it, is not enabled.
+	// Whether the deployment can serve connections. A deployment still waiting for its collection agent or data store to be registered, or with nothing provisioned on it, is not enabled. An `AGENT_OBSERVABILITY` deployment is enabled only while its `status` is `READY`.
 	Enabled bool `json:"enabled"`
-	// When the deployment was assigned to your account. Null when Monte Carlo has no record of that.
+	// When the deployment was assigned to your account, or for an `AGENT_OBSERVABILITY` deployment, when it was created. Null when Monte Carlo has no record of that.
 	CreatedTime NullableTime `json:"created_time,omitempty"`
 	// When Monte Carlo last updated the infrastructure behind the deployment. Null when Monte Carlo has no record of an update.
 	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
+	// How far Monte Carlo has got with setting the deployment up. An `AGENT_OBSERVABILITY` deployment is `PROVISIONING` while Monte Carlo sets it up, then `READY` or `FAILED`. Every other deployment is `READY`. `enabled` says whether the deployment can serve connections.
+	Status DeploymentStatus `json:"status"`
+	// More about the status, such as why setting up the deployment failed. Null when there is nothing to add.
+	StatusDetail NullableString `json:"status_detail,omitempty"`
+	// Whether deleting the deployment is refused once it has been `READY`. Only an `AGENT_OBSERVABILITY` deployment can be protected. Every other deployment is `false`. Turn it off with an update before deleting a protected deployment.
+	DeletionProtection bool `json:"deletion_protection"`
 	// Value to supply when you register an AWS collection agent or data store on this deployment. It goes in the trust policy of the role Monte Carlo assumes. Null until Monte Carlo has generated one, for a deployment on another platform, for a caller who is not permitted to register one, and if the value could not be read just now. Retry the request in that last case.
 	AwsExternalId        NullableString `json:"aws_external_id,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -46,11 +52,13 @@ type _DeploymentOut DeploymentOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeploymentOut(id string, name string, enabled bool) *DeploymentOut {
+func NewDeploymentOut(id string, name string, enabled bool, status DeploymentStatus, deletionProtection bool) *DeploymentOut {
 	this := DeploymentOut{}
 	this.Id = id
 	this.Name = name
 	this.Enabled = enabled
+	this.Status = status
+	this.DeletionProtection = deletionProtection
 	return &this
 }
 
@@ -306,6 +314,97 @@ func (o *DeploymentOut) UnsetLastUpdatedTime() {
 	o.LastUpdatedTime.Unset()
 }
 
+// GetStatus returns the Status field value
+func (o *DeploymentOut) GetStatus() DeploymentStatus {
+	if o == nil {
+		var ret DeploymentStatus
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *DeploymentOut) GetStatusOk() (*DeploymentStatus, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *DeploymentOut) SetStatus(v DeploymentStatus) {
+	o.Status = v
+}
+
+// GetStatusDetail returns the StatusDetail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeploymentOut) GetStatusDetail() string {
+	if o == nil || IsNil(o.StatusDetail.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.StatusDetail.Get()
+}
+
+// GetStatusDetailOk returns a tuple with the StatusDetail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeploymentOut) GetStatusDetailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.StatusDetail.Get(), o.StatusDetail.IsSet()
+}
+
+// HasStatusDetail returns a boolean if a field has been set.
+func (o *DeploymentOut) HasStatusDetail() bool {
+	if o != nil && o.StatusDetail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStatusDetail gets a reference to the given NullableString and assigns it to the StatusDetail field.
+func (o *DeploymentOut) SetStatusDetail(v string) {
+	o.StatusDetail.Set(&v)
+}
+
+// SetStatusDetailNil sets the value for StatusDetail to be an explicit nil
+func (o *DeploymentOut) SetStatusDetailNil() {
+	o.StatusDetail.Set(nil)
+}
+
+// UnsetStatusDetail ensures that no value is present for StatusDetail, not even an explicit nil
+func (o *DeploymentOut) UnsetStatusDetail() {
+	o.StatusDetail.Unset()
+}
+
+// GetDeletionProtection returns the DeletionProtection field value
+func (o *DeploymentOut) GetDeletionProtection() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.DeletionProtection
+}
+
+// GetDeletionProtectionOk returns a tuple with the DeletionProtection field value
+// and a boolean to check if the value has been set.
+func (o *DeploymentOut) GetDeletionProtectionOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeletionProtection, true
+}
+
+// SetDeletionProtection sets field value
+func (o *DeploymentOut) SetDeletionProtection(v bool) {
+	o.DeletionProtection = v
+}
+
 // GetAwsExternalId returns the AwsExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DeploymentOut) GetAwsExternalId() string {
 	if o == nil || IsNil(o.AwsExternalId.Get()) {
@@ -374,6 +473,11 @@ func (o DeploymentOut) ToMap() (map[string]interface{}, error) {
 	if o.LastUpdatedTime.IsSet() {
 		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
 	}
+	toSerialize["status"] = o.Status
+	if o.StatusDetail.IsSet() {
+		toSerialize["status_detail"] = o.StatusDetail.Get()
+	}
+	toSerialize["deletion_protection"] = o.DeletionProtection
 	if o.AwsExternalId.IsSet() {
 		toSerialize["aws_external_id"] = o.AwsExternalId.Get()
 	}
@@ -393,6 +497,8 @@ func (o *DeploymentOut) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"enabled",
+		"status",
+		"deletion_protection",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -429,6 +535,9 @@ func (o *DeploymentOut) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "created_time")
 		delete(additionalProperties, "last_updated_time")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "status_detail")
+		delete(additionalProperties, "deletion_protection")
 		delete(additionalProperties, "aws_external_id")
 		o.AdditionalProperties = additionalProperties
 	}

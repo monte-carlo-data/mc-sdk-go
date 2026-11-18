@@ -4,15 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | [**DeploymentType**](DeploymentType.md) | What the deployment will host. Only &#x60;COLLECTION_AGENT&#x60; and &#x60;COLLECTION_DATA_STORE&#x60; can be provisioned today. Any other value is rejected. | 
-**RuntimePlatform** | [**RuntimePlatform**](RuntimePlatform.md) | Where the deployment&#39;s collection agent or data store will run. Either can be provisioned on &#x60;AWS&#x60;, &#x60;AZURE&#x60; or &#x60;GCP&#x60;, and a collection agent also on &#x60;GENERIC&#x60;. Any other combination is rejected. | 
+**Type** | [**DeploymentType**](DeploymentType.md) | What the deployment will host. &#x60;COLLECTION_AGENT&#x60; and &#x60;COLLECTION_DATA_STORE&#x60; can be provisioned, and an &#x60;AGENT_OBSERVABILITY&#x60; deployment can be created when your account has Monte Carlo hosted Agent Observability. Any other value is rejected. | 
+**RuntimePlatform** | Pointer to [**NullableRuntimePlatform**](RuntimePlatform.md) | Where the deployment&#39;s collection agent or data store will run. Either can be provisioned on &#x60;AWS&#x60;, &#x60;AZURE&#x60; or &#x60;GCP&#x60;, and a collection agent also on &#x60;GENERIC&#x60;. Any other combination is rejected. Required for a collection agent or data store. Leave it out for &#x60;AGENT_OBSERVABILITY&#x60;, which Monte Carlo hosts. | [optional] 
 **Name** | Pointer to **NullableString** | Display name for the deployment. Monte Carlo generates one if you leave it out. | [optional] 
+**DeletionProtection** | Pointer to **NullableBool** | Whether deleting the deployment is refused once it has been ready. Only an &#x60;AGENT_OBSERVABILITY&#x60; deployment can be protected, and it is protected unless you send &#x60;false&#x60;. Any other type accepts only &#x60;false&#x60;. | [optional] 
 
 ## Methods
 
 ### NewDeploymentIn
 
-`func NewDeploymentIn(type_ DeploymentType, runtimePlatform RuntimePlatform, ) *DeploymentIn`
+`func NewDeploymentIn(type_ DeploymentType, ) *DeploymentIn`
 
 NewDeploymentIn instantiates a new DeploymentIn object
 This constructor will assign default values to properties that have it defined,
@@ -66,7 +67,22 @@ and a boolean to check if the value has been set.
 
 SetRuntimePlatform sets RuntimePlatform field to given value.
 
+### HasRuntimePlatform
 
+`func (o *DeploymentIn) HasRuntimePlatform() bool`
+
+HasRuntimePlatform returns a boolean if a field has been set.
+
+### SetRuntimePlatformNil
+
+`func (o *DeploymentIn) SetRuntimePlatformNil(b bool)`
+
+ SetRuntimePlatformNil sets the value for RuntimePlatform to be an explicit nil
+
+### UnsetRuntimePlatform
+`func (o *DeploymentIn) UnsetRuntimePlatform()`
+
+UnsetRuntimePlatform ensures that no value is present for RuntimePlatform, not even an explicit nil
 ### GetName
 
 `func (o *DeploymentIn) GetName() string`
@@ -102,6 +118,41 @@ HasName returns a boolean if a field has been set.
 `func (o *DeploymentIn) UnsetName()`
 
 UnsetName ensures that no value is present for Name, not even an explicit nil
+### GetDeletionProtection
+
+`func (o *DeploymentIn) GetDeletionProtection() bool`
+
+GetDeletionProtection returns the DeletionProtection field if non-nil, zero value otherwise.
+
+### GetDeletionProtectionOk
+
+`func (o *DeploymentIn) GetDeletionProtectionOk() (*bool, bool)`
+
+GetDeletionProtectionOk returns a tuple with the DeletionProtection field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDeletionProtection
+
+`func (o *DeploymentIn) SetDeletionProtection(v bool)`
+
+SetDeletionProtection sets DeletionProtection field to given value.
+
+### HasDeletionProtection
+
+`func (o *DeploymentIn) HasDeletionProtection() bool`
+
+HasDeletionProtection returns a boolean if a field has been set.
+
+### SetDeletionProtectionNil
+
+`func (o *DeploymentIn) SetDeletionProtectionNil(b bool)`
+
+ SetDeletionProtectionNil sets the value for DeletionProtection to be an explicit nil
+
+### UnsetDeletionProtection
+`func (o *DeploymentIn) UnsetDeletionProtection()`
+
+UnsetDeletionProtection ensures that no value is present for DeletionProtection, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

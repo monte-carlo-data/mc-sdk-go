@@ -27,7 +27,7 @@ type WarehouseIn struct {
 	Type NullableWarehouseType `json:"type,omitempty"`
 	// The type of the first connection you plan to add. The warehouse type is taken from it and returned as `type`. Send this or `type`, not both. A connection type no warehouse type can be taken from is refused, custom connectors included. So is one this account does not have.
 	ConnectionType NullableString `json:"connection_type,omitempty"`
-	// The deployment the warehouse's connections will run through. Pick one from the deployments list. Only a deployment on Monte Carlo's current collection platform is accepted.
+	// The deployment the warehouse's connections will run through. Pick one from the deployments list. Only a deployment on Monte Carlo's current collection platform is accepted. An `AGENT_OBSERVABILITY` deployment is not.
 	DeploymentId string `json:"deployment_id"`
 }
 
