@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **Name** | **string** | Display name for the warehouse. Unique among your warehouses of the same type. | 
 **Type** | Pointer to [**NullableWarehouseType**](WarehouseType.md) | The kind of data platform the warehouse represents. Every connection added to it has to fit. Cannot be changed after the warehouse is created. Send this or &#x60;connection_type&#x60;, not both. | [optional] 
 **ConnectionType** | Pointer to **NullableString** | The type of the first connection you plan to add. The warehouse type is taken from it and returned as &#x60;type&#x60;. Send this or &#x60;type&#x60;, not both. A connection type no warehouse type can be taken from is refused, custom connectors included. So is one this account does not have. | [optional] 
-**DeploymentId** | **string** | The deployment the warehouse&#39;s connections will run through. Pick one from the deployments list. Only a deployment on Monte Carlo&#39;s current collection platform is accepted. | 
+**DeploymentId** | **string** | The deployment the warehouse&#39;s connections will run through. Pick one from the deployments list. Only a deployment on Monte Carlo&#39;s current collection platform is accepted. An &#x60;AGENT_OBSERVABILITY&#x60; deployment is not. | 
 
 ## Methods
 

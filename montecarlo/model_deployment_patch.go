@@ -17,10 +17,12 @@ import (
 // checks if the DeploymentPatch type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeploymentPatch{}
 
-// DeploymentPatch A change to an existing deployment. Sent when renaming one.
+// DeploymentPatch A change to an existing deployment. Sent when renaming one or changing its protection.
 type DeploymentPatch struct {
 	// New display name for the deployment. Left out, the name is unchanged.
 	Name NullableString `json:"name,omitempty"`
+	// Whether deleting the deployment is refused once it has been `READY`. Left out, it is unchanged. Only an `AGENT_OBSERVABILITY` deployment can be protected. Any other type accepts only `false`.
+	DeletionProtection NullableBool `json:"deletion_protection,omitempty"`
 }
 
 // NewDeploymentPatch instantiates a new DeploymentPatch object
@@ -83,6 +85,49 @@ func (o *DeploymentPatch) UnsetName() {
 	o.Name.Unset()
 }
 
+// GetDeletionProtection returns the DeletionProtection field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeploymentPatch) GetDeletionProtection() bool {
+	if o == nil || IsNil(o.DeletionProtection.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.DeletionProtection.Get()
+}
+
+// GetDeletionProtectionOk returns a tuple with the DeletionProtection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeploymentPatch) GetDeletionProtectionOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeletionProtection.Get(), o.DeletionProtection.IsSet()
+}
+
+// HasDeletionProtection returns a boolean if a field has been set.
+func (o *DeploymentPatch) HasDeletionProtection() bool {
+	if o != nil && o.DeletionProtection.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletionProtection gets a reference to the given NullableBool and assigns it to the DeletionProtection field.
+func (o *DeploymentPatch) SetDeletionProtection(v bool) {
+	o.DeletionProtection.Set(&v)
+}
+
+// SetDeletionProtectionNil sets the value for DeletionProtection to be an explicit nil
+func (o *DeploymentPatch) SetDeletionProtectionNil() {
+	o.DeletionProtection.Set(nil)
+}
+
+// UnsetDeletionProtection ensures that no value is present for DeletionProtection, not even an explicit nil
+func (o *DeploymentPatch) UnsetDeletionProtection() {
+	o.DeletionProtection.Unset()
+}
+
 func (o DeploymentPatch) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -95,6 +140,9 @@ func (o DeploymentPatch) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
+	}
+	if o.DeletionProtection.IsSet() {
+		toSerialize["deletion_protection"] = o.DeletionProtection.Get()
 	}
 	return toSerialize, nil
 }

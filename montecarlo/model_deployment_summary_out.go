@@ -19,7 +19,7 @@ import (
 // checks if the DeploymentSummaryOut type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeploymentSummaryOut{}
 
-// DeploymentSummaryOut A deployment: the infrastructure that connects Monte Carlo to your environment.  A deployment hosts a collection agent or a data store, or is hosted by Monte Carlo. This is the shape the list returns; reading a single deployment returns more.
+// DeploymentSummaryOut A deployment: the infrastructure that connects Monte Carlo to your environment.  A deployment hosts a collection agent or a data store, or is hosted by Monte Carlo. An `AGENT_OBSERVABILITY` deployment is hosted by Monte Carlo and stores your agents' traces. This is the shape the list returns; reading a single deployment returns more.
 type DeploymentSummaryOut struct {
 	// Unique identifier of the deployment.
 	Id string `json:"id"`
@@ -27,14 +27,20 @@ type DeploymentSummaryOut struct {
 	Name string `json:"name"`
 	// What the deployment hosts. Null when nothing is provisioned on it, in which case it has to be provisioned before it can be used.
 	Type NullableDeploymentType `json:"type,omitempty"`
-	// Where the deployment's collection agent or data store runs. Null for a Monte Carlo hosted deployment, which runs neither, for one with nothing provisioned on it, and for one whose platform Monte Carlo has not recorded.
+	// Where the deployment's collection agent or data store runs. Null for a Monte Carlo hosted deployment, `AGENT_OBSERVABILITY` included, which runs neither. Also null for one with nothing provisioned on it, and for one whose platform Monte Carlo has not recorded.
 	RuntimePlatform NullableRuntimePlatform `json:"runtime_platform,omitempty"`
-	// Whether the deployment can serve connections. A deployment still waiting for its collection agent or data store to be registered, or with nothing provisioned on it, is not enabled.
+	// Whether the deployment can serve connections. A deployment still waiting for its collection agent or data store to be registered, or with nothing provisioned on it, is not enabled. An `AGENT_OBSERVABILITY` deployment is enabled only while its `status` is `READY`.
 	Enabled bool `json:"enabled"`
-	// When the deployment was assigned to your account. Null when Monte Carlo has no record of that.
+	// When the deployment was assigned to your account, or for an `AGENT_OBSERVABILITY` deployment, when it was created. Null when Monte Carlo has no record of that.
 	CreatedTime NullableTime `json:"created_time,omitempty"`
 	// When Monte Carlo last updated the infrastructure behind the deployment. Null when Monte Carlo has no record of an update.
-	LastUpdatedTime      NullableTime `json:"last_updated_time,omitempty"`
+	LastUpdatedTime NullableTime `json:"last_updated_time,omitempty"`
+	// How far Monte Carlo has got with setting the deployment up. An `AGENT_OBSERVABILITY` deployment is `PROVISIONING` while Monte Carlo sets it up, then `READY` or `FAILED`. Every other deployment is `READY`. `enabled` says whether the deployment can serve connections.
+	Status DeploymentStatus `json:"status"`
+	// More about the status, such as why setting up the deployment failed. Null when there is nothing to add.
+	StatusDetail NullableString `json:"status_detail,omitempty"`
+	// Whether deleting the deployment is refused once it has been `READY`. Only an `AGENT_OBSERVABILITY` deployment can be protected. Every other deployment is `false`. Turn it off with an update before deleting a protected deployment.
+	DeletionProtection   bool `json:"deletion_protection"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -44,11 +50,13 @@ type _DeploymentSummaryOut DeploymentSummaryOut
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeploymentSummaryOut(id string, name string, enabled bool) *DeploymentSummaryOut {
+func NewDeploymentSummaryOut(id string, name string, enabled bool, status DeploymentStatus, deletionProtection bool) *DeploymentSummaryOut {
 	this := DeploymentSummaryOut{}
 	this.Id = id
 	this.Name = name
 	this.Enabled = enabled
+	this.Status = status
+	this.DeletionProtection = deletionProtection
 	return &this
 }
 
@@ -304,6 +312,97 @@ func (o *DeploymentSummaryOut) UnsetLastUpdatedTime() {
 	o.LastUpdatedTime.Unset()
 }
 
+// GetStatus returns the Status field value
+func (o *DeploymentSummaryOut) GetStatus() DeploymentStatus {
+	if o == nil {
+		var ret DeploymentStatus
+		return ret
+	}
+
+	return o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value
+// and a boolean to check if the value has been set.
+func (o *DeploymentSummaryOut) GetStatusOk() (*DeploymentStatus, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Status, true
+}
+
+// SetStatus sets field value
+func (o *DeploymentSummaryOut) SetStatus(v DeploymentStatus) {
+	o.Status = v
+}
+
+// GetStatusDetail returns the StatusDetail field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeploymentSummaryOut) GetStatusDetail() string {
+	if o == nil || IsNil(o.StatusDetail.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.StatusDetail.Get()
+}
+
+// GetStatusDetailOk returns a tuple with the StatusDetail field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeploymentSummaryOut) GetStatusDetailOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.StatusDetail.Get(), o.StatusDetail.IsSet()
+}
+
+// HasStatusDetail returns a boolean if a field has been set.
+func (o *DeploymentSummaryOut) HasStatusDetail() bool {
+	if o != nil && o.StatusDetail.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetStatusDetail gets a reference to the given NullableString and assigns it to the StatusDetail field.
+func (o *DeploymentSummaryOut) SetStatusDetail(v string) {
+	o.StatusDetail.Set(&v)
+}
+
+// SetStatusDetailNil sets the value for StatusDetail to be an explicit nil
+func (o *DeploymentSummaryOut) SetStatusDetailNil() {
+	o.StatusDetail.Set(nil)
+}
+
+// UnsetStatusDetail ensures that no value is present for StatusDetail, not even an explicit nil
+func (o *DeploymentSummaryOut) UnsetStatusDetail() {
+	o.StatusDetail.Unset()
+}
+
+// GetDeletionProtection returns the DeletionProtection field value
+func (o *DeploymentSummaryOut) GetDeletionProtection() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.DeletionProtection
+}
+
+// GetDeletionProtectionOk returns a tuple with the DeletionProtection field value
+// and a boolean to check if the value has been set.
+func (o *DeploymentSummaryOut) GetDeletionProtectionOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DeletionProtection, true
+}
+
+// SetDeletionProtection sets field value
+func (o *DeploymentSummaryOut) SetDeletionProtection(v bool) {
+	o.DeletionProtection = v
+}
+
 func (o DeploymentSummaryOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -329,6 +428,11 @@ func (o DeploymentSummaryOut) ToMap() (map[string]interface{}, error) {
 	if o.LastUpdatedTime.IsSet() {
 		toSerialize["last_updated_time"] = o.LastUpdatedTime.Get()
 	}
+	toSerialize["status"] = o.Status
+	if o.StatusDetail.IsSet() {
+		toSerialize["status_detail"] = o.StatusDetail.Get()
+	}
+	toSerialize["deletion_protection"] = o.DeletionProtection
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -345,6 +449,8 @@ func (o *DeploymentSummaryOut) UnmarshalJSON(data []byte) (err error) {
 		"id",
 		"name",
 		"enabled",
+		"status",
+		"deletion_protection",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -381,6 +487,9 @@ func (o *DeploymentSummaryOut) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "enabled")
 		delete(additionalProperties, "created_time")
 		delete(additionalProperties, "last_updated_time")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "status_detail")
+		delete(additionalProperties, "deletion_protection")
 		o.AdditionalProperties = additionalProperties
 	}
 

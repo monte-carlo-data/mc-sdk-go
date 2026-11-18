@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	deploymentIn := *openapiclient.NewDeploymentIn(openapiclient.DeploymentType("COLLECTION_AGENT"), openapiclient.RuntimePlatform("AWS")) // DeploymentIn | 
+	deploymentIn := *openapiclient.NewDeploymentIn(openapiclient.DeploymentType("COLLECTION_AGENT")) // DeploymentIn | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -280,7 +280,7 @@ Other parameters are passed through a pointer to a apiListDeploymentsRequest str
 
 ## ReprovisionDeployment
 
-> DeploymentOut ReprovisionDeployment(ctx, deploymentId).DeploymentIn(deploymentIn).Execute()
+> DeploymentOut ReprovisionDeployment(ctx, deploymentId).DeploymentReprovisionIn(deploymentReprovisionIn).Execute()
 
 Reprovision a deployment
 
@@ -300,11 +300,11 @@ import (
 
 func main() {
 	deploymentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the deployment, as returned when it is created or listed.
-	deploymentIn := *openapiclient.NewDeploymentIn(openapiclient.DeploymentType("COLLECTION_AGENT"), openapiclient.RuntimePlatform("AWS")) // DeploymentIn | 
+	deploymentReprovisionIn := *openapiclient.NewDeploymentReprovisionIn(openapiclient.DeploymentType("COLLECTION_AGENT"), openapiclient.RuntimePlatform("AWS")) // DeploymentReprovisionIn | 
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.DeploymentsAPI.ReprovisionDeployment(context.Background(), deploymentId).DeploymentIn(deploymentIn).Execute()
+	resp, r, err := apiClient.DeploymentsAPI.ReprovisionDeployment(context.Background(), deploymentId).DeploymentReprovisionIn(deploymentReprovisionIn).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DeploymentsAPI.ReprovisionDeployment``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -330,7 +330,7 @@ Other parameters are passed through a pointer to a apiReprovisionDeploymentReque
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **deploymentIn** | [**DeploymentIn**](DeploymentIn.md) |  | 
+ **deploymentReprovisionIn** | [**DeploymentReprovisionIn**](DeploymentReprovisionIn.md) |  | 
 
 ### Return type
 

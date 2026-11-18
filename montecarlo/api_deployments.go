@@ -40,15 +40,25 @@ func (r ApiCreateDeploymentRequest) Execute() (*DeploymentOut, *http.Response, e
 /*
 CreateDeployment Create a deployment
 
-Provision a deployment for a collection agent or a data store to be registered on.
+Provision a deployment for a collection agent or a data store, or create an Agent
+Observability deployment.
 
-Connecting either one takes two calls, and this is the first. Monte Carlo allocates the
-deployment, and returns an external id for a deployment it will reach by assuming a role.
-Registering on the deployment is the second call, and that is what enables it.
+Connecting a collection agent or a data store takes two calls, and this is the first.
+Monte Carlo allocates the deployment, and returns an external id for a deployment it will
+reach by assuming a role. Registering on the deployment is the second call, and that is
+what enables it. The new deployment is not enabled and serves no connections until
+something is registered on it. It counts against your account's deployment limit as soon
+as it is created, whether or not anything ever is.
 
-The new deployment is not enabled and serves no connections until something is registered
-on it. It counts against your account's deployment limit as soon as it is created, whether
-or not anything ever is.
+An `AGENT_OBSERVABILITY` deployment is hosted by Monte Carlo and stores your agents'
+traces. Send no `runtime_platform`. It comes back with `status` `PROVISIONING`, and Monte
+Carlo sets it up after the call returns. Read it until its `status` is `READY` or
+`FAILED`. A `FAILED` deployment can be deleted and created again. It is protected from
+deletion once it has been `READY`, unless you send `deletion_protection` as `false`.
+
+Creating one answers 422 when your account cannot have Monte Carlo hosted Agent
+Observability, 409 when it already holds as many as it may, and 429 with `Retry-After`
+when it has created as many as a day allows.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiCreateDeploymentRequest
@@ -232,6 +242,11 @@ API does not provision. One that is not enabled is deleted along with the deploy
 
 Deleting reaches several systems and can stop partway through. Repeating the request
 picks up where it stopped, so clear whatever a refusal named and send it again.
+
+An `AGENT_OBSERVABILITY` deployment that has been `READY` is refused with 409 while
+`deletion_protection` is on. Turn protection off with an update, then delete it. One that
+never became `READY` can always be deleted. The agent traces it stores are removed after
+the call returns.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param deploymentId Id of the deployment, as returned when it is created or listed.
@@ -530,7 +545,8 @@ ListDeployments List deployments
 List the deployments in your account.
 
 A deployment is the infrastructure that connects Monte Carlo to your environment. Each
-one hosts a collection agent or a data store, or is hosted by Monte Carlo itself.
+one hosts a collection agent or a data store, or is hosted by Monte Carlo itself. An
+`AGENT_OBSERVABILITY` deployment is hosted by Monte Carlo and stores your agents' traces.
 
 Only deployments on Monte Carlo's current collection platform are listed. Deployments on
 the older platform are managed separately and do not appear here.
@@ -655,14 +671,14 @@ func (a *DeploymentsAPIService) ListDeploymentsExecute(r ApiListDeploymentsReque
 }
 
 type ApiReprovisionDeploymentRequest struct {
-	ctx          context.Context
-	ApiService   *DeploymentsAPIService
-	deploymentId string
-	deploymentIn *DeploymentIn
+	ctx                     context.Context
+	ApiService              *DeploymentsAPIService
+	deploymentId            string
+	deploymentReprovisionIn *DeploymentReprovisionIn
 }
 
-func (r ApiReprovisionDeploymentRequest) DeploymentIn(deploymentIn DeploymentIn) ApiReprovisionDeploymentRequest {
-	r.deploymentIn = &deploymentIn
+func (r ApiReprovisionDeploymentRequest) DeploymentReprovisionIn(deploymentReprovisionIn DeploymentReprovisionIn) ApiReprovisionDeploymentRequest {
+	r.deploymentReprovisionIn = &deploymentReprovisionIn
 	return r
 }
 
@@ -683,7 +699,8 @@ updated.
 
 A deployment whose collection agent or data store is enabled cannot be reprovisioned;
 delete that first. Neither can one hosted by Monte Carlo, which this API does not
-provision.
+provision. An `AGENT_OBSERVABILITY` deployment answers 409: delete it and create a new
+one.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param deploymentId Id of the deployment, as returned when it is created or listed.
@@ -719,8 +736,8 @@ func (a *DeploymentsAPIService) ReprovisionDeploymentExecute(r ApiReprovisionDep
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.deploymentIn == nil {
-		return localVarReturnValue, nil, reportError("deploymentIn is required and must be specified")
+	if r.deploymentReprovisionIn == nil {
+		return localVarReturnValue, nil, reportError("deploymentReprovisionIn is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -741,7 +758,7 @@ func (a *DeploymentsAPIService) ReprovisionDeploymentExecute(r ApiReprovisionDep
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.deploymentIn
+	localVarPostBody = r.deploymentReprovisionIn
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -877,14 +894,18 @@ func (r ApiUpdateDeploymentRequest) Execute() (*DeploymentOut, *http.Response, e
 /*
 UpdateDeployment Update a deployment
 
-Rename a deployment.
+Rename a deployment, or change an Agent Observability deployment's deletion protection.
 
-The name is the only thing you can change here. What a deployment hosts and where it runs
-are settled when it is provisioned, so use reprovision to change either.
+What a deployment hosts and where it runs are settled when it is provisioned, so use
+reprovision to change either.
 
 Renaming changes nothing about the infrastructure behind the deployment. Every deployment
 can be renamed, including one hosted by Monte Carlo. Sending an empty body leaves the
 deployment as it is and returns it.
+
+Only an `AGENT_OBSERVABILITY` deployment can be protected from deletion. Turn protection
+off here before deleting one that is protected. Any other deployment accepts
+`deletion_protection` only as `false`, which changes nothing.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param deploymentId Id of the deployment, as returned when it is created or listed.

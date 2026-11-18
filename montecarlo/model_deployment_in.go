@@ -19,14 +19,16 @@ import (
 // checks if the DeploymentIn type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DeploymentIn{}
 
-// DeploymentIn What to provision a deployment for. Sent both when creating one and when reprovisioning.
+// DeploymentIn What to create a deployment for.
 type DeploymentIn struct {
-	// What the deployment will host. Only `COLLECTION_AGENT` and `COLLECTION_DATA_STORE` can be provisioned today. Any other value is rejected.
+	// What the deployment will host. `COLLECTION_AGENT` and `COLLECTION_DATA_STORE` can be provisioned, and an `AGENT_OBSERVABILITY` deployment can be created when your account has Monte Carlo hosted Agent Observability. Any other value is rejected.
 	Type DeploymentType `json:"type"`
-	// Where the deployment's collection agent or data store will run. Either can be provisioned on `AWS`, `AZURE` or `GCP`, and a collection agent also on `GENERIC`. Any other combination is rejected.
-	RuntimePlatform RuntimePlatform `json:"runtime_platform"`
+	// Where the deployment's collection agent or data store will run. Either can be provisioned on `AWS`, `AZURE` or `GCP`, and a collection agent also on `GENERIC`. Any other combination is rejected. Required for a collection agent or data store. Leave it out for `AGENT_OBSERVABILITY`, which Monte Carlo hosts.
+	RuntimePlatform NullableRuntimePlatform `json:"runtime_platform,omitempty"`
 	// Display name for the deployment. Monte Carlo generates one if you leave it out.
 	Name NullableString `json:"name,omitempty"`
+	// Whether deleting the deployment is refused once it has been ready. Only an `AGENT_OBSERVABILITY` deployment can be protected, and it is protected unless you send `false`. Any other type accepts only `false`.
+	DeletionProtection NullableBool `json:"deletion_protection,omitempty"`
 }
 
 type _DeploymentIn DeploymentIn
@@ -35,10 +37,9 @@ type _DeploymentIn DeploymentIn
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeploymentIn(type_ DeploymentType, runtimePlatform RuntimePlatform) *DeploymentIn {
+func NewDeploymentIn(type_ DeploymentType) *DeploymentIn {
 	this := DeploymentIn{}
 	this.Type = type_
-	this.RuntimePlatform = runtimePlatform
 	return &this
 }
 
@@ -74,28 +75,47 @@ func (o *DeploymentIn) SetType(v DeploymentType) {
 	o.Type = v
 }
 
-// GetRuntimePlatform returns the RuntimePlatform field value
+// GetRuntimePlatform returns the RuntimePlatform field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DeploymentIn) GetRuntimePlatform() RuntimePlatform {
-	if o == nil {
+	if o == nil || IsNil(o.RuntimePlatform.Get()) {
 		var ret RuntimePlatform
 		return ret
 	}
-
-	return o.RuntimePlatform
+	return *o.RuntimePlatform.Get()
 }
 
-// GetRuntimePlatformOk returns a tuple with the RuntimePlatform field value
+// GetRuntimePlatformOk returns a tuple with the RuntimePlatform field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DeploymentIn) GetRuntimePlatformOk() (*RuntimePlatform, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.RuntimePlatform, true
+	return o.RuntimePlatform.Get(), o.RuntimePlatform.IsSet()
 }
 
-// SetRuntimePlatform sets field value
+// HasRuntimePlatform returns a boolean if a field has been set.
+func (o *DeploymentIn) HasRuntimePlatform() bool {
+	if o != nil && o.RuntimePlatform.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRuntimePlatform gets a reference to the given NullableRuntimePlatform and assigns it to the RuntimePlatform field.
 func (o *DeploymentIn) SetRuntimePlatform(v RuntimePlatform) {
-	o.RuntimePlatform = v
+	o.RuntimePlatform.Set(&v)
+}
+
+// SetRuntimePlatformNil sets the value for RuntimePlatform to be an explicit nil
+func (o *DeploymentIn) SetRuntimePlatformNil() {
+	o.RuntimePlatform.Set(nil)
+}
+
+// UnsetRuntimePlatform ensures that no value is present for RuntimePlatform, not even an explicit nil
+func (o *DeploymentIn) UnsetRuntimePlatform() {
+	o.RuntimePlatform.Unset()
 }
 
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -141,6 +161,49 @@ func (o *DeploymentIn) UnsetName() {
 	o.Name.Unset()
 }
 
+// GetDeletionProtection returns the DeletionProtection field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeploymentIn) GetDeletionProtection() bool {
+	if o == nil || IsNil(o.DeletionProtection.Get()) {
+		var ret bool
+		return ret
+	}
+	return *o.DeletionProtection.Get()
+}
+
+// GetDeletionProtectionOk returns a tuple with the DeletionProtection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeploymentIn) GetDeletionProtectionOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeletionProtection.Get(), o.DeletionProtection.IsSet()
+}
+
+// HasDeletionProtection returns a boolean if a field has been set.
+func (o *DeploymentIn) HasDeletionProtection() bool {
+	if o != nil && o.DeletionProtection.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeletionProtection gets a reference to the given NullableBool and assigns it to the DeletionProtection field.
+func (o *DeploymentIn) SetDeletionProtection(v bool) {
+	o.DeletionProtection.Set(&v)
+}
+
+// SetDeletionProtectionNil sets the value for DeletionProtection to be an explicit nil
+func (o *DeploymentIn) SetDeletionProtectionNil() {
+	o.DeletionProtection.Set(nil)
+}
+
+// UnsetDeletionProtection ensures that no value is present for DeletionProtection, not even an explicit nil
+func (o *DeploymentIn) UnsetDeletionProtection() {
+	o.DeletionProtection.Unset()
+}
+
 func (o DeploymentIn) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -152,9 +215,14 @@ func (o DeploymentIn) MarshalJSON() ([]byte, error) {
 func (o DeploymentIn) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["type"] = o.Type
-	toSerialize["runtime_platform"] = o.RuntimePlatform
+	if o.RuntimePlatform.IsSet() {
+		toSerialize["runtime_platform"] = o.RuntimePlatform.Get()
+	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
+	}
+	if o.DeletionProtection.IsSet() {
+		toSerialize["deletion_protection"] = o.DeletionProtection.Get()
 	}
 	return toSerialize, nil
 }
@@ -165,7 +233,6 @@ func (o *DeploymentIn) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"type",
-		"runtime_platform",
 	}
 
 	allProperties := make(map[string]interface{})

@@ -34,7 +34,9 @@ type IntegrationKeyOut struct {
 	// The BI container the key is scoped to, if it is scoped to one.
 	BiContainerId NullableString `json:"bi_container_id,omitempty"`
 	// The ETL container the key is scoped to, if it is scoped to one.
-	EtlContainerId       NullableString `json:"etl_container_id,omitempty"`
+	EtlContainerId NullableString `json:"etl_container_id,omitempty"`
+	// The Agent Observability deployment the key is scoped to, if it is scoped to one.
+	DeploymentId         NullableString `json:"deployment_id,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -286,6 +288,49 @@ func (o *IntegrationKeyOut) UnsetEtlContainerId() {
 	o.EtlContainerId.Unset()
 }
 
+// GetDeploymentId returns the DeploymentId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *IntegrationKeyOut) GetDeploymentId() string {
+	if o == nil || IsNil(o.DeploymentId.Get()) {
+		var ret string
+		return ret
+	}
+	return *o.DeploymentId.Get()
+}
+
+// GetDeploymentIdOk returns a tuple with the DeploymentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *IntegrationKeyOut) GetDeploymentIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.DeploymentId.Get(), o.DeploymentId.IsSet()
+}
+
+// HasDeploymentId returns a boolean if a field has been set.
+func (o *IntegrationKeyOut) HasDeploymentId() bool {
+	if o != nil && o.DeploymentId.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetDeploymentId gets a reference to the given NullableString and assigns it to the DeploymentId field.
+func (o *IntegrationKeyOut) SetDeploymentId(v string) {
+	o.DeploymentId.Set(&v)
+}
+
+// SetDeploymentIdNil sets the value for DeploymentId to be an explicit nil
+func (o *IntegrationKeyOut) SetDeploymentIdNil() {
+	o.DeploymentId.Set(nil)
+}
+
+// UnsetDeploymentId ensures that no value is present for DeploymentId, not even an explicit nil
+func (o *IntegrationKeyOut) UnsetDeploymentId() {
+	o.DeploymentId.Unset()
+}
+
 func (o IntegrationKeyOut) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -308,6 +353,9 @@ func (o IntegrationKeyOut) ToMap() (map[string]interface{}, error) {
 	}
 	if o.EtlContainerId.IsSet() {
 		toSerialize["etl_container_id"] = o.EtlContainerId.Get()
+	}
+	if o.DeploymentId.IsSet() {
+		toSerialize["deployment_id"] = o.DeploymentId.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -362,6 +410,7 @@ func (o *IntegrationKeyOut) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "warehouse_id")
 		delete(additionalProperties, "bi_container_id")
 		delete(additionalProperties, "etl_container_id")
+		delete(additionalProperties, "deployment_id")
 		o.AdditionalProperties = additionalProperties
 	}
 

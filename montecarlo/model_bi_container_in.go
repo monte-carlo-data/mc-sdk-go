@@ -25,7 +25,7 @@ type BiContainerIn struct {
 	Type NewBiContainerType `json:"type"`
 	// Display name for the BI container.
 	Name string `json:"name"`
-	// The deployment the container's connections will run through. Pick one from the deployments list. Only a deployment on Monte Carlo's current collection platform is accepted. `custom-bi-connector` takes the deployment of the agent that registered the connector, or none for a push-only connector. Every other type requires one.
+	// The deployment the container's connections will run through. Pick one from the deployments list. Only a deployment on Monte Carlo's current collection platform is accepted. An `AGENT_OBSERVABILITY` deployment is not. `custom-bi-connector` takes the deployment of the agent that registered the connector, or none for a push-only connector. Every other type requires one.
 	DeploymentId NullableString `json:"deployment_id,omitempty"`
 }
 

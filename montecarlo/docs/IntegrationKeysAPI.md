@@ -6,10 +6,13 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CreateAirflowCallbacksKey**](IntegrationKeysAPI.md#CreateAirflowCallbacksKey) | **Post** /api/v2/integration-keys/airflow-callbacks | Create an Airflow callbacks key
 [**CreateIngestionKey**](IntegrationKeysAPI.md#CreateIngestionKey) | **Post** /api/v2/integration-keys/ingestion | Create an ingestion key
+[**CreateOpenTelemetryKey**](IntegrationKeysAPI.md#CreateOpenTelemetryKey) | **Post** /api/v2/integration-keys/open-telemetry | Create an OpenTelemetry key
 [**DeleteAirflowCallbacksKey**](IntegrationKeysAPI.md#DeleteAirflowCallbacksKey) | **Delete** /api/v2/integration-keys/airflow-callbacks/{key_id} | Delete an Airflow callbacks key
 [**DeleteIngestionKey**](IntegrationKeysAPI.md#DeleteIngestionKey) | **Delete** /api/v2/integration-keys/ingestion/{key_id} | Delete an ingestion key
+[**DeleteOpenTelemetryKey**](IntegrationKeysAPI.md#DeleteOpenTelemetryKey) | **Delete** /api/v2/integration-keys/open-telemetry/{key_id} | Delete an OpenTelemetry key
 [**GetAirflowCallbacksKey**](IntegrationKeysAPI.md#GetAirflowCallbacksKey) | **Get** /api/v2/integration-keys/airflow-callbacks/{key_id} | Get an Airflow callbacks key
 [**GetIngestionKey**](IntegrationKeysAPI.md#GetIngestionKey) | **Get** /api/v2/integration-keys/ingestion/{key_id} | Get an ingestion key
+[**GetOpenTelemetryKey**](IntegrationKeysAPI.md#GetOpenTelemetryKey) | **Get** /api/v2/integration-keys/open-telemetry/{key_id} | Get an OpenTelemetry key
 [**ListIntegrationKeys**](IntegrationKeysAPI.md#ListIntegrationKeys) | **Get** /api/v2/integration-keys | List integration keys
 
 
@@ -146,6 +149,72 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CreateOpenTelemetryKey
+
+> OpenTelemetryKeyCreatedOut CreateOpenTelemetryKey(ctx).OpenTelemetryKeyIn(openTelemetryKeyIn).Execute()
+
+Create an OpenTelemetry key
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	openTelemetryKeyIn := *openapiclient.NewOpenTelemetryKeyIn("DeploymentId_example") // OpenTelemetryKeyIn | 
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IntegrationKeysAPI.CreateOpenTelemetryKey(context.Background()).OpenTelemetryKeyIn(openTelemetryKeyIn).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IntegrationKeysAPI.CreateOpenTelemetryKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CreateOpenTelemetryKey`: OpenTelemetryKeyCreatedOut
+	fmt.Fprintf(os.Stdout, "Response from `IntegrationKeysAPI.CreateOpenTelemetryKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCreateOpenTelemetryKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **openTelemetryKeyIn** | [**OpenTelemetryKeyIn**](OpenTelemetryKeyIn.md) |  | 
+
+### Return type
+
+[**OpenTelemetryKeyCreatedOut**](OpenTelemetryKeyCreatedOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## DeleteAirflowCallbacksKey
 
 > DeleteAirflowCallbacksKey(ctx, keyId).Execute()
@@ -258,6 +327,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteIngestionKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteOpenTelemetryKey
+
+> DeleteOpenTelemetryKey(ctx, keyId).Execute()
+
+Delete an OpenTelemetry key
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	keyId := "keyId_example" // string | Id of the integration key, as returned when it is created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.IntegrationKeysAPI.DeleteOpenTelemetryKey(context.Background(), keyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IntegrationKeysAPI.DeleteOpenTelemetryKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**keyId** | **string** | Id of the integration key, as returned when it is created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteOpenTelemetryKeyRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -422,6 +559,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## GetOpenTelemetryKey
+
+> OpenTelemetryKeyOut GetOpenTelemetryKey(ctx, keyId).Execute()
+
+Get an OpenTelemetry key
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	keyId := "keyId_example" // string | Id of the integration key, as returned when it is created or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.IntegrationKeysAPI.GetOpenTelemetryKey(context.Background(), keyId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IntegrationKeysAPI.GetOpenTelemetryKey``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetOpenTelemetryKey`: OpenTelemetryKeyOut
+	fmt.Fprintf(os.Stdout, "Response from `IntegrationKeysAPI.GetOpenTelemetryKey`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**keyId** | **string** | Id of the integration key, as returned when it is created or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetOpenTelemetryKeyRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**OpenTelemetryKeyOut**](OpenTelemetryKeyOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## ListIntegrationKeys
 
 > []IntegrationKeyOut ListIntegrationKeys(ctx).Scope(scope).ParentId(parentId).Execute()
@@ -444,7 +651,7 @@ import (
 
 func main() {
 	scope := openapiclient.IntegrationKeyScope("INGESTION") // IntegrationKeyScope | Only keys of this scope. (optional)
-	parentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Only keys scoped to this warehouse, BI container or ETL container. (optional)
+	parentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Only keys scoped to this warehouse, BI container, ETL container or Agent Observability deployment. (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -470,7 +677,7 @@ Other parameters are passed through a pointer to a apiListIntegrationKeysRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | [**IntegrationKeyScope**](IntegrationKeyScope.md) | Only keys of this scope. | 
- **parentId** | **string** | Only keys scoped to this warehouse, BI container or ETL container. | 
+ **parentId** | **string** | Only keys scoped to this warehouse, BI container, ETL container or Agent Observability deployment. | 
 
 ### Return type
 

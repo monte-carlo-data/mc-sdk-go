@@ -140,6 +140,8 @@ docs/DbtCloudWebhookCredentialsValidateIn.md
 docs/DeploymentIn.md
 docs/DeploymentOut.md
 docs/DeploymentPatch.md
+docs/DeploymentReprovisionIn.md
+docs/DeploymentStatus.md
 docs/DeploymentSummaryOut.md
 docs/DeploymentType.md
 docs/DeploymentsAPI.md
@@ -276,6 +278,9 @@ docs/MySqlCredentialsValidateIn.md
 docs/NewBiContainerType.md
 docs/NewEtlContainerType.md
 docs/OAuthGrantType.md
+docs/OpenTelemetryKeyCreatedOut.md
+docs/OpenTelemetryKeyIn.md
+docs/OpenTelemetryKeyOut.md
 docs/OracleCredentialsChangeValidateIn.md
 docs/OracleCredentialsIn.md
 docs/OracleCredentialsOut.md
@@ -503,6 +508,8 @@ model_dbt_cloud_webhook_credentials_validate_in.go
 model_deployment_in.go
 model_deployment_out.go
 model_deployment_patch.go
+model_deployment_reprovision_in.go
+model_deployment_status.go
 model_deployment_summary_out.go
 model_deployment_type.go
 model_doc_page_out.go
@@ -635,6 +642,9 @@ model_my_sql_credentials_validate_in.go
 model_new_bi_container_type.go
 model_new_etl_container_type.go
 model_o_auth_grant_type.go
+model_open_telemetry_key_created_out.go
+model_open_telemetry_key_in.go
+model_open_telemetry_key_out.go
 model_oracle_credentials_change_validate_in.go
 model_oracle_credentials_in.go
 model_oracle_credentials_out.go

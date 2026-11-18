@@ -15,7 +15,7 @@ import (
 	"fmt"
 )
 
-// DeploymentType What a deployment hosts.  `CLOUD` is a deployment Monte Carlo hosts and runs for you, rather than one you run in your own environment.
+// DeploymentType What a deployment hosts.  `CLOUD` is a deployment Monte Carlo hosts and runs for you, rather than one you run in your own environment. `AGENT_OBSERVABILITY` is a deployment Monte Carlo hosts to store your agents' traces.
 type DeploymentType string
 
 // List of DeploymentType
@@ -23,6 +23,7 @@ const (
 	DEPLOYMENTTYPE_COLLECTION_AGENT      DeploymentType = "COLLECTION_AGENT"
 	DEPLOYMENTTYPE_COLLECTION_DATA_STORE DeploymentType = "COLLECTION_DATA_STORE"
 	DEPLOYMENTTYPE_CLOUD                 DeploymentType = "CLOUD"
+	DEPLOYMENTTYPE_AGENT_OBSERVABILITY   DeploymentType = "AGENT_OBSERVABILITY"
 )
 
 // All allowed values of DeploymentType enum
@@ -30,6 +31,7 @@ var AllowedDeploymentTypeEnumValues = []DeploymentType{
 	"COLLECTION_AGENT",
 	"COLLECTION_DATA_STORE",
 	"CLOUD",
+	"AGENT_OBSERVABILITY",
 }
 
 func (v *DeploymentType) UnmarshalJSON(src []byte) error {

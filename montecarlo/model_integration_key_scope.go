@@ -15,19 +15,21 @@ import (
 	"fmt"
 )
 
-// IntegrationKeyScope What an integration key lets its holder do.  `INGESTION` pushes metadata, lineage, query logs, ETL jobs and runs, or BI assets to the warehouse or container the key is scoped to. `AIRFLOW_CALLBACKS` reports an Airflow environment's DAG and task runs to the Airflow ETL container the key is scoped to.
+// IntegrationKeyScope What an integration key lets its holder do.  `INGESTION` pushes metadata, lineage, query logs, ETL jobs and runs, or BI assets to the warehouse or container the key is scoped to. `AIRFLOW_CALLBACKS` reports an Airflow environment's DAG and task runs to the Airflow ETL container the key is scoped to. `OPEN_TELEMETRY` sends your agents' OpenTelemetry traces to the Agent Observability deployment the key is scoped to.
 type IntegrationKeyScope string
 
 // List of IntegrationKeyScope
 const (
 	INTEGRATIONKEYSCOPE_INGESTION         IntegrationKeyScope = "INGESTION"
 	INTEGRATIONKEYSCOPE_AIRFLOW_CALLBACKS IntegrationKeyScope = "AIRFLOW_CALLBACKS"
+	INTEGRATIONKEYSCOPE_OPEN_TELEMETRY    IntegrationKeyScope = "OPEN_TELEMETRY"
 )
 
 // All allowed values of IntegrationKeyScope enum
 var AllowedIntegrationKeyScopeEnumValues = []IntegrationKeyScope{
 	"INGESTION",
 	"AIRFLOW_CALLBACKS",
+	"OPEN_TELEMETRY",
 }
 
 func (v *IntegrationKeyScope) UnmarshalJSON(src []byte) error {
