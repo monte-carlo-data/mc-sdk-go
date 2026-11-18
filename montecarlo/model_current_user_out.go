@@ -38,6 +38,8 @@ type CurrentUserOut struct {
 	AccountFrozen bool `json:"account_frozen"`
 	// Names of the authorization groups this user belongs to. They determine what the user is permitted to do.
 	AuthGroups []string `json:"auth_groups,omitempty"`
+	// The permissions this user holds, sorted. A permission held only on some domains is listed too. An operation's `x-mc-required-permissions` names the permissions that let a caller through, any one of them; an empty list means any caller.
+	Permissions []string `json:"permissions,omitempty"`
 	// Features in early access that are on for the account. Every operation of a resource in early access answers 404 until its feature is on.
 	Features             []string `json:"features,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -348,6 +350,38 @@ func (o *CurrentUserOut) SetAuthGroups(v []string) {
 	o.AuthGroups = v
 }
 
+// GetPermissions returns the Permissions field value if set, zero value otherwise.
+func (o *CurrentUserOut) GetPermissions() []string {
+	if o == nil || IsNil(o.Permissions) {
+		var ret []string
+		return ret
+	}
+	return o.Permissions
+}
+
+// GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CurrentUserOut) GetPermissionsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Permissions) {
+		return nil, false
+	}
+	return o.Permissions, true
+}
+
+// HasPermissions returns a boolean if a field has been set.
+func (o *CurrentUserOut) HasPermissions() bool {
+	if o != nil && !IsNil(o.Permissions) {
+		return true
+	}
+
+	return false
+}
+
+// SetPermissions gets a reference to the given []string and assigns it to the Permissions field.
+func (o *CurrentUserOut) SetPermissions(v []string) {
+	o.Permissions = v
+}
+
 // GetFeatures returns the Features field value if set, zero value otherwise.
 func (o *CurrentUserOut) GetFeatures() []string {
 	if o == nil || IsNil(o.Features) {
@@ -406,6 +440,9 @@ func (o CurrentUserOut) ToMap() (map[string]interface{}, error) {
 	toSerialize["account_frozen"] = o.AccountFrozen
 	if !IsNil(o.AuthGroups) {
 		toSerialize["auth_groups"] = o.AuthGroups
+	}
+	if !IsNil(o.Permissions) {
+		toSerialize["permissions"] = o.Permissions
 	}
 	if !IsNil(o.Features) {
 		toSerialize["features"] = o.Features
@@ -466,6 +503,7 @@ func (o *CurrentUserOut) UnmarshalJSON(data []byte) (err error) {
 		delete(additionalProperties, "account_name")
 		delete(additionalProperties, "account_frozen")
 		delete(additionalProperties, "auth_groups")
+		delete(additionalProperties, "permissions")
 		delete(additionalProperties, "features")
 		o.AdditionalProperties = additionalProperties
 	}
