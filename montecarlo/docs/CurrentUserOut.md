@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **AccountName** | Pointer to **NullableString** | Display name of the account. Null when the account has no name. | [optional] 
 **AccountFrozen** | **bool** | Whether the account is paused. While it is, this endpoint still answers but every other one returns 403 with the code &#x60;account_frozen&#x60;. | 
 **AuthGroups** | Pointer to **[]string** | Names of the authorization groups this user belongs to. They determine what the user is permitted to do. | [optional] 
+**Permissions** | Pointer to **[]string** | The permissions this user holds, sorted. A permission held only on some domains is listed too. An operation&#39;s &#x60;x-mc-required-permissions&#x60; names the permissions that let a caller through, any one of them; an empty list means any caller. | [optional] 
 **Features** | Pointer to **[]string** | Features in early access that are on for the account. Every operation of a resource in early access answers 404 until its feature is on. | [optional] 
 
 ## Methods
@@ -263,6 +264,31 @@ SetAuthGroups sets AuthGroups field to given value.
 `func (o *CurrentUserOut) HasAuthGroups() bool`
 
 HasAuthGroups returns a boolean if a field has been set.
+
+### GetPermissions
+
+`func (o *CurrentUserOut) GetPermissions() []string`
+
+GetPermissions returns the Permissions field if non-nil, zero value otherwise.
+
+### GetPermissionsOk
+
+`func (o *CurrentUserOut) GetPermissionsOk() (*[]string, bool)`
+
+GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPermissions
+
+`func (o *CurrentUserOut) SetPermissions(v []string)`
+
+SetPermissions sets Permissions field to given value.
+
+### HasPermissions
+
+`func (o *CurrentUserOut) HasPermissions() bool`
+
+HasPermissions returns a boolean if a field has been set.
 
 ### GetFeatures
 
