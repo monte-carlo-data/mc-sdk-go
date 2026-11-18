@@ -90,8 +90,10 @@ docs/ClickHouseCredentialsOut.md
 docs/ClickHouseCredentialsPatch.md
 docs/ClickHouseCredentialsValidateIn.md
 docs/CollectionAgentCredentialOut.md
+docs/CollectionAgentDetailOut.md
 docs/CollectionAgentOut.md
 docs/CollectionAgentsAPI.md
+docs/CollectionDataStoreDetailOut.md
 docs/CollectionDataStoreOut.md
 docs/CollectionDataStoresAPI.md
 docs/ConnectionIn.md
@@ -457,7 +459,9 @@ model_click_house_credentials_out.go
 model_click_house_credentials_patch.go
 model_click_house_credentials_validate_in.go
 model_collection_agent_credential_out.go
+model_collection_agent_detail_out.go
 model_collection_agent_out.go
+model_collection_data_store_detail_out.go
 model_collection_data_store_out.go
 model_connection_in.go
 model_connection_match.go
