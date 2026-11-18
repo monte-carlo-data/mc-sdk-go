@@ -715,6 +715,169 @@ func (a *CollectionAgentsAPIService) DeleteAzureCollectionAgentExecute(r ApiDele
 	return localVarHTTPResponse, nil
 }
 
+type ApiDeleteCollectionAgentRequest struct {
+	ctx               context.Context
+	ApiService        *CollectionAgentsAPIService
+	collectionAgentId string
+}
+
+func (r ApiDeleteCollectionAgentRequest) Execute() (*http.Response, error) {
+	return r.ApiService.DeleteCollectionAgentExecute(r)
+}
+
+/*
+DeleteCollectionAgent Delete a collection agent
+
+Deregister a collection agent, on any platform.
+
+Does what the delete on the agent's own platform path does. Its deployment is left without
+an agent. Reprovision that deployment before registering another agent on it. Every token
+created for a generic agent's deployment is deleted with it, so a running agent stops being
+able to connect. Its OAuth clients are deleted on a best-effort basis: one that fails to
+delete is not reported and keeps working.
+
+An agent cannot be deleted while its deployment still has a connection running through it.
+Delete or move those connections first.
+
+An id that names no agent in your account returns 404. So does an agent on a platform with
+no path of its own here, such as a Snowflake agent.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
+	@return ApiDeleteCollectionAgentRequest
+*/
+func (a *CollectionAgentsAPIService) DeleteCollectionAgent(ctx context.Context, collectionAgentId string) ApiDeleteCollectionAgentRequest {
+	return ApiDeleteCollectionAgentRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		collectionAgentId: collectionAgentId,
+	}
+}
+
+// Execute executes the request
+func (a *CollectionAgentsAPIService) DeleteCollectionAgentExecute(r ApiDeleteCollectionAgentRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CollectionAgentsAPIService.DeleteCollectionAgent")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/collection-agents/{collection_agent_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"collection_agent_id"+"}", url.PathEscape(parameterValueToString(r.collectionAgentId, "collectionAgentId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiDeleteGcpCollectionAgentRequest struct {
 	ctx               context.Context
 	ApiService        *CollectionAgentsAPIService
@@ -889,9 +1052,10 @@ DeleteGenericCollectionAgent Delete a generic collection agent
 
 Deregister a generic collection agent.
 
-Every credential created for its deployment is deleted with it, so a running agent stops
-being able to connect. Its deployment is left without an agent. Reprovision that deployment
-before registering another agent on it.
+Every token created for its deployment is deleted with it, so a running agent stops being
+able to connect. Its OAuth clients are deleted on a best-effort basis: one that fails to
+delete is not reported and keeps working. Its deployment is left without an agent.
+Reprovision that deployment before registering another agent on it.
 
 An agent cannot be deleted while its deployment still has a connection running through it.
 Delete or move those connections first.
@@ -1494,6 +1658,155 @@ func (a *CollectionAgentsAPIService) GetAzureCollectionAgentExecute(r ApiGetAzur
 	}
 
 	localVarPath := localBasePath + "/api/v2/collection-agents/azure/{collection_agent_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"collection_agent_id"+"}", url.PathEscape(parameterValueToString(r.collectionAgentId, "collectionAgentId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ProblemOut
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil || len(localVarBody) == 0 {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetCollectionAgentRequest struct {
+	ctx               context.Context
+	ApiService        *CollectionAgentsAPIService
+	collectionAgentId string
+}
+
+func (r ApiGetCollectionAgentRequest) Execute() (*CollectionAgentDetailOut, *http.Response, error) {
+	return r.ApiService.GetCollectionAgentExecute(r)
+}
+
+/*
+GetCollectionAgent Get a collection agent
+
+Get one collection agent, on any platform.
+
+Takes the id the list returns. `details` holds the fields of that platform's own read, such
+as the external id of an AWS agent. A secret is never returned.
+
+An id that names no agent in your account returns 404. So does an agent on a platform with
+no path of its own here, such as a Snowflake agent.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param collectionAgentId Id of the collection agent, as returned when it is registered or listed.
+	@return ApiGetCollectionAgentRequest
+*/
+func (a *CollectionAgentsAPIService) GetCollectionAgent(ctx context.Context, collectionAgentId string) ApiGetCollectionAgentRequest {
+	return ApiGetCollectionAgentRequest{
+		ApiService:        a,
+		ctx:               ctx,
+		collectionAgentId: collectionAgentId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return CollectionAgentDetailOut
+func (a *CollectionAgentsAPIService) GetCollectionAgentExecute(r ApiGetCollectionAgentRequest) (*CollectionAgentDetailOut, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CollectionAgentDetailOut
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CollectionAgentsAPIService.GetCollectionAgent")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/collection-agents/{collection_agent_id}"
 	localVarPath = strings.Replace(localVarPath, "{"+"collection_agent_id"+"}", url.PathEscape(parameterValueToString(r.collectionAgentId, "collectionAgentId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

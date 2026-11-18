@@ -8,12 +8,14 @@ Method | HTTP request | Description
 [**CreateGenericCollectionAgentToken**](CollectionAgentsAPI.md#CreateGenericCollectionAgentToken) | **Post** /api/v2/collection-agents/generic/credentials/token | Create a token for a generic collection agent
 [**DeleteAwsCollectionAgent**](CollectionAgentsAPI.md#DeleteAwsCollectionAgent) | **Delete** /api/v2/collection-agents/aws/{collection_agent_id} | Delete an AWS collection agent
 [**DeleteAzureCollectionAgent**](CollectionAgentsAPI.md#DeleteAzureCollectionAgent) | **Delete** /api/v2/collection-agents/azure/{collection_agent_id} | Delete an Azure collection agent
+[**DeleteCollectionAgent**](CollectionAgentsAPI.md#DeleteCollectionAgent) | **Delete** /api/v2/collection-agents/{collection_agent_id} | Delete a collection agent
 [**DeleteGcpCollectionAgent**](CollectionAgentsAPI.md#DeleteGcpCollectionAgent) | **Delete** /api/v2/collection-agents/gcp/{collection_agent_id} | Delete a GCP collection agent
 [**DeleteGenericCollectionAgent**](CollectionAgentsAPI.md#DeleteGenericCollectionAgent) | **Delete** /api/v2/collection-agents/generic/{collection_agent_id} | Delete a generic collection agent
 [**DeleteGenericCollectionAgentOauthClient**](CollectionAgentsAPI.md#DeleteGenericCollectionAgentOauthClient) | **Delete** /api/v2/collection-agents/generic/credentials/oauth/{credential_id} | Delete a generic collection agent OAuth client
 [**DeleteGenericCollectionAgentToken**](CollectionAgentsAPI.md#DeleteGenericCollectionAgentToken) | **Delete** /api/v2/collection-agents/generic/credentials/token/{credential_id} | Delete a generic collection agent token
 [**GetAwsCollectionAgent**](CollectionAgentsAPI.md#GetAwsCollectionAgent) | **Get** /api/v2/collection-agents/aws/{collection_agent_id} | Get an AWS collection agent
 [**GetAzureCollectionAgent**](CollectionAgentsAPI.md#GetAzureCollectionAgent) | **Get** /api/v2/collection-agents/azure/{collection_agent_id} | Get an Azure collection agent
+[**GetCollectionAgent**](CollectionAgentsAPI.md#GetCollectionAgent) | **Get** /api/v2/collection-agents/{collection_agent_id} | Get a collection agent
 [**GetGcpCollectionAgent**](CollectionAgentsAPI.md#GetGcpCollectionAgent) | **Get** /api/v2/collection-agents/gcp/{collection_agent_id} | Get a GCP collection agent
 [**GetGenericCollectionAgent**](CollectionAgentsAPI.md#GetGenericCollectionAgent) | **Get** /api/v2/collection-agents/generic/{collection_agent_id} | Get a generic collection agent
 [**GetGenericCollectionAgentOauthClient**](CollectionAgentsAPI.md#GetGenericCollectionAgentOauthClient) | **Get** /api/v2/collection-agents/generic/credentials/oauth/{credential_id} | Get a generic collection agent OAuth client
@@ -275,6 +277,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteAzureCollectionAgentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteCollectionAgent
+
+> DeleteCollectionAgent(ctx, collectionAgentId).Execute()
+
+Delete a collection agent
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CollectionAgentsAPI.DeleteCollectionAgent(context.Background(), collectionAgentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CollectionAgentsAPI.DeleteCollectionAgent``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteCollectionAgentRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -696,6 +766,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AzureCollectionAgentOut**](AzureCollectionAgentOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetCollectionAgent
+
+> CollectionAgentDetailOut GetCollectionAgent(ctx, collectionAgentId).Execute()
+
+Get a collection agent
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	collectionAgentId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection agent, as returned when it is registered or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CollectionAgentsAPI.GetCollectionAgent(context.Background(), collectionAgentId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CollectionAgentsAPI.GetCollectionAgent``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetCollectionAgent`: CollectionAgentDetailOut
+	fmt.Fprintf(os.Stdout, "Response from `CollectionAgentsAPI.GetCollectionAgent`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**collectionAgentId** | **string** | Id of the collection agent, as returned when it is registered or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCollectionAgentRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**CollectionAgentDetailOut**](CollectionAgentDetailOut.md)
 
 ### Authorization
 

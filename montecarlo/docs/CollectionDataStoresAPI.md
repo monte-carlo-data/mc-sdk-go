@@ -6,9 +6,11 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**DeleteAwsCollectionDataStore**](CollectionDataStoresAPI.md#DeleteAwsCollectionDataStore) | **Delete** /api/v2/collection-data-stores/aws/{collection_data_store_id} | Delete an AWS collection data store
 [**DeleteAzureCollectionDataStore**](CollectionDataStoresAPI.md#DeleteAzureCollectionDataStore) | **Delete** /api/v2/collection-data-stores/azure/{collection_data_store_id} | Delete an Azure collection data store
+[**DeleteCollectionDataStore**](CollectionDataStoresAPI.md#DeleteCollectionDataStore) | **Delete** /api/v2/collection-data-stores/{collection_data_store_id} | Delete a collection data store
 [**DeleteGcpCollectionDataStore**](CollectionDataStoresAPI.md#DeleteGcpCollectionDataStore) | **Delete** /api/v2/collection-data-stores/gcp/{collection_data_store_id} | Delete a GCP collection data store
 [**GetAwsCollectionDataStore**](CollectionDataStoresAPI.md#GetAwsCollectionDataStore) | **Get** /api/v2/collection-data-stores/aws/{collection_data_store_id} | Get an AWS collection data store
 [**GetAzureCollectionDataStore**](CollectionDataStoresAPI.md#GetAzureCollectionDataStore) | **Get** /api/v2/collection-data-stores/azure/{collection_data_store_id} | Get an Azure collection data store
+[**GetCollectionDataStore**](CollectionDataStoresAPI.md#GetCollectionDataStore) | **Get** /api/v2/collection-data-stores/{collection_data_store_id} | Get a collection data store
 [**GetGcpCollectionDataStore**](CollectionDataStoresAPI.md#GetGcpCollectionDataStore) | **Get** /api/v2/collection-data-stores/gcp/{collection_data_store_id} | Get a GCP collection data store
 [**ListCollectionDataStores**](CollectionDataStoresAPI.md#ListCollectionDataStores) | **Get** /api/v2/collection-data-stores | List collection data stores
 [**RegisterAwsCollectionDataStore**](CollectionDataStoresAPI.md#RegisterAwsCollectionDataStore) | **Post** /api/v2/collection-data-stores/aws | Register an AWS collection data store
@@ -132,6 +134,74 @@ Name | Type | Description  | Notes
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiDeleteAzureCollectionDataStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## DeleteCollectionDataStore
+
+> DeleteCollectionDataStore(ctx, collectionDataStoreId).Execute()
+
+Delete a collection data store
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection data store, as returned when it is registered or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	r, err := apiClient.CollectionDataStoresAPI.DeleteCollectionDataStore(context.Background(), collectionDataStoreId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CollectionDataStoresAPI.DeleteCollectionDataStore``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**collectionDataStoreId** | **string** | Id of the collection data store, as returned when it is registered or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiDeleteCollectionDataStoreRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes
@@ -349,6 +419,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**AzureCollectionDataStoreOut**](AzureCollectionDataStoreOut.md)
+
+### Authorization
+
+[GatewayAuth](../README.md#GatewayAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json, application/problem+json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## GetCollectionDataStore
+
+> CollectionDataStoreDetailOut GetCollectionDataStore(ctx, collectionDataStoreId).Execute()
+
+Get a collection data store
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/monte-carlo-data/mc-sdk-go/montecarlo"
+)
+
+func main() {
+	collectionDataStoreId := "38400000-8cf0-11bd-b23e-10b96e4ef00d" // string | Id of the collection data store, as returned when it is registered or listed.
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CollectionDataStoresAPI.GetCollectionDataStore(context.Background(), collectionDataStoreId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CollectionDataStoresAPI.GetCollectionDataStore``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `GetCollectionDataStore`: CollectionDataStoreDetailOut
+	fmt.Fprintf(os.Stdout, "Response from `CollectionDataStoresAPI.GetCollectionDataStore`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**collectionDataStoreId** | **string** | Id of the collection data store, as returned when it is registered or listed. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiGetCollectionDataStoreRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**CollectionDataStoreDetailOut**](CollectionDataStoreDetailOut.md)
 
 ### Authorization
 
