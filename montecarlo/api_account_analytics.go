@@ -143,16 +143,6 @@ func (a *AccountAnalyticsAPIService) GetAccountAnalyticsCatalogExecute(r ApiGetA
 			body:  localVarBody,
 			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
 		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil || len(localVarBody) == 0 {
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -330,16 +320,6 @@ func (a *AccountAnalyticsAPIService) GetAccountAnalyticsDocsExecute(r ApiGetAcco
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil || len(localVarBody) == 0 {
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
@@ -544,16 +524,6 @@ func (a *AccountAnalyticsAPIService) QueryAccountAnalyticsExecute(r ApiQueryAcco
 		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: formatErrorBody(localVarHTTPResponse.Status, localVarBody),
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ProblemOut
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil || len(localVarBody) == 0 {
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ProblemOut
