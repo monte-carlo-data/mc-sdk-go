@@ -35,7 +35,7 @@ type ConnectionOut struct {
 	BiContainerId NullableString `json:"bi_container_id"`
 	// Display name of that BI container. Null for a container that was never named, and for a connection on a warehouse or an ETL container.
 	BiContainerName NullableString `json:"bi_container_name"`
-	// The ETL container the connection belongs to. Fixed once created for a connection on an ETL container. A warehouse or BI connection has one while it collects ETL jobs through a container of its own, such as Snowflake Tasks, a Databricks metastore or Power BI dataflows, and it changes when that is turned on or off. Null otherwise.
+	// The ETL container the connection belongs to. Fixed once created for a connection on an ETL container. A warehouse or BI connection has one while it collects ETL jobs through a container of its own, such as Snowflake Tasks, a Databricks metastore or Power BI ETL, and it changes when that is turned on or off. Null otherwise.
 	EtlContainerId NullableString `json:"etl_container_id"`
 	// Display name of that ETL container. Null when there is no ETL container.
 	EtlContainerName NullableString `json:"etl_container_name"`

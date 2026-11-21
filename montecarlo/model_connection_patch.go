@@ -21,7 +21,7 @@ var _ MappedNullable = &ConnectionPatch{}
 type ConnectionPatch struct {
 	// New display name for the connection. Omit it to leave the name unchanged. An explicit null is ignored, the same as omitting the field.
 	Name NullableString `json:"name,omitempty"`
-	// The connection's job types with `etl` added or removed. Adding `etl` turns on ETL collection for a Snowflake (Snowflake Tasks), Power BI (dataflows) or Salesforce Data Cloud connection, and creates the ETL container that `etl_container_id` then names. Removing it deletes that container. No other job can be added or removed. Omit it to leave the job types unchanged.
+	// The connection's job types with `etl` added or removed. Adding `etl` turns on ETL collection for a Snowflake (Snowflake Tasks), Power BI or Salesforce Data Cloud connection, and creates the ETL container that `etl_container_id` then names. Removing it deletes that container. No other job can be added or removed. Omit it to leave the job types unchanged.
 	JobTypes []string `json:"job_types,omitempty"`
 	// Which dbt Cloud runs a dbt Cloud webhook connection processes. A dbt Cloud webhook reports runs from every environment in the dbt account. These settings decide which of them Monte Carlo processes for the connection's warehouse. Only a dbt Cloud webhook connection takes it. An object replaces the settings whole. Null resets them to the defaults. Omit it to leave them unchanged.
 	DbtCloud NullableDbtCloudSettingsIn `json:"dbt_cloud,omitempty"`
